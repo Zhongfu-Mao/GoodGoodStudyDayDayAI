@@ -4,72 +4,109 @@ date: 2026-04-10
 category: radar
 cadence: daily
 tags:
+  - Agent
   - Harness Engineering
-  - Gemma
+  - Context Engineering
   - OpenClaw
-  - Managed Agents
 lang: ja
 draft: false
 ---
-
 ## 対象範囲
 
-- 対象期間: 過去 72 時間（2026-04-08〜2026-04-10）
-- 参照ソース: Latent Space · ByteByteGo · Ahead of AI (Sebastian Raschka) · Hugging Face Blog · The Rundown AI · Daily Dose of Data Science
+- データ期間: 2026-04-07〜2026-04-10（過去 72 時間）
+- 参照ソース: Latent Space · ByteByteGo · Ahead of AI（Sebastian Raschka）· Hugging Face Blog · The Rundown AI · Daily Dose of Data Science
 
-# 今日の見立て
+---
+![Extreme Harness Engineering 主题视觉图](https://substackcdn.com/image/fetch/$s_!5TXE!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F193478192%2Fbac92fb4-46a2-4c8a-b189-083c263423fd%2Ftranscoded-1775581604.png)
 
-- 「Extreme Harness Engineering」という表現は過激だが、方向性そのものはかなり本質的だ。
-- モデル層とプラットフォーム層の境界が急速に引き直されている。
-- ソフトウェア開発フローそのものを AI システム設計として見直す動きが強い。
+*代表画像は [Extreme Harness Engineering](https://www.latent.space/p/harness-eng) から引用。この日の本丸が「実行環境・workspace・承認フローこそ新しい能力層になる」という話だったので、先頭にはこの絵が最も自然だった。*
 
-![Extreme Harness Engineering のビジュアル](https://substackcdn.com/image/fetch/$s_!5TXE!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F193478192%2Fbac92fb4-46a2-4c8a-b189-083c263423fd%2Ftranscoded-1775581604.png)
+## 1. 🛠️ AI Engineering & アーキテクチャ
 
-*代表画像は [Extreme Harness Engineering](https://www.latent.space/p/harness-eng) のビジュアルから選定。この図は 4 月 10 日の主線に合っていて、実行環境・作業空間・承認フローが新しい能力層になりつつあることを示している。*
+### Extreme Harness Engineering: 100 万行、0% 人間コード、0% 人手レビュー
+**出典：** Latent Space  
+**リンク：** https://www.latent.space/p/harness-eng
 
-## 注目記事
+OpenAI Frontier の Ryan Lopopolo は、小さなエンジニアリングチームが 5 カ月で 100 万行を超える beta product を構築し、そのあいだ **人間が 1 行もコードを書かず、merge 前 review も 0%** だったことを明かした。エンジニアは PR と CI workflow を通じて Codex Agent を誘導し、アプリ本体、ドキュメント、CI、observability、toolchain まで全部 agent に書かせている。これを支えているのが "Harness Engineering" であり、現時点で最も極端な AI-native software engineering の公開例だ。
 
-- **[Extreme Harness Engineering](https://www.latent.space/p/harness-eng)**: 0% human code や 0% human review という刺激的な表現の奥で、本当に重要なのは runtime、workspace、approval flow が能力差を作り始めたことだと分かる。
-- **[Gemma 4](https://huggingface.co/blog/gemma4)**: open weight モデルがマルチモーダル、端末実行、長文脈を同時に取りに来ている現実を確認するのにちょうどいい。
-- **[Anthropic 推出 Claude Managed Agents 公测](https://www.therundown.ai/)**: platform が「モデル API」ではなく「実行中の Agent」を直接提供し始めた、Agent-as-a-Service の初期形として押さえておきたい。
+### Latent Space AINews: Anthropic の商業加速と Claude Mythos 登場
+**出典：** Latent Space  
+**リンク：** https://www.latent.space/s/ainews
 
-## Engineering & Architecture
+4 月 6 日から 7 日にかけての AINews は、Anthropic の ARR 急伸と Claude Mythos Preview を中心に回っている。商業面では Anthropic が年内 $90B ARR に達する可能性まで語られ、能力面では Mythos と Glasswing が次の frontier race の主役候補として扱われている。
 
-- **Extreme Harness Engineering**：注目すべきは 0% human code ではなく、実行環境、承認、作業空間が能力を拡張している点。
-- **AI in Software Development 三段階**：補助から agentic workflow への進化が整理されてきた。
+### ByteByteGo EP201: AI がソフトウェア開発へ入ってきた 3 つの波
+**出典：** ByteByteGo  
+**リンク：** https://blog.bytebytego.com/p/ep201-the-evolution-of-ai-in-software
 
-## Models & Open Source
+ソフトウェア開発における AI の進化を、汎用 LLM → コーディング特化 LLM → agentic coding tool の 3 段階で整理した記事。現在の coding tool がどの段に立っているかを掴むのに向いており、Harness Engineering の実例ともよく噛み合う。
 
-- **Gemma 4**：多モーダル、端末動作、オープンライセンスの組み合わせが強い。
-- **Open Weight の春**：オープンモデルは「どれだけ GPT に似ているか」から離れ始めている。
-- **Muse Spark**：新しい stack を背負った最初のモデルとして見るべき存在。
+## 2. 🧠 モデル動向 & アルゴリズム
 
-## Tools & Platforms
+### Gemma 4: 真のマルチモーダル + on-device 開源モデル
+**出典：** Hugging Face Blog  
+**リンク：** https://huggingface.co/blog/gemma4
 
-- **OpenClaw の存在感**：Agent プラットフォームを直接比較できる段階に来た。
-- **多ターン評価と Context Engineering**：LLMOps の重点は評価の設計にある。
-- **Claude Managed Agents**：Agent をサービスとして渡すプラットフォーム競争が本格化している。
+Gemma 4 は Apache 2.0 で公開され、E4B MoE と 31B Dense を中心に、画像・テキスト・音声入力を扱える。局所 sliding window attention と global attention を交互に積み、長文脈効率と依存関係保持を両立している。llama.cpp、MLX、WebGPU、Rust などにも広く載っており、端側マルチモーダル開源モデルの本命の一つになった。
 
-## Follow-up
+### Raschka: Jan-Feb 2026 の開源 LLM 10 本を俯瞰する
+**出典：** Ahead of AI  
+**リンク：** https://magazine.sebastianraschka.com/p/a-dream-of-spring-for-open-weight
 
-- OpenClaw、Managed Agents、本地 harness の住み分けを継続観察する。
+2026 年初頭の重要な開源 LLM 10 本を見渡し、依然として自己回帰 Transformer が主流でありながら、GQA から MLA や線形注意混合への移行が始まっていることを示す。長文脈効率と推論コストの圧縮が、設計の主動機になっている。
 
-## 参照記事
+### Meta Superintelligence Labs が Muse Spark を出荷
+**出典：** The Rundown AI  
+**リンク：** https://www.therundown.ai/p/meta-superintelligence-labs-ships-its-first-model
 
-### Engineering & Architecture
-- [Extreme Harness Engineering：1M LOC、0% 人类代码、0% 人工审查](https://www.latent.space/p/harness-eng)
-- [Latent Space AINews：Anthropic 商业加速 & Claude Mythos 登场](https://www.latent.space/s/ainews)
-- [ByteByteGo EP201：AI 在软件开发中的三次演化浪潮](https://blog.bytebytego.com/p/ep201-the-evolution-of-ai-in-software)
-- [Meta Superintelligence Labs 发布首款专有模型 Muse Spark](https://www.therundown.ai/p/meta-superintelligence-labs-ships-its-first-model)
+Alexandr Wang 率いる MSL が、音声・画像・テキストを扱う多模態モデル Muse Spark を公開した。複数 agent の「contemplating mode」を備え、推論では Opus 4.6 や GPT 5.4 に近い一方、コーディングや ARC-AGI 2 はまだ追い込み中とされる。閉源で出してきた点も大きい。
 
-### Models & Research
-- [Gemma 4：Google 发布真正多模态 + On-Device 开源模型](https://huggingface.co/blog/gemma4)
+### AlphaGenome: 非コード DNA を計算対象に変える
+**出典：** The Batch @ DeepLearning.AI  
+**リンク：** https://www.deeplearning.ai/the-batch/googles-alphagenome-interprets-dna-that-regulates-genetic-expression/
 
-### Tools & Libraries
-- [OpenClaw：2026 年 GitHub 增长最快开源 AI 项目](https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026)
-- [Daily Dose of Data Science：LLMOps 系列 — 多轮评估与上下文工程](https://blog.dailydoseofds.com/p/multi-turn-evals-for-llm-apps)
-- [Anthropic 推出 Claude Managed Agents 公测](https://www.therundown.ai/)
+ゲノムの 98% を占める「非コード領域」をモデル化し、遺伝子発現制御を読む方向の進展。大モデルの表現学習が、単なる研究支援を超えて生命科学の核心問題へ入ってきたシグナルとして重要だ。
 
-### Industry & Business
-- [Anthropic 发布 Claude Mythos Preview + Project Glasswing 网络安全专项](https://www.anthropic.com/glasswing)
-- [ByteByteGo：2026 年 AI 五大趋势展望](https://blog.bytebytego.com/p/whats-next-in-ai-five-trends-to-watch)
+### Walrus: 世界モデルが科学計算の側を変え始める
+**出典：** The Batch @ DeepLearning.AI  
+**リンク：** https://www.deeplearning.ai/the-batch/a-dynamic-fluids-model-appears-to-solve-transformers-pixellation-problem/
+
+世界モデル的な発想が、動画や agent だけでなく、流体・気体・プラズマなどの科学シミュレーションへ広がっていることを示すトピック。高い産業価値を持つ科学計算へ、world model の方法論が流れ込んでいる。
+
+## 3. 💻 実装コード & ツール
+
+### OpenClaw: 2026 年 GitHub で最も伸びた開源 AI プロジェクト
+**出典：** ByteByteGo  
+**リンク：** https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026
+
+OpenClaw は、ローカルで動く個人 AI assistant / gateway として、WhatsApp、Telegram、Slack、Discord、Signal、iMessage など 50 以上の統合を持つ。Web 操作、form fill、shell command、code execution、スマートホーム制御までこなす一方、権限が広く skill repository 監査も甘いというセキュリティ上の懸念がある。
+
+### LLMOps シリーズ: multi-turn evals と context engineering
+**出典：** Daily Dose of Data Science  
+**リンク：** https://blog.dailydoseofds.com/p/multi-turn-evals-for-llm-apps
+
+multi-turn consistency、tool use eval、tracing、red teaming のような対話系評価に加え、容量制約のもとで有効信号密度を最大化する context engineering までを高密度に扱うシリーズ。prod LLM app を改善したい人にはかなり実践的だ。
+
+### Anthropic が Claude Managed Agents ベータを公開
+**出典：** The Rundown AI  
+**リンク：** https://www.therundown.ai/
+
+Anthropic は Claude Managed Agents のパブリックベータを出し、Notion、Rakuten、Asana、Sentry などが先行利用者として名を連ねた。OpenAI の Codex platform と真っ向から競る、agent engineering 民主化の一手と見てよい。
+
+## 4. 📰 業界 & ビジネス
+
+### Claude Mythos Preview + Project Glasswing
+**出典：** The Rundown AI / Latent Space  
+**リンク：** https://www.anthropic.com/glasswing
+
+Anthropic は Claude Mythos Preview を、サイバーセキュリティ防御用途のみに限定して Glasswing 経由で提供し始めた。主要 OS やブラウザ、重要ソフトウェアにまたがる大量の 0-day 脆弱性を見つけられるとされ、すぐに一般公開しないという判断自体が大きなニュースになっている。
+
+### ByteByteGo: 2026 年 AI の 5 大トレンド
+**出典：** ByteByteGo  
+**リンク：** https://blog.bytebytego.com/p/whats-next-in-ai-five-trends-to-watch
+
+持続型 Agent、信頼性と安全性、physical AI、test-time scaling、小型開源モデルの実用化という 5 本柱で整理している。戦略レベルの俯瞰に向いている。
+
+*⚠️ 取得補足:*
+
+今回の取得時点では Chrome 拡張が未接続で、Cowork サンドボックス側の外向きネットワーク制限もあり、内容の一部は WebSearch fallback で補った。そのため Daily Dose of DS や ByteByteGo の一部記事は、厳密な発行時刻に若干の誤差がある可能性がある。

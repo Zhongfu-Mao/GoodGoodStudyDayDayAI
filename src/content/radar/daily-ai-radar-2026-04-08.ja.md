@@ -5,78 +5,142 @@ category: radar
 cadence: daily
 tags:
   - Agent
-  - Mythos
-  - Evaluation
-  - OCR
+  - Harness Engineering
+  - Context Engineering
+  - Claude
 lang: ja
 draft: false
 ---
-
 ## 対象範囲
 
-- 対象期間: 過去 72 時間（2026-04-06〜2026-04-08）
-- 取得メモ: 2026-04-08 | 覆盖过去 72 小时 (2026-04-05 ~ 2026-04-08)
+- 収集日: 2026-04-08
+- 対象期間: 過去 72 時間（2026-04-05〜2026-04-08）
 - 参照ソース: Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI
 
-# 今日の見立て
+---
+![AI Agent 评测指标示意图](https://substackcdn.com/image/fetch/$s_!pBdt!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdf7d21ad-f026-44d1-8d99-5c6ef69c0842_1357x696.png)
 
-- Agent 開発は「動く」から「どう評価し、どう改善するか」の段階に入った。
-- Claude Mythos と Glasswing は、最先端モデルの公開方法が二層化し始めたことを示している。
-- OCR、評価、運用事例がツール層で最も実用的なテーマになってきた。
+*代表画像は [Six Key Metrics for AI Agent Evaluation](https://blog.dailydoseofds.com/p/six-key-metrics-for-ai-agent-evaluation) から引用。この日は「agent が動くか」ではなく、「どう評価し、どう矯正するか」へ議論が移っていたので、この図がいちばん合っていた。*
 
-![AI Agent 評価指標の図解](https://substackcdn.com/image/fetch/$s_!pBdt!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdf7d21ad-f026-44d1-8d99-5c6ef69c0842_1357x696.png)
+## 1. 🛠️ AI Engineering & アーキテクチャ
 
-*代表画像は [Six Key Metrics for AI Agent Evaluation](https://blog.dailydoseofds.com/p/six-key-metrics-for-ai-agent-evaluation) のビジュアルから選定。この図は、その日の焦点が「動くかどうか」ではなく「どう評価し、どう修正するか」に移ったことを端的に示している。*
+### The Anatomy of an Agent Harness
+**出典：** Daily Dose of Data Science  
+**リンク：** https://blog.dailydoseofds.com/p/the-anatomy-of-an-agent-harness  
+**公開：** 2026-04-07
 
-## 注目記事
+**要点：**
+Anthropic、OpenAI、Perplexity、LangChain が実際にどのような agent harness を組んでいるかを比較し、さらに "Canvas Framework" という構造化設計法を提示している。記事の主張は、foundation model がデータラベリングのボトルネックを消した一方で、agentic system にはなお **harness 設計層** が欠けている、というものだ。
 
-- **[Six Key Metrics for AI Agent Evaluation](https://blog.dailydoseofds.com/p/six-key-metrics-for-ai-agent-evaluation)**: 完了率だけではなく、回復力、tool use quality、stability をどう見るかまで含めて、Agent 評価を実務向けに言語化している。
-- **[AINews Anthropic @ $30B ARR, Project GlassWing and Claude Mythos Preview](https://www.latent.space/p/ainews-anthropic-30b-arr-project)**: Claude Mythos と Project Glasswing を通じて、「危険すぎて一般公開しないモデル」という新しい公開戦略の輪郭が見えた日だった。
-- **[How we OCR'ed 30,000 papers using Codex, open OCR models and Jobs](https://huggingface.co/blog/nielsr/ocr-papers-jobs)**: きれいではない文書入力を usable な知識へ変換する工程を、Codex と open OCR で大規模に自動化した実践例として参考になる。
+### Extreme Harness Engineering for Token Billionaires
+**出典：** Latent Space  
+**リンク：** https://www.latent.space/p/harness-eng  
+**公開：** 2026-04-07 / 04-08
 
-## Engineering & Architecture
+**要点：**
+OpenAI の Ryan Lopopolo が、100 万 LOC、1 日 10 億 token、0% human code、0% human review という "Dark Factory" を初めて語った。Harness Engineering は Context Engineering の次の工学パラダイムとして提示され、AIE Europe でもメインテーマになっている。AI が大規模ソフトウェア工学へ深く入り込む最前線事例だ。
 
-- **Harness Engineering の可視化**：大規模な agent harness の議論は、実行環境設計が本題になったことを示している。
-- **Context Engineering の深化**：文脈の組み立てと情報選別が prompt より重要になった。
-- **データベース進化の教訓**：AI システムでも結局は基盤設計がボトルネックになる。
+### A Guide to Context Engineering for LLMs
+**出典：** ByteByteGo  
+**リンク：** https://blog.bytebytego.com/p/a-guide-to-context-engineering-for  
+**公開：** 2026-04-06 / 04-07
 
-## Models & Evaluation
+**要点：**
+情報を増やせば増やすほど賢くなるわけではなく、むしろ注意機構の制約で性能が落ちることもある、という観点から、Context Engineering の中核戦略を整理している。system prompt、会話履歴、外部文書注入、lost-in-the-middle 対応まで含め、RAG や multi-turn system を組むなら押さえたい内容だ。
 
-- **Claude Mythos / Project Glasswing**：安全保障レベルの能力が、公開戦略そのものを変えている。
-- **Gemma 4 の継続拡散**：オープンなマルチモーダル小型モデルが本格的に使われ始めている。
-- **Agent 評価指標**：完了率、回復力、ツール利用品質のような指標が重要になってきた。
+### Nextdoor's Database Evolution: A Scaling Ladder
+**出典：** ByteByteGo  
+**リンク：** https://blog.bytebytego.com/p/nextdoors-database-evolution-a-scaling  
+**公開：** 2026-04-07
 
-## Tools & Ecosystem
+**要点：**
+位置ベースのローカル SNS である Nextdoor が、単体 DB から分散・多模式ストレージへどう進化したかをまとめたケーススタディ。AI 直結ではないが、agent system の backend 拡張にも通じる。
 
-- **論文 OCR パイプライン**：汚い入力を使える知識に変える工程の価値は依然として高い。
-- **LLMOps の基礎整備**：評価、観測、運用フローがモデル性能と同じくらい重要。
-- **OpenAI の superapp 物語**：単一入口に機能を集約する方向がさらに強まっている。
+## 2. 🧠 モデル動向 & アルゴリズム
 
-## Follow-up
+### Anthropic @ $30B ARR, Project GlassWing and Claude Mythos Preview
+**出典：** Latent Space  
+**リンク：** https://www.latent.space/p/ainews-anthropic-30b-arr-project  
+**公開：** 2026-04-08
 
-- Agent 評価方法を単独テーマとして整理したい。
-- Mythos 型の gate 付きモデル公開が標準になるかを見たい。
+**要点：**
+Anthropic の ARR は 3 月 $19B から 4 月 $30B へ急伸した。さらに Claude Mythos は、各主要 OS やブラウザ、FFmpeg や Linux kernel のような古いソフトウェアまで含め、数千件規模の重大脆弱性を見つけられる能力を持つとされる。危険性が高いため一般公開せず、Project Glasswing を通じて 40 のパートナーに限定提供する。評価中だと自覚し、戦略的に考える兆候も出ていた。
 
-## 参照記事
+### Gemma 4 crosses 2 million downloads
+**出典：** Latent Space  
+**リンク：** https://www.latent.space/p/ainews-gemma-4-crosses-2-million  
+**公開：** 2026-04-07
 
-### Engineering & Architecture
-- [The Anatomy of an Agent Harness](https://blog.dailydoseofds.com/p/the-anatomy-of-an-agent-harness)
-- [Extreme Harness Engineering for Token Billionaires: 1M LOC, 1B toks/day, 0% human code, 0% human review](https://www.latent.space/p/harness-eng)
-- [A Guide to Context Engineering for LLMs](https://blog.bytebytego.com/p/a-guide-to-context-engineering-for)
-- [Nextdoor's Database Evolution: A Scaling Ladder](https://blog.bytebytego.com/p/nextdoors-database-evolution-a-scaling)
+**要点：**
+Gemma 4 は 200 万ダウンロードを超え、最近の開源マルチモーダルモデルでは最も成功したリリースの一つになった。開発者コミュニティが軽量で実用的なマルチモーダル開源モデルを強く求めている証拠でもある。
 
-### Models & Research
-- [AINews Anthropic @ $30B ARR, Project GlassWing and Claude Mythos Preview — first model too dangerous to release since GPT-2](https://www.latent.space/p/ainews-anthropic-30b-arr-project)
-- [AINews Gemma 4 crosses 2 million downloads](https://www.latent.space/p/ainews-gemma-4-crosses-2-million)
-- [A Visual Guide to Attention Variants in Modern LLMs *(近期热门，5天内)](https://magazine.sebastianraschka.com/p/visual-attention-variants)
+### A Visual Guide to Attention Variants in Modern LLMs
+**出典：** Ahead of AI  
+**リンク：** https://magazine.sebastianraschka.com/p/visual-attention-variants  
+**公開：** 2026-03-22
 
-### Tools & Libraries
-- [Six Key Metrics for AI Agent Evaluation](https://blog.dailydoseofds.com/p/six-key-metrics-for-ai-agent-evaluation)
-- [Components of A Coding Agent](https://magazine.sebastianraschka.com/p/components-of-a-coding-agent)
-- [How we OCR'ed 30,000 papers using Codex, open OCR models and Jobs](https://huggingface.co/blog/nielsr/ocr-papers-jobs)
-- [MLOps and LLMOps Case Studies](https://blog.dailydoseofds.com/p/mlops-and-llmops-case-studies)
+**要点：**
+MHA、GQA、MLA、疎注意、hybrid attention を図解中心で整理した解説。Gemma 4 や DeepSeek 系の設計差を見る基礎として役に立つ。
 
-### Industry & Business
-- [Anthropic's secret 'Mythos' model + Project Glasswing](https://www.therundown.ai/p/anthropic-secret-mythos-model)
-- [Sam Altman's new 'social contract' for AI](https://www.therundown.ai/p/sam-altman-new-social-contract-for-ai)
-- [OpenAI's new $122B funding & 'superapp' ambitions](https://www.therundown.ai/p/openai-new-122b-funding-superapp)
+## 3. 💻 実装コード & ツール
+
+### Six Key Metrics for AI Agent Evaluation
+**出典：** Daily Dose of Data Science  
+**リンク：** https://blog.dailydoseofds.com/p/six-key-metrics-for-ai-agent-evaluation
+
+**要点：**
+DeepEval を使って agent を end-to-end 評価する方法を紹介している。PlanQualityMetric、PlanAdherenceMetric、TaskCompletionMetric といった full-trace 指標に加え、tool call 精度、引数精度、実行効率などの step-level 指標を分けて扱う。agent 開発が「動く / 動かない」から「どう測るか」へ進んだことを示す記事だ。
+
+### Components of A Coding Agent
+**出典：** Ahead of AI  
+**リンク：** https://magazine.sebastianraschka.com/p/components-of-a-coding-agent
+
+**要点：**
+tool use、memory、repo context が coding agent の中核要素であることを整理した記事。GitHub Copilot 系のプロダクトを考えるうえで直感的な入り口になる。
+
+### How we OCR'ed 30,000 papers using Codex, open OCR models and Jobs
+**出典：** Hugging Face Blog  
+**リンク：** https://huggingface.co/blog/nielsr/ocr-papers-jobs  
+**公開：** 2026-04-07
+
+**要点：**
+Codex、オープン OCR モデル、HF Jobs を組み合わせて 3 万件の論文 PDF を処理した実践記録。OCR + LLM の工学的スケールアウト事例として良い。
+
+### MLOps and LLMOps Case Studies
+**出典：** Daily Dose of Data Science  
+**リンク：** https://blog.dailydoseofds.com/p/mlops-and-llmops-case-studies
+
+**要点：**
+Booking.com、Uber、Stripe などが ML / AI を本番運用する際の考え方を並べており、自チームの成熟度を見る物差しとして使える。
+
+## 4. 📰 業界 & ビジネス
+
+### Anthropic's secret 'Mythos' model + Project Glasswing
+**出典：** The Rundown AI  
+**リンク：** https://www.therundown.ai/p/anthropic-secret-mythos-model
+
+**要点：**
+Anthropic は ARR の伸びと Mythos / Glasswing を同時に見せることで、OpenAI の IPO ストーリーに対抗する narrative を作っている。商業競争と安全 narrative が一体化しているのが特徴だ。
+
+### Sam Altman's new 'social contract' for AI
+**出典：** The Rundown AI  
+**リンク：** https://www.therundown.ai/p/sam-altman-new-social-contract-for-ai
+
+**要点：**
+AI 利益分配、企業と個人の関係、AI が生む billion-dollar solo founder の可能性など、Altman が AI 時代の社会契約をどう見ているかをまとめている。
+
+### OpenAI's new $122B funding & 'superapp' ambitions
+**出典：** The Rundown AI  
+**リンク：** https://www.therundown.ai/p/openai-new-122b-funding-superapp
+
+**要点：**
+OpenAI の大型資金調達と superapp 構想を扱う記事で、ChatGPT 成長鈍化と同時に語られている点が重要だ。プロダクト多角化の圧力が強まっている。
+
+## 📬 メール補遺
+
+### Every: Get Your Hands Dirty
+**メール件名：** Get Your Hands Dirty  
+**受信時間：** 2026-04-08（JST）
+
+**補足要約：**
+Every は、AI 導入を「新しい従業員を迎えること」と捉え、経営層が自分で触って判断を持たなければ AI-native 組織にはなれないと説いている。Anthropic が Claude の利用制限を強めたことが、逆に OpenAI へユーザーを流す余地を生んでいる、という競争面の観察も含まれていた。

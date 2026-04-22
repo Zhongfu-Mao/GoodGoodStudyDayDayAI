@@ -5,78 +5,117 @@ category: radar
 cadence: daily
 tags:
   - Agent
-  - OCR
-  - Perplexity
-  - Mythos
+  - Harness Engineering
+  - OpenClaw
+  - Opus
 lang: ja
 draft: false
 ---
-
 ## 対象範囲
 
-- 対象期間: 過去 72 時間（2026-04-10〜2026-04-12）
+- 取得期間: 2026-04-09〜2026-04-12（過去 72 時間）
+- 取得方法: Claude in Chrome のブラウザ操作（navigate + get_page_text + JS 抽出）
 
-# 今日の見立て
+---
+![llama.cpp OCR 模型支持示意图](https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/ggml-org/using-ocr-models-with-llama-cpp.png)
 
-- 小型 executor が大型 advisor を呼ぶ構図は、Agent のコスト設計で重要な流れになりそうだ。
-- OCR と専用抽出モデルが、文書理解をもう一度実務の中心に引き戻している。
-- Agent 製品は金融や個人ワークフローのような高頻度領域に入り始めた。
+*代表画像は [Using OCR models with llama.cpp](https://huggingface.co/blog/ggml-org/using-ocr-models-with-llama-cpp) から引用。この日のいちばん実務的なシグナルは、ローカル OCR と軽量マルチモーダルが本当に workflow に入ってきたことだった。*
 
-![llama.cpp の OCR モデル対応図](https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/ggml-org/using-ocr-models-with-llama-cpp.png)
+### 1. 🛠️ AI Engineering & アーキテクチャ
 
-*代表画像は [Using OCR models with llama.cpp](https://huggingface.co/blog/ggml-org/using-ocr-models-with-llama-cpp) のビジュアルから選定。この図は、その日の実務的な信号である「ローカル OCR と軽量マルチモーダルが実際の workflow に入り始めた」ことに対応している。*
+#### Advisor Strategy in Agents
+- **出典:** Daily Dose of Data Science
+- **リンク:** https://blog.dailydoseofds.com/p/advisor-strategy-in-agents
+- **公開:** 2026-04-10/11
+- **要点:**
+  Anthropic は Claude API に "advisor tool" を追加し、executor として動く Sonnet / Haiku が、難しい判断だけ Opus に相談できるようにした。複雑な推論ポイントだけ高価なモデルに任せ、それ以外は軽いモデルで進めることで、Opus に近い品質を保ちながらコストを大きく下げるという発想だ。多段 agent pipeline の routing とコスト最適化を考えるうえで、かなり実践的な設計パターンになっている。
 
-## 注目記事
+#### Build Agents That Don't Fail in Production
+- **出典:** Daily Dose of Data Science
+- **リンク:** https://blog.dailydoseofds.com/p/build-agents-that-dont-fail-in-production
+- **公開:** 2026-04-09
+- **要点:**
+  production-grade な agent を作るための step-by-step ガイドで、tool failure、retry、state persistence、eval 指標といった実務論点をコード付きで整理している。harness 工学のテンプレートとしてかなり使いやすい。
 
-- **[Advisor Strategy in Agents](https://blog.dailydoseofds.com/p/advisor-strategy-in-agents)**: 小さな executor が大きな advisor を必要な場面だけ呼ぶ設計は、Agent のコスト最適化を考えるうえでかなり実務的な発想。
-- **[Using OCR models with llama.cpp](https://huggingface.co/blog/ggml-org/using-ocr-models-with-llama-cpp)**: ローカル文書理解を本気で回したい人には、この日の中で最も即戦力の高い記事。
-- **[Perplexity 接入银行账户，完成从搜索到个人金融 Agent 的转型](https://www.therundown.ai/p/perplexity-agent-pivot-is-on-the-money)**: 検索インターフェースが金融操作まで含む personal agent に変質し始めたサインとして見ておきたい。
+#### Must-Know Cross-Cutting Concerns in API Development
+- **出典:** ByteByteGo
+- **リンク:** https://blog.bytebytego.com/p/must-know-cross-cutting-concerns
+- **公開:** 2026-04-09
+- **要点:**
+  authentication、logging、rate limiting、input validation といった API の横断的関心事を、標準的な落とし込み方とともに整理した記事。agent / LLM アプリ層の API gateway や middleware 設計に直結する。
 
-## Engineering & Architecture
+#### EP210: Monolithic vs Microservices vs Serverless
+- **出典:** ByteByteGo
+- **リンク:** https://blog.bytebytego.com/p/ep210-monolithic-vs-microservices
+- **公開:** 2026-04-11
+- **要点:**
+  コードベース、データベース、デプロイ境界の違いを軸に、3 つのアーキテクチャを比較した記事。agentic service 化へ進みたいチームの判断材料になる。
 
-- **Advisor Tool**：混合専門家の考え方が API 層で実装され始めた。
-- **Build Agents That Don’t Fail in Production**：状態継続と回復の設計が最重要。
-- **Monolith / Microservices / Serverless**：Agent システムも結局は配置境界の問題に戻る。
+### 2. 🧠 モデル動向 & アルゴリズム
 
-## Models & Platforms
+#### Anthropic の Claude advisor tool
+- **出典:** Daily Dose of Data Science（Anthropic 公式更新の整理）
+- **リンク:** https://blog.dailydoseofds.com/p/advisor-strategy-in-agents
+- **公開:** 2026-04-10/11
+- **要点:**
+  小さい executor モデルが、困難な sub-problem だけ Opus に相談するという API 能力更新。内部 MoE の考え方を API 層へ持ち上げたようなもので、今後の agent framework の routing 戦略に直接影響する。
 
-- **Muse Spark**：Meta の新 stack を象徴するモデル。
-- **Claude Mythos の中国語圏解釈**：性能ニュースから安全・公開戦略の話題へ変わってきた。
+#### Meta Superintelligence Labs が Muse Spark を公開
+- **出典:** Latent Space AINews
+- **リンク:** https://www.latent.space/p/ainews-meta-superintelligence-labs
+- **公開:** 2026-04-08
+- **要点:**
+  MSL が新しい技術スタック上で出した最初の frontier model。多 agent モードを持つマルチモーダル推論モデルとして位置づけられており、Gemini / Claude / GPT 系への対抗軸として追う価値がある。
 
-## Tools & Applications
+### 3. 💻 実装コード & ツール
 
-- **OCR with llama.cpp**：文書 AI を本地へ戻す大きな更新。
-- **Tabular Review**：生成ではなく抽出を中心に据える実装が参考になる。
-- **Hermes Agent vs OpenClaw**：個人向け harness の比較が実測レベルで進んでいる。
+#### Using OCR models with llama.cpp
+- **出典:** Hugging Face Blog（ngxson @ ggml-org）
+- **リンク:** https://huggingface.co/blog/ggml-org/using-ocr-models-with-llama-cpp
+- **公開:** 2026-04-10
+- **要点:**
+  llama.cpp が LightOnOCR、Qianfan-OCR、PaddleOCR-VL、GLM-OCR、Deepseek-OCR、Dots.OCR、HunyuanOCR、さらに LFM2.5-VL-450M、Qwen3-VL-2B、gemma-4-E2B/E4B などをローカル実行できるようになった。4GB VRAM や CPU でも動くため、ローカル文書 RAG や請求書処理に非常に実用的だ。
 
-## Industry
+#### Building Harvey-style Tabular Review from Scratch (but better)
+- **出典:** Hugging Face Blog（abdurrahmanbutler @ isaacus）
+- **リンク:** https://huggingface.co/blog/isaacus/tabular-review
+- **公開:** 2026-04-09
+- **要点:**
+  法務 / 契約レビュー向けの tabular review アプリを、生成モデルではなく専用の抽出・分類モデルで組み上げた事例。すべての分類結果を元文の span に grounding し、ゼロ hallucination を狙っている。コスト、遅延、精度でも Harvey や Legora を上回る構成を目指しており、合規性の高い場面に参考になる。
 
-- **Perplexity + 銀行口座**：金融 Agent への転身がかなりはっきりした。
-- **教育と採用の議論**：AI の影響が組織設計と人材市場に広がっている。
+### 4. 📰 業界 & ビジネス
 
-## Follow-up
+#### AI Engineer Europe 2026 回顧
+- **出典:** Latent Space
+- **リンク:** https://www.latent.space/p/ainews-ai-engineer-europe-2026
+- **公開:** 2026-04-10
+- **要点:**
+  ロンドンでの初回 AI Engineer Europe を振り返る記事。欧州の AI エンジニア生態をざっと掴む入口として使える。
 
-- API 層の routing と framework 層の routing の差を引き続き見たい。
+#### Perplexity が銀行口座を接続し、検索から個人金融 agent へ
+- **出典:** The Rundown AI
+- **リンク:** https://www.therundown.ai/p/perplexity-agent-pivot-is-on-the-money
+- **公開:** 2026-04-10
+- **要点:**
+  Perplexity Computer が Plaid とつながり、1.2 万超の銀行へアクセスできるようになった。自然言語だけで予算、純資産、退職 dashboard を作れるようになり、IRS 連携も相まって ARR が一気に伸びた。検索企業から agentic financial assistant への再定義として、かなり象徴的だ。
 
-## 参照記事
+#### Hermes Agent vs OpenClaw 実測比較
+- **出典:** 老范讲故事
+- **リンク:** https://lukefan.com/2026/04/12/hermes-agent-vs-openclaw-lightweight-self-evolving-ai-comparison/
+- **公開:** 2026-04-12
+- **要点:**
+  中国語圏から見た Hermes Agent と OpenClaw の実用比較。代替可能性と限界がどこにあるかを掴む材料になる。
 
-### Engineering & Architecture
-- [Advisor Strategy in Agents](https://blog.dailydoseofds.com/p/advisor-strategy-in-agents)
-- [Build Agents That Don't Fail in Production](https://blog.dailydoseofds.com/p/build-agents-that-dont-fail-in-production)
-- [Must-Know Cross-Cutting Concerns in API Development](https://blog.bytebytego.com/p/must-know-cross-cutting-concerns)
-- [EP210: Monolithic vs Microservices vs Serverless](https://blog.bytebytego.com/p/ep210-monolithic-vs-microservices)
+#### Claude Mythos Preview: 公開できないと言われるモデル
+- **出典:** 老范讲故事
+- **リンク:** https://lukefan.com/2026/04/10/anthropic-claude-mythos-preview-cybersecurity-strategic-release/
+- **公開:** 2026-04-10
+- **要点:**
+  Project GlassWing と Claude Mythos を中国語で整理した記事。サイバー能力と段階的リリース戦略に焦点がある。
 
-### Models & Research
-- [Anthropic 推出 Claude advisor tool（官方 API）](https://blog.dailydoseofds.com/p/advisor-strategy-in-agents)
-- [Meta Superintelligence Labs 发布 Muse Spark（全新技术栈首个前沿模型）](https://www.latent.space/p/ainews-meta-superintelligence-labs)
-
-### Tools & Libraries
-- [Using OCR models with llama.cpp](https://huggingface.co/blog/ggml-org/using-ocr-models-with-llama-cpp)
-- [Building Harvey-style Tabular Review from Scratch (but better)](https://huggingface.co/blog/isaacus/tabular-review)
-
-### Industry & Business
-- [AI Engineer Europe 2026 回顾](https://www.latent.space/p/ainews-ai-engineer-europe-2026)
-- [Perplexity 接入银行账户，完成从搜索到个人金融 Agent 的转型](https://www.therundown.ai/p/perplexity-agent-pivot-is-on-the-money)
-- [Hermes Agent vs OpenClaw 实测对比](https://lukefan.com/2026/04/12/hermes-agent-vs-openclaw-lightweight-self-evolving-ai-comparison/)
-- [Claude Mythos 预览：被称"不能公开发布"的模型](https://lukefan.com/2026/04/10/anthropic-claude-mythos-preview-cybersecurity-strategic-release/)
-- [大厂为何招中学生？AI 时代的大学价值讨论](https://lukefan.com/2026/04/09/big-tech-recruiting-high-schoolers-is-college-still-necessary/)
+#### なぜ大企業は高校生を採り始めたのか
+- **出典:** 老范讲故事
+- **リンク:** https://lukefan.com/2026/04/09/big-tech-recruiting-high-schoolers-is-college-still-necessary/
+- **公開:** 2026-04-09
+- **要点:**
+  技術記事ではないが、AI 時代における採用若年化と大学の再位置づけを扱っており、人材市場シグナルとして記録価値がある。

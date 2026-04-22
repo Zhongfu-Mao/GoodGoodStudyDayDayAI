@@ -5,81 +5,163 @@ category: radar
 cadence: daily
 tags:
   - Agent
+  - Harness Engineering
   - Context Engineering
-  - Gemma
-  - LLMOps
+  - OpenClaw
 lang: ja
 draft: false
 ---
-
 ## 対象範囲
 
-- 対象期間: 過去 72 時間（2026-04-05〜2026-04-07）
-- コード例を含む記事を収録。
-- 図解を含む記事を収録し、概念整理に向いている。
-- AI for Science 系の再現性が高い記事も含む。
+- 取得期間: 過去 72 時間（2026-04-04〜2026-04-07）
+- 参照ソース: Daily Dose of Data Science · Ahead of AI · ByteByteGo · Latent Space · Hugging Face Blog · The Rundown AI
 
-# 今日の見立て
+---
+![The Anatomy of an Agent Harness](https://substackcdn.com/image/fetch/$s_!FSSm!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b2a255e-8439-4212-acea-ff62939cc62a_680x379.png)
 
-- Agent の競争軸は prompt の工夫から harness、記憶、ツール編成へ移りつつある。
-- Gemma 4 により、小型マルチモーダルのオープンモデルが実運用ラインに入ってきた。
-- 学習と推論の最適化は、依然として最も確実に効くエンジニアリング投資である。
+*代表画像は [The Anatomy of an Agent Harness](https://blog.dailydoseofds.com/p/the-anatomy-of-an-agent-harness) から引用。この日の主題を最もよく要約していた一枚だった。*
 
-![Agent Harness の構造図](https://substackcdn.com/image/fetch/$s_!FSSm!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b2a255e-8439-4212-acea-ff62939cc62a_680x379.png)
+## 1. 🛠️ AI Engineering & アーキテクチャ
 
-*代表画像は [The Anatomy of an Agent Harness](https://blog.dailydoseofds.com/p/the-anatomy-of-an-agent-harness) のビジュアルから選定。この図はその日の主線を最もよく表していて、Agent の差はモデル単体ではなく harness 層の設計から生まれつつあることを示している。*
+### The Anatomy of an Agent Harness
+**出典：** Daily Dose of Data Science  
+**リンク：** https://blog.dailydoseofds.com/p/the-anatomy-of-an-agent-harness  
+**公開：** 2026-04-06
 
-## 注目記事
+**要点：**
+Anthropic、OpenAI、Perplexity、LangChain がどのような agent harness を組んでいるかを横断的に比較し、tool use、memory、task orchestration で何を優先しているかを整理している。主流フレームワークの内部実装差分をまとめた工学寄りの記事としてかなり貴重だ。
 
-- **[The Anatomy of an Agent Harness](https://blog.dailydoseofds.com/p/the-anatomy-of-an-agent-harness)**: Anthropic、OpenAI、Perplexity、LangChain を横断しながら、Agent の差がモデルではなく orchestration、memory、tooling の設計から生まれていることを整理した一本。
-- **[AINews Gemma 4: The Best Small Multimodal Open Models](https://www.latent.space/p/ainews-gemma-4-the-best-small-multimodal)**: 小型・マルチモーダル・長文脈・Apache 2.0 という組み合わせが、オープンモデルの実運用ラインを一段押し上げたことを確認できる。
-- **[What Are Agent Skills and How Agents Use Them?](https://blog.dailydoseofds.com/p/what-are-agent-skills-and-how-agents)**: Agent skill を登録、呼び出し、合成する流れを図解で整理していて、MCP や function calling を頭の中でつなげ直すのに向いている。
+### Components of A Coding Agent
+**出典：** Ahead of AI（Sebastian Raschka）  
+**リンク：** https://magazine.sebastianraschka.com/p/components-of-a-coding-agent  
+**公開：** 2026-04-04
 
-## Engineering & Architecture
+**要点：**
+coding agent の中核を、tool use、多層 memory、repo context 理解に分けて説明している。Cursor や GitHub Copilot のような製品の裏側を理解するための良い入口だ。
 
-- **Agent Harness の分解**：Anthropic、OpenAI、Perplexity、LangChain の違いを見ても、重要なのはフレームワーク名より実行環境設計そのものだった。
-- **Coding Agent の基本構成**：ツール呼び出し、短期・長期記憶、リポジトリ文脈、タスク編成が標準モジュールとして見え始めている。
-- **Context Engineering**：良い prompt を書くこと以上に、情報密度と文脈の供給方法を設計することが重要になった。
+### A Guide to Context Engineering for LLMs
+**出典：** ByteByteGo  
+**リンク：** https://blog.bytebytego.com/p/a-guide-to-context-engineering-for  
+**公開：** 2026-04-06
 
-## Models & Open Source
+**要点：**
+Context Engineering が prompt engineering とどう違うかを、情報密度制御、動的コンテキスト構築、window の使い方という観点から説明している。RAG や multi-turn system を作る人には特に実用的だ。
 
-- **Gemma 4 の広がり**：軽量・マルチモーダル・オープンライセンスという組み合わせが強い。
-- **Attention 系の再確認**：GQA、MLA、疎注意などの理解が、新モデルを読む前提知識になっている。
-- **Causal World Model 議論**：相関学習だけでは足りないという問題意識が強まっている。
+### MLOps and LLMOps Case Studies
+**出典：** Daily Dose of Data Science  
+**リンク：** https://blog.dailydoseofds.com/p/mlops-and-llmops-case-studies  
+**公開：** 2026-04-05
 
-## Tools & Business
+**要点：**
+Booking.com、Uber、Stripe などの production AI system の実例をまとめ、デプロイ、モニタリング、drift 検知、LLMOps pipeline の実務論点を整理している。AI システム導入チームにはそのまま参考になる。
 
-- **学習・推論最適化**：Gradient Checkpointing と KV Cache は引き続き基本技術。
-- **LLMOps 事例**：監視、評価、回復手順をどう組むかが本格的なテーマになっている。
-- **組織への波及**：ブラウザの役割、ソロ起業、管理職の再定義など、Agent の影響は技術外にも広がっている。
+### Sam Altman's New 'Social Contract' for AI
+**出典：** The Rundown AI  
+**リンク：** https://www.therundown.ai/p/sam-altman-new-social-contract-for-ai
 
-## Follow-up
+**要点：**
+AI 企業とユーザーの責任関係、利益分配、AGI 時代のルールづくりを Altman がどう考えているかを整理したもの。同時に Anthropic の OpenClaw ユーザー向け課金戦略変更も触れられ、AI サービスの商業化が大きく揺れていることが分かる。
 
-- Gemma 4 の端末側デプロイ性能を継続観察する。
-- Harness Engineering と Context Engineering を今週の主軸として追う。
+## 2. 🧠 モデル動向 & アルゴリズム
 
-## 参照記事
+### Gemma 4 Crosses 2 Million Downloads
+**出典：** Latent Space  
+**リンク：** https://www.latent.space/p/ainews-gemma-4-crosses-2-million  
+**公開：** 2026-04-07
 
-### Engineering & Architecture
-- [The Anatomy of an Agent Harness](https://blog.dailydoseofds.com/p/the-anatomy-of-an-agent-harness)
-- [Components of A Coding Agent](https://magazine.sebastianraschka.com/p/components-of-a-coding-agent)
-- [A Guide to Context Engineering for LLMs](https://blog.bytebytego.com/p/a-guide-to-context-engineering-for)
-- [MLOps and LLMOps Case Studies](https://blog.dailydoseofds.com/p/mlops-and-llmops-case-studies)
-- [Sam Altman's New 'Social Contract' for AI](https://www.therundown.ai/p/sam-altman-new-social-contract-for-ai)
+**要点：**
+Gemma 4 はリリース直後に 200 万ダウンロードを超えた。4 月 3 日の Latent Space 深掘りでは、同規模開源モデルを広く上回り、動画・画像・音声、256K context、Apache 2.0 をそろえた「小さくて強いマルチモーダル」として位置づけられている。
 
-### Models & Research
-- [AINews Gemma 4 Crosses 2 Million Downloads](https://www.latent.space/p/ainews-gemma-4-crosses-2-million)
-- [AINews Gemma 4: The Best Small Multimodal Open Models](https://www.latent.space/p/ainews-gemma-4-the-best-small-multimodal)
-- [A Visual Guide to Attention Variants in Modern LLMs](https://magazine.sebastianraschka.com/p/visual-attention-variants)
-- [Moonlake: Causal World Models](https://www.latent.space/p/moonlake)
-- [Run Gemma 4 on Intel® Arc™ GPUs Out-Of-the-Box](https://huggingface.co/blog/MatrixYao/intel-gpu)
+### Gemma 4: The Best Small Multimodal Open Models
+**出典：** Latent Space  
+**リンク：** https://www.latent.space/p/ainews-gemma-4-the-best-small-multimodal  
+**公開：** 2026-04-03
 
-### Tools & Libraries
-- [A Memory-Efficient Technique to Train Large Models](https://blog.dailydoseofds.com/p/a-memory-efficient-technique-to-train-242)
-- [What Are Agent Skills and How Agents Use Them?](https://blog.dailydoseofds.com/p/what-are-agent-skills-and-how-agents)
-- [Training mRNA Language Models Across 25 Species for $165](https://huggingface.co/blog/OpenMed/training-mrna-models-25-species)
-- [KV Caching Explained: Optimizing Transformer Inference Efficiency](https://huggingface.co/blog/not-lain/kv-caching)
+**要点：**
+31B dense は Arena で世界 3 位、26B MoE は 6 位に入り、端側の E2B / E4B モデルも低遅延で動く。ローカル window attention と global attention の交互構成、構造化 JSON 出力、function calling 対応など、端側 agent 部署の観点でもかなり整っている。
 
-### Industry & Business
-- [Marc Andreessen: The Death of the Browser & Why "This Time Is Different"](https://www.latent.space/p/pmarca)
-- [AI Just Made the Billion-Dollar Solo Founder Real](https://www.therundown.ai/p/ai-just-made-the-billion-dollar-solo-founder-real)
+### A Visual Guide to Attention Variants in Modern LLMs
+**出典：** Ahead of AI  
+**リンク：** https://magazine.sebastianraschka.com/p/visual-attention-variants  
+**公開：** 2026-03-22
+
+**要点：**
+MHA、GQA、MLA、疎注意、hybrid attention を図解した保存版的な記事。DeepSeek や Gemma 4 の差を見る基礎になる。
+
+### Moonlake: Causal World Models
+**出典：** Latent Space  
+**リンク：** https://www.latent.space/p/moonlake
+
+**要点：**
+相関学習中心の LLM では因果推論が足りず、world model 的な構造が必要だという議論。scaling law の限界論ともつながる重要テーマになっている。
+
+### Run Gemma 4 on Intel Arc GPUs Out-Of-the-Box
+**出典：** Hugging Face Blog  
+**リンク：** https://huggingface.co/blog/MatrixYao/intel-gpu
+
+**要点：**
+Intel Arc GPU 上で Gemma 4 をほぼ無設定で動かす実践記事。NVIDIA 以外でも開源モデルを実務投入しやすくなっている。
+
+## 3. 💻 実装コード & ツール
+
+### A Memory-Efficient Technique to Train Large Models
+**出典：** Daily Dose of Data Science  
+**リンク：** https://blog.dailydoseofds.com/p/a-memory-efficient-technique-to-train-242  
+**公開：** 2026-04-03
+
+**要点：**
+Gradient Checkpointing / Activation Recomputation をコード付きで解説し、限られた GPU メモリでより大きなモデルを訓練する方法を示している。
+
+### What Are Agent Skills and How Agents Use Them?
+**出典：** Daily Dose of Data Science  
+**リンク：** https://blog.dailydoseofds.com/p/what-are-agent-skills-and-how-agents  
+**公開：** 2026-04-02
+
+**要点：**
+Agent skill の定義、登録、呼び出し、合成を 7 ステップ図解で説明し、Function Calling、LangChain Tools、MCP の差も整理している。skill abstraction を掴む入門として良い。
+
+### Training mRNA Language Models Across 25 Species for $165
+**出典：** Hugging Face Blog  
+**リンク：** https://huggingface.co/blog/OpenMed/training-mrna-models-25-species
+
+**要点：**
+25 種の mRNA データを使った言語モデル訓練を、わずか 165 ドルで回した事例。AI for Science で「安くても回せる」ことを示す好例だ。
+
+### KV Caching Explained
+**出典：** Hugging Face Blog  
+**リンク：** https://huggingface.co/blog/not-lain/kv-caching
+
+**要点：**
+自回帰推論で KV Cache がどれほど計算を減らすか、シーケンス長とともにメモリがどう増えるかを、vLLM や TGI へつながる形で説明している。推論最適化の基礎知識として外せない。
+
+## 4. 📰 業界 & ビジネス
+
+### Marc Andreessen: The Death of the Browser
+**出典：** Latent Space  
+**リンク：** https://www.latent.space/p/pmarca
+
+**要点：**
+AI Agent が browser をインターネットの入口として置き換えうる、という強い主張。Pi や OpenClaw の商業性まで踏み込み、今回の波は歴史上の他の転換と質が違うという見方を示している。
+
+### AI Just Made the Billion-Dollar Solo Founder Real
+**出典：** The Rundown AI  
+**リンク：** https://www.therundown.ai/p/ai-just-made-the-billion-dollar-solo-founder-real
+
+**要点：**
+AI ツールが、コード、マーケティング、顧客対応をひとりで回す独立創業者を現実味あるものにし始めている、という話。スタートアップの組み方そのものを変えうる。
+
+### Dorsey Makes the AI Case Against Managers
+**出典：** The Rundown AI  
+**リンク：** https://www.latent.space/p/pmarca
+
+**要点：**
+Jack Dorsey は AI が coordination や reporting を代替することで、中間管理職の必要性が薄まると見ている。組織のフラット化という論点につながる。
+
+## 📬 メール補遺
+
+### AI Valley: OpenAI の「Robot Tax」論
+**メール件名：** OpenAI’s "Robot Tax"  
+**受信時間：** 2026-04-07（JST）
+
+**補足要約：**
+AI Valley は、OpenAI の「新しい社会契約」を抽象倫理ではなく、robot tax、公共基金、全民アクセス、週 4 日労働のような制度設計へ落とし込んで考えている。同時に Anthropic の $30B ARR や TPU 先買いも強調しており、frontier lab の競争が政策話語と計算資源確保まで拡張していることが見える。
