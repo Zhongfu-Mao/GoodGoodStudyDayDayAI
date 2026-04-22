@@ -1,6 +1,7 @@
 ---
 import PostCard from './PostCard.astro';
 import {
+  articlePath,
   cadenceLabels,
   collectionLabels,
   radarCadences,
@@ -34,22 +35,62 @@ function resolveRadarCadence(item: (typeof categoryEntries)[number]) {
   return undefined;
 }
 
+function getMonthKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+}
+
+function formatMonthLabel(date: Date, locale: Locale) {
+  return date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN', {
+    year: 'numeric',
+    month: 'long',
+  });
+}
+
+function createRadarArchiveGroups(items: (typeof categoryEntries), locale: Locale) {
+  const groups = new Map<string, (typeof categoryEntries)>();
+
+  for (const item of items) {
+    const key = getMonthKey(item.entry.data.date);
+    const existing = groups.get(key);
+
+    if (existing) {
+      existing.push(item);
+    } else {
+      groups.set(key, [item]);
+    }
+  }
+
+  return [...groups.entries()].map(([key, groupItems], index) => ({
+    id: key,
+    label: formatMonthLabel(groupItems[0].entry.data.date, locale),
+    items: groupItems,
+    open: index === 0,
+  }));
+}
+
 const radarSections = radarCadences.map((cadence) => ({
   cadence,
   label: cadenceLabels[cadence][locale],
   items: categoryEntries.filter((item) => resolveRadarCadence(item) === cadence),
+  archiveGroups: createRadarArchiveGroups(categoryEntries.filter((item) => resolveRadarCadence(item) === cadence), locale),
 }));
 
 const copy = {
   zh: {
     lead: '按知识领域整理的入口，方便从一个分区切入，再横向浏览相关内容。',
-    browse: '以下是本分区的内容。',
+    browse: '本分区全部内容。',
     empty: '这个分区下还没有内容。',
+    radarLead: '按 Daily、Weekly、Monthly 浏览全部更新。',
+    radarBrowse: 'Daily 按月份归档。',
+    radarArchive: '归档',
   },
   ja: {
     lead: '知識領域ごとに整理した入口で、そこから関連コンテンツへ広げられます。',
     browse: 'この区分の一覧です。',
     empty: 'この区分にはまだ記事がありません。',
+    radarLead: 'Daily / Weekly / Monthly ごとに更新を一覧できます。',
+    radarBrowse: 'Daily は月ごとに整理しています。',
+    radarArchive: 'Archive',
   },
 } as const;
 
@@ -59,7 +100,7 @@ const text = copy[locale];
 <section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
   <p class="theme-kicker text-sm uppercase tracking-[0.28em]">{collectionLabels[category][locale]}</p>
   <h1 class="theme-heading mt-3 text-3xl font-semibold md:text-5xl">{collectionLabels[category][locale]}</h1>
-  <p class="theme-muted mt-4 max-w-2xl">{text.lead}</p>
+  <p class="theme-muted mt-4 max-w-2xl">{isRadar ? text.radarLead : text.lead}</p>
 
   {isRadar ? (
     <div class="mt-8 flex flex-wrap gap-2">
@@ -84,7 +125,7 @@ const text = copy[locale];
       <p class="theme-muted text-sm uppercase tracking-[0.24em]">{collectionLabels[category][locale]}</p>
       <h2 class="theme-heading mt-2 text-2xl font-semibold">{categoryEntries.length}</h2>
     </div>
-    <p class="theme-muted max-w-md text-sm">{text.browse}</p>
+    <p class="theme-muted max-w-md text-sm">{isRadar ? text.radarBrowse : text.browse}</p>
   </div>
 
   {isRadar ? (
@@ -98,20 +139,55 @@ const text = copy[locale];
             </div>
             <p class="theme-muted text-sm">
               {locale === 'ja'
-                ? `${section.label} の記事一覧`
-                : `${section.label} 内容列表`}
+                ? `${section.label} の履歴`
+                : `${section.label} 归档`}
             </p>
           </div>
 
-          <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {section.items.length > 0 ? (
-              section.items.map((item) => <PostCard item={item} locale={locale} />)
-            ) : (
-              <div class="theme-panel rounded-2xl border-dashed p-6 theme-muted">
-                {locale === 'ja' ? 'まだ記事がありません。' : '这个分组下暂时没有内容。'}
-              </div>
-            )}
-          </div>
+          {section.items.length > 0 ? (
+            <div class="mt-5 grid gap-4">
+              {section.archiveGroups.map((group) => (
+                <details id={`${section.cadence}-${group.id}`} class="theme-panel-strong rounded-[1rem] p-1" open={group.open}>
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-3 rounded-[0.85rem] px-4 py-3">
+                    <div>
+                      <p class="theme-heading text-base font-semibold">{group.label}</p>
+                      <p class="theme-muted mt-1 text-xs uppercase tracking-[0.2em]">
+                        {text.radarArchive} · {group.items.length}
+                      </p>
+                    </div>
+                    <span class="theme-muted text-xs">⌄</span>
+                  </summary>
+
+                  <div class="grid gap-2 px-2 pb-2 pt-1">
+                    {group.items.map((item) => (
+                      <a
+                        href={articlePath(item.entry.data.category, item.slug, locale)}
+                        class="theme-button-soft rounded-[0.9rem] px-4 py-3"
+                      >
+                        <div class="flex items-start justify-between gap-4">
+                          <div class="min-w-0">
+                            <p class="theme-heading line-clamp-2 text-sm font-semibold leading-6">{item.entry.data.title}</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                              {item.entry.data.tags.slice(0, 3).map((tag) => (
+                                <span class="theme-chip rounded-xl px-2 py-1 text-[11px]">{tag}</span>
+                              ))}
+                            </div>
+                          </div>
+                          <p class="theme-muted shrink-0 text-xs uppercase tracking-[0.2em]">
+                            {item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}
+                          </p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </details>
+              ))}
+            </div>
+          ) : (
+            <div class="theme-panel mt-5 rounded-2xl border-dashed p-6 theme-muted">
+              {locale === 'ja' ? 'まだ記事がありません。' : '这个分组下暂时没有内容。'}
+            </div>
+          )}
         </section>
       ))}
     </div>
