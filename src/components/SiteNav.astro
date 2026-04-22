@@ -1,10 +1,10 @@
 ---
-import { collectionLabels, collectionNames, homePath, type Locale } from '../lib/site';
+import { categoryPath, collectionLabels, collectionNames, homePath, type Locale } from '../lib/site';
 
 const { locale } = Astro.props as { locale: Locale };
 
 const navItems = collectionNames.map((category) => ({
-  href: `${locale === 'ja' ? '/ja' : ''}/${category}/`,
+  href: categoryPath(category, locale),
   label: collectionLabels[category][locale],
 }));
 ---

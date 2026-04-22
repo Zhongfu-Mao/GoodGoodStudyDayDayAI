@@ -40,6 +40,10 @@ export function articlePath(category: CollectionName, slug: string, locale: Loca
   return `${localePrefix(locale)}/${category}/${slug}/`;
 }
 
+export function categoryPath(category: CollectionName, locale: Locale) {
+  return `${localePrefix(locale)}/${category}/`;
+}
+
 export function slugifyTag(tag: string) {
   return tag
     .trim()
@@ -49,9 +53,7 @@ export function slugifyTag(tag: string) {
 }
 
 export function stripLocaleSuffix(id: string) {
-  return id
-    .replace(/\.ja$/, '')
-    .replace(/ja$/, '');
+  return id.replace(/\.ja$/, '');
 }
 
 export function isJapaneseId(id: string) {

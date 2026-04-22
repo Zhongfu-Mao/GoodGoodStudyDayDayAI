@@ -1,21 +1,15 @@
 ---
+import type { CollectionEntry } from 'astro:content';
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import { collectionLabels, tagPath, type CollectionName, type Locale } from '../lib/site';
+
+type BlogCollection = CollectionName;
+type BlogEntry = CollectionEntry<BlogCollection>;
 
 const { locale, entry, Content } = Astro.props as {
   locale: Locale;
-  entry: {
-    slug: string;
-    data: {
-      title: string;
-      date: Date;
-      category: CollectionName;
-      tags: string[];
-      lang: string;
-      coverImage?: string;
-      audioUrl?: string;
-    };
-  };
-  Content: any;
+  entry: BlogEntry;
+  Content: AstroComponentFactory;
 };
 ---
 

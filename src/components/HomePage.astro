@@ -1,5 +1,5 @@
 ---
-import { collectionLabels, tagPath, type Locale } from '../lib/site';
+import { articlePath, collectionLabels, tagPath, type Locale } from '../lib/site';
 import { DesertGoldArticleCard } from './DesertGoldArticleCard';
 import { getEntriesForLocale, getTagIndex } from '../lib/content';
 
@@ -67,7 +67,7 @@ const text = copy[locale];
             <span>{featuredStory.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</span>
           </div>
           <h2 class="theme-heading mt-4 text-3xl font-semibold leading-tight md:text-4xl">
-            <a href={`${locale === 'ja' ? '/ja' : ''}/${featuredStory.entry.data.category}/${featuredStory.slug}/`}>
+            <a href={articlePath(featuredStory.entry.data.category, featuredStory.slug, locale)}>
               {featuredStory.entry.data.title}
             </a>
           </h2>
@@ -88,7 +88,7 @@ const text = copy[locale];
                 <span>{item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</span>
               </div>
               <h3 class="theme-heading mt-3 text-xl font-semibold leading-snug">
-                <a href={`${locale === 'ja' ? '/ja' : ''}/${item.entry.data.category}/${item.slug}/`}>{item.entry.data.title}</a>
+                <a href={articlePath(item.entry.data.category, item.slug, locale)}>{item.entry.data.title}</a>
               </h3>
               <div class="mt-4 flex flex-wrap gap-2">
                 {item.entry.data.tags.slice(0, 3).map((tag) => (
@@ -127,7 +127,7 @@ const text = copy[locale];
       <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.updates}</p>
       <div class="mt-4 grid gap-3">
         {recentUpdates.map((item) => (
-          <a href={`${locale === 'ja' ? '/ja' : ''}/${item.entry.data.category}/${item.slug}/`} class="theme-button-soft rounded-[1rem] px-4 py-3">
+          <a href={articlePath(item.entry.data.category, item.slug, locale)} class="theme-button-soft rounded-[1rem] px-4 py-3">
             <p class="theme-muted text-[11px] uppercase tracking-[0.2em]">{collectionLabels[item.entry.data.category][locale]}</p>
             <p class="theme-heading mt-2 text-base font-semibold leading-snug">{item.entry.data.title}</p>
             <p class="theme-muted mt-2 text-sm">
@@ -181,7 +181,7 @@ const text = copy[locale];
             </div>
             <div>
               <h3 class="theme-heading text-2xl font-semibold leading-snug">
-                <a href={`${locale === 'ja' ? '/ja' : ''}/${item.entry.data.category}/${item.slug}/`}>{item.entry.data.title}</a>
+                <a href={articlePath(item.entry.data.category, item.slug, locale)}>{item.entry.data.title}</a>
               </h3>
               <div class="mt-4 flex flex-wrap gap-2">
                 {item.entry.data.tags.map((tag) => (
