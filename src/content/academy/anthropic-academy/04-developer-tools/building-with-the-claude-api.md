@@ -19,13 +19,9 @@ academy:
   prerequisites: []
 draft: false
 ---
-**来源：** [Anthropic Academy](https://anthropic.skilljar.com/claude-with-the-anthropic-api)
-**语言：** 英文课程，中文笔记
-**课节：** 85 节
+## 第一章：简介
 
-### 第一章：简介
-
-#### Claude 模型概览
+### Claude 模型概览
 
 Anthropic 提供三个主要模型系列，各有侧重：
 
@@ -37,9 +33,9 @@ Anthropic 提供三个主要模型系列，各有侧重：
 
 **选型原则：** 先从 Sonnet 开始，根据实际需求再上下调整。
 
-### 第二章：通过 API 访问 Claude
+## 第二章：通过 API 访问 Claude
 
-#### API 请求生命周期（5 步流）
+### API 请求生命周期（5 步流）
 
 ```
 客户端（你的应用）
@@ -55,7 +51,7 @@ Claude 模型
 
 **关键安全原则：** API Key **绝对不能**暴露在客户端（浏览器 JavaScript、前端代码）。必须将 API Key 存储在服务器端，由服务器代理所有对 Anthropic API 的请求。
 
-#### 发起 API 请求
+### 发起 API 请求
 
 **基础调用示例：**
 
@@ -85,7 +81,7 @@ print(response.content[0].text)
 | `system` | 系统提示词 | 可选；设定 Claude 的行为方式 |
 | `temperature` | 随机性/创意度 | 可选；0.0–1.0 |
 
-#### 多轮对话（Multi-turn）
+### 多轮对话（Multi-turn）
 
 Claude 是**无状态的（Stateless）**：每次 API 调用都是独立的，Claude 不记得之前的对话。
 
@@ -94,17 +90,17 @@ Claude 是**无状态的（Stateless）**：每次 API 调用都是独立的，C
 ```python
 messages = []
 
-## 第一轮
+# 第一轮
 messages.append({"role": "user", "content": "What is pizza?"})
 response = client.messages.create(model=model, max_tokens=1000, messages=messages)
 messages.append({"role": "assistant", "content": response.content[0].text})
 
-## 第二轮（带完整历史）
+# 第二轮（带完整历史）
 messages.append({"role": "user", "content": "What toppings are popular?"})
 response = client.messages.create(model=model, max_tokens=1000, messages=messages)
 ```
 
-#### 系统提示词（System Prompt）
+### 系统提示词（System Prompt）
 
 系统提示词用于**设定 Claude 的行为方式、角色、约束条件**，在整个对话中持续生效。
 
@@ -119,7 +115,7 @@ response = client.messages.create(
 
 **使用场景：** 定义角色（如"你是一位数学辅导老师"）、设置语气、限制回答范围等。
 
-#### Temperature（温度）
+### Temperature（温度）
 
 控制 Claude 响应的随机性和创意度：
 
@@ -129,7 +125,7 @@ response = client.messages.create(
 | **0.5** | 中等随机性 | 一般对话、摘要 |
 | **1.0** | 高随机性，富有创意 | 创意写作、头脑风暴、诗歌 |
 
-#### 响应流式传输（Streaming）
+### 响应流式传输（Streaming）
 
 流式传输让内容**边生成边显示**，提升用户体验。
 
@@ -143,7 +139,7 @@ with client.messages.stream(
         print(text, end="", flush=True)
 ```
 
-#### 结构化数据输出（Assistant Prefill）
+### 结构化数据输出（Assistant Prefill）
 
 通过**预填充 assistant 轮**，强制 Claude 以特定格式（如 JSON）输出：
 
@@ -153,16 +149,16 @@ messages = [
     {"role": "assistant", "content": "{"}  # 预填充，强制 JSON 输出
 ]
 response = client.messages.create(model=model, max_tokens=500, messages=messages)
-## 响应将直接是 JSON 内容（不含前缀文字）
+# 响应将直接是 JSON 内容（不含前缀文字）
 ```
 
-### 第三章：Prompt 评估（Prompt Evaluation）
+## 第三章：Prompt 评估（Prompt Evaluation）
 
-#### 为什么需要 Prompt 评估？
+### 为什么需要 Prompt 评估？
 
 仅靠直觉改进 prompt 是不可靠的。**Prompt 评估**通过系统化测试来衡量 prompt 是否真正改善了输出质量。
 
-#### 评估工作流（4 步）
+### 评估工作流（4 步）
 
 ```
 1. 定义任务
@@ -176,7 +172,7 @@ response = client.messages.create(model=model, max_tokens=500, messages=messages
 分析结果，迭代改进 prompt
 ```
 
-#### 三种 Grader（评分器）类型
+### 三种 Grader（评分器）类型
 
 | Grader 类型 | 说明 | 适用场景 |
 |-------------|------|----------|
@@ -186,9 +182,9 @@ response = client.messages.create(model=model, max_tokens=500, messages=messages
 
 **关键认知：** 应用 prompt 工程技术后，必须通过评估来验证是否真的改进了，而不是直接上线。
 
-### 第四章：Prompt 工程技术
+## 第四章：Prompt 工程技术
 
-#### 六大核心技术
+### 六大核心技术
 
 **1. 清晰直接（Clear and Direct）**
 - 使用动词开头（"Write", "Analyze", "List"）
@@ -230,19 +226,19 @@ response = client.messages.create(model=model, max_tokens=500, messages=messages
 - 要求 Claude 先思考再回答
 - "先列出思考步骤，再给出最终答案"
 
-#### 迭代改进原则
+### 迭代改进原则
 
 成功的 prompt 工程是**迭代的过程**：写 → 测试 → 评估 → 改进 → 再测试。
 
-### 第五章：工具使用（Tool Use）
+## 第五章：工具使用（Tool Use）
 
-#### 工具使用的意义
+### 工具使用的意义
 
 Tool Use 让 Claude 能够**访问实时信息和外部系统**，突破训练数据的局限。
 
 **工具函数定义：** 一个普通函数，在 Claude 判断需要时由你的代码执行（Claude 本身不直接执行代码）。
 
-#### 工具使用四步流程
+### 工具使用四步流程
 
 ```
 1. 用户提问 → Claude 判断需要使用工具
@@ -254,7 +250,7 @@ Tool Use 让 Claude 能够**访问实时信息和外部系统**，突破训练�
 4. 将工具结果作为 tool_result 发回 → Claude 生成最终回答
 ```
 
-#### 工具 Schema 定义
+### 工具 Schema 定义
 
 ```python
 from anthropic.types import ToolParam
@@ -277,7 +273,7 @@ get_weather_schema = ToolParam({
 
 **命名约定：** `func_name` + `func_name_schema`（函数名与 Schema 名配对）
 
-#### 多块消息结构（Multi-block Messages）
+### 多块消息结构（Multi-block Messages）
 
 Claude 响应工具调用时，可能同时包含：
 - `TextBlock`：解释性文字
@@ -285,17 +281,17 @@ Claude 响应工具调用时，可能同时包含：
 
 这种结构称为**多块消息（Multi-block Message）**。在维护对话历史时，必须完整保留这个多块结构。
 
-#### 细粒度工具调用（Fine-grained Tool Calling）
+### 细粒度工具调用（Fine-grained Tool Calling）
 
 ```python
-## fine_grained=True 禁用 API 端的 JSON 校验，实现更快的流式传输
-## 但需要客户端自行处理 JSON 解析错误
+# fine_grained=True 禁用 API 端的 JSON 校验，实现更快的流式传输
+# 但需要客户端自行处理 JSON 解析错误
 params["fine_grained"] = True
 ```
 
-### 第六章：RAG 与 Agentic 搜索
+## 第六章：RAG 与 Agentic 搜索
 
-#### RAG（检索增强生成）的工作原理
+### RAG（检索增强生成）的工作原理
 
 RAG 解决了 Claude 无法访问私有/实时知识库的问题。
 
@@ -306,7 +302,7 @@ RAG 解决了 Claude 无法访问私有/实时知识库的问题。
 用户提问 → 语义搜索（找相关块）→ 将相关块注入 Prompt → Claude 回答
 ```
 
-#### 文本嵌入（Embeddings）
+### 文本嵌入（Embeddings）
 
 文本嵌入将文字转换为**数值向量**，语义相近的文字在向量空间中距离更近。
 
@@ -317,22 +313,22 @@ import voyageai
 
 client = voyageai.Client()
 
-## 查询嵌入
+# 查询嵌入
 result = client.embed(["用户的问题"], model="voyage-3-large", input_type="query")
 
-## 文档嵌入
+# 文档嵌入
 result = client.embed(["文档内容"], model="voyage-3-large", input_type="document")
 ```
 
 **相似度计算：** 使用**余弦相似度（Cosine Similarity）**衡量两个向量的语义相似程度。
 
-#### 混合搜索
+### 混合搜索
 
 除语义搜索外，还可结合 **BM25**（基于关键词的传统搜索）进行混合检索，提升准确率。
 
-### 第七章：Claude 的高级特性
+## 第七章：Claude 的高级特性
 
-#### 1. Extended Thinking（扩展思考）
+### 1. Extended Thinking（扩展思考）
 
 让 Claude 在回答前进行**深度推理**，适合复杂数学、逻辑、分析问题。
 
@@ -349,16 +345,16 @@ params["thinking"] = {
 - 不兼容 assistant 预填充（structured output）
 - 不支持自定义 temperature
 
-#### 2. 图片与 PDF 支持
+### 2. 图片与 PDF 支持
 
 Claude 是多模态模型，可以直接理解图片和 PDF 内容，用于文档分析、表格提取等场景。
 
-#### 3. 引用（Citations）
+### 3. 引用（Citations）
 
 在文档分析场景中，开启 Citations 功能让 Claude 提供**精确的来源引用**，便于用户核实信息。
 
 ```python
-## 在 document 内容块中开启
+# 在 document 内容块中开启
 {
     "type": "document",
     "source": {...},
@@ -368,12 +364,12 @@ Claude 是多模态模型，可以直接理解图片和 PDF 内容，用于文�
 
 响应中包含 `cited_text`、页码、文档索引等信息。
 
-#### 4. Prompt 缓存（Prompt Caching）
+### 4. Prompt 缓存（Prompt Caching）
 
 对于重复包含相同长文档或系统提示的请求，Prompt 缓存可以**节省计算成本**，加快响应速度。
 
 ```python
-## 在内容块中添加 cache_control
+# 在内容块中添加 cache_control
 {
     "type": "text",
     "text": very_long_document,
@@ -383,24 +379,24 @@ Claude 是多模态模型，可以直接理解图片和 PDF 内容，用于文�
 
 **最佳场景：** 反复对同一长文档提不同问题（如文档问答）。
 
-#### 5. Files API
+### 5. Files API
 
 允许将文件上传到 Anthropic 服务器，通过文件 ID 在多次请求中引用，避免重复传输大文件。
 
-### 第八章：Model Context Protocol（MCP）
+## 第八章：Model Context Protocol（MCP）
 
-#### 什么是 MCP？
+### 什么是 MCP？
 
 MCP（模型上下文协议）是一个**通信层**，让 Claude 能够访问工具、提示和资源，**无需编写繁琐的集成代码**。
 
-#### MCP 的角色分工
+### MCP 的角色分工
 
 | 角色 | 职责 |
 |------|------|
 | **MCP Server（服务端）** | 包含工具、提示词模板和资源；提供具体功能 |
 | **MCP Client（客户端）** | 作为通信桥梁，连接 Claude 与 MCP Server；访问 Server 提供的工具 |
 
-#### Transport Agnostic（传输无关性）
+### Transport Agnostic（传输无关性）
 
 MCP 的重要特性：MCP Client 和 Server 可以使用**不同的传输方式**进行通信：
 - **HTTP**（远程服务）
@@ -408,13 +404,13 @@ MCP 的重要特性：MCP Client 和 Server 可以使用**不同的传输方式*
 
 这使得 MCP 既可以连接本地工具，也可以连接远程服务。
 
-### 第九章：Anthropic 应用
+## 第九章：Anthropic 应用
 
-#### Claude Code
+### Claude Code
 
 Claude Code 是面向开发者的**命令行 AI 编程助手**，可以直接在终端中完成代码编写、调试、重构等任务，支持自主执行多步骤开发工作流。
 
-#### Computer Use（计算机使用）
+### Computer Use（计算机使用）
 
 Computer Use 是一项让 Claude 能够**像人一样直接操作桌面环境**的能力：
 - 查看屏幕截图
@@ -424,9 +420,9 @@ Computer Use 是一项让 Claude 能够**像人一样直接操作桌面环境**�
 
 适用于自动化测试、复杂工作流、RPA（机器人流程自动化）等场景。
 
-### 第十章：Agents 与工作流（Agents and Workflows）
+## 第十章：Agents 与工作流（Agents and Workflows）
 
-#### 核心区别
+### 核心区别
 
 | | 工作流（Workflows） | Agent |
 |--|-------------------|-------|
@@ -439,9 +435,9 @@ Computer Use 是一项让 Claude 能够**像人一样直接操作桌面环境**�
 
 **判断标准：** 如果你能画出流程图——用工作流；如果无法预判步骤——用 Agent。
 
-#### 三大工作流模式
+### 三大工作流模式
 
-##### 1. 并行化（Parallelization）
+#### 1. 并行化（Parallelization）
 
 将任务拆分为多个**并行**的子任务，同时处理，最后聚合结果。
 
@@ -461,7 +457,7 @@ Computer Use 是一项让 Claude 能够**像人一样直接操作桌面环境**�
 
 **适用场景：** 大规模数据处理、多维度分析、并发 API 调用。
 
-##### 2. 链式工作流（Chaining Workflows）
+#### 2. 链式工作流（Chaining Workflows）
 
 将复杂任务拆分为多个**顺序执行**的子任务，每个步骤的输出是下一步的输入。
 
@@ -473,7 +469,7 @@ Computer Use 是一项让 Claude 能够**像人一样直接操作桌面环境**�
 
 **适用场景：** 文章写作流程、数据 ETL 管道、多阶段分析。
 
-##### 3. 路由工作流（Routing Workflows）
+#### 3. 路由工作流（Routing Workflows）
 
 先对输入**分类**，再将其路由到相应的专门处理流程。
 
@@ -489,7 +485,7 @@ Computer Use 是一项让 Claude 能够**像人一样直接操作桌面环境**�
 
 **适用场景：** 客服系统、多语言处理、不同复杂度任务的分级处理。
 
-#### Evaluator-Optimizer 模式
+### Evaluator-Optimizer 模式
 
 一种特殊的循环工作流：
 
@@ -503,7 +499,7 @@ Computer Use 是一项让 Claude 能够**像人一样直接操作桌面环境**�
 达到质量标准 → 输出最终结果
 ```
 
-#### Agent 工作原理
+### Agent 工作原理
 
 Agent 让 Claude 在循环中**自主决定**：
 1. 观察当前环境状态（Environment Inspection）
@@ -513,7 +509,7 @@ Agent 让 Claude 在循环中**自主决定**：
 
 **Environment Inspection（环境检查）** 是 Agent 的核心能力：让 Agent 能观察和理解自己行动的结果，从而做出下一步判断。
 
-### 📎 相关笔记
+## 相关笔记
 
 > **延伸阅读**
 > - [Claude 101](/academy/anthropic-academy/03-claude-product/claude-101/) — Claude 基础入门

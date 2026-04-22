@@ -446,7 +446,7 @@ Cowork 是从"对话"到"委托"的转变——你描述结果，Claude 规划�
 
 **从小处开始，边界清晰的任务——然后扩大规模。**
 
-## 📎 相关笔记
+## 相关笔记
 
 > **延伸阅读**
 > - [Claude 101](/academy/anthropic-academy/03-claude-product/claude-101/) — Claude 基础入门

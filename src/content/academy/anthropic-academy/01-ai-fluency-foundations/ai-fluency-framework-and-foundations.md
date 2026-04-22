@@ -21,9 +21,6 @@ academy:
     - "AI Fluency 词汇表（可下载 PDF）"
 draft: false
 ---
-**来源：** [Anthropic Academy](https://anthropic.skilljar.com/ai-fluency-framework-foundations)
-**语言：** 英文课程，中文笔记
-**课节：** 15 节
 **版权：** Copyright 2025 Rick Dakan, Joseph Feller, and Anthropic（CC BY-NC-SA 4.0）
 
 > **课程核心**
@@ -273,7 +270,7 @@ Diligence 是 AI Fluency 中专注于**负责任和合乎伦理的 AI 协作**�
 
 本节提供进一步探索 AI Fluency 的可选资源和练习，帮助学员将课程所学内化为日常习惯。
 
-## 📎 相关笔记
+## 相关笔记
 
 > **延伸阅读**
 > - [Teaching AI Fluency](/academy/anthropic-academy/01-ai-fluency-foundations/teaching-ai-fluency/) — 如何将 4D 框架教授给他人

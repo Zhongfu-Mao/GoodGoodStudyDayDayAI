@@ -20,14 +20,11 @@ academy:
   prerequisites: []
 draft: false
 ---
-**来源：** [Anthropic Academy](https://anthropic.skilljar.com/claude-in-amazon-bedrock)
-**语言：** 英文课程，中文笔记
-**课节：** 83 节
 **适用对象：** AWS 开发者，希望通过 Amazon Bedrock 使用 Claude
 
 > 本课程内容与「Building with the Claude API」高度重合，但将 **Anthropic Python SDK** 替换为 **boto3 + Amazon Bedrock**。笔记重点标注两者差异。
 
-### 目录
+## 目录
 
 1. [核心差异对比：Bedrock vs Anthropic SDK](#核心差异对比)
 2. [第一章：使用 API](#第一章使用-api)
@@ -38,7 +35,7 @@ draft: false
 7. [第六章：模型上下文协议 MCP](#第六章模型上下文协议-mcp)
 8. [第七章：智能体（Agents）](#第七章智能体agents)
 
-### 核心差异对比
+## 核心差异对比
 
 | 功能 | Anthropic SDK | Amazon Bedrock (boto3) |
 |------|--------------|----------------------|
@@ -54,9 +51,9 @@ draft: false
 | 提示缓存标记 | `cache_control: {"type": "ephemeral"}` | `{"cachePoint": {"type": "default"}}` |
 | 工具结果格式 | `tool_result` block | `{"toolResult": {"toolUseId": ..., "content": [...], "status": "success"}}` |
 
-### 第一章：使用 API
+## 第一章：使用 API
 
-#### 1.1 访问 API — 请求流程
+### 1.1 访问 API — 请求流程
 
 ```
 用户输入 → 服务器 → Bedrock 客户端 → AWS Bedrock → 模型处理 → 返回响应
@@ -64,7 +61,7 @@ draft: false
 
 Bedrock 不存储任何消息，每次 API 调用完全独立。
 
-#### 1.2 创建客户端
+### 1.2 创建客户端
 
 ```python
 import boto3
@@ -73,7 +70,7 @@ import json
 client = boto3.client("bedrock-runtime", region_name="us-west-2")
 ```
 
-#### 1.3 模型 ID 与推理配置文件
+### 1.3 模型 ID 与推理配置文件
 
 **问题：** 不是每个模型在每个 AWS 区域都可用，指定不可用区域会报错。
 
@@ -82,7 +79,7 @@ client = boto3.client("bedrock-runtime", region_name="us-west-2")
 - 在 AWS Bedrock 控制台 → "Cross-region inference" 中找到配置文件 ID
 - 示例 ID：`us.anthropic.claude-3-5-sonnet-20241022-v2:0`（注意 `us.` 前缀）
 
-#### 1.4 发起请求
+### 1.4 发起请求
 
 ```python
 model_id = "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
@@ -97,13 +94,13 @@ response = client.converse(
     messages=[user_message]
 )
 
-## 提取文本（层级较深）
+# 提取文本（层级较深）
 text = response["output"]["message"]["content"][0]["text"]
 ```
 
 > ⚠️ Bedrock 消息结构：`content` 是字典列表（支持多模态），不是简单字符串。
 
-#### 1.5 多轮对话
+### 1.5 多轮对话
 
 Bedrock 无状态，需手动维护对话历史：
 
@@ -120,7 +117,7 @@ def chat(messages):
     response = client.converse(modelId=model_id, messages=messages)
     return response["output"]["message"]["content"][0]["text"]
 
-## 使用示例
+# 使用示例
 messages = []
 add_user_message(messages, "What's 1+1?")
 answer = chat(messages)
@@ -131,7 +128,7 @@ answer = chat(messages)
 
 **规则：** 消息角色必须交替（user → assistant → user ...），不能连续两条同角色。
 
-#### 1.6 系统提示
+### 1.6 系统提示
 
 ```python
 system_prompt = "You are an AWS cloud support specialist. Only answer AWS-related questions."
@@ -144,7 +141,7 @@ response = client.converse(
 ```
 
 ```python
-## 灵活版：可选系统提示
+# 灵活版：可选系统提示
 def chat(messages, system=None):
     params = {"modelId": model_id, "messages": messages}
     if system:
@@ -155,7 +152,7 @@ def chat(messages, system=None):
 
 **注意：** 系统提示不能为空字符串。
 
-#### 1.7 温度（Temperature）
+### 1.7 温度（Temperature）
 
 ```python
 def chat(messages, system=None, temperature=1.0):
@@ -178,7 +175,7 @@ def chat(messages, system=None, temperature=1.0):
 
 默认温度 **1.0**（最大创意）。
 
-#### 1.8 流式输出（Streaming）
+### 1.8 流式输出（Streaming）
 
 ```python
 response = client.converse_stream(messages=messages, modelId=model_id)
@@ -193,7 +190,7 @@ for event in response["stream"]:
 
 事件类型按顺序：`messageStart` → 多个 `contentBlockDelta` → `contentBlockStop` → `messageStop` → `metadata`
 
-#### 1.9 控制模型输出
+### 1.9 控制模型输出
 
 **助手消息预填充：**
 ```python
@@ -201,7 +198,7 @@ messages = []
 add_user_message(messages, "Is coffee or tea better?")
 add_assistant_message(messages, "Coffee is better because")   # ← 预填充开头
 answer = chat(messages)
-## Claude 会从预填充处继续："it has more caffeine."
+# Claude 会从预填充处继续："it has more caffeine."
 ```
 
 **停止序列：**
@@ -218,7 +215,7 @@ def chat(messages, system=None, temperature=1.0, stop_sequences=[]):
     ...
 ```
 
-#### 1.10 结构化数据输出
+### 1.10 结构化数据输出
 
 组合预填充 + 停止序列来提取纯 JSON：
 
@@ -232,7 +229,7 @@ import json
 clean_data = json.loads(text.strip())
 ```
 
-### 第二章：提示工程
+## 第二章：提示工程
 
 （内容与 Building with the Claude API 课程相同，以下为要点提醒）
 
@@ -243,15 +240,15 @@ clean_data = json.loads(text.strip())
 - **提供示例**：一次/多次样本学习（one-shot / multi-shot）
 - **逐步推理**：要求 Claude 先思考再回答
 
-### 第三章：工具使用
+## 第三章：工具使用
 
-#### 3.1 工具使用流程
+### 3.1 工具使用流程
 
 ```
 用户提问 → 发送请求+工具定义 → Claude 请求工具 → 执行工具 → 发回结果 → Claude 生成最终回复
 ```
 
-#### 3.2 工具 JSON Schema 格式（Bedrock 专有结构）
+### 3.2 工具 JSON Schema 格式（Bedrock 专有结构）
 
 ```python
 get_current_datetime_schema = {
@@ -274,7 +271,7 @@ get_current_datetime_schema = {
 
 > ⚠️ Bedrock 工具定义包裹在 `toolSpec` 中，调用时格式为：`tools=[{"toolSpec": schema}]`
 
-#### 3.3 发送含工具的请求
+### 3.3 发送含工具的请求
 
 ```python
 def chat(messages, system=None, temperature=1.0, stop_sequences=[], tools=None):
@@ -293,7 +290,7 @@ def chat(messages, system=None, temperature=1.0, stop_sequences=[], tools=None):
     return text, parts
 ```
 
-#### 3.4 toolChoice 选项
+### 3.4 toolChoice 选项
 
 | 选项 | 含义 |
 |------|------|
@@ -301,21 +298,21 @@ def chat(messages, system=None, temperature=1.0, stop_sequences=[], tools=None):
 | `any` | Claude 必须使用某个工具 |
 | 指定工具名 | 强制使用特定工具（适合测试） |
 
-#### 3.5 处理工具调用响应
+### 3.5 处理工具调用响应
 
 当 `stopReason == "tool_use"` 时，Claude 请求工具：
 
 ```python
 text, parts = chat(messages, tools=[{"toolSpec": get_current_datetime_schema}])
 
-## 检查响应类型
+# 检查响应类型
 stop_reason = response["stopReason"]
 
-## 响应 parts 示例：
-## [{"text": "Let me get the time..."}, {"toolUse": {"toolUseId": "abc", "name": "get_current_datetime", "input": {}}}]
+# 响应 parts 示例：
+# [{"text": "Let me get the time..."}, {"toolUse": {"toolUseId": "abc", "name": "get_current_datetime", "input": {}}}]
 ```
 
-#### 3.6 执行工具并发回结果
+### 3.6 执行工具并发回结果
 
 ```python
 def run_tools(parts):
@@ -349,34 +346,34 @@ def run_tools(parts):
     return tool_result_parts
 ```
 
-#### 3.7 完整工具调用循环
+### 3.7 完整工具调用循环
 
 ```python
 messages = []
 add_user_message(messages, "What time is it right now?")
 
-## 第一次请求
+# 第一次请求
 text, parts = chat(messages, tools=[{"toolSpec": get_current_datetime_schema}])
 add_assistant_message(messages, parts)   # 存入 assistant 的工具请求消息
 
-## 执行工具
+# 执行工具
 tool_result_parts = run_tools(parts)
 add_user_message(messages, tool_result_parts)   # 存入工具结果
 
-## 第二次请求（带工具结果）
+# 第二次请求（带工具结果）
 text, parts = chat(messages, tools=[{"toolSpec": get_current_datetime_schema}])
 print(text)  # → "The current time is 2025-04-03, 12:54:00."
 ```
 
-### 第四章：RAG 检索增强生成
+## 第四章：RAG 检索增强生成
 
-#### 4.1 流程
+### 4.1 流程
 
 ```
 文档 → 分块 → 嵌入 → 相似度搜索 → 注入 Prompt → Claude 回答
 ```
 
-#### 4.2 文本嵌入（Bedrock 专用：Amazon Titan）
+### 4.2 文本嵌入（Bedrock 专用：Amazon Titan）
 
 ```python
 def generate_embedding(
@@ -405,16 +402,16 @@ def generate_embedding(
 
 > ⚠️ 使用前需在 AWS Bedrock 控制台申请访问 Titan 嵌入模型。
 
-#### 4.3 语义相似度搜索
+### 4.3 语义相似度搜索
 
 使用余弦相似度：将用户问题的嵌入与所有文档块的嵌入比较，返回最相似的 top-k 块。
 
-### 第五章：Claude 特性功能
+## 第五章：Claude 特性功能
 
-#### 5.1 Extended Thinking（扩展思考）
+### 5.1 Extended Thinking（扩展思考）
 
 ```python
-## 在 inferenceConfig 中通过 additional_model_fields 传入
+# 在 inferenceConfig 中通过 additional_model_fields 传入
 additional_model_fields = {
     "thinking": {
         "type": "enabled",
@@ -439,7 +436,7 @@ response = client.converse(
 - 权衡：更高准确度 vs 更高成本 + 更长延迟
 - 建议：先优化 prompt，仍不满意再开启
 
-#### 5.2 图片支持
+### 5.2 图片支持
 
 ```python
 import base64
@@ -456,7 +453,7 @@ user_message = {
 }
 ```
 
-#### 5.3 PDF 支持
+### 5.3 PDF 支持
 
 ```python
 with open("document.pdf", "rb") as f:
@@ -471,7 +468,7 @@ user_message = {
 }
 ```
 
-#### 5.4 Citations（引用）
+### 5.4 Citations（引用）
 
 在 document block 中启用引用，Claude 会在回答中标注来源：
 
@@ -485,7 +482,7 @@ document_block = {
 }
 ```
 
-#### 5.5 Prompt Caching（提示缓存）
+### 5.5 Prompt Caching（提示缓存）
 
 **工作原理：**
 1. 初始请求：处理内容 → 存入缓存（**写缓存**）
@@ -496,7 +493,7 @@ document_block = {
 **Bedrock 中使用 cachePoint（与 Anthropic SDK 的 `cache_control` 对应）：**
 
 ```python
-## 在用户消息中加缓存点
+# 在用户消息中加缓存点
 user_message = {
     "role": "user",
     "content": [
@@ -505,13 +502,13 @@ user_message = {
     ]
 }
 
-## 在系统提示中加缓存点
+# 在系统提示中加缓存点
 system = [
     {"text": "You are a senior software engineer...（长系统提示）"},
     {"cachePoint": {"type": "default"}}
 ]
 
-## 在工具定义中加缓存点（最常见用法）
+# 在工具定义中加缓存点（最常见用法）
 tools = [
     {"toolSpec": schema_1},
     {"toolSpec": schema_2},
@@ -524,7 +521,7 @@ tools = [
 - 缓存点可加在：用户消息、系统提示、工具定义
 - 系统提示和工具定义是最佳缓存位置（很少变化）
 
-### 第六章：模型上下文协议 MCP
+## 第六章：模型上下文协议 MCP
 
 （MCP 使用标准 Python MCP SDK，与 AWS 账户无关，内容同 Building with the Claude API 课程）
 
@@ -533,9 +530,9 @@ tools = [
 - MCP Client 连接 Claude
 - 使用 MCP Inspector 测试
 
-### 第七章：智能体（Agents）
+## 第七章：智能体（Agents）
 
-#### 7.1 Computer Use（计算机使用）
+### 7.1 Computer Use（计算机使用）
 
 Claude 可以控制计算机：截图、识别 UI、执行操作。
 
@@ -548,11 +545,11 @@ tools = [
 ]
 ```
 
-#### 7.2 Claude Code 与 Bedrock
+### 7.2 Claude Code 与 Bedrock
 
 Claude Code 默认使用 Anthropic API，但也可以配置为使用 Amazon Bedrock。功能与常规 Claude Code 相同，只是 API 调用路由到 Bedrock。
 
-### 课程笔记总结
+## 课程笔记总结
 
 **最核心的 Bedrock 特有知识点：**
 
@@ -564,7 +561,7 @@ Claude Code 默认使用 Anthropic API，但也可以配置为使用 Amazon Bedr
 6. **Titan 嵌入**：`amazon.titan-embed-text-v2:0`，用 `invoke_model()` 调用
 7. **`cachePoint`**：Bedrock 版的提示缓存标记语法
 
-### 📎 相关笔记
+## 相关笔记
 
 > **延伸阅读**
 > - [Building with the Claude API](/academy/anthropic-academy/04-developer-tools/building-with-the-claude-api/) — 直接 API 调用对比

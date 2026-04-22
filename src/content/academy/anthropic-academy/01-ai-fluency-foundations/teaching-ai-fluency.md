@@ -205,7 +205,7 @@ Teaching AI Fluency 核心框架
 - **视频脚本**：每节课均附带文字稿（TAIF_TRANSCRIPT_0X_*.txt）
 - **课程反馈**：https://docs.google.com/forms/d/e/1FAIpQLScUKtBMYFxnHE30yCMAuJ55ntOmfWckEFpHLYuLVBwgtBnmcw/viewform
 
-## 📎 相关笔记
+## 相关笔记
 
 > **延伸阅读**
 > - [AI Fluency: Framework & Foundations](/academy/anthropic-academy/01-ai-fluency-foundations/ai-fluency-framework-and-foundations/) — 4D 框架核心理论

@@ -273,7 +273,7 @@ Delegation-Diligence 循环应用场景
 - **相关课程**：[AI Fluency: Framework & Foundations](https://anthropic.skilljar.com/ai-fluency-framework-foundations)（深度学习框架）
 - **课程反馈**：https://docs.google.com/forms/d/e/1FAIpQLScUKtBMYFxnHE30yCMAuJ55ntOmfWckEFpHLYuLVBwgtBnmcw/viewform
 
-## 📎 相关笔记
+## 相关笔记
 
 > **延伸阅读**
 > - [AI Fluency: Framework & Foundations](/academy/anthropic-academy/01-ai-fluency-foundations/ai-fluency-framework-and-foundations/) — 4D 框架核心理论

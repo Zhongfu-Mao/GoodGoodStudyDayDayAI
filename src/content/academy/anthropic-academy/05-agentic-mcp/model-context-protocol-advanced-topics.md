@@ -19,9 +19,6 @@ academy:
   prerequisites: []
 draft: false
 ---
-**来源：** [Anthropic Academy](https://anthropic.skilljar.com/model-context-protocol-advanced-topics)
-**语言：** 英文课程，中文笔记
-**课节：** 15 节
 **适用对象：** MCP 开发者（需有基础 MCP 知识）
 
 ## 第一章：核心 MCP 特性（Core MCP Features）
@@ -332,7 +329,7 @@ StreamableHTTP 传输让 MCP Client 能通过 HTTP 连接到**远程托管**的 
 | **stateless_http** | 支持水平扩展，但放弃 Sampling/通知/SSE |
 | **json_response** | 禁用流式响应，只返回最终 JSON 结果 |
 
-## 📎 相关笔记
+## 相关笔记
 
 > **延伸阅读**
 > - [Introduction to Model Context Protocol](/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/) — MCP 基础

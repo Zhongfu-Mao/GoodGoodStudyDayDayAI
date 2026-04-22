@@ -215,7 +215,7 @@ AI Fluency for Students 核心框架
   - [Teaching AI Fluency](https://anthropic.skilljar.com/teaching-ai-fluency)（教授AI流利度）
   - [AI Fluency for Educators](https://anthropic.skilljar.com/ai-fluency-for-educators)（教育者版）
 
-## 📎 相关笔记
+## 相关笔记
 
 > **延伸阅读**
 > - [AI Fluency: Framework & Foundations](/academy/anthropic-academy/01-ai-fluency-foundations/ai-fluency-framework-and-foundations/) — 4D 框架核心理论

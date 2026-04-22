@@ -19,9 +19,6 @@ academy:
   prerequisites: []
 draft: false
 ---
-**来源：** [Anthropic Academy](https://anthropic.skilljar.com/introduction-to-subagents)
-**语言：** 英文课程，中文笔记
-**课节：** 4 节
 **适用对象：** Claude Code 用户
 
 ## 第一课：什么是 Subagents？
@@ -91,12 +88,13 @@ Claude Code 自带三个内置 Subagent：
 创建完成后，配置文件保存在 `.claude/agents/your-agent-name.md`：
 
 ```markdown
-
+---
 name: code-quality-reviewer
 description: Use this agent when you need to review recently written or modified code for quality, security, and best practice compliance.
 tools: Bash, Glob, Grep, Read, WebFetch, WebSearch
 model: sonnet
 color: purple
+---
 
 You are an expert code reviewer specializing in quality assurance, security best practices, and adherence to project standards. Your role is to thoroughly examine recently written or modified code and identify issues that could impact reliability, security, maintainability, or performance.
 ```
@@ -234,7 +232,7 @@ Claude Code 默认系统提示词强调简洁、代码导向——不适合所�
 | 多步骤依赖管道 | ❌ 不用 |
 | 运行测试（需要完整输出） | ❌ 不用 |
 
-## 📎 相关笔记
+## 相关笔记
 
 > **延伸阅读**
 > - [Introduction to Agent Skills](/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/) — Skills 框架

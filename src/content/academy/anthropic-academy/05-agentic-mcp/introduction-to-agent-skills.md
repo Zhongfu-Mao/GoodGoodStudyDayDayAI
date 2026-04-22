@@ -39,10 +39,10 @@ Skills 是一组指令文件夹，Claude Code 可以发现并使用它们来更�
 Skill 文件的 frontmatter 格式示例：
 
 ```yaml
-
+---
 name: pr-review
 description: Reviews pull requests for code quality. Use when reviewing PRs or checking code changes.
-
+---
 ```
 
 frontmatter 下方就是具体的指令内容——你的 review checklist、格式偏好等。
@@ -101,9 +101,10 @@ mkdir -p ~/.claude/skills/pr-description
 **第二步：创建 SKILL.md 文件**
 
 ```markdown
-
+---
 name: pr-description
 description: Writes pull request descriptions. Use when creating a PR, writing a PR, or when the user asks to summarize changes for a pull request.
+---
 
 When writing a PR description:
 
@@ -185,12 +186,12 @@ Claude Code 启动时扫描四个位置获取 skills，但**只加载 name 和 d
 带 `allowed-tools` 和 `model` 的完整 frontmatter 示例：
 
 ```yaml
-
+---
 name: codebase-onboarding
 description: Helps new developers understand the system works.
 allowed-tools: Read, Grep, Glob, Bash
 model: sonnet
-
+---
 ```
 
 如果**省略** `allowed-tools`，skill 不做任何限制，Claude 使用其正常权限模型。
@@ -334,14 +335,14 @@ skill 目录中的脚本可以直接运行而不将其内容加载进上下文�
 在 `.claude/agents` 中添加 agent markdown 文件（可用 `/agents` 命令交互式创建），在 `skills` 字段中列出要加载的 skills：
 
 ```yaml
-
+---
 name: frontend-security-accessibility-reviewer
 description: "Use this agent when you need to review frontend code for accessibility..."
 tools: Bash, Glob, Grep, Read, WebFetch, WebSearch, Skill...
 model: sonnet
 color: blue
 skills: accessibility-audit, performance-check
-
+---
 ```
 
 委托给这个 subagent 时，它会加载两个 skills 并将其应用于每次 review。
@@ -437,7 +438,7 @@ Validator 会检查：
 - 合理选择分发方式（个人/项目/插件/企业），让 skills 发挥最大价值
 - Skills 与 CLAUDE.md、Hooks、Subagents、MCP servers 组合使用，构建完整的 Claude Code 工作流定制方案
 
-## 📎 相关笔记
+## 相关笔记
 
 > **延伸阅读**
 > - [Introduction to Model Context Protocol](/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/) — MCP 协议基础
