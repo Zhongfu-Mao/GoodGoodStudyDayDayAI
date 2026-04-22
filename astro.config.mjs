@@ -21,6 +21,11 @@ function withBasePath(path) {
   }
 
   const basePrefix = normalizedBase.slice(0, -1);
+
+  if (path === normalizedBase || path === basePrefix || path.startsWith(`${basePrefix}/`)) {
+    return path;
+  }
+
   return path === '/' ? normalizedBase : `${basePrefix}${path}`;
 }
 
