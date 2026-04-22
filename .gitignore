@@ -4,6 +4,10 @@ dist/
 
 # Dependencies
 node_modules/
+.venv/
+.notebooklm/
+storage_state.json
+context.json
 
 # Environment
 .env
