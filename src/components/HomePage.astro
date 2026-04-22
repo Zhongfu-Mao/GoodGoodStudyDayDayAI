@@ -1,6 +1,5 @@
 ---
 import { articlePath, collectionLabels, tagPath, type Locale } from '../lib/site';
-import { DesertGoldArticleCard } from './DesertGoldArticleCard';
 import { getEntriesForLocale, getTagIndex } from '../lib/content';
 
 const { locale } = Astro.props as { locale: Locale };
@@ -14,7 +13,7 @@ const tagIndex = await getTagIndex(locale);
 const copy = {
   zh: {
     eyebrow: 'Good Good Study, Day Day AI',
-    title: '记录 AI 学习、实践与趋势。',
+    title: '记录 AI 学习与实践，追踪变化。',
     description:
       '以 Markdown 为核心，持续整理双语文章、AI 雷达与课程笔记。',
     featured: '精选文章',
@@ -26,7 +25,7 @@ const copy = {
   },
   ja: {
     eyebrow: 'Good Good Study, Day Day AI',
-    title: 'AI の学習、実践、動向を記録する。',
+    title: 'AI の学習と実践を記録し、変化を追う。',
     description:
       'Markdown をベースに、二言語の記事、AI Radar、講座ノートを継続的に整理します。',
     featured: '注目記事',
@@ -45,7 +44,9 @@ const text = copy[locale];
   <div class="grid gap-6">
     <section class="theme-panel-strong rounded-[1.75rem] p-8 shadow-glow md:p-10">
       <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.34em]">{text.eyebrow}</p>
-      <h1 class="theme-heading mt-5 max-w-4xl text-4xl font-semibold leading-[0.95] md:text-6xl xl:text-7xl">{text.title}</h1>
+      <h1 class="theme-heading mt-5 max-w-[11ch] text-balance text-4xl font-semibold leading-[0.95] md:max-w-[12ch] md:text-6xl xl:text-7xl">
+        {text.title}
+      </h1>
       <p class="theme-muted mt-6 max-w-2xl text-lg leading-8">{text.description}</p>
 
       <div class="mt-8 flex flex-wrap gap-3">
@@ -138,22 +139,6 @@ const text = copy[locale];
       </div>
     </section>
   </aside>
-</section>
-
-<section class="mt-14 grid gap-5">
-  <div class="flex items-end justify-between gap-4">
-    <div>
-      <p class="theme-kicker text-xs uppercase tracking-[0.28em]">{locale === 'ja' ? 'Design Lab' : 'Design Lab'}</p>
-      <h2 class="theme-heading mt-2 text-3xl font-semibold">{locale === 'ja' ? 'shadcn/ui 卡片试作' : 'shadcn/ui 卡片试作'}</h2>
-    </div>
-    <p class="theme-muted max-w-xl text-sm">
-      {locale === 'ja'
-        ? 'ホームのビジュアル検証用に置いているカード試作です。'
-        : '这是一张用于测试首页视觉风格的卡片。'}
-    </p>
-  </div>
-
-  <DesertGoldArticleCard />
 </section>
 
 <section id="latest" class="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_320px]">

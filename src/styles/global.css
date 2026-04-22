@@ -395,9 +395,9 @@
   }
 
   .theme-action-secondary {
-    border: 1px solid var(--theme-border);
+    border: 1px solid rgba(255, 255, 255, 0.72);
     background: rgba(255, 255, 255, 0.94);
-    color: var(--theme-page-text);
+    color: #0f172a;
     box-shadow: var(--theme-shadow);
     transition:
       transform 160ms ease,
@@ -407,7 +407,8 @@
   }
 
   .theme-action-secondary:hover {
-    border-color: rgba(214, 171, 92, 0.28);
+    border-color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 1);
     transform: translateY(-1px);
     box-shadow:
       0 16px 28px rgba(24, 24, 27, 0.08),

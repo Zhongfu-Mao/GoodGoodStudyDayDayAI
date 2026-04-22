@@ -9,14 +9,16 @@ const {
   title,
   description = 'Good Good Study, Day Day AI',
   locale = 'zh',
+  languagePaths,
 } = Astro.props as {
   title: string;
   description?: string;
   locale?: Locale;
+  languagePaths?: Partial<Record<Locale, string>>;
 };
 
 const tagline =
-  locale === 'ja' ? 'Markdown を中心に、タグと二言語で知識を編成する。' : '以 Markdown 为中心，用标签和双语编织知识。';
+  locale === 'ja' ? '清風明月とともに、AI の学びの脈絡、実践の所得、そして時代の潮声を記録する。' : '清风明月伴你一起记录 AI 学习的脉络、实践的所得，与时代潮声。';
 ---
 
 <!doctype html>
@@ -72,7 +74,7 @@ const tagline =
 
         <div class="flex shrink-0 items-center gap-3">
           <ThemeToggle />
-          <LanguageSwitcher />
+          <LanguageSwitcher paths={languagePaths} />
         </div>
       </div>
       <div class="mx-auto max-w-6xl px-6 pb-4 lg:hidden">
