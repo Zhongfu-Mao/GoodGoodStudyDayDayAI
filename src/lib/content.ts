@@ -9,6 +9,17 @@ import {
   isJapaneseId,
 } from './site';
 
+type BlogEntryItem = Awaited<ReturnType<typeof getCollectionEntries>>[number];
+
+export type AcademyModuleGroup = {
+  series: string;
+  modules: Array<{
+    name: string;
+    order: number;
+    items: BlogEntryItem[];
+  }>;
+};
+
 async function getCollectionEntries(collection: CollectionName) {
   const entries = await getCollection(collection);
   return entries.map((entry) => ({
@@ -83,4 +94,57 @@ export function getCategoryLabel(category: CollectionName, locale: Locale) {
 
 export function isEntryJapanese(entryId: string) {
   return isJapaneseId(entryId);
+}
+
+export async function getAcademySeriesGroups(locale: Locale): Promise<AcademyModuleGroup[]> {
+  const entries = (await getEntriesForLocale(locale))
+    .filter((item) => item.entry.data.category === 'academy' && item.entry.data.academy)
+    .sort(compareAcademyEntries);
+
+  const seriesMap = new Map<string, Map<string, AcademyModuleGroup['modules'][number]>>();
+
+  for (const item of entries) {
+    const academy = item.entry.data.academy;
+
+    if (!academy) continue;
+
+    const moduleOrder = academy.moduleOrder ?? Number.MAX_SAFE_INTEGER;
+    const moduleName = academy.module;
+    const seriesName = academy.series;
+    const seriesModules = seriesMap.get(seriesName) ?? new Map<string, AcademyModuleGroup['modules'][number]>();
+    const existingModule = seriesModules.get(moduleName);
+
+    if (existingModule) {
+      existingModule.items.push(item);
+      existingModule.items.sort(compareAcademyEntries);
+    } else {
+      seriesModules.set(moduleName, {
+        name: moduleName,
+        order: moduleOrder,
+        items: [item],
+      });
+    }
+
+    seriesMap.set(seriesName, seriesModules);
+  }
+
+  return [...seriesMap.entries()]
+    .map(([series, modules]) => ({
+      series,
+      modules: [...modules.values()].sort(
+        (a, b) => a.order - b.order || a.name.localeCompare(b.name, locale === 'ja' ? 'ja' : 'zh-Hans'),
+      ),
+    }))
+    .sort((a, b) => a.series.localeCompare(b.series, locale === 'ja' ? 'ja' : 'zh-Hans'));
+}
+
+function compareAcademyEntries(a: BlogEntryItem, b: BlogEntryItem) {
+  const aOrder = a.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
+  const bOrder = b.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
+
+  return (
+    aOrder - bOrder ||
+    a.slug.localeCompare(b.slug, 'en') ||
+    b.entry.data.date.getTime() - a.entry.data.date.getTime()
+  );
 }

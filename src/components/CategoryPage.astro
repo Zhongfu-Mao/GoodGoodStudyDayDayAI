@@ -5,10 +5,11 @@ import {
   cadenceLabels,
   collectionLabels,
   radarCadences,
+  slugifyTag,
   type CollectionName,
   type Locale,
 } from '../lib/site';
-import { getEntriesForLocale } from '../lib/content';
+import { getAcademySeriesGroups, getEntriesForLocale } from '../lib/content';
 
 const { locale, category } = Astro.props as {
   locale: Locale;
@@ -18,6 +19,9 @@ const { locale, category } = Astro.props as {
 const entries = await getEntriesForLocale(locale);
 const categoryEntries = entries.filter((item) => item.entry.data.category === category);
 const isRadar = category === 'radar';
+const isAcademy = category === 'academy';
+const academySeriesGroups = isAcademy ? await getAcademySeriesGroups(locale) : [];
+const legacyAcademyEntries = isAcademy ? categoryEntries.filter((item) => !item.entry.data.academy) : [];
 
 function resolveRadarCadence(item: (typeof categoryEntries)[number]) {
   const explicitCadence = item.entry.data.cadence?.toLowerCase();
@@ -77,20 +81,30 @@ const radarSections = radarCadences.map((cadence) => ({
 
 const copy = {
   zh: {
-    lead: '按知识领域整理的入口，方便从一个分区切入，再横向浏览相关内容。',
-    browse: '本分区全部内容。',
-    empty: '这个分区下还没有内容。',
+    lead: '按主题浏览文章。',
+    browse: '本分区文章列表。',
+    empty: '本分区暂无内容。',
     radarLead: '按 Daily、Weekly、Monthly 浏览全部更新。',
     radarBrowse: 'Daily 按月份归档。',
     radarArchive: '归档',
+    academyLead: '按课程系列和模块浏览 AI Academy。',
+    academyBrowse: '课程系列与模块列表。',
+    academySeries: '课程系列',
+    academyModule: '模块',
+    academyLegacy: '其他 Academy 笔记',
   },
   ja: {
-    lead: '知識領域ごとに整理した入口で、そこから関連コンテンツへ広げられます。',
+    lead: 'テーマごとに記事を一覧できます。',
     browse: 'この区分の一覧です。',
     empty: 'この区分にはまだ記事がありません。',
     radarLead: 'Daily / Weekly / Monthly ごとに更新を一覧できます。',
     radarBrowse: 'Daily は月ごとに整理しています。',
     radarArchive: 'Archive',
+    academyLead: 'AI Academy をシリーズとモジュールごとに一覧できます。',
+    academyBrowse: 'シリーズとモジュールの一覧です。',
+    academySeries: 'シリーズ',
+    academyModule: 'モジュール',
+    academyLegacy: 'その他の Academy ノート',
   },
 } as const;
 
@@ -100,7 +114,7 @@ const text = copy[locale];
 <section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
   <p class="theme-kicker text-sm uppercase tracking-[0.28em]">{collectionLabels[category][locale]}</p>
   <h1 class="theme-heading mt-3 text-3xl font-semibold md:text-5xl">{collectionLabels[category][locale]}</h1>
-  <p class="theme-muted mt-4 max-w-2xl">{isRadar ? text.radarLead : text.lead}</p>
+  <p class="theme-muted mt-4 max-w-2xl">{isRadar ? text.radarLead : isAcademy ? text.academyLead : text.lead}</p>
 
   {isRadar ? (
     <div class="mt-8 flex flex-wrap gap-2">
@@ -110,11 +124,13 @@ const text = copy[locale];
         </a>
       ))}
     </div>
+  ) : isAcademy ? (
+    <p class="theme-muted mt-8 max-w-xl text-sm">{text.academyBrowse}</p>
   ) : (
     <p class="theme-muted mt-8 max-w-xl text-sm">
       {locale === 'ja'
-        ? 'この区分では、関連する記事だけを一覧表示します。'
-        : '这里仅展示本分区相关内容，不再跳转到其他主分区。'}
+        ? 'この区分の記事を一覧しています。'
+        : '这里汇总了本分区文章。'}
     </p>
   )}
 </section>
@@ -125,7 +141,7 @@ const text = copy[locale];
       <p class="theme-muted text-sm uppercase tracking-[0.24em]">{collectionLabels[category][locale]}</p>
       <h2 class="theme-heading mt-2 text-2xl font-semibold">{categoryEntries.length}</h2>
     </div>
-    <p class="theme-muted max-w-md text-sm">{isRadar ? text.radarBrowse : text.browse}</p>
+    <p class="theme-muted max-w-md text-sm">{isRadar ? text.radarBrowse : isAcademy ? text.academyBrowse : text.browse}</p>
   </div>
 
   {isRadar ? (
@@ -185,11 +201,80 @@ const text = copy[locale];
             </div>
           ) : (
             <div class="theme-panel mt-5 rounded-2xl border-dashed p-6 theme-muted">
-              {locale === 'ja' ? 'まだ記事がありません。' : '这个分组下暂时没有内容。'}
+              {locale === 'ja' ? 'まだ記事がありません。' : '该分组暂无内容。'}
             </div>
           )}
         </section>
       ))}
+    </div>
+  ) : isAcademy ? (
+    <div class="grid gap-8">
+      {academySeriesGroups.map((seriesGroup) => (
+        <section id={slugifyTag(seriesGroup.series)} class="theme-panel rounded-[1.5rem] p-6">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.academySeries}</p>
+              <h3 class="theme-heading mt-2 text-3xl font-semibold">{seriesGroup.series}</h3>
+            </div>
+            <p class="theme-muted text-sm">
+              {locale === 'ja'
+                ? `${seriesGroup.modules.length} モジュール`
+                : `${seriesGroup.modules.length} 个模块`}
+            </p>
+          </div>
+
+          <div class="mt-6 grid gap-5">
+            {seriesGroup.modules.map((moduleGroup) => (
+              <section
+                id={`${slugifyTag(seriesGroup.series)}-${slugifyTag(moduleGroup.name)}`}
+                class="theme-panel-strong rounded-[1.25rem] p-5"
+              >
+                <div class="flex flex-wrap items-end justify-between gap-4">
+                  <div>
+                    <p class="theme-muted text-xs uppercase tracking-[0.24em]">
+                      {text.academyModule} {moduleGroup.order}
+                    </p>
+                    <h4 class="theme-heading mt-2 text-2xl font-semibold">{moduleGroup.name}</h4>
+                  </div>
+                  <p class="theme-muted text-sm">
+                    {locale === 'ja'
+                      ? `${moduleGroup.items.length} 記事`
+                      : `${moduleGroup.items.length} 篇内容`}
+                  </p>
+                </div>
+
+                <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                  {moduleGroup.items.map((item) => <PostCard item={item} locale={locale} />)}
+                </div>
+              </section>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      {legacyAcademyEntries.length > 0 ? (
+        <section class="theme-panel rounded-[1.5rem] p-6">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.academyLegacy}</p>
+              <h3 class="theme-heading mt-2 text-2xl font-semibold">{text.academyLegacy}</h3>
+            </div>
+            <p class="theme-muted text-sm">
+              {locale === 'ja'
+                ? `${legacyAcademyEntries.length} 記事`
+                : `${legacyAcademyEntries.length} 篇内容`}
+            </p>
+          </div>
+
+          <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {legacyAcademyEntries.map((item) => <PostCard item={item} locale={locale} />)}
+          </div>
+        </section>
+      ) : null}
+
+      {academySeriesGroups.length === 0 && legacyAcademyEntries.length === 0 ? (
+        <div class="theme-panel rounded-2xl p-6 theme-muted">{text.empty}</div>
+      ) : null}
     </div>
   ) : (
     <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">

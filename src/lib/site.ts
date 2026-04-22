@@ -37,18 +37,21 @@ export function tagPath(tag: string, locale: Locale) {
 }
 
 export function articlePath(category: CollectionName, slug: string, locale: Locale) {
-  return `${localePrefix(locale)}/${category}/${slug}/`;
+  return withTrailingSlash([localePrefix(locale), category, slug]);
 }
 
 export function categoryPath(category: CollectionName, locale: Locale) {
-  return `${localePrefix(locale)}/${category}/`;
+  return withTrailingSlash([localePrefix(locale), category]);
 }
 
 export function slugifyTag(tag: string) {
   return tag
     .trim()
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
+    .normalize('NFKC')
+    .replace(/[\s/_]+/gu, '-')
+    .replace(/[^\p{Letter}\p{Number}-]+/gu, '')
+    .replace(/-+/g, '-')
     .replace(/^-+|-+$/g, '');
 }
 
@@ -70,4 +73,13 @@ export function stripLocaleSuffix(id: string, locale?: Locale) {
 
 export function isJapaneseId(id: string) {
   return id.endsWith('.ja') || id.endsWith('ja');
+}
+
+function withTrailingSlash(parts: string[]) {
+  const normalized = parts
+    .filter(Boolean)
+    .map((part) => part.replace(/^\/+|\/+$/g, ''))
+    .filter(Boolean);
+
+  return `/${normalized.join('/')}/`;
 }

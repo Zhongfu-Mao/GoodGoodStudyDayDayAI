@@ -11,6 +11,8 @@ const { item, locale } = Astro.props as {
         date: Date;
         category: CollectionName;
         tags: string[];
+        coverImage?: string;
+        description?: string;
       };
     };
   };
@@ -23,6 +25,16 @@ const categoryLabel = collectionLabels[entry.data.category][locale];
 ---
 
 <article class="theme-panel theme-panel-link group rounded-[1.25rem] p-6 shadow-glow">
+  {entry.data.coverImage ? (
+    <a href={href} class="mb-5 block overflow-hidden rounded-[1rem]">
+      <img
+        src={entry.data.coverImage}
+        alt={entry.data.title}
+        class="h-40 w-full rounded-[1rem] object-cover transition duration-200 group-hover:scale-[1.02]"
+      />
+    </a>
+  ) : null}
+
   <div class="theme-muted mb-4 flex items-center justify-between gap-4 text-xs uppercase tracking-[0.2em]">
     <span>{categoryLabel}</span>
     <time datetime={entry.data.date.toISOString()}>{entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</time>
@@ -30,6 +42,9 @@ const categoryLabel = collectionLabels[entry.data.category][locale];
   <h3 class="theme-heading text-xl font-semibold transition group-hover:opacity-85">
     <a href={href}>{entry.data.title}</a>
   </h3>
+  {entry.data.description ? (
+    <p class="theme-muted mt-3 line-clamp-3 text-sm leading-6">{entry.data.description}</p>
+  ) : null}
   <div class="mt-4 flex flex-wrap gap-2">
     {entry.data.tags.map((tag) => (
       <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs">

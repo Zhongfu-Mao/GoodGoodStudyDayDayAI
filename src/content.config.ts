@@ -6,11 +6,24 @@ export const blogSchema = z.object({
   title: z.string(),
   date: z.coerce.date(),
   category: z.enum(collectionNames),
+  description: z.string().optional(),
   cadence: z.enum(['daily', 'weekly', 'monthly']).optional(),
   tags: z.array(z.string()).min(1),
   lang: z.enum(['zh', 'ja']).default('zh'),
   coverImage: z.string().optional(),
   audioUrl: z.string().optional(),
+  deckUrl: z.string().optional(),
+  academy: z
+    .object({
+      series: z.string(),
+      module: z.string(),
+      moduleOrder: z.number().int().positive().optional(),
+      source: z.string().optional(),
+      sourceUrl: z.string().url().optional(),
+      prerequisites: z.array(z.string()).default([]),
+      completionScore: z.string().optional(),
+    })
+    .optional(),
   draft: z.boolean().default(false),
 });
 
@@ -18,14 +31,30 @@ const markdownLoader = (base: string) =>
   glob({
     base,
     pattern: '**/*.md',
-    generateId: ({ entry }) => entry.replace(/\\/g, '/').replace(/\.md$/, ''),
+    generateId: ({ entry, data }) => {
+      const normalized = entry.replace(/\\/g, '/').replace(/\.md$/, '');
+
+      if (data.lang === 'ja' && !normalized.endsWith('.ja')) {
+        return `${normalized}.ja`;
+      }
+
+      return normalized;
+    },
   });
 
 const radar = defineCollection({
   loader: glob({
     base: './src/content/radar',
     pattern: '*.md',
-    generateId: ({ entry }) => entry.replace(/\\/g, '/').replace(/\.md$/, ''),
+    generateId: ({ entry, data }) => {
+      const normalized = entry.replace(/\\/g, '/').replace(/\.md$/, '');
+
+      if (data.lang === 'ja' && !normalized.endsWith('.ja')) {
+        return `${normalized}.ja`;
+      }
+
+      return normalized;
+    },
   }),
   schema: blogSchema,
 });
