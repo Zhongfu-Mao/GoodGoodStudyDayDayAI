@@ -12,6 +12,7 @@ const NOTEBOOKLM_BIN = path.join(WORKSPACE_ROOT, '.venv/bin/notebooklm');
 function parseArgs(argv) {
   const options = {
     file: null,
+    lang: null,
     keepNotebook: true,
     includeWeeklyBrief: true,
   };
@@ -21,6 +22,12 @@ function parseArgs(argv) {
 
     if (arg === '--file') {
       options.file = argv[index + 1] ?? null;
+      index += 1;
+      continue;
+    }
+
+    if (arg === '--lang') {
+      options.lang = argv[index + 1] ?? null;
       index += 1;
       continue;
     }
@@ -81,13 +88,16 @@ function updateFrontmatterValue(source, field, value, anchorField = 'draft') {
   return normalized.replace(frontmatterMatch[0], `---\n${updatedFrontmatter}\n---\n`);
 }
 
-async function resolveTargetFile(explicitFile) {
+async function resolveTargetFile(explicitFile, requestedLang) {
   if (explicitFile) {
     return path.isAbsolute(explicitFile) ? explicitFile : path.join(WORKSPACE_ROOT, explicitFile);
   }
 
+  const lang = requestedLang === 'ja' ? 'ja' : 'zh';
   const files = (await readdir(RADAR_DIR))
-    .filter((file) => /^weekly-ai-radar-\d{4}-\d{2}-\d{2}-to-\d{4}-\d{2}-\d{2}\.md$/.test(file))
+    .filter((file) => (lang === 'ja'
+      ? /^weekly-ai-radar-\d{4}-\d{2}-\d{2}-to-\d{4}-\d{2}-\d{2}\.ja\.md$/.test(file)
+      : /^weekly-ai-radar-\d{4}-\d{2}-\d{2}-to-\d{4}-\d{2}-\d{2}\.md$/.test(file)))
     .sort();
 
   const latest = files.at(-1);
@@ -255,7 +265,7 @@ function inferWeeklyDeckPrompt(title, lang) {
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const targetFile = await resolveTargetFile(options.file);
+  const targetFile = await resolveTargetFile(options.file, options.lang);
   const raw = await readFile(targetFile, 'utf8');
   const meta = parseFrontmatter(raw);
   const slug = path.basename(targetFile, '.md');
