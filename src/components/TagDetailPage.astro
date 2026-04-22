@@ -9,8 +9,8 @@ const tag = tagIndex.find((item) => item.slug === tagSlug);
 const label = tag?.label ?? tagSlug;
 
 const copy = {
-  zh: { title: '标签', back: '返回标签总览', empty: '这个标签下还没有文章。' },
-  ja: { title: 'タグ', back: 'タグ一覧に戻る', empty: 'このタグにはまだ記事がありません。' },
+  zh: { title: '标签', back: '返回标签总览', empty: '该标签下暂无文章。' },
+  ja: { title: 'タグ', back: 'タグ一覧に戻る', empty: 'このタグの記事はまだありません。' },
 } as const;
 
 const text = copy[locale];

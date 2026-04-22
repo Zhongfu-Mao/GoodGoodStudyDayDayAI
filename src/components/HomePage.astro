@@ -14,25 +14,25 @@ const tagIndex = await getTagIndex(locale);
 const copy = {
   zh: {
     eyebrow: 'Good Good Study, Day Day AI',
-    title: '把学习、实践与趋势观察整理成一份长期可复用的 AI 工作台。',
+    title: '记录 AI 学习、实践与趋势。',
     description:
-      '以 Markdown 为核心记录方式，用 Astro 把内容组织成一个可检索、可翻译、可持续扩展的双语博客系统。',
+      '以 Markdown 为核心，持续整理双语文章、AI 雷达与课程笔记。',
     featured: '精选文章',
     latest: '最新文章',
     tags: '标签',
-    sideNote: '标签不再作为主导航，而是作为右侧检索入口。',
+    sideNote: '按标签快速浏览全部内容。',
     updates: '最近更新',
     viewPlan: '查看规划',
   },
   ja: {
     eyebrow: 'Good Good Study, Day Day AI',
-    title: '学習、実践、動向の記録を、あとから使い回せる AI ワークベースに整える。',
+    title: 'AI の学習、実践、動向を記録する。',
     description:
-      'Markdown を起点に記録し、Astro で検索しやすく、翻訳しやすく、育てやすい二言語ブログとして編成します。',
+      'Markdown をベースに、二言語の記事、AI Radar、講座ノートを継続的に整理します。',
     featured: '注目記事',
     latest: '最新記事',
     tags: 'タグ',
-    sideNote: 'タグは主ナビではなく、右側の横断導線として配置します。',
+    sideNote: 'タグから全体を横断して読めます。',
     updates: '最近更新',
     viewPlan: '企画を見る',
   },
@@ -148,8 +148,8 @@ const text = copy[locale];
     </div>
     <p class="theme-muted max-w-xl text-sm">
       {locale === 'ja'
-        ? 'Astro に shadcn/ui の最小構成を入れて、砂漠の金色を差し色にした記事カードを試しています。'
-        : '这里先用 Astro + shadcn/ui 做一个试验卡片，看看“沙漠金”点缀是否适合整站的浅色设计。'}
+        ? 'ホームのビジュアル検証用に置いているカード試作です。'
+        : '这是一张用于测试首页视觉风格的卡片。'}
     </p>
   </div>
 
@@ -203,8 +203,8 @@ const text = copy[locale];
       <p class="theme-heading mt-3 text-xl font-semibold">{locale === 'ja' ? 'Markdown First' : 'Markdown First'}</p>
       <p class="theme-muted mt-3 text-sm leading-7">
         {locale === 'ja'
-          ? 'まず書くことを優先し、あとから翻訳、音声、配布導線を足していく構成です。'
-          : '先把内容写出来，再逐步接入翻译、音频和自动化流程。'}
+          ? 'まず公開し、その後に翻訳や音声を補っていきます。'
+          : '内容先发布，再补充翻译、音频和其他衍生内容。'}
       </p>
     </section>
   </aside>
