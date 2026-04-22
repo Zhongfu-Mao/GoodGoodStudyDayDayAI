@@ -1,0 +1,72 @@
+***
+
+# 博客系统初始化需求文档：Good Good Study, Day Day AI
+
+## 1. 项目定位与核心理念
+* **项目名称**：Good Good Study, Day Day AI
+* **项目类型**：个人技术博客与 AI 资讯库
+* **核心架构理念**：
+  * 以 Markdown 为单一真实数据源（SSOT）。
+  * 物理文件极简分类，前端依靠 Tags 进行多维逻辑聚合。
+  * 自动化多语言（中/日）与多模态资产生成。
+
+## 2. 技术选型栈
+* **前端框架**：Astro (采用默认零 JS 渲染，岛屿架构)
+* **UI/样式**：Tailwind CSS (可搭配 shadcn/ui 或 Radix UI)
+* **内容渲染**：Astro 原生 Content Collections (MD/MDX 支持，Zod 数据校验)
+* **代码高亮**：Shiki (需支持终端配置代码展示)
+* **演示组件**：集成基于 Markdown 的幻灯片库 (如 Reveal.js)，用于渲染 AI Academy 的课件。
+* **部署托管**：Azure Static Web Apps
+* **CI/CD 工作流**：GitHub Actions + Python 脚本
+
+## 3. 内容组织架构 (Information Architecture)
+
+### 3.1 物理目录结构 (Astro `src/content/`)
+严格限制为以下四个主文件夹，不设深层级子目录：
+1. `radar/`：AI 资讯与趋势 (Daily短平快, Weekly深度, Monthly研判)
+2. `academy/`：系统性学习笔记 (按知识领域划分，如 LLM Apps, Agentic Workflows)
+3. `engineering/`：工程实践 (App Dev, Cloud & Infra, Productivity)
+4. `foundations/`：底层原理 (Math for AI, Model Architectures, Data Science)
+
+### 3.2 逻辑聚合系统 (Frontmatter & Tags)
+前端不按文件夹展示导航，而是基于 Markdown 的 Frontmatter 生成路由。请为 Astro 配置严谨的 Zod Schema：
+
+```typescript
+// 示例：要求的 Frontmatter Schema
+import { z, defineCollection } from 'astro:content';
+
+const blogSchema = z.object({
+  title: z.string(),
+  date: z.date(),
+  category: z.enum(['radar', 'academy', 'engineering', 'foundations']), // 映射物理目录
+  tags: z.array(z.string()), // 核心检索维度，如 ['Azure', 'Python', 'Agent']
+  lang: z.enum(['zh', 'ja']).default('zh'),
+  coverImage: z.string().optional(),
+  audioUrl: z.string().optional(), // 关联 NotebookLM 生成的播客
+  draft: z.boolean().default(false),
+});
+```
+
+## 4. 多语言与路由设计 (i18n)
+* **默认语言**：中文 (`zh`)。
+* **目标语言**：日语 (`ja`)。
+* **路由规范**：使用 Astro 原生 i18n 路由。
+  * 中文路径：`/` (如 `/tags/azure`)
+  * 日文路径：`/ja/` (如 `/ja/tags/azure`)
+* 日语内容将通过 CI 流水线由大模型自动翻译生成 `[filename].ja.md`。前端需在 Header 提供全局的中/日切换 Toggle。
+
+## 5. Agent 初始开发任务 (Action Items)
+
+请 Agent 按照以下顺序执行初始化：
+
+1. **脚手架搭建**：使用 `create-astro` 初始化项目，配置 Tailwind CSS。
+2. **集合配置**：在 `src/content/config.ts` 中配置上述的 `blogSchema`。
+3. **路由生成**：
+   * 编写动态路由逻辑，通过 `getStaticPaths` 读取 Markdown 文件生成文章详情页。
+   * **关键**：编写一个 `tags` 聚合页面逻辑，遍历所有文章的 tags 数组，生成 `/tags/[tag]` 列表页。
+4. **多语言配置**：在 `astro.config.mjs` 中配置基础的 i18n 选项，并实现一个简单的 Language Switcher 组件。
+5. **模拟数据注入**：在四个目录中各创建两篇带有完整 Frontmatter 的 `.md` 假数据（包含相同的 tag 以测试交叉聚合功能），启动本地服务器进行验证。
+
+***
+
+把这份文档交给 Agent 后，它不仅清楚要写什么代码，更能理解**为什么要这么设计前端路由**。第一步先让它把基础骨架和标签路由跑通，多模态（生成图片、视频）和翻译的自动化 Python 脚本可以在 Astro 框架稳固后，作为 CI/CD 的第二阶段任务慢慢添加。

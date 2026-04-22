@@ -1,0 +1,211 @@
+---
+import { collectionLabels, tagPath, type Locale } from '../lib/site';
+import { DesertGoldArticleCard } from './DesertGoldArticleCard';
+import { getEntriesForLocale, getTagIndex } from '../lib/content';
+
+const { locale } = Astro.props as { locale: Locale };
+const entries = await getEntriesForLocale(locale);
+const [featuredStory, ...restStories] = entries;
+const spotlightStories = restStories.slice(0, 3);
+const recentStories = restStories.slice(3, 9);
+const recentUpdates = entries.slice(0, 4);
+const tagIndex = await getTagIndex(locale);
+
+const copy = {
+  zh: {
+    eyebrow: 'Good Good Study, Day Day AI',
+    title: '把学习、实践与趋势观察整理成一份长期可复用的 AI 工作台。',
+    description:
+      '以 Markdown 为核心记录方式，用 Astro 把内容组织成一个可检索、可翻译、可持续扩展的双语博客系统。',
+    featured: '精选文章',
+    latest: '最新文章',
+    tags: '标签',
+    sideNote: '标签不再作为主导航，而是作为右侧检索入口。',
+    updates: '最近更新',
+    viewPlan: '查看规划',
+  },
+  ja: {
+    eyebrow: 'Good Good Study, Day Day AI',
+    title: '学習、実践、動向の記録を、あとから使い回せる AI ワークベースに整える。',
+    description:
+      'Markdown を起点に記録し、Astro で検索しやすく、翻訳しやすく、育てやすい二言語ブログとして編成します。',
+    featured: '注目記事',
+    latest: '最新記事',
+    tags: 'タグ',
+    sideNote: 'タグは主ナビではなく、右側の横断導線として配置します。',
+    updates: '最近更新',
+    viewPlan: '企画を見る',
+  },
+} as const;
+
+const text = copy[locale];
+---
+
+<section class="grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_320px]">
+  <div class="grid gap-6">
+    <section class="theme-panel-strong rounded-[1.75rem] p-8 shadow-glow md:p-10">
+      <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.34em]">{text.eyebrow}</p>
+      <h1 class="theme-heading mt-5 max-w-4xl text-4xl font-semibold leading-[0.95] md:text-6xl xl:text-7xl">{text.title}</h1>
+      <p class="theme-muted mt-6 max-w-2xl text-lg leading-8">{text.description}</p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#latest" class="theme-action-primary rounded-2xl px-5 py-3 text-sm font-semibold">
+          {locale === 'ja' ? '最新記事へ' : '查看最新文章'}
+        </a>
+        <a href="/plan.txt" class="theme-action-secondary rounded-2xl px-5 py-3 text-sm font-medium">
+          {text.viewPlan}
+        </a>
+      </div>
+    </section>
+
+    {featuredStory ? (
+      <section class="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
+        <article class="theme-panel-strong rounded-[1.5rem] p-7 shadow-glow">
+          <p class="theme-kicker text-xs uppercase tracking-[0.28em]">{text.featured}</p>
+          <div class="mt-5 flex items-center gap-3 text-xs uppercase tracking-[0.22em] theme-muted">
+            <span>{collectionLabels[featuredStory.entry.data.category][locale]}</span>
+            <span>{featuredStory.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</span>
+          </div>
+          <h2 class="theme-heading mt-4 text-3xl font-semibold leading-tight md:text-4xl">
+            <a href={`${locale === 'ja' ? '/ja' : ''}/${featuredStory.entry.data.category}/${featuredStory.slug}/`}>
+              {featuredStory.entry.data.title}
+            </a>
+          </h2>
+          <div class="mt-6 flex flex-wrap gap-2">
+            {featuredStory.entry.data.tags.map((tag) => (
+              <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-sm">
+                {tag}
+              </a>
+            ))}
+          </div>
+        </article>
+
+        <div class="grid gap-4">
+          {spotlightStories.map((item) => (
+            <article class="theme-panel theme-panel-link rounded-[1.25rem] p-5">
+              <div class="flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.24em] theme-muted">
+                <span>{collectionLabels[item.entry.data.category][locale]}</span>
+                <span>{item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</span>
+              </div>
+              <h3 class="theme-heading mt-3 text-xl font-semibold leading-snug">
+                <a href={`${locale === 'ja' ? '/ja' : ''}/${item.entry.data.category}/${item.slug}/`}>{item.entry.data.title}</a>
+              </h3>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {item.entry.data.tags.slice(0, 3).map((tag) => (
+                  <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs">
+                    {tag}
+                  </a>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    ) : null}
+  </div>
+
+  <aside class="grid content-start gap-4 lg:sticky lg:top-28">
+    <section class="theme-panel rounded-[1.5rem] p-6">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.tags}</p>
+          <h2 class="theme-heading mt-2 text-2xl font-semibold">{text.tags}</h2>
+        </div>
+        <span class="theme-chip rounded-xl px-3 py-1 text-xs">{tagIndex.length}</span>
+      </div>
+      <p class="theme-muted mt-3 text-sm leading-6">{text.sideNote}</p>
+      <div class="mt-5 flex flex-wrap gap-2">
+        {tagIndex.slice(0, 14).map((tag) => (
+          <a href={tagPath(tag.label, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-sm">
+            {tag.label}
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="theme-panel rounded-[1.5rem] p-6">
+      <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.updates}</p>
+      <div class="mt-4 grid gap-3">
+        {recentUpdates.map((item) => (
+          <a href={`${locale === 'ja' ? '/ja' : ''}/${item.entry.data.category}/${item.slug}/`} class="theme-button-soft rounded-[1rem] px-4 py-3">
+            <p class="theme-muted text-[11px] uppercase tracking-[0.2em]">{collectionLabels[item.entry.data.category][locale]}</p>
+            <p class="theme-heading mt-2 text-base font-semibold leading-snug">{item.entry.data.title}</p>
+            <p class="theme-muted mt-2 text-sm">
+              {item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+  </aside>
+</section>
+
+<section class="mt-14 grid gap-5">
+  <div class="flex items-end justify-between gap-4">
+    <div>
+      <p class="theme-kicker text-xs uppercase tracking-[0.28em]">{locale === 'ja' ? 'Design Lab' : 'Design Lab'}</p>
+      <h2 class="theme-heading mt-2 text-3xl font-semibold">{locale === 'ja' ? 'shadcn/ui 卡片试作' : 'shadcn/ui 卡片试作'}</h2>
+    </div>
+    <p class="theme-muted max-w-xl text-sm">
+      {locale === 'ja'
+        ? 'Astro に shadcn/ui の最小構成を入れて、砂漠の金色を差し色にした記事カードを試しています。'
+        : '这里先用 Astro + shadcn/ui 做一个试验卡片，看看“沙漠金”点缀是否适合整站的浅色设计。'}
+    </p>
+  </div>
+
+  <DesertGoldArticleCard />
+</section>
+
+<section id="latest" class="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_320px]">
+  <div>
+    <div class="mb-6 flex items-end justify-between gap-4">
+      <div>
+        <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.latest}</p>
+        <h2 class="theme-heading mt-2 text-3xl font-semibold">{text.latest}</h2>
+      </div>
+    </div>
+
+    <div class="grid gap-4">
+      {recentStories.map((item) => (
+        <article class="theme-panel theme-panel-link rounded-[1.25rem] p-5">
+          <div class="grid gap-4 md:grid-cols-[180px_minmax(0,1fr)] md:items-start">
+            <div class="theme-date-block rounded-[1rem] px-4 py-5">
+              <p class="theme-muted text-[11px] uppercase tracking-[0.24em]">{collectionLabels[item.entry.data.category][locale]}</p>
+              <p class="theme-heading mt-3 text-2xl font-semibold">{item.entry.data.date.getDate()}</p>
+              <p class="theme-muted text-sm">
+                {item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN', {
+                  year: 'numeric',
+                  month: 'short',
+                })}
+              </p>
+            </div>
+            <div>
+              <h3 class="theme-heading text-2xl font-semibold leading-snug">
+                <a href={`${locale === 'ja' ? '/ja' : ''}/${item.entry.data.category}/${item.slug}/`}>{item.entry.data.title}</a>
+              </h3>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {item.entry.data.tags.map((tag) => (
+                  <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs">
+                    {tag}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <aside class="grid content-start gap-4">
+    <section class="theme-panel rounded-[1.5rem] p-6">
+      <p class="theme-muted text-xs uppercase tracking-[0.28em]">{locale === 'ja' ? '編集メモ' : '编辑备注'}</p>
+      <p class="theme-heading mt-3 text-xl font-semibold">{locale === 'ja' ? 'Markdown First' : 'Markdown First'}</p>
+      <p class="theme-muted mt-3 text-sm leading-7">
+        {locale === 'ja'
+          ? 'まず書くことを優先し、あとから翻訳、音声、配布導線を足していく構成です。'
+          : '先把内容写出来，再逐步接入翻译、音频和自动化流程。'}
+      </p>
+    </section>
+  </aside>
+</section>

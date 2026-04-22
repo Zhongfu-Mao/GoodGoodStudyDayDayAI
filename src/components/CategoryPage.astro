@@ -1,0 +1,127 @@
+---
+import PostCard from './PostCard.astro';
+import {
+  cadenceLabels,
+  collectionLabels,
+  radarCadences,
+  type CollectionName,
+  type Locale,
+} from '../lib/site';
+import { getEntriesForLocale } from '../lib/content';
+
+const { locale, category } = Astro.props as {
+  locale: Locale;
+  category: CollectionName;
+};
+
+const entries = await getEntriesForLocale(locale);
+const categoryEntries = entries.filter((item) => item.entry.data.category === category);
+const isRadar = category === 'radar';
+
+function resolveRadarCadence(item: (typeof categoryEntries)[number]) {
+  const explicitCadence = item.entry.data.cadence?.toLowerCase();
+
+  if (explicitCadence === 'daily' || explicitCadence === 'weekly' || explicitCadence === 'monthly') {
+    return explicitCadence;
+  }
+
+  const fallbackSource = `${item.slug} ${item.entry.id}`.toLowerCase();
+
+  if (fallbackSource.includes('daily')) return 'daily';
+  if (fallbackSource.includes('weekly')) return 'weekly';
+  if (fallbackSource.includes('monthly')) return 'monthly';
+
+  return undefined;
+}
+
+const radarSections = radarCadences.map((cadence) => ({
+  cadence,
+  label: cadenceLabels[cadence][locale],
+  items: categoryEntries.filter((item) => resolveRadarCadence(item) === cadence),
+}));
+
+const copy = {
+  zh: {
+    lead: '按知识领域整理的入口，方便从一个分区切入，再横向浏览相关内容。',
+    browse: '以下是本分区的内容。',
+    empty: '这个分区下还没有内容。',
+  },
+  ja: {
+    lead: '知識領域ごとに整理した入口で、そこから関連コンテンツへ広げられます。',
+    browse: 'この区分の一覧です。',
+    empty: 'この区分にはまだ記事がありません。',
+  },
+} as const;
+
+const text = copy[locale];
+---
+
+<section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
+  <p class="theme-kicker text-sm uppercase tracking-[0.28em]">{collectionLabels[category][locale]}</p>
+  <h1 class="theme-heading mt-3 text-3xl font-semibold md:text-5xl">{collectionLabels[category][locale]}</h1>
+  <p class="theme-muted mt-4 max-w-2xl">{text.lead}</p>
+
+  {isRadar ? (
+    <div class="mt-8 flex flex-wrap gap-2">
+      {radarSections.map((section) => (
+        <a href={`#${section.cadence}`} class="theme-chip theme-chip-link rounded-xl px-4 py-2 text-sm">
+          {section.label}
+        </a>
+      ))}
+    </div>
+  ) : (
+    <p class="theme-muted mt-8 max-w-xl text-sm">
+      {locale === 'ja'
+        ? 'この区分では、関連する記事だけを一覧表示します。'
+        : '这里仅展示本分区相关内容，不再跳转到其他主分区。'}
+    </p>
+  )}
+</section>
+
+<section class="mt-8">
+  <div class="mb-5 flex items-end justify-between gap-4">
+    <div>
+      <p class="theme-muted text-sm uppercase tracking-[0.24em]">{collectionLabels[category][locale]}</p>
+      <h2 class="theme-heading mt-2 text-2xl font-semibold">{categoryEntries.length}</h2>
+    </div>
+    <p class="theme-muted max-w-md text-sm">{text.browse}</p>
+  </div>
+
+  {isRadar ? (
+    <div class="grid gap-8">
+      {radarSections.map((section) => (
+        <section id={section.cadence} class="theme-panel rounded-[1.25rem] p-5">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{section.label}</p>
+              <h3 class="theme-heading mt-2 text-2xl font-semibold">{section.items.length}</h3>
+            </div>
+            <p class="theme-muted text-sm">
+              {locale === 'ja'
+                ? `${section.label} の記事一覧`
+                : `${section.label} 内容列表`}
+            </p>
+          </div>
+
+          <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {section.items.length > 0 ? (
+              section.items.map((item) => <PostCard item={item} locale={locale} />)
+            ) : (
+              <div class="theme-panel rounded-2xl border-dashed p-6 theme-muted">
+                {locale === 'ja' ? 'まだ記事がありません。' : '这个分组下暂时没有内容。'}
+              </div>
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
+  ) : (
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {categoryEntries.length > 0 ? (
+        categoryEntries.map((item) => <PostCard item={item} locale={locale} />)
+      ) : (
+        <div class="theme-panel rounded-2xl p-6 theme-muted">{text.empty}</div>
+      )}
+    </div>
+  )}
+</section>

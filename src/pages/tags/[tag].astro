@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import TagDetailPage from '../../components/TagDetailPage.astro';
+import { getTagStaticPaths } from '../../lib/content';
+
+export async function getStaticPaths() {
+  return getTagStaticPaths('zh');
+}
+
+const tag = Astro.params.tag;
+---
+
+<BaseLayout title={`标签: ${tag} · Good Good Study, Day Day AI`} locale="zh">
+  <TagDetailPage locale="zh" tagSlug={tag} />
+</BaseLayout>

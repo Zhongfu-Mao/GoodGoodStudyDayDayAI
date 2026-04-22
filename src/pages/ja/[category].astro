@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import CategoryPage from '../../components/CategoryPage.astro';
+import { collectionLabels, collectionNames, type CollectionName } from '../../lib/site';
+
+export async function getStaticPaths() {
+  return collectionNames.map((category) => ({
+    params: { category },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props as { category: CollectionName };
+---
+
+<BaseLayout title={`${collectionLabels[category].ja} · Good Good Study, Day Day AI`} locale="ja">
+  <CategoryPage locale="ja" category={category} />
+</BaseLayout>

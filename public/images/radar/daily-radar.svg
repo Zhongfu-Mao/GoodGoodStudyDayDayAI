@@ -1,0 +1,32 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F7F7F5"/>
+  <rect x="52" y="52" width="1496" height="796" rx="44" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  <circle cx="1280" cy="228" r="196" fill="url(#paint0_radial)" fill-opacity="0.9"/>
+  <circle cx="1360" cy="664" r="132" fill="url(#paint1_radial)" fill-opacity="0.35"/>
+  <circle cx="304" cy="698" r="212" stroke="#E4E4E7" stroke-width="2"/>
+  <circle cx="304" cy="698" r="158" stroke="#E4E4E7" stroke-width="2"/>
+  <circle cx="304" cy="698" r="96" stroke="#F59E0B" stroke-width="3" stroke-dasharray="8 10"/>
+  <path d="M304 698L442 584" stroke="#18181B" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="304" cy="698" r="14" fill="#18181B"/>
+  <rect x="120" y="132" width="188" height="44" rx="22" fill="#FEF3C7" stroke="#FCD34D" stroke-width="2"/>
+  <text x="214" y="160" text-anchor="middle" fill="#92400E" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22" font-weight="600" letter-spacing="4">DAILY</text>
+  <text x="120" y="264" fill="#18181B" font-family="Avenir Next, Segoe UI, sans-serif" font-size="78" font-weight="700" letter-spacing="-2">AI Radar</text>
+  <text x="120" y="342" fill="#3F3F46" font-family="Avenir Next, Segoe UI, sans-serif" font-size="34" font-weight="500">Signals, tools, and model shifts organized for long-term review.</text>
+  <rect x="120" y="416" width="200" height="54" rx="18" fill="#18181B"/>
+  <text x="220" y="451" text-anchor="middle" fill="#FAFAF9" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22" font-weight="600">Agent Systems</text>
+  <rect x="338" y="416" width="182" height="54" rx="18" fill="#FAFAF9" stroke="#E4E4E7" stroke-width="2"/>
+  <text x="429" y="451" text-anchor="middle" fill="#3F3F46" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22" font-weight="600">Model Signals</text>
+  <rect x="538" y="416" width="188" height="54" rx="18" fill="#FAFAF9" stroke="#E4E4E7" stroke-width="2"/>
+  <text x="632" y="451" text-anchor="middle" fill="#3F3F46" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22" font-weight="600">Tooling Notes</text>
+  <text x="960" y="706" fill="#71717A" font-family="Avenir Next, Segoe UI, sans-serif" font-size="28" font-weight="500">Daily briefing for the bilingual AI radar archive</text>
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1280 228) rotate(90) scale(196)">
+      <stop stop-color="#FDE68A"/>
+      <stop offset="1" stop-color="#FDE68A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1360 664) rotate(90) scale(132)">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

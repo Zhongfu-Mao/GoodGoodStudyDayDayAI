@@ -1,0 +1,55 @@
+---
+import { collectionLabels, tagPath, type CollectionName, type Locale } from '../lib/site';
+
+const { locale, entry, Content } = Astro.props as {
+  locale: Locale;
+  entry: {
+    slug: string;
+    data: {
+      title: string;
+      date: Date;
+      category: CollectionName;
+      tags: string[];
+      lang: string;
+      coverImage?: string;
+      audioUrl?: string;
+    };
+  };
+  Content: any;
+};
+---
+
+<article class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
+  <div class="theme-muted flex flex-wrap items-center gap-3 text-sm">
+    <span class="theme-chip rounded-xl px-3 py-1">
+      {collectionLabels[entry.data.category][locale]}
+    </span>
+    <time datetime={entry.data.date.toISOString()}>{entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</time>
+    <span>·</span>
+    <span>{entry.data.lang.toUpperCase()}</span>
+  </div>
+
+  <h1 class="theme-heading mt-4 text-3xl font-semibold md:text-5xl">{entry.data.title}</h1>
+
+  {entry.data.coverImage ? (
+    <img src={entry.data.coverImage} alt={entry.data.title} class="mt-8 h-72 w-full rounded-[1.25rem] object-cover" />
+  ) : null}
+
+  {entry.data.audioUrl ? (
+    <a href={entry.data.audioUrl} class="theme-chip theme-chip-link mt-6 inline-flex rounded-xl px-4 py-2 text-sm">
+      {locale === 'ja' ? '音声を開く' : '打开音频'}
+    </a>
+  ) : null}
+
+  <div class="mt-8 flex flex-wrap gap-2">
+    {entry.data.tags.map((tag) => (
+      <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-sm">
+        {tag}
+      </a>
+    ))}
+  </div>
+
+  <div class="theme-prose prose prose-slate mt-10 max-w-none prose-headings:scroll-mt-24">
+    <Content />
+  </div>
+</article>

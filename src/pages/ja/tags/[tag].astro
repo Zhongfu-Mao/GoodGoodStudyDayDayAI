@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../../components/BaseLayout.astro';
+import TagDetailPage from '../../../components/TagDetailPage.astro';
+import { getTagStaticPaths } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  return getTagStaticPaths('ja');
+}
+
+const tag = Astro.params.tag;
+---
+
+<BaseLayout title={`タグ: ${tag} · Good Good Study, Day Day AI`} locale="ja">
+  <TagDetailPage locale="ja" tagSlug={tag} />
+</BaseLayout>

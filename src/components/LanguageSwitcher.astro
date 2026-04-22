@@ -1,0 +1,33 @@
+---
+import { locales, type Locale } from '../lib/site';
+
+const currentLocale = (Astro.currentLocale ?? 'zh') as Locale;
+const pathname = Astro.url.pathname;
+
+function localizedPath(targetLocale: Locale) {
+  const basePath = pathname === '/ja' ? '/' : pathname.startsWith('/ja/') ? pathname.slice(3) : pathname;
+
+  if (targetLocale === 'ja') {
+    return basePath === '/' ? '/ja/' : `/ja${basePath}`;
+  }
+
+  return basePath;
+}
+---
+
+<nav aria-label="Language switcher" class="theme-panel inline-flex shrink-0 rounded-2xl p-1 text-sm backdrop-blur">
+  {locales.map((locale) => (
+    <a
+      href={localizedPath(locale)}
+      class:list={[
+        'inline-flex items-center whitespace-nowrap rounded-xl px-3 py-1 font-medium transition',
+        locale === currentLocale
+          ? 'theme-segment-active'
+          : 'theme-muted theme-button-soft',
+      ]}
+      aria-current={locale === currentLocale ? 'page' : undefined}
+    >
+      {locale === 'zh' ? '中文' : '日本語'}
+    </a>
+  ))}
+</nav>

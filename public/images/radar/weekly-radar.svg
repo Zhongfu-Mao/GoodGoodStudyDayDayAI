@@ -1,0 +1,24 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F7F7F5"/>
+  <rect x="52" y="52" width="1496" height="796" rx="44" fill="white" stroke="#E4E4E7" stroke-width="2"/>
+  <rect x="1180" y="126" width="220" height="340" rx="28" fill="#FAFAF9" stroke="#E4E4E7" stroke-width="2"/>
+  <rect x="1220" y="186" width="140" height="24" rx="12" fill="#FEF3C7"/>
+  <rect x="1220" y="238" width="120" height="24" rx="12" fill="#F4F4F5"/>
+  <rect x="1220" y="290" width="152" height="24" rx="12" fill="#F4F4F5"/>
+  <rect x="1220" y="342" width="112" height="24" rx="12" fill="#F4F4F5"/>
+  <rect x="120" y="132" width="210" height="44" rx="22" fill="#FEF3C7" stroke="#FCD34D" stroke-width="2"/>
+  <text x="225" y="160" text-anchor="middle" fill="#92400E" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22" font-weight="600" letter-spacing="4">WEEKLY</text>
+  <text x="120" y="264" fill="#18181B" font-family="Avenir Next, Segoe UI, sans-serif" font-size="78" font-weight="700" letter-spacing="-2">AI Radar</text>
+  <text x="120" y="342" fill="#3F3F46" font-family="Avenir Next, Segoe UI, sans-serif" font-size="34" font-weight="500">From seven daily notes to one coherent view of the week.</text>
+  <rect x="120" y="430" width="1020" height="280" rx="32" fill="#FAFAF9" stroke="#E4E4E7" stroke-width="2"/>
+  <path d="M182 566H1078" stroke="#E4E4E7" stroke-width="2"/>
+  <path d="M182 638H1078" stroke="#E4E4E7" stroke-width="2"/>
+  <path d="M406 474V698" stroke="#E4E4E7" stroke-width="2"/>
+  <path d="M676 474V698" stroke="#E4E4E7" stroke-width="2"/>
+  <path d="M932 474V698" stroke="#E4E4E7" stroke-width="2"/>
+  <circle cx="292" cy="566" r="16" fill="#18181B"/>
+  <circle cx="548" cy="566" r="16" fill="#F59E0B"/>
+  <circle cx="804" cy="566" r="16" fill="#18181B"/>
+  <circle cx="1010" cy="566" r="16" fill="#F59E0B"/>
+  <text x="122" y="770" fill="#71717A" font-family="Avenir Next, Segoe UI, sans-serif" font-size="28" font-weight="500">Weekly synthesis for architecture, models, tooling, and business signals</text>
+</svg>

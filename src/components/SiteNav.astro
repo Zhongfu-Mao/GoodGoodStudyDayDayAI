@@ -1,0 +1,27 @@
+---
+import { collectionLabels, collectionNames, homePath, type Locale } from '../lib/site';
+
+const { locale } = Astro.props as { locale: Locale };
+
+const navItems = collectionNames.map((category) => ({
+  href: `${locale === 'ja' ? '/ja' : ''}/${category}/`,
+  label: collectionLabels[category][locale],
+}));
+---
+
+<nav class="flex flex-wrap items-center gap-2 lg:flex-nowrap">
+  <a
+    href={homePath(locale)}
+    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2 text-sm"
+  >
+    {locale === 'ja' ? 'ホーム' : '首页'}
+  </a>
+  {navItems.map((item) => (
+    <a
+      href={item.href}
+      class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2 text-sm"
+    >
+      {item.label}
+    </a>
+  ))}
+</nav>

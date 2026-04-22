@@ -1,0 +1,40 @@
+---
+import { articlePath, collectionLabels, tagPath, type CollectionName, type Locale } from '../lib/site';
+
+const { item, locale } = Astro.props as {
+  item: {
+    collection: CollectionName;
+    slug: string;
+    entry: {
+      data: {
+        title: string;
+        date: Date;
+        category: CollectionName;
+        tags: string[];
+      };
+    };
+  };
+  locale: Locale;
+};
+
+const { entry } = item;
+const href = articlePath(entry.data.category, item.slug, locale);
+const categoryLabel = collectionLabels[entry.data.category][locale];
+---
+
+<article class="theme-panel theme-panel-link group rounded-[1.25rem] p-6 shadow-glow">
+  <div class="theme-muted mb-4 flex items-center justify-between gap-4 text-xs uppercase tracking-[0.2em]">
+    <span>{categoryLabel}</span>
+    <time datetime={entry.data.date.toISOString()}>{entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</time>
+  </div>
+  <h3 class="theme-heading text-xl font-semibold transition group-hover:opacity-85">
+    <a href={href}>{entry.data.title}</a>
+  </h3>
+  <div class="mt-4 flex flex-wrap gap-2">
+    {entry.data.tags.map((tag) => (
+      <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs">
+        {tag}
+      </a>
+    ))}
+  </div>
+</article>

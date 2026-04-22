@@ -1,0 +1,164 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import SiteNav from './SiteNav.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { homePath, type Locale } from '../lib/site';
+import '../styles/global.css';
+
+const {
+  title,
+  description = 'Good Good Study, Day Day AI',
+  locale = 'zh',
+} = Astro.props as {
+  title: string;
+  description?: string;
+  locale?: Locale;
+};
+
+const tagline =
+  locale === 'ja' ? 'Markdown を中心に、タグと二言語で知識を編成する。' : '以 Markdown 为中心，用标签和双语编织知识。';
+---
+
+<!doctype html>
+<html lang={locale} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <script is:inline>
+      (function () {
+        var storageKey = 'ggsdda-theme';
+        function readStoredTheme() {
+          try {
+            return localStorage.getItem(storageKey);
+          } catch (error) {
+            return null;
+          }
+        }
+
+        function getSystemTheme() {
+          return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+
+        var theme = readStoredTheme() || getSystemTheme();
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+    <title>{title}</title>
+  </head>
+  <body class="theme-page min-h-screen antialiased">
+    <div class="theme-grid fixed inset-0 -z-10 bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_25%,transparent_75%)]" />
+    <div class="theme-divider-line fixed inset-x-0 top-0 -z-10 h-px" />
+
+    <header class="theme-panel-strong sticky top-0 z-20 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_auto] lg:items-center">
+        <a href={homePath(locale)} class="group flex min-w-0 items-center gap-3">
+          <span class="theme-brand-badge grid h-10 w-10 place-items-center rounded-xl border text-sm font-semibold">
+            AI
+          </span>
+          <div class="min-w-0">
+            <p class="truncate text-sm font-semibold tracking-wide theme-text">Good Good Study, Day Day AI</p>
+            <p class="line-clamp-2 text-xs theme-muted xl:line-clamp-1">{tagline}</p>
+          </div>
+        </a>
+
+        <div class="flex min-w-0 items-center justify-end gap-3">
+          <div class="hidden min-w-0 lg:block">
+            <SiteNav locale={locale} />
+          </div>
+        </div>
+
+        <div class="flex shrink-0 items-center gap-3">
+          <ThemeToggle />
+          <LanguageSwitcher />
+        </div>
+      </div>
+      <div class="mx-auto max-w-6xl px-6 pb-4 lg:hidden">
+        <SiteNav locale={locale} />
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-6 py-10">
+      <slot />
+    </main>
+    <script is:inline>
+      (function () {
+        var storageKey = 'ggsdda-theme';
+
+        function readStoredTheme() {
+          try {
+            return localStorage.getItem(storageKey);
+          } catch (error) {
+            return null;
+          }
+        }
+
+        function writeStoredTheme(theme) {
+          try {
+            localStorage.setItem(storageKey, theme);
+          } catch (error) {}
+        }
+
+        function getSystemTheme() {
+          return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+
+        function applyTheme(theme) {
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+
+          document.querySelectorAll('[data-theme-toggle]').forEach(function (button) {
+            var lightIcon = button.querySelector('[data-theme-icon-light]');
+            var darkIcon = button.querySelector('[data-theme-icon-dark]');
+
+            if (lightIcon) lightIcon.classList.toggle('hidden', theme === 'light');
+            if (darkIcon) darkIcon.classList.toggle('hidden', theme !== 'light');
+
+            button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+          });
+        }
+
+        function bindToggle(button) {
+          if (button.dataset.themeBound === 'true') return;
+          button.dataset.themeBound = 'true';
+
+          button.addEventListener('click', function () {
+            var nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+            writeStoredTheme(nextTheme);
+            applyTheme(nextTheme);
+          });
+        }
+
+        function initThemeControls() {
+          applyTheme(readStoredTheme() || getSystemTheme());
+          document.querySelectorAll('[data-theme-toggle]').forEach(bindToggle);
+        }
+
+        var mediaQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+        if (mediaQuery && mediaQuery.addEventListener) {
+          mediaQuery.addEventListener('change', function () {
+            if (!readStoredTheme()) {
+              applyTheme(getSystemTheme());
+            }
+          });
+        }
+
+        window.addEventListener('storage', function (event) {
+          if (event.key === storageKey) {
+            applyTheme(event.newValue || getSystemTheme());
+          }
+        });
+
+        document.addEventListener('astro:page-load', initThemeControls);
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initThemeControls, { once: true });
+        } else {
+          initThemeControls();
+        }
+      })();
+    </script>
+  </body>
+</html>
