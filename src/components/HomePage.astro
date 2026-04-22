@@ -1,5 +1,5 @@
 ---
-import { articlePath, collectionLabels, tagPath, withBase, type Locale } from '../lib/site';
+import { articlePath, collectionLabels, tagPath, type Locale } from '../lib/site';
 import { getEntriesForLocale, getTagIndex } from '../lib/content';
 
 const { locale } = Astro.props as { locale: Locale };
@@ -21,7 +21,6 @@ const copy = {
     tags: '标签',
     sideNote: '按标签快速浏览全部内容。',
     updates: '最近更新',
-    viewPlan: '查看规划',
   },
   ja: {
     eyebrow: 'Good Good Study, Day Day AI',
@@ -33,7 +32,6 @@ const copy = {
     tags: 'タグ',
     sideNote: 'タグから全体を横断して読めます。',
     updates: '最近更新',
-    viewPlan: '企画を見る',
   },
 } as const;
 
@@ -52,9 +50,6 @@ const text = copy[locale];
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="#latest" class="theme-action-primary rounded-2xl px-5 py-3 text-sm font-semibold">
           {locale === 'ja' ? '最新記事へ' : '查看最新文章'}
-        </a>
-        <a href={withBase('/plan.txt')} class="theme-action-secondary rounded-2xl px-5 py-3 text-sm font-medium">
-          {text.viewPlan}
         </a>
       </div>
     </section>
