@@ -7,6 +7,7 @@ import {
   categoryPath,
   collectionLabels,
   homePath,
+  resolveSiteUrl,
   slugifyTag,
   stripLocaleSuffix,
   tagPath,
@@ -25,6 +26,9 @@ const { locale, entry, Content } = Astro.props as {
 };
 const isGeneratedInfographic =
   typeof entry.data.coverImage === 'string' && entry.data.coverImage.includes('/images/radar/');
+const coverImageSrc = entry.data.coverImage ? resolveSiteUrl(entry.data.coverImage) : undefined;
+const audioSrc = entry.data.audioUrl ? resolveSiteUrl(entry.data.audioUrl) : undefined;
+const deckHref = entry.data.deckUrl ? resolveSiteUrl(entry.data.deckUrl) : undefined;
 const currentSlug = stripLocaleSuffix(entry.id, locale);
 const allEntries = await getEntriesForLocale(locale);
 const categoryEntries = allEntries.filter((item) => item.entry.data.category === entry.data.category);
@@ -342,13 +346,13 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
       </section>
     ) : null}
 
-    {entry.data.coverImage ? (
+    {coverImageSrc ? (
       <div class:list={[
         'mt-8 overflow-hidden rounded-[1.25rem]',
         isGeneratedInfographic ? 'theme-panel p-4' : '',
       ]}>
         <img
-          src={entry.data.coverImage}
+          src={coverImageSrc}
           alt={entry.data.title}
           class:list={[
             'w-full rounded-[1rem]',
@@ -358,7 +362,7 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
       </div>
     ) : null}
 
-    {entry.data.audioUrl ? (
+    {audioSrc ? (
       <section class="theme-panel mt-6 rounded-[1.25rem] p-5">
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -369,18 +373,18 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
               {locale === 'ja' ? '音声解説' : '音频解读'}
             </h2>
           </div>
-          <a href={entry.data.audioUrl} class="theme-chip theme-chip-link inline-flex rounded-xl px-4 py-2 text-sm">
+          <a href={audioSrc} class="theme-chip theme-chip-link inline-flex rounded-xl px-4 py-2 text-sm">
             {locale === 'ja' ? '音声を開く' : '打开音频'}
           </a>
         </div>
 
         <audio controls preload="none" class="mt-4 w-full">
-          <source src={entry.data.audioUrl} />
+          <source src={audioSrc} />
         </audio>
       </section>
     ) : null}
 
-    {entry.data.deckUrl ? (
+    {deckHref ? (
       <section class="theme-panel mt-6 rounded-[1.25rem] p-5">
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -391,7 +395,7 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
               {locale === 'ja' ? '演示資料' : '演示文稿'}
             </h2>
           </div>
-          <a href={entry.data.deckUrl} class="theme-chip theme-chip-link inline-flex rounded-xl px-4 py-2 text-sm">
+          <a href={deckHref} class="theme-chip theme-chip-link inline-flex rounded-xl px-4 py-2 text-sm">
             {locale === 'ja' ? '資料を開く' : '打开文稿'}
           </a>
         </div>

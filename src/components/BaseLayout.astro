@@ -2,7 +2,7 @@
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import SiteNav from './SiteNav.astro';
 import ThemeToggle from './ThemeToggle.astro';
-import { homePath, type Locale } from '../lib/site';
+import { homePath, withBase, type Locale } from '../lib/site';
 import '../styles/global.css';
 
 const {
@@ -28,6 +28,7 @@ const tagline =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <script is:inline>
       (function () {
         var storageKey = 'ggsdda-theme';

@@ -1,5 +1,5 @@
 ---
-import { articlePath, collectionLabels, tagPath, type CollectionName, type Locale } from '../lib/site';
+import { articlePath, collectionLabels, resolveSiteUrl, tagPath, type CollectionName, type Locale } from '../lib/site';
 
 const { item, locale } = Astro.props as {
   item: {
@@ -22,13 +22,14 @@ const { item, locale } = Astro.props as {
 const { entry } = item;
 const href = articlePath(entry.data.category, item.slug, locale);
 const categoryLabel = collectionLabels[entry.data.category][locale];
+const coverImageSrc = entry.data.coverImage ? resolveSiteUrl(entry.data.coverImage) : undefined;
 ---
 
 <article class="theme-panel theme-panel-link group rounded-[1.25rem] p-6 shadow-glow">
-  {entry.data.coverImage ? (
+  {coverImageSrc ? (
     <a href={href} class="mb-5 block overflow-hidden rounded-[1rem]">
       <img
-        src={entry.data.coverImage}
+        src={coverImageSrc}
         alt={entry.data.title}
         class="h-40 w-full rounded-[1rem] object-cover transition duration-200 group-hover:scale-[1.02]"
       />

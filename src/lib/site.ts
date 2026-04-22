@@ -54,6 +54,18 @@ export function withoutBase(path: string) {
   return normalizedPath;
 }
 
+export function resolveSiteUrl(path: string) {
+  if (!path) {
+    return path;
+  }
+
+  if (path.startsWith('/')) {
+    return withBase(path);
+  }
+
+  return path;
+}
+
 export function localePrefix(locale: Locale) {
   return locale === 'ja' ? '/ja' : '';
 }
