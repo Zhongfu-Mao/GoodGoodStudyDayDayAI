@@ -268,6 +268,22 @@
 
   .theme-prose {
     color: var(--theme-page-text);
+    --tw-prose-body: #dbe4f0;
+    --tw-prose-headings: #f8fafc;
+    --tw-prose-lead: #c5d2e3;
+    --tw-prose-links: #8be9fd;
+    --tw-prose-bold: #f8fafc;
+    --tw-prose-counters: #94a3b8;
+    --tw-prose-bullets: #475569;
+    --tw-prose-hr: #1e293b;
+    --tw-prose-quotes: #e5edf8;
+    --tw-prose-quote-borders: #334155;
+    --tw-prose-captions: #94a3b8;
+    --tw-prose-code: #bae6fd;
+    --tw-prose-pre-code: #e2e8f0;
+    --tw-prose-pre-bg: #020617;
+    --tw-prose-th-borders: #334155;
+    --tw-prose-td-borders: #1e293b;
   }
 
   .theme-prose img {

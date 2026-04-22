@@ -52,10 +52,22 @@ export function slugifyTag(tag: string) {
     .replace(/^-+|-+$/g, '');
 }
 
-export function stripLocaleSuffix(id: string) {
-  return id.replace(/\.ja$/, '');
+export function stripLocaleSuffix(id: string, locale?: Locale) {
+  if (locale !== 'ja') {
+    return id;
+  }
+
+  if (id.endsWith('.ja')) {
+    return id.slice(0, -3);
+  }
+
+  if (id.endsWith('ja')) {
+    return id.slice(0, -2);
+  }
+
+  return id;
 }
 
 export function isJapaneseId(id: string) {
-  return id.endsWith('.ja');
+  return id.endsWith('.ja') || id.endsWith('ja');
 }

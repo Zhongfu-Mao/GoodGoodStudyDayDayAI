@@ -18,10 +18,15 @@ const markdownLoader = (base: string) =>
   glob({
     base,
     pattern: '**/*.md',
+    generateId: ({ entry }) => entry.replace(/\\/g, '/').replace(/\.md$/, ''),
   });
 
 const radar = defineCollection({
-  loader: markdownLoader('./src/content/radar'),
+  loader: glob({
+    base: './src/content/radar',
+    pattern: '*.md',
+    generateId: ({ entry }) => entry.replace(/\\/g, '/').replace(/\.md$/, ''),
+  }),
   schema: blogSchema,
 });
 

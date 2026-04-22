@@ -14,7 +14,7 @@ async function getCollectionEntries(collection: CollectionName) {
   return entries.map((entry) => ({
     collection,
     entry,
-    slug: stripLocaleSuffix(entry.id),
+    slug: stripLocaleSuffix(entry.id, entry.data.lang as Locale),
     locale: entry.data.lang as Locale,
   }));
 }
