@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Claude with Amazon Bedrock</title>
+  <desc id="desc">Anthropic Academy · 开发者与技术工具</desc>
+  <defs>
+    <linearGradient id="bg" x1="180" y1="120" x2="1420" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b45309"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1320 180) rotate(135) scale(500 500)">
+      <stop stop-color="#fef3c7" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#fef3c7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" rx="52" fill="url(#bg)"/>
+  <rect x="48" y="48" width="1504" height="804" rx="40" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)"/>
+  <circle cx="1320" cy="180" r="420" fill="url(#glow)"/>
+  <circle cx="1430" cy="730" r="220" fill="rgba(255,255,255,0.08)"/>
+  <path d="M1120 90C1278 220 1368 402 1410 620" stroke="rgba(255,255,255,0.18)" stroke-width="2" stroke-dasharray="10 18"/>
+  <path d="M1158 138C1284 256 1356 418 1392 590" stroke="rgba(255,255,255,0.12)" stroke-width="2" stroke-dasharray="10 18"/>
+  <rect x="118" y="118" width="250" height="44" rx="22" fill="rgba(255,255,255,0.12)"/>
+  <text x="144" y="147" fill="white" font-size="22" font-family="Avenir Next, Segoe UI, sans-serif" letter-spacing="4">ANTHROPIC ACADEMY</text>
+  <text x="118" y="232" fill="rgba(255,255,255,0.78)" font-size="34" font-family="Avenir Next, Segoe UI, sans-serif">开发者与技术工具 开发者与技术工具</text>
+  
+  <text x="118" y="360" fill="white" font-size="72" font-weight="700" font-family="Avenir Next, Segoe UI, sans-serif">Claude with Amazon</text>
+  <text x="118" y="452" fill="white" font-size="72" font-weight="700" font-family="Avenir Next, Segoe UI, sans-serif">Bedrock Bedrock</text>
+  <rect x="118" y="712" width="620" height="82" rx="24" fill="rgba(5,10,28,0.22)" stroke="rgba(255,255,255,0.16)"/>
+  <text x="152" y="762" fill="rgba(255,255,255,0.86)" font-size="28" font-family="Avenir Next, Segoe UI, sans-serif">Anthropic/Academy · 课程笔记 · Claude/Bedrock</text>
+</svg>
