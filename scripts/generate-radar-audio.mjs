@@ -11,6 +11,7 @@ const NOTEBOOKLM_BIN = path.join(WORKSPACE_ROOT, '.venv/bin/notebooklm');
 function parseArgs(argv) {
   const options = {
     file: null,
+    lang: null,
     format: 'deep-dive',
     length: 'default',
     keepNotebook: true,
@@ -22,6 +23,12 @@ function parseArgs(argv) {
 
     if (arg === '--file') {
       options.file = argv[index + 1] ?? null;
+      index += 1;
+      continue;
+    }
+
+    if (arg === '--lang') {
+      options.lang = argv[index + 1] ?? null;
       index += 1;
       continue;
     }
@@ -97,10 +104,18 @@ function stripMarkdown(value) {
     .trim();
 }
 
-function extractSectionBlock(markdown, heading) {
-  const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const pattern = new RegExp(`^##\\s+${escapedHeading}\\s*\\n([\\s\\S]*?)(?=^##\\s+|\\Z)`, 'm');
-  return markdown.match(pattern)?.[1]?.trim() ?? '';
+function extractSectionBlock(markdown, headings) {
+  for (const heading of headings) {
+    const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = new RegExp(`^##\\s+${escapedHeading}\\s*\\n([\\s\\S]*?)(?=^##\\s+|\\Z)`, 'm');
+    const match = markdown.match(pattern)?.[1]?.trim();
+
+    if (match) {
+      return match;
+    }
+  }
+
+  return '';
 }
 
 function extractTopSignals(markdown) {
@@ -119,24 +134,42 @@ function extractShortParagraphs(markdown, limit = 3) {
 }
 
 function buildBriefMemo(markdown, meta) {
-  const scopeBlock = extractSectionBlock(markdown, '本期范围');
-  const engineeringBlock = extractSectionBlock(markdown, '1. 🛠️ AI Engineering & 架构');
-  const modelsBlock = extractSectionBlock(markdown, '2. 🧠 模型前沿 & 算法探索');
-  const toolsBlock = extractSectionBlock(markdown, '3. 💻 实战代码 & 工具库');
-  const marketBlock = extractSectionBlock(markdown, '4. 📰 行业与商业快讯');
-  const mailBlock = extractSectionBlock(markdown, '📬 邮件补遗');
+  const headings = meta.lang === 'ja'
+    ? {
+        scope: ['対象範囲'],
+        engineering: ['1. 🛠️ AI Engineering & アーキテクチャ', '1. 🛠️ AI Engineering & Architecture'],
+        models: ['2. 🧠 モデル最前線 & アルゴリズム探索', '2. 🧠 Model Frontier & Research'],
+        tools: ['3. 💻 実装コード & ツール', '3. 💻 Tools & Code'],
+        market: ['4. 📰 業界・ビジネス速報', '4. 📰 Industry & Business'],
+        mail: ['📬 メール補遺', '📬 補遺'],
+      }
+    : {
+        scope: ['本期范围'],
+        engineering: ['1. 🛠️ AI Engineering & 架构'],
+        models: ['2. 🧠 模型前沿 & 算法探索'],
+        tools: ['3. 💻 实战代码 & 工具库'],
+        market: ['4. 📰 行业与商业快讯'],
+        mail: ['📬 邮件补遗'],
+      };
+
+  const scopeBlock = extractSectionBlock(markdown, headings.scope);
+  const engineeringBlock = extractSectionBlock(markdown, headings.engineering);
+  const modelsBlock = extractSectionBlock(markdown, headings.models);
+  const toolsBlock = extractSectionBlock(markdown, headings.tools);
+  const marketBlock = extractSectionBlock(markdown, headings.market);
+  const mailBlock = extractSectionBlock(markdown, headings.mail);
   const signals = extractTopSignals(markdown);
 
   const memoSections = [
-    `标题：${meta.title}`,
-    `语言：${meta.lang === 'ja' ? '日本語' : '中文'}`,
-    signals.length > 0 ? `关键主题：${signals.join('；')}` : '',
-    scopeBlock ? `范围与来源：\n${stripMarkdown(scopeBlock)}` : '',
-    engineeringBlock ? `工程与架构：\n${extractShortParagraphs(engineeringBlock).join('\n')}` : '',
-    modelsBlock ? `模型与研究：\n${extractShortParagraphs(modelsBlock).join('\n')}` : '',
-    toolsBlock ? `工具与实践：\n${extractShortParagraphs(toolsBlock, 2).join('\n')}` : '',
-    marketBlock ? `行业与商业：\n${extractShortParagraphs(marketBlock, 2).join('\n')}` : '',
-    mailBlock ? `补遗：\n${extractShortParagraphs(mailBlock, 2).join('\n')}` : '',
+    meta.lang === 'ja' ? `タイトル：${meta.title}` : `标题：${meta.title}`,
+    meta.lang === 'ja' ? '言語：日本語' : '语言：中文',
+    signals.length > 0 ? (meta.lang === 'ja' ? `主要トピック：${signals.join('；')}` : `关键主题：${signals.join('；')}`) : '',
+    scopeBlock ? `${meta.lang === 'ja' ? '範囲とソース' : '范围与来源'}：\n${stripMarkdown(scopeBlock)}` : '',
+    engineeringBlock ? `${meta.lang === 'ja' ? 'エンジニアリングとアーキテクチャ' : '工程与架构'}：\n${extractShortParagraphs(engineeringBlock).join('\n')}` : '',
+    modelsBlock ? `${meta.lang === 'ja' ? 'モデルと研究' : '模型与研究'}：\n${extractShortParagraphs(modelsBlock).join('\n')}` : '',
+    toolsBlock ? `${meta.lang === 'ja' ? 'ツールと実装' : '工具与实践'}：\n${extractShortParagraphs(toolsBlock, 2).join('\n')}` : '',
+    marketBlock ? `${meta.lang === 'ja' ? '業界とビジネス' : '行业与商业'}：\n${extractShortParagraphs(marketBlock, 2).join('\n')}` : '',
+    mailBlock ? `${meta.lang === 'ja' ? '補遺' : '补遗'}：\n${extractShortParagraphs(mailBlock, 2).join('\n')}` : '',
     meta.lang === 'ja'
       ? '要求：把上面内容整理成适合 5 分钟内听完的简明音频，不展开无关背景。'
       : '要求：把上面内容整理成适合 3-6 分钟内听完的简明音频，只保留最重要主线与信号关系。',
@@ -163,13 +196,16 @@ function updateAudioUrl(source, audioUrl) {
   return normalized.replace(frontmatterMatch[0], `---\n${updatedFrontmatter}\n---\n`);
 }
 
-async function resolveTargetFile(explicitFile) {
+async function resolveTargetFile(explicitFile, requestedLang) {
   if (explicitFile) {
     return path.isAbsolute(explicitFile) ? explicitFile : path.join(WORKSPACE_ROOT, explicitFile);
   }
 
+  const lang = requestedLang === 'ja' ? 'ja' : 'zh';
   const files = (await readdir(RADAR_DIR))
-    .filter((file) => /^daily-ai-radar-\d{4}-\d{2}-\d{2}\.md$/.test(file))
+    .filter((file) => (lang === 'ja'
+      ? /^daily-ai-radar-\d{4}-\d{2}-\d{2}\.ja\.md$/.test(file)
+      : /^daily-ai-radar-\d{4}-\d{2}-\d{2}\.md$/.test(file)))
     .sort();
 
   const latest = files.at(-1);
@@ -275,7 +311,7 @@ async function maybeDeleteNotebook(notebookId, keepNotebook) {
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const targetFile = await resolveTargetFile(options.file);
+  const targetFile = await resolveTargetFile(options.file, options.lang);
   const raw = await readFile(targetFile, 'utf8');
   const meta = parseFrontmatter(raw);
   const body = normalizeNewlines(raw).replace(/^---\n[\s\S]*?\n---\n?/, '');
