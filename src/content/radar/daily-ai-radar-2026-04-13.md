@@ -5,13 +5,12 @@ category: radar
 cadence: daily
 tags:
   - Agent
-  - Diffusion LLM
-  - GLM
-  - Perplexity
+  - Harness Engineering
+  - Opus
+  - Claude
 lang: zh
 draft: false
 ---
-
 ## 本期范围
 
 - 数据窗口：2026-04-10 ~ 2026-04-13 | 自动抓取 + 人工过滤
@@ -43,8 +42,6 @@ draft: false
 - **Link**: https://blog.bytebytego.com/p/ep210-monolithic-vs-microservices
 - **Key Takeaways**: 系统梳理了三种架构范式的适用场景与权衡：单体适合早期快速迭代，微服务适合大团队独立部署，Serverless 适合事件驱动和弹性场景。对于 AI 应用架构选型有参考价值。
 
----
-
 ### 2. 🧠 模型前沿 & 算法探索
 
 #### Diffusion LLM 架构深度解析
@@ -67,8 +64,6 @@ draft: false
 - **Link**: https://www.latent.space/p/ainews-ai-engineer-europe-2026
 - **Key Takeaways**: GLM-5.1 在 Code Arena 排名升至 #3，超越 Gemini 3.1 和 GPT-5.4，与 Claude Sonnet 4.6 大致持平。Z.ai 目前保持开源模型 #1 排名，与总排名前列仅差 ~20 分。Windsurf 等工具已快速集成支持。
 
----
-
 ### 3. 💻 实战代码 & 工具库
 
 #### llama.cpp 支持多种 OCR 模型本地运行
@@ -90,8 +85,6 @@ draft: false
 - **Source**: Latent Space
 - **Link**: https://www.latent.space/p/ainews-ai-engineer-europe-2026
 - **Key Takeaways**: ClawBench 在 153 个真实在线任务上评估 agent，从沙盒环境的 ~70% 准确率骤降至实际任务的 6.5%。MirrorCode 让 Claude Opus 4.6 重新实现了 16,000 行生物信息学工具包，研究人员估计这需要人类数周时间，但已警告该基准可能"已接近饱和"。
-
----
 
 ### 4. 📰 行业与商业快讯
 
@@ -120,4 +113,10 @@ draft: false
 - **Link**: https://blog.bytebytego.com/p/must-know-cross-cutting-concerns
 - **Key Takeaways**: 系统梳理了 API 开发中的横切关注点：认证、日志、限流、输入验证等，对构建生产级 AI API 服务的架构设计有实用参考。
 
----
+## 📬 邮件补遗
+
+### Every：The Folder Is the Agent
+- **邮件主题**: The Folder Is the Agent
+- **邮件时间**: 2026-04-13（JST）
+- **补充摘要**:
+  Every 对多 Agent 编程流的一个非常实用的判断是：真正稳定承载工作的，不一定是“agent swarm”框架本身，而往往只是一个带 `CLAUDE.md`、历史上下文和专用子代理的项目文件夹。作者在 3 个月实验后，把 44 个 agent 都落成了“目录即工作单元”，再用 Ruby dispatch layer 在后台分发任务。这个视角很重要，因为它把“agent 能力”从神秘编排系统重新拉回到可版本化、可迁移、可审计的文件系统约定。

@@ -4,17 +4,18 @@ date: 2026-04-16
 category: radar
 cadence: daily
 tags:
-  - Memory Caching
+  - Agent
+  - Harness Engineering
+  - Context Engineering
   - OpenClaw
-  - Slash Commands
-  - AI Business
 lang: zh
 draft: false
 ---
-
 ## 本期范围
 
+- **抓取时间**: 2026-04-16（重新执行，通过 Claude in Chrome 实时抓取）
 - **覆盖时段**: 过去 72 小时（2026-04-13 ~ 2026-04-16）
+- **数据状态**: ✅ 全部通过浏览器工具真实抓取，非模型生成
 
 ---
 ![Memory Caching 机制示意图](https://substackcdn.com/image/fetch/$s_!mU2b!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F72855693-b2ed-4692-a5ca-0306c1b66d88_1108x574.png)
@@ -55,8 +56,6 @@ draft: false
   从第一性原理讲解 Agent 记忆的四层架构：In-Context Memory（受 Token 窗口限制）、External KV Store（Redis + 向量索引）、Episodic Memory（事件序列压缩）、Semantic Memory（知识图谱）。重点推荐开源库 `mem0`，提供完整代码示例，适合 Agentic Workflow 快速集成。
   > 🔗 GitHub: [mem0ai/mem0](https://github.com/mem0ai/mem0)
 
----
-
 ### 2. 🧠 模型前沿 & 算法探索
 
 #### 【Daily Dose of DS】Google 解决了 RNN 的老问题：Memory Caching 架构
@@ -74,8 +73,6 @@ draft: false
 - **核心摘要**:
   Latent Space 在相对平静的新闻日发布 2026 年 4 月本地可运行模型最新榜单，涵盖推理能力、上下文长度、部署资源要求等维度横评，为本地部署需求提供参考。
 
----
-
 ### 3. 💻 实战工具 & 代码库
 
 #### 【Daily Dose of DS】Claude Code 10 个必用 Slash Commands
@@ -91,8 +88,6 @@ draft: false
 - **发布时间**: 2026-04-15
 - **核心摘要**:
   趁相对平静的 AI 新闻日，Latent Space 发布对"AI 时代工作意义"的深度反思，探讨 AI Engineer 在 Agent 接管执行层后的角色演变与价值定位。
-
----
 
 ### 4. 📰 行业与商业快讯
 
@@ -128,5 +123,3 @@ draft: false
   - **AI 接管实体零售店实验**："What happens when AI runs a retail store"——AI 完整运营实体店的早期案例出现
   - **Anthropic 最新 AI 模型"超出世界承受范围"**：新模型能力引发 safety 讨论
   - **OpenAI GPT-5.4-Cyber 拒绝 Mythos 路线**：模型策略分歧信号
-
----

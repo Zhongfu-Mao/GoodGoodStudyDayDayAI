@@ -5,16 +5,16 @@ category: radar
 cadence: daily
 tags:
   - Agent
-  - OCR
-  - Perplexity
-  - Mythos
+  - Harness Engineering
+  - OpenClaw
+  - Opus
 lang: zh
 draft: false
 ---
-
 ## 本期范围
 
 - 抓取窗口：2026-04-09 ~ 2026-04-12（过去 72 小时）
+- 抓取方式：Claude in Chrome 浏览器工具（navigate + get_page_text + JS 提取）
 
 ---
 ![llama.cpp OCR 模型支持示意图](https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/ggml-org/using-ocr-models-with-llama-cpp.png)
@@ -47,8 +47,6 @@ draft: false
 - 发布：2026-04-11
 - Key Takeaways: 三种架构的代码库/数据库/部署边界对比，以及演进路径与取舍。对正在从单体切向 agentic 服务化的团队有结构化决策参考。
 
----
-
 ### 2. 🧠 模型前沿 & 算法探索
 
 **Anthropic 推出 Claude advisor tool（官方 API）**
@@ -63,8 +61,6 @@ draft: false
 - 发布：2026-04-08（略早于 72h 窗口但属连续报道，一并记录）
 - Key Takeaways: MSL 在新 stack 上放出的第一个 frontier 模型，带多智能体模式的多模态推理。定位为与 Gemini/Claude/GPT 系列的直接竞品，值得关注其开放程度与生态策略。
 
----
-
 ### 3. 💻 实战代码 & 工具库
 
 **Using OCR models with llama.cpp**
@@ -78,8 +74,6 @@ draft: false
 - Link: https://huggingface.co/blog/isaacus/tabular-review
 - 发布：2026-04-09
 - Key Takeaways: 从零搭建法律/合同审阅的 tabular review 应用。关键工程选择：完全不用生成式模型，改用 Isaacus 的专用抽取/分类模型，所有分类与抽取直接 grounded 在原文 span 上，以达到"零幻觉"保证，同时在成本/时延/准确率上胜过 Harvey 和 Legora。对合规强相关场景的 RAG/Extraction pipeline 设计极具借鉴意义。
-
----
 
 ### 4. 📰 行业与商业快讯
 
@@ -112,5 +106,3 @@ draft: false
 - Link: https://lukefan.com/2026/04/09/big-tech-recruiting-high-schoolers-is-college-still-necessary/
 - 发布：2026-04-09
 - Key Takeaways: 非技术性行业观察，讨论 AI 时代大厂招聘更年轻化的真实动因与大学教育的再定位。作为商业叙事与人才市场信号记录。
-
----

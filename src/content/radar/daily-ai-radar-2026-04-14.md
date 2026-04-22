@@ -4,18 +4,18 @@ date: 2026-04-14
 category: radar
 cadence: daily
 tags:
-  - Managed Agents
+  - Agent
+  - Harness Engineering
   - OpenClaw
-  - Diffusion LLM
-  - AI Business
+  - Claude
 lang: zh
 draft: false
 ---
-
 ## 本期范围
 
 - 扫描周期：2026-04-11 ~ 2026-04-14（72 h）
 - 数据源：Latent Space · ByteByteGo · Daily Dose of DS · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事
+- 抓取方式：Claude in Chrome 浏览器工具直接解析 RSS Feed + 网页全文
 
 ---
 ![Anthropic Mythos / Glasswing 相关视觉图](https://substackcdn.com/image/fetch/$s_!OlKB!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6e44dee4-d07c-4497-993b-8cca142a9e28_1210x1316.png)
@@ -54,8 +54,6 @@ draft: false
 - **Key Takeaways**:
   4 月 13 日发布。深入拆解 LinkedIn 工程团队如何重建 Feed 系统并将 LLM 集成到推荐管线中。这是少见的超大规模 LLM 在线推理工程实践案例，涉及模型服务架构、延迟优化和容错设计。
 
----
-
 ## 2. 🧠 模型前沿 & 算法探索
 
 ### Meta Muse Spark — Meta Superintelligence Labs 首款模型，且为闭源
@@ -83,8 +81,6 @@ draft: false
 - **Key Takeaways**:
   4 月 13 日发布。详细分析了 Agent 记忆从朴素 list → Markdown 文件 → 向量搜索 → 知识图谱的四层演进，以及每一层的瓶颈（上下文遗忘、无持久化、关键词脆弱、多跳查询失败）。推荐开源知识引擎 **Cognee**（GitHub），它将 vector store + knowledge graph + relational store 融合为统一 API（仅 4 个 async call），支持 `memify()` 强化学习式图谱自优化。文章还对比了 OpenClaw 的 Markdown checkpoint 记忆在长期使用中事实丢失的问题。与老范 Hermes vs OpenClaw 文中关于记忆系统的讨论高度互补。
 
----
-
 ## 3. 💻 实战代码 & 工具库
 
 ### Hugging Face: 用 llama.cpp 跑 OCR 模型
@@ -110,8 +106,6 @@ draft: false
 - **Link**: https://blog.bytebytego.com/p/ep210-monolithic-vs-microservices
 - **Key Takeaways**:
   4 月 11 日发布。系统对比三种架构模式的适用场景和权衡，虽非 AI 专题，但对 Agent 系统部署架构选型有参考价值。
-
----
 
 ## 4. 📰 行业与商业快讯
 
@@ -144,18 +138,3 @@ draft: false
 - **Link**: https://www.latent.space/p/ainews-ai-engineer-europe-2026
 - **Key Takeaways**:
   4 月 10 日，Latent Space 回顾了在伦敦举办的首届 AI Engineer Europe 大会。
-
----
-
-## 📊 本期信号总结
-
-| 信号 | 强度 | 解读 |
-|------|------|------|
-| Harness Engineering 成为主流抽象 | 🔴 强 | Latent Space、Ahead of AI、老范讲故事三方同时聚焦 |
-| Agent-as-a-Service 落地 | 🔴 强 | Claude Managed Agents 公测 + 企业客户已上线 |
-| Meta 转向闭源 | 🟡 中 | Muse Spark 闭源发布，开源战略调整 |
-| Diffusion LLMs 崛起 | 🟡 中 | 多个模型已接近自回归水平，工程化加速 |
-| 个人 Harness Agent 生态分化 | 🟡 中 | Hermes(轻量自进化) vs OpenClaw(全平台) 路线分化 |
-| Anti-AI 社会情绪 | 🟠 观察 | 美国抗议升温，中美民众态度分化加剧 |
-
----

@@ -4,14 +4,13 @@ date: 2026-04-18
 category: radar
 cadence: daily
 tags:
-  - Opus
+  - Agent
   - Harness Engineering
-  - LLM Optimization
-  - KYC
+  - OpenClaw
+  - Opus
 lang: zh
 draft: false
 ---
-
 ## 本期范围
 
 - 覆盖时间窗口：2026-04-15 ~ 2026-04-18（72 小时）
@@ -24,14 +23,10 @@ draft: false
 
 ### 1. 🛠️ AI Engineering & 架构
 
----
-
 **[Evolution of Agent Landscape From 2022-26](https://blog.dailydoseofds.com/p/evolution-of-agent-landscape-from)**
 **来源：Daily Dose of Data Science｜2026-04-16**
 
 Agent 工程的核心演变轨迹被清晰归纳为三个阶段：**Weights（2022）→ Context（2023-24）→ Harness Engineering（2025-26）**。当前阶段的核心命题已不再是"告诉模型什么"，而是"为模型构造什么样的运行环境"——包括持久化内存、可复用技能、MCP/A2A 标准化协议、执行沙箱、审批门控和可观测层。模型本身已成为基础设施的一个节点，而非智能的唯一来源。作者同步推荐了论文 *Externalization in LLM Agents: A Unified Review of Memory, Skills, Protocols and Harness Engineering*，是理解 Harness 范式的系统性参考。
-
----
 
 **[[AINews] RIP Pull Requests (2005-2026)](https://www.latent.space/p/ainews-rip-pull-requests-2005-2026)**
 **来源：Latent Space｜2026-04-16**
@@ -42,8 +37,6 @@ GitHub 首次允许开源仓库禁用 PR，这一细节被作为生成式 AI 正
 - **Cloudflare Project Think**：新一代 Agents SDK，内置持久执行、子 Agent、沙箱代码运行、工作区文件系统和运行时工具创建；同期发布 Agent Lee（通过提示词驱动 Dashboard 操作）和实验性 WebSocket 语音管道。
 - **Hermes Agent**：最受关注的差异化设计是"自动技能化"——Agent 完成一次工作流后自主判断其是否可复用，并将其固化为 Skill。社区已出现 Gemma 4 自动 abliteration 的真实案例（诊断 NaN 不稳定 → 打补丁 → 基准测试 → 上传 HuggingFace），完整展示了自进化 Agent 的工程闭环。
 - **AI 辅助数学**：GPT-5.4 Pro 为 Erdős 问题 #1196 生成了一个专家认可的证明，被部分研究者称为首个 AI 生成的"Book Proof"，意义在于模型可能开始找到人类不常走的非直觉证明路径。
-
----
 
 **[72 Techniques to Optimize LLMs in Production](https://blog.dailydoseofds.com/p/72-techniques-to-optimize-llms-in)**
 **来源：Daily Dose of Data Science｜2026-04-17**
@@ -62,11 +55,7 @@ GitHub 首次允许开源仓库禁用 PR，这一细节被作为生成式 AI 正
 
 ⭐ **特别标注**：[Blockify](https://github.com)（GitHub 项目）——将文档切成 IdeaBlock（平均 98 token），在同等文档和 embedding 模型下，向量精度提升 13.55%，token 用量下降 3.09x，可在 Intel Xeon CPU 上运行，无需 GPU。
 
----
-
 ### 2. 🧠 模型前沿 & 算法探索
-
----
 
 **[[AINews] Anthropic Claude Opus 4.7 — literally one step better than 4.6 in every dimension](https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally)**
 **来源：Latent Space｜2026-04-17**
@@ -89,8 +78,6 @@ Anthropic 发布 Claude Opus 4.7，Latent Space 对社区反应做了最全面�
 
 **争议点**：长上下文 MRCR 表现有回退（Anthropic 以 Graphwalks 38.7%→58.6% 的提升回应，认为 MRCR 过度依赖 distractor stacking，不代表真实推理能力）；部分用户反映新系统提示导致非编码任务感觉"更笨"，无法强制开启推理。
 
----
-
 **[Google solved an Old RNN Problem](https://blog.dailydoseofds.com/p/google-solved-an-old-rnn-problem)**
 **来源：Daily Dose of Data Science｜2026-04-15**
 
@@ -103,29 +90,25 @@ Google Research（Titans/MIRAS 同团队）提出 **Memory Caching** 机制，�
 
 四种使用方式中，**Gated Residual Memory（GRM）** 表现最优——用输入依赖的门控为每个片段的相关性打分。在召回密集型任务上，Memory Caching 显著缩小了 RNN 与 Transformer 的差距；叠加到 Titans 架构上后，语言理解基准进一步提升。当前实验规模为 1.3B 参数以内，是否在前沿规模成立仍待验证。
 
----
-
 **Nucleus-Image：首个稀疏 MoE 扩散模型**（来自 Latent Space AINews 引用）
 
 [@withnucleusai](https://huggingface.co/blog/NucleusAI/nucleus-image) 发布 Nucleus-Image：17B 参数、2B 激活，稀疏 MoE 架构应用于文生图，Apache 2.0 开源，含权重、训练代码和数据集配方，day-0 支持 diffusers。
-
----
 
 **NVIDIA Nemotron 3 Super**（来自 Latent Space AINews 引用）
 
 120B 混合 Mamba-Attention MoE，12B 激活参数，1M 上下文，25T token 训练，吞吐量最高达 GPT-OSS-120B 的 2.2x、Qwen3.5-122B 的 7.5x。指向同一趋势：内存带宽和长上下文吞吐已成为架构设计的一等公民。
 
----
-
 **Parcae：层循环 Transformer**（来自 Latent Space AINews 引用）
 
 稳定化的 layer-looping Transformer 方案。核心声明：固定参数预算下，循环 block 可恢复约 2x 规模模型的质量——打开了一个新的 scaling 维度：以 FLOP 换质量，而不只靠参数量/数据量。
 
----
+### Persona Generators：用进化搜索生成更“像真实人群”的合成用户画像
+**来源：** The Batch @ DeepLearning.AI  
+**链接：** <https://www.deeplearning.ai/the-batch/persona-generators-simulate-human-characters-across-a-controllable-range-of-points-of-view/>
+
+Google 提出的 Persona Generators，不是给模型贴上人口统计学标签就结束，而是用进化式搜索去优化“生成 persona 的 prompt 程序”，让一组角色在态度空间里覆盖更广的分布。它的重要性在于，合成用户研究正在从“写几个人设”升级到“系统性逼近真实分歧结构”。
 
 ### 3. 💻 实战代码 & 工具库
-
----
 
 **Blockify — RAG 知识单元优化库**
 
@@ -134,15 +117,11 @@ Google Research（Titans/MIRAS 同团队）提出 **Memory Caching** 机制，�
 - 效果：在相同文档和 embedding 下，向量精度 +13.55%，token 用量 -3.09x
 - 运行环境：Intel Xeon CPU，无 GPU 需求，适合中低成本部署
 
----
-
 **Sim（Mothership）— Level 5 自构建 Agent**
 
 - GitHub：[sim](https://github.com) (27k+ stars)
 - 功能：用自然语言描述需求 → 自动创建数据库 schema、连接集成、设置定时调度，生成一个可以独立运行的 Level 4 Agent
 - 定位：Level 5 Agent 的输出本身就是一个 Level 4 Agent，是目前最接近"自构建系统"概念的开源实现
-
----
 
 **Claude Code Workflow 最佳实践**（来自 Anthropic Cat Wu 操作指南）
 
@@ -151,11 +130,7 @@ Google Research（Titans/MIRAS 同团队）提出 **Memory Caching** 机制，�
 2. **前置完整目标**：一次性给出目标 + 约束 + 验收标准，而非逐步追加
 3. **告知验证方式**：在 CLAUDE.md 或 skills 中编码测试工作流，让模型知道如何自我验证
 
----
-
 ### 4. 📰 行业与商业快讯
-
----
 
 **[Claude KYC 上线：中国开发者影响解析](https://lukefan.com/2026/04/17/anthropic-claude-selective-kyc-china-user-crackdown/)**
 **来源：老范讲故事｜2026-04-17**
@@ -173,20 +148,20 @@ Anthropic 于 2026-04-14 更新帮助中心，启动选择性 KYC（Know Your Cu
 
 **对普通开发者的影响**：正常低频使用的中国用户暂无大影响；高频重度用户、新账号用户风险上升；代理渠道成本将提高；真正专业绕路者（如大型 AI 公司）基本不受影响。
 
----
-
 **[微软龙虾要来了？CEO 亲自下场，为什么我却不看好？](https://lukefan.com/2026/04/16/microsoft-openclaw-ai-agent-cloud-client-tradeoffs/)**
 **来源：老范讲故事｜2026-04-16**
 
 微软 CEO 亲自参与 OpenClaw（"龙虾"）AI Agent 的推进，但老范对其成功持保留态度，核心疑虑在于云端与客户端的架构权衡——微软的核心利益在云，而 Agent 的真正落地场景偏向本地感知和持久状态，二者之间存在商业逻辑冲突。
 
----
-
 **Gemini 3.1 Flash TTS**（来自 Latent Space AINews 引用）
 
 Google 发布高可控 TTS 模型：支持 Audio Tags 情感控制、内联非语言线索、70+ 语言、多说话人、SynthID 水印。独立评测机构 Artificial Analysis 将其排在语音竞技场第 2 位，仅落后第一名 4 Elo 分。
 
----
+### 美国州级 AI 法规正在加速分化，合规复杂度继续上升
+**来源：** The Batch @ DeepLearning.AI  
+**链接：** <https://www.deeplearning.ai/the-batch/most-states-are-regulating-ai-despite-president-trumps-opposition-to-state-level-laws/>
+
+The Batch 这一条的价值不只是罗列法规，而是把 2026 年美国 AI 合规环境的真实趋势讲透了：联邦层面想统一规则，州政府却在更快地各自立法，结果是 AI 产品越来越受制于 watermark、版权、审计和地区化部署等多套要求。对做平台和企业软件的人来说，这种“拼图式监管”会直接改变产品架构和市场进入策略。
 
 ⚠️ **抓取失败记录：**
 
