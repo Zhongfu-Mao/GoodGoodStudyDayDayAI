@@ -1,5 +1,5 @@
 ---
-import { articlePath, collectionLabels, tagPath, type Locale } from '../lib/site';
+import { articlePath, collectionLabels, tagPath, withBase, type Locale } from '../lib/site';
 import { getEntriesForLocale, getTagIndex } from '../lib/content';
 
 const { locale } = Astro.props as { locale: Locale };
@@ -53,7 +53,7 @@ const text = copy[locale];
         <a href="#latest" class="theme-action-primary rounded-2xl px-5 py-3 text-sm font-semibold">
           {locale === 'ja' ? '最新記事へ' : '查看最新文章'}
         </a>
-        <a href="/plan.txt" class="theme-action-secondary rounded-2xl px-5 py-3 text-sm font-medium">
+        <a href={withBase('/plan.txt')} class="theme-action-secondary rounded-2xl px-5 py-3 text-sm font-medium">
           {text.viewPlan}
         </a>
       </div>

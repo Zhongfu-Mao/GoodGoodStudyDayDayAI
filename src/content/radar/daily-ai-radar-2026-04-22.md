@@ -10,7 +10,7 @@ tags:
   - Claude
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-04-22-infographic.png
-audioUrl: /audio/radar/daily-ai-radar-2026-04-22.mp3?v=long
+audioUrl: /audio/radar/daily-ai-radar-2026-04-22.mp3
 draft: false
 ---
 ## 本期范围

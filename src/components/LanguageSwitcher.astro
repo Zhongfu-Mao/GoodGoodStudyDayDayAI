@@ -1,8 +1,8 @@
 ---
-import { locales, type Locale } from '../lib/site';
+import { locales, withBase, withoutBase, type Locale } from '../lib/site';
 
 const currentLocale = (Astro.currentLocale ?? 'zh') as Locale;
-const pathname = Astro.url.pathname;
+const pathname = withoutBase(Astro.url.pathname);
 const paths = (Astro.props.paths ?? {}) as Partial<Record<Locale, string>>;
 
 function localizedPath(targetLocale: Locale) {
@@ -13,10 +13,10 @@ function localizedPath(targetLocale: Locale) {
   const basePath = pathname === '/ja' ? '/' : pathname.startsWith('/ja/') ? pathname.slice(3) : pathname;
 
   if (targetLocale === 'ja') {
-    return basePath === '/' ? '/ja/' : `/ja${basePath}`;
+    return withBase(basePath === '/' ? '/ja/' : `/ja${basePath}`);
   }
 
-  return basePath;
+  return withBase(basePath);
 }
 ---
 

@@ -20,28 +20,62 @@ export const cadenceLabels: Record<RadarCadence, { zh: string; ja: string }> = {
   monthly: { zh: 'Monthly', ja: 'Monthly' },
 };
 
+const rawBase = import.meta.env.BASE_URL || '/';
+const normalizedBase = rawBase === '/' ? '/' : `/${rawBase.replace(/^\/+|\/+$/g, '')}/`;
+
+export function withBase(path: string) {
+  const normalizedPath = normalizeAbsolutePath(path);
+
+  if (normalizedBase === '/') {
+    return normalizedPath;
+  }
+
+  const basePrefix = normalizedBase.slice(0, -1);
+  return normalizedPath === '/' ? normalizedBase : `${basePrefix}${normalizedPath}`;
+}
+
+export function withoutBase(path: string) {
+  const normalizedPath = normalizeAbsolutePath(path);
+
+  if (normalizedBase === '/') {
+    return normalizedPath;
+  }
+
+  const basePrefix = normalizedBase.slice(0, -1);
+
+  if (normalizedPath === basePrefix || normalizedPath === normalizedBase) {
+    return '/';
+  }
+
+  if (normalizedPath.startsWith(`${basePrefix}/`)) {
+    return normalizedPath.slice(basePrefix.length) || '/';
+  }
+
+  return normalizedPath;
+}
+
 export function localePrefix(locale: Locale) {
   return locale === 'ja' ? '/ja' : '';
 }
 
 export function homePath(locale: Locale) {
-  return `${localePrefix(locale)}/`;
+  return withBase(`${localePrefix(locale)}/`);
 }
 
 export function tagIndexPath(locale: Locale) {
-  return `${localePrefix(locale)}/tags/`;
+  return withBase(`${localePrefix(locale)}/tags/`);
 }
 
 export function tagPath(tag: string, locale: Locale) {
-  return `${localePrefix(locale)}/tags/${slugifyTag(tag)}/`;
+  return withBase(`${localePrefix(locale)}/tags/${slugifyTag(tag)}/`);
 }
 
 export function articlePath(category: CollectionName, slug: string, locale: Locale) {
-  return withTrailingSlash([localePrefix(locale), category, slug]);
+  return withBase(withTrailingSlash([localePrefix(locale), category, slug]));
 }
 
 export function categoryPath(category: CollectionName, locale: Locale) {
-  return withTrailingSlash([localePrefix(locale), category]);
+  return withBase(withTrailingSlash([localePrefix(locale), category]));
 }
 
 export function slugifyTag(tag: string) {
@@ -82,4 +116,8 @@ function withTrailingSlash(parts: string[]) {
     .filter(Boolean);
 
   return `/${normalized.join('/')}/`;
+}
+
+function normalizeAbsolutePath(path: string) {
+  return path.startsWith('/') ? path : `/${path}`;
 }

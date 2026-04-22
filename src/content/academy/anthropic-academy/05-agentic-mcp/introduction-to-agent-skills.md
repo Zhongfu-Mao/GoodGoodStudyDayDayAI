@@ -1,8 +1,8 @@
 ---
-title: "Introduction to Agent Skills"
+title: "Agent Skills 入门"
 date: 2026-03-31
 category: academy
-description: "Anthropic Agent Skills（技能包）介绍，含技能创建和使用"
+description: "Claude Code 中 Skills 的定位、创建方式与排查思路"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-agent-skills.svg"
 tags:
   - "Anthropic/Academy"
@@ -22,9 +22,11 @@ draft: false
 > 课程来源：[Anthropic Academy](https://anthropic.skilljar.com/introduction-to-agent-skills)
 > 预计学习时间：约 90 分钟（6 节）
 
-## 第一节：什么是 Skills？
+这篇笔记适合把 Skills 当成 Claude Code 的“可复用经验包”来理解。它解决的不是模型能力不够，而是你不想一遍又一遍重复解释团队规范、交付格式和工作套路。
 
-### 核心概念
+## 为什么值得为 Claude 写 Skills
+
+### Skills 的本质
 
 **Skills 是什么？**
 
@@ -32,7 +34,7 @@ Skills 是一组指令文件夹，Claude Code 可以发现并使用它们来更�
 
 每次你向 Claude 解释团队的编码规范、重复描述 PR 反馈格式、提醒 Claude 偏好的 commit message 格式……其实都是在做重复劳动。Skills 就是用来解决这个问题的：**写一次，Claude 自动应用**。
 
-### Skills 的工作机制
+### Claude 如何触发一个 Skill
 
 **描述（description）是触发匹配的关键。** 当你向 Claude 提出请求时，Claude 会将你的请求与所有可用 skill 的描述进行语义匹配，并激活匹配的 skill。
 
@@ -47,7 +49,7 @@ description: Reviews pull requests for code quality. Use when reviewing PRs or c
 
 frontmatter 下方就是具体的指令内容——你的 review checklist、格式偏好等。
 
-### Skills 的存放位置
+### Skills 放在哪里
 
 | 类型 | 路径 | 说明 |
 |------|------|------|
@@ -58,7 +60,7 @@ frontmatter 下方就是具体的指令内容——你的 review checklist、格
 
 项目 skills 会随代码一起提交到版本控制，整个团队共享。
 
-### Skills vs. CLAUDE.md vs. Slash Commands
+### Skills、CLAUDE.md 与 Slash Commands 的区别
 
 | 特性 | 说明 |
 |------|------|
@@ -68,7 +70,7 @@ frontmatter 下方就是具体的指令内容——你的 review checklist、格
 
 当 Claude 匹配到某个 skill 时，终端中会看到加载提示。
 
-### 适合使用 Skills 的场景
+### 哪些场景最适合写成 Skill
 
 - 团队代码审查标准
 - Commit message 格式规范
@@ -78,9 +80,9 @@ frontmatter 下方就是具体的指令内容——你的 review checklist、格
 
 **经验法则**：如果你发现自己在反复向 Claude 解释同一件事，那这件事就值得被写成一个 skill。
 
-## 第二节：创建你的第一个 Skill
+## 从零创建第一个 Skill
 
-### 关键要点
+### 开始前先记住这些
 
 - Skill 是一个包含 `SKILL.md` 文件的目录，frontmatter 中含有 name 和 description，下方是具体指令
 - Claude Code 启动时只加载 name 和 description，**不加载完整内容**（重要细节）
@@ -88,7 +90,7 @@ frontmatter 下方就是具体的指令内容——你的 review checklist、格
 - **优先级顺序**：Enterprise → Personal → Project → Plugins
 - 更新 skill：编辑 `SKILL.md`；删除 skill：删除其目录。**修改后需重启 Claude Code**
 
-### 创建 Skill 的步骤
+### 实操：做一个 PR 描述 Skill
 
 以创建一个"PR 描述"个人 skill 为例（跨所有项目生效）：
 
@@ -137,7 +139,7 @@ Claude Code 启动时扫描四个位置获取 skills，但**只加载 name 和 d
 
 匹配成功后，Claude 会请你确认是否加载该 skill，然后再将完整内容纳入上下文。
 
-### Skill 优先级
+### Skill 的优先级与冲突处理
 
 当多个同名 skill 存在时，优先级从高到低：
 
@@ -150,9 +152,9 @@ Claude Code 启动时扫描四个位置获取 skills，但**只加载 name 和 d
 
 **避免冲突的建议**：使用描述性更强的名称，例如用 `frontend-review` 或 `backend-review` 替代简单的 `review`。
 
-## 第三节：配置与多文件 Skills
+## 把 Skill 做得更稳、更好维护
 
-### 关键要点
+### 这一部分最值得记住的点
 
 - `name` 和 `description` 是**必填字段**，`allowed-tools` 和 `model` 是可选但强大的扩展
 - 好的描述要回答两个问题：这个 skill 做什么？Claude 什么时候应该用它？
@@ -225,9 +227,9 @@ skill 目录中的脚本可以直接运行而不将其内容加载进上下文�
 - 需要保持一致性的数据转换
 - 用经过测试的代码比生成代码更可靠的操作
 
-## 第四节：Skills vs. Claude Code 其他功能
+## Skills 和其他 Claude Code 机制怎么分工
 
-### 关键要点
+### 先抓住几个判断原则
 
 - **CLAUDE.md** 每次对话都加载，适合始终生效的项目标准；**Skills** 按需加载，适合特定任务的专项知识
 - **Subagents** 在独立执行上下文中运行，适合委托工作；Skills 为当前对话增加知识
@@ -285,9 +287,9 @@ skill 目录中的脚本可以直接运行而不将其内容加载进上下文�
 
 每个功能各有专长。不要强行把所有需求塞进 skills，当其他功能更合适时就用其他功能。**Skills 的定位**：当你有某些知识希望 Claude 在话题相关时自动应用，这就是 skills 的用武之地。
 
-## 第五节：分享 Skills
+## 团队里怎样共享 Skills
 
-### 关键要点
+### 共享前先明确这几点
 
 - `.claude/skills` 中的项目 skills 通过 Git 自动共享——克隆仓库即可获得
 - 插件允许通过 marketplace 跨仓库分发 skills，适合更广泛的社区使用
@@ -352,9 +354,9 @@ skills: accessibility-audit, performance-check
 - 不同 subagents 需要不同 skills（前端 reviewer vs. 后端 reviewer）
 - 在委托工作中强制执行标准，无需依赖 prompt 提示
 
-## 第六节：排查 Skills 问题
+## Skills 不工作时怎么排查
 
-### 关键要点
+### 先记住排查顺序
 
 - 首先使用 skills validator——它能在你花时间调试其他问题之前发现结构性问题
 - Skill 不触发，原因几乎总是 description——添加与你实际提问方式匹配的触发短语
@@ -427,7 +429,7 @@ Validator 会检查：
 | 插件 skills 不出现 | 清除缓存并重新安装 |
 | 运行时失败 | 检查依赖、权限和路径 |
 
-## 课程总结
+## 这一课的收获
 
 恭喜完成《Introduction to Agent Skills》！
 
