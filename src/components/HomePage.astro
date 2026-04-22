@@ -136,56 +136,42 @@ const text = copy[locale];
   </aside>
 </section>
 
-<section id="latest" class="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_320px]">
-  <div>
-    <div class="mb-6 flex items-end justify-between gap-4">
-      <div>
-        <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.latest}</p>
-        <h2 class="theme-heading mt-2 text-3xl font-semibold">{text.latest}</h2>
-      </div>
-    </div>
-
-    <div class="grid gap-4">
-      {recentStories.map((item) => (
-        <article class="theme-panel theme-panel-link rounded-[1.25rem] p-5">
-          <div class="grid gap-4 md:grid-cols-[180px_minmax(0,1fr)] md:items-start">
-            <div class="theme-date-block rounded-[1rem] px-4 py-5">
-              <p class="theme-muted text-[11px] uppercase tracking-[0.24em]">{collectionLabels[item.entry.data.category][locale]}</p>
-              <p class="theme-heading mt-3 text-2xl font-semibold">{item.entry.data.date.getDate()}</p>
-              <p class="theme-muted text-sm">
-                {item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN', {
-                  year: 'numeric',
-                  month: 'short',
-                })}
-              </p>
-            </div>
-            <div>
-              <h3 class="theme-heading text-2xl font-semibold leading-snug">
-                <a href={articlePath(item.entry.data.category, item.slug, locale)}>{item.entry.data.title}</a>
-              </h3>
-              <div class="mt-4 flex flex-wrap gap-2">
-                {item.entry.data.tags.map((tag) => (
-                  <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs">
-                    {tag}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </article>
-      ))}
+<section id="latest" class="mt-12">
+  <div class="mb-6 flex items-end justify-between gap-4">
+    <div>
+      <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.latest}</p>
+      <h2 class="theme-heading mt-2 text-3xl font-semibold">{text.latest}</h2>
     </div>
   </div>
 
-  <aside class="grid content-start gap-4">
-    <section class="theme-panel rounded-[1.5rem] p-6">
-      <p class="theme-muted text-xs uppercase tracking-[0.28em]">{locale === 'ja' ? '編集メモ' : '编辑备注'}</p>
-      <p class="theme-heading mt-3 text-xl font-semibold">{locale === 'ja' ? 'Markdown First' : 'Markdown First'}</p>
-      <p class="theme-muted mt-3 text-sm leading-7">
-        {locale === 'ja'
-          ? 'まず公開し、その後に翻訳や音声を補っていきます。'
-          : '内容先发布，再补充翻译、音频和其他衍生内容。'}
-      </p>
-    </section>
-  </aside>
+  <div class="grid gap-4">
+    {recentStories.map((item) => (
+      <article class="theme-panel theme-panel-link rounded-[1.25rem] p-5">
+        <div class="grid gap-4 md:grid-cols-[180px_minmax(0,1fr)] md:items-start">
+          <div class="theme-date-block rounded-[1rem] px-4 py-5">
+            <p class="theme-muted text-[11px] uppercase tracking-[0.24em]">{collectionLabels[item.entry.data.category][locale]}</p>
+            <p class="theme-heading mt-3 text-2xl font-semibold">{item.entry.data.date.getDate()}</p>
+            <p class="theme-muted text-sm">
+              {item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN', {
+                year: 'numeric',
+                month: 'short',
+              })}
+            </p>
+          </div>
+          <div>
+            <h3 class="theme-heading text-2xl font-semibold leading-snug">
+              <a href={articlePath(item.entry.data.category, item.slug, locale)}>{item.entry.data.title}</a>
+            </h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {item.entry.data.tags.map((tag) => (
+                <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs">
+                  {tag}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
 </section>
