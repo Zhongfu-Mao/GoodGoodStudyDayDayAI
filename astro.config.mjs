@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
+import pagefind from 'astro-pagefind';
 
 const repository = process.env.GITHUB_REPOSITORY?.split('/')[1];
 const site =
@@ -79,7 +81,16 @@ function visitMarkdownNode(node) {
 }
 
 export default defineConfig({
-  integrations: [tailwind()],
+  integrations: [
+    tailwind(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'zh',
+        locales: { zh: 'zh-Hans', ja: 'ja-JP' },
+      },
+    }),
+    pagefind(),
+  ],
   site,
   base,
   markdown: {

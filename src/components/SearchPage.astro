@@ -1,0 +1,82 @@
+---
+import { searchPage } from '../lib/i18n';
+import { withBase, type Locale } from '../lib/site';
+
+const { locale } = Astro.props as { locale: Locale };
+const text = searchPage[locale];
+const pagefindUiCss = withBase('/pagefind/pagefind-ui.css');
+const pagefindUiJs = withBase('/pagefind/pagefind-ui.js');
+const pagefindBasePath = withBase('/pagefind/');
+---
+
+<section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
+  <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.title}</p>
+  <h1 class="theme-heading mt-3 text-3xl font-semibold">{text.title}</h1>
+  <p class="theme-muted mt-4 max-w-2xl">{text.description}</p>
+</section>
+
+<section class="theme-panel mt-8 rounded-[1.5rem] p-6">
+  <div id="site-search" data-pagefind-ui-root></div>
+</section>
+
+<link rel="stylesheet" href={pagefindUiCss} />
+<script
+  is:inline
+  define:vars={{
+    language: locale,
+    placeholder: text.placeholder,
+    zeroResults: text.zeroResults,
+    pagefindUiJs,
+    pagefindBasePath,
+  }}
+>
+  (function () {
+    function initSearch() {
+      if (typeof window.PagefindUI !== 'function') {
+        return;
+      }
+
+      var root = document.querySelector('[data-pagefind-ui-root]');
+
+      if (!root || root.dataset.pagefindReady === 'true') {
+        return;
+      }
+
+      root.dataset.pagefindReady = 'true';
+
+      new window.PagefindUI({
+        element: root,
+        bundlePath: pagefindBasePath,
+        showImages: false,
+        showSubResults: true,
+        resetStyles: false,
+        processTerm: function (term) {
+          return term;
+        },
+        translations: {
+          placeholder: placeholder,
+          zero_results: zeroResults,
+        },
+      });
+    }
+
+    function loadPagefind() {
+      if (document.getElementById('pagefind-ui-script')) {
+        initSearch();
+        return;
+      }
+
+      var script = document.createElement('script');
+      script.id = 'pagefind-ui-script';
+      script.src = pagefindUiJs;
+      script.onload = initSearch;
+      document.head.appendChild(script);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadPagefind, { once: true });
+    } else {
+      loadPagefind();
+    }
+  })();
+</script>

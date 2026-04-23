@@ -78,6 +78,10 @@ export function tagIndexPath(locale: Locale) {
   return withBase(`${localePrefix(locale)}/tags/`);
 }
 
+export function searchPath(locale: Locale) {
+  return withBase(`${localePrefix(locale)}/search/`);
+}
+
 export function tagPath(tag: string, locale: Locale) {
   return withBase(`${localePrefix(locale)}/tags/${slugifyTag(tag)}/`);
 }

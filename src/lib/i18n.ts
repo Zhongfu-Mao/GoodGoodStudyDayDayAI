@@ -18,8 +18,23 @@ export const baseLayout = {
 } as const;
 
 export const siteNav = {
-  zh: { home: '首页' },
-  ja: { home: 'ホーム' },
+  zh: { home: '首页', search: '搜索' },
+  ja: { home: 'ホーム', search: '検索' },
+} as const;
+
+export const searchPage = {
+  zh: {
+    title: '搜索',
+    description: '在全站文章中检索关键字。',
+    placeholder: '搜索关键字…',
+    zeroResults: '没有找到匹配的内容。',
+  },
+  ja: {
+    title: '検索',
+    description: 'サイト全体の記事をキーワードで検索できます。',
+    placeholder: 'キーワードを入力…',
+    zeroResults: '一致するコンテンツが見つかりませんでした。',
+  },
 } as const;
 
 export const languageSwitcher = {

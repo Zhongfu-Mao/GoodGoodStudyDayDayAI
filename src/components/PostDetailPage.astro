@@ -188,7 +188,10 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
     </section>
   </aside>
 
-  <article class="order-1 theme-panel-strong rounded-[1.5rem] p-6 shadow-glow sm:order-2 sm:p-8">
+  <article
+    class="order-1 theme-panel-strong rounded-[1.5rem] p-6 shadow-glow sm:order-2 sm:p-8"
+    data-pagefind-body
+  >
     {academyMeta ? (
       <nav class="theme-muted flex flex-wrap items-center gap-2 text-sm">
         <a href={homePath(locale)} class="transition hover:opacity-80">{text.home}</a>

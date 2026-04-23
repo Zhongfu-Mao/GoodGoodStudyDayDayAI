@@ -2,7 +2,7 @@
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import SiteNav from './SiteNav.astro';
 import ThemeToggle from './ThemeToggle.astro';
-import { homePath, withBase, type Locale } from '../lib/site';
+import { homePath, resolveSiteUrl, withBase, type Locale } from '../lib/site';
 import { baseLayout } from '../lib/i18n';
 import '../styles/global.css';
 
@@ -11,14 +11,27 @@ const {
   description = 'Good Good Study, Day Day AI',
   locale = 'zh',
   languagePaths,
+  ogType = 'website',
+  ogImage,
+  publishedTime,
 } = Astro.props as {
   title: string;
   description?: string;
   locale?: Locale;
   languagePaths?: Partial<Record<Locale, string>>;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  publishedTime?: string;
 };
 
 const tagline = baseLayout[locale].tagline;
+const ogLocale = locale === 'ja' ? 'ja_JP' : 'zh_CN';
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
+const resolvedOgImage = ogImage
+  ? (ogImage.startsWith('http') ? ogImage : (Astro.site ? new URL(resolveSiteUrl(ogImage), Astro.site).toString() : resolveSiteUrl(ogImage)))
+  : undefined;
+const rssHref = withBase(locale === 'ja' ? '/ja/rss.xml' : '/rss.xml');
+const rssTitle = locale === 'ja' ? 'Good Good Study, Day Day AI – RSS' : 'Good Good Study, Day Day AI · RSS';
 ---
 
 <!doctype html>
@@ -29,6 +42,24 @@ const tagline = baseLayout[locale].tagline;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+    <link rel="alternate" type="application/rss+xml" title={rssTitle} href={rssHref} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Good Good Study, Day Day AI" />
+    <meta property="og:locale" content={ogLocale} />
+    {canonicalUrl ? <meta property="og:url" content={canonicalUrl} /> : null}
+    {resolvedOgImage ? <meta property="og:image" content={resolvedOgImage} /> : null}
+    {ogType === 'article' && publishedTime ? (
+      <meta property="article:published_time" content={publishedTime} />
+    ) : null}
+
+    <meta name="twitter:card" content={resolvedOgImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {resolvedOgImage ? <meta name="twitter:image" content={resolvedOgImage} /> : null}
     <script is:inline>
       (function () {
         var storageKey = 'ggsdda-theme';
