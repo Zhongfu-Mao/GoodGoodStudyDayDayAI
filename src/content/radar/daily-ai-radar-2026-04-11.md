@@ -168,7 +168,7 @@ draft: false
 **核心摘要：**
 - 首届 AI Engineer Europe（伦敦）现场回顾，关注点集中在 Agent 工程化、评估基础设施和企业落地，而非模型训练本身，进一步印证 “AI Engineer” 这一职能正在与 “ML Researcher” 明确分野。
 
-## 📬 邮件补遗
+## 📬 Newsletter 精选
 
 ### Every：数据授权正在变成 AI 时代的新收入线
 **邮件主题：** The Market for Making AI Better  

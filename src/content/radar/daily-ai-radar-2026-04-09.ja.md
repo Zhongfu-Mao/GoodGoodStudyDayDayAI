@@ -115,7 +115,7 @@ LG AI Research、SK Telecom、Naver Cloud、NC AI、Upstage の 5 組織が同�
 **要点：**
 GitHub の AI 関連 repo は 430 万を超え、LLM 関連は前年比 178% 増。coding agent、RAG、多模態が面接や設計議論の標準語彙として定着している。
 
-## 📬 メール補遺
+## 📬 Newsletter 精选
 
 ### Every: 25 人会社を 4 体の Agent で回す
 **メール件名：** How We Run a 25-person Company on Four AI Agents  

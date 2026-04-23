@@ -113,7 +113,7 @@ draft: false
 - **Link**: https://blog.bytebytego.com/p/must-know-cross-cutting-concerns
 - **Key Takeaways**: 系统梳理了 API 开发中的横切关注点：认证、日志、限流、输入验证等，对构建生产级 AI API 服务的架构设计有实用参考。
 
-## 📬 邮件补遗
+## 📬 Newsletter 精选
 
 ### Every：The Folder Is the Agent
 - **邮件主题**: The Folder Is the Agent

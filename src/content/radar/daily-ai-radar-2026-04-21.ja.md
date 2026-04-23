@@ -135,7 +135,7 @@ Anthropic Claude は design toolchain 側へ踏み込み始めた。これは co
 **要点：**  
 Codex は code agent の表面の下で、より広い workflow integration の土台を築いているという見立て。GitHub Agentic Workflow の安全 runtime 議論と合わせてみると、今の競争は coding tool 単体ではなく、開発作業全体の orchestration 争いになっている。
 
-## 📬 メール補遺
+## 📬 Newsletter 精选
 
 ### AI Valley：Apple 後継と Hermes / Cowork が同時に示す、AI 製品境界の拡張
 **件名：** Apple’s next CEO enters the AI war | **受信日時：** 2026-04-21（JST）

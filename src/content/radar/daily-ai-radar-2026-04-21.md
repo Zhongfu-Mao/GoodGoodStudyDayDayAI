@@ -119,7 +119,7 @@ The Rundown AI 报道 Anthropic Claude 正在向设计工具栈延伸，标志�
 **核心摘要：**
 The Rundown AI 分析指出 OpenAI 的 Codex 产品中暗含超级应用布局，在代码 Agent 的外壳下，OpenAI 正在构建更广泛的工作流整合能力，与同期 GitHub Agentic Workflow 的安全架构讨论形成呼应。
 
-## 📬 邮件补遗
+## 📬 Newsletter 精选
 
 ### AI Valley：Apple 接班与 Hermes / Cowork 同时说明 AI 产品边界在扩张
 **邮件主题：** Apple’s next CEO enters the AI war | **邮件时间：** 2026-04-21（JST）

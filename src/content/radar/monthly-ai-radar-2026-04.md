@@ -9,6 +9,8 @@ tags:
   - AI Infrastructure
   - Coding Agents
 lang: zh
+audioUrl: /audio/radar/monthly-ai-radar-2026-04.mp3?v=monthly
+deckUrl: /decks/radar/monthly-ai-radar-2026-04.pdf
 draft: false
 ---
 

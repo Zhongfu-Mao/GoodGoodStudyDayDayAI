@@ -9,6 +9,8 @@ tags:
   - Context Engineering
   - Claude
 lang: ja
+coverImage: /images/radar/daily-ai-radar-2026-04-22.ja-infographic.png
+audioUrl: /audio/radar/daily-ai-radar-2026-04-22.ja.mp3?v=ja
 draft: false
 ---
 ## 対象範囲
@@ -123,7 +125,7 @@ DeepSeek の 3 億ドル調達、100 億ドル評価は、妥当な valuation �
 
 SpaceX は 6 月上場で 1.75〜2 兆ドル valuation とされ、人類史上最大級の IPO になる可能性がある。Starlink は cash flow の裏付けを持つが、Starship と火星構想は「夢」への pricing を大きく含んでおり、どこまで未来の物語に資金が払われるかが試される。
 
-## 📬 メール補遺
+## 📬 Newsletter 精选
 
 ### Every：Claude Design は第一稿には強いが、まだデザイナーの代替ではない
 **件名：** Mini-Vibe Check: Claude Design Isn’t for Designers—Yet | **受信日時：** 2026-04-22（JST）

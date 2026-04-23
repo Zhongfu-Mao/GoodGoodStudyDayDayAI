@@ -125,7 +125,7 @@ DeepSeek 完成约 3 亿美元融资，估值 100 亿美元。老范分析：最
 
 SpaceX 计划 6 月上市，估值区间 1.75–2 万亿美元，可能是人类商业史最大 IPO。老范拆解 Starlink 现金流作为财务支撑的强度，同时指出 Starship 和星际目标属于"市梦率"定价，判断标准是投资者对人类未来 20 年想象空间的信念。
 
-## 📬 邮件补遗
+## 📬 Newsletter 精选
 
 ### Every：Claude Design 适合生成第一稿，但还不是设计师的替代品
 **邮件主题：** Mini-Vibe Check: Claude Design Isn’t for Designers—Yet | **邮件时间：** 2026-04-22（JST）

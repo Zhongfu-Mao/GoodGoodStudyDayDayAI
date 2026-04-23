@@ -136,7 +136,7 @@ AI 利益分配、企業と個人の関係、AI が生む billion-dollar solo fo
 **要点：**
 OpenAI の大型資金調達と superapp 構想を扱う記事で、ChatGPT 成長鈍化と同時に語られている点が重要だ。プロダクト多角化の圧力が強まっている。
 
-## 📬 メール補遺
+## 📬 Newsletter 精选
 
 ### Every: Get Your Hands Dirty
 **メール件名：** Get Your Hands Dirty  

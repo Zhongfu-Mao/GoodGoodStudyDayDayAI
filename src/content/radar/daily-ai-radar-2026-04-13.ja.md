@@ -131,7 +131,7 @@ Spotify の継続的デリバリー、canary、回滚、観測設計を整理し
 
 認証、ログ、レート制限、入力検証など、API の横断的関心事をどう設計するかを整理している。本番 AI API の設計チェックリストとして役立つ。
 
-## 📬 メール補遺
+## 📬 Newsletter 精选
 
 ### Every: The Folder Is the Agent
 **メール件名：** The Folder Is the Agent  

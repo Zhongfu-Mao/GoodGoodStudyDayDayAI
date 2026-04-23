@@ -169,7 +169,7 @@ draft: false
 - ロンドンの AI Engineer Europe では、モデル訓練より agent engineering、評価基盤、企業導入の話が主役だった。
 - 「AI Engineer」という職能が、ML Researcher とは別に立ち上がっていることがよく分かる。
 
-## 📬 メール補遺
+## 📬 Newsletter 精选
 
 ### Every: データライセンスは AI 時代の新しい収益線になる
 **メール件名：** The Market for Making AI Better  

@@ -122,7 +122,7 @@ Waymo 宣布在美国 10 个城市每周完成超 50 万次付费 Robotaxi 出�
 **核心摘要：**
 GitHub Octoverse 2025 报告显示，平台上 AI 相关仓库已超过 430 万个，LLM 相关项目同比增长 178%。ByteByteGo 同期发布 Generative AI System Design Interview 新书，结合 Coding Agent、RAG 架构与 Multimodal AI 提供系统设计面试路径。
 
-## 📬 邮件补遗
+## 📬 Newsletter 精选
 
 ### Every：25 人公司用 4 个 Agent 维持日常运转
 **邮件主题：** How We Run a 25-person Company on Four AI Agents  

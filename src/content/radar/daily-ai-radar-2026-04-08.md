@@ -131,7 +131,7 @@ Sam Altman 公开讨论 AI 时代的"新社会契约"，内容涉及 AI 利益�
 **核心摘要：**
 OpenAI 宣布新一轮 $122B 融资，并透露正在构建一个超级应用（Superapp）战略。这与其 ChatGPT 增长放缓的消息同期出现，引发市场对 OpenAI 商业化路径的广泛讨论。
 
-## 📬 邮件补遗
+## 📬 Newsletter 精选
 
 ### Every：Get Your Hands Dirty
 **邮件主题：** Get Your Hands Dirty | **邮件时间：** 2026-04-08（JST）

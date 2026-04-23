@@ -171,7 +171,7 @@ Marc Andreessen 深度访谈，探讨 AI Agent 对浏览器作为“互联网入
 **核心摘要：**
 Jack Dorsey 公开表达 AI 时代管理层冗余的观点，认为 AI Agent 可以直接完成协调、汇报、决策辅助等传统管理职能。与他推出 Goose 开源 Agent 的战略逻辑一脉相承，引发科技界对组织扁平化趋势的广泛讨论。
 
-## 📬 邮件补遗
+## 📬 Newsletter 精选
 
 ### AI Valley：OpenAI 的 “Robot Tax” 叙事补充
 **邮件主题：** OpenAI’s "Robot Tax"  

@@ -157,7 +157,7 @@ AI ツールが、コード、マーケティング、顧客対応をひとり�
 **要点：**
 Jack Dorsey は AI が coordination や reporting を代替することで、中間管理職の必要性が薄まると見ている。組織のフラット化という論点につながる。
 
-## 📬 メール補遺
+## 📬 Newsletter 精选
 
 ### AI Valley: OpenAI の「Robot Tax」論
 **メール件名：** OpenAI’s "Robot Tax"  
