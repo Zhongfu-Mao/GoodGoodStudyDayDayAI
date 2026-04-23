@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
 const repository = process.env.GITHUB_REPOSITORY?.split('/')[1];
@@ -80,7 +79,7 @@ function visitMarkdownNode(node) {
 }
 
 export default defineConfig({
-  integrations: [react(), tailwind()],
+  integrations: [tailwind()],
   site,
   base,
   markdown: {

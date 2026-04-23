@@ -14,13 +14,8 @@
     "radar:monthly-assets": "node scripts/generate-radar-monthly-assets.mjs"
   },
   "dependencies": {
-    "@astrojs/react": "^5.0.3",
     "astro": "^5.13.0",
-    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^1.8.0",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {

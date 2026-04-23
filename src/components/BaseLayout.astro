@@ -154,8 +154,6 @@ const tagline = baseLayout[locale].tagline;
           }
         });
 
-        document.addEventListener('astro:page-load', initThemeControls);
-
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', initThemeControls, { once: true });
         } else {
