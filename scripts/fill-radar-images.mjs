@@ -1,16 +1,13 @@
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { normalizeNewlines } from './lib/markdown.mjs';
 
 const WORKSPACE_ROOT = process.cwd();
 const TARGET_DIR = path.join(WORKSPACE_ROOT, 'src/content/radar');
 
 const USER_AGENT =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
-
-function normalizeNewlines(text) {
-  return text.replace(/\r\n/g, '\n');
-}
 
 function hasRepresentativeImage(content) {
   return /^!\[[^\]]*?\]\([^)]+?\)$/m.test(content);

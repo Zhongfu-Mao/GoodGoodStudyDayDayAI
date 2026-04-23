@@ -1,13 +1,20 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import { spawn } from 'node:child_process';
+import { parseFrontmatter, updateFrontmatterValue } from './lib/frontmatter.mjs';
+import {
+  addSourceFile,
+  createNotebook,
+  languageArg,
+  maybeDeleteNotebook,
+  runNotebooklm,
+  waitForLatestArtifact,
+} from './lib/notebooklm.mjs';
 
 const WORKSPACE_ROOT = process.cwd();
 const RADAR_DIR = path.join(WORKSPACE_ROOT, 'src/content/radar');
 const AUDIO_DIR = path.join(WORKSPACE_ROOT, 'public/audio/radar');
 const DECK_DIR = path.join(WORKSPACE_ROOT, 'public/decks/radar');
-const NOTEBOOKLM_BIN = path.join(WORKSPACE_ROOT, '.venv/bin/notebooklm');
 
 function parseArgs(argv) {
   const options = {
@@ -45,49 +52,6 @@ function parseArgs(argv) {
   return options;
 }
 
-function normalizeNewlines(text) {
-  return text.replace(/\r\n/g, '\n');
-}
-
-function parseFrontmatter(source) {
-  const normalized = normalizeNewlines(source);
-  const match = normalized.match(/^---\n([\s\S]*?)\n---\n?/);
-
-  if (!match) {
-    throw new Error('Target markdown is missing frontmatter.');
-  }
-
-  const frontmatter = match[1];
-  const title = frontmatter.match(/^title:\s*"?(.*?)"?$/m)?.[1]?.trim();
-  const lang = frontmatter.match(/^lang:\s*"?(.*?)"?$/m)?.[1]?.trim() ?? 'zh';
-  const audioUrl = frontmatter.match(/^audioUrl:\s*"?(.*?)"?$/m)?.[1]?.trim() ?? null;
-  const deckUrl = frontmatter.match(/^deckUrl:\s*"?(.*?)"?$/m)?.[1]?.trim() ?? null;
-
-  if (!title) {
-    throw new Error('Frontmatter title is required.');
-  }
-
-  return { title, lang, audioUrl, deckUrl };
-}
-
-function updateFrontmatterValue(source, field, value, anchorField = 'draft') {
-  const normalized = normalizeNewlines(source);
-  const frontmatterMatch = normalized.match(/^---\n([\s\S]*?)\n---\n?/);
-
-  if (!frontmatterMatch) {
-    throw new Error('Target markdown is missing frontmatter.');
-  }
-
-  const frontmatter = frontmatterMatch[1];
-  const updatedFrontmatter = frontmatter.match(new RegExp(`^${field}:`, 'm'))
-    ? frontmatter.replace(new RegExp(`^${field}:\\s*.*$`, 'm'), `${field}: ${value}`)
-    : frontmatter.match(new RegExp(`^${anchorField}:\\s*.*$`, 'm'))
-      ? frontmatter.replace(new RegExp(`^${anchorField}:\\s*.*$`, 'm'), `${field}: ${value}\n$&`)
-      : `${frontmatter}\n${field}: ${value}`;
-
-  return normalized.replace(frontmatterMatch[0], `---\n${updatedFrontmatter}\n---\n`);
-}
-
 async function resolveTargetFile(explicitFile, requestedLang) {
   if (explicitFile) {
     return path.isAbsolute(explicitFile) ? explicitFile : path.join(WORKSPACE_ROOT, explicitFile);
@@ -116,10 +80,7 @@ function parseMonthlyPeriod(filePath) {
     throw new Error('Monthly radar filename does not contain a valid year-month period.');
   }
 
-  const year = Number(match[1]);
-  const month = Number(match[2]);
-
-  return { year, month };
+  return { year: Number(match[1]), month: Number(match[2]) };
 }
 
 function parseWeeklyRangeFromFilename(fileName) {
@@ -164,103 +125,6 @@ async function resolveWeeklySourceFiles({ year, month, lang }) {
     .map((file) => path.join(RADAR_DIR, file));
 }
 
-function runNotebooklm(args) {
-  return new Promise((resolve, reject) => {
-    const child = spawn(NOTEBOOKLM_BIN, args, {
-      cwd: WORKSPACE_ROOT,
-      env: process.env,
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
-
-    let stdout = '';
-    let stderr = '';
-
-    child.stdout.on('data', (chunk) => {
-      stdout += chunk.toString();
-    });
-
-    child.stderr.on('data', (chunk) => {
-      stderr += chunk.toString();
-    });
-
-    child.on('error', reject);
-    child.on('close', (code) => {
-      if (code === 0) {
-        resolve({ stdout, stderr });
-        return;
-      }
-
-      reject(new Error(stderr.trim() || stdout.trim() || `notebooklm exited with code ${code}`));
-    });
-  });
-}
-
-function parseJsonOutput(stdout) {
-  const trimmed = stdout.trim();
-
-  if (!trimmed) {
-    return null;
-  }
-
-  try {
-    return JSON.parse(trimmed);
-  } catch {
-    const jsonLine = trimmed
-      .split('\n')
-      .map((line) => line.trim())
-      .reverse()
-      .find((line) => line.startsWith('{') || line.startsWith('['));
-
-    if (!jsonLine) {
-      throw new Error(`Unable to parse JSON output: ${trimmed}`);
-    }
-
-    return JSON.parse(jsonLine);
-  }
-}
-
-function pickNotebookId(payload) {
-  return payload?.id ?? payload?.notebook_id ?? payload?.notebook?.id ?? payload?.data?.id ?? null;
-}
-
-function pickLatestItem(items) {
-  if (!Array.isArray(items) || items.length === 0) {
-    return null;
-  }
-
-  return [...items].sort((left, right) => {
-    const leftTime = new Date(left.created_at ?? 0).getTime();
-    const rightTime = new Date(right.created_at ?? 0).getTime();
-
-    if (leftTime !== rightTime) {
-      return rightTime - leftTime;
-    }
-
-    return (right.index ?? 0) - (left.index ?? 0);
-  })[0];
-}
-
-async function addSourceFile(notebookId, sourcePath) {
-  await runNotebooklm(['source', 'add', '--notebook', notebookId, sourcePath, '--json']);
-
-  const sourcesPayload = parseJsonOutput((await runNotebooklm(['source', 'list', '--notebook', notebookId, '--json'])).stdout);
-  const source = pickLatestItem(sourcesPayload?.sources);
-
-  if (!source?.id) {
-    throw new Error(`Failed to determine source ID for ${sourcePath}`);
-  }
-
-  await runNotebooklm(['source', 'wait', '--notebook', notebookId, source.id, '--timeout', '300', '--json']);
-}
-
-async function maybeDeleteNotebook(notebookId, keepNotebook) {
-  if (keepNotebook || !notebookId) {
-    return;
-  }
-
-  await runNotebooklm(['delete', notebookId]);
-}
-
 function inferMonthlyAudioPrompt(title, lang) {
   if (lang === 'ja') {
     return `${title} をもとに、2 人のホストが対話する長尺の月次音声解説を作ってください。今月の中心トレンド、各週をつなぐ変化、来月に持ち越される論点までを自然な会話で深掘りしてください。`;
@@ -299,12 +163,7 @@ async function main() {
   await mkdir(DECK_DIR, { recursive: true });
 
   console.log(`Creating notebook for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
-  const created = parseJsonOutput((await runNotebooklm(['create', notebookTitle, '--json'])).stdout);
-  const notebookId = pickNotebookId(created);
-
-  if (!notebookId) {
-    throw new Error('Failed to determine notebook ID from create response.');
-  }
+  const notebookId = await createNotebook(notebookTitle);
 
   try {
     for (const weeklyFile of weeklyFiles) {
@@ -328,19 +187,12 @@ async function main() {
       '--length',
       'long',
       '--language',
-      meta.lang === 'ja' ? 'ja' : 'zh_Hans',
+      languageArg(meta.lang),
       inferMonthlyAudioPrompt(meta.title, meta.lang),
       '--json',
     ]);
 
-    let artifactsPayload = parseJsonOutput((await runNotebooklm(['artifact', 'list', '--notebook', notebookId, '--type', 'audio', '--json'])).stdout);
-    const audioArtifact = pickLatestItem(artifactsPayload?.artifacts);
-
-    if (!audioArtifact?.id) {
-      throw new Error('Failed to determine monthly audio artifact ID.');
-    }
-
-    await runNotebooklm(['artifact', 'wait', '--notebook', notebookId, audioArtifact.id, '--timeout', '1200', '--json']);
+    await waitForLatestArtifact(notebookId, 'audio', { timeout: 1200 });
     await runNotebooklm(['download', 'audio', '--notebook', notebookId, '--force', audioPath, '--json']);
 
     console.log('Generating monthly slide deck...');
@@ -354,19 +206,12 @@ async function main() {
       '--length',
       'default',
       '--language',
-      meta.lang === 'ja' ? 'ja' : 'zh_Hans',
+      languageArg(meta.lang),
       inferMonthlyDeckPrompt(meta.title, meta.lang),
       '--json',
     ]);
 
-    artifactsPayload = parseJsonOutput((await runNotebooklm(['artifact', 'list', '--notebook', notebookId, '--type', 'slide-deck', '--json'])).stdout);
-    const deckArtifact = pickLatestItem(artifactsPayload?.artifacts);
-
-    if (!deckArtifact?.id) {
-      throw new Error('Failed to determine monthly slide deck artifact ID.');
-    }
-
-    await runNotebooklm(['artifact', 'wait', '--notebook', notebookId, deckArtifact.id, '--timeout', '1200', '--json']);
+    await waitForLatestArtifact(notebookId, 'slide-deck', { timeout: 1200 });
     await runNotebooklm([
       'download',
       'slide-deck',

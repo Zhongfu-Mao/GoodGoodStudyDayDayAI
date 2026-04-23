@@ -1,12 +1,20 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import { spawn } from 'node:child_process';
+import { parseFrontmatter, stripFrontmatter, updateFrontmatterValue } from './lib/frontmatter.mjs';
+import { extractSectionBlock, extractShortParagraphs, extractTopSignals } from './lib/markdown.mjs';
+import {
+  addSourceFile,
+  createNotebook,
+  languageArg,
+  maybeDeleteNotebook,
+  runNotebooklm,
+  waitForLatestArtifact,
+} from './lib/notebooklm.mjs';
 
 const WORKSPACE_ROOT = process.cwd();
 const RADAR_DIR = path.join(WORKSPACE_ROOT, 'src/content/radar');
 const IMAGE_DIR = path.join(WORKSPACE_ROOT, 'public/images/radar');
-const NOTEBOOKLM_BIN = path.join(WORKSPACE_ROOT, '.venv/bin/notebooklm');
 
 function parseArgs(argv) {
   const options = {
@@ -26,71 +34,40 @@ function parseArgs(argv) {
     overwrite: false,
   };
 
+  const withValue = new Set([
+    '--file',
+    '--orientation',
+    '--detail',
+    '--style',
+    '--backend',
+    '--model',
+    '--brief-model',
+    '--brief-mode',
+    '--size',
+    '--quality',
+    '--output-format',
+  ]);
+
+  const keyMap = {
+    '--file': 'file',
+    '--orientation': 'orientation',
+    '--detail': 'detail',
+    '--style': 'style',
+    '--backend': 'backend',
+    '--model': 'model',
+    '--brief-model': 'briefModel',
+    '--brief-mode': 'briefMode',
+    '--size': 'size',
+    '--quality': 'quality',
+    '--output-format': 'outputFormat',
+  };
+
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
 
-    if (arg === '--file') {
-      options.file = argv[index + 1] ?? null;
-      index += 1;
-      continue;
-    }
-
-    if (arg === '--orientation') {
-      options.orientation = argv[index + 1] ?? options.orientation;
-      index += 1;
-      continue;
-    }
-
-    if (arg === '--detail') {
-      options.detail = argv[index + 1] ?? options.detail;
-      index += 1;
-      continue;
-    }
-
-    if (arg === '--style') {
-      options.style = argv[index + 1] ?? options.style;
-      index += 1;
-      continue;
-    }
-
-    if (arg === '--backend') {
-      options.backend = argv[index + 1] ?? options.backend;
-      index += 1;
-      continue;
-    }
-
-    if (arg === '--model') {
-      options.model = argv[index + 1] ?? options.model;
-      index += 1;
-      continue;
-    }
-
-    if (arg === '--brief-model') {
-      options.briefModel = argv[index + 1] ?? options.briefModel;
-      index += 1;
-      continue;
-    }
-
-    if (arg === '--brief-mode') {
-      options.briefMode = argv[index + 1] ?? options.briefMode;
-      index += 1;
-      continue;
-    }
-
-    if (arg === '--size') {
-      options.size = argv[index + 1] ?? options.size;
-      index += 1;
-      continue;
-    }
-
-    if (arg === '--quality') {
-      options.quality = argv[index + 1] ?? options.quality;
-      index += 1;
-      continue;
-    }
-
-    if (arg === '--output-format') {
-      options.outputFormat = argv[index + 1] ?? options.outputFormat;
+    if (withValue.has(arg)) {
+      const key = keyMap[arg];
+      options[key] = argv[index + 1] ?? options[key];
       index += 1;
       continue;
     }
@@ -111,114 +88,6 @@ function parseArgs(argv) {
   }
 
   return options;
-}
-
-function normalizeNewlines(text) {
-  return text.replace(/\r\n/g, '\n');
-}
-
-function parseListField(frontmatter, field) {
-  const match = frontmatter.match(new RegExp(`^${field}:\\s*\\n((?:\\s*-\\s+.*\\n?)*)`, 'm'));
-
-  if (!match) {
-    return [];
-  }
-
-  return match[1]
-    .split('\n')
-    .map((line) => line.trim())
-    .filter((line) => line.startsWith('- '))
-    .map((line) => line.slice(2).trim())
-    .filter(Boolean);
-}
-
-function parseFrontmatter(source) {
-  const normalized = normalizeNewlines(source);
-  const match = normalized.match(/^---\n([\s\S]*?)\n---\n?/);
-
-  if (!match) {
-    throw new Error('Target markdown is missing frontmatter.');
-  }
-
-  const frontmatter = match[1];
-  const title = frontmatter.match(/^title:\s*"?(.*?)"?$/m)?.[1]?.trim();
-  const lang = frontmatter.match(/^lang:\s*"?(.*?)"?$/m)?.[1]?.trim() ?? 'zh';
-  const coverImage = frontmatter.match(/^coverImage:\s*"?(.*?)"?$/m)?.[1]?.trim() ?? null;
-  const tags = parseListField(frontmatter, 'tags');
-
-  if (!title) {
-    throw new Error('Frontmatter title is required.');
-  }
-
-  return { title, lang, coverImage, tags };
-}
-
-function updateCoverImage(source, coverImage) {
-  const normalized = normalizeNewlines(source);
-  const frontmatterMatch = normalized.match(/^---\n([\s\S]*?)\n---\n?/);
-
-  if (!frontmatterMatch) {
-    throw new Error('Target markdown is missing frontmatter.');
-  }
-
-  const frontmatter = frontmatterMatch[1];
-  const updatedFrontmatter = frontmatter.match(/^coverImage:/m)
-    ? frontmatter.replace(/^coverImage:\s*.*$/m, `coverImage: ${coverImage}`)
-    : frontmatter.match(/^lang:\s*.*$/m)
-      ? frontmatter.replace(/^lang:\s*.*$/m, `$&\ncoverImage: ${coverImage}`)
-      : `${frontmatter}\ncoverImage: ${coverImage}`;
-
-  return normalized.replace(frontmatterMatch[0], `---\n${updatedFrontmatter}\n---\n`);
-}
-
-function stripFrontmatter(source) {
-  return normalizeNewlines(source).replace(/^---\n[\s\S]*?\n---\n?/, '');
-}
-
-function stripMarkdown(value) {
-  return value
-    .replace(/```[\s\S]*?```/g, '')
-    .replace(/`([^`]+)`/g, '$1')
-    .replace(/!\[[^\]]*?\]\([^)]+?\)/g, '')
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    .replace(/^>\s?/gm, '')
-    .replace(/^[-*+]\s+/gm, '')
-    .replace(/^\d+\.\s+/gm, '')
-    .replace(/\*\*([^*]+)\*\*/g, '$1')
-    .replace(/\*([^*]+)\*/g, '$1')
-    .replace(/_{1,2}([^_]+)_{1,2}/g, '$1')
-    .replace(/\r\n/g, '\n')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
-}
-
-function extractSectionBlock(markdown, headings) {
-  for (const heading of headings) {
-    const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const pattern = new RegExp(`^##\\s+${escapedHeading}\\s*\\n([\\s\\S]*?)(?=^##\\s+|\\Z)`, 'm');
-    const match = markdown.match(pattern)?.[1]?.trim();
-
-    if (match) {
-      return match;
-    }
-  }
-
-  return '';
-}
-
-function extractTopSignals(markdown, limit = 5) {
-  const matches = [...markdown.matchAll(/^###\s+(.+)$/gm)];
-  return matches.slice(0, limit).map((match) => match[1].trim());
-}
-
-function extractShortParagraphs(markdown, limit = 3) {
-  const chunks = stripMarkdown(markdown)
-    .split(/\n\s*\n/)
-    .map((chunk) => chunk.trim())
-    .filter(Boolean)
-    .filter((chunk) => !/^(来源|Source|出典|リンク|链接|发布|日付)：/.test(chunk));
-
-  return chunks.slice(0, limit).map((chunk) => chunk.replace(/\s+/g, ' '));
 }
 
 function slugFromPath(filePath) {
@@ -513,114 +382,15 @@ function inferInfographicPrompt(title, lang) {
   return `请基于《${title}》生成一张适合博客文章顶部展示的中文信息图。不要做成海报，而是做成“主线 + 3 到 5 个关键分支”的结构：一眼能看懂今天的核心主题、关键趋势之间的关系，以及对从业者的启发。文字要短，层次要清楚，适合横向阅读。`;
 }
 
-function runNotebooklm(args) {
-  return new Promise((resolve, reject) => {
-    const child = spawn(NOTEBOOKLM_BIN, args, {
-      cwd: WORKSPACE_ROOT,
-      env: process.env,
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
-
-    let stdout = '';
-    let stderr = '';
-
-    child.stdout.on('data', (chunk) => {
-      stdout += chunk.toString();
-    });
-
-    child.stderr.on('data', (chunk) => {
-      stderr += chunk.toString();
-    });
-
-    child.on('error', reject);
-    child.on('close', (code) => {
-      if (code === 0) {
-        resolve({ stdout, stderr });
-        return;
-      }
-
-      reject(new Error(stderr.trim() || stdout.trim() || `notebooklm exited with code ${code}`));
-    });
-  });
-}
-
-function parseJsonOutput(stdout) {
-  const trimmed = stdout.trim();
-
-  if (!trimmed) {
-    return null;
-  }
-
-  try {
-    return JSON.parse(trimmed);
-  } catch {
-    const jsonLine = trimmed
-      .split('\n')
-      .map((line) => line.trim())
-      .reverse()
-      .find((line) => line.startsWith('{') || line.startsWith('['));
-
-    if (!jsonLine) {
-      throw new Error(`Unable to parse JSON output: ${trimmed}`);
-    }
-
-    return JSON.parse(jsonLine);
-  }
-}
-
-function pickNotebookId(payload) {
-  return payload?.id ?? payload?.notebook_id ?? payload?.notebook?.id ?? payload?.data?.id ?? null;
-}
-
-function pickLatestItem(items) {
-  if (!Array.isArray(items) || items.length === 0) {
-    return null;
-  }
-
-  return [...items].sort((left, right) => {
-    const leftTime = new Date(left.created_at ?? 0).getTime();
-    const rightTime = new Date(right.created_at ?? 0).getTime();
-
-    if (leftTime !== rightTime) {
-      return rightTime - leftTime;
-    }
-
-    return (right.index ?? 0) - (left.index ?? 0);
-  })[0];
-}
-
-async function maybeDeleteNotebook(notebookId, keepNotebook) {
-  if (keepNotebook || !notebookId) {
-    return;
-  }
-
-  await runNotebooklm(['delete', notebookId]);
-}
-
 async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
   const notebookTitle = `${meta.title} · Infographic`;
 
   console.log(`Creating notebook for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
-  const created = parseJsonOutput((await runNotebooklm(['create', notebookTitle, '--json'])).stdout);
-  const notebookId = pickNotebookId(created);
-
-  if (!notebookId) {
-    throw new Error('Failed to determine notebook ID from create response.');
-  }
+  const notebookId = await createNotebook(notebookTitle);
 
   try {
     console.log(`Adding markdown source to notebook ${notebookId}...`);
-    await runNotebooklm(['source', 'add', '--notebook', notebookId, targetFile, '--json']);
-
-    const sourcesPayload = parseJsonOutput((await runNotebooklm(['source', 'list', '--notebook', notebookId, '--json'])).stdout);
-    const source = pickLatestItem(sourcesPayload?.sources);
-
-    if (!source?.id) {
-      throw new Error('Failed to determine source ID after upload.');
-    }
-
-    console.log(`Waiting for source ${source.id} to be ready...`);
-    await runNotebooklm(['source', 'wait', '--notebook', notebookId, source.id, '--timeout', '300', '--json']);
+    await addSourceFile(notebookId, targetFile);
 
     console.log(`Generating infographic (${options.style}, ${options.orientation})...`);
     await runNotebooklm([
@@ -635,20 +405,12 @@ async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
       '--style',
       options.style,
       '--language',
-      meta.lang === 'ja' ? 'ja' : 'zh_Hans',
+      languageArg(meta.lang),
       inferInfographicPrompt(meta.title, meta.lang),
       '--json',
     ]);
 
-    const artifactsPayload = parseJsonOutput((await runNotebooklm(['artifact', 'list', '--notebook', notebookId, '--type', 'infographic', '--json'])).stdout);
-    const artifact = pickLatestItem(artifactsPayload?.artifacts);
-
-    if (!artifact?.id) {
-      throw new Error('Failed to determine infographic artifact ID after generation.');
-    }
-
-    console.log(`Waiting for infographic artifact ${artifact.id}...`);
-    await runNotebooklm(['artifact', 'wait', '--notebook', notebookId, artifact.id, '--timeout', '600', '--json']);
+    await waitForLatestArtifact(notebookId, 'infographic', { timeout: 600 });
 
     console.log(`Downloading infographic to ${path.relative(WORKSPACE_ROOT, imagePath)}...`);
     await runNotebooklm(['download', 'infographic', '--notebook', notebookId, '--force', imagePath, '--json']);
@@ -720,7 +482,10 @@ async function processFile(targetFile, options) {
 
   if (meta.coverImage !== publicImageUrl) {
     const latestRaw = await readFile(targetFile, 'utf8');
-    const updated = updateCoverImage(latestRaw, publicImageUrl);
+    const updated = updateFrontmatterValue(latestRaw, 'coverImage', publicImageUrl, {
+      anchor: 'lang',
+      position: 'after',
+    });
     await writeFile(targetFile, updated, 'utf8');
     console.log(`Updated frontmatter coverImage -> ${publicImageUrl}`);
   } else {
