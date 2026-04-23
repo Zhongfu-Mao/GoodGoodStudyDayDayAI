@@ -157,8 +157,8 @@ const academySeriesAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}` :
 const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${slugifyTag(academyMeta.module)}` : '';
 ---
 
-<section class="grid gap-8 xl:grid-cols-[17rem_minmax(0,1fr)]">
-  <aside class="grid content-start gap-4 xl:sticky xl:top-28">
+<section class="grid gap-8 sm:grid-cols-[13rem_minmax(0,1fr)] md:grid-cols-[14rem_minmax(0,1fr)] lg:grid-cols-[15rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)]">
+  <aside class="order-2 grid content-start gap-4 sm:order-1 sm:sticky sm:top-28">
     <section class="theme-panel rounded-[1.5rem] p-5">
       <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.quickJump}</p>
       <h2 class="theme-heading mt-2 text-2xl font-semibold">{collectionLabels[entry.data.category][locale]}</h2>
@@ -265,7 +265,7 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
     </section>
   </aside>
 
-  <article class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
+  <article class="order-1 theme-panel-strong rounded-[1.5rem] p-6 shadow-glow sm:order-2 sm:p-8">
     {academyMeta ? (
       <nav class="theme-muted flex flex-wrap items-center gap-2 text-sm">
         <a href={homePath(locale)} class="transition hover:opacity-80">{text.home}</a>
