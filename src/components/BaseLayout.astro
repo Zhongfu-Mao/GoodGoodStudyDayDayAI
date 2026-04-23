@@ -24,7 +24,7 @@ const {
   publishedTime?: string;
 };
 
-const tagline = baseLayout[locale].tagline;
+const taglineLines = baseLayout[locale].taglineLines;
 const ogLocale = locale === 'ja' ? 'ja_JP' : 'zh_CN';
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
 const resolvedOgImage = ogImage
@@ -87,29 +87,33 @@ const rssTitle = locale === 'ja' ? 'Good Good Study, Day Day AI – RSS' : 'Good
     <div class="theme-divider-line fixed inset-x-0 top-0 -z-10 h-px" />
 
     <header class="theme-panel-strong sticky top-0 z-20 backdrop-blur-xl">
-      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_auto] lg:items-center">
-        <a href={homePath(locale)} class="group flex min-w-0 items-center gap-3">
+      <div class="flex w-full items-center justify-between gap-4 px-6 py-4 xl:grid xl:grid-cols-[minmax(16.5rem,21rem)_minmax(0,1fr)_auto] xl:items-center xl:px-8">
+        <a href={homePath(locale)} class="group flex min-w-0 shrink-0 items-center gap-2.5 xl:max-w-[21rem] xl:justify-self-start">
           <span class="theme-brand-badge grid h-10 w-10 place-items-center rounded-xl border text-sm font-semibold">
             AI
           </span>
-          <div class="min-w-0">
-            <p class="truncate text-sm font-semibold tracking-wide theme-text">Good Good Study, Day Day AI</p>
-            <p class="line-clamp-2 text-xs theme-muted xl:line-clamp-1">{tagline}</p>
+          <div class="min-w-0 xl:max-w-[16.5rem]">
+            <p class="truncate text-sm font-semibold tracking-wide theme-text xl:text-[13px]">Good Good Study, Day Day AI</p>
+            <p class="max-w-[15.5rem] text-xs leading-4 theme-muted">
+              {taglineLines.map((line) => (
+                <span class="block">{line}</span>
+              ))}
+            </p>
           </div>
         </a>
 
-        <div class="flex min-w-0 items-center justify-end gap-3">
-          <div class="hidden min-w-0 lg:block">
+        <div class="hidden min-w-0 items-center justify-center xl:flex xl:px-6">
+          <div class="min-w-0 w-full">
             <SiteNav locale={locale} />
           </div>
         </div>
 
-        <div class="flex shrink-0 items-center gap-3">
+        <div class="flex shrink-0 items-center gap-3 xl:justify-self-end">
           <ThemeToggle />
           <LanguageSwitcher paths={languagePaths} />
         </div>
       </div>
-      <div class="mx-auto max-w-6xl px-6 pb-4 lg:hidden">
+      <div class="px-6 pb-4 xl:hidden">
         <SiteNav locale={locale} />
       </div>
     </header>

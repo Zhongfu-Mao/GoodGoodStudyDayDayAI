@@ -10,16 +10,16 @@ export function formatDate(date: Date, locale: Locale, options?: Intl.DateTimeFo
 
 export const baseLayout = {
   zh: {
-    tagline: '清风明月伴你一起记录 AI 学习的脉络、实践的所得，与时代潮声。',
+    taglineLines: ['清风明月伴你一起记录 AI 学习的脉络，', '实践的所得，与时代潮声。'],
   },
   ja: {
-    tagline: '清風明月とともに、AI の学びの脈絡、実践の所得、そして時代の潮声を記録する。',
+    taglineLines: ['清風明月とともに、AI の学びの流れを追い、', '実践の発見と時代の潮目を記録する。'],
   },
 } as const;
 
 export const siteNav = {
-  zh: { home: '首页', search: '搜索' },
-  ja: { home: 'ホーム', search: '検索' },
+  zh: { home: '首页', search: '搜索', searchPlaceholder: '搜索内容…', searchSubmit: '提交搜索' },
+  ja: { home: 'ホーム', search: '検索', searchPlaceholder: '検索…', searchSubmit: '検索を実行' },
 } as const;
 
 export const searchPage = {

@@ -31,6 +31,26 @@ const pagefindBasePath = withBase('/pagefind/');
   }}
 >
   (function () {
+    function applyInitialQuery(root) {
+      var query = new URLSearchParams(window.location.search).get('q');
+
+      if (!query) {
+        return;
+      }
+
+      window.requestAnimationFrame(function () {
+        var input = root.querySelector('input');
+
+        if (!input || input.value === query) {
+          return;
+        }
+
+        input.value = query;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    }
+
     function initSearch() {
       if (typeof window.PagefindUI !== 'function') {
         return;
@@ -58,6 +78,8 @@ const pagefindBasePath = withBase('/pagefind/');
           zero_results: zeroResults,
         },
       });
+
+      applyInitialQuery(root);
     }
 
     function loadPagefind() {

@@ -10,7 +10,7 @@ const navItems = collectionNames.map((category) => ({
 }));
 ---
 
-<nav class="flex flex-wrap items-center gap-2 lg:flex-nowrap">
+<nav class="flex w-full flex-wrap items-center gap-2 xl:flex-nowrap xl:justify-center">
   <a
     href={homePath(locale)}
     class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2 text-sm"
@@ -25,10 +25,33 @@ const navItems = collectionNames.map((category) => ({
       {item.label}
     </a>
   ))}
-  <a
-    href={searchPath(locale)}
-    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2 text-sm"
+  <form
+    action={searchPath(locale)}
+    method="get"
+    role="search"
+    class="theme-panel inline-flex h-11 min-w-[12rem] flex-1 items-center gap-2 rounded-2xl px-3 xl:max-w-[12.5rem] xl:flex-none"
   >
-    {siteNav[locale].search}
-  </a>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="h-4 w-4 shrink-0 theme-muted"
+      aria-hidden="true"
+    >
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </svg>
+    <input
+      type="search"
+      name="q"
+      placeholder={siteNav[locale].searchPlaceholder}
+      aria-label={siteNav[locale].search}
+      class="w-full min-w-0 bg-transparent text-sm theme-text outline-none placeholder:text-[color:var(--theme-muted)]"
+    />
+    <button type="submit" class="sr-only">{siteNav[locale].searchSubmit}</button>
+  </form>
 </nav>
