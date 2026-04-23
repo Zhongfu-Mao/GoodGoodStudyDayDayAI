@@ -30,3 +30,6 @@ Thumbs.db
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# Local/private planning docs
+*.local.md
