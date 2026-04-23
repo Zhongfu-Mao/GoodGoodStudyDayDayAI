@@ -1,8 +1,12 @@
 ---
 import BaseLayout from '../../../components/BaseLayout.astro';
 import PostDetailPage from '../../../components/PostDetailPage.astro';
-import { getEntriesForLocale, getEntryForRoute, getPostStaticPaths } from '../../../lib/content';
-import { articlePath, categoryPath, stripLocaleSuffix, type CollectionName } from '../../../lib/site';
+import {
+  getEntryForRoute,
+  getLanguagePathsForEntry,
+  getPostStaticPaths,
+} from '../../../lib/content';
+import type { CollectionName } from '../../../lib/site';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -16,19 +20,14 @@ if (!entry) {
   throw new Error(`Missing entry for ${collection}/${entryId}`);
 }
 
-const currentSlug = stripLocaleSuffix(entry.id, 'ja');
-const zhEntries = await getEntriesForLocale('zh');
-const zhMatch = zhEntries.find((item) => item.collection === collection && item.slug === currentSlug);
 const { Content } = await render(entry);
+const languagePaths = await getLanguagePathsForEntry(collection, entry, 'ja');
 ---
 
 <BaseLayout
   title={`${entry.data.title} · Good Good Study, Day Day AI`}
   description={entry.data.description}
-  languagePaths={{
-    zh: zhMatch ? articlePath(collection, zhMatch.slug, 'zh') : categoryPath(collection, 'zh'),
-    ja: articlePath(collection, currentSlug, 'ja'),
-  }}
+  languagePaths={languagePaths}
   locale="ja"
 >
   <PostDetailPage locale="ja" entry={entry} Content={Content} />

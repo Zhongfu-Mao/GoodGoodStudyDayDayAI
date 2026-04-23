@@ -1,8 +1,12 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro';
 import PostDetailPage from '../../components/PostDetailPage.astro';
-import { getEntriesForLocale, getEntryForRoute, getPostStaticPaths } from '../../lib/content';
-import { articlePath, categoryPath, stripLocaleSuffix, type CollectionName } from '../../lib/site';
+import {
+  getEntryForRoute,
+  getLanguagePathsForEntry,
+  getPostStaticPaths,
+} from '../../lib/content';
+import type { CollectionName } from '../../lib/site';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -16,19 +20,14 @@ if (!entry) {
   throw new Error(`Missing entry for ${collection}/${entryId}`);
 }
 
-const currentSlug = stripLocaleSuffix(entry.id, 'zh');
-const jaEntries = await getEntriesForLocale('ja');
-const jaMatch = jaEntries.find((item) => item.collection === collection && item.slug === currentSlug);
 const { Content } = await render(entry);
+const languagePaths = await getLanguagePathsForEntry(collection, entry, 'zh');
 ---
 
 <BaseLayout
   title={`${entry.data.title} · Good Good Study, Day Day AI`}
   description={entry.data.description}
-  languagePaths={{
-    zh: articlePath(collection, currentSlug, 'zh'),
-    ja: jaMatch ? articlePath(collection, jaMatch.slug, 'ja') : categoryPath(collection, 'ja'),
-  }}
+  languagePaths={languagePaths}
   locale="zh"
 >
   <PostDetailPage locale="zh" entry={entry} Content={Content} />

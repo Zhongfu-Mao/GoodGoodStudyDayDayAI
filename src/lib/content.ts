@@ -1,4 +1,4 @@
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 import {
   collectionNames,
   collectionLabels,
@@ -7,6 +7,9 @@ import {
   slugifyTag,
   stripLocaleSuffix,
   isJapaneseId,
+  articlePath,
+  categoryPath,
+  locales,
 } from './site';
 
 type BlogEntryItem = Awaited<ReturnType<typeof getCollectionEntries>>[number];
@@ -86,6 +89,32 @@ export async function getPostStaticPaths(locale: Locale) {
 
 export async function getEntryForRoute(collection: CollectionName, entryId: string) {
   return getEntry(collection, entryId);
+}
+
+export async function getLanguagePathsForEntry(
+  collection: CollectionName,
+  entry: CollectionEntry<CollectionName>,
+  currentLocale: Locale,
+): Promise<Partial<Record<Locale, string>>> {
+  const currentSlug = stripLocaleSuffix(entry.id, currentLocale);
+  const paths: Partial<Record<Locale, string>> = {
+    [currentLocale]: articlePath(collection, currentSlug, currentLocale),
+  };
+
+  for (const target of locales) {
+    if (target === currentLocale) continue;
+
+    const targetEntries = await getEntriesForLocale(target);
+    const match = targetEntries.find(
+      (item) => item.collection === collection && item.slug === currentSlug,
+    );
+
+    paths[target] = match
+      ? articlePath(collection, match.slug, target)
+      : categoryPath(collection, target);
+  }
+
+  return paths;
 }
 
 export function getCategoryLabel(category: CollectionName, locale: Locale) {

@@ -3,6 +3,7 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 import SiteNav from './SiteNav.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import { homePath, withBase, type Locale } from '../lib/site';
+import { baseLayout } from '../lib/i18n';
 import '../styles/global.css';
 
 const {
@@ -17,8 +18,7 @@ const {
   languagePaths?: Partial<Record<Locale, string>>;
 };
 
-const tagline =
-  locale === 'ja' ? '清風明月とともに、AI の学びの脈絡、実践の所得、そして時代の潮声を記録する。' : '清风明月伴你一起记录 AI 学习的脉络、实践的所得，与时代潮声。';
+const tagline = baseLayout[locale].tagline;
 ---
 
 <!doctype html>

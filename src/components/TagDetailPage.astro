@@ -2,18 +2,13 @@
 import PostCard from './PostCard.astro';
 import { tagIndexPath, type Locale } from '../lib/site';
 import { getEntriesForTag, getTagIndex } from '../lib/content';
+import { tagDetailPage } from '../lib/i18n';
 
 const { locale, tagSlug } = Astro.props as { locale: Locale; tagSlug: string };
 const [tagIndex, entries] = await Promise.all([getTagIndex(locale), getEntriesForTag(locale, tagSlug)]);
 const tag = tagIndex.find((item) => item.slug === tagSlug);
 const label = tag?.label ?? tagSlug;
-
-const copy = {
-  zh: { title: '标签', back: '返回标签总览', empty: '该标签下暂无文章。' },
-  ja: { title: 'タグ', back: 'タグ一覧に戻る', empty: 'このタグの記事はまだありません。' },
-} as const;
-
-const text = copy[locale];
+const text = tagDetailPage[locale];
 ---
 
 <section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">

@@ -1,20 +1,13 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import { articlePath, collectionLabels, resolveSiteUrl, tagPath, type CollectionName, type Locale } from '../lib/site';
+import { formatDate } from '../lib/i18n';
 
 const { item, locale } = Astro.props as {
   item: {
     collection: CollectionName;
     slug: string;
-    entry: {
-      data: {
-        title: string;
-        date: Date;
-        category: CollectionName;
-        tags: string[];
-        coverImage?: string;
-        description?: string;
-      };
-    };
+    entry: CollectionEntry<CollectionName>;
   };
   locale: Locale;
 };
@@ -38,7 +31,7 @@ const coverImageSrc = entry.data.coverImage ? resolveSiteUrl(entry.data.coverIma
 
   <div class="theme-muted mb-4 flex items-center justify-between gap-4 text-xs uppercase tracking-[0.2em]">
     <span>{categoryLabel}</span>
-    <time datetime={entry.data.date.toISOString()}>{entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</time>
+    <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date, locale)}</time>
   </div>
   <h3 class="theme-heading text-xl font-semibold transition group-hover:opacity-85">
     <a href={href}>{entry.data.title}</a>

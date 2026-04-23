@@ -1,22 +1,11 @@
 ---
 import { tagPath, type Locale } from '../lib/site';
 import { getTagIndex } from '../lib/content';
+import { tagIndexPage } from '../lib/i18n';
 
 const { locale } = Astro.props as { locale: Locale };
 const tags = await getTagIndex(locale);
-
-const copy = {
-  zh: {
-    title: '标签总览',
-    description: '按标签浏览全部文章。',
-  },
-  ja: {
-    title: 'タグ一覧',
-    description: 'タグごとに記事を一覧できます。',
-  },
-} as const;
-
-const text = copy[locale];
+const text = tagIndexPage[locale];
 ---
 
 <section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">

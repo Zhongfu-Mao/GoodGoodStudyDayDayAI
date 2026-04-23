@@ -1,6 +1,7 @@
 ---
 import { articlePath, collectionLabels, tagPath, type Locale } from '../lib/site';
 import { getEntriesForLocale, getTagIndex } from '../lib/content';
+import { formatDate, homePage } from '../lib/i18n';
 
 const { locale } = Astro.props as { locale: Locale };
 const entries = await getEntriesForLocale(locale);
@@ -9,33 +10,7 @@ const spotlightStories = restStories.slice(0, 3);
 const recentStories = restStories.slice(3, 9);
 const recentUpdates = entries.slice(0, 4);
 const tagIndex = await getTagIndex(locale);
-
-const copy = {
-  zh: {
-    eyebrow: 'Good Good Study, Day Day AI',
-    title: '记录 AI 学习与实践，追踪变化。',
-    description:
-      '以 Markdown 为核心，持续整理双语文章、AI 雷达与课程笔记。',
-    featured: '精选文章',
-    latest: '最新文章',
-    tags: '标签',
-    sideNote: '按标签快速浏览全部内容。',
-    updates: '最近更新',
-  },
-  ja: {
-    eyebrow: 'Good Good Study, Day Day AI',
-    title: 'AI の学習と実践を記録し、変化を追う。',
-    description:
-      'Markdown をベースに、二言語の記事、AI Radar、講座ノートを継続的に整理します。',
-    featured: '注目記事',
-    latest: '最新記事',
-    tags: 'タグ',
-    sideNote: 'タグから全体を横断して読めます。',
-    updates: '最近更新',
-  },
-} as const;
-
-const text = copy[locale];
+const text = homePage[locale];
 ---
 
 <section class="grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_320px]">
@@ -49,7 +24,7 @@ const text = copy[locale];
 
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="#latest" class="theme-action-primary rounded-2xl px-5 py-3 text-sm font-semibold">
-          {locale === 'ja' ? '最新記事へ' : '查看最新文章'}
+          {text.heroCta}
         </a>
       </div>
     </section>
@@ -60,7 +35,7 @@ const text = copy[locale];
           <p class="theme-kicker text-xs uppercase tracking-[0.28em]">{text.featured}</p>
           <div class="mt-5 flex items-center gap-3 text-xs uppercase tracking-[0.22em] theme-muted">
             <span>{collectionLabels[featuredStory.entry.data.category][locale]}</span>
-            <span>{featuredStory.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</span>
+            <span>{formatDate(featuredStory.entry.data.date, locale)}</span>
           </div>
           <h2 class="theme-heading mt-4 text-3xl font-semibold leading-tight md:text-4xl">
             <a href={articlePath(featuredStory.entry.data.category, featuredStory.slug, locale)}>
@@ -81,7 +56,7 @@ const text = copy[locale];
             <article class="theme-panel theme-panel-link rounded-[1.25rem] p-5">
               <div class="flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.24em] theme-muted">
                 <span>{collectionLabels[item.entry.data.category][locale]}</span>
-                <span>{item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</span>
+                <span>{formatDate(item.entry.data.date, locale)}</span>
               </div>
               <h3 class="theme-heading mt-3 text-xl font-semibold leading-snug">
                 <a href={articlePath(item.entry.data.category, item.slug, locale)}>{item.entry.data.title}</a>
@@ -127,7 +102,7 @@ const text = copy[locale];
             <p class="theme-muted text-[11px] uppercase tracking-[0.2em]">{collectionLabels[item.entry.data.category][locale]}</p>
             <p class="theme-heading mt-2 text-base font-semibold leading-snug">{item.entry.data.title}</p>
             <p class="theme-muted mt-2 text-sm">
-              {item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}
+              {formatDate(item.entry.data.date, locale)}
             </p>
           </a>
         ))}
@@ -152,10 +127,7 @@ const text = copy[locale];
             <p class="theme-muted text-[11px] uppercase tracking-[0.24em]">{collectionLabels[item.entry.data.category][locale]}</p>
             <p class="theme-heading mt-3 text-2xl font-semibold">{item.entry.data.date.getDate()}</p>
             <p class="theme-muted text-sm">
-              {item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN', {
-                year: 'numeric',
-                month: 'short',
-              })}
+              {formatDate(item.entry.data.date, locale, { year: 'numeric', month: 'short' })}
             </p>
           </div>
           <div>

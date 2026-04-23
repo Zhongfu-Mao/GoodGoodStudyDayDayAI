@@ -10,6 +10,8 @@ import {
   type Locale,
 } from '../lib/site';
 import { getAcademySeriesGroups, getEntriesForLocale } from '../lib/content';
+import { groupByMonth, resolveRadarCadence } from '../lib/radar';
+import { categoryPage, formatDate } from '../lib/i18n';
 
 const { locale, category } = Astro.props as {
   locale: Locale;
@@ -23,92 +25,17 @@ const isAcademy = category === 'academy';
 const academySeriesGroups = isAcademy ? await getAcademySeriesGroups(locale) : [];
 const legacyAcademyEntries = isAcademy ? categoryEntries.filter((item) => !item.entry.data.academy) : [];
 
-function resolveRadarCadence(item: (typeof categoryEntries)[number]) {
-  const explicitCadence = item.entry.data.cadence?.toLowerCase();
+const radarSections = radarCadences.map((cadence) => {
+  const items = categoryEntries.filter((item) => resolveRadarCadence(item) === cadence);
+  return {
+    cadence,
+    label: cadenceLabels[cadence][locale],
+    items,
+    archiveGroups: groupByMonth(items, locale),
+  };
+});
 
-  if (explicitCadence === 'daily' || explicitCadence === 'weekly' || explicitCadence === 'monthly') {
-    return explicitCadence;
-  }
-
-  const fallbackSource = `${item.slug} ${item.entry.id}`.toLowerCase();
-
-  if (fallbackSource.includes('daily')) return 'daily';
-  if (fallbackSource.includes('weekly')) return 'weekly';
-  if (fallbackSource.includes('monthly')) return 'monthly';
-
-  return undefined;
-}
-
-function getMonthKey(date: Date) {
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
-}
-
-function formatMonthLabel(date: Date, locale: Locale) {
-  return date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN', {
-    year: 'numeric',
-    month: 'long',
-  });
-}
-
-function createRadarArchiveGroups(items: (typeof categoryEntries), locale: Locale) {
-  const groups = new Map<string, (typeof categoryEntries)>();
-
-  for (const item of items) {
-    const key = getMonthKey(item.entry.data.date);
-    const existing = groups.get(key);
-
-    if (existing) {
-      existing.push(item);
-    } else {
-      groups.set(key, [item]);
-    }
-  }
-
-  return [...groups.entries()].map(([key, groupItems], index) => ({
-    id: key,
-    label: formatMonthLabel(groupItems[0].entry.data.date, locale),
-    items: groupItems,
-    open: index === 0,
-  }));
-}
-
-const radarSections = radarCadences.map((cadence) => ({
-  cadence,
-  label: cadenceLabels[cadence][locale],
-  items: categoryEntries.filter((item) => resolveRadarCadence(item) === cadence),
-  archiveGroups: createRadarArchiveGroups(categoryEntries.filter((item) => resolveRadarCadence(item) === cadence), locale),
-}));
-
-const copy = {
-  zh: {
-    lead: '按主题浏览文章。',
-    browse: '本分区文章列表。',
-    empty: '本分区暂无内容。',
-    radarLead: '按 Daily、Weekly、Monthly 浏览全部更新。',
-    radarBrowse: 'Daily 按月份归档。',
-    radarArchive: '归档',
-    academyLead: '按课程系列和模块浏览 AI Academy。',
-    academyBrowse: '课程系列与模块列表。',
-    academySeries: '课程系列',
-    academyModule: '模块',
-    academyLegacy: '其他 Academy 笔记',
-  },
-  ja: {
-    lead: 'テーマごとに記事を一覧できます。',
-    browse: 'この区分の一覧です。',
-    empty: 'この区分にはまだ記事がありません。',
-    radarLead: 'Daily / Weekly / Monthly ごとに更新を一覧できます。',
-    radarBrowse: 'Daily は月ごとに整理しています。',
-    radarArchive: 'Archive',
-    academyLead: 'AI Academy をシリーズとモジュールごとに一覧できます。',
-    academyBrowse: 'シリーズとモジュールの一覧です。',
-    academySeries: 'シリーズ',
-    academyModule: 'モジュール',
-    academyLegacy: 'その他の Academy ノート',
-  },
-} as const;
-
-const text = copy[locale];
+const text = categoryPage[locale];
 ---
 
 <section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
@@ -127,11 +54,7 @@ const text = copy[locale];
   ) : isAcademy ? (
     <p class="theme-muted mt-8 max-w-xl text-sm">{text.academyBrowse}</p>
   ) : (
-    <p class="theme-muted mt-8 max-w-xl text-sm">
-      {locale === 'ja'
-        ? 'この区分の記事を一覧しています。'
-        : '这里汇总了本分区文章。'}
-    </p>
+    <p class="theme-muted mt-8 max-w-xl text-sm">{text.defaultListNote}</p>
   )}
 </section>
 
@@ -153,11 +76,7 @@ const text = copy[locale];
               <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{section.label}</p>
               <h3 class="theme-heading mt-2 text-2xl font-semibold">{section.items.length}</h3>
             </div>
-            <p class="theme-muted text-sm">
-              {locale === 'ja'
-                ? `${section.label} の履歴`
-                : `${section.label} 归档`}
-            </p>
+            <p class="theme-muted text-sm">{text.radarArchiveNote(section.label)}</p>
           </div>
 
           {section.items.length > 0 ? (
@@ -190,7 +109,7 @@ const text = copy[locale];
                             </div>
                           </div>
                           <p class="theme-muted shrink-0 text-xs uppercase tracking-[0.2em]">
-                            {item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}
+                            {formatDate(item.entry.data.date, locale)}
                           </p>
                         </div>
                       </a>
@@ -200,9 +119,7 @@ const text = copy[locale];
               ))}
             </div>
           ) : (
-            <div class="theme-panel mt-5 rounded-2xl border-dashed p-6 theme-muted">
-              {locale === 'ja' ? 'まだ記事がありません。' : '该分组暂无内容。'}
-            </div>
+            <div class="theme-panel mt-5 rounded-2xl border-dashed p-6 theme-muted">{text.radarEmpty}</div>
           )}
         </section>
       ))}
@@ -216,11 +133,7 @@ const text = copy[locale];
               <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.academySeries}</p>
               <h3 class="theme-heading mt-2 text-3xl font-semibold">{seriesGroup.series}</h3>
             </div>
-            <p class="theme-muted text-sm">
-              {locale === 'ja'
-                ? `${seriesGroup.modules.length} モジュール`
-                : `${seriesGroup.modules.length} 个模块`}
-            </p>
+            <p class="theme-muted text-sm">{text.moduleCount(seriesGroup.modules.length)}</p>
           </div>
 
           <div class="mt-6 grid gap-5">
@@ -236,11 +149,7 @@ const text = copy[locale];
                     </p>
                     <h4 class="theme-heading mt-2 text-2xl font-semibold">{moduleGroup.name}</h4>
                   </div>
-                  <p class="theme-muted text-sm">
-                    {locale === 'ja'
-                      ? `${moduleGroup.items.length} 記事`
-                      : `${moduleGroup.items.length} 篇内容`}
-                  </p>
+                  <p class="theme-muted text-sm">{text.itemCount(moduleGroup.items.length)}</p>
                 </div>
 
                 <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -259,11 +168,7 @@ const text = copy[locale];
               <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.academyLegacy}</p>
               <h3 class="theme-heading mt-2 text-2xl font-semibold">{text.academyLegacy}</h3>
             </div>
-            <p class="theme-muted text-sm">
-              {locale === 'ja'
-                ? `${legacyAcademyEntries.length} 記事`
-                : `${legacyAcademyEntries.length} 篇内容`}
-            </p>
+            <p class="theme-muted text-sm">{text.itemCount(legacyAcademyEntries.length)}</p>
           </div>
 
           <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">

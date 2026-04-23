@@ -13,11 +13,11 @@ import {
   tagPath,
   type CollectionName,
   type Locale,
-  type RadarCadence,
 } from '../lib/site';
+import { formatDate, postDetailPage } from '../lib/i18n';
+import { formatMonthLabel, getMonthKey, resolveRadarCadence } from '../lib/radar';
 
-type BlogCollection = CollectionName;
-type BlogEntry = CollectionEntry<BlogCollection>;
+type BlogEntry = CollectionEntry<CollectionName>;
 
 const { locale, entry, Content } = Astro.props as {
   locale: Locale;
@@ -34,38 +34,11 @@ const allEntries = await getEntriesForLocale(locale);
 const categoryEntries = allEntries.filter((item) => item.entry.data.category === entry.data.category);
 const academyMeta = entry.data.academy;
 
-function resolveRadarCadence(item: { slug: string; entry: { id: string; data: { cadence?: string } } }) {
-  const explicitCadence = item.entry.data.cadence?.toLowerCase();
-
-  if (explicitCadence === 'daily' || explicitCadence === 'weekly' || explicitCadence === 'monthly') {
-    return explicitCadence as RadarCadence;
-  }
-
-  const fallbackSource = `${item.slug} ${item.entry.id}`.toLowerCase();
-
-  if (fallbackSource.includes('daily')) return 'daily';
-  if (fallbackSource.includes('weekly')) return 'weekly';
-  if (fallbackSource.includes('monthly')) return 'monthly';
-
-  return undefined;
-}
-
 function compareAcademyItems(a: (typeof categoryEntries)[number], b: (typeof categoryEntries)[number]) {
   const aOrder = a.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
   const bOrder = b.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
 
   return aOrder - bOrder || a.slug.localeCompare(b.slug, 'en');
-}
-
-function formatArchiveGroupLabel(date: Date, locale: Locale) {
-  return date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN', {
-    year: 'numeric',
-    month: 'long',
-  });
-}
-
-function getMonthKey(date: Date) {
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
 }
 
 const currentCadence = entry.data.category === 'radar' ? resolveRadarCadence({ slug: currentSlug, entry }) : undefined;
@@ -87,7 +60,7 @@ const olderEntry =
     ? sameSeriesEntries[currentSeriesIndex + 1]
     : undefined;
 const currentMonthKey = getMonthKey(entry.data.date);
-const currentMonthLabel = formatArchiveGroupLabel(entry.data.date, locale);
+const currentMonthLabel = formatMonthLabel(entry.data.date, locale);
 const currentMonthEntries = sameSeriesEntries.filter((item) => getMonthKey(item.entry.data.date) === currentMonthKey);
 const sidebarEntries = academyMeta ? sameSeriesEntries : currentMonthEntries;
 const archiveHref =
@@ -95,64 +68,14 @@ const archiveHref =
     ? `${categoryPath('radar', locale)}#${currentCadence}-${currentMonthKey}`
     : categoryPath(entry.data.category, locale);
 
-const copy = {
-  zh: {
-    quickJump: '快速导航',
-    openCategory: '查看分区',
-    openCategoryHint: academyMeta ? '返回 AI Academy 目录' : '返回当前分区',
-    openArchive: entry.data.category === 'radar' ? '查看完整归档' : '查看完整列表',
-    openArchiveHint:
-      entry.data.category === 'radar' ? '查看全部历史内容。' : '查看完整列表。',
-    timeline: '继续阅读',
-    timelineHint: academyMeta ? '同模块前后内容。' : '上一篇与下一篇。',
-    newerEntry: '较新一篇',
-    olderEntry: '较早一篇',
-    noNewerEntry: '已经是这一组里最新的一篇。',
-    noOlderEntry: '已经到这一组里最早的一篇。',
-    sameSeries: academyMeta ? '模块导航' : currentMonthLabel,
-    sameSeriesHint: academyMeta
-      ? '当前模块文章列表。'
-      : entry.data.category === 'radar'
-        ? '当前月份文章列表。'
-        : '当前月份文章列表。',
-    currentArticle: '当前',
-    courseContext: '课程信息',
-    courseEntry: '课程链接',
-    prerequisites: '前置知识',
-    noPrerequisites: '没有额外前置要求。',
-    home: '首页',
-  },
-  ja: {
-    quickJump: 'クイックナビ',
-    openCategory: '区分ページへ',
-    openCategoryHint: academyMeta ? 'AI Academy の目次へ戻る' : 'この区分の一覧へ戻る',
-    openArchive: entry.data.category === 'radar' ? '完全アーカイブを見る' : '一覧を見る',
-    openArchiveHint:
-      entry.data.category === 'radar'
-        ? '履歴全体を表示します。'
-        : '一覧ページを表示します。',
-    timeline: '続けて読む',
-    timelineHint: academyMeta ? '同じモジュール内の前後コンテンツです。' : '前後の記事です。',
-    newerEntry: '新しい側',
-    olderEntry: '古い側',
-    noNewerEntry: 'このグループでは最も新しい記事です。',
-    noOlderEntry: 'このグループでは最も古い記事です。',
-    sameSeries: academyMeta ? 'モジュールナビ' : currentMonthLabel,
-    sameSeriesHint: academyMeta
-      ? '現在のモジュール記事一覧です。'
-      : entry.data.category === 'radar'
-        ? '今月分の記事一覧です。'
-        : '今月分の記事一覧です。',
-    currentArticle: '現在地',
-    courseContext: 'Course Info',
-    courseEntry: '講座ページ',
-    prerequisites: '前提知識',
-    noPrerequisites: '特別な前提条件はありません。',
-    home: 'ホーム',
-  },
-} as const;
-
-const text = copy[locale];
+const text = postDetailPage[locale];
+const isRadar = entry.data.category === 'radar';
+const openCategoryHint = academyMeta ? text.openCategoryHintAcademy : text.openCategoryHintDefault;
+const openArchiveLabel = isRadar ? text.openArchiveRadar : text.openArchiveDefault;
+const openArchiveHint = isRadar ? text.openArchiveHintRadar : text.openArchiveHintDefault;
+const timelineHint = academyMeta ? text.timelineHintAcademy : text.timelineHintDefault;
+const sameSeriesLabel = academyMeta ? text.sameSeriesAcademy : currentMonthLabel;
+const sameSeriesHint = academyMeta ? text.sameSeriesHintAcademy : text.sameSeriesHintMonth;
 const academySeriesAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}` : '';
 const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${slugifyTag(academyMeta.module)}` : '';
 ---
@@ -162,7 +85,7 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
     <section class="theme-panel rounded-[1.5rem] p-5">
       <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.quickJump}</p>
       <h2 class="theme-heading mt-2 text-2xl font-semibold">{collectionLabels[entry.data.category][locale]}</h2>
-      <p class="theme-muted mt-3 text-sm leading-6">{text.openCategoryHint}</p>
+      <p class="theme-muted mt-3 text-sm leading-6">{openCategoryHint}</p>
       <a
         href={categoryPath(entry.data.category, locale)}
         class="theme-button-soft mt-5 inline-flex w-full items-center justify-between rounded-[1rem] px-4 py-3 text-sm"
@@ -170,12 +93,12 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
         <span>{text.openCategory}</span>
         <span aria-hidden="true">↗</span>
       </a>
-      <p class="theme-muted mt-5 text-xs uppercase tracking-[0.24em]">{text.openArchiveHint}</p>
+      <p class="theme-muted mt-5 text-xs uppercase tracking-[0.24em]">{openArchiveHint}</p>
       <a
         href={academyMeta ? `${categoryPath('academy', locale)}${academyModuleAnchor}` : archiveHref}
         class="theme-button-soft mt-3 inline-flex w-full items-center justify-between rounded-[1rem] px-4 py-3 text-sm"
       >
-        <span>{text.openArchive}</span>
+        <span>{openArchiveLabel}</span>
         <span aria-hidden="true">↗</span>
       </a>
     </section>
@@ -188,7 +111,7 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
         </div>
         <span class="theme-chip rounded-xl px-3 py-1 text-xs">{sameSeriesEntries.length}</span>
       </div>
-      <p class="theme-muted mt-3 text-sm leading-6">{text.timelineHint}</p>
+      <p class="theme-muted mt-3 text-sm leading-6">{timelineHint}</p>
 
       <div class="mt-5 grid gap-3">
         <div class="theme-panel rounded-[1rem] p-4">
@@ -197,7 +120,7 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
             <a href={articlePath(newerEntry.entry.data.category, newerEntry.slug, locale)} class="mt-3 block">
               <p class="theme-heading text-sm font-semibold leading-6">{newerEntry.entry.data.title}</p>
               <p class="theme-muted mt-2 text-xs uppercase tracking-[0.2em]">
-                {newerEntry.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}
+                {formatDate(newerEntry.entry.data.date, locale)}
               </p>
             </a>
           ) : (
@@ -211,7 +134,7 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
             <a href={articlePath(olderEntry.entry.data.category, olderEntry.slug, locale)} class="mt-3 block">
               <p class="theme-heading text-sm font-semibold leading-6">{olderEntry.entry.data.title}</p>
               <p class="theme-muted mt-2 text-xs uppercase tracking-[0.2em]">
-                {olderEntry.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}
+                {formatDate(olderEntry.entry.data.date, locale)}
               </p>
             </a>
           ) : (
@@ -224,12 +147,12 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
     <section class="theme-panel rounded-[1.5rem] p-5">
       <div class="flex items-start justify-between gap-3">
         <div>
-          <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.sameSeries}</p>
-          <h2 class="theme-heading mt-2 text-xl font-semibold">{text.sameSeries}</h2>
+          <p class="theme-muted text-xs uppercase tracking-[0.28em]">{sameSeriesLabel}</p>
+          <h2 class="theme-heading mt-2 text-xl font-semibold">{sameSeriesLabel}</h2>
         </div>
         <span class="theme-chip rounded-xl px-3 py-1 text-xs">{sidebarEntries.length}</span>
       </div>
-      <p class="theme-muted mt-3 text-sm leading-6">{text.sameSeriesHint}</p>
+      <p class="theme-muted mt-3 text-sm leading-6">{sameSeriesHint}</p>
 
       <nav class="mt-5 grid gap-2">
         {sidebarEntries.map((item) => {
@@ -249,7 +172,7 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
                 <div class="min-w-0">
                   <p class="theme-heading line-clamp-2 font-medium leading-6">{item.entry.data.title}</p>
                   <p class="theme-muted mt-2 text-xs uppercase tracking-[0.2em]">
-                    {item.entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}
+                    {formatDate(item.entry.data.date, locale)}
                   </p>
                 </div>
                 {isCurrent ? (
@@ -293,7 +216,7 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
       <span class="theme-chip rounded-xl px-3 py-1">
         {collectionLabels[entry.data.category][locale]}
       </span>
-      <time datetime={entry.data.date.toISOString()}>{entry.data.date.toLocaleDateString(locale === 'ja' ? 'ja-JP' : 'zh-CN')}</time>
+      <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date, locale)}</time>
       <span>·</span>
       <span>{entry.data.lang.toUpperCase()}</span>
     </div>
@@ -326,7 +249,7 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
               <div>
                 <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.courseEntry}</p>
                 <a href={academyMeta.sourceUrl} class="theme-chip theme-chip-link mt-2 inline-flex rounded-xl px-4 py-2 text-sm">
-                  {locale === 'ja' ? '講座ページを開く' : '打开课程页面'}
+                  {text.courseEntryCta}
                 </a>
               </div>
             ) : null}
@@ -366,15 +289,11 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
       <section class="theme-panel mt-6 rounded-[1.25rem] p-5">
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p class="theme-muted text-xs uppercase tracking-[0.24em]">
-              {locale === 'ja' ? 'Audio Briefing' : 'Audio Briefing'}
-            </p>
-            <h2 class="theme-heading mt-2 text-lg font-semibold">
-              {locale === 'ja' ? '音声解説' : '音频解读'}
-            </h2>
+            <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.audioBriefingEyebrow}</p>
+            <h2 class="theme-heading mt-2 text-lg font-semibold">{text.audioBriefingTitle}</h2>
           </div>
           <a href={audioSrc} class="theme-chip theme-chip-link inline-flex rounded-xl px-4 py-2 text-sm">
-            {locale === 'ja' ? '音声を開く' : '打开音频'}
+            {text.audioOpen}
           </a>
         </div>
 
@@ -388,15 +307,11 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
       <section class="theme-panel mt-6 rounded-[1.25rem] p-5">
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p class="theme-muted text-xs uppercase tracking-[0.24em]">
-              {locale === 'ja' ? 'Slide Deck' : 'Slide Deck'}
-            </p>
-            <h2 class="theme-heading mt-2 text-lg font-semibold">
-              {locale === 'ja' ? '演示資料' : '演示文稿'}
-            </h2>
+            <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.slideDeckEyebrow}</p>
+            <h2 class="theme-heading mt-2 text-lg font-semibold">{text.slideDeckTitle}</h2>
           </div>
           <a href={deckHref} class="theme-chip theme-chip-link inline-flex rounded-xl px-4 py-2 text-sm">
-            {locale === 'ja' ? '資料を開く' : '打开文稿'}
+            {text.slideDeckOpen}
           </a>
         </div>
       </section>
