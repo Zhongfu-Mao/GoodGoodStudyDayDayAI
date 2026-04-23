@@ -9,7 +9,9 @@
     "check": "astro check",
     "radar:audio": "node scripts/generate-radar-audio.mjs",
     "radar:infographic": "node scripts/generate-radar-infographic.mjs",
-    "radar:weekly-assets": "node scripts/generate-radar-weekly-assets.mjs"
+    "radar:infographic:openai": "node scripts/generate-radar-infographic.mjs --backend openai",
+    "radar:weekly-assets": "node scripts/generate-radar-weekly-assets.mjs",
+    "radar:monthly-assets": "node scripts/generate-radar-monthly-assets.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.3",

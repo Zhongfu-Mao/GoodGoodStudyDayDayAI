@@ -141,7 +141,7 @@ function buildBriefMemo(markdown, meta) {
         models: ['2. 🧠 モデル最前線 & アルゴリズム探索', '2. 🧠 Model Frontier & Research'],
         tools: ['3. 💻 実装コード & ツール', '3. 💻 Tools & Code'],
         market: ['4. 📰 業界・ビジネス速報', '4. 📰 Industry & Business'],
-        mail: ['📬 メール補遺', '📬 補遺'],
+        mail: ['📬 Newsletter 精选', '📬 メール補遺', '📬 補遺'],
       }
     : {
         scope: ['本期范围'],
@@ -149,7 +149,7 @@ function buildBriefMemo(markdown, meta) {
         models: ['2. 🧠 模型前沿 & 算法探索'],
         tools: ['3. 💻 实战代码 & 工具库'],
         market: ['4. 📰 行业与商业快讯'],
-        mail: ['📬 邮件补遗'],
+        mail: ['📬 Newsletter 精选', '📬 邮件补遗'],
       };
 
   const scopeBlock = extractSectionBlock(markdown, headings.scope);
@@ -169,7 +169,7 @@ function buildBriefMemo(markdown, meta) {
     modelsBlock ? `${meta.lang === 'ja' ? 'モデルと研究' : '模型与研究'}：\n${extractShortParagraphs(modelsBlock).join('\n')}` : '',
     toolsBlock ? `${meta.lang === 'ja' ? 'ツールと実装' : '工具与实践'}：\n${extractShortParagraphs(toolsBlock, 2).join('\n')}` : '',
     marketBlock ? `${meta.lang === 'ja' ? '業界とビジネス' : '行业与商业'}：\n${extractShortParagraphs(marketBlock, 2).join('\n')}` : '',
-    mailBlock ? `${meta.lang === 'ja' ? '補遺' : '补遗'}：\n${extractShortParagraphs(mailBlock, 2).join('\n')}` : '',
+    mailBlock ? `${meta.lang === 'ja' ? 'Newsletter 精选' : 'Newsletter 精选'}：\n${extractShortParagraphs(mailBlock, 2).join('\n')}` : '',
     meta.lang === 'ja'
       ? '要求：把上面内容整理成适合 5 分钟内听完的简明音频，不展开无关背景。'
       : '要求：把上面内容整理成适合 3-6 分钟内听完的简明音频，只保留最重要主线与信号关系。',
@@ -378,13 +378,14 @@ async function main() {
     }
 
     console.log(`Waiting for audio artifact ${artifact.id}...`);
-    await runNotebooklm(['artifact', 'wait', '--notebook', notebookId, artifact.id, '--timeout', '600', '--json']);
+    await runNotebooklm(['artifact', 'wait', '--notebook', notebookId, artifact.id, '--timeout', '1200', '--json']);
 
     console.log(`Downloading audio to ${path.relative(WORKSPACE_ROOT, audioPath)}...`);
     await runNotebooklm(['download', 'audio', '--notebook', notebookId, '--force', audioPath, '--json']);
 
     if (meta.audioUrl !== publicAudioUrl) {
-      const updated = updateAudioUrl(raw, publicAudioUrl);
+      const latestRaw = await readFile(targetFile, 'utf8');
+      const updated = updateAudioUrl(latestRaw, publicAudioUrl);
       await writeFile(targetFile, updated, 'utf8');
       console.log(`Updated frontmatter audioUrl -> ${publicAudioUrl}`);
     } else {
