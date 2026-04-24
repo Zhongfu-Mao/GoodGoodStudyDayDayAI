@@ -9,6 +9,7 @@ tags:
   - Opus
   - Claude
 lang: zh
+coverImage: /images/radar/daily-ai-radar-2026-04-17-infographic.png
 draft: false
 ---
 ## 本期范围

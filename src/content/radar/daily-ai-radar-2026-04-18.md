@@ -9,6 +9,7 @@ tags:
   - OpenClaw
   - Opus
 lang: zh
+coverImage: /images/radar/daily-ai-radar-2026-04-18-infographic.png
 draft: false
 ---
 ## 本期范围

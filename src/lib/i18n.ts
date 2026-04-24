@@ -76,6 +76,8 @@ export const categoryPage = {
     empty: '本分区暂无内容。',
     radarLead: '按 Daily、Weekly、Monthly 浏览全部更新。',
     radarBrowse: 'Daily 按月份归档。',
+    radarGallery: '图片墙',
+    radarGalleryHint: '只看图，也能快速扫过 AI 雷达的主线。',
     radarArchive: '归档',
     radarArchiveNote: (label: string) => `${label} 归档`,
     radarEmpty: '该分组暂无内容。',
@@ -94,6 +96,8 @@ export const categoryPage = {
     empty: 'この区分にはまだ記事がありません。',
     radarLead: 'Daily / Weekly / Monthly ごとに更新を一覧できます。',
     radarBrowse: 'Daily は月ごとに整理しています。',
+    radarGallery: 'Image Wall',
+    radarGalleryHint: '画像だけでも AI Radar の流れを追えます。',
     radarArchive: 'Archive',
     radarArchiveNote: (label: string) => `${label} の履歴`,
     radarEmpty: 'まだ記事がありません。',
@@ -105,6 +109,29 @@ export const categoryPage = {
     academyLegacy: 'その他の Academy ノート',
     moduleCount: (count: number) => `${count} モジュール`,
     itemCount: (count: number) => `${count} 記事`,
+  },
+} as const;
+
+export const radarGalleryPage = {
+  zh: {
+    title: 'AI 雷达图片墙',
+    description: '把有 infographic 的 AI 雷达集中成一面视觉索引。没时间读全文时，先扫图也能抓住每天的主线。',
+    eyebrow: 'Visual Radar',
+    countLabel: '张图',
+    backToRadar: '返回 AI 雷达',
+    openArticle: '打开原文',
+    empty: '还没有可展示的雷达图。',
+    coverAlt: (title: string) => `${title} 的信息图`,
+  },
+  ja: {
+    title: 'AI Radar Image Wall',
+    description: 'Infographic がある AI Radar をまとめた視覚インデックスです。全文を読む時間がなくても、画像から流れをつかめます。',
+    eyebrow: 'Visual Radar',
+    countLabel: 'images',
+    backToRadar: 'AI Radar へ戻る',
+    openArticle: '記事を開く',
+    empty: '表示できる Radar 画像はまだありません。',
+    coverAlt: (title: string) => `${title} のインフォグラフィック`,
   },
 } as const;
 

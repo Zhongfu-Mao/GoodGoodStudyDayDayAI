@@ -1,0 +1,91 @@
+---
+import {
+  articlePath,
+  cadenceLabels,
+  categoryPath,
+  collectionLabels,
+  resolveSiteUrl,
+  type Locale,
+} from '../lib/site';
+import { getEntriesForLocale } from '../lib/content';
+import { formatDate, radarGalleryPage } from '../lib/i18n';
+import { resolveRadarCadence } from '../lib/radar';
+
+const { locale } = Astro.props as { locale: Locale };
+const text = radarGalleryPage[locale];
+const entries = (await getEntriesForLocale(locale))
+  .filter((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage)
+  .sort((a, b) => b.entry.data.date.getTime() - a.entry.data.date.getTime());
+---
+
+<section class="theme-panel-strong rounded-[1.5rem] p-6 shadow-glow md:p-8">
+  <div class="flex flex-wrap items-end justify-between gap-5">
+    <div>
+      <p class="theme-kicker text-sm uppercase tracking-[0.28em]">{text.eyebrow}</p>
+      <h1 class="theme-heading mt-3 text-3xl font-semibold md:text-5xl">{text.title}</h1>
+      <p class="theme-muted mt-4 max-w-3xl text-base leading-7">{text.description}</p>
+    </div>
+    <div class="flex shrink-0 flex-wrap gap-2">
+      <span class="theme-chip rounded-xl px-4 py-2 text-sm">{entries.length} {text.countLabel}</span>
+      <a href={categoryPath('radar', locale)} class="theme-button-soft rounded-xl px-4 py-2 text-sm">
+        {text.backToRadar}
+      </a>
+    </div>
+  </div>
+</section>
+
+{entries.length > 0 ? (
+  <section class="mt-8 grid gap-5 md:grid-cols-2">
+    {entries.map((item, index) => {
+      const href = articlePath(item.entry.data.category, item.slug, locale);
+      const coverImage = resolveSiteUrl(item.entry.data.coverImage ?? '');
+      const cadence = resolveRadarCadence(item);
+      const cadenceLabel = cadence ? cadenceLabels[cadence][locale] : collectionLabels.radar[locale];
+      const isFeature = index === 0;
+
+      return (
+        <article class:list={[
+          'theme-panel theme-panel-link overflow-hidden rounded-[1.25rem] shadow-glow',
+          isFeature ? 'md:col-span-2' : '',
+        ]}>
+          <a href={href} class:list={[
+            'block overflow-hidden',
+            isFeature ? 'aspect-[2.4/1]' : 'aspect-[2/1]',
+          ]}>
+            <img
+              src={coverImage}
+              alt={text.coverAlt(item.entry.data.title)}
+              loading={index < 2 ? 'eager' : 'lazy'}
+              decoding="async"
+              class="h-full w-full object-cover transition duration-200 hover:scale-[1.01]"
+            />
+          </a>
+          <div class="p-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-[0.2em] theme-muted">
+              <span>{cadenceLabel}</span>
+              <time datetime={item.entry.data.date.toISOString()}>{formatDate(item.entry.data.date, locale)}</time>
+            </div>
+            <h2 class:list={[
+              'theme-heading mt-3 font-semibold leading-tight',
+              isFeature ? 'text-2xl md:text-3xl' : 'text-xl',
+            ]}>
+              <a href={href}>{item.entry.data.title}</a>
+            </h2>
+            <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex flex-wrap gap-2">
+                {item.entry.data.tags.slice(0, 4).map((tag) => (
+                  <span class="theme-chip rounded-xl px-3 py-1 text-xs">{tag}</span>
+                ))}
+              </div>
+              <a href={href} class="theme-button-soft rounded-xl px-3 py-2 text-xs">
+                {text.openArticle}
+              </a>
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </section>
+) : (
+  <section class="theme-panel mt-8 rounded-[1.25rem] p-6 theme-muted">{text.empty}</section>
+)}

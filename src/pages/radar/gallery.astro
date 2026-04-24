@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import RadarGalleryPage from '../../components/RadarGalleryPage.astro';
+import { radarGalleryPage } from '../../lib/i18n';
+import { radarGalleryPath } from '../../lib/site';
+
+const text = radarGalleryPage.zh;
+---
+
+<BaseLayout
+  title={`${text.title} · Good Good Study, Day Day AI`}
+  description={text.description}
+  locale="zh"
+  languagePaths={{ zh: radarGalleryPath('zh'), ja: radarGalleryPath('ja') }}
+>
+  <RadarGalleryPage locale="zh" />
+</BaseLayout>

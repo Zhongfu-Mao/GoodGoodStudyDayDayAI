@@ -4,6 +4,7 @@ import {
   articlePath,
   cadenceLabels,
   collectionLabels,
+  radarGalleryPath,
   radarCadences,
   slugifyTag,
   type CollectionName,
@@ -50,7 +51,11 @@ const text = categoryPage[locale];
           {section.label}
         </a>
       ))}
+      <a href={radarGalleryPath(locale)} class="theme-chip theme-chip-link rounded-xl px-4 py-2 text-sm">
+        {text.radarGallery}
+      </a>
     </div>
+    <p class="theme-muted mt-3 max-w-xl text-sm">{text.radarGalleryHint}</p>
   ) : isAcademy ? (
     <p class="theme-muted mt-8 max-w-xl text-sm">{text.academyBrowse}</p>
   ) : (

@@ -9,6 +9,7 @@ tags:
   - Context Engineering
   - OpenClaw
 lang: zh
+coverImage: /images/radar/daily-ai-radar-2026-04-07-infographic.png
 draft: false
 ---
 ## 本期范围
