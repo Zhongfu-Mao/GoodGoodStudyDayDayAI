@@ -6,8 +6,9 @@ description: "タスク分割、並列実行、文脈分離といった subagent
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-subagents.svg"
 tags:
   - "Anthropic Academy"
-  - "Agents"
-  - "Subagents"
+  - "講座ノート"
+  - "Agents/Subagents"
+  - "MCP"
 lang: ja
 academy:
   series: "Anthropic Academy"

@@ -6,8 +6,9 @@ description: "AI と協働するための 4D フレームワークを軸に、�
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/ai-fluency-framework-and-foundations.svg"
 tags:
   - "Anthropic Academy"
-  - "AI Fluency"
-  - "Foundations"
+  - "講座ノート"
+  - "AI Fluency/フレームワーク"
+  - "AI Fluency/基礎"
 lang: ja
 academy:
   series: "Anthropic Academy"

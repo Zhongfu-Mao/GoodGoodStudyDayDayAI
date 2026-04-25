@@ -6,8 +6,9 @@ description: "Claude Cowork の基本概念、Chat との違い、ファイル�
 coverImage: "/images/academy/anthropic-academy/covers/03-claude-product/introduction-to-claude-cowork.svg"
 tags:
   - "Anthropic Academy"
-  - "Claude"
-  - "Cowork"
+  - "講座ノート"
+  - "Claude/Cowork"
+  - "プロダクト"
 lang: ja
 academy:
   series: "Anthropic Academy"

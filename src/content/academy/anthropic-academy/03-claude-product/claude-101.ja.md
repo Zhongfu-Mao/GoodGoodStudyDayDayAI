@@ -6,8 +6,9 @@ description: "Claude の基本的な使い方、対話の進め方、プロジ�
 coverImage: "/images/academy/anthropic-academy/covers/03-claude-product/claude-101.svg"
 tags:
   - "Anthropic Academy"
-  - "Claude"
-  - "Getting Started"
+  - "講座ノート"
+  - "Claude/入門"
+  - "プロダクト"
 lang: ja
 academy:
   series: "Anthropic Academy"

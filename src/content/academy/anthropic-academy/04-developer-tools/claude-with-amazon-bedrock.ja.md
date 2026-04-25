@@ -6,8 +6,10 @@ description: "AWS 上で Claude を利用するときの位置づけ、接続方
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-with-amazon-bedrock.svg"
 tags:
   - "Anthropic Academy"
-  - "Claude"
+  - "講座ノート"
+  - "Claude/Bedrock"
   - "AWS"
+  - "開発者"
 lang: ja
 academy:
   series: "Anthropic Academy"

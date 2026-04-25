@@ -6,7 +6,8 @@ description: "授業準備、教材作成、学習支援など、教育現場で
 coverImage: "/images/academy/anthropic-academy/covers/02-ai-fluency-audiences/ai-fluency-for-educators.svg"
 tags:
   - "Anthropic Academy"
-  - "AI Fluency"
+  - "講座ノート"
+  - "AI Fluency/教育者"
   - "Education"
 lang: ja
 academy:

@@ -6,7 +6,8 @@ description: "限られた人員や予算の中で、非営利組織が AI を�
 coverImage: "/images/academy/anthropic-academy/covers/02-ai-fluency-audiences/ai-fluency-for-nonprofits.svg"
 tags:
   - "Anthropic Academy"
-  - "AI Fluency"
+  - "講座ノート"
+  - "AI Fluency/非営利"
   - "Nonprofits"
 lang: ja
 academy:

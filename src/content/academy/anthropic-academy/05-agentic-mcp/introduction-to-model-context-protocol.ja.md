@@ -6,7 +6,8 @@ description: "MCP の基本発想、モデルとツールを接続する枠組�
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-model-context-protocol.svg"
 tags:
   - "Anthropic Academy"
-  - "MCP"
+  - "講座ノート"
+  - "MCP/Getting Started"
   - "Agents"
 lang: ja
 academy:

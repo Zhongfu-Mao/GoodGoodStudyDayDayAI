@@ -6,8 +6,9 @@ description: "AI を教室や研修で扱うときに、ツール紹介で終わ
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/teaching-ai-fluency.svg"
 tags:
   - "Anthropic Academy"
-  - "AI Fluency"
-  - "Teaching"
+  - "講座ノート"
+  - "AI Fluency/教育"
+  - "Education"
 lang: ja
 academy:
   series: "Anthropic Academy"

@@ -6,8 +6,9 @@ description: "Claude API の基本概念、プロンプト設計、メッセー�
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/building-with-the-claude-api.svg"
 tags:
   - "Anthropic Academy"
-  - "Claude API"
-  - "Developers"
+  - "講座ノート"
+  - "Claude/API"
+  - "開発者"
 lang: ja
 academy:
   series: "Anthropic Academy"

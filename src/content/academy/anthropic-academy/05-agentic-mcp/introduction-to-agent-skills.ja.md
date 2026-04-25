@@ -6,8 +6,9 @@ description: "Skills の役割、エージェントに知識や手順を与え�
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-agent-skills.svg"
 tags:
   - "Anthropic Academy"
-  - "Agents"
-  - "Skills"
+  - "講座ノート"
+  - "Agents/Skills"
+  - "MCP/Ecosystem"
 lang: ja
 academy:
   series: "Anthropic Academy"
