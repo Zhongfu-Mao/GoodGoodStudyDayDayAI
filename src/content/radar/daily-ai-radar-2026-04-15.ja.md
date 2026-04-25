@@ -14,7 +14,7 @@ draft: false
 ## 対象範囲
 
 - 対象期間: 2026-04-12〜2026-04-15（過去 72 時間）
-- 参照ソース: Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事
+
 
 ---
 ![Figma 设计到代码流程图](https://substackcdn.com/image/fetch/$s_!Us9U!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff53dd546-d966-4485-bfe9-5d410d319a3c_1712x2048.png)
@@ -135,7 +135,7 @@ AI Valley は GPT-5.4-Cyber を、Anthropic Mythos / Glasswing 路線への Open
 **出典：** AI Valley  
 **リンク：** https://www.testingcatalog.com/google-develops-its-own-desktop-agent-to-compete-with-cowork/
 
-Gemini に Agent タブ、タスク受信箱、human review スイッチを備えた desktop agent workspace を Google が準備しているという報道。Gmail、Drive、Calendar、Web をまたぐ複数ステップ実行を単一目標で進める設計で、単なる chat UI から「仕事を実行する層」へ寄っていることが分かる。
+Gemini に Agent タブ、タスク受信箱、human review スイッチを備えた desktop agent workspace を Google が準備しているという報道。Newsletter、Drive、Calendar、Web をまたぐ複数ステップ実行を単一目標で進める設計で、単なる chat UI から「仕事を実行する層」へ寄っていることが分かる。
 
 ### Anthropic は Claude を「設計とプロダクト生成」のワークフローへ拡張中
 **出典：** AI Valley  

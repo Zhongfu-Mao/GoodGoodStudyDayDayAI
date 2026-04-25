@@ -15,7 +15,7 @@ draft: false
 
 - 収集日: 2026-04-08
 - 対象期間: 過去 72 時間（2026-04-05〜2026-04-08）
-- 参照ソース: Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI
+
 
 ---
 ![AI Agent 评测指标示意图](https://substackcdn.com/image/fetch/$s_!pBdt!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdf7d21ad-f026-44d1-8d99-5c6ef69c0842_1357x696.png)
@@ -139,8 +139,8 @@ OpenAI の大型資金調達と superapp 構想を扱う記事で、ChatGPT 成�
 ## 📬 Newsletter 精选
 
 ### Every: Get Your Hands Dirty
-**メール件名：** Get Your Hands Dirty  
-**受信時間：** 2026-04-08（JST）
+**出典：** Newsletter · Every  
+**日付：** 2026-04-08
 
 **補足要約：**
 Every は、AI 導入を「新しい従業員を迎えること」と捉え、経営層が自分で触って判断を持たなければ AI-native 組織にはなれないと説いている。Anthropic が Claude の利用制限を強めたことが、逆に OpenAI へユーザーを流す余地を生んでいる、という競争面の観察も含まれていた。

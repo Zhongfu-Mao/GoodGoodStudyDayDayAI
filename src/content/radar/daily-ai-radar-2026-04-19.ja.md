@@ -14,7 +14,7 @@ draft: false
 ## 対象範囲
 
 - 対象期間：過去 72 時間（2026-04-16 〜 2026-04-19）
-- 参照ソース：Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · The Rundown AI · 老范讲故事
+
 
 ---
 ![Agent Landscape の進化図：weights から context、そして harness engineering へ](https://substack-post-media.s3.amazonaws.com/public/images/acc877e8-071d-4d5c-bcc5-c8dbe50e37c1_2114x1154.png)

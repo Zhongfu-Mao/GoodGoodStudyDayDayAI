@@ -16,7 +16,7 @@ draft: false
 ## 本期范围
 
 - 覆盖时间窗口：2026-04-19 ~ 2026-04-22（过去 72 小时）
-- 来源：Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事
+
 
 ---
 ![The Security Architecture of GitHub Agentic Workflow](https://substackcdn.com/image/fetch/$s_!kMNk!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0fe07f2a-1668-4e29-bc60-9c558e024e6b_3108x1758.png)
@@ -128,13 +128,13 @@ SpaceX 计划 6 月上市，估值区间 1.75–2 万亿美元，可能是人类
 ## 📬 Newsletter 精选
 
 ### Every：Claude Design 适合生成第一稿，但还不是设计师的替代品
-**邮件主题：** Mini-Vibe Check: Claude Design Isn’t for Designers—Yet | **邮件时间：** 2026-04-22（JST）
+**来源：** Newsletter · Mini-Vibe Check: Claude Design Isn’t for Designers—Yet  · **日期：** 2026-04-22（JST）
 
 **补充摘要：**
 Every 的判断很克制：Claude Design 已经足够擅长生成页面结构、设计系统和 clickable prototype，能把“从 0 到可看”这一步大幅压缩；但真正决定质感的最后一公里，仍然需要 Figma 这类画布工具和设计判断。更值得补记的是同一期对安全侧的提醒：Vercel 与 Lovable 的事故说明，AI 工具的风险既可能来自供应商被攻破，也可能来自生成式默认配置把用户数据直接暴露到公网。
 
 ### Every：Monologue Notes 把录音变成可检索的 agent 上下文
-**邮件主题：** Introducing Monologue Notes: Record Every Meeting, Call, and Voice Memo | **邮件时间：** 2026-04-22（JST）
+**来源：** Newsletter · Introducing Monologue Notes: Record Every Meeting, Call, and Voice Memo  · **日期：** 2026-04-22（JST）
 
 **补充摘要：**
 Every 发布的 Monologue Notes 值得记一笔，因为它代表“录音 → 结构化上下文 → agent 可调用记忆”这条链路正在产品化。它不是单纯做转写，而是把会议、电话和语音 memo 变成可搜索的长期上下文，方便后续 agent 继续接管整理、检索和行动项生成。

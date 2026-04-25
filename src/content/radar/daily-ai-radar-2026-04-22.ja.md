@@ -16,7 +16,7 @@ draft: false
 ## 対象範囲
 
 - 対象期間：2026-04-19 〜 2026-04-22（過去 72 時間）
-- 参照ソース：Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事
+
 
 ---
 ![The Security Architecture of GitHub Agentic Workflow](https://substackcdn.com/image/fetch/$s_!kMNk!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0fe07f2a-1668-4e29-bc60-9c558e024e6b_3108x1758.png)

@@ -14,7 +14,7 @@ draft: false
 ## 対象範囲
 
 - データ期間: 2026-04-07〜2026-04-10（過去 72 時間）
-- 参照ソース: Latent Space · ByteByteGo · Ahead of AI（Sebastian Raschka）· Hugging Face Blog · The Rundown AI · Daily Dose of Data Science
+
 
 ---
 ![Extreme Harness Engineering 主题视觉图](https://substackcdn.com/image/fetch/$s_!5TXE!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F193478192%2Fbac92fb4-46a2-4c8a-b189-083c263423fd%2Ftranscoded-1775581604.png)
@@ -106,7 +106,3 @@ Anthropic は Claude Mythos Preview を、サイバーセキュリティ防御�
 **リンク：** https://blog.bytebytego.com/p/whats-next-in-ai-five-trends-to-watch
 
 持続型 Agent、信頼性と安全性、physical AI、test-time scaling、小型開源モデルの実用化という 5 本柱で整理している。戦略レベルの俯瞰に向いている。
-
-*⚠️ 取得補足:*
-
-今回の取得時点では Chrome 拡張が未接続で、Cowork サンドボックス側の外向きネットワーク制限もあり、内容の一部は WebSearch fallback で補った。そのため Daily Dose of DS や ByteByteGo の一部記事は、厳密な発行時刻に若干の誤差がある可能性がある。

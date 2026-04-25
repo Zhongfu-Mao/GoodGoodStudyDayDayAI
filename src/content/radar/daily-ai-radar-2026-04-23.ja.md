@@ -16,7 +16,7 @@ draft: false
 ## 対象範囲
 
 - 対象期間：2026-04-20 〜 2026-04-23（過去 72 時間）
-- 参照ソース：Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事
+
 
 ---
 ![Sergey Brin commits DeepMind to a Claude catch-up](https://media.beehiiv.com/cdn-cgi/image/format=auto,fit=scale-down,onerror=redirect/uploads/asset/file/a01a3066-3e45-4ec1-a488-80f6e3e1d111/MkPr4mf0C84OUCGU.webp)
@@ -142,9 +142,3 @@ Claude Design の登場で、Anthropic は model provider の枠を超え、Canv
 **リンク：** <https://lukefan.com/2026/04/20/deepseek-300m-funding-10b-valuation-vie-governance-shift/>
 
 DeepSeek の資金調達をめぐる論点で、老范が強調するのは valuation の妥当性よりも、VIE 構造下で海外投資家の出口がきわめて細いことだ。地政学と governance の変化を踏まえると、長期資金にとってはここが最大のリスクになる。
-
-## ⚠️ 取得失敗
-
-- なし。
-
-> 注：Ahead of AI の最新記事は 2026-04-18 公開で 72 時間をやや超えるが、最近の model release を読むための方法論として有用だったため、超過を明記したうえで掲載。

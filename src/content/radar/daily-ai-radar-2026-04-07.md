@@ -175,8 +175,8 @@ Jack Dorsey 公开表达 AI 时代管理层冗余的观点，认为 AI Agent 可
 ## 📬 Newsletter 精选
 
 ### AI Valley：OpenAI 的 “Robot Tax” 叙事补充
-**邮件主题：** OpenAI’s "Robot Tax"  
-**邮件时间：** 2026-04-07（JST）
+**来源：** Newsletter · AI Valley  
+**日期：** 2026-04-07
 
 **补充摘要：**
 AI Valley 这期把 OpenAI 的“新社会契约”讨论拆得更具体：不只是抽象伦理，而是已经落到机器人税、AI 公司出资的主权型公共基金、全民 AI 可及性和四天工作制等政策工具上。同期它还强调 Anthropic 年化收入已冲过 300 亿美元、百万美元级企业客户两个月内翻倍，并提前锁定 2027 年起 3.5GW TPU 算力，说明前沿实验室竞争已从模型发布扩展到政策话语权和算力锁仓能力。

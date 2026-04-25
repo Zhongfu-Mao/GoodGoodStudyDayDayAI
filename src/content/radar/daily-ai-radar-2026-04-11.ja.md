@@ -14,7 +14,7 @@ draft: false
 ## 対象範囲
 
 - 取得期間: 過去 72 時間（2026-04-08〜2026-04-11）
-- 参照ソース: Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI
+
 
 ---
 ![Advisor Strategy in Agents](https://substackcdn.com/image/fetch/$s_!cC8w!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcdad4823-d50d-43c2-a1de-bd9571960f01_1567x809.png)
@@ -172,8 +172,8 @@ draft: false
 ## 📬 Newsletter 精选
 
 ### Every: データライセンスは AI 時代の新しい収益線になる
-**メール件名：** The Market for Making AI Better  
-**受信時間：** 2026-04-11（JST）
+**出典：** Newsletter · Every  
+**日付：** 2026-04-11
 
 **補足要約：**
 Reddit、Shutterstock、News Corp のようなコンテンツ保有者が、高品質データを AI 研究所へライセンスし、新しい収益源を作り始めている。企業にとって本当に希少なのはモデルそのものではなく、**独占的で構造化され、継続更新されるデータ資産** だという示唆が強い。

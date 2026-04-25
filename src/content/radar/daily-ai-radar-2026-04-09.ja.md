@@ -14,7 +14,7 @@ draft: false
 ## 対象範囲
 
 - 取得期間: 過去 72 時間（2026-04-07〜2026-04-09）
-- 参照ソース: Anthropic · Latent Space · Redis Blog · ByteByteGo · VentureBeat · Hugging Face Blog · The Rundown AI
+
 
 ---
 ![Project Glasswing](https://cdn.sanity.io/images/4zrzovbb/website/566f2d5af6b903d1110f4918b2c0ab9b9c9079c8-2400x1260.jpg)
@@ -118,8 +118,8 @@ GitHub の AI 関連 repo は 430 万を超え、LLM 関連は前年比 178% 増
 ## 📬 Newsletter 精选
 
 ### Every: 25 人会社を 4 体の Agent で回す
-**メール件名：** How We Run a 25-person Company on Four AI Agents  
-**受信時間：** 2026-04-09（JST）
+**出典：** Newsletter · Every  
+**日付：** 2026-04-09
 
 **補足要約：**
 Every は Notion + Slack 上で、優先度分配、会議メモ、OKR 計画、成長追跡を 4 つの custom agent に任せている。結果だけ書き、手順を固定しないこと、database relation を agent の脳にすること、まず Notion AI / Claude Code で指示文をたたき台にすることが、実践原則として共有されていた。

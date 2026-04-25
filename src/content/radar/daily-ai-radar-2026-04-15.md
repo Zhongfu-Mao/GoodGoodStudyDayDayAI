@@ -15,7 +15,7 @@ draft: false
 ## 本期范围
 
 - 覆盖时间窗口：2026-04-12 ～ 2026-04-15（过去 72 小时）
-- 来源：Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事
+
 
 ---
 ![Figma 设计到代码流程图](https://substackcdn.com/image/fetch/$s_!Us9U!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff53dd546-d966-4485-bfe9-5d410d319a3c_1712x2048.png)
@@ -136,7 +136,7 @@ AI Valley 把 GPT-5.4-Cyber 视作 OpenAI 对 Anthropic Mythos / Glasswing 路�
 **来源：** AI Valley  
 **链接：** <https://www.testingcatalog.com/google-develops-its-own-desktop-agent-to-compete-with-cowork/>
 
-这期 AI Valley 披露，Google 正为 Gemini 构建带 Agent tab、任务收件箱和 human review 开关的桌面 agent 工作区，目标是让单个目标跨 Gmail、Drive、Calendar 和网页完成多步骤执行。相比传统 chat UI，这更接近完整的“工作流执行层”。
+这期 AI Valley 披露，Google 正为 Gemini 构建带 Agent tab、任务收件箱和 human review 开关的桌面 agent 工作区，目标是让单个目标跨 Newsletter、Drive、Calendar 和网页完成多步骤执行。相比传统 chat UI，这更接近完整的“工作流执行层”。
 
 ### Anthropic 正在把 Claude 推向“设计与产品生成”工作流
 **来源：** AI Valley  

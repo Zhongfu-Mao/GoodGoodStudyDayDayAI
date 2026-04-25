@@ -123,7 +123,7 @@ The Rundown AI 分析指出 OpenAI 的 Codex 产品中暗含超级应用布局�
 ## 📬 Newsletter 精选
 
 ### AI Valley：Apple 接班与 Hermes / Cowork 同时说明 AI 产品边界在扩张
-**邮件主题：** Apple’s next CEO enters the AI war | **邮件时间：** 2026-04-21（JST）
+**来源：** Newsletter · Apple’s next CEO enters the AI war  · **日期：** 2026-04-21（JST）
 
 **补充摘要：**
 AI Valley 这期除了写苹果接班，更重要的是把三条产品线放到同一张图里看：Moonshot 用 Kimi K2.6 把开源 coding agent 重新拉回主战场；OpenAI 传出以 Hermes 为代号推进“常驻型”ChatGPT Agents；Anthropic 则通过 Cowork 把 dashboard、tracker 和内部工具生成收束成“一个 prompt + 授权”就能完成的工作流。放在一起看，2026 年 AI 产品竞争已经从聊天窗口正式外溢到持续运行的工作代理和轻量业务应用层。

@@ -14,7 +14,7 @@ draft: false
 ## 対象範囲
 
 - 対象期間：過去 72 時間（2026-04-18 → 2026-04-21）
-- 参照ソース：Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事
+
 
 ---
 ![How We Cut Our Claude Code Token Usage 2.8x!](https://substackcdn.com/image/fetch/$s_!yYN1!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc43dc6d5-a696-45d5-8407-14c626bc0cc8_1346x692.png)

@@ -14,7 +14,7 @@ draft: false
 ## 対象範囲
 
 - スキャン期間: 2026-04-11〜2026-04-14（72 時間）
-- 参照ソース: Latent Space · ByteByteGo · Daily Dose of DS · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事
+
 - 取得方法: Claude in Chrome で RSS と記事本文を直接解析
 
 ---

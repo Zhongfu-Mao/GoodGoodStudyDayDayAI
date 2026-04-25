@@ -117,7 +117,7 @@ draft: false
 ## 📬 Newsletter 精选
 
 ### Every：The Folder Is the Agent
-- **邮件主题**: The Folder Is the Agent
-- **邮件时间**: 2026-04-13（JST）
+- **来源**: Newsletter · Every
+- **日期**: 2026-04-13
 - **补充摘要**:
   Every 对多 Agent 编程流的一个非常实用的判断是：真正稳定承载工作的，不一定是“agent swarm”框架本身，而往往只是一个带 `CLAUDE.md`、历史上下文和专用子代理的项目文件夹。作者在 3 个月实验后，把 44 个 agent 都落成了“目录即工作单元”，再用 Ruby dispatch layer 在后台分发任务。这个视角很重要，因为它把“agent 能力”从神秘编排系统重新拉回到可版本化、可迁移、可审计的文件系统约定。

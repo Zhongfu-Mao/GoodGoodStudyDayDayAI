@@ -14,7 +14,7 @@ draft: false
 ## 対象範囲
 
 - 対象期間：2026-04-15 〜 2026-04-18（72 時間）
-- 参照ソース：Daily Dose of Data Science · Latent Space · ByteByteGo · 老范讲故事
+
 
 ---
 ![Claude Opus 4.7 関連ビジュアル](https://substackcdn.com/image/fetch/$s_!iEJA!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7242e5f5-6105-4489-bc8b-143002fe7da6_1344x756.png)

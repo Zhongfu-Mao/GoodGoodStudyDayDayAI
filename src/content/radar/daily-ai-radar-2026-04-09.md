@@ -126,8 +126,8 @@ GitHub Octoverse 2025 报告显示，平台上 AI 相关仓库已超过 430 万�
 ## 📬 Newsletter 精选
 
 ### Every：25 人公司用 4 个 Agent 维持日常运转
-**邮件主题：** How We Run a 25-person Company on Four AI Agents  
-**邮件时间：** 2026-04-09（JST）
+**来源：** Newsletter · Every  
+**日期：** 2026-04-09
 
 **补充摘要：**
 Every 公开了他们在 Notion + Slack 上跑的 4 个自定义 Agent：优先级分发、会议纪要、OKR 规划和增长追踪。最值得记的三条实践原则是：一是描述结果，不要把步骤写死；二是数据库关系网才是 Agent 的“大脑”；三是先让 Notion AI 或 Claude Code 生成 Agent 指令，再人工校正，而不是从零手写 prompt。这类“轻工作流 + 强数据库”的内部代理形态，比单次对话式 Agent 更接近真正的团队协作软件。

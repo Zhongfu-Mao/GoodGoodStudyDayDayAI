@@ -15,7 +15,7 @@ draft: false
 ## 本期范围
 
 - 覆盖时间窗口：2026-04-15 ~ 2026-04-18（72 小时）
-- 来源：Daily Dose of Data Science · Latent Space · ByteByteGo · 老范讲故事
+
 
 ---
 ![Claude Opus 4.7 相关视觉图](https://substackcdn.com/image/fetch/$s_!iEJA!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7242e5f5-6105-4489-bc8b-143002fe7da6_1344x756.png)
@@ -163,9 +163,3 @@ Google 发布高可控 TTS 模型：支持 Audio Tags 情感控制、内联非�
 **链接：** <https://www.deeplearning.ai/the-batch/most-states-are-regulating-ai-despite-president-trumps-opposition-to-state-level-laws/>
 
 The Batch 这一条的价值不只是罗列法规，而是把 2026 年美国 AI 合规环境的真实趋势讲透了：联邦层面想统一规则，州政府却在更快地各自立法，结果是 AI 产品越来越受制于 watermark、版权、审计和地区化部署等多套要求。对做平台和企业软件的人来说，这种“拼图式监管”会直接改变产品架构和市场进入策略。
-
-⚠️ **抓取失败记录：**
-
-- **Ahead of AI（Sebastian Raschka）**：最新文章为 2026-04-04（"Components of A Coding Agent"），本期 72 小时窗口内无新发布，非抓取失败。
-- **Hugging Face Blog**：可见文章最新为 2026-04-14，72 小时窗口内（4 月 15 日之后）无符合条件的技术类文章，略过。
-- **The Rundown AI**：首页展示为聚合新闻标题，无明确发布时间戳，正文内容存在订阅墙，放弃深度抓取；标题已纳入行业快讯参考（OpenAI Codex Superapp、Meta Superintelligence Labs 首个模型发布、GPT-5.4-Cyber 等）。

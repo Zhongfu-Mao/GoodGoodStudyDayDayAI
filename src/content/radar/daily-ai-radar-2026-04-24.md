@@ -16,8 +16,7 @@ draft: false
 ## 本期范围
 
 - 覆盖时间窗口：2026-04-21 ~ 2026-04-24（过去 72 小时）
-- 来源：Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事 · Gmail `AI Newsletter📰`
-- 说明：Ahead of AI 抓取成功，但过去 72 小时内没有新文章；本期 Gmail 标签采用近似匹配，实际命中 `AI Newsletter📰` 及其子标签。
+
 
 ---
 ![OpenAI reclaims the image crown](https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/d9b5cf96-70be-41bb-bdf7-1c40229f8f68/lfV2XWXg.jpeg?t=1776809845)
@@ -103,7 +102,7 @@ NVIDIA 展示如何用 600 万条基于韩国官方统计数据生成的合成�
 Hugging Face 让 `ml-intern` 完成了一套真实 post-training internship take-home，输出了 Best-of-N weighted selection on MATH-500 的完整代码、结果与分析。文章覆盖 sampling、Process Reward Model 打分、按最终答案聚合 PRM 分数、weighted vote 等步骤，适合作为理解 test-time compute、PRM 与 post-training evaluation 的实操样本。
 
 ### Playwright's New `page.screencast` API
-**来源：** Gmail Newsletter · Node Weekly · **日期：** 2026-04-23  
+**来源：** Newsletter · Node Weekly · **日期：** 2026-04-23  
 **链接：** <https://playwright.dev/docs/release-notes#version-159>
 
 Node Weekly 重点介绍了 Playwright v1.59 的 `page.screencast` API，它比传统 `recordVideo` 更细，可以按脚本启动/停止录制，并插入章节、说明和 HTML overlay。对文档、教程和自动化演示来说，这让测试脚本直接生成可读的产品视频成为可能，尤其适合把 agent 运行过程转成可审计材料。
@@ -159,9 +158,3 @@ AI Valley 把两个信号放在同一天：OpenAI 在 ChatGPT 中推出可常驻
 **链接：** <https://nodeweekly.com/issues/621>
 
 Node Weekly 对 Playwright `page.screencast` 的解读值得单独保留：它不只是录屏，而是允许在自动化过程里插入章节、注释和 overlay。对越来越多需要审计 agent 行为、复现浏览器任务、生成交付演示的团队来说，测试自动化和可视化文档之间的边界会继续变薄。
-
-## ⚠️ 抓取失败记录
-
-| 来源 | 状态 | 备注 |
-| --- | --- | --- |
-| Ahead of AI (Sebastian Raschka) | 抓取成功，但无 72h 内新文章 | 最新文章为 2026-04-18 的《My Workflow for Understanding LLM Architectures》，本期未收录 |

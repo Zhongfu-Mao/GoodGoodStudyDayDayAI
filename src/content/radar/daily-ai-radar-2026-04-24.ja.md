@@ -16,8 +16,7 @@ draft: false
 ## 対象範囲
 
 - 対象期間：2026-04-21 〜 2026-04-24（過去 72 時間）
-- 参照ソース：Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事 · Gmail `AI Newsletter📰`
-- 補足：Ahead of AI は取得できたが、過去 72 時間内の新規記事はなし。Gmail は近似ラベル照合で `AI Newsletter📰` と配下ラベルを対象にした。
+
 
 ---
 ![OpenAI reclaims the image crown](https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/d9b5cf96-70be-41bb-bdf7-1c40229f8f68/lfV2XWXg.jpeg?t=1776809845)
@@ -103,7 +102,7 @@ NVIDIA は、韓国の公式統計に基づく 600 万件の synthetic personas 
 Hugging Face は `ml-intern` に post-training internship の take-home を解かせ、Best-of-N weighted selection on MATH-500 の code、result、analysis をそのまま公開した。sampling、Process Reward Model scoring、final answer ごとの weighted vote まで見えるので、test-time compute、PRM、post-training evaluation を実装目線で読む素材になる。
 
 ### Playwright's New `page.screencast` API
-**出典：** Gmail Newsletter · Node Weekly · **日付：** 2026-04-23  
+**出典：** Newsletter · Node Weekly · **日付：** 2026-04-23  
 **リンク：** <https://playwright.dev/docs/release-notes#version-159>
 
 Node Weekly は Playwright v1.59 の `page.screencast` API を取り上げている。従来の `recordVideo` より細かく start / stop を制御でき、chapter、description、HTML overlay も差し込めるため、browser automation の実行ログをそのまま tutorial、demo、audit material に変換しやすくなる。
@@ -159,9 +158,3 @@ Programmer Weekly では、production agent を守る LLM-as-a-judge HTTP proxy 
 **リンク：** <https://nodeweekly.com/issues/621>
 
 Node Weekly の解説どおり、`page.screencast` は単なる録画ではなく、chapter、annotation、overlay を automation 中に挟める点が大きい。Agent の browser task を監査したり、再現可能な demo に変換したりする用途では、testing と visual documentation の境界がさらに近づく。
-
-## ⚠️ 取得失敗
-
-| ソース | 状態 | メモ |
-| --- | --- | --- |
-| Ahead of AI (Sebastian Raschka) | 取得成功、ただし 72h 内の新規記事なし | 最新記事は 2026-04-18 の “My Workflow for Understanding LLM Architectures”。今回は未掲載 |

@@ -15,7 +15,7 @@ draft: false
 ## 本期范围
 
 - 数据窗口：2026-04-07 至 2026-04-10（过去 72 小时）
-- 来源：Latent Space · ByteByteGo · Ahead of AI (Sebastian Raschka) · Hugging Face Blog · The Rundown AI · Daily Dose of Data Science
+
 
 ---
 ![Extreme Harness Engineering 主题视觉图](https://substackcdn.com/image/fetch/$s_!5TXE!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F193478192%2Fbac92fb4-46a2-4c8a-b189-083c263423fd%2Ftranscoded-1775581604.png)
@@ -113,10 +113,3 @@ Anthropic 开放 Claude Managed Agents 公测，让开发者可在数天内将 A
 **链接：** [https://blog.bytebytego.com/p/whats-next-in-ai-five-trends-to-watch](https://blog.bytebytego.com/p/whats-next-in-ai-five-trends-to-watch)
 
 文章梳理 2026 年 AI 落地五大核心趋势：① **持久化 Agent**（长时工作流，更多本地运行）；② **可靠性与安全**（抗提示注入、错误恢复）；③ **物理 AI**（CES 2026 Boston Dynamics Atlas + Google DeepMind）；④ **LLM 推理时扩展**；⑤ **小型开源模型实用化**。框架清晰，适合战略层参考。
-
-*⚠️ 抓取失败记录：*
-
-本次任务运行时 **Chrome 浏览器扩展未连接**（Claude in Chrome 不可达），且 Cowork 沙箱出口网络白名单限制了直接 RSS 拉取。所有内容均通过 WebSearch 回退方案获取，部分 RSS 最新条目的发布精确时间可能存在误差。以下来源未能获取到明确的 72 小时内新文章：
-
-- **Daily Dose of Data Science** — 未找到明确日期在 Apr 7-10 的新文章，以近期系列文章代替
-- **ByteByteGo** — EP207（Top 12 GitHub AI Repositories）可能是最新一期，但发布日期未经确认

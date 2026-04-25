@@ -14,7 +14,7 @@ draft: false
 ## 対象範囲
 
 - 取得期間: 過去 72 時間（2026-04-04〜2026-04-07）
-- 参照ソース: Daily Dose of Data Science · Ahead of AI · ByteByteGo · Latent Space · Hugging Face Blog · The Rundown AI
+
 
 ---
 ![The Anatomy of an Agent Harness](https://substackcdn.com/image/fetch/$s_!FSSm!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b2a255e-8439-4212-acea-ff62939cc62a_680x379.png)
@@ -160,8 +160,8 @@ Jack Dorsey は AI が coordination や reporting を代替することで、中
 ## 📬 Newsletter 精选
 
 ### AI Valley: OpenAI の「Robot Tax」論
-**メール件名：** OpenAI’s "Robot Tax"  
-**受信時間：** 2026-04-07（JST）
+**出典：** Newsletter · AI Valley  
+**日付：** 2026-04-07
 
 **補足要約：**
 AI Valley は、OpenAI の「新しい社会契約」を抽象倫理ではなく、robot tax、公共基金、全民アクセス、週 4 日労働のような制度設計へ落とし込んで考えている。同時に Anthropic の $30B ARR や TPU 先買いも強調しており、frontier lab の競争が政策話語と計算資源確保まで拡張していることが見える。

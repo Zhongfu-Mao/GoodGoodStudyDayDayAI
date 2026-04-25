@@ -134,7 +134,7 @@ Spotify の継続的デリバリー、canary、回滚、観測設計を整理し
 ## 📬 Newsletter 精选
 
 ### Every: The Folder Is the Agent
-**メール件名：** The Folder Is the Agent  
-**受信時間：** 2026-04-13（JST）
+**出典：** Newsletter · Every  
+**日付：** 2026-04-13
 
 Every の実践では、44 体の agent を派手な swarm framework ではなく、「`CLAUDE.md`、履歴文脈、専用 sub-agent を含むディレクトリ」という形で運用している。3 カ月の試行の末、安定して仕事を支えるのは結局この「フォルダ」という最小単位だったという。agent 能力を神秘的な編成システムではなく、版管理できて監査可能なファイルシステム慣習へ引き戻した点が重要だ。

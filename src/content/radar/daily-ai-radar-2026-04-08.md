@@ -14,8 +14,8 @@ draft: false
 ---
 ## 本期范围
 
-- 数据采集时间：2026-04-08 | 覆盖过去 72 小时 (2026-04-05 ~ 2026-04-08)
-- 来源：Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI
+- 覆盖时间窗口：2026-04-05 ~ 2026-04-08（过去 72 小时）
+
 
 ---
 ![AI Agent 评测指标示意图](https://substackcdn.com/image/fetch/$s_!pBdt!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdf7d21ad-f026-44d1-8d99-5c6ef69c0842_1357x696.png)
@@ -135,12 +135,7 @@ OpenAI 宣布新一轮 $122B 融资，并透露正在构建一个超级应用（
 ## 📬 Newsletter 精选
 
 ### Every：Get Your Hands Dirty
-**邮件主题：** Get Your Hands Dirty | **邮件时间：** 2026-04-08（JST）
+**来源：** Newsletter · Get Your Hands Dirty  · **日期：** 2026-04-08（JST）
 
 **补充摘要：**
 Every 把企业 AI 落地理解为“引入一种新型员工”，而不是采购一套传统软件：高层如果只看功能列表、自己不上手，很难形成真正的 AI-native 组织。文中给出的五点动作都指向同一件事：管理层要亲自进入工具流、形成第一手判断，再决定流程和岗位如何重组。同期它还提醒一个竞争信号：Anthropic 开始限制 Claude 订阅与第三方 agent harness 结合，反而给了更愿意放开使用的 OpenAI 抢用户窗口，背后本质是 frontier agent 的算力成本正在倒逼产品策略。
-
-⚠️ **抓取失败记录：**
-- **Latent Space 付费内容**：[AINews] Anthropic @ $30B ARR 部分章节因付费墙限制，仅获取免费摘要部分
-- **HuggingFace Blog**：`/blog/eagle3`（EAGLE3 Speculative Decoding 文章）返回 404，链接可能有变
-- **The Rundown AI**：为 Newsletter 模式，文章内容需订阅获取，仅采集标题与摘要

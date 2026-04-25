@@ -14,7 +14,7 @@ draft: false
 ## 対象範囲
 
 - 対象期間：2026-04-17 〜 2026-04-20（過去 72 時間）
-- 参照ソース：Daily Dose of Data Science · Latent Space · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事
+
 
 ---
 ![72 Techniques to Optimize LLMs in Production](https://substackcdn.com/image/fetch/$s_!mRT-!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F945c4676-d214-41d9-ac1e-062caf345ae7_1190x1107.png)

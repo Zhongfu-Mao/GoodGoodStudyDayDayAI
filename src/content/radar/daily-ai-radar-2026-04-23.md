@@ -16,7 +16,7 @@ draft: false
 ## 本期范围
 
 - 覆盖时间窗口：2026-04-20 ~ 2026-04-23（过去 72 小时）
-- 来源：Daily Dose of Data Science · Latent Space · ByteByteGo · Ahead of AI · Hugging Face Blog · The Rundown AI · 老范讲故事
+
 
 ---
 ![Sergey Brin commits DeepMind to a Claude catch-up](https://media.beehiiv.com/cdn-cgi/image/format=auto,fit=scale-down,onerror=redirect/uploads/asset/file/a01a3066-3e45-4ec1-a488-80f6e3e1d111/MkPr4mf0C84OUCGU.webp)
@@ -142,9 +142,3 @@ Claude Design 进入 UI 与设计生成领域后，Anthropic 已经不只是和�
 **链接：** <https://lukefan.com/2026/04/20/deepseek-300m-funding-10b-valuation-vie-governance-shift/>
 
 DeepSeek 的这一轮融资讨论里，老范最重要的提醒不是贵不贵，而是 VIE 结构下境外投资者几乎没有顺畅退出路径。放在当前中美关系和治理变化背景下，这比短期估值更值得长期资金警惕。
-
-## ⚠️ 抓取失败记录
-
-- 无。
-
-> 注：Ahead of AI 最新文章发布日期为 2026-04-18，略超 72 小时窗口，因其对近期模型密集发布的理解价值较高，保留并显式标注。
