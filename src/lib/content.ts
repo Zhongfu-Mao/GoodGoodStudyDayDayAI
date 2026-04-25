@@ -23,6 +23,56 @@ export type AcademyModuleGroup = {
   }>;
 };
 
+export type AcademyCatalogGroup = {
+  series: string;
+  order: number;
+  groupKind: 'track' | 'module';
+  itemCount: number;
+  groups: Array<{
+    name: string;
+    order: number;
+    items: BlogEntryItem[];
+  }>;
+};
+
+const openAiAcademyTracks = [
+  {
+    name: '学习路线总览',
+    order: 0,
+    pathParts: ['/openai-academy/00-overview/'],
+  },
+  {
+    name: 'AI Fundamentals',
+    order: 1,
+    pathParts: ['/openai-academy/01-ai-fundamentals/'],
+  },
+  {
+    name: 'Using ChatGPT',
+    order: 2,
+    pathParts: ['/openai-academy/02-using-chatgpt/'],
+  },
+  {
+    name: 'ChatGPT for Work',
+    order: 3,
+    pathParts: ['/openai-academy/03-chatgpt-for-work/', '/openai-academy/05-chatgpt-for-work/'],
+  },
+  {
+    name: 'ChatGPT for Education',
+    order: 4,
+    pathParts: ['/openai-academy/04-chatgpt-for-education/', '/openai-academy/06-chatgpt-for-education/'],
+  },
+  {
+    name: 'Codex',
+    order: 5,
+    pathParts: ['/openai-academy/03-codex/', '/openai-academy/05-codex/', '/openai-academy/06-codex-for-work/'],
+  },
+  {
+    name: 'Building with AI',
+    order: 6,
+    pathParts: ['/openai-academy/04-building-with-ai/', '/openai-academy/07-building-with-ai/'],
+  },
+] as const;
+
 async function getCollectionEntries(collection: CollectionName) {
   const entries = await getCollection(collection);
   return entries.map((entry) => ({
@@ -167,6 +217,72 @@ export async function getAcademySeriesGroups(locale: Locale): Promise<AcademyMod
     .sort((a, b) => a.series.localeCompare(b.series, locale === 'ja' ? 'ja' : 'zh-Hans'));
 }
 
+export async function getAcademyCatalogGroups(locale: Locale): Promise<AcademyCatalogGroup[]> {
+  const entries = (await getEntriesForLocale(locale))
+    .filter((item) => item.entry.data.category === 'academy' && item.entry.data.academy)
+    .sort(compareAcademyEntries);
+
+  const seriesMap = new Map<string, AcademyCatalogGroup>();
+
+  for (const item of entries) {
+    const academy = item.entry.data.academy;
+
+    if (!academy) continue;
+
+    const isOpenAiAcademy = academy.series === 'OpenAI Academy';
+    const catalogGroup = resolveAcademyCatalogGroup(item.entry);
+    const seriesGroup = seriesMap.get(academy.series) ?? {
+      series: academy.series,
+      order: isOpenAiAcademy ? 0 : 10,
+      groupKind: isOpenAiAcademy ? 'track' : 'module',
+      itemCount: 0,
+      groups: [],
+    };
+    const existingGroup = seriesGroup.groups.find((group) => group.name === catalogGroup.name);
+
+    if (existingGroup) {
+      existingGroup.items.push(item);
+      existingGroup.items.sort(compareAcademyEntries);
+    } else {
+      seriesGroup.groups.push({
+        name: catalogGroup.name,
+        order: catalogGroup.order,
+        items: [item],
+      });
+    }
+
+    seriesGroup.itemCount += 1;
+    seriesGroup.groups.sort(
+      (a, b) => a.order - b.order || a.name.localeCompare(b.name, locale === 'ja' ? 'ja' : 'zh-Hans'),
+    );
+    seriesMap.set(academy.series, seriesGroup);
+  }
+
+  return [...seriesMap.values()].sort(
+    (a, b) =>
+      a.order - b.order ||
+      a.series.localeCompare(b.series, locale === 'ja' ? 'ja' : 'zh-Hans'),
+  );
+}
+
+export function getAcademyCatalogGroupName(entry: CollectionEntry<CollectionName>) {
+  if (!entry.data.academy) {
+    return undefined;
+  }
+
+  return resolveAcademyCatalogGroup(entry).name;
+}
+
+export function getAcademyCatalogAnchor(entry: CollectionEntry<CollectionName>) {
+  const academy = entry.data.academy;
+
+  if (!academy) {
+    return '';
+  }
+
+  return `${slugifyTag(academy.series)}-${slugifyTag(resolveAcademyCatalogGroup(entry).name)}`;
+}
+
 function compareAcademyEntries(a: BlogEntryItem, b: BlogEntryItem) {
   const aOrder = a.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
   const bOrder = b.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
@@ -176,4 +292,26 @@ function compareAcademyEntries(a: BlogEntryItem, b: BlogEntryItem) {
     a.slug.localeCompare(b.slug, 'en') ||
     b.entry.data.date.getTime() - a.entry.data.date.getTime()
   );
+}
+
+function resolveAcademyCatalogGroup(entry: CollectionEntry<CollectionName>) {
+  const academy = entry.data.academy;
+  const moduleOrder = academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
+
+  if (academy?.series !== 'OpenAI Academy') {
+    return {
+      name: academy?.module ?? entry.data.title,
+      order: moduleOrder,
+    };
+  }
+
+  const normalizedId = `/${entry.id.replace(/\\/g, '/')}/`;
+  const track = openAiAcademyTracks.find((candidate) =>
+    candidate.pathParts.some((pathPart) => normalizedId.includes(pathPart)),
+  );
+
+  return {
+    name: track?.name ?? academy.module,
+    order: track?.order ?? moduleOrder,
+  };
 }

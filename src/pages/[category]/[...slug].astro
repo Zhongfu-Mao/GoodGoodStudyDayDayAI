@@ -20,7 +20,7 @@ if (!entry) {
   throw new Error(`Missing entry for ${collection}/${entryId}`);
 }
 
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
 const languagePaths = await getLanguagePathsForEntry(collection, entry, 'zh');
 ---
 
@@ -34,5 +34,5 @@ const languagePaths = await getLanguagePathsForEntry(collection, entry, 'zh');
   publishedTime={entry.data.date.toISOString()}
   activeCategory={entry.data.category}
 >
-  <PostDetailPage locale="zh" entry={entry} Content={Content} />
+  <PostDetailPage locale="zh" entry={entry} Content={Content} headings={headings} />
 </BaseLayout>

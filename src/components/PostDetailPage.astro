@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
-import { getEntriesForLocale } from '../lib/content';
+import { getAcademyCatalogAnchor, getAcademyCatalogGroupName, getEntriesForLocale } from '../lib/content';
 import {
   articlePath,
   categoryPath,
@@ -18,11 +18,17 @@ import { formatDate, postDetailPage } from '../lib/i18n';
 import { formatMonthLabel, getMonthKey, resolveRadarCadence } from '../lib/radar';
 
 type BlogEntry = CollectionEntry<CollectionName>;
+type MarkdownHeading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
 
-const { locale, entry, Content } = Astro.props as {
+const { locale, entry, Content, headings = [] } = Astro.props as {
   locale: Locale;
   entry: BlogEntry;
   Content: AstroComponentFactory;
+  headings?: MarkdownHeading[];
 };
 const isGeneratedInfographic =
   typeof entry.data.coverImage === 'string' && entry.data.coverImage.includes('/images/radar/');
@@ -33,6 +39,9 @@ const currentSlug = stripLocaleSuffix(entry.id, locale);
 const allEntries = await getEntriesForLocale(locale);
 const categoryEntries = allEntries.filter((item) => item.entry.data.category === entry.data.category);
 const academyMeta = entry.data.academy;
+const currentAcademyGroupName = academyMeta ? getAcademyCatalogGroupName(entry) : undefined;
+const currentAcademyGroupAnchor = academyMeta ? getAcademyCatalogAnchor(entry) : '';
+const tocHeadings = headings.filter((heading) => heading.depth === 2 && heading.slug && heading.text !== '参考');
 
 function compareAcademyItems(a: (typeof categoryEntries)[number], b: (typeof categoryEntries)[number]) {
   const aOrder = a.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
@@ -47,7 +56,7 @@ const sameSeriesEntries = academyMeta
       .filter(
         (item) =>
           item.entry.data.academy?.series === academyMeta.series &&
-          item.entry.data.academy?.module === academyMeta.module,
+          getAcademyCatalogGroupName(item.entry) === currentAcademyGroupName,
       )
       .sort(compareAcademyItems)
   : entry.data.category === 'radar' && currentCadence
@@ -74,10 +83,12 @@ const openCategoryHint = academyMeta ? text.openCategoryHintAcademy : text.openC
 const openArchiveLabel = isRadar ? text.openArchiveRadar : text.openArchiveDefault;
 const openArchiveHint = isRadar ? text.openArchiveHintRadar : text.openArchiveHintDefault;
 const timelineHint = academyMeta ? text.timelineHintAcademy : text.timelineHintDefault;
-const sameSeriesLabel = academyMeta ? text.sameSeriesAcademy : currentMonthLabel;
+const sameSeriesLabel = academyMeta ? (currentAcademyGroupName ?? text.sameSeriesAcademy) : currentMonthLabel;
+const sameSeriesEyebrow = academyMeta ? text.learningTrack : sameSeriesLabel;
 const sameSeriesHint = academyMeta ? text.sameSeriesHintAcademy : text.sameSeriesHintMonth;
 const academySeriesAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}` : '';
-const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${slugifyTag(academyMeta.module)}` : '';
+const academyModuleAnchor = academyMeta ? `#${currentAcademyGroupAnchor}` : '';
+const showTimeline = !academyMeta;
 ---
 
 <section class="grid gap-8 sm:grid-cols-[13rem_minmax(0,1fr)] md:grid-cols-[14rem_minmax(0,1fr)] lg:grid-cols-[15rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)]">
@@ -103,7 +114,26 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
       </a>
     </section>
 
-    <section class="theme-panel rounded-[1.5rem] p-5">
+    {tocHeadings.length > 0 ? (
+      <section class="theme-panel hidden rounded-[1.5rem] p-5 sm:block">
+        <div>
+          <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.tableOfContents}</p>
+          <h2 class="theme-heading mt-2 text-xl font-semibold">{text.tableOfContents}</h2>
+        </div>
+        <p class="theme-muted mt-3 text-sm leading-6">{text.tableOfContentsHint}</p>
+
+        <nav class="mt-5 grid gap-2">
+          {tocHeadings.map((heading) => (
+            <a href={`#${heading.slug}`} class="theme-button-soft rounded-[0.9rem] px-3 py-2 text-sm leading-6">
+              {heading.text}
+            </a>
+          ))}
+        </nav>
+      </section>
+    ) : null}
+
+    {showTimeline ? (
+      <section class="theme-panel rounded-[1.5rem] p-5">
       <div class="flex items-start justify-between gap-3">
         <div>
           <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.timeline}</p>
@@ -143,11 +173,12 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
         </div>
       </div>
     </section>
+    ) : null}
 
     <section class="theme-panel rounded-[1.5rem] p-5">
       <div class="flex items-start justify-between gap-3">
         <div>
-          <p class="theme-muted text-xs uppercase tracking-[0.28em]">{sameSeriesLabel}</p>
+          <p class="theme-muted text-xs uppercase tracking-[0.28em]">{sameSeriesEyebrow}</p>
           <h2 class="theme-heading mt-2 text-xl font-semibold">{sameSeriesLabel}</h2>
         </div>
         <span class="theme-chip rounded-xl px-3 py-1 text-xs">{sidebarEntries.length}</span>
@@ -327,6 +358,20 @@ const academyModuleAnchor = academyMeta ? `#${slugifyTag(academyMeta.series)}-${
         </a>
       ))}
     </div>
+
+    {tocHeadings.length > 0 ? (
+      <section class="theme-panel mt-6 rounded-[1.25rem] p-5 sm:hidden">
+        <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.tableOfContents}</p>
+        <h2 class="theme-heading mt-2 text-lg font-semibold">{text.tableOfContents}</h2>
+        <nav class="mt-4 grid gap-2">
+          {tocHeadings.map((heading) => (
+            <a href={`#${heading.slug}`} class="theme-button-soft rounded-[0.9rem] px-3 py-2 text-sm leading-6">
+              {heading.text}
+            </a>
+          ))}
+        </nav>
+      </section>
+    ) : null}
 
     <div class="theme-prose prose prose-slate mt-10 max-w-none prose-headings:scroll-mt-24">
       <Content />

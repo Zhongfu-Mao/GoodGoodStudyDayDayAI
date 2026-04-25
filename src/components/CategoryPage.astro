@@ -9,7 +9,7 @@ import {
   type CollectionName,
   type Locale,
 } from '../lib/site';
-import { getAcademySeriesGroups, getEntriesForLocale } from '../lib/content';
+import { getAcademyCatalogGroups, getEntriesForLocale } from '../lib/content';
 import { resolveRadarCadence } from '../lib/radar';
 import { categoryPage } from '../lib/i18n';
 
@@ -22,7 +22,7 @@ const entries = await getEntriesForLocale(locale);
 const categoryEntries = entries.filter((item) => item.entry.data.category === category);
 const isRadar = category === 'radar';
 const isAcademy = category === 'academy';
-const academySeriesGroups = isAcademy ? await getAcademySeriesGroups(locale) : [];
+const academyCatalogGroups = isAcademy ? await getAcademyCatalogGroups(locale) : [];
 const legacyAcademyEntries = isAcademy ? categoryEntries.filter((item) => !item.entry.data.academy) : [];
 
 const radarSections = radarCadences.map((cadence) => {
@@ -35,6 +35,9 @@ const radarSections = radarCadences.map((cadence) => {
 });
 
 const text = categoryPage[locale];
+
+const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =>
+  groupKind === 'track' ? order.toString().padStart(2, '0') : order.toString();
 ---
 
 {isRadar ? (
@@ -91,18 +94,22 @@ const text = categoryPage[locale];
     </div>
   ) : isAcademy ? (
     <div class="grid gap-8">
-      {academySeriesGroups.map((seriesGroup) => (
+      {academyCatalogGroups.map((seriesGroup) => (
         <section id={slugifyTag(seriesGroup.series)} class="theme-panel rounded-[1.5rem] p-6">
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.academySeries}</p>
               <h3 class="theme-heading mt-2 text-3xl font-semibold">{seriesGroup.series}</h3>
             </div>
-            <p class="theme-muted text-sm">{text.moduleCount(seriesGroup.modules.length)}</p>
+            <p class="theme-muted text-sm">
+              {seriesGroup.groupKind === 'track' ? text.trackCount(seriesGroup.groups.length) : text.moduleCount(seriesGroup.groups.length)}
+              {' · '}
+              {text.itemCount(seriesGroup.itemCount)}
+            </p>
           </div>
 
           <div class="mt-6 grid gap-5">
-            {seriesGroup.modules.map((moduleGroup) => (
+            {seriesGroup.groups.map((moduleGroup) => (
               <section
                 id={`${slugifyTag(seriesGroup.series)}-${slugifyTag(moduleGroup.name)}`}
                 class="theme-panel-strong rounded-[1.25rem] p-5"
@@ -110,7 +117,9 @@ const text = categoryPage[locale];
                 <div class="flex flex-wrap items-end justify-between gap-4">
                   <div>
                     <p class="theme-muted text-xs uppercase tracking-[0.24em]">
-                      {text.academyModule} {moduleGroup.order}
+                      {seriesGroup.groupKind === 'track' ? text.academyTrack : text.academyModule}
+                      {' '}
+                      {formatAcademyGroupOrder(seriesGroup.groupKind, moduleGroup.order)}
                     </p>
                     <h4 class="theme-heading mt-2 text-2xl font-semibold">{moduleGroup.name}</h4>
                   </div>
@@ -142,7 +151,7 @@ const text = categoryPage[locale];
         </section>
       ) : null}
 
-      {academySeriesGroups.length === 0 && legacyAcademyEntries.length === 0 ? (
+      {academyCatalogGroups.length === 0 && legacyAcademyEntries.length === 0 ? (
         <div class="theme-panel rounded-2xl p-6 theme-muted">{text.empty}</div>
       ) : null}
     </div>
