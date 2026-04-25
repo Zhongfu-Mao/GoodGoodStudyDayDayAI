@@ -11,17 +11,17 @@ const navItems = collectionNames.map((category) => ({
 }));
 ---
 
-<nav class="flex w-full flex-wrap items-center gap-2.5 xl:flex-nowrap xl:justify-center">
+<nav class="flex w-full flex-wrap items-center justify-center gap-2.5 2xl:flex-nowrap">
   <a
     href={homePath(locale)}
-    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-5 py-2.5 text-[15px]"
+    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2.5 text-[15px] 2xl:px-5"
   >
     {siteNav[locale].home}
   </a>
   {navItems.map((item) => (
     <a
       href={item.href}
-      class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-5 py-2.5 text-[15px]"
+      class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2.5 text-[15px] 2xl:px-5"
     >
       {item.label}
     </a>

@@ -37,6 +37,15 @@ const previewAlt = locale === 'ja'
   ? `${item.entry.data.title} のインフォグラフィック`
   : `${item.entry.data.title} 的信息图`;
 const tags = item.entry.data.tags.slice(0, 3);
+const fallbackTitle = cadence === 'daily'
+  ? (locale === 'ja' ? 'AI Radar Daily' : 'AI 雷达日报')
+  : item.entry.data.title;
+const displayTitle = cadence === 'daily'
+  ? item.entry.data.title
+      .replace(/^AI 雷达日报[:：]\s*\d{4}-\d{2}-\d{2}\s*[-—–]*\s*/, '')
+      .replace(/^AI Radar Daily:\s*\d{4}-\d{2}-\d{2}\s*[-—–]*\s*/, '')
+      .trim() || fallbackTitle
+  : item.entry.data.title;
 ---
 
 <article
@@ -105,16 +114,16 @@ const tags = item.entry.data.tags.slice(0, 3);
     </a>
   )}
 
-  <div class="px-3 py-2">
+  <div class="px-3 py-2.5">
     <div class="flex min-h-[2.75rem] flex-col justify-center gap-1.5 sm:flex-row sm:items-center sm:justify-start sm:gap-3">
-      <div class="flex shrink-0 flex-wrap items-center gap-x-2 gap-y-0.5 text-xs uppercase tracking-[0.12em] theme-muted sm:w-[10.5rem]">
+      <div class="flex shrink-0 flex-wrap items-center gap-x-2 gap-y-0.5 text-xs uppercase tracking-[0.12em] theme-muted sm:w-[9.75rem]">
         <span>{cadenceLabel}</span>
         <span aria-hidden="true" class="opacity-50">/</span>
         <time datetime={item.entry.data.date.toISOString()}>{dateLabel}</time>
       </div>
-      <div class="flex min-w-0 flex-1 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-        <h2 class="theme-heading min-w-0 text-[17px] font-semibold leading-6">{item.entry.data.title}</h2>
-        <div class="flex shrink-0 flex-wrap justify-start gap-1.5 sm:ml-auto sm:justify-end">
+      <div class="flex min-w-0 flex-1 flex-wrap items-center gap-x-3 gap-y-1.5">
+        <h2 class="theme-heading min-w-[12rem] max-w-full flex-1 text-[18px] font-semibold leading-6">{displayTitle}</h2>
+        <div class="ml-auto flex shrink-0 flex-wrap justify-start gap-1.5 sm:justify-end">
           {tags.map((tag) => (
             <span class="radar-visual-tag rounded-md px-2.5 py-1 text-xs font-medium leading-4">
               {tag}
