@@ -1,91 +1,214 @@
 ---
 import {
-  articlePath,
   cadenceLabels,
   categoryPath,
   collectionLabels,
-  resolveSiteUrl,
   type Locale,
 } from '../lib/site';
+import RadarVisualCard from './RadarVisualCard.astro';
 import { getEntriesForLocale } from '../lib/content';
-import { formatDate, radarGalleryPage } from '../lib/i18n';
-import { resolveRadarCadence } from '../lib/radar';
+import { radarGalleryPage } from '../lib/i18n';
 
 const { locale } = Astro.props as { locale: Locale };
 const text = radarGalleryPage[locale];
 const entries = (await getEntriesForLocale(locale))
   .filter((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage)
   .sort((a, b) => b.entry.data.date.getTime() - a.entry.data.date.getTime());
+const monthFormatter = new Intl.DateTimeFormat(locale === 'ja' ? 'ja-JP' : 'zh-CN', {
+  year: 'numeric',
+  month: 'long',
+});
+const months = [...new Map(
+  entries.map((item) => {
+    const value = item.entry.data.date.toISOString().slice(0, 7);
+    return [value, monthFormatter.format(item.entry.data.date)];
+  }),
+).entries()];
 ---
 
-<section class="theme-panel-strong rounded-[1.5rem] p-6 shadow-glow md:p-8">
-  <div class="flex flex-wrap items-end justify-between gap-5">
-    <div>
-      <p class="theme-kicker text-sm uppercase tracking-[0.28em]">{text.eyebrow}</p>
-      <h1 class="theme-heading mt-3 text-3xl font-semibold md:text-5xl">{text.title}</h1>
-      <p class="theme-muted mt-4 max-w-3xl text-base leading-7">{text.description}</p>
-    </div>
-    <div class="flex shrink-0 flex-wrap gap-2">
-      <span class="theme-chip rounded-xl px-4 py-2 text-sm">{entries.length} {text.countLabel}</span>
-      <a href={categoryPath('radar', locale)} class="theme-button-soft rounded-xl px-4 py-2 text-sm">
-        {text.backToRadar}
+<div class="relative left-1/2 w-screen max-w-[1680px] -translate-x-1/2 px-5 sm:px-8" data-radar-gallery>
+<section>
+  <div class="min-w-0">
+    <nav aria-label={locale === 'ja' ? 'Breadcrumb' : '面包屑'} class="mb-4 flex flex-wrap items-center gap-2 text-sm">
+      <a href={categoryPath('radar', locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1">
+        {collectionLabels.radar[locale]}
       </a>
+      <span class="theme-muted">/</span>
+      <span class="theme-muted">{text.title}</span>
+    </nav>
+    <p class="theme-kicker text-xs uppercase tracking-[0.28em]">{text.eyebrow}</p>
+    <div class="mt-2 flex flex-wrap items-end gap-3">
+      <h1 class="theme-heading text-3xl font-semibold md:text-4xl">{text.title}</h1>
+      <span
+        class="theme-chip rounded-xl px-3 py-1.5 text-xs"
+        data-gallery-count
+        data-total-count={entries.length}
+        data-count-suffix={locale === 'ja' ? 'images' : '张'}
+        title={text.countHint}
+      >
+        {text.visibleCount(entries.length, entries.length)}
+      </span>
     </div>
+    <p class="theme-muted mt-2 max-w-2xl text-sm leading-6">{text.description}</p>
   </div>
 </section>
 
 {entries.length > 0 ? (
-  <section class="mt-8 grid gap-5 md:grid-cols-2">
-    {entries.map((item, index) => {
-      const href = articlePath(item.entry.data.category, item.slug, locale);
-      const coverImage = resolveSiteUrl(item.entry.data.coverImage ?? '');
-      const cadence = resolveRadarCadence(item);
-      const cadenceLabel = cadence ? cadenceLabels[cadence][locale] : collectionLabels.radar[locale];
-      const isFeature = index === 0;
-
-      return (
-        <article class:list={[
-          'theme-panel theme-panel-link overflow-hidden rounded-[1.25rem] shadow-glow',
-          isFeature ? 'md:col-span-2' : '',
-        ]}>
-          <a href={href} class:list={[
-            'block overflow-hidden',
-            isFeature ? 'aspect-[2.4/1]' : 'aspect-[2/1]',
-          ]}>
-            <img
-              src={coverImage}
-              alt={text.coverAlt(item.entry.data.title)}
-              loading={index < 2 ? 'eager' : 'lazy'}
-              decoding="async"
-              class="h-full w-full object-cover transition duration-200 hover:scale-[1.01]"
-            />
-          </a>
-          <div class="p-5">
-            <div class="flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-[0.2em] theme-muted">
-              <span>{cadenceLabel}</span>
-              <time datetime={item.entry.data.date.toISOString()}>{formatDate(item.entry.data.date, locale)}</time>
-            </div>
-            <h2 class:list={[
-              'theme-heading mt-3 font-semibold leading-tight',
-              isFeature ? 'text-2xl md:text-3xl' : 'text-xl',
-            ]}>
-              <a href={href}>{item.entry.data.title}</a>
-            </h2>
-            <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
-              <div class="flex flex-wrap gap-2">
-                {item.entry.data.tags.slice(0, 4).map((tag) => (
-                  <span class="theme-chip rounded-xl px-3 py-1 text-xs">{tag}</span>
-                ))}
-              </div>
-              <a href={href} class="theme-button-soft rounded-xl px-3 py-2 text-xs">
-                {text.openArticle}
-              </a>
-            </div>
+  <>
+    <section class="theme-panel sticky top-28 z-10 mt-5 rounded-[1.25rem] p-2 backdrop-blur md:top-24" data-gallery-filters>
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <p class="theme-muted px-2 text-xs uppercase tracking-[0.2em]">{text.filters}</p>
+          <div class="flex flex-wrap gap-1.5">
+            <button
+              type="button"
+              class="theme-chip theme-chip-link theme-segment-active rounded-xl px-3 py-1.5 text-xs"
+              data-cadence-filter="all"
+              aria-pressed="true"
+            >
+              {text.allCadences}
+            </button>
+            {(['daily', 'weekly', 'monthly'] as const).map((cadence) => (
+              <button
+                type="button"
+                class="theme-chip theme-chip-link rounded-xl px-3 py-1.5 text-xs"
+                data-cadence-filter={cadence}
+                aria-pressed="false"
+              >
+                {cadenceLabels[cadence][locale]}
+              </button>
+            ))}
           </div>
-        </article>
-      );
-    })}
-  </section>
+          <label class="sr-only" for="radar-gallery-month">{text.monthFilter}</label>
+          <select
+            id="radar-gallery-month"
+            class="theme-button-soft rounded-xl px-3 py-1.5 text-xs"
+            data-month-filter
+          >
+            <option value="all">{text.allMonths}</option>
+            {months.map(([value, label]) => (
+              <option value={value}>{label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-5 grid grid-cols-1 items-start gap-4 md:grid-cols-2" data-gallery-grid>
+      {entries.map((item, index) => (
+        <RadarVisualCard item={item} locale={locale} loading={index < 4 ? 'eager' : 'lazy'} preview />
+      ))}
+    </section>
+
+    <section class="theme-panel mt-8 hidden rounded-[1.25rem] p-6 theme-muted" data-gallery-empty>
+      {text.noMatches}
+    </section>
+
+    <dialog class="max-h-[92vh] w-[min(1180px,calc(100vw-2rem))] rounded-[1.25rem] border-0 bg-transparent p-0 backdrop:bg-slate-950/70" data-gallery-dialog>
+      <div class="theme-panel-strong overflow-hidden rounded-[1.25rem] shadow-glow">
+        <div class="flex items-center justify-between gap-4 p-4 md:p-5">
+          <div class="min-w-0">
+            <p class="theme-muted text-xs uppercase tracking-[0.2em]" data-dialog-meta></p>
+            <h2 class="theme-heading mt-2 truncate text-lg font-semibold md:text-2xl" data-dialog-title></h2>
+          </div>
+          <button type="button" class="theme-button-soft shrink-0 rounded-xl px-3 py-2 text-sm" data-dialog-close aria-label={text.closePreview}>
+            x
+          </button>
+        </div>
+        <div class="max-h-[68vh] overflow-auto bg-black/20">
+          <img src="" alt="" class="h-auto w-full" data-dialog-image />
+        </div>
+        <div class="flex flex-wrap justify-end gap-3 p-4 md:p-5">
+          <a href="" class="theme-action-primary rounded-xl px-4 py-2 text-sm font-semibold" data-dialog-link>
+            {text.openArticle}
+          </a>
+        </div>
+      </div>
+    </dialog>
+
+    <script>
+      const galleryRoot = document.querySelector('[data-radar-gallery]');
+
+      if (galleryRoot) {
+        const cadenceButtons = Array.from(galleryRoot.querySelectorAll<HTMLElement>('[data-cadence-filter]'));
+        const monthSelect = galleryRoot.querySelector<HTMLSelectElement>('[data-month-filter]');
+        const cards = Array.from(galleryRoot.querySelectorAll<HTMLElement>('[data-gallery-card]'));
+        const countNode = galleryRoot.querySelector<HTMLElement>('[data-gallery-count]');
+        const emptyNode = galleryRoot.querySelector<HTMLElement>('[data-gallery-empty]');
+        const dialog = galleryRoot.querySelector<HTMLDialogElement>('[data-gallery-dialog]');
+        const dialogImage = galleryRoot.querySelector<HTMLImageElement>('[data-dialog-image]');
+        const dialogTitle = galleryRoot.querySelector<HTMLElement>('[data-dialog-title]');
+        const dialogMeta = galleryRoot.querySelector<HTMLElement>('[data-dialog-meta]');
+        const dialogLink = galleryRoot.querySelector<HTMLAnchorElement>('[data-dialog-link]');
+        const dialogClose = galleryRoot.querySelector<HTMLButtonElement>('[data-dialog-close]');
+        const totalCount = Number(countNode?.dataset.totalCount ?? cards.length);
+        const countSuffix = countNode?.dataset.countSuffix ?? '';
+        let activeCadence = 'all';
+
+        const getVisibleCountLabel = (visible: number) => (
+          document.documentElement.lang === 'ja'
+            ? `Showing ${visible} / ${totalCount} ${countSuffix}`
+            : `显示 ${visible} / 共 ${totalCount} ${countSuffix}`
+        ).trim();
+
+        const updateFilters = () => {
+          const activeMonth = monthSelect?.value ?? 'all';
+          let visible = 0;
+
+          for (const card of cards) {
+            const matchesCadence = activeCadence === 'all' || card.dataset.cadence === activeCadence;
+            const matchesMonth = activeMonth === 'all' || card.dataset.month === activeMonth;
+            const shouldShow = matchesCadence && matchesMonth;
+
+            card.hidden = !shouldShow;
+            if (shouldShow) visible += 1;
+          }
+
+          for (const button of cadenceButtons) {
+            const isActive = button.dataset.cadenceFilter === activeCadence;
+            button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            button.classList.toggle('theme-segment-active', isActive);
+          }
+
+          if (countNode) countNode.textContent = getVisibleCountLabel(visible);
+          emptyNode?.classList.toggle('hidden', visible > 0);
+        };
+
+        for (const button of cadenceButtons) {
+          button.addEventListener('click', () => {
+            activeCadence = button.dataset.cadenceFilter ?? 'all';
+            updateFilters();
+          });
+        }
+
+        monthSelect?.addEventListener('change', updateFilters);
+
+        for (const trigger of galleryRoot.querySelectorAll<HTMLButtonElement>('[data-preview-trigger]')) {
+          trigger.addEventListener('click', () => {
+            if (!dialog || !dialogImage || !dialogTitle || !dialogMeta || !dialogLink) return;
+
+            dialogImage.src = trigger.dataset.imageSrc ?? '';
+            dialogImage.alt = trigger.dataset.imageAlt ?? '';
+            dialogTitle.textContent = trigger.dataset.title ?? '';
+            dialogMeta.textContent = trigger.dataset.meta ?? '';
+            dialogLink.href = trigger.dataset.href ?? '';
+
+            if (typeof dialog.showModal === 'function') {
+              dialog.showModal();
+            } else {
+              dialog.setAttribute('open', '');
+            }
+          });
+        }
+
+        dialogClose?.addEventListener('click', () => dialog?.close());
+        dialog?.addEventListener('click', (event) => {
+          if (event.target === dialog) dialog.close();
+        });
+      }
+    </script>
+  </>
 ) : (
   <section class="theme-panel mt-8 rounded-[1.25rem] p-6 theme-muted">{text.empty}</section>
 )}
+</div>

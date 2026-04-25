@@ -1,0 +1,39 @@
+---
+import { searchPath, type Locale } from '../lib/site';
+import { siteNav } from '../lib/i18n';
+
+const { locale, placement = 'nav' } = Astro.props as {
+  locale: Locale;
+  placement?: 'nav' | 'header';
+};
+
+const formClass =
+  placement === 'header'
+    ? 'theme-panel inline-flex h-11 w-[clamp(13rem,17vw,17.5rem)] items-center gap-2 rounded-2xl px-3'
+    : 'theme-panel inline-flex h-11 min-w-[12rem] flex-1 items-center gap-2 rounded-2xl px-3 xl:max-w-[12.5rem] xl:flex-none';
+---
+
+<form action={searchPath(locale)} method="get" role="search" class={formClass}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="h-4 w-4 shrink-0 theme-muted"
+    aria-hidden="true"
+  >
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.5-3.5" />
+  </svg>
+  <input
+    type="search"
+    name="q"
+    placeholder={siteNav[locale].searchPlaceholder}
+    aria-label={siteNav[locale].search}
+    class="w-full min-w-0 bg-transparent text-sm theme-text outline-none placeholder:text-[color:var(--theme-muted)]"
+  />
+  <button type="submit" class="sr-only">{siteNav[locale].searchSubmit}</button>
+</form>

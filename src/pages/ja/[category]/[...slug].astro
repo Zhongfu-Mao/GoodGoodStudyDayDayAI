@@ -32,6 +32,7 @@ const languagePaths = await getLanguagePathsForEntry(collection, entry, 'ja');
   ogType="article"
   ogImage={entry.data.coverImage}
   publishedTime={entry.data.date.toISOString()}
+  activeCategory={entry.data.category}
 >
   <PostDetailPage locale="ja" entry={entry} Content={Content} />
 </BaseLayout>

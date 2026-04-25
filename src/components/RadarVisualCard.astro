@@ -1,0 +1,208 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import {
+  articlePath,
+  cadenceLabels,
+  collectionLabels,
+  resolveSiteUrl,
+  type CollectionName,
+  type Locale,
+} from '../lib/site';
+import { formatDate } from '../lib/i18n';
+import { resolveRadarCadence } from '../lib/radar';
+
+const {
+  item,
+  locale,
+  loading = 'lazy',
+  preview = false,
+} = Astro.props as {
+  item: {
+    collection: CollectionName;
+    slug: string;
+    entry: CollectionEntry<CollectionName>;
+  };
+  locale: Locale;
+  loading?: 'eager' | 'lazy';
+  preview?: boolean;
+};
+
+const href = articlePath(item.entry.data.category, item.slug, locale);
+const coverImage = item.entry.data.coverImage ? resolveSiteUrl(item.entry.data.coverImage) : undefined;
+const cadence = resolveRadarCadence(item);
+const cadenceLabel = cadence ? cadenceLabels[cadence][locale] : collectionLabels.radar[locale];
+const dateLabel = formatDate(item.entry.data.date, locale);
+const month = item.entry.data.date.toISOString().slice(0, 7);
+const previewAlt = locale === 'ja'
+  ? `${item.entry.data.title} のインフォグラフィック`
+  : `${item.entry.data.title} 的信息图`;
+const tags = item.entry.data.tags.slice(0, 3);
+---
+
+<article
+  class="theme-panel group self-start overflow-hidden rounded-[1rem] shadow-glow transition duration-200 hover:-translate-y-1"
+  data-gallery-card
+  data-cadence={cadence ?? 'radar'}
+  data-month={month}
+>
+  {coverImage ? (
+    preview ? (
+      <button
+        type="button"
+        class="relative block w-full overflow-hidden bg-[#f5efe4] text-left"
+        data-preview-trigger
+        data-image-src={coverImage}
+        data-image-alt={previewAlt}
+        data-title={item.entry.data.title}
+        data-meta={`${cadenceLabel} · ${dateLabel}`}
+        data-href={href}
+        aria-label={locale === 'ja' ? '画像をプレビュー' : '预览大图'}
+      >
+        <img
+          src={coverImage}
+          alt={previewAlt}
+          loading={loading}
+          decoding="async"
+          class="block h-auto w-full transition duration-200 group-hover:scale-[1.012]"
+        />
+      </button>
+    ) : (
+      <a href={href} class="relative block w-full overflow-hidden bg-[#f5efe4] text-left">
+        <img
+          src={coverImage}
+          alt={previewAlt}
+          loading={loading}
+          decoding="async"
+          class="block h-auto w-full transition duration-200 group-hover:scale-[1.012]"
+        />
+      </a>
+    )
+  ) : (
+    <a href={href} class="radar-visual-placeholder relative flex aspect-[16/9] w-full overflow-hidden p-5">
+      <div class="radar-placeholder-map pointer-events-none absolute left-8 right-8 top-[22%] grid grid-cols-3 gap-3" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="relative z-10 flex h-full w-full flex-col justify-between">
+        <div class="flex items-center justify-between gap-3 text-xs uppercase tracking-[0.18em] theme-muted">
+          <span>{cadenceLabel}</span>
+          <time datetime={item.entry.data.date.toISOString()}>{dateLabel}</time>
+        </div>
+        <div>
+          <p class="theme-heading max-w-3xl text-2xl font-semibold leading-tight md:text-3xl">
+            {item.entry.data.title}
+          </p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            {tags.map((tag) => (
+              <span class="radar-visual-tag rounded-md px-2.5 py-1 text-xs font-medium leading-4">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </a>
+  )}
+
+  <div class="px-3 py-2">
+    <div class="flex min-h-[2.75rem] flex-col justify-center gap-1.5 sm:flex-row sm:items-center sm:justify-start sm:gap-3">
+      <div class="flex shrink-0 flex-wrap items-center gap-x-2 gap-y-0.5 text-xs uppercase tracking-[0.12em] theme-muted sm:w-[10.5rem]">
+        <span>{cadenceLabel}</span>
+        <span aria-hidden="true" class="opacity-50">/</span>
+        <time datetime={item.entry.data.date.toISOString()}>{dateLabel}</time>
+      </div>
+      <div class="flex min-w-0 flex-1 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
+        <h2 class="theme-heading min-w-0 text-[17px] font-semibold leading-6">{item.entry.data.title}</h2>
+        <div class="flex shrink-0 flex-wrap justify-start gap-1.5 sm:ml-auto sm:justify-end">
+          {tags.map((tag) => (
+            <span class="radar-visual-tag rounded-md px-2.5 py-1 text-xs font-medium leading-4">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  .radar-visual-tag {
+    background: color-mix(in srgb, var(--theme-accent) 14%, var(--theme-surface-strong));
+    border: 1px solid color-mix(in srgb, var(--theme-accent) 38%, var(--theme-border));
+    color: color-mix(in srgb, var(--theme-accent) 78%, var(--theme-page-text));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .radar-visual-placeholder {
+    background:
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--theme-accent) 14%, transparent),
+        color-mix(in srgb, var(--theme-surface-strong) 92%, transparent)
+      ),
+      repeating-linear-gradient(
+        0deg,
+        color-mix(in srgb, var(--theme-border) 26%, transparent) 0 1px,
+        transparent 1px 32px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--theme-border) 22%, transparent) 0 1px,
+        transparent 1px 32px
+      ),
+      var(--theme-surface-strong);
+  }
+
+  .radar-visual-placeholder::before {
+    position: absolute;
+    inset: 1.1rem;
+    content: '';
+    border: 1px solid color-mix(in srgb, var(--theme-accent) 18%, var(--theme-border));
+    border-radius: 0.85rem;
+  }
+
+  .radar-visual-placeholder::after {
+    position: absolute;
+    right: 1.35rem;
+    bottom: 1.15rem;
+    width: min(18rem, 45%);
+    height: 0.35rem;
+    content: '';
+    background: color-mix(in srgb, var(--theme-accent) 34%, transparent);
+    border-radius: 999px;
+  }
+
+  .radar-placeholder-map span {
+    height: clamp(3rem, 8vw, 5rem);
+    border: 1px solid color-mix(in srgb, var(--theme-accent) 22%, var(--theme-border));
+    border-radius: 0.7rem;
+    background:
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--theme-accent) 20%, transparent) 0 0.35rem,
+        transparent 0.35rem
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--theme-page-text) 10%, transparent) 0 0.45rem,
+        transparent 0.45rem
+      );
+    opacity: 0.72;
+  }
+
+  .radar-placeholder-map span:nth-child(2) {
+    transform: translateY(1.1rem);
+  }
+
+  .radar-placeholder-map span:nth-child(3) {
+    transform: translateY(0.35rem);
+  }
+
+  :global(html[data-theme='light']) .radar-visual-tag {
+    background: color-mix(in srgb, var(--theme-accent-soft) 76%, #ffffff);
+    border-color: color-mix(in srgb, var(--theme-accent) 28%, rgba(228, 228, 231, 0.96));
+    color: #6f481b;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  }
+</style>

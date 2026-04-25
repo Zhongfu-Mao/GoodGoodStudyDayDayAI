@@ -13,6 +13,6 @@ export async function getStaticPaths() {
 const { category } = Astro.props as { category: CollectionName };
 ---
 
-<BaseLayout title={`${collectionLabels[category].zh} · Good Good Study, Day Day AI`} locale="zh">
+<BaseLayout title={`${collectionLabels[category].zh} · Good Good Study, Day Day AI`} locale="zh" activeCategory={category}>
   <CategoryPage locale="zh" category={category} />
 </BaseLayout>

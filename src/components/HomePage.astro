@@ -1,5 +1,5 @@
 ---
-import { articlePath, collectionLabels, tagIndexPath, tagPath, type Locale } from '../lib/site';
+import { articlePath, collectionLabels, radarGalleryPath, resolveSiteUrl, tagIndexPath, tagPath, type Locale } from '../lib/site';
 import { getEntriesForLocale, getTagIndex } from '../lib/content';
 import { formatDate, homePage } from '../lib/i18n';
 
@@ -99,6 +99,9 @@ const entries = await getEntriesForLocale(locale);
 const [featuredStory, ...restStories] = entries;
 const spotlightStories = restStories.slice(0, 3);
 const recentStories = entries.slice(0, 4);
+const recentVisualStories = entries
+  .filter((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage)
+  .slice(0, 3);
 const tagIndex = await getTagIndex(locale);
 const text = homePage[locale];
 const featuredExcerpt = featuredStory
@@ -185,6 +188,46 @@ const featuredCta = locale === 'ja' ? '記事を読む' : '阅读全文';
   </div>
 
   <aside class="grid content-start gap-4 lg:sticky lg:top-28">
+    {recentVisualStories.length > 0 ? (
+      <section class="theme-panel rounded-[1.5rem] p-6">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="theme-muted text-xs uppercase tracking-[0.28em]">Visual Radar</p>
+            <h2 class="theme-heading mt-2 text-2xl font-semibold">{text.recentVisuals}</h2>
+          </div>
+          <span class="theme-chip rounded-xl px-3 py-1 text-xs">{recentVisualStories.length}</span>
+        </div>
+        <div class="mt-5 grid gap-3">
+          {recentVisualStories.map((item) => (
+            <a
+              href={articlePath(item.entry.data.category, item.slug, locale)}
+              class="theme-button-soft overflow-hidden rounded-[1rem]"
+            >
+              <img
+                src={resolveSiteUrl(item.entry.data.coverImage ?? '')}
+                alt={item.entry.data.title}
+                loading="lazy"
+                decoding="async"
+                class="aspect-[2/1] w-full object-cover"
+              />
+              <div class="px-4 py-3">
+                <p class="theme-muted text-[11px] uppercase tracking-[0.2em]">
+                  {formatDate(item.entry.data.date, locale)}
+                </p>
+                <p class="theme-heading mt-2 line-clamp-2 text-sm font-semibold leading-snug">{item.entry.data.title}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+        <a
+          href={radarGalleryPath(locale)}
+          class="theme-action-primary mt-5 inline-flex w-full items-center justify-center rounded-[1rem] px-4 py-3 text-sm font-semibold"
+        >
+          {text.recentVisualsCta}
+        </a>
+      </section>
+    ) : null}
+
     <section class="theme-panel rounded-[1.5rem] p-6">
       <div class="flex items-start justify-between gap-3">
         <div>

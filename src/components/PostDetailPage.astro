@@ -65,7 +65,7 @@ const currentMonthEntries = sameSeriesEntries.filter((item) => getMonthKey(item.
 const sidebarEntries = academyMeta ? sameSeriesEntries : currentMonthEntries;
 const archiveHref =
   entry.data.category === 'radar' && currentCadence
-    ? `${categoryPath('radar', locale)}#${currentCadence}-${currentMonthKey}`
+    ? `${categoryPath('radar', locale)}#${currentCadence}`
     : categoryPath(entry.data.category, locale);
 
 const text = postDetailPage[locale];
