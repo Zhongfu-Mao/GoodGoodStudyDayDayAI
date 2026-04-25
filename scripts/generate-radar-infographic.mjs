@@ -374,9 +374,25 @@ async function generateWithOpenAI(meta, body, targetFile, imagePath, options) {
   await writeFile(imagePath, Buffer.from(base64Image, 'base64'));
 }
 
-function inferInfographicPrompt(title, lang) {
+function inferInfographicPrompt(title, lang, cadence = 'daily') {
   if (lang === 'ja') {
+    if (cadence === 'weekly') {
+      return `${title} をもとに、今週の主線をひと目で掴める週間情報図解を作ってください。3〜5 個の重要シグナルを束ね、流れ・因果・来週も追うべき論点が分かる構成にしてください。`;
+    }
+
+    if (cadence === 'monthly') {
+      return `${title} をもとに、今月の大きな流れを俯瞰できる月次情報図解を作ってください。4〜6 個の主要トレンドを束ね、各週の変化、構造的な意味、次月への示唆が分かる構成にしてください。`;
+    }
+
     return `${title} をもとに、今日の主線をひと目で掴める情報図解を作ってください。3〜5 個の重要シグナルを束ね、見出し・短い注釈・因果のつながりが分かる構成にしてください。`;
+  }
+
+  if (cadence === 'weekly') {
+    return `请基于《${title}》生成一张适合博客文章顶部展示的中文周报信息图。不要做成海报，而是做成“本周主线 + 3 到 5 个关键分支”的结构：一眼能看懂这一周的核心变化、关键趋势之间的关系，以及下周值得继续跟踪的点。文字要短，层次要清楚，适合横向阅读。`;
+  }
+
+  if (cadence === 'monthly') {
+    return `请基于《${title}》生成一张适合博客文章顶部展示的中文月报信息图。不要做成海报，而是做成“本月主线 + 4 到 6 个核心趋势”的结构：一眼能看懂本月 AI 技术和产业信号如何汇聚、各周之间如何演化，以及下个月值得关注的方向。文字要短，层次要清楚，适合横向阅读。`;
   }
 
   return `请基于《${title}》生成一张适合博客文章顶部展示的中文信息图。不要做成海报，而是做成“主线 + 3 到 5 个关键分支”的结构：一眼能看懂今天的核心主题、关键趋势之间的关系，以及对从业者的启发。文字要短，层次要清楚，适合横向阅读。`;
@@ -406,7 +422,7 @@ async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
       options.style,
       '--language',
       languageArg(meta.lang),
-      inferInfographicPrompt(meta.title, meta.lang),
+      inferInfographicPrompt(meta.title, meta.lang, meta.cadence),
       '--json',
     ]);
 

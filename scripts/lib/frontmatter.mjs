@@ -42,6 +42,7 @@ export function parseFrontmatter(source, { requireTitle = true } = {}) {
     body: normalized.slice(match[0].length),
     title,
     lang: readScalar(frontmatter, 'lang') ?? 'zh',
+    cadence: readScalar(frontmatter, 'cadence'),
     audioUrl: readScalar(frontmatter, 'audioUrl'),
     deckUrl: readScalar(frontmatter, 'deckUrl'),
     coverImage: readScalar(frontmatter, 'coverImage'),

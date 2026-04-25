@@ -2,7 +2,6 @@
 import PostCard from './PostCard.astro';
 import RadarVisualCard from './RadarVisualCard.astro';
 import {
-  articlePath,
   cadenceLabels,
   collectionLabels,
   radarCadences,
@@ -12,7 +11,7 @@ import {
 } from '../lib/site';
 import { getAcademySeriesGroups, getEntriesForLocale } from '../lib/content';
 import { resolveRadarCadence } from '../lib/radar';
-import { categoryPage, formatDate } from '../lib/i18n';
+import { categoryPage } from '../lib/i18n';
 
 const { locale, category } = Astro.props as {
   locale: Locale;
@@ -79,35 +78,11 @@ const text = categoryPage[locale];
           </div>
 
           {section.items.length > 0 ? (
-            section.cadence === 'daily' ? (
-              <div class="grid items-start gap-4 md:grid-cols-2">
-                {section.items.map((item) => (
-                  <RadarVisualCard item={item} locale={locale} />
-                ))}
-              </div>
-            ) : (
-              <div class="grid gap-3 md:grid-cols-2">
-                {section.items.map((item) => (
-                  <a
-                    href={articlePath(item.entry.data.category, item.slug, locale)}
-                    class="theme-panel group rounded-[1rem] p-4 transition duration-200 hover:-translate-y-0.5 hover:border-[color:var(--theme-accent)]"
-                  >
-                    <div class="flex items-center justify-between gap-3">
-                      <p class="theme-muted text-xs uppercase tracking-[0.18em]">{section.label}</p>
-                      <time class="theme-muted shrink-0 text-xs" datetime={item.entry.data.date.toISOString()}>
-                        {formatDate(item.entry.data.date, locale)}
-                      </time>
-                    </div>
-                    <h2 class="theme-heading mt-3 text-lg font-semibold leading-6">{item.entry.data.title}</h2>
-                    <div class="mt-3 flex flex-wrap gap-1.5">
-                      {item.entry.data.tags.slice(0, 3).map((tag) => (
-                        <span class="theme-chip rounded-xl px-2.5 py-1 text-xs">{tag}</span>
-                      ))}
-                    </div>
-                  </a>
-                ))}
-              </div>
-            )
+            <div class="grid items-start gap-4 md:grid-cols-2">
+              {section.items.map((item) => (
+                <RadarVisualCard item={item} locale={locale} />
+              ))}
+            </div>
           ) : (
             <div class="theme-panel rounded-2xl border-dashed p-6 theme-muted">{text.radarEmpty}</div>
           )}
