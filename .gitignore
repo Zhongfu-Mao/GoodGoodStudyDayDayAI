@@ -1,35 +1,116 @@
-# Astro
+# Build / framework output
 .astro/
 dist/
+.output/
+.cache/
+.tmp/
+tmp/
+temp/
+.vercel/
+.netlify/
 
 # Dependencies
 node_modules/
 .venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pnpm-store/
+
+# NotebookLM / browser auth state
 .notebooklm/
 storage_state.json
 context.json
+**/storage_state.json
+**/context.json
+*.storage_state.json
+cookies*.json
+*.cookies.json
+*.session.json
+*.token.json
+*.credentials.json
+*.secret.json
+credentials.json
+token.json
+client_secret*.json
+service-account*.json
 
 # Environment
 .env
 .env.*
 !.env.example
+.envrc
+.direnv/
+.npmrc
 
-# Logs
+# Logs / diagnostics
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
+
+# Test / coverage output
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
 
 # Editor / OS
 .DS_Store
+.AppleDouble
+.LSOverride
 .vscode/
 .idea/
 *.swp
 *.swo
+*.swn
+*~
 Thumbs.db
 
-# Claude Code local settings
-.claude/settings.local.json
+# AI assistant local state
+.claude/
+.codex/
+.cursor/
+.windsurf/
+.mcp.json
+.mcp.*.json
 
-# Local/private planning docs
+# Local-only scripts and script output
+scripts/local/
+scripts/tmp/
+scripts/temp/
+scripts/output/
+scripts/*.local.*
+scripts/**/*.local.*
+
+# Temporary/private artifacts
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+*.pid
+*.seed
+*.sqlite
+*.sqlite3
+*.db
+*.db-*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# Local/private planning and memory docs
 *.local.md
+*.local.json
+*.local.yaml
+*.local.yml
+*.private.md
+AGENTS.local.md
+PROJECT_MEMORY.local.md
