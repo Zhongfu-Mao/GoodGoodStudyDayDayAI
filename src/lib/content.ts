@@ -37,37 +37,37 @@ export type AcademyCatalogGroup = {
 
 const openAiAcademyTracks = [
   {
-    name: '学习路线总览',
+    name: { zh: '学习路线总览', ja: '学習ルート全体' },
     order: 0,
     pathParts: ['/openai-academy/00-overview/'],
   },
   {
-    name: 'AI Fundamentals',
+    name: { zh: 'AI Fundamentals', ja: 'AI Fundamentals' },
     order: 1,
     pathParts: ['/openai-academy/01-ai-fundamentals/'],
   },
   {
-    name: 'Using ChatGPT',
+    name: { zh: 'Using ChatGPT', ja: 'Using ChatGPT' },
     order: 2,
     pathParts: ['/openai-academy/02-using-chatgpt/'],
   },
   {
-    name: 'ChatGPT for Work',
+    name: { zh: 'ChatGPT for Work', ja: 'ChatGPT for Work' },
     order: 3,
     pathParts: ['/openai-academy/03-chatgpt-for-work/', '/openai-academy/05-chatgpt-for-work/'],
   },
   {
-    name: 'ChatGPT for Education',
+    name: { zh: 'ChatGPT for Education', ja: 'ChatGPT for Education' },
     order: 4,
     pathParts: ['/openai-academy/04-chatgpt-for-education/', '/openai-academy/06-chatgpt-for-education/'],
   },
   {
-    name: 'Codex',
+    name: { zh: 'Codex', ja: 'Codex' },
     order: 5,
     pathParts: ['/openai-academy/03-codex/', '/openai-academy/05-codex/', '/openai-academy/06-codex-for-work/'],
   },
   {
-    name: 'Building with AI',
+    name: { zh: 'Building with AI', ja: 'Building with AI' },
     order: 6,
     pathParts: ['/openai-academy/04-building-with-ai/', '/openai-academy/07-building-with-ai/'],
   },
@@ -306,12 +306,13 @@ function resolveAcademyCatalogGroup(entry: CollectionEntry<CollectionName>) {
   }
 
   const normalizedId = `/${entry.id.replace(/\\/g, '/')}/`;
+  const locale = entry.data.lang as Locale;
   const track = openAiAcademyTracks.find((candidate) =>
     candidate.pathParts.some((pathPart) => normalizedId.includes(pathPart)),
   );
 
   return {
-    name: track?.name ?? academy.module,
+    name: track?.name[locale] ?? academy.module,
     order: track?.order ?? moduleOrder,
   };
 }
