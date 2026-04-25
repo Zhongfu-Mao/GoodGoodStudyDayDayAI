@@ -14,111 +14,14 @@ import { getEntriesForLocale, getTagIndex } from '../lib/content';
 import { formatDate, homePage } from '../lib/i18n';
 import TransparentAquarium from './TransparentAquarium.astro';
 
-function cleanMarkdownText(text: string) {
-  return text
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/[`*_>#]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function getRepresentativeLead(body: string) {
-  const match = body.match(/\*([^*]+)\*/);
-
-  if (!match) return '';
-
-  const cleaned = cleanMarkdownText(match[1]);
-  const firstSentenceBreak = cleaned.indexOf('。');
-  const withoutSource =
-    firstSentenceBreak >= 0 && (cleaned.startsWith('代表图来自') || cleaned.startsWith('代表画像は'))
-      ? cleaned.slice(firstSentenceBreak + 1).trim()
-      : cleaned;
-
-  return withoutSource;
-}
-
-function getNarrativeParagraphs(body: string) {
-  return body
-    .split(/\n\s*\n/)
-    .map((block) => block.trim())
-    .filter(Boolean)
-    .filter((block) => !block.startsWith('#'))
-    .filter((block) => !block.startsWith('!['))
-    .filter((block) => !block.startsWith('---'))
-    .filter((block) => !block.startsWith('*'))
-    .filter((block) => !/^([-*]\s)/.test(block))
-    .filter((block) => !block.startsWith('**来源：**'))
-    .filter((block) => !block.startsWith('**出典：**'))
-    .map(cleanMarkdownText)
-    .filter((block) => block.length >= 40);
-}
-
-function isGenericLead(text: string, locale: Locale) {
-  if (!text) return true;
-
-  return locale === 'ja'
-    ? /^(この日の|この週|この数日|4 月|この回は)|原始シグナル/.test(text)
-    : /^(它对应|这张图|它能代表|它更贴合|用它来做|这期同时在看)|原始信号/.test(text);
-}
-
-function trimExcerpt(text: string, maxLength = 180) {
-  if (text.length <= maxLength) return text.trim();
-
-  const sliced = text.slice(0, maxLength);
-  const sentenceBoundary = Math.max(sliced.lastIndexOf('。'), sliced.lastIndexOf('！'), sliced.lastIndexOf('？'));
-
-  if (sentenceBoundary >= Math.floor(maxLength * 0.5)) {
-    return sliced.slice(0, sentenceBoundary + 1).trim();
-  }
-
-  const phraseBoundary = Math.max(sliced.lastIndexOf('；'), sliced.lastIndexOf('，'));
-
-  if (phraseBoundary >= Math.floor(maxLength * 0.6)) {
-    return sliced.slice(0, phraseBoundary + 1).trim();
-  }
-
-  return sliced.trim();
-}
-
-function getEntryExcerpt(description: string | undefined, body: string | undefined, locale: Locale) {
-  if (description) return description;
-  if (!body) return '';
-
-  const representativeLead = getRepresentativeLead(body);
-  const paragraphs = getNarrativeParagraphs(body);
-  const firstNarrative = paragraphs[0] ?? '';
-
-  if (representativeLead && firstNarrative) {
-    if (isGenericLead(representativeLead, locale)) {
-      return trimExcerpt(firstNarrative);
-    }
-
-    const bridge = locale === 'ja' ? ' この回で特に目立ったのは、' : ' 本期还重点关注：';
-    return trimExcerpt(`${representativeLead}${bridge}${firstNarrative}`);
-  }
-
-  if (representativeLead && !isGenericLead(representativeLead, locale)) {
-    return trimExcerpt(representativeLead);
-  }
-
-  return trimExcerpt(firstNarrative);
-}
-
 const { locale } = Astro.props as { locale: Locale };
 const entries = await getEntriesForLocale(locale);
-const [featuredStory, ...restStories] = entries;
-const spotlightStories = restStories.slice(0, 3);
-const recentStories = entries.slice(0, 4);
+const recentStories = entries.slice(0, 6);
 const recentVisualStories = entries
   .filter((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage)
   .slice(0, 3);
 const tagIndex = await getTagIndex(locale);
 const text = homePage[locale];
-const featuredExcerpt = featuredStory
-  ? getEntryExcerpt(featuredStory.entry.data.description, featuredStory.entry.body, locale)
-  : '';
-const featuredCta = locale === 'ja' ? '記事を読む' : '阅读全文';
 const visualCount = entries.filter((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage).length;
 const routeItems = collectionNames.map((category) => ({
   category,
@@ -161,18 +64,27 @@ const radarPath = categoryPath('radar', locale);
       </a>
     </div>
 
-    <dl class="mt-10 grid max-w-3xl grid-cols-3 gap-3 text-white">
-      <div class="home-hero-stat">
-        <dt class="text-xs uppercase tracking-[0.2em] text-slate-200/80">{text.contentUnit}</dt>
-        <dd class="mt-1 text-3xl font-semibold">{entries.length}</dd>
+    <dl class="home-hero-metrics mt-8 text-white">
+      <div class="home-hero-metric">
+        <dt class="sr-only">{text.contentUnit}</dt>
+        <dd>
+          <span class="home-hero-metric-value">{entries.length}</span>
+          <span class="home-hero-metric-label">{text.contentUnit}</span>
+        </dd>
       </div>
-      <div class="home-hero-stat">
-        <dt class="text-xs uppercase tracking-[0.2em] text-slate-200/80">{text.visualUnit}</dt>
-        <dd class="mt-1 text-3xl font-semibold">{visualCount}</dd>
+      <div class="home-hero-metric">
+        <dt class="sr-only">{text.visualUnit}</dt>
+        <dd>
+          <span class="home-hero-metric-value">{visualCount}</span>
+          <span class="home-hero-metric-label">{text.visualUnit}</span>
+        </dd>
       </div>
-      <div class="home-hero-stat">
-        <dt class="text-xs uppercase tracking-[0.2em] text-slate-200/80">{text.tagUnit}</dt>
-        <dd class="mt-1 text-3xl font-semibold">{tagIndex.length}</dd>
+      <div class="home-hero-metric">
+        <dt class="sr-only">{text.tagUnit}</dt>
+        <dd>
+          <span class="home-hero-metric-value">{tagIndex.length}</span>
+          <span class="home-hero-metric-label">{text.tagUnit}</span>
+        </dd>
       </div>
     </dl>
   </div>
@@ -250,68 +162,35 @@ const radarPath = categoryPath('radar', locale);
   </div>
 </section>
 
-<section class="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1.55fr)_320px]">
-  <div class="grid gap-6">
-    {featuredStory ? (
-      <section class="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
-        <article class="theme-panel-strong rounded-[1.5rem] p-7 shadow-glow">
-          <div class="flex h-full flex-col">
-            <p class="theme-kicker text-xs uppercase tracking-[0.28em]">{text.featured}</p>
-            <div class="mt-5 flex items-center gap-3 text-xs uppercase tracking-[0.22em] theme-muted">
-              <span>{collectionLabels[featuredStory.entry.data.category][locale]}</span>
-              <span>{formatDate(featuredStory.entry.data.date, locale)}</span>
-            </div>
-            <h2 class="theme-heading mt-4 text-3xl font-semibold leading-tight md:text-4xl">
-              <a href={articlePath(featuredStory.entry.data.category, featuredStory.slug, locale)}>
-                {featuredStory.entry.data.title}
-              </a>
-            </h2>
-            {featuredExcerpt ? (
-              <p class="theme-muted mt-5 text-base leading-7">
-                {featuredExcerpt}
-              </p>
-            ) : null}
-            <div class="mt-6 flex flex-wrap gap-2">
-              {featuredStory.entry.data.tags.map((tag) => (
-                <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-sm">
-                  {tag}
-                </a>
-              ))}
-            </div>
-            <div class="mt-auto pt-6">
-              <a
-                href={articlePath(featuredStory.entry.data.category, featuredStory.slug, locale)}
-                class="theme-button-soft inline-flex items-center rounded-[1rem] px-4 py-3 text-sm font-medium"
-              >
-                {featuredCta}
-              </a>
-            </div>
+<section class="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,0.72fr)]">
+  <section id="latest" class="theme-panel rounded-[1.5rem] p-5 scroll-mt-44 md:p-6">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.updates}</p>
+        <h2 class="theme-heading mt-2 text-2xl font-semibold">{text.latest}</h2>
+      </div>
+      <span class="theme-chip rounded-xl px-3 py-1 text-xs">{recentStories.length}</span>
+    </div>
+    <div class="mt-5 grid gap-3 md:grid-cols-2">
+      {recentStories.map((item) => (
+        <a
+          href={articlePath(item.entry.data.category, item.slug, locale)}
+          class="theme-button-soft flex min-h-[8.5rem] flex-col rounded-[1rem] px-4 py-3"
+        >
+          <div class="flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.2em] theme-muted">
+            <span>{collectionLabels[item.entry.data.category][locale]}</span>
+            <span>{formatDate(item.entry.data.date, locale)}</span>
           </div>
-        </article>
-
-        <div class="grid gap-4">
-          {spotlightStories.map((item) => (
-            <article class="theme-panel theme-panel-link rounded-[1.25rem] p-5">
-              <div class="flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.24em] theme-muted">
-                <span>{collectionLabels[item.entry.data.category][locale]}</span>
-                <span>{formatDate(item.entry.data.date, locale)}</span>
-              </div>
-              <h3 class="theme-heading mt-3 text-xl font-semibold leading-snug">
-                <a href={articlePath(item.entry.data.category, item.slug, locale)}>{item.entry.data.title}</a>
-              </h3>
-              <div class="mt-4 flex flex-wrap gap-2">
-                {item.entry.data.tags.slice(0, 3).map((tag) => (
-                  <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs">
-                    {tag}
-                  </a>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-    ) : null}
-  </div>
+          <p class="theme-heading mt-3 line-clamp-2 text-lg font-semibold leading-snug">{item.entry.data.title}</p>
+          <div class="mt-auto flex flex-wrap gap-2 pt-4">
+            {item.entry.data.tags.slice(0, 3).map((tag) => (
+              <span class="theme-chip rounded-xl px-2.5 py-1 text-xs">{tag}</span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
 
   <aside class="grid content-start gap-4 lg:sticky lg:top-28">
     <section class="theme-panel rounded-[1.5rem] p-6">
@@ -336,21 +215,6 @@ const radarPath = categoryPath('radar', locale);
       >
         {text.tagIndexCta}
       </a>
-    </section>
-
-    <section id="latest" class="theme-panel rounded-[1.5rem] p-6 scroll-mt-44">
-      <p class="theme-muted text-xs uppercase tracking-[0.28em]">{text.latest}</p>
-      <div class="mt-4 grid gap-3">
-        {recentStories.map((item) => (
-          <a href={articlePath(item.entry.data.category, item.slug, locale)} class="theme-button-soft rounded-[1rem] px-4 py-3">
-            <p class="theme-muted text-[11px] uppercase tracking-[0.2em]">{collectionLabels[item.entry.data.category][locale]}</p>
-            <p class="theme-heading mt-2 text-base font-semibold leading-snug">{item.entry.data.title}</p>
-            <p class="theme-muted mt-2 text-sm">
-              {formatDate(item.entry.data.date, locale)}
-            </p>
-          </a>
-        ))}
-      </div>
     </section>
   </aside>
 </section>
@@ -380,12 +244,49 @@ const radarPath = categoryPath('radar', locale);
     backdrop-filter: blur(12px);
   }
 
-  .home-hero-stat {
-    padding: 0.9rem 1rem;
-    background: rgba(15, 23, 42, 0.54);
-    border: 1px solid rgba(226, 232, 240, 0.2);
-    border-radius: 1rem;
-    backdrop-filter: blur(14px);
+  .home-hero-metrics {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem 1rem;
+    padding: 0;
+  }
+
+  .home-hero-metric {
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .home-hero-metric:not(:last-child)::after {
+    content: '';
+    width: 0.28rem;
+    height: 0.28rem;
+    margin-left: 1rem;
+    border-radius: 999px;
+    background: rgba(226, 232, 240, 0.38);
+  }
+
+  .home-hero-metric dd {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    margin: 0;
+  }
+
+  .home-hero-metric-value {
+    font-size: 1.25rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .home-hero-metric-label {
+    white-space: nowrap;
+    color: rgba(226, 232, 240, 0.78);
+    font-size: 0.95rem;
+    line-height: 1;
   }
 
   @media (max-width: 767px) {
