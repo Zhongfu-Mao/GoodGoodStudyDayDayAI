@@ -1,0 +1,964 @@
+---
+import type { Locale } from '../lib/site';
+
+const { locale = 'zh' } = Astro.props as { locale?: Locale };
+
+const labels = {
+  zh: {
+    enable: '开启透明水族馆',
+    disable: '暂停透明水族馆',
+    tooltipOn: '水族馆开启中',
+    tooltipOff: '水族馆已暂停',
+  },
+  ja: {
+    enable: '透明アクアリウムをオンにする',
+    disable: '透明アクアリウムを一時停止',
+    tooltipOn: 'Aquarium on',
+    tooltipOff: 'Aquarium paused',
+  },
+} as const;
+
+const text = labels[locale];
+---
+
+<div class="transparent-aquarium" data-aquarium data-locale={locale}>
+  <canvas class="transparent-aquarium__canvas" data-aquarium-canvas aria-hidden="true"></canvas>
+  <button
+    type="button"
+    class="transparent-aquarium__toggle"
+    data-aquarium-toggle
+    data-label-enable={text.enable}
+    data-label-disable={text.disable}
+    data-tooltip-on={text.tooltipOn}
+    data-tooltip-off={text.tooltipOff}
+    aria-label={text.enable}
+    aria-pressed="false"
+    title={text.enable}
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.75"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3.5 12.2c2.2-3 5.3-4.5 9.1-4.5 3.1 0 5.5 1.2 7.4 3.6.4.5.4 1.2 0 1.7-1.9 2.4-4.3 3.6-7.4 3.6-3.8 0-6.9-1.5-9.1-4.4Z" />
+      <path d="M3.5 12.2 1.7 9.3c-.2-.4.2-.8.6-.6l3.2 1.5" />
+      <path d="M3.5 12.2 1.7 15c-.2.4.2.8.6.6l3.2-1.5" />
+      <path d="M14.5 8.1c-.9 1.2-.9 6.9 0 8.1" />
+      <path d="M18.5 11.9h.01" />
+    </svg>
+  </button>
+</div>
+
+<script is:inline>
+  (function () {
+    var root = document.querySelector('[data-aquarium]');
+    if (!root) return;
+
+    var canvas = root.querySelector('[data-aquarium-canvas]');
+    var button = root.querySelector('[data-aquarium-toggle]');
+    var context = canvas && canvas.getContext ? canvas.getContext('2d', { alpha: true }) : null;
+    if (!canvas || !button || !context) return;
+
+    var storageKey = 'ggsdda-aquarium';
+    var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    var reducedMotion = !!(motionQuery && motionQuery.matches);
+    var viewport = { width: 0, height: 0, ratio: 1 };
+    var pointer = { x: window.innerWidth * 0.5, y: window.innerHeight * 0.55 };
+    var feedTarget = null;
+    var food = [];
+    var bubbles = [];
+    var fish = [];
+    var animationId = 0;
+    var lastTime = performance.now();
+    var enabled = readStoredState();
+
+    function readStoredState() {
+      try {
+        var stored = localStorage.getItem(storageKey);
+        if (stored === 'on') return true;
+        if (stored === 'off') return false;
+      } catch (error) {}
+
+      return !reducedMotion;
+    }
+
+    function writeStoredState(value) {
+      try {
+        localStorage.setItem(storageKey, value ? 'on' : 'off');
+      } catch (error) {}
+    }
+
+    function updateToggle() {
+      var enableLabel = button.getAttribute('data-label-enable') || 'Enable aquarium';
+      var disableLabel = button.getAttribute('data-label-disable') || 'Pause aquarium';
+      var tooltipOn = button.getAttribute('data-tooltip-on') || disableLabel;
+      var tooltipOff = button.getAttribute('data-tooltip-off') || enableLabel;
+      var label = enabled ? disableLabel : enableLabel;
+
+      root.classList.toggle('is-active', enabled);
+      button.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+      button.setAttribute('aria-label', label);
+      button.setAttribute('title', label);
+      button.setAttribute('data-tooltip', enabled ? tooltipOn : tooltipOff);
+    }
+
+    function resize() {
+      viewport.width = window.innerWidth;
+      viewport.height = window.innerHeight;
+      viewport.ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.max(1, Math.floor(viewport.width * viewport.ratio));
+      canvas.height = Math.max(1, Math.floor(viewport.height * viewport.ratio));
+      canvas.style.width = viewport.width + 'px';
+      canvas.style.height = viewport.height + 'px';
+      context.setTransform(viewport.ratio, 0, 0, viewport.ratio, 0, 0);
+      syncFishCount();
+    }
+
+    function syncFishCount() {
+      var baseCount = viewport.width < 720 ? 4 : viewport.width < 1180 ? 6 : 8;
+      var targetCount = baseCount;
+
+      while (fish.length < targetCount) fish.push(createFish(fish.length, targetCount));
+      fish.length = targetCount;
+    }
+
+    function getInitialFishPosition(index, total) {
+      var safeTop = 58;
+      var safeBottom = Math.max(safeTop + 120, viewport.height - 46);
+      var columns = Math.max(2, Math.ceil(Math.sqrt(total * 1.45)));
+      var rows = Math.max(1, Math.ceil(total / columns));
+      var spreadStep = total % 2 === 0 ? total - 1 : Math.max(2, total - 2);
+      var orderedIndex = (index * spreadStep) % total;
+      var column = orderedIndex % columns;
+      var row = Math.floor(orderedIndex / columns) % rows;
+      var cellWidth = viewport.width / columns;
+      var cellHeight = (safeBottom - safeTop) / rows;
+      var jitterX = (Math.random() - 0.5) * cellWidth * 0.42;
+      var jitterY = (Math.random() - 0.5) * cellHeight * 0.42;
+
+      return {
+        x: clamp((column + 0.5) * cellWidth + jitterX, 36, viewport.width - 36),
+        y: clamp(safeTop + (row + 0.5) * cellHeight + jitterY, safeTop, safeBottom),
+      };
+    }
+
+    function createFish(index, total) {
+      var side = Math.random() > 0.5 ? -1 : 1;
+      var palette = [
+        ['#fb923c', '#fef3c7', '#7c2d12'],
+        ['#22d3ee', '#cffafe', '#155e75'],
+        ['#f472b6', '#fce7f3', '#831843'],
+        ['#a3e635', '#ecfccb', '#365314'],
+        ['#60a5fa', '#dbeafe', '#1e3a8a'],
+        ['#facc15', '#fef9c3', '#854d0e'],
+      ][index % 6];
+      var species = ['classic', 'round', 'stream', 'angel', 'forktail', 'speckled'][index % 6];
+      var pattern = ['stripe', 'spot', 'band', 'none', 'stripe', 'spot'][index % 6];
+
+      var position = getInitialFishPosition(index, total);
+      var item = {
+        x: position.x,
+        y: position.y,
+        vx: (0.006 + Math.random() * 0.012) * side,
+        vy: (Math.random() - 0.5) * 0.01,
+        size: (species === 'stream' ? 9 : 10) + Math.random() * (species === 'round' ? 7 : 9),
+        turn: side,
+        phase: Math.random() * Math.PI * 2,
+        angle: side > 0 ? 0 : Math.PI,
+        tailRate: 2.4 + Math.random() * 1.8,
+        wander: Math.random() * Math.PI * 2,
+        orbit: Math.random() > 0.5 ? 1 : -1,
+        personality: 0.75 + Math.random() * 0.65,
+        burstUntil: 0,
+        nextBurstAt: performance.now() + 9000 + Math.random() * 18000,
+        body: palette[0],
+        fin: palette[1],
+        accent: palette[2],
+        species: species,
+        pattern: pattern,
+        feedUntil: 0,
+        feedOffsetX: 0,
+        feedOffsetY: 0,
+        scatterUntil: 0,
+        scatterX: position.x,
+        scatterY: position.y,
+        roamX: position.x,
+        roamY: position.y,
+        nextRoamAt: 0,
+      };
+
+      pickRoamTarget(item, performance.now());
+      return item;
+    }
+
+    function pickRoamTarget(item, now) {
+      var x = 0;
+      var y = 0;
+      var minDistance = Math.max(180, viewport.width * 0.38);
+
+      for (var attempt = 0; attempt < 24; attempt += 1) {
+        x = Math.random() * viewport.width;
+        y = 82 + Math.random() * Math.max(120, viewport.height - 160);
+        var dx = x - item.x;
+        var dy = y - item.y;
+        if (Math.sqrt(dx * dx + dy * dy) >= minDistance) break;
+      }
+
+      item.roamX = x;
+      item.roamY = y;
+      item.nextRoamAt = now + 24000 + Math.random() * 20000;
+    }
+
+    function feed(x, y) {
+      if (!enabled) return;
+
+      var now = performance.now();
+      feedTarget = {
+        x: x,
+        y: y,
+        gatherUntil: now + 6200,
+        scatterUntil: now + 12800,
+        until: now + 17000,
+      };
+      pointer.x = x;
+      pointer.y = y;
+
+      for (var i = 0; i < 36; i += 1) {
+        food.push({
+          x: x + (Math.random() - 0.5) * 44,
+          y: y + (Math.random() - 0.5) * 24,
+          vx: (Math.random() - 0.5) * 0.026,
+          vy: 0.014 + Math.random() * 0.025,
+          drift: Math.random() * Math.PI * 2,
+          life: 1,
+          size: 1.6 + Math.random() * 2.4,
+        });
+      }
+
+      fish.forEach(function (item, index) {
+        item.feedUntil = feedTarget.gatherUntil + Math.random() * 1400;
+        item.scatterUntil = feedTarget.scatterUntil + Math.random() * 900;
+        item.feedOffsetX = (Math.random() - 0.5) * 92;
+        item.feedOffsetY = (Math.random() - 0.5) * 68;
+        item.burstUntil = Math.max(item.burstUntil, now + 900 + Math.random() * 900);
+        pickScatterTarget(item, x, y, index, fish.length, now);
+      });
+    }
+
+    function getFoodTarget(item, now) {
+      if (!feedTarget || now > feedTarget.gatherUntil || now > item.feedUntil) return null;
+
+      var totalLife = 0;
+      var weightedX = 0;
+      var weightedY = 0;
+
+      food.forEach(function (crumb) {
+        var weight = Math.max(0, crumb.life);
+        totalLife += weight;
+        weightedX += crumb.x * weight;
+        weightedY += crumb.y * weight;
+      });
+
+      var x = totalLife > 0 ? weightedX / totalLife : feedTarget.x;
+      var y = totalLife > 0 ? weightedY / totalLife : feedTarget.y;
+
+      return {
+        x: x + item.feedOffsetX,
+        y: y + item.feedOffsetY,
+      };
+    }
+
+    function pickScatterTarget(item, sourceX, sourceY, index, total, now) {
+      var awayAngle = Math.atan2(item.y - sourceY, item.x - sourceX);
+      if (Math.abs(item.x - sourceX) + Math.abs(item.y - sourceY) < 60) {
+        awayAngle = (Math.PI * 2 * index) / Math.max(1, total);
+      }
+
+      awayAngle += (Math.random() - 0.5) * 0.95;
+
+      var radius = Math.max(220, Math.min(viewport.width, viewport.height) * 0.42) + Math.random() * 260;
+      item.scatterX = clamp(sourceX + Math.cos(awayAngle) * radius, 42, viewport.width - 42);
+      item.scatterY = clamp(sourceY + Math.sin(awayAngle) * radius, 56, viewport.height - 42);
+      item.roamX = item.scatterX;
+      item.roamY = item.scatterY;
+      item.nextRoamAt = now + 9000 + Math.random() * 7000;
+    }
+
+    function getScatterTarget(item, now) {
+      if (!feedTarget || now <= feedTarget.gatherUntil || now > item.scatterUntil) return null;
+      return { x: item.scatterX, y: item.scatterY };
+    }
+
+    function normalizeAngle(angle) {
+      while (angle > Math.PI) angle -= Math.PI * 2;
+      while (angle < -Math.PI) angle += Math.PI * 2;
+      return angle;
+    }
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function pushBubble(x, y, size, now) {
+      bubbles.push({
+        x: x,
+        y: y,
+        vx: (Math.random() - 0.5) * 0.012,
+        vy: -(0.012 + Math.random() * 0.022),
+        size: size,
+        wobble: Math.random() * Math.PI * 2,
+        life: 1,
+        bornAt: now,
+      });
+
+      if (bubbles.length > 48) bubbles.splice(0, bubbles.length - 48);
+    }
+
+    function steerToward(item, x, y, desiredSpeed, turnEase, delta) {
+      var dx = x - item.x;
+      var dy = y - item.y;
+      var distance = Math.max(1, Math.sqrt(dx * dx + dy * dy));
+      item.vx += ((dx / distance) * desiredSpeed - item.vx) * turnEase * delta;
+      item.vy += ((dy / distance) * desiredSpeed - item.vy) * turnEase * delta;
+      return distance;
+    }
+
+    function updateFish(item, delta, now) {
+      var currentSpeed = Math.sqrt(item.vx * item.vx + item.vy * item.vy);
+      item.phase += delta * (0.0009 + currentSpeed * 0.075);
+      item.wander += delta * (0.00012 + item.personality * 0.00005);
+
+      if (now > item.nextBurstAt) {
+        item.burstUntil = now + 550 + Math.random() * 1050;
+        item.nextBurstAt = now + 16000 + Math.random() * 28000;
+      }
+
+      var isBursting = now < item.burstUntil;
+      var target = getFoodTarget(item, now);
+      var scatterTarget = target ? null : getScatterTarget(item, now);
+      var distance = 0;
+
+      if (target) {
+        var foodDx = target.x - item.x;
+        var foodDy = target.y - item.y;
+        distance = Math.max(1, Math.sqrt(foodDx * foodDx + foodDy * foodDy));
+        var arriveSpeed = clamp(distance / 220, 0.18, 1) * (isBursting ? 0.085 : 0.052) * item.personality;
+
+        steerToward(item, target.x, target.y, arriveSpeed, 0.0032, delta);
+
+        if (distance < 170) {
+          var orbitForce = (1 - distance / 170) * 0.00023 * delta * item.orbit;
+          item.vx += (-foodDy / distance) * orbitForce;
+          item.vy += (foodDx / distance) * orbitForce;
+        }
+      } else if (scatterTarget) {
+        distance = steerToward(item, scatterTarget.x, scatterTarget.y, 0.086 * item.personality, 0.0042, delta);
+        item.vx += Math.cos(item.wander * 2.2 + item.phase) * 0.000085 * delta;
+        item.vy += Math.sin(item.wander * 1.9 + item.phase) * 0.000075 * delta;
+
+        if (distance < 70) {
+          item.scatterUntil = Math.min(item.scatterUntil, now + 500);
+        }
+      } else {
+        var roamDx = item.roamX - item.x;
+        var roamDy = item.roamY - item.y;
+        var roamDistance = Math.max(1, Math.sqrt(roamDx * roamDx + roamDy * roamDy));
+
+        if (!item.nextRoamAt || now > item.nextRoamAt || roamDistance < 48) {
+          pickRoamTarget(item, now);
+          roamDx = item.roamX - item.x;
+          roamDy = item.roamY - item.y;
+          roamDistance = Math.max(1, Math.sqrt(roamDx * roamDx + roamDy * roamDy));
+        }
+
+        var roamSpeed = (isBursting ? 0.044 : 0.019) * item.personality;
+        steerToward(item, item.roamX, item.roamY, roamSpeed, 0.0012, delta);
+        item.vx += Math.cos(item.wander * 1.7 + item.phase) * 0.000045 * delta;
+        item.vy += Math.sin(item.wander * 1.3 + item.phase * 0.8) * 0.00004 * delta;
+      }
+
+      var nearbyCount = 0;
+      var centerX = 0;
+      var centerY = 0;
+      var alignX = 0;
+      var alignY = 0;
+      var separateX = 0;
+      var separateY = 0;
+
+      fish.forEach(function (other) {
+        if (other === item) return;
+
+        var dx = other.x - item.x;
+        var dy = other.y - item.y;
+        var d2 = dx * dx + dy * dy;
+        if (d2 <= 0 || d2 > 220 * 220) return;
+
+        var d = Math.sqrt(d2);
+        nearbyCount += 1;
+        centerX += other.x;
+        centerY += other.y;
+        alignX += other.vx;
+        alignY += other.vy;
+
+        if (d < item.size * 5.2) {
+          separateX -= dx / d;
+          separateY -= dy / d;
+        }
+      });
+
+      if (nearbyCount > 0) {
+        centerX /= nearbyCount;
+        centerY /= nearbyCount;
+        alignX /= nearbyCount;
+        alignY /= nearbyCount;
+        item.vx += (alignX - item.vx) * 0.0008 * delta;
+        item.vy += (alignY - item.vy) * 0.0008 * delta;
+
+        if (!target && !scatterTarget) {
+          item.vx += ((centerX - item.x) / 260) * 0.00025 * delta;
+          item.vy += ((centerY - item.y) / 260) * 0.00018 * delta;
+        }
+
+        item.vx += separateX * (scatterTarget ? 0.00055 : 0.00022) * delta;
+        item.vy += separateY * (scatterTarget ? 0.00055 : 0.00022) * delta;
+      }
+
+      var edgeMargin = Math.max(96, item.size * 6);
+      if (item.x < edgeMargin) item.vx += ((edgeMargin - item.x) / edgeMargin) * 0.00055 * delta;
+      if (item.x > viewport.width - edgeMargin) item.vx -= ((item.x - (viewport.width - edgeMargin)) / edgeMargin) * 0.00055 * delta;
+      if (item.y < 68) item.vy += 0.00042 * delta;
+      if (item.y > viewport.height - 46) item.vy -= 0.00042 * delta;
+
+      item.vx *= target || scatterTarget ? 0.993 : 0.996;
+      item.vy *= target || scatterTarget ? 0.993 : 0.996;
+
+      var maxSpeed = target
+        ? (isBursting ? 0.092 : 0.064)
+        : scatterTarget
+          ? 0.105
+          : (isBursting ? 0.048 : 0.026);
+      var speed = Math.max(0.01, Math.sqrt(item.vx * item.vx + item.vy * item.vy));
+      if (speed > maxSpeed) {
+        item.vx = (item.vx / speed) * maxSpeed;
+        item.vy = (item.vy / speed) * maxSpeed;
+      }
+
+      item.x += item.vx * delta;
+      item.y += item.vy * delta;
+
+      if (target && food.length > 0) {
+        for (var i = 0; i < food.length; i += 1) {
+          var crumb = food[i];
+          var foodDx = crumb.x - item.x;
+          var foodDy = crumb.y - item.y;
+          if (foodDx * foodDx + foodDy * foodDy < item.size * item.size * 5) {
+            crumb.life -= 0.0022 * delta;
+            if (Math.random() < 0.16) {
+              pushBubble(item.x - Math.cos(item.angle) * item.size, item.y - Math.sin(item.angle) * item.size, 1.6 + Math.random() * 2.2, now);
+            }
+            break;
+          }
+        }
+      }
+
+      var margin = item.size * 2.6;
+      if (item.x < margin) {
+        item.x = margin;
+        item.vx = Math.abs(item.vx) * 0.68;
+        pickRoamTarget(item, now);
+      }
+      if (item.x > viewport.width - margin) {
+        item.x = viewport.width - margin;
+        item.vx = -Math.abs(item.vx) * 0.68;
+        pickRoamTarget(item, now);
+      }
+      if (item.y < 52) {
+        item.y = 52;
+        item.vy = Math.abs(item.vy) * 0.7;
+      }
+      if (item.y > viewport.height - 42) {
+        item.y = viewport.height - 42;
+        item.vy = -Math.abs(item.vy) * 0.7;
+      }
+
+      if (isBursting && Math.random() < 0.035) {
+        pushBubble(item.x - Math.cos(item.angle) * item.size * 1.2, item.y - Math.sin(item.angle) * item.size * 1.2, 1.2 + Math.random() * 1.8, now);
+      }
+
+      item.turn = item.vx >= 0 ? 1 : -1;
+
+      var desiredAngle = Math.atan2(item.vy, item.vx || 0.001);
+      item.angle += normalizeAngle(desiredAngle - item.angle) * (target || scatterTarget || isBursting ? 0.08 : 0.035);
+    }
+
+    function updateFood(delta, now) {
+      food.forEach(function (crumb) {
+        crumb.drift += delta * 0.001;
+        crumb.vy += 0.0000018 * delta;
+        crumb.x += crumb.vx * delta;
+        crumb.y += crumb.vy * delta;
+        crumb.x += Math.sin(crumb.drift + crumb.y * 0.02) * 0.012 * delta;
+        crumb.life -= (feedTarget && now > feedTarget.gatherUntil ? 0.00062 : 0.000045) * delta;
+      });
+
+      food = food.filter(function (crumb) {
+        return crumb.life > 0 && crumb.y < viewport.height + 24;
+      });
+    }
+
+    function updateBubbles(delta) {
+      bubbles.forEach(function (bubble) {
+        bubble.wobble += delta * 0.002;
+        bubble.x += bubble.vx * delta + Math.sin(bubble.wobble) * 0.01 * delta;
+        bubble.y += bubble.vy * delta;
+        bubble.life -= 0.00038 * delta;
+      });
+
+      bubbles = bubbles.filter(function (bubble) {
+        return bubble.life > 0 && bubble.y > -24;
+      });
+    }
+
+    function drawFish(item) {
+      var speed = Math.sqrt(item.vx * item.vx + item.vy * item.vy);
+      var swimEnergy = Math.min(1, speed / 0.064);
+      var shape = fishShape(item);
+      var tail = Math.sin(item.phase * item.tailRate) * (0.42 + swimEnergy * 0.5);
+      var bodyLength = item.size * shape.length;
+      var bodyHeight = item.size * shape.height;
+      var bodyPulse = 1 + Math.sin(item.phase * 1.35) * 0.035;
+      var finPulse = Math.sin(item.phase * 2.1) * (0.16 + swimEnergy * 0.16);
+      var bodyBend = Math.sin(item.phase * item.tailRate - 0.65) * item.size * (0.08 + swimEnergy * 0.14);
+      var bob = Math.sin(item.phase * 0.68) * item.size * 0.12;
+      var tailBaseX = bodyLength * shape.tailBase;
+      var tailTipX = bodyLength * shape.tailTip;
+      var noseX = bodyLength * shape.nose;
+
+      context.save();
+      context.translate(item.x, item.y + bob);
+      context.rotate(item.angle);
+      context.scale(1, bodyPulse);
+      context.globalAlpha = shape.alpha;
+
+      var gradient = context.createLinearGradient(-bodyLength * 0.5, 0, bodyLength * 0.55, 0);
+      gradient.addColorStop(0, item.fin);
+      gradient.addColorStop(0.42, item.body);
+      gradient.addColorStop(1, item.fin);
+
+      context.fillStyle = 'rgba(2, 6, 23, 0.18)';
+      context.beginPath();
+      context.ellipse(-bodyLength * 0.02, bodyHeight * 0.34, bodyLength * 0.48, bodyHeight * 0.14, 0, 0, Math.PI * 2);
+      context.fill();
+
+      context.fillStyle = item.fin;
+      if (item.species === 'forktail') {
+        context.beginPath();
+        context.moveTo(tailBaseX, bodyBend * 0.26);
+        context.lineTo(tailTipX, -bodyHeight * (0.64 + tail * 0.12));
+        context.lineTo(tailTipX + bodyLength * 0.2, -bodyHeight * 0.08);
+        context.closePath();
+        context.fill();
+
+        context.beginPath();
+        context.moveTo(tailBaseX, bodyBend * 0.26);
+        context.lineTo(tailTipX, bodyHeight * (0.64 - tail * 0.12));
+        context.lineTo(tailTipX + bodyLength * 0.2, bodyHeight * 0.08);
+        context.closePath();
+        context.fill();
+      } else if (item.species === 'angel') {
+        context.beginPath();
+        context.moveTo(tailBaseX, bodyBend * 0.25);
+        context.quadraticCurveTo(tailTipX, -bodyHeight * (0.42 + tail * 0.14), tailTipX + bodyLength * 0.1, 0);
+        context.quadraticCurveTo(tailTipX, bodyHeight * (0.42 - tail * 0.14), tailBaseX, bodyBend * 0.25);
+        context.closePath();
+        context.fill();
+      } else {
+        context.beginPath();
+        context.moveTo(tailBaseX, bodyBend * 0.35);
+        context.quadraticCurveTo(tailTipX, -bodyHeight * (0.62 + tail * 0.18), tailTipX + item.size * 0.14, tail * bodyHeight * 0.18);
+        context.quadraticCurveTo(tailTipX, bodyHeight * (0.62 - tail * 0.18), tailBaseX, bodyBend * 0.35);
+        context.closePath();
+        context.fill();
+      }
+
+      context.fillStyle = gradient;
+      context.beginPath();
+      context.moveTo(noseX, 0);
+      context.bezierCurveTo(bodyLength * 0.35, -bodyHeight * 0.54, -bodyLength * 0.2, -bodyHeight * (item.species === 'round' ? 0.7 : 0.56) + bodyBend * 0.2, tailBaseX, bodyBend * 0.35);
+      context.bezierCurveTo(-bodyLength * 0.12, bodyHeight * (item.species === 'round' ? 0.7 : 0.56) + bodyBend * 0.15, bodyLength * 0.34, bodyHeight * 0.52, noseX, 0);
+      context.closePath();
+      context.fill();
+
+      context.fillStyle = 'rgba(255,255,255,0.42)';
+      context.beginPath();
+      context.ellipse(bodyLength * 0.02, -bodyHeight * 0.19, bodyLength * 0.36, bodyHeight * 0.12, -0.16, 0, Math.PI * 2);
+      context.fill();
+
+      drawFishPattern(item, bodyLength, bodyHeight, bodyBend);
+
+      context.fillStyle = item.fin;
+      if (item.species === 'angel') {
+        context.beginPath();
+        context.moveTo(-bodyLength * 0.12, -bodyHeight * 0.2);
+        context.quadraticCurveTo(-bodyLength * 0.32, -bodyHeight * (1.28 + finPulse), bodyLength * 0.16, -bodyHeight * 0.18);
+        context.closePath();
+        context.fill();
+
+        context.beginPath();
+        context.moveTo(-bodyLength * 0.02, bodyHeight * 0.1);
+        context.quadraticCurveTo(-bodyLength * 0.3, bodyHeight * (1.34 + finPulse), bodyLength * 0.18, bodyHeight * 0.28);
+        context.closePath();
+        context.fill();
+      } else {
+        context.beginPath();
+        context.moveTo(-bodyLength * 0.08, -bodyHeight * 0.02);
+        context.quadraticCurveTo(
+          -bodyLength * (0.2 + finPulse * 0.04),
+          -bodyHeight * (item.species === 'stream' ? 0.36 : 0.52 + finPulse * 0.42),
+          bodyLength * 0.18,
+          -bodyHeight * 0.2,
+        );
+        context.closePath();
+        context.fill();
+      }
+
+      context.beginPath();
+      context.moveTo(-bodyLength * 0.04, bodyHeight * 0.05);
+      context.quadraticCurveTo(
+        -bodyLength * (item.species === 'stream' ? 0.18 : 0.26 + finPulse * 0.06),
+        bodyHeight * (item.species === 'stream' ? 0.44 : 0.72 + finPulse * 0.8),
+        bodyLength * 0.16,
+        bodyHeight * 0.32,
+      );
+      context.closePath();
+      context.fill();
+
+      context.fillStyle = '#020617';
+      context.beginPath();
+      context.arc(bodyLength * 0.42, -bodyHeight * 0.1, Math.max(1.2, item.size * 0.085), 0, Math.PI * 2);
+      context.fill();
+
+      context.fillStyle = 'rgba(255,255,255,0.82)';
+      context.beginPath();
+      context.arc(bodyLength * 0.44, -bodyHeight * 0.13, Math.max(0.45, item.size * 0.025), 0, Math.PI * 2);
+      context.fill();
+
+      context.restore();
+    }
+
+    function drawFood() {
+      context.save();
+      food.forEach(function (crumb) {
+        context.globalAlpha = Math.max(0, Math.min(1, crumb.life)) * 0.72;
+        context.fillStyle = '#fde68a';
+        context.beginPath();
+        context.arc(crumb.x, crumb.y, crumb.size, 0, Math.PI * 2);
+        context.fill();
+      });
+      context.restore();
+    }
+
+    function drawBubbles() {
+      context.save();
+      bubbles.forEach(function (bubble) {
+        context.globalAlpha = Math.max(0, Math.min(1, bubble.life)) * 0.34;
+        context.strokeStyle = document.documentElement.dataset.theme === 'light' ? '#0891b2' : '#a5f3fc';
+        context.lineWidth = 1;
+        context.beginPath();
+        context.arc(bubble.x, bubble.y, bubble.size, 0, Math.PI * 2);
+        context.stroke();
+      });
+      context.restore();
+    }
+
+    function fishShape(item) {
+      var shapes = {
+        classic: { length: 2.25, height: 1.02, nose: 0.62, tailBase: -0.44, tailTip: -0.92, alpha: 0.52 },
+        round: { length: 1.72, height: 1.34, nose: 0.54, tailBase: -0.36, tailTip: -0.76, alpha: 0.5 },
+        stream: { length: 2.9, height: 0.72, nose: 0.66, tailBase: -0.52, tailTip: -1.05, alpha: 0.46 },
+        angel: { length: 1.95, height: 1.28, nose: 0.5, tailBase: -0.34, tailTip: -0.78, alpha: 0.48 },
+        forktail: { length: 2.35, height: 0.92, nose: 0.64, tailBase: -0.46, tailTip: -0.98, alpha: 0.5 },
+        speckled: { length: 2.05, height: 1.08, nose: 0.58, tailBase: -0.42, tailTip: -0.86, alpha: 0.5 },
+      };
+
+      return shapes[item.species] || shapes.classic;
+    }
+
+    function drawFishPattern(item, bodyLength, bodyHeight, bodyBend) {
+      context.save();
+
+      if (item.pattern === 'stripe') {
+        context.globalAlpha *= 0.72;
+        context.strokeStyle = item.accent;
+        context.lineWidth = Math.max(0.65, item.size * 0.055);
+        for (var stripe = 0; stripe < 3; stripe += 1) {
+          var stripeX = -bodyLength * 0.22 + stripe * bodyLength * 0.18;
+          context.beginPath();
+          context.moveTo(stripeX, -bodyHeight * 0.34);
+          context.quadraticCurveTo(stripeX + bodyLength * 0.05, bodyBend * 0.06, stripeX - bodyLength * 0.02, bodyHeight * 0.34);
+          context.stroke();
+        }
+      }
+
+      if (item.pattern === 'spot') {
+        context.globalAlpha *= 0.62;
+        context.fillStyle = item.accent;
+        for (var spot = 0; spot < 4; spot += 1) {
+          var spotX = -bodyLength * 0.2 + spot * bodyLength * 0.17;
+          var spotY = (spot % 2 === 0 ? -1 : 1) * bodyHeight * 0.16;
+          context.beginPath();
+          context.ellipse(spotX, spotY, item.size * 0.11, item.size * 0.075, 0.2, 0, Math.PI * 2);
+          context.fill();
+        }
+      }
+
+      if (item.pattern === 'band') {
+        context.globalAlpha *= 0.5;
+        context.fillStyle = item.accent;
+        context.beginPath();
+        context.ellipse(-bodyLength * 0.1, bodyBend * 0.05, bodyLength * 0.08, bodyHeight * 0.42, -0.12, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      if (item.pattern === 'none') {
+        context.globalAlpha *= 0.52;
+        context.strokeStyle = item.accent;
+        context.lineWidth = Math.max(0.55, item.size * 0.045);
+        context.beginPath();
+        context.moveTo(-bodyLength * 0.32, bodyBend * 0.08);
+        context.quadraticCurveTo(-bodyLength * 0.02, -bodyHeight * 0.05, bodyLength * 0.34, -bodyHeight * 0.02);
+        context.stroke();
+      }
+
+      context.restore();
+    }
+
+    function drawWater(now) {
+      context.save();
+      context.globalAlpha = 0.08;
+      context.strokeStyle = document.documentElement.dataset.theme === 'light' ? '#0e7490' : '#67e8f9';
+      context.lineWidth = 1;
+
+      for (var i = 0; i < 3; i += 1) {
+        var y = 96 + i * 84 + Math.sin(now * 0.00018 + i) * 10;
+        context.beginPath();
+        for (var x = -40; x <= viewport.width + 40; x += 32) {
+          var waveY = y + Math.sin(x * 0.018 + now * 0.00035 + i) * 4;
+          if (x === -40) context.moveTo(x, waveY);
+          else context.lineTo(x, waveY);
+        }
+        context.stroke();
+      }
+      context.restore();
+    }
+
+    function drawFrame(now) {
+      context.clearRect(0, 0, viewport.width, viewport.height);
+      if (!enabled) return;
+
+      drawWater(now);
+      drawBubbles();
+      drawFood();
+      fish.forEach(drawFish);
+    }
+
+    function tick(now) {
+      var delta = Math.min(32, now - lastTime);
+      lastTime = now;
+
+      if (enabled) {
+        if (feedTarget && now > feedTarget.until) {
+          feedTarget = null;
+        }
+
+        updateFood(delta, now);
+        updateBubbles(delta);
+        fish.forEach(function (item) {
+          updateFish(item, delta, now);
+        });
+      }
+
+      drawFrame(now);
+      animationId = window.requestAnimationFrame(tick);
+    }
+
+    function start() {
+      if (animationId) return;
+      lastTime = performance.now();
+      animationId = window.requestAnimationFrame(tick);
+    }
+
+    function setEnabled(nextEnabled) {
+      enabled = nextEnabled;
+      writeStoredState(enabled);
+      updateToggle();
+      if (enabled) {
+        syncFishCount();
+        start();
+      } else {
+        feedTarget = null;
+        food = [];
+        bubbles = [];
+        context.clearRect(0, 0, viewport.width, viewport.height);
+      }
+    }
+
+    button.addEventListener('click', function (event) {
+      event.stopPropagation();
+      setEnabled(!enabled);
+    });
+
+    document.addEventListener(
+      'pointerdown',
+      function (event) {
+        if (!enabled || event.button !== 0 || event.target.closest('[data-aquarium-toggle]')) return;
+        feed(event.clientX, event.clientY);
+      },
+      { passive: true },
+    );
+
+    window.addEventListener('resize', resize, { passive: true });
+    if (motionQuery && motionQuery.addEventListener) {
+      motionQuery.addEventListener('change', function (event) {
+        reducedMotion = event.matches;
+        try {
+          if (localStorage.getItem(storageKey) === null) {
+            setEnabled(!reducedMotion);
+          }
+        } catch (error) {}
+      });
+    }
+
+    resize();
+    updateToggle();
+    if (enabled) start();
+  })();
+</script>
+
+<style>
+  .transparent-aquarium {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+  }
+
+  .transparent-aquarium__canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+  }
+
+  .transparent-aquarium__toggle {
+    pointer-events: auto;
+    position: fixed;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 1px solid var(--theme-border);
+    border-radius: 999px;
+    color: var(--theme-page-text);
+    background: var(--theme-surface-strong);
+    box-shadow: var(--theme-shadow);
+    backdrop-filter: blur(16px);
+    opacity: 0.78;
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease,
+      border-color 160ms ease,
+      background-color 160ms ease;
+  }
+
+  .transparent-aquarium__toggle:hover,
+  .transparent-aquarium__toggle:focus-visible {
+    opacity: 1;
+    transform: translateY(-1px);
+    border-color: rgba(103, 232, 249, 0.34);
+    outline: none;
+  }
+
+  .transparent-aquarium__toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .transparent-aquarium__toggle::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: calc(100% + 0.65rem);
+    top: 50%;
+    width: max-content;
+    max-width: 11rem;
+    transform: translateY(-50%) translateX(0.35rem);
+    border: 1px solid var(--theme-border);
+    border-radius: 0.75rem;
+    padding: 0.38rem 0.56rem;
+    color: var(--theme-page-text);
+    background: var(--theme-surface-strong);
+    box-shadow: var(--theme-shadow);
+    font-size: 0.75rem;
+    line-height: 1;
+    opacity: 0;
+    transition:
+      opacity 140ms ease,
+      transform 140ms ease;
+  }
+
+  .transparent-aquarium__toggle:hover::after,
+  .transparent-aquarium__toggle:focus-visible::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  .transparent-aquarium.is-active .transparent-aquarium__toggle {
+    color: #a5f3fc;
+    border-color: rgba(34, 211, 238, 0.3);
+    background:
+      linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(15, 23, 42, 0.78)),
+      var(--theme-surface-strong);
+  }
+
+  html[data-theme='light'] .transparent-aquarium__toggle {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 250, 249, 0.96)),
+      var(--theme-surface-strong);
+  }
+
+  html[data-theme='light'] .transparent-aquarium.is-active .transparent-aquarium__toggle {
+    color: #0e7490;
+    border-color: rgba(14, 116, 144, 0.24);
+    background:
+      linear-gradient(135deg, rgba(207, 250, 254, 0.82), rgba(255, 255, 255, 0.98)),
+      var(--theme-surface-strong);
+  }
+
+  @media (max-width: 767px) {
+    .transparent-aquarium__toggle {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .transparent-aquarium__toggle::after {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .transparent-aquarium__toggle {
+      transition: none;
+    }
+
+    .transparent-aquarium__toggle::after {
+      transition: none;
+    }
+  }
+</style>

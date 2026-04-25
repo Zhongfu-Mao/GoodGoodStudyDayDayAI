@@ -12,6 +12,7 @@ import {
 } from '../lib/site';
 import { getEntriesForLocale, getTagIndex } from '../lib/content';
 import { formatDate, homePage } from '../lib/i18n';
+import TransparentAquarium from './TransparentAquarium.astro';
 
 function cleanMarkdownText(text: string) {
   return text
@@ -128,6 +129,8 @@ const routeItems = collectionNames.map((category) => ({
 }));
 const radarPath = categoryPath('radar', locale);
 ---
+
+<TransparentAquarium locale={locale} />
 
 <section class="home-hero relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
   <div class="absolute inset-0 grid grid-cols-1 opacity-80 md:grid-cols-3" aria-hidden="true">
