@@ -9,6 +9,7 @@ tags:
   - OpenClaw
   - Opus
 lang: ja
+coverImage: /images/radar/daily-ai-radar-2026-04-12.ja-infographic.png
 draft: false
 ---
 ## 対象範囲

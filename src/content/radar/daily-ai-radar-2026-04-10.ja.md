@@ -9,6 +9,7 @@ tags:
   - Context Engineering
   - OpenClaw
 lang: ja
+coverImage: /images/radar/daily-ai-radar-2026-04-10.ja-infographic.png
 draft: false
 ---
 ## 対象範囲
