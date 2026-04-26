@@ -53,6 +53,8 @@ const radarSubnavItems = [
   { href: `${categoryPath('radar', locale)}#weekly`, hash: '#weekly', label: cadenceLabels.weekly[locale] },
   { href: `${categoryPath('radar', locale)}#monthly`, hash: '#monthly', label: cadenceLabels.monthly[locale] },
 ];
+const radarSubnavTooltip = (label: string) =>
+  locale === 'ja' ? `${label} ビューに切り替え` : `切换到 ${label} 视图`;
 ---
 
 <!doctype html>
@@ -145,7 +147,9 @@ const radarSubnavItems = [
               <a
                 href={item.href}
                 data-radar-subnav={item.hash}
-                class="theme-chip theme-chip-link rounded-xl px-3.5 py-1.5 text-sm"
+                data-tooltip={radarSubnavTooltip(item.label)}
+                title={radarSubnavTooltip(item.label)}
+                class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom rounded-xl px-3.5 py-1.5 text-sm"
               >
                 {item.label}
               </a>
@@ -188,11 +192,17 @@ const radarSubnavItems = [
           document.querySelectorAll('[data-theme-toggle]').forEach(function (button) {
             var lightIcon = button.querySelector('[data-theme-icon-light]');
             var darkIcon = button.querySelector('[data-theme-icon-dark]');
+            var isJapanese = document.documentElement.lang === 'ja';
+            var label = theme === 'light'
+              ? (isJapanese ? 'ダークモードに切り替え' : '切换到深色模式')
+              : (isJapanese ? 'ライトモードに切り替え' : '切换到浅色模式');
 
             if (lightIcon) lightIcon.classList.toggle('hidden', theme === 'light');
             if (darkIcon) darkIcon.classList.toggle('hidden', theme !== 'light');
 
-            button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+            button.setAttribute('aria-label', label);
+            button.setAttribute('data-tooltip', label);
+            button.setAttribute('title', label);
           });
         }
 

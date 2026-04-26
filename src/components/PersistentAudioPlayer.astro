@@ -15,7 +15,13 @@
     <div class="global-audio-player__body">
       <div class="global-audio-player__topline">
         <a class="global-audio-player__title" href="/" data-audio-title>Audio Briefing</a>
-        <button type="button" class="global-audio-player__close" data-audio-close aria-label="Close player">
+        <button
+          type="button"
+          class="global-audio-player__close ui-tooltip ui-tooltip-left"
+          data-audio-close
+          data-tooltip="Close player"
+          aria-label="Close player"
+        >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
             <path d="m6 6 12 12" />
             <path d="m18 6-12 12" />
@@ -26,7 +32,13 @@
       <p class="global-audio-player__meta" data-audio-meta></p>
 
       <div class="global-audio-player__controls">
-        <button type="button" class="global-audio-player__toggle" data-audio-toggle aria-label="Play">
+        <button
+          type="button"
+          class="global-audio-player__toggle ui-tooltip"
+          data-audio-toggle
+          data-tooltip="Play"
+          aria-label="Play"
+        >
           <svg data-audio-play-icon viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M8 5.2v13.6c0 .7.8 1.1 1.4.7l9.5-6.8c.5-.3.5-1.1 0-1.4L9.4 4.5C8.8 4.1 8 4.5 8 5.2Z" />
           </svg>
@@ -244,6 +256,7 @@
           panel && panel.setAttribute('aria-label', text.region);
           close && close.setAttribute('aria-label', text.close);
           close && close.setAttribute('title', text.close);
+          close && close.setAttribute('data-tooltip', text.close);
           progress && progress.setAttribute('aria-label', text.progress);
           articleLinks.forEach(function (link) {
             link.setAttribute('aria-label', text.openArticle);
@@ -344,6 +357,7 @@
           if (toggle) {
             toggle.setAttribute('aria-label', isPlaying ? text.pause : text.play);
             toggle.setAttribute('title', isPlaying ? text.pause : text.play);
+            toggle.setAttribute('data-tooltip', isPlaying ? text.pause : text.play);
           }
           if (playIcon) playIcon.style.display = isPlaying ? 'none' : '';
           if (pauseIcon) pauseIcon.style.display = isPlaying ? '' : 'none';

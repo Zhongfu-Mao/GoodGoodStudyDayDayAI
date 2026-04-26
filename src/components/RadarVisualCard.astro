@@ -36,6 +36,9 @@ const month = item.entry.data.date.toISOString().slice(0, 7);
 const previewAlt = locale === 'ja'
   ? `${item.entry.data.title} のインフォグラフィック`
   : `${item.entry.data.title} 的信息图`;
+const previewTooltip = locale === 'ja'
+  ? `${item.entry.data.title} をプレビュー`
+  : `预览大图：${item.entry.data.title}`;
 const tags = item.entry.data.tags.slice(0, 3);
 const fallbackTitle = cadence === 'daily'
   ? (locale === 'ja' ? 'AI Radar Daily' : 'AI 雷达日报')
@@ -65,6 +68,8 @@ const displayTitle = cadence === 'daily'
         data-title={item.entry.data.title}
         data-meta={`${cadenceLabel} · ${dateLabel}`}
         data-href={href}
+        data-tooltip={previewTooltip}
+        title={previewTooltip}
         aria-label={locale === 'ja' ? '画像をプレビュー' : '预览大图'}
       >
         <img

@@ -7,6 +7,7 @@ const text = searchPage[locale];
 const pagefindUiCss = withBase('/pagefind/pagefind-ui.css');
 const pagefindUiJs = withBase('/pagefind/pagefind-ui.js');
 const pagefindBasePath = withBase('/pagefind/');
+const clearSearchTooltip = locale === 'ja' ? '検索語をクリア' : '清除搜索关键词';
 ---
 
 <section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
@@ -141,9 +142,23 @@ const pagefindBasePath = withBase('/pagefind/');
     zeroResults: text.zeroResults,
     pagefindUiJs,
     pagefindBasePath,
+    clearSearchTooltip,
   }}
 >
   (function () {
+    function applySearchTooltips(root) {
+      window.requestAnimationFrame(function () {
+        var clearButton = root.querySelector('.pagefind-ui__search-clear');
+
+        if (clearButton) {
+          clearButton.classList.add('ui-tooltip', 'ui-tooltip-left');
+          clearButton.setAttribute('aria-label', clearSearchTooltip);
+          clearButton.setAttribute('title', clearSearchTooltip);
+          clearButton.setAttribute('data-tooltip', clearSearchTooltip);
+        }
+      });
+    }
+
     function applyInitialQuery(root) {
       var query = new URLSearchParams(window.location.search).get('q');
 
@@ -193,6 +208,7 @@ const pagefindBasePath = withBase('/pagefind/');
       });
 
       applyInitialQuery(root);
+      applySearchTooltips(root);
     }
 
     function loadPagefind() {

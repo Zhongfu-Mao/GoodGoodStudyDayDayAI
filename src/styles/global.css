@@ -184,10 +184,171 @@
     border-color: rgba(103, 232, 249, 0.3);
   }
 
+  .ui-tooltip {
+    position: relative;
+  }
+
+  .ui-tooltip::before,
+  .ui-tooltip::after {
+    position: absolute;
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+      opacity 140ms ease,
+      transform 140ms ease;
+  }
+
+  .ui-tooltip::after {
+    content: attr(data-tooltip);
+    left: 50%;
+    bottom: calc(100% + 0.55rem);
+    width: max-content;
+    max-width: min(17rem, calc(100vw - 2rem));
+    transform: translate(-50%, 0.28rem);
+    border: 1px solid color-mix(in srgb, var(--theme-border) 78%, rgba(255, 255, 255, 0.16));
+    border-radius: 0.75rem;
+    padding: 0.42rem 0.62rem;
+    color: var(--theme-page-text);
+    background: color-mix(in srgb, var(--theme-surface-strong) 94%, #020617);
+    box-shadow: var(--theme-shadow);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.25;
+    white-space: normal;
+    backdrop-filter: blur(16px);
+  }
+
+  .ui-tooltip::before {
+    content: '';
+    left: 50%;
+    bottom: calc(100% + 0.25rem);
+    transform: translate(-50%, 0.28rem) rotate(45deg);
+    width: 0.55rem;
+    height: 0.55rem;
+    border-right: 1px solid var(--theme-border);
+    border-bottom: 1px solid var(--theme-border);
+    background: color-mix(in srgb, var(--theme-surface-strong) 94%, #020617);
+  }
+
+  .ui-tooltip:hover::before,
+  .ui-tooltip:hover::after,
+  .ui-tooltip:focus-visible::before,
+  .ui-tooltip:focus-visible::after {
+    opacity: 1;
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+
+  .ui-tooltip:hover::after,
+  .ui-tooltip:focus-visible::after {
+    transform: translate(-50%, 0);
+  }
+
+  .ui-tooltip-bottom::after {
+    top: calc(100% + 0.55rem);
+    bottom: auto;
+    transform: translate(-50%, -0.28rem);
+  }
+
+  .ui-tooltip-bottom::before {
+    top: calc(100% + 0.25rem);
+    bottom: auto;
+    transform: translate(-50%, -0.28rem) rotate(45deg);
+    border: 0;
+    border-left: 1px solid var(--theme-border);
+    border-top: 1px solid var(--theme-border);
+  }
+
+  .ui-tooltip-bottom:hover::before,
+  .ui-tooltip-bottom:focus-visible::before {
+    transform: translate(-50%, 0) rotate(45deg);
+  }
+
+  .ui-tooltip-bottom:hover::after,
+  .ui-tooltip-bottom:focus-visible::after {
+    transform: translate(-50%, 0);
+  }
+
+  .ui-tooltip-left::after {
+    top: 50%;
+    right: calc(100% + 0.55rem);
+    bottom: auto;
+    left: auto;
+    transform: translate(0.28rem, -50%);
+  }
+
+  .ui-tooltip-left::before {
+    top: 50%;
+    right: calc(100% + 0.25rem);
+    bottom: auto;
+    left: auto;
+    transform: translate(0.28rem, -50%) rotate(45deg);
+    border: 0;
+    border-right: 1px solid var(--theme-border);
+    border-top: 1px solid var(--theme-border);
+  }
+
+  .ui-tooltip-left:hover::before,
+  .ui-tooltip-left:focus-visible::before {
+    transform: translate(0, -50%) rotate(45deg);
+  }
+
+  .ui-tooltip-left:hover::after,
+  .ui-tooltip-left:focus-visible::after {
+    transform: translate(0, -50%);
+  }
+
+  .ui-tooltip-right::after {
+    top: 50%;
+    left: calc(100% + 0.55rem);
+    bottom: auto;
+    transform: translate(-0.28rem, -50%);
+  }
+
+  .ui-tooltip-right::before {
+    top: 50%;
+    left: calc(100% + 0.25rem);
+    bottom: auto;
+    transform: translate(-0.28rem, -50%) rotate(45deg);
+    border: 0;
+    border-left: 1px solid var(--theme-border);
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  .ui-tooltip-right:hover::before,
+  .ui-tooltip-right:focus-visible::before {
+    transform: translate(0, -50%) rotate(45deg);
+  }
+
+  .ui-tooltip-right:hover::after,
+  .ui-tooltip-right:focus-visible::after {
+    transform: translate(0, -50%);
+  }
+
+  .ui-tooltip[data-tooltip='']::before,
+  .ui-tooltip[data-tooltip='']::after {
+    display: none;
+  }
+
   html[data-theme='light'] .theme-chip-link:hover {
     border-color: rgba(124, 104, 74, 0.22);
     background: rgba(124, 104, 74, 0.12);
     color: #5d4630;
+  }
+
+  html[data-theme='light'] .ui-tooltip::after,
+  html[data-theme='light'] .ui-tooltip::before {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      0 14px 34px rgba(24, 24, 27, 0.12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ui-tooltip::before,
+    .ui-tooltip::after {
+      transition: none;
+    }
   }
 
   .theme-accent {

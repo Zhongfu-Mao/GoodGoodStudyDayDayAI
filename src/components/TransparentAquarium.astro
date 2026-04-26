@@ -25,12 +25,13 @@ const text = labels[locale];
   <canvas class="transparent-aquarium__canvas" data-aquarium-canvas aria-hidden="true"></canvas>
   <button
     type="button"
-    class="transparent-aquarium__toggle"
+    class="transparent-aquarium__toggle ui-tooltip ui-tooltip-left"
     data-aquarium-toggle
     data-label-enable={text.enable}
     data-label-disable={text.disable}
     data-tooltip-on={text.tooltipOn}
     data-tooltip-off={text.tooltipOff}
+    data-tooltip={text.tooltipOff}
     aria-label={text.enable}
     aria-pressed="false"
     title={text.enable}
@@ -1301,34 +1302,6 @@ const text = labels[locale];
   .transparent-aquarium__toggle svg {
     width: 1.25rem;
     height: 1.25rem;
-  }
-
-  .transparent-aquarium__toggle::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    right: calc(100% + 0.65rem);
-    top: 50%;
-    width: max-content;
-    max-width: 11rem;
-    transform: translateY(-50%) translateX(0.35rem);
-    border: 1px solid var(--theme-border);
-    border-radius: 0.75rem;
-    padding: 0.38rem 0.56rem;
-    color: var(--theme-page-text);
-    background: var(--theme-surface-strong);
-    box-shadow: var(--theme-shadow);
-    font-size: 0.75rem;
-    line-height: 1;
-    opacity: 0;
-    transition:
-      opacity 140ms ease,
-      transform 140ms ease;
-  }
-
-  .transparent-aquarium__toggle:hover::after,
-  .transparent-aquarium__toggle:focus-visible::after {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
   }
 
   .transparent-aquarium.is-active .transparent-aquarium__toggle {
