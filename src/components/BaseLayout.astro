@@ -38,6 +38,7 @@ const {
 };
 
 const taglineLines = baseLayout[locale].taglineLines;
+const tagline = taglineLines.join('');
 const ogLocale = locale === 'ja' ? 'ja_JP' : 'zh_CN';
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
 const resolvedOgImage = ogImage
@@ -112,13 +113,9 @@ const radarSubnavItems = [
           <span class="theme-brand-badge grid h-10 w-10 place-items-center rounded-xl border text-sm font-semibold">
             AI
           </span>
-          <div class="min-w-0 xl:max-w-[16.5rem]">
+          <div class="min-w-0 flex-1 xl:max-w-[16.5rem] 2xl:max-w-[19rem]">
             <p class="truncate text-sm font-semibold tracking-wide theme-text xl:text-[13px]">Good Good Study, Day Day AI</p>
-            <p class="hidden max-w-[15.5rem] text-xs leading-4 theme-muted sm:block">
-              {taglineLines.map((line) => (
-                <span class="block">{line}</span>
-              ))}
-            </p>
+            <p class="hidden max-w-[34rem] text-xs leading-4 theme-muted sm:block xl:max-w-[16.5rem] 2xl:max-w-[19rem]">{tagline}</p>
           </div>
         </a>
 
