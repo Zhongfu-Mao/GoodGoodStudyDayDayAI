@@ -13,6 +13,13 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_ANALYTICS_PROVIDER: ${{ vars.PUBLIC_ANALYTICS_PROVIDER }}
+      PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN: ${{ vars.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN }}
+      PUBLIC_PLAUSIBLE_DOMAIN: ${{ vars.PUBLIC_PLAUSIBLE_DOMAIN }}
+      PUBLIC_PLAUSIBLE_SCRIPT_SRC: ${{ vars.PUBLIC_PLAUSIBLE_SCRIPT_SRC }}
+      PUBLIC_UMAMI_WEBSITE_ID: ${{ vars.PUBLIC_UMAMI_WEBSITE_ID }}
+      PUBLIC_UMAMI_SCRIPT_SRC: ${{ vars.PUBLIC_UMAMI_SCRIPT_SRC }}
 
     steps:
       - name: Checkout repository

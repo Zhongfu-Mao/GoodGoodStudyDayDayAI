@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { articlePath, collectionLabels, resolveSiteUrl, tagPath, type CollectionName, type Locale } from '../lib/site';
 import { formatDate } from '../lib/i18n';
+import { difficultyLabels, estimateReadingMinutes, getEntryDifficulty, readingTimeText } from '../lib/entryMeta';
 
 const { item, locale } = Astro.props as {
   item: {
@@ -16,6 +17,8 @@ const { entry } = item;
 const href = articlePath(entry.data.category, item.slug, locale);
 const categoryLabel = collectionLabels[entry.data.category][locale];
 const coverImageSrc = entry.data.coverImage ? resolveSiteUrl(entry.data.coverImage) : undefined;
+const difficulty = getEntryDifficulty(entry);
+const readingMinutes = estimateReadingMinutes(entry.body, locale);
 ---
 
 <article class="theme-panel theme-panel-link group rounded-[1.25rem] p-6 shadow-glow">
@@ -32,6 +35,10 @@ const coverImageSrc = entry.data.coverImage ? resolveSiteUrl(entry.data.coverIma
   <div class="theme-muted mb-4 flex items-center justify-between gap-4 text-xs uppercase tracking-[0.2em]">
     <span>{categoryLabel}</span>
     <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date, locale)}</time>
+  </div>
+  <div class="mb-4 flex flex-wrap gap-2">
+    <span class="theme-chip rounded-xl px-3 py-1 text-xs">{difficultyLabels[locale][difficulty]}</span>
+    <span class="theme-chip rounded-xl px-3 py-1 text-xs">{readingTimeText[locale](readingMinutes)}</span>
   </div>
   <h3 class="theme-heading text-xl font-semibold transition group-hover:opacity-85">
     <a href={href}>{entry.data.title}</a>

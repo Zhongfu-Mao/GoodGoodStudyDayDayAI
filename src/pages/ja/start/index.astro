@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../../components/BaseLayout.astro';
+import StartPage from '../../../components/StartPage.astro';
+import { startPage } from '../../../lib/i18n';
+import { startPath } from '../../../lib/site';
+
+const text = startPage.ja;
+---
+
+<BaseLayout
+  title={`${text.title} · Good Good Study, Day Day AI`}
+  description={text.metaDescription}
+  locale="ja"
+  languagePaths={{ zh: startPath('zh') }}
+>
+  <StartPage locale="ja" />
+</BaseLayout>

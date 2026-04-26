@@ -162,6 +162,35 @@ npm run check
 npm run build
 ```
 
+## 浏览统计 / Analytics
+
+站点支持静态部署下的隐私友好浏览统计。默认没有配置时不会注入任何第三方脚本；需要统计时，在 GitHub 仓库的 Actions variables 中配置以下变量后重新部署。
+
+このサイトは静的デプロイ向けの軽量 analytics に対応しています。未設定の場合、第三者の計測スクリプトは出力されません。利用する場合は GitHub の Actions variables に次の値を設定して再デプロイします。
+
+推荐优先使用 Cloudflare Web Analytics：
+
+```text
+PUBLIC_ANALYTICS_PROVIDER=cloudflare
+PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN=你的 Cloudflare Web Analytics token
+```
+
+也可以切换到 Plausible：
+
+```text
+PUBLIC_ANALYTICS_PROVIDER=plausible
+PUBLIC_PLAUSIBLE_DOMAIN=zhongfu-mao.github.io
+PUBLIC_PLAUSIBLE_SCRIPT_SRC=https://plausible.io/js/script.js
+```
+
+或 Umami：
+
+```text
+PUBLIC_ANALYTICS_PROVIDER=umami
+PUBLIC_UMAMI_WEBSITE_ID=你的 Umami website id
+PUBLIC_UMAMI_SCRIPT_SRC=https://cloud.umami.is/script.js
+```
+
 ## Radar 资产脚本 / Radar アセット生成スクリプト
 
 项目里包含一些为 Radar 内容生成衍生资产的脚本。  
