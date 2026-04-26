@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import Analytics from './Analytics.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import PersistentAudioPlayer from './PersistentAudioPlayer.astro';
 import SearchForm from './SearchForm.astro';
@@ -81,6 +82,7 @@ const radarSubnavItems = [
     <meta name="twitter:description" content={description} />
     {resolvedOgImage ? <meta name="twitter:image" content={resolvedOgImage} /> : null}
     <ClientRouter />
+    <Analytics />
     <script is:inline data-astro-rerun>
       (function () {
         var storageKey = 'ggsdda-theme';

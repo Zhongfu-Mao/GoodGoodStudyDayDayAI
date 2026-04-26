@@ -1,0 +1,59 @@
+---
+type AnalyticsProvider = 'cloudflare' | 'plausible' | 'umami';
+
+const providerPreference = (import.meta.env.PUBLIC_ANALYTICS_PROVIDER ?? '').toLowerCase();
+const cloudflareToken = import.meta.env.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN;
+const configuredPlausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+const plausibleDomain =
+  configuredPlausibleDomain ?? (providerPreference === 'plausible' && Astro.site ? new URL(Astro.site).hostname : undefined);
+const plausibleScriptSrc = import.meta.env.PUBLIC_PLAUSIBLE_SCRIPT_SRC ?? 'https://plausible.io/js/script.js';
+const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+const umamiScriptSrc = import.meta.env.PUBLIC_UMAMI_SCRIPT_SRC ?? 'https://cloud.umami.is/script.js';
+
+const providers: Array<{ name: AnalyticsProvider; enabled: boolean }> = [
+  { name: 'cloudflare', enabled: Boolean(cloudflareToken) },
+  { name: 'plausible', enabled: Boolean(plausibleDomain) },
+  { name: 'umami', enabled: Boolean(umamiWebsiteId) },
+];
+
+const preferredProvider = providers.find((item) => item.name === providerPreference && item.enabled)?.name;
+const activeProvider = preferredProvider ?? providers.find((item) => item.enabled)?.name;
+const cloudflareBeacon = cloudflareToken ? JSON.stringify({ token: cloudflareToken, spa: true }) : '';
+---
+
+{activeProvider === 'cloudflare' && cloudflareToken ? (
+  <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={cloudflareBeacon}></script>
+) : null}
+
+{activeProvider === 'plausible' && plausibleDomain ? (
+  <>
+    <script is:inline>
+      window.plausible = window.plausible || function () {
+        (window.plausible.q = window.plausible.q || []).push(arguments);
+      };
+    </script>
+    <script is:inline defer data-domain={plausibleDomain} src={plausibleScriptSrc}></script>
+    <script is:inline>
+      (function () {
+        if (window.__ggsddaPlausibleRouter) return;
+        window.__ggsddaPlausibleRouter = true;
+
+        var skippedInitialLoad = false;
+        document.addEventListener('astro:page-load', function () {
+          if (!skippedInitialLoad) {
+            skippedInitialLoad = true;
+            return;
+          }
+
+          if (typeof window.plausible === 'function') {
+            window.plausible('pageview', { u: window.location.href });
+          }
+        });
+      })();
+    </script>
+  </>
+) : null}
+
+{activeProvider === 'umami' && umamiWebsiteId ? (
+  <script is:inline defer src={umamiScriptSrc} data-website-id={umamiWebsiteId}></script>
+) : null}
