@@ -659,20 +659,30 @@ const text = labels[locale];
       var speed = Math.sqrt(item.vx * item.vx + item.vy * item.vy);
       var swimEnergy = Math.min(1, speed / 0.064);
       var shape = fishShape(item);
-      var tail = Math.sin(item.phase * item.tailRate) * (0.42 + swimEnergy * 0.5);
+      var tailPhase = item.phase * item.tailRate;
+      var tail = Math.sin(tailPhase) * (0.42 + swimEnergy * 0.62);
       var bodyLength = item.size * shape.length;
       var bodyHeight = item.size * shape.height;
-      var bodyPulse = 1 + Math.sin(item.phase * 1.35) * 0.035;
-      var finPulse = Math.sin(item.phase * 2.1) * (0.16 + swimEnergy * 0.16);
-      var bodyBend = Math.sin(item.phase * item.tailRate - 0.65) * item.size * (0.08 + swimEnergy * 0.14);
-      var bob = Math.sin(item.phase * 0.68) * item.size * 0.12;
+      var bodyPulse = 1 + Math.sin(item.phase * 1.35) * (0.024 + swimEnergy * 0.024);
+      var finPulse = Math.sin(tailPhase * 0.92 + 0.7) * (0.16 + swimEnergy * 0.22);
+      var bodyFlex = item.size * (0.08 + swimEnergy * 0.24);
+      var headBend = Math.sin(tailPhase - 2.15) * bodyFlex * 0.24;
+      var shoulderBend = Math.sin(tailPhase - 1.42) * bodyFlex * 0.58;
+      var waistBend = Math.sin(tailPhase - 0.76) * bodyFlex * 0.88;
+      var bodyBend = Math.sin(tailPhase - 0.18) * bodyFlex;
+      var bob = Math.sin(item.phase * 0.68) * item.size * (0.08 + swimEnergy * 0.08);
+      var bodyRoll = Math.sin(tailPhase - 1.1) * (0.01 + swimEnergy * 0.025);
       var tailBaseX = bodyLength * shape.tailBase;
       var tailTipX = bodyLength * shape.tailTip;
+      var tailTipY = bodyBend + tail * bodyHeight * (0.35 + swimEnergy * 0.24);
       var noseX = bodyLength * shape.nose;
+      var shoulderX = bodyLength * 0.2;
+      var waistX = -bodyLength * 0.16;
+      var caudalX = tailBaseX + bodyLength * 0.08;
 
       context.save();
       context.translate(item.x, item.y + bob);
-      context.rotate(item.angle);
+      context.rotate(item.angle + bodyRoll);
       context.scale(1, bodyPulse);
       context.globalAlpha = shape.alpha;
 
@@ -689,94 +699,134 @@ const text = labels[locale];
       context.fillStyle = item.fin;
       if (item.species === 'forktail') {
         context.beginPath();
-        context.moveTo(tailBaseX, bodyBend * 0.26);
-        context.lineTo(tailTipX, -bodyHeight * (0.64 + tail * 0.12));
-        context.lineTo(tailTipX + bodyLength * 0.2, -bodyHeight * 0.08);
+        context.moveTo(caudalX, bodyBend * 0.45);
+        context.lineTo(tailTipX, tailTipY - bodyHeight * 0.7);
+        context.lineTo(tailTipX + bodyLength * 0.22, tailTipY - bodyHeight * 0.08);
         context.closePath();
         context.fill();
 
         context.beginPath();
-        context.moveTo(tailBaseX, bodyBend * 0.26);
-        context.lineTo(tailTipX, bodyHeight * (0.64 - tail * 0.12));
-        context.lineTo(tailTipX + bodyLength * 0.2, bodyHeight * 0.08);
+        context.moveTo(caudalX, bodyBend * 0.45);
+        context.lineTo(tailTipX, tailTipY + bodyHeight * 0.7);
+        context.lineTo(tailTipX + bodyLength * 0.22, tailTipY + bodyHeight * 0.08);
         context.closePath();
         context.fill();
       } else if (item.species === 'angel') {
         context.beginPath();
-        context.moveTo(tailBaseX, bodyBend * 0.25);
-        context.quadraticCurveTo(tailTipX, -bodyHeight * (0.42 + tail * 0.14), tailTipX + bodyLength * 0.1, 0);
-        context.quadraticCurveTo(tailTipX, bodyHeight * (0.42 - tail * 0.14), tailBaseX, bodyBend * 0.25);
+        context.moveTo(caudalX, bodyBend * 0.38);
+        context.quadraticCurveTo(tailTipX, tailTipY - bodyHeight * 0.46, tailTipX + bodyLength * 0.11, tailTipY);
+        context.quadraticCurveTo(tailTipX, tailTipY + bodyHeight * 0.46, caudalX, bodyBend * 0.38);
         context.closePath();
         context.fill();
       } else {
         context.beginPath();
-        context.moveTo(tailBaseX, bodyBend * 0.35);
-        context.quadraticCurveTo(tailTipX, -bodyHeight * (0.62 + tail * 0.18), tailTipX + item.size * 0.14, tail * bodyHeight * 0.18);
-        context.quadraticCurveTo(tailTipX, bodyHeight * (0.62 - tail * 0.18), tailBaseX, bodyBend * 0.35);
+        context.moveTo(caudalX, bodyBend * 0.48);
+        context.quadraticCurveTo(tailTipX, tailTipY - bodyHeight * 0.66, tailTipX + item.size * 0.18, tailTipY);
+        context.quadraticCurveTo(tailTipX, tailTipY + bodyHeight * 0.66, caudalX, bodyBend * 0.48);
         context.closePath();
         context.fill();
       }
 
+      context.fillStyle = item.fin;
+      context.globalAlpha *= 0.82;
+      context.beginPath();
+      context.moveTo(tailBaseX + bodyLength * 0.14, bodyBend * 0.52 - bodyHeight * 0.22);
+      context.quadraticCurveTo(tailBaseX + bodyLength * 0.02, bodyBend * 0.9, tailBaseX - bodyLength * 0.1, tailTipY * 0.64);
+      context.quadraticCurveTo(tailBaseX + bodyLength * 0.04, bodyBend * 0.42 + bodyHeight * 0.16, tailBaseX + bodyLength * 0.14, bodyBend * 0.52 + bodyHeight * 0.22);
+      context.closePath();
+      context.fill();
+      context.globalAlpha = shape.alpha;
+
       context.fillStyle = gradient;
       context.beginPath();
-      context.moveTo(noseX, 0);
-      context.bezierCurveTo(bodyLength * 0.35, -bodyHeight * 0.54, -bodyLength * 0.2, -bodyHeight * (item.species === 'round' ? 0.7 : 0.56) + bodyBend * 0.2, tailBaseX, bodyBend * 0.35);
-      context.bezierCurveTo(-bodyLength * 0.12, bodyHeight * (item.species === 'round' ? 0.7 : 0.56) + bodyBend * 0.15, bodyLength * 0.34, bodyHeight * 0.52, noseX, 0);
+      context.moveTo(noseX, headBend);
+      context.bezierCurveTo(
+        bodyLength * 0.42,
+        -bodyHeight * 0.5 + headBend * 0.2,
+        shoulderX,
+        -bodyHeight * 0.62 + shoulderBend * 0.28,
+        waistX,
+        -bodyHeight * (item.species === 'round' ? 0.68 : 0.55) + waistBend * 0.36,
+      );
+      context.bezierCurveTo(
+        tailBaseX + bodyLength * 0.1,
+        -bodyHeight * 0.26 + bodyBend * 0.66,
+        tailBaseX - bodyLength * 0.03,
+        -bodyHeight * 0.08 + bodyBend * 0.92,
+        tailBaseX,
+        bodyBend,
+      );
+      context.bezierCurveTo(
+        tailBaseX - bodyLength * 0.02,
+        bodyHeight * 0.1 + bodyBend * 0.88,
+        tailBaseX + bodyLength * 0.12,
+        bodyHeight * 0.28 + bodyBend * 0.62,
+        waistX,
+        bodyHeight * (item.species === 'round' ? 0.68 : 0.55) + waistBend * 0.28,
+      );
+      context.bezierCurveTo(bodyLength * 0.32, bodyHeight * 0.5 + shoulderBend * 0.12, bodyLength * 0.5, bodyHeight * 0.34 + headBend * 0.15, noseX, headBend);
       context.closePath();
       context.fill();
 
       context.fillStyle = 'rgba(255,255,255,0.42)';
       context.beginPath();
-      context.ellipse(bodyLength * 0.02, -bodyHeight * 0.19, bodyLength * 0.36, bodyHeight * 0.12, -0.16, 0, Math.PI * 2);
+      context.ellipse(bodyLength * 0.03, -bodyHeight * 0.2 + shoulderBend * 0.16, bodyLength * 0.34, bodyHeight * 0.1, -0.18 + bodyRoll * 2.2, 0, Math.PI * 2);
       context.fill();
+
+      context.strokeStyle = 'rgba(255,255,255,0.34)';
+      context.lineWidth = Math.max(0.45, item.size * 0.035);
+      context.beginPath();
+      context.moveTo(noseX * 0.7, headBend * 0.6);
+      context.bezierCurveTo(shoulderX, shoulderBend * 0.35, waistX, waistBend * 0.38, tailBaseX + bodyLength * 0.1, bodyBend * 0.7);
+      context.stroke();
 
       drawFishPattern(item, bodyLength, bodyHeight, bodyBend);
 
       context.fillStyle = item.fin;
       if (item.species === 'angel') {
         context.beginPath();
-        context.moveTo(-bodyLength * 0.12, -bodyHeight * 0.2);
-        context.quadraticCurveTo(-bodyLength * 0.32, -bodyHeight * (1.28 + finPulse), bodyLength * 0.16, -bodyHeight * 0.18);
+        context.moveTo(-bodyLength * 0.12, -bodyHeight * 0.2 + shoulderBend * 0.2);
+        context.quadraticCurveTo(-bodyLength * 0.32, -bodyHeight * (1.28 + finPulse), bodyLength * 0.16, -bodyHeight * 0.18 + headBend * 0.16);
         context.closePath();
         context.fill();
 
         context.beginPath();
-        context.moveTo(-bodyLength * 0.02, bodyHeight * 0.1);
-        context.quadraticCurveTo(-bodyLength * 0.3, bodyHeight * (1.34 + finPulse), bodyLength * 0.18, bodyHeight * 0.28);
+        context.moveTo(-bodyLength * 0.02, bodyHeight * 0.1 + shoulderBend * 0.18);
+        context.quadraticCurveTo(-bodyLength * 0.3, bodyHeight * (1.34 + finPulse), bodyLength * 0.18, bodyHeight * 0.28 + headBend * 0.12);
         context.closePath();
         context.fill();
       } else {
         context.beginPath();
-        context.moveTo(-bodyLength * 0.08, -bodyHeight * 0.02);
+        context.moveTo(-bodyLength * 0.08, -bodyHeight * 0.02 + shoulderBend * 0.18);
         context.quadraticCurveTo(
           -bodyLength * (0.2 + finPulse * 0.04),
           -bodyHeight * (item.species === 'stream' ? 0.36 : 0.52 + finPulse * 0.42),
           bodyLength * 0.18,
-          -bodyHeight * 0.2,
+          -bodyHeight * 0.2 + headBend * 0.16,
         );
         context.closePath();
         context.fill();
       }
 
       context.beginPath();
-      context.moveTo(-bodyLength * 0.04, bodyHeight * 0.05);
+      context.moveTo(-bodyLength * 0.04, bodyHeight * 0.05 + waistBend * 0.18);
       context.quadraticCurveTo(
         -bodyLength * (item.species === 'stream' ? 0.18 : 0.26 + finPulse * 0.06),
         bodyHeight * (item.species === 'stream' ? 0.44 : 0.72 + finPulse * 0.8),
         bodyLength * 0.16,
-        bodyHeight * 0.32,
+        bodyHeight * 0.32 + headBend * 0.12,
       );
       context.closePath();
       context.fill();
 
       context.fillStyle = '#020617';
       context.beginPath();
-      context.arc(bodyLength * 0.42, -bodyHeight * 0.1, Math.max(1.2, item.size * 0.085), 0, Math.PI * 2);
+      context.arc(bodyLength * 0.42, -bodyHeight * 0.1 + headBend, Math.max(1.2, item.size * 0.085), 0, Math.PI * 2);
       context.fill();
 
       context.fillStyle = 'rgba(255,255,255,0.82)';
       context.beginPath();
-      context.arc(bodyLength * 0.44, -bodyHeight * 0.13, Math.max(0.45, item.size * 0.025), 0, Math.PI * 2);
+      context.arc(bodyLength * 0.44, -bodyHeight * 0.13 + headBend, Math.max(0.45, item.size * 0.025), 0, Math.PI * 2);
       context.fill();
 
       context.restore();
