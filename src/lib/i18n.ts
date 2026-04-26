@@ -45,7 +45,7 @@ export const languageSwitcher = {
 export const homePage = {
   zh: {
     eyebrow: 'Good Good Study, Day Day AI',
-    title: '学 AI 不迷路，用 AI 有方法',
+    title: '一份 AI 学习与实践笔记',
     description: '这里把 AI 动态、课程笔记、工程实践和底层原理整理成一条可以慢慢走的路。你可以先看图报抓住重点，也可以从新手路线开始，把零散信息变成自己的理解和方法。',
     featured: '精选文章',
     latest: '最新文章',
@@ -54,7 +54,7 @@ export const homePage = {
     tagIndexCta: '查看标签总览',
     updates: '最近更新',
     heroCta: '我该从哪里开始',
-    heroSecondaryCta: '看今日 AI 雷达',
+    heroSecondaryCta: '进入 AI 雷达日报',
     contentUnit: '篇内容',
     visualUnit: '张图报',
     tagUnit: '个标签',
@@ -69,7 +69,7 @@ export const homePage = {
       },
       radar: {
         label: '我想知道今天发生了什么',
-        title: '先知道今天在变什么',
+        title: '先抓住今日主线',
         description: '用 AI 雷达和图片墙快速看懂最近发生了什么，再决定是否深挖原文。',
         cta: '看 AI 雷达',
       },
@@ -104,7 +104,7 @@ export const homePage = {
     useTitle: '今天你想怎么开始？',
     useDescription: '不用一次读完，也不用先成为专家。只是路过，就先看今日图报；想认真补课，就从新手路线开始；已经在做项目，就去工程实践找可以借鉴的方法。',
     useCases: [
-      { label: '没时间', description: '看 AI 雷达图片墙，用三五分钟知道今天 AI 圈在变什么。' },
+      { label: '没时间', description: '看 AI 雷达图片墙，用三五分钟抓住最近的 AI 主线。' },
       { label: '想补课', description: '从新手起步或 AI Academy 开始，一篇一篇补，不需要先成为专家。' },
       { label: '想落地', description: '去工程实践看工具、脚本和流程怎么跑起来，把经验带回自己的工作。' },
       { label: '想补基础', description: '看底层原理，把模型、数据和系统这些关键词真正串起来。' },
@@ -116,7 +116,7 @@ export const homePage = {
   },
   ja: {
     eyebrow: 'Good Good Study, Day Day AI',
-    title: '迷わず学び、使える形へ',
+    title: 'AI 学習と実践のノート',
     description: 'AI の動き、講座ノート、実践記録、基礎原理を、少しずつ進める学習ルートとして整理しています。まず図解で要点をつかんでも、Start からゆっくり学んでも大丈夫です。',
     featured: '注目記事',
     latest: '最新記事',
@@ -125,7 +125,7 @@ export const homePage = {
     tagIndexCta: 'タグ一覧を見る',
     updates: '最近更新',
     heroCta: 'どこから始める？',
-    heroSecondaryCta: '今日の AI Radar',
+    heroSecondaryCta: 'AI Radar 日報へ',
     contentUnit: '記事',
     visualUnit: '図解',
     tagUnit: 'タグ',
@@ -175,7 +175,7 @@ export const homePage = {
     useTitle: '今日はどこから始める？',
     useDescription: '全部を一度に読む必要も、最初から詳しい必要もありません。少し見るだけなら今日の図解、腰を据えて学ぶなら Start、実務に近づけたいなら Engineering から入れます。',
     useCases: [
-      { label: '時間がない', description: 'AI Radar の Image Wall で、今日の AI の動きを数分でつかみます。' },
+      { label: '時間がない', description: 'AI Radar の Image Wall で、最近の AI の主線を数分でつかみます。' },
       { label: '学び直したい', description: 'Start や AI Academy から、一つずつ補っていけます。専門家である必要はありません。' },
       { label: '実践したい', description: 'Engineering で、ツールやスクリプト、ワークフローがどう動くかを見ます。' },
       { label: '基礎を固めたい', description: 'Foundations で、モデル、データ、システムの見取り図をつなげます。' },
