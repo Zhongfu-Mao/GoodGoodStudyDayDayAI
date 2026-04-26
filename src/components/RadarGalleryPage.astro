@@ -126,26 +126,26 @@ const months = [...new Map(
       </div>
     </dialog>
 
-    <script>
+    <script is:inline data-astro-rerun>
       const galleryRoot = document.querySelector('[data-radar-gallery]');
 
       if (galleryRoot) {
-        const cadenceButtons = Array.from(galleryRoot.querySelectorAll<HTMLElement>('[data-cadence-filter]'));
-        const monthSelect = galleryRoot.querySelector<HTMLSelectElement>('[data-month-filter]');
-        const cards = Array.from(galleryRoot.querySelectorAll<HTMLElement>('[data-gallery-card]'));
-        const countNode = galleryRoot.querySelector<HTMLElement>('[data-gallery-count]');
-        const emptyNode = galleryRoot.querySelector<HTMLElement>('[data-gallery-empty]');
-        const dialog = galleryRoot.querySelector<HTMLDialogElement>('[data-gallery-dialog]');
-        const dialogImage = galleryRoot.querySelector<HTMLImageElement>('[data-dialog-image]');
-        const dialogTitle = galleryRoot.querySelector<HTMLElement>('[data-dialog-title]');
-        const dialogMeta = galleryRoot.querySelector<HTMLElement>('[data-dialog-meta]');
-        const dialogLink = galleryRoot.querySelector<HTMLAnchorElement>('[data-dialog-link]');
-        const dialogClose = galleryRoot.querySelector<HTMLButtonElement>('[data-dialog-close]');
+        const cadenceButtons = Array.from(galleryRoot.querySelectorAll('[data-cadence-filter]'));
+        const monthSelect = galleryRoot.querySelector('[data-month-filter]');
+        const cards = Array.from(galleryRoot.querySelectorAll('[data-gallery-card]'));
+        const countNode = galleryRoot.querySelector('[data-gallery-count]');
+        const emptyNode = galleryRoot.querySelector('[data-gallery-empty]');
+        const dialog = galleryRoot.querySelector('[data-gallery-dialog]');
+        const dialogImage = galleryRoot.querySelector('[data-dialog-image]');
+        const dialogTitle = galleryRoot.querySelector('[data-dialog-title]');
+        const dialogMeta = galleryRoot.querySelector('[data-dialog-meta]');
+        const dialogLink = galleryRoot.querySelector('[data-dialog-link]');
+        const dialogClose = galleryRoot.querySelector('[data-dialog-close]');
         const totalCount = Number(countNode?.dataset.totalCount ?? cards.length);
         const countSuffix = countNode?.dataset.countSuffix ?? '';
         let activeCadence = 'all';
 
-        const getVisibleCountLabel = (visible: number) => (
+        const getVisibleCountLabel = (visible) => (
           document.documentElement.lang === 'ja'
             ? `Showing ${visible} / ${totalCount} ${countSuffix}`
             : `显示 ${visible} / 共 ${totalCount} ${countSuffix}`
@@ -183,7 +183,7 @@ const months = [...new Map(
 
         monthSelect?.addEventListener('change', updateFilters);
 
-        for (const trigger of galleryRoot.querySelectorAll<HTMLButtonElement>('[data-preview-trigger]')) {
+        for (const trigger of galleryRoot.querySelectorAll('[data-preview-trigger]')) {
           trigger.addEventListener('click', () => {
             if (!dialog || !dialogImage || !dialogTitle || !dialogMeta || !dialogLink) return;
 

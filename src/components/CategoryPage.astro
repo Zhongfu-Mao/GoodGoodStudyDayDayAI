@@ -167,14 +167,14 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
 </section>
 
 {isRadar ? (
-  <script>
+  <script is:inline data-astro-rerun>
     (() => {
       const root = document.querySelector('[data-radar-view]');
       if (!root) return;
 
-      const sections = Array.from(root.querySelectorAll<HTMLElement>('[data-radar-section]'));
+      const sections = Array.from(root.querySelectorAll('[data-radar-section]'));
       const validIds = new Set(sections.map((section) => section.id));
-      const subnavLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-radar-subnav]'));
+      const subnavLinks = Array.from(document.querySelectorAll('[data-radar-subnav]'));
 
       function getActiveId() {
         const id = window.location.hash.replace(/^#/, '');
@@ -199,6 +199,9 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       }
 
       window.addEventListener('hashchange', applyRadarView);
+      document.addEventListener('astro:before-swap', () => window.removeEventListener('hashchange', applyRadarView), {
+        once: true,
+      });
       applyRadarView();
     })();
   </script>

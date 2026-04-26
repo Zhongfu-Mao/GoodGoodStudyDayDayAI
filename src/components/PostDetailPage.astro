@@ -78,7 +78,19 @@ const archiveHref =
     : categoryPath(entry.data.category, locale);
 
 const text = postDetailPage[locale];
+const audioPlayerText =
+  locale === 'ja'
+    ? {
+        playMini: 'Mini Player',
+        playMiniAria: '音声をサイト共通プレイヤーで再生',
+      }
+    : {
+        playMini: '小窗播放',
+        playMiniAria: '在全站播放器中播放音频',
+      };
 const isRadar = entry.data.category === 'radar';
+const articleHref = articlePath(entry.data.category, currentSlug, locale);
+const audioMeta = `${collectionLabels[entry.data.category][locale]} · ${formatDate(entry.data.date, locale)}`;
 const openCategoryHint = academyMeta ? text.openCategoryHintAcademy : text.openCategoryHintDefault;
 const openArchiveLabel = isRadar ? text.openArchiveRadar : text.openArchiveDefault;
 const openArchiveHint = isRadar ? text.openArchiveHintRadar : text.openArchiveHintDefault;
@@ -320,20 +332,43 @@ const showTimeline = !academyMeta;
     ) : null}
 
     {audioSrc ? (
-      <section class="theme-panel mt-6 rounded-[1.25rem] p-5">
+      <section
+        class="theme-panel mt-6 rounded-[1.25rem] p-5"
+        data-audio-briefing
+        data-audio-src={audioSrc}
+        data-audio-title={entry.data.title}
+        data-audio-meta={audioMeta}
+        data-audio-cover={coverImageSrc ?? ''}
+        data-audio-href={articleHref}
+      >
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.audioBriefingEyebrow}</p>
             <h2 class="theme-heading mt-2 text-lg font-semibold">{text.audioBriefingTitle}</h2>
           </div>
-          <a href={audioSrc} class="theme-chip theme-chip-link inline-flex rounded-xl px-4 py-2 text-sm">
-            {text.audioOpen}
-          </a>
+          <div class="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              class="theme-action-primary inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold"
+              data-audio-play-trigger
+              aria-label={audioPlayerText.playMiniAria}
+            >
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                <path d="M8 5.2v13.6c0 .7.8 1.1 1.4.7l9.5-6.8c.5-.3.5-1.1 0-1.4L9.4 4.5C8.8 4.1 8 4.5 8 5.2Z" />
+              </svg>
+              <span>{audioPlayerText.playMini}</span>
+            </button>
+            <a href={audioSrc} data-astro-reload class="theme-chip theme-chip-link inline-flex rounded-xl px-4 py-2 text-sm">
+              {text.audioOpen}
+            </a>
+          </div>
         </div>
 
-        <audio controls preload="none" class="mt-4 w-full">
-          <source src={audioSrc} />
-        </audio>
+        <noscript>
+          <audio controls preload="none" class="mt-4 w-full">
+            <source src={audioSrc} />
+          </audio>
+        </noscript>
       </section>
     ) : null}
 

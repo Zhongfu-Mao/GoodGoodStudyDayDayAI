@@ -53,7 +53,7 @@ const text = labels[locale];
   </button>
 </div>
 
-<script is:inline>
+<script is:inline data-astro-rerun>
   (function () {
     var root = document.querySelector('[data-aquarium]');
     if (!root) return;
@@ -812,26 +812,39 @@ const text = labels[locale];
       setEnabled(!enabled);
     });
 
-    document.addEventListener(
-      'pointerdown',
-      function (event) {
-        if (!enabled || event.button !== 0 || event.target.closest('[data-aquarium-toggle]')) return;
-        feed(event.clientX, event.clientY);
-      },
-      { passive: true },
-    );
+    function handlePointerDown(event) {
+      if (!enabled || event.button !== 0 || event.target.closest('[data-aquarium-toggle]')) return;
+      feed(event.clientX, event.clientY);
+    }
+
+    function handleMotionChange(event) {
+      reducedMotion = event.matches;
+      try {
+        if (localStorage.getItem(storageKey) === null) {
+          setEnabled(!reducedMotion);
+        }
+      } catch (error) {}
+    }
+
+    function cleanup() {
+      if (animationId) {
+        window.cancelAnimationFrame(animationId);
+        animationId = 0;
+      }
+      document.removeEventListener('pointerdown', handlePointerDown);
+      window.removeEventListener('resize', resize);
+      if (motionQuery && motionQuery.removeEventListener) {
+        motionQuery.removeEventListener('change', handleMotionChange);
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown, { passive: true });
 
     window.addEventListener('resize', resize, { passive: true });
     if (motionQuery && motionQuery.addEventListener) {
-      motionQuery.addEventListener('change', function (event) {
-        reducedMotion = event.matches;
-        try {
-          if (localStorage.getItem(storageKey) === null) {
-            setEnabled(!reducedMotion);
-          }
-        } catch (error) {}
-      });
+      motionQuery.addEventListener('change', handleMotionChange);
     }
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
 
     resize();
     updateToggle();

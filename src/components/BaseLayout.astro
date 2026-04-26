@@ -1,5 +1,7 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import PersistentAudioPlayer from './PersistentAudioPlayer.astro';
 import SearchForm from './SearchForm.astro';
 import SiteNav from './SiteNav.astro';
 import ThemeToggle from './ThemeToggle.astro';
@@ -77,7 +79,8 @@ const radarSubnavItems = [
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {resolvedOgImage ? <meta name="twitter:image" content={resolvedOgImage} /> : null}
-    <script is:inline>
+    <ClientRouter />
+    <script is:inline data-astro-rerun>
       (function () {
         var storageKey = 'ggsdda-theme';
         function readStoredTheme() {
@@ -156,7 +159,8 @@ const radarSubnavItems = [
     <main class="mx-auto max-w-6xl px-6 py-10">
       <slot />
     </main>
-    <script is:inline>
+    <PersistentAudioPlayer />
+    <script is:inline data-astro-rerun>
       (function () {
         var storageKey = 'ggsdda-theme';
 
