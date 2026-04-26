@@ -1,6 +1,6 @@
 ---
 import SearchForm from './SearchForm.astro';
-import { categoryPath, collectionLabels, collectionNames, homePath, type Locale } from '../lib/site';
+import { categoryPath, collectionLabels, collectionNames, homePath, startPath, type Locale } from '../lib/site';
 import { siteNav } from '../lib/i18n';
 
 const { locale, showSearch = true } = Astro.props as { locale: Locale; showSearch?: boolean };
@@ -17,6 +17,12 @@ const navItems = collectionNames.map((category) => ({
     class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2.5 text-[15px] 2xl:px-5"
   >
     {siteNav[locale].home}
+  </a>
+  <a
+    href={startPath(locale)}
+    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2.5 text-[15px] 2xl:px-5"
+  >
+    {siteNav[locale].start}
   </a>
   {navItems.map((item) => (
     <a

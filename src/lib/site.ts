@@ -82,6 +82,10 @@ export function searchPath(locale: Locale) {
   return withBase(`${localePrefix(locale)}/search/`);
 }
 
+export function startPath(locale: Locale) {
+  return withBase(`${localePrefix(locale)}/start/`);
+}
+
 export function radarGalleryPath(locale: Locale) {
   return withBase(`${localePrefix(locale)}/radar/gallery/`);
 }

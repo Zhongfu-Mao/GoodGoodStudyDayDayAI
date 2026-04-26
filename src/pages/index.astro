@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro';
 import HomePage from '../components/HomePage.astro';
+import { homePage } from '../lib/i18n';
 ---
 
-<BaseLayout title="Good Good Study, Day Day AI" locale="zh">
+<BaseLayout title={`${homePage.zh.title} · Good Good Study, Day Day AI`} description={homePage.zh.description} locale="zh">
   <HomePage locale="zh" />
 </BaseLayout>
-

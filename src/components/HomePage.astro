@@ -6,6 +6,7 @@ import {
   collectionNames,
   radarGalleryPath,
   resolveSiteUrl,
+  startPath,
   tagIndexPath,
   tagPath,
   type Locale,
@@ -23,6 +24,7 @@ const recentVisualStories = entries
 const tagIndex = await getTagIndex(locale);
 const text = homePage[locale];
 const visualCount = entries.filter((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage).length;
+const startHref = startPath(locale);
 const routeItems = collectionNames.map((category) => ({
   category,
   href: categoryPath(category, locale),
@@ -31,6 +33,20 @@ const routeItems = collectionNames.map((category) => ({
   count: entries.filter((item) => item.entry.data.category === category).length,
 }));
 const radarPath = categoryPath('radar', locale);
+const intentItems = [
+  {
+    ...text.intentItems.beginner,
+    href: startHref,
+  },
+  {
+    ...text.intentItems.radar,
+    href: radarGalleryPath(locale),
+  },
+  {
+    ...text.intentItems.system,
+    href: categoryPath('academy', locale),
+  },
+];
 ---
 
 <TransparentAquarium locale={locale} />
@@ -56,10 +72,10 @@ const radarPath = categoryPath('radar', locale);
     <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-100 md:text-xl">{text.description}</p>
 
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href={radarPath} class="home-hero-action rounded-2xl px-5 py-3 text-sm font-semibold">
+      <a href={startHref} class="home-hero-action rounded-2xl px-5 py-3 text-sm font-semibold">
         {text.heroCta}
       </a>
-      <a href={radarGalleryPath(locale)} class="home-hero-action-secondary rounded-2xl px-5 py-3 text-sm font-semibold">
+      <a href={radarPath} class="home-hero-action-secondary rounded-2xl px-5 py-3 text-sm font-semibold">
         {text.heroSecondaryCta}
       </a>
     </div>
@@ -93,6 +109,26 @@ const radarPath = categoryPath('radar', locale);
 <section class="mt-10">
   <div class="max-w-3xl">
     <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Start Here</p>
+    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.intentTitle}</h2>
+    <p class="theme-muted mt-4 text-base leading-7">{text.intentDescription}</p>
+  </div>
+  <div class="mt-6 grid gap-4 lg:grid-cols-3">
+    {intentItems.map((item) => (
+      <a href={item.href} class="theme-panel theme-panel-link flex min-h-[14rem] flex-col rounded-[1.25rem] p-5">
+        <p class="theme-muted text-xs uppercase tracking-[0.24em]">{item.label}</p>
+        <h3 class="theme-heading mt-4 text-2xl font-semibold leading-tight">{item.title}</h3>
+        <p class="theme-muted mt-4 text-sm leading-6">{item.description}</p>
+        <span class="theme-button-soft mt-auto inline-flex w-fit rounded-[1rem] px-3.5 py-2 text-sm font-medium">
+          {item.cta}
+        </span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<section class="mt-12">
+  <div class="max-w-3xl">
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Content Map</p>
     <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.routesTitle}</h2>
     <p class="theme-muted mt-4 text-base leading-7">{text.routesDescription}</p>
   </div>

@@ -18,8 +18,8 @@ export const baseLayout = {
 } as const;
 
 export const siteNav = {
-  zh: { home: '首页', search: '搜索', searchPlaceholder: '搜索内容…', searchSubmit: '提交搜索' },
-  ja: { home: 'ホーム', search: '検索', searchPlaceholder: '検索…', searchSubmit: '検索を実行' },
+  zh: { home: '首页', start: '新手起步', search: '搜索', searchPlaceholder: '搜索内容…', searchSubmit: '提交搜索' },
+  ja: { home: 'ホーム', start: 'Start', search: '検索', searchPlaceholder: '検索…', searchSubmit: '検索を実行' },
 } as const;
 
 export const searchPage = {
@@ -44,22 +44,44 @@ export const languageSwitcher = {
 
 export const homePage = {
   zh: {
-    eyebrow: 'AI Learning Atlas',
-    title: 'Good Good Study, Day Day AI',
-    description: '把每日 AI 变化、系统课程、工程实践和底层原理整理成一张可持续学习的地图。没时间先看图，想深挖再读原文。',
+    eyebrow: 'Good Good Study, Day Day AI',
+    title: 'AI 学习雷达与实践地图',
+    description: '给想认真跟上 AI 的人一个清晰入口：先用图报看懂每天的变化，再沿着新手路线、课程笔记、工程实践和底层原理逐步建立自己的体系。',
     featured: '精选文章',
     latest: '最新文章',
     tags: '标签',
     sideNote: '按标签快速浏览全部内容。',
     tagIndexCta: '查看标签总览',
     updates: '最近更新',
-    heroCta: '从 AI 雷达开始',
-    heroSecondaryCta: '看图片墙',
+    heroCta: '我该从哪里开始',
+    heroSecondaryCta: '看今日 AI 雷达',
     contentUnit: '篇内容',
     visualUnit: '张图报',
     tagUnit: '个标签',
-    routesTitle: '四条入口，覆盖从速览到深学',
-    routesDescription: '你可以把这里当作 AI 学习雷达、课程笔记库、工程实践手册和基础知识索引。',
+    intentTitle: '你可以这样使用这个站',
+    intentDescription: '不需要一次看完。根据你今天的状态，选择最合适的入口。',
+    intentItems: {
+      beginner: {
+        label: '我刚开始学 AI',
+        title: '先建立最小地图',
+        description: '用一条轻量路线理解模型、Prompt、上下文、Agent、RAG 这些高频概念。',
+        cta: '进入新手路线',
+      },
+      radar: {
+        label: '我想知道今天发生了什么',
+        title: '先看图报抓主线',
+        description: '用 AI 雷达和图片墙快速知道最近发生了什么，再决定是否深挖原文。',
+        cta: '看 AI 雷达',
+      },
+      system: {
+        label: '我想系统提升',
+        title: '沿课程和实践沉淀',
+        description: '从 Academy、工程实践和底层原理进入，把零散信息变成可复用的知识结构。',
+        cta: '看学习地图',
+      },
+    },
+    routesTitle: '四个内容分区，各司其职',
+    routesDescription: 'AI 雷达负责跟踪变化，Academy 负责系统学习，工程实践负责落地，底层原理负责补齐理解框架。',
     routeCta: '进入分区',
     routes: {
       radar: {
@@ -80,7 +102,7 @@ export const homePage = {
       },
     },
     useTitle: '按你的时间和目标来用',
-    useDescription: '这个站不是只给一种读法。可以碎片速览，也可以沿着主题一路深挖。',
+    useDescription: '这个站不是只给一种读法。初学者可以先走路线，有经验的人可以直接进入图报、课程或工程笔记。',
     useCases: [
       { label: '没时间', description: '先刷 AI 雷达图片墙，用几分钟抓住最近主线。' },
       { label: '想系统学', description: '从 AI Academy 进入，按课程与模块慢慢补齐知识。' },
@@ -93,22 +115,44 @@ export const homePage = {
     recentVisualsCta: '查看图片墙',
   },
   ja: {
-    eyebrow: 'AI Learning Atlas',
-    title: 'Good Good Study, Day Day AI',
-    description: 'AI の日々の変化、体系的な講座ノート、実践の記録、基礎原理を、継続して学べる地図として整理しています。時間がないときは図解から、深掘りしたいときは本文へ。',
+    eyebrow: 'Good Good Study, Day Day AI',
+    title: 'AI 学習レーダーと実践地図',
+    description: 'AI の変化を追いたい人のための入口です。まず図解で流れをつかみ、Start、講座ノート、実践記録、基礎原理へ進むことで、自分の学習体系を育てていきます。',
     featured: '注目記事',
     latest: '最新記事',
     tags: 'タグ',
     sideNote: 'タグから全体を横断して読めます。',
     tagIndexCta: 'タグ一覧を見る',
     updates: '最近更新',
-    heroCta: 'AI Radar から始める',
-    heroSecondaryCta: 'Image Wall を見る',
+    heroCta: 'どこから始める？',
+    heroSecondaryCta: '今日の AI Radar',
     contentUnit: '記事',
     visualUnit: '図解',
     tagUnit: 'タグ',
-    routesTitle: '速く眺めるところから、深く学ぶところまで',
-    routesDescription: 'AI Radar、Academy、Engineering、Foundations を入口に、AI の変化と学びを横断できます。',
+    intentTitle: 'このサイトの使い方',
+    intentDescription: '全部を一度に読む必要はありません。今日の目的に合う入口から始めます。',
+    intentItems: {
+      beginner: {
+        label: 'AI を学び始めたばかり',
+        title: 'まず最小地図をつくる',
+        description: 'model、prompt、context、Agent、RAG など、頻出語を軽い導線で整理します。',
+        cta: 'Start へ',
+      },
+      radar: {
+        label: '今日の変化を知りたい',
+        title: '図解で主線をつかむ',
+        description: 'AI Radar と Image Wall で最近の流れを見て、必要なものだけ本文へ進みます。',
+        cta: 'AI Radar へ',
+      },
+      system: {
+        label: '体系的に伸ばしたい',
+        title: '講座と実践で積み上げる',
+        description: 'Academy、Engineering、Foundations から、断片的な情報を学習構造に変えます。',
+        cta: '学習地図へ',
+      },
+    },
+    routesTitle: '4 つの入口',
+    routesDescription: 'AI Radar は変化を追い、Academy は体系化し、Engineering は実践へつなげ、Foundations は理解の土台を補います。',
     routeCta: 'セクションへ',
     routes: {
       radar: {
@@ -129,7 +173,7 @@ export const homePage = {
       },
     },
     useTitle: '目的に合わせて使う',
-    useDescription: '短時間で流れを見ることも、テーマごとに深く読むこともできます。',
+    useDescription: '初心者は Start から、慣れている人は図解、講座、実践ノートへ直接進めます。',
     useCases: [
       { label: '時間がない', description: 'まず AI Radar の Image Wall で、最近の流れを数分で把握します。' },
       { label: '体系的に学びたい', description: 'AI Academy から入り、講座とモジュールに沿って学びます。' },
@@ -267,6 +311,10 @@ export const postDetailPage = {
     slideDeckEyebrow: 'Slide Deck',
     slideDeckTitle: '演示文稿',
     slideDeckOpen: '打开文稿',
+    difficulty: '难度',
+    readingTime: '阅读时间',
+    plainSummaryEyebrow: '人话摘要',
+    plainSummaryTitle: '先看这句',
   },
   ja: {
     home: 'ホーム',
@@ -303,6 +351,149 @@ export const postDetailPage = {
     slideDeckEyebrow: 'Slide Deck',
     slideDeckTitle: '演示資料',
     slideDeckOpen: '資料を開く',
+    difficulty: '難易度',
+    readingTime: '読む目安',
+    plainSummaryEyebrow: 'Plain Summary',
+    plainSummaryTitle: 'まず一言で',
+  },
+} as const;
+
+export const startPage = {
+  zh: {
+    title: 'AI 新手起步路线',
+    metaDescription: '从零开始理解 AI 的核心概念、使用方式和本站阅读路径。',
+    eyebrow: 'Start Here',
+    heroTitle: '如果你刚开始接触 AI，先从这里进入。',
+    heroDescription:
+      '这不是一门大而全课程，而是一条帮你看懂本站内容的缓冲路线。先理解几个高频概念，再知道该看雷达、课程、实践还是底层原理。',
+    primaryCta: '开始第一步',
+    secondaryCta: '先看 AI 雷达',
+    promiseTitle: '这条路线解决什么',
+    promises: [
+      { title: '听懂术语', description: '把模型、Prompt、上下文、Agent、RAG、评测这些词先变成日常语言。' },
+      { title: '知道怎么用', description: '不追求一步到位，先学会把 AI 放进搜索、写作、整理、学习和工作流。' },
+      { title: '能继续读下去', description: '读 AI 雷达和 Academy 时不再被术语劝退，知道哪些内容先略过也没关系。' },
+    ],
+    stepsTitle: '从 0 到能看懂本站',
+    steps: [
+      {
+        title: '先知道 AI 能做什么',
+        description: '把 AI 当成可以读、写、整理、推理和操作工具的协作者，而不是神秘按钮。',
+        links: [
+          { label: 'AI Fundamentals', href: '/academy/openai-academy/01-ai-fundamentals/ai-fundamentals/' },
+          { label: 'Claude 101', href: '/academy/anthropic-academy/03-claude-product/claude-101/' },
+        ],
+      },
+      {
+        title: '学会提出更好的问题',
+        description: 'Prompt 不是咒语，而是把目标、上下文、约束和输出格式讲清楚。',
+        links: [
+          { label: 'Getting Started with ChatGPT', href: '/academy/openai-academy/02-using-chatgpt/core-skills/getting-started/' },
+          { label: 'Prompting Fundamentals', href: '/academy/openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/' },
+        ],
+      },
+      {
+        title: '理解上下文和文件',
+        description: '很多 AI 能力不是模型单独完成的，而是模型、上下文、工具和资料共同组成的系统。',
+        links: [
+          { label: 'Working with Files', href: '/academy/openai-academy/02-using-chatgpt/tools/working-with-files/' },
+          { label: 'RAG', href: '/academy/openai-academy/07-building-with-ai/rag/' },
+        ],
+      },
+      {
+        title: '再看 Agent 和工作流',
+        description: 'Agent 不是“机器人很聪明”，而是模型能在边界内调用工具、执行步骤、接受检查。',
+        links: [
+          { label: 'Agents', href: '/academy/openai-academy/07-building-with-ai/agents/' },
+          { label: 'AI 雷达图片墙', href: '/radar/gallery/' },
+        ],
+      },
+    ],
+    glossaryTitle: '先记住这几个词',
+    glossary: [
+      { term: '模型', description: '负责理解和生成内容的能力核心。' },
+      { term: 'Prompt', description: '你给 AI 的任务说明，不只是问题，也包含背景、限制和输出要求。' },
+      { term: '上下文', description: 'AI 当前能看到的信息，包括对话、文件、工具返回结果和系统规则。' },
+      { term: 'Agent', description: '能围绕目标调用工具、分步骤执行并接受验证的 AI 工作流。' },
+      { term: 'RAG', description: '让 AI 先检索资料再回答，降低胡编和过时信息的风险。' },
+      { term: '评测', description: '把“感觉好用”变成可重复检查的质量标准。' },
+    ],
+    nextTitle: '下一步怎么走',
+    nextDescription: '完成这条路线后，你就可以按兴趣选择更深的入口。',
+    nextLinks: [
+      { label: '看每日变化', href: '/radar/' },
+      { label: '系统学课程', href: '/academy/' },
+      { label: '看工程实践', href: '/engineering/' },
+      { label: '补底层原理', href: '/foundations/' },
+    ],
+  },
+  ja: {
+    title: 'AI Start Guide',
+    metaDescription: 'AI の基本概念、使い方、このサイトの読み方を最初に整理するガイド。',
+    eyebrow: 'Start Here',
+    heroTitle: 'AI を学び始めたばかりなら、まずここから。',
+    heroDescription:
+      'これは大きな講座ではなく、このサイトを読みやすくするための緩衝材です。頻出語を先に整理し、Radar、Academy、実践、基礎のどこへ進むかを決めます。',
+    primaryCta: '最初のステップへ',
+    secondaryCta: 'AI Radar を見る',
+    promiseTitle: 'このガイドでできること',
+    promises: [
+      { title: '用語がわかる', description: 'model、prompt、context、Agent、RAG、eval を日常語に置き換えます。' },
+      { title: '使い方が見える', description: '検索、文章、整理、学習、仕事の流れに AI を入れる入口をつかみます。' },
+      { title: '読み続けられる', description: 'AI Radar や Academy を読んでも、どこを深く読みどこを流すか判断できます。' },
+    ],
+    stepsTitle: '0 からサイトを読める状態へ',
+    steps: [
+      {
+        title: 'AI が何をできるかを見る',
+        description: 'AI を、読む、書く、整理する、推論する、ツールを扱う協働相手として理解します。',
+        links: [
+          { label: 'AI Fundamentals', href: '/ja/academy/openai-academy/01-ai-fundamentals/ai-fundamentals/' },
+          { label: 'Claude 101', href: '/ja/academy/anthropic-academy/03-claude-product/claude-101/' },
+        ],
+      },
+      {
+        title: 'よい依頼の出し方を学ぶ',
+        description: 'Prompt は魔法の言葉ではなく、目的、背景、制約、出力形式をそろえる作業です。',
+        links: [
+          { label: 'Getting Started with ChatGPT', href: '/ja/academy/openai-academy/02-using-chatgpt/core-skills/getting-started/' },
+          { label: 'Prompting Fundamentals', href: '/ja/academy/openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/' },
+        ],
+      },
+      {
+        title: 'context と files を理解する',
+        description: 'AI の力は model だけでなく、見えている情報、tool、資料の組み合わせで決まります。',
+        links: [
+          { label: 'Working with Files', href: '/ja/academy/openai-academy/02-using-chatgpt/tools/working-with-files/' },
+          { label: 'RAG', href: '/ja/academy/openai-academy/07-building-with-ai/rag/' },
+        ],
+      },
+      {
+        title: 'Agent と workflow へ進む',
+        description: 'Agent は、目標に向けて tool を使い、手順を進め、検証を受ける AI workflow です。',
+        links: [
+          { label: 'Agents', href: '/ja/academy/openai-academy/07-building-with-ai/agents/' },
+          { label: 'Image Wall', href: '/ja/radar/gallery/' },
+        ],
+      },
+    ],
+    glossaryTitle: '最初に覚える言葉',
+    glossary: [
+      { term: 'Model', description: '内容を理解し、生成する能力の中心。' },
+      { term: 'Prompt', description: 'AI への依頼文。質問だけでなく、背景、制約、出力形式も含みます。' },
+      { term: 'Context', description: 'AI が今見えている会話、ファイル、tool 結果、ルール。' },
+      { term: 'Agent', description: '目標に向けて tool を使い、複数ステップで進む AI workflow。' },
+      { term: 'RAG', description: '先に資料を検索してから答えることで、古い情報や作り話を減らす方法。' },
+      { term: 'Eval', description: '「なんとなく良い」を、再確認できる品質基準に変える仕組み。' },
+    ],
+    nextTitle: '次に進む場所',
+    nextDescription: 'このガイドを読んだら、興味に合わせて深い入口へ進めます。',
+    nextLinks: [
+      { label: 'Daily を見る', href: '/ja/radar/' },
+      { label: 'Academy へ', href: '/ja/academy/' },
+      { label: 'Engineering へ', href: '/ja/engineering/' },
+      { label: 'Foundations へ', href: '/ja/foundations/' },
+    ],
   },
 } as const;
 
