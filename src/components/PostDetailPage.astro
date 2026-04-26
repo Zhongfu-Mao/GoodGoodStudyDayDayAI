@@ -15,6 +15,13 @@ import {
   type Locale,
 } from '../lib/site';
 import { formatDate, postDetailPage } from '../lib/i18n';
+import {
+  difficultyLabels,
+  estimateReadingMinutes,
+  getEntryDifficulty,
+  getPlainSummary,
+  readingTimeText,
+} from '../lib/entryMeta';
 import { formatMonthLabel, getMonthKey, resolveRadarCadence } from '../lib/radar';
 
 type BlogEntry = CollectionEntry<CollectionName>;
@@ -89,6 +96,9 @@ const audioPlayerText =
         playMiniAria: '在全站播放器中播放音频',
       };
 const isRadar = entry.data.category === 'radar';
+const difficulty = getEntryDifficulty(entry);
+const readingMinutes = estimateReadingMinutes(entry.body, locale);
+const plainSummary = isRadar ? getPlainSummary(entry, locale) : '';
 const articleHref = articlePath(entry.data.category, currentSlug, locale);
 const audioMeta = `${collectionLabels[entry.data.category][locale]} · ${formatDate(entry.data.date, locale)}`;
 const openCategoryHint = academyMeta ? text.openCategoryHintAcademy : text.openCategoryHintDefault;
@@ -265,12 +275,24 @@ const showTimeline = !academyMeta;
       <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date, locale)}</time>
       <span>·</span>
       <span>{entry.data.lang.toUpperCase()}</span>
+      <span>·</span>
+      <span>{text.difficulty}: {difficultyLabels[locale][difficulty]}</span>
+      <span>·</span>
+      <span>{text.readingTime}: {readingTimeText[locale](readingMinutes)}</span>
     </div>
 
     <h1 class="theme-heading mt-4 text-3xl font-semibold md:text-5xl">{entry.data.title}</h1>
 
     {entry.data.description ? (
       <p class="theme-muted mt-4 max-w-3xl text-base leading-7 md:text-lg">{entry.data.description}</p>
+    ) : null}
+
+    {plainSummary ? (
+      <section class="theme-panel mt-6 rounded-[1.25rem] p-5">
+        <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.plainSummaryEyebrow}</p>
+        <h2 class="theme-heading mt-2 text-xl font-semibold">{text.plainSummaryTitle}</h2>
+        <p class="theme-text mt-3 text-base leading-7">{plainSummary}</p>
+      </section>
     ) : null}
 
     {academyMeta ? (

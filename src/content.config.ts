@@ -8,6 +8,8 @@ export const blogSchema = z.object({
   category: z.enum(collectionNames),
   description: z.string().optional(),
   cadence: z.enum(['daily', 'weekly', 'monthly']).optional(),
+  difficulty: z.enum(['beginner', 'intermediate', 'advanced']).optional(),
+  plainSummary: z.string().optional(),
   tags: z.array(z.string()).min(1),
   lang: z.enum(['zh', 'ja']).default('zh'),
   coverImage: z.string().optional(),
