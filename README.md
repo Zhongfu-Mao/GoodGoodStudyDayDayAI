@@ -162,6 +162,18 @@ npm run check
 npm run build
 ```
 
+UI 自动化测试 / UI 自動テスト:
+
+```bash
+npm run test:ui
+```
+
+首次在新机器上运行 Playwright 时，可先安装 Chromium / 新しい環境では先に Chromium を入れます:
+
+```bash
+npx playwright install chromium
+```
+
 ## 浏览统计 / Analytics
 
 站点支持静态部署下的隐私友好浏览统计。默认没有配置时不会注入任何第三方脚本；需要统计时，在 GitHub 仓库的 Actions variables 中配置以下变量后重新部署。

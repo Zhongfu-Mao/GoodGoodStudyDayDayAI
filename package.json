@@ -8,6 +8,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "check:tags": "node scripts/check-bilingual-tags.mjs",
+    "test:ui": "npm run build && playwright test",
+    "test:ui:headed": "npm run build && playwright test --headed",
     "radar:audio": "node scripts/generate-radar-audio.mjs",
     "radar:infographic": "node scripts/generate-radar-infographic.mjs",
     "radar:infographic:openai": "node scripts/generate-radar-infographic.mjs --backend openai",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
     "@astrojs/tailwind": "^6.0.0",
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.0.0",
     "autoprefixer": "^10.4.21",
