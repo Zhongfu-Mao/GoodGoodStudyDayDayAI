@@ -75,6 +75,37 @@ const text = labels[locale];
     var animationId = 0;
     var lastTime = performance.now();
     var enabled = readStoredState();
+    var fishCounts = { mobile: 4, tablet: 6, desktop: 8 };
+    var feedTiming = {
+      gather: 5400,
+      linger: 1200,
+      scatter: 5000,
+      cleanup: 4200,
+    };
+    var movement = {
+      roamSpeed: 0.016,
+      roamBurstSpeed: 0.038,
+      roamTurn: 0.00105,
+      roamWander: 0.000045,
+      feedSpeed: 0.048,
+      feedBurstSpeed: 0.078,
+      feedTurn: 0.0028,
+      feedOrbit: 0.00022,
+      scatterSpeed: 0.082,
+      scatterTurn: 0.004,
+      scatterWander: 0.000105,
+      edgePush: 0.00052,
+      socialRadius: 220,
+      feedSocialRadius: 160,
+    };
+    var speciesProfiles = {
+      classic: { cruise: 1, feed: 1, scatter: 1, turn: 1, wander: 1, burst: 1, tailTempo: 1 },
+      round: { cruise: 0.78, feed: 0.86, scatter: 0.88, turn: 0.82, wander: 1.32, burst: 0.82, tailTempo: 0.85 },
+      stream: { cruise: 1.22, feed: 1.08, scatter: 1.12, turn: 0.72, wander: 0.72, burst: 1.18, tailTempo: 1.18 },
+      angel: { cruise: 0.7, feed: 0.78, scatter: 0.74, turn: 0.62, wander: 1.48, burst: 0.72, tailTempo: 0.72 },
+      forktail: { cruise: 1.05, feed: 1.12, scatter: 1.22, turn: 1.18, wander: 0.92, burst: 1.28, tailTempo: 1.28 },
+      speckled: { cruise: 0.94, feed: 0.98, scatter: 1.02, turn: 1.08, wander: 1.12, burst: 1.02, tailTempo: 1.05 },
+    };
 
     function readStoredState() {
       try {
@@ -119,11 +150,15 @@ const text = labels[locale];
     }
 
     function syncFishCount() {
-      var baseCount = viewport.width < 720 ? 4 : viewport.width < 1180 ? 6 : 8;
+      var baseCount = viewport.width < 720 ? fishCounts.mobile : viewport.width < 1180 ? fishCounts.tablet : fishCounts.desktop;
       var targetCount = baseCount;
 
       while (fish.length < targetCount) fish.push(createFish(fish.length, targetCount));
       fish.length = targetCount;
+    }
+
+    function getSpeciesProfile(species) {
+      return speciesProfiles[species] || speciesProfiles.classic;
     }
 
     function getInitialFishPosition(index, total) {
@@ -158,6 +193,7 @@ const text = labels[locale];
       ][index % 6];
       var species = ['classic', 'round', 'stream', 'angel', 'forktail', 'speckled'][index % 6];
       var pattern = ['stripe', 'spot', 'band', 'none', 'stripe', 'spot'][index % 6];
+      var profile = getSpeciesProfile(species);
 
       var position = getInitialFishPosition(index, total);
       var item = {
@@ -169,7 +205,7 @@ const text = labels[locale];
         turn: side,
         phase: Math.random() * Math.PI * 2,
         angle: side > 0 ? 0 : Math.PI,
-        tailRate: 2.4 + Math.random() * 1.8,
+        tailRate: (2.4 + Math.random() * 1.8) * profile.tailTempo,
         wander: Math.random() * Math.PI * 2,
         orbit: Math.random() > 0.5 ? 1 : -1,
         personality: 0.75 + Math.random() * 0.65,
@@ -180,6 +216,8 @@ const text = labels[locale];
         accent: palette[2],
         species: species,
         pattern: pattern,
+        profile: profile,
+        mode: 'roam',
         feedUntil: 0,
         feedOffsetX: 0,
         feedOffsetY: 0,
@@ -198,11 +236,12 @@ const text = labels[locale];
     function pickRoamTarget(item, now) {
       var x = 0;
       var y = 0;
-      var minDistance = Math.max(180, viewport.width * 0.38);
+      var profile = item.profile || getSpeciesProfile(item.species);
+      var minDistance = Math.max(180, viewport.width * (0.34 + profile.cruise * 0.06));
 
       for (var attempt = 0; attempt < 24; attempt += 1) {
         x = Math.random() * viewport.width;
-        y = 82 + Math.random() * Math.max(120, viewport.height - 160);
+        y = 62 + Math.random() * Math.max(120, viewport.height - 126);
         var dx = x - item.x;
         var dy = y - item.y;
         if (Math.sqrt(dx * dx + dy * dy) >= minDistance) break;
@@ -210,7 +249,7 @@ const text = labels[locale];
 
       item.roamX = x;
       item.roamY = y;
-      item.nextRoamAt = now + 24000 + Math.random() * 20000;
+      item.nextRoamAt = now + 18000 + Math.random() * 18000;
     }
 
     function feed(x, y) {
@@ -220,9 +259,9 @@ const text = labels[locale];
       feedTarget = {
         x: x,
         y: y,
-        gatherUntil: now + 6200,
-        scatterUntil: now + 12800,
-        until: now + 17000,
+        gatherUntil: now + feedTiming.gather,
+        scatterUntil: now + feedTiming.gather + feedTiming.scatter,
+        until: now + feedTiming.gather + feedTiming.scatter + feedTiming.cleanup,
       };
       pointer.x = x;
       pointer.y = y;
@@ -240,17 +279,17 @@ const text = labels[locale];
       }
 
       fish.forEach(function (item, index) {
-        item.feedUntil = feedTarget.gatherUntil + Math.random() * 1400;
-        item.scatterUntil = feedTarget.scatterUntil + Math.random() * 900;
+        item.feedUntil = feedTarget.gatherUntil + 260 + Math.random() * feedTiming.linger;
+        item.scatterUntil = feedTarget.scatterUntil + Math.random() * 650;
         item.feedOffsetX = (Math.random() - 0.5) * 92;
         item.feedOffsetY = (Math.random() - 0.5) * 68;
-        item.burstUntil = Math.max(item.burstUntil, now + 900 + Math.random() * 900);
+        item.burstUntil = Math.max(item.burstUntil, now + 700 + Math.random() * 760);
         pickScatterTarget(item, x, y, index, fish.length, now);
       });
     }
 
     function getFoodTarget(item, now) {
-      if (!feedTarget || now > feedTarget.gatherUntil || now > item.feedUntil) return null;
+      if (!feedTarget || now > item.feedUntil) return null;
 
       var totalLife = 0;
       var weightedX = 0;
@@ -269,6 +308,7 @@ const text = labels[locale];
       return {
         x: x + item.feedOffsetX,
         y: y + item.feedOffsetY,
+        strength: now <= feedTarget.gatherUntil ? 1 : clamp((item.feedUntil - now) / Math.max(1, item.feedUntil - feedTarget.gatherUntil), 0, 1),
       };
     }
 
@@ -280,7 +320,7 @@ const text = labels[locale];
 
       awayAngle += (Math.random() - 0.5) * 0.95;
 
-      var radius = Math.max(220, Math.min(viewport.width, viewport.height) * 0.42) + Math.random() * 260;
+      var radius = Math.max(260, Math.min(viewport.width, viewport.height) * 0.48) + Math.random() * 320;
       item.scatterX = clamp(sourceX + Math.cos(awayAngle) * radius, 42, viewport.width - 42);
       item.scatterY = clamp(sourceY + Math.sin(awayAngle) * radius, 56, viewport.height - 42);
       item.roamX = item.scatterX;
@@ -290,7 +330,11 @@ const text = labels[locale];
 
     function getScatterTarget(item, now) {
       if (!feedTarget || now <= feedTarget.gatherUntil || now > item.scatterUntil) return null;
-      return { x: item.scatterX, y: item.scatterY };
+      return {
+        x: item.scatterX,
+        y: item.scatterY,
+        strength: clamp((item.scatterUntil - now) / Math.max(1, item.scatterUntil - feedTarget.gatherUntil), 0.25, 1),
+      };
     }
 
     function normalizeAngle(angle) {
@@ -327,61 +371,104 @@ const text = labels[locale];
       return distance;
     }
 
-    function updateFish(item, delta, now) {
-      var currentSpeed = Math.sqrt(item.vx * item.vx + item.vy * item.vy);
-      item.phase += delta * (0.0009 + currentSpeed * 0.075);
-      item.wander += delta * (0.00012 + item.personality * 0.00005);
+    function getFishSpeed(item) {
+      return Math.sqrt(item.vx * item.vx + item.vy * item.vy);
+    }
 
-      if (now > item.nextBurstAt) {
-        item.burstUntil = now + 550 + Math.random() * 1050;
-        item.nextBurstAt = now + 16000 + Math.random() * 28000;
-      }
-
-      var isBursting = now < item.burstUntil;
+    function getFishIntent(item, now) {
       var target = getFoodTarget(item, now);
-      var scatterTarget = target ? null : getScatterTarget(item, now);
-      var distance = 0;
+      if (target) return { mode: 'feed', target: target };
 
-      if (target) {
+      target = getScatterTarget(item, now);
+      if (target) return { mode: 'scatter', target: target };
+
+      return {
+        mode: 'roam',
+        target: {
+          x: item.roamX,
+          y: item.roamY,
+          strength: 1,
+        },
+      };
+    }
+
+    function applyWanderForce(item, intensity, delta) {
+      var profile = item.profile || getSpeciesProfile(item.species);
+      item.vx += Math.cos(item.wander * 1.7 + item.phase * 0.72) * intensity * profile.wander * delta;
+      item.vy += Math.sin(item.wander * 1.24 + item.phase * 0.9) * intensity * 0.88 * profile.wander * delta;
+    }
+
+    function applyIntentMotion(item, intent, isBursting, delta, now) {
+      var profile = item.profile || getSpeciesProfile(item.species);
+      var target = intent.target;
+
+      if (intent.mode === 'feed') {
         var foodDx = target.x - item.x;
         var foodDy = target.y - item.y;
-        distance = Math.max(1, Math.sqrt(foodDx * foodDx + foodDy * foodDy));
-        var arriveSpeed = clamp(distance / 220, 0.18, 1) * (isBursting ? 0.085 : 0.052) * item.personality;
+        var foodDistance = Math.max(1, Math.sqrt(foodDx * foodDx + foodDy * foodDy));
+        var arriveSpeed = clamp(foodDistance / 260, 0.22, 1);
+        var lingerEase = 0.72 + (target.strength || 1) * 0.28;
+        var feedSpeed = (isBursting ? movement.feedBurstSpeed : movement.feedSpeed) * profile.feed * item.personality * lingerEase;
 
-        steerToward(item, target.x, target.y, arriveSpeed, 0.0032, delta);
+        steerToward(item, target.x, target.y, feedSpeed * arriveSpeed, movement.feedTurn * profile.turn, delta);
 
-        if (distance < 170) {
-          var orbitForce = (1 - distance / 170) * 0.00023 * delta * item.orbit;
-          item.vx += (-foodDy / distance) * orbitForce;
-          item.vy += (foodDx / distance) * orbitForce;
-        }
-      } else if (scatterTarget) {
-        distance = steerToward(item, scatterTarget.x, scatterTarget.y, 0.086 * item.personality, 0.0042, delta);
-        item.vx += Math.cos(item.wander * 2.2 + item.phase) * 0.000085 * delta;
-        item.vy += Math.sin(item.wander * 1.9 + item.phase) * 0.000075 * delta;
-
-        if (distance < 70) {
-          item.scatterUntil = Math.min(item.scatterUntil, now + 500);
-        }
-      } else {
-        var roamDx = item.roamX - item.x;
-        var roamDy = item.roamY - item.y;
-        var roamDistance = Math.max(1, Math.sqrt(roamDx * roamDx + roamDy * roamDy));
-
-        if (!item.nextRoamAt || now > item.nextRoamAt || roamDistance < 48) {
-          pickRoamTarget(item, now);
-          roamDx = item.roamX - item.x;
-          roamDy = item.roamY - item.y;
-          roamDistance = Math.max(1, Math.sqrt(roamDx * roamDx + roamDy * roamDy));
+        if (foodDistance < 178) {
+          var orbitForce = (1 - foodDistance / 178) * movement.feedOrbit * delta * item.orbit * profile.turn;
+          item.vx += (-foodDy / foodDistance) * orbitForce;
+          item.vy += (foodDx / foodDistance) * orbitForce;
         }
 
-        var roamSpeed = (isBursting ? 0.044 : 0.019) * item.personality;
-        steerToward(item, item.roamX, item.roamY, roamSpeed, 0.0012, delta);
-        item.vx += Math.cos(item.wander * 1.7 + item.phase) * 0.000045 * delta;
-        item.vy += Math.sin(item.wander * 1.3 + item.phase * 0.8) * 0.00004 * delta;
+        applyWanderForce(item, movement.roamWander * 0.7, delta);
+        return foodDistance;
       }
 
-      var nearbyCount = 0;
+      if (intent.mode === 'scatter') {
+        var scatterDistance = steerToward(
+          item,
+          target.x,
+          target.y,
+          movement.scatterSpeed * profile.scatter * item.personality * (0.84 + (target.strength || 1) * 0.16),
+          movement.scatterTurn * profile.turn,
+          delta,
+        );
+
+        applyWanderForce(item, movement.scatterWander, delta);
+
+        if (scatterDistance < 90) {
+          item.scatterUntil = Math.min(item.scatterUntil, now + 360);
+          pickRoamTarget(item, now);
+        }
+
+        return scatterDistance;
+      }
+
+      var roamDx = item.roamX - item.x;
+      var roamDy = item.roamY - item.y;
+      var roamDistance = Math.max(1, Math.sqrt(roamDx * roamDx + roamDy * roamDy));
+
+      if (!item.nextRoamAt || now > item.nextRoamAt || roamDistance < 56) {
+        pickRoamTarget(item, now);
+        roamDx = item.roamX - item.x;
+        roamDy = item.roamY - item.y;
+        roamDistance = Math.max(1, Math.sqrt(roamDx * roamDx + roamDy * roamDy));
+      }
+
+      steerToward(
+        item,
+        item.roamX,
+        item.roamY,
+        (isBursting ? movement.roamBurstSpeed : movement.roamSpeed) * profile.cruise * item.personality,
+        movement.roamTurn * profile.turn,
+        delta,
+      );
+      applyWanderForce(item, movement.roamWander, delta);
+      return roamDistance;
+    }
+
+    function applySocialForces(item, intent, delta) {
+      var radius = intent.mode === 'feed' ? movement.feedSocialRadius : movement.socialRadius;
+      var radius2 = radius * radius;
+      var weightTotal = 0;
       var centerX = 0;
       var centerY = 0;
       var alignX = 0;
@@ -395,62 +482,125 @@ const text = labels[locale];
         var dx = other.x - item.x;
         var dy = other.y - item.y;
         var d2 = dx * dx + dy * dy;
-        if (d2 <= 0 || d2 > 220 * 220) return;
+        if (d2 <= 0 || d2 > radius2) return;
 
         var d = Math.sqrt(d2);
-        nearbyCount += 1;
-        centerX += other.x;
-        centerY += other.y;
-        alignX += other.vx;
-        alignY += other.vy;
+        var weight = 1 - d / radius;
+        weightTotal += weight;
+        centerX += other.x * weight;
+        centerY += other.y * weight;
+        alignX += other.vx * weight;
+        alignY += other.vy * weight;
 
-        if (d < item.size * 5.2) {
-          separateX -= dx / d;
-          separateY -= dy / d;
+        if (d < item.size * (intent.mode === 'feed' ? 6.2 : 5.4)) {
+          separateX -= (dx / d) * (1 - d / radius);
+          separateY -= (dy / d) * (1 - d / radius);
         }
       });
 
-      if (nearbyCount > 0) {
-        centerX /= nearbyCount;
-        centerY /= nearbyCount;
-        alignX /= nearbyCount;
-        alignY /= nearbyCount;
-        item.vx += (alignX - item.vx) * 0.0008 * delta;
-        item.vy += (alignY - item.vy) * 0.0008 * delta;
+      if (weightTotal <= 0) return;
 
-        if (!target && !scatterTarget) {
-          item.vx += ((centerX - item.x) / 260) * 0.00025 * delta;
-          item.vy += ((centerY - item.y) / 260) * 0.00018 * delta;
-        }
+      centerX /= weightTotal;
+      centerY /= weightTotal;
+      alignX /= weightTotal;
+      alignY /= weightTotal;
 
-        item.vx += separateX * (scatterTarget ? 0.00055 : 0.00022) * delta;
-        item.vy += separateY * (scatterTarget ? 0.00055 : 0.00022) * delta;
+      var alignment = intent.mode === 'roam' ? 0.00072 : intent.mode === 'feed' ? 0.00018 : 0.0003;
+      var separation = intent.mode === 'feed' ? 0.00042 : intent.mode === 'scatter' ? 0.00074 : 0.00024;
+
+      item.vx += (alignX - item.vx) * alignment * delta;
+      item.vy += (alignY - item.vy) * alignment * delta;
+
+      if (intent.mode === 'roam') {
+        item.vx += ((centerX - item.x) / 260) * 0.0002 * delta;
+        item.vy += ((centerY - item.y) / 260) * 0.00015 * delta;
       }
 
-      var edgeMargin = Math.max(96, item.size * 6);
-      if (item.x < edgeMargin) item.vx += ((edgeMargin - item.x) / edgeMargin) * 0.00055 * delta;
-      if (item.x > viewport.width - edgeMargin) item.vx -= ((item.x - (viewport.width - edgeMargin)) / edgeMargin) * 0.00055 * delta;
-      if (item.y < 68) item.vy += 0.00042 * delta;
-      if (item.y > viewport.height - 46) item.vy -= 0.00042 * delta;
+      item.vx += separateX * separation * delta;
+      item.vy += separateY * separation * delta;
+    }
 
-      item.vx *= target || scatterTarget ? 0.993 : 0.996;
-      item.vy *= target || scatterTarget ? 0.993 : 0.996;
+    function applyEdgeForces(item, intent, delta) {
+      var edgeMargin = Math.max(intent.mode === 'scatter' ? 122 : 102, item.size * (intent.mode === 'scatter' ? 7.2 : 6.4));
+      var push = movement.edgePush * (intent.mode === 'scatter' ? 1.25 : 1);
+      var futureX = item.x + item.vx * 880;
+      var futureY = item.y + item.vy * 880;
 
-      var maxSpeed = target
-        ? (isBursting ? 0.092 : 0.064)
-        : scatterTarget
-          ? 0.105
-          : (isBursting ? 0.048 : 0.026);
-      var speed = Math.max(0.01, Math.sqrt(item.vx * item.vx + item.vy * item.vy));
+      if (item.x < edgeMargin) item.vx += ((edgeMargin - item.x) / edgeMargin) * push * delta;
+      if (item.x > viewport.width - edgeMargin) item.vx -= ((item.x - (viewport.width - edgeMargin)) / edgeMargin) * push * delta;
+      if (item.y < 58) item.vy += 0.00044 * delta;
+      if (item.y > viewport.height - 48) item.vy -= 0.00044 * delta;
+
+      if (futureX < edgeMargin) item.vx += ((edgeMargin - futureX) / edgeMargin) * push * 0.45 * delta;
+      if (futureX > viewport.width - edgeMargin) item.vx -= ((futureX - (viewport.width - edgeMargin)) / edgeMargin) * push * 0.45 * delta;
+      if (futureY < 58) item.vy += 0.00018 * delta;
+      if (futureY > viewport.height - 48) item.vy -= 0.00018 * delta;
+    }
+
+    function limitFishSpeed(item, intent, isBursting) {
+      var profile = item.profile || getSpeciesProfile(item.species);
+      var maxSpeed = intent.mode === 'feed'
+        ? (isBursting ? movement.feedBurstSpeed * 1.12 : movement.feedSpeed * 1.18) * profile.feed
+        : intent.mode === 'scatter'
+          ? movement.scatterSpeed * 1.22 * profile.scatter
+          : (isBursting ? movement.roamBurstSpeed * 1.2 : movement.roamSpeed * 1.72) * profile.cruise;
+      var speed = Math.max(0.01, getFishSpeed(item));
+
       if (speed > maxSpeed) {
         item.vx = (item.vx / speed) * maxSpeed;
         item.vy = (item.vy / speed) * maxSpeed;
       }
+    }
+
+    function handleBounds(item, now) {
+      var margin = item.size * 2.6;
+      if (item.x < margin) {
+        item.x = margin;
+        item.vx = Math.abs(item.vx) * 0.62;
+        pickRoamTarget(item, now);
+      }
+      if (item.x > viewport.width - margin) {
+        item.x = viewport.width - margin;
+        item.vx = -Math.abs(item.vx) * 0.62;
+        pickRoamTarget(item, now);
+      }
+      if (item.y < 48) {
+        item.y = 48;
+        item.vy = Math.abs(item.vy) * 0.64;
+      }
+      if (item.y > viewport.height - 38) {
+        item.y = viewport.height - 38;
+        item.vy = -Math.abs(item.vy) * 0.64;
+      }
+    }
+
+    function updateFish(item, delta, now) {
+      var profile = item.profile || getSpeciesProfile(item.species);
+      var currentSpeed = getFishSpeed(item);
+      item.phase += delta * (0.00072 * profile.tailTempo + currentSpeed * 0.082);
+      item.wander += delta * (0.000105 + item.personality * 0.000045) * profile.wander;
+
+      if (now > item.nextBurstAt) {
+        item.burstUntil = now + (520 + Math.random() * 920) * profile.burst;
+        item.nextBurstAt = now + (17000 + Math.random() * 30000) / profile.burst;
+      }
+
+      var isBursting = now < item.burstUntil;
+      var intent = getFishIntent(item, now);
+      item.mode = intent.mode;
+
+      applyIntentMotion(item, intent, isBursting, delta, now);
+      applySocialForces(item, intent, delta);
+      applyEdgeForces(item, intent, delta);
+
+      item.vx *= intent.mode === 'roam' ? 0.996 : 0.992;
+      item.vy *= intent.mode === 'roam' ? 0.996 : 0.992;
+      limitFishSpeed(item, intent, isBursting);
 
       item.x += item.vx * delta;
       item.y += item.vy * delta;
 
-      if (target && food.length > 0) {
+      if (intent.mode === 'feed' && food.length > 0) {
         for (var i = 0; i < food.length; i += 1) {
           var crumb = food[i];
           var foodDx = crumb.x - item.x;
@@ -465,25 +615,7 @@ const text = labels[locale];
         }
       }
 
-      var margin = item.size * 2.6;
-      if (item.x < margin) {
-        item.x = margin;
-        item.vx = Math.abs(item.vx) * 0.68;
-        pickRoamTarget(item, now);
-      }
-      if (item.x > viewport.width - margin) {
-        item.x = viewport.width - margin;
-        item.vx = -Math.abs(item.vx) * 0.68;
-        pickRoamTarget(item, now);
-      }
-      if (item.y < 52) {
-        item.y = 52;
-        item.vy = Math.abs(item.vy) * 0.7;
-      }
-      if (item.y > viewport.height - 42) {
-        item.y = viewport.height - 42;
-        item.vy = -Math.abs(item.vy) * 0.7;
-      }
+      handleBounds(item, now);
 
       if (isBursting && Math.random() < 0.035) {
         pushBubble(item.x - Math.cos(item.angle) * item.size * 1.2, item.y - Math.sin(item.angle) * item.size * 1.2, 1.2 + Math.random() * 1.8, now);
@@ -492,7 +624,7 @@ const text = labels[locale];
       item.turn = item.vx >= 0 ? 1 : -1;
 
       var desiredAngle = Math.atan2(item.vy, item.vx || 0.001);
-      item.angle += normalizeAngle(desiredAngle - item.angle) * (target || scatterTarget || isBursting ? 0.08 : 0.035);
+      item.angle += normalizeAngle(desiredAngle - item.angle) * (intent.mode === 'roam' && !isBursting ? 0.036 * profile.turn : 0.074 * profile.turn);
     }
 
     function updateFood(delta, now) {
