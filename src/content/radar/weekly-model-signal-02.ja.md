@@ -7,6 +7,7 @@ tags:
   - Agent
   - RAG
 lang: ja
+coverImage: /images/radar/weekly-model-signal-02-infographic.png
 draft: true
 ---
 

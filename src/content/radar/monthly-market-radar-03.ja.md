@@ -8,6 +8,7 @@ tags:
   - Azure
   - CI/CD
 lang: ja
+coverImage: /images/radar/monthly-market-radar-03-infographic.png
 draft: true
 ---
 
