@@ -51,6 +51,23 @@ Cloud Logging には、プロンプト全文ではなく、リクエスト ID、
 
 BigQuery や Cloud Storage と連携する場合、AI に渡すデータの範囲、保持期間、アクセス権を明確にします。
 
+## 読者向け補足：GCP の運用と一体で考える
+
+Vertex AI で Claude を使う場合、既存の GCP プロジェクト、サービスアカウント、監査ログ、データ基盤と接続しやすいことが大きな利点です。BigQuery、Cloud Run、Workflows、Secret Manager と組み合わせると、生成 AI 機能を既存の運用標準に乗せやすくなります。
+
+ただし、LLM 呼び出しは通常の REST API よりも失敗の種類が多くなります。quota、latency、出力形式の揺れ、リージョン差、provider 側のモデル更新を前提に、観測と回帰テストを用意します。
+
+| 観点 | 確認すること |
+| --- | --- |
+| Identity | service account、権限境界、鍵管理 |
+| Runtime | Cloud Run か batch か、timeout と再試行 |
+| Data | BigQuery、GCS、PII の扱い |
+| Observability | request id、latency、token、error reason |
+
+### ミニ演習
+
+GCP 上の既存データを使って FAQ 生成を行う想定で、入力データ、Secret 管理、ログ、評価データ、失敗時の人間確認フローを設計します。
+
 ## 実務で試すワークフロー
 
 1. GCP project、location、service account、利用モデルを一覧化する。

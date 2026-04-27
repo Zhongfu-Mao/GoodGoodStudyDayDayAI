@@ -51,6 +51,23 @@ CloudTrail やアプリログで、呼び出し量、失敗率、レイテンシ
 
 企業内 RAG や社内文書処理では、S3、KMS、VPC endpoint、データ保持ポリシーと合わせて検討します。
 
+## 読者向け補足：Bedrock で見る運用境界
+
+Bedrock で Claude を使う価値は、モデル API だけではなく、AWS の既存ガバナンスに乗せられることです。IAM、VPC、CloudWatch、組織の請求管理、監査ログ、データ所在地の考え方と組み合わせて、エンタープライズの運用境界を作れます。
+
+一方で、Anthropic 直 API と同じつもりで実装すると、モデル名、リージョン、認証、quota、ログの見え方でつまずきます。抽象化レイヤーを作る場合も、provider ごとの差分を隠しすぎず、障害調査に必要な情報を残します。
+
+| 設計項目 | Bedrock で確認すること |
+| --- | --- |
+| 権限 | IAM role、最小権限、環境別の分離 |
+| リージョン | 利用可能モデル、データ要件、latency |
+| ログ | request id、latency、token、error code |
+| ガードレール | 入力制限、出力制限、監査フロー |
+
+### ミニ演習
+
+社内向け要約 API を Bedrock で作る想定で、dev/staging/prod の IAM role、ログ項目、月次 cost review、障害時の fallback を一枚にまとめます。
+
 ## 実務で試すワークフロー
 
 1. 使うリージョンで対象 Claude モデルが有効か確認する。

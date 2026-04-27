@@ -51,6 +51,24 @@ tool の説明文は、AI にとっての UI です。入力パラメータ、�
 
 失敗回復も重要です。途中まで実行された処理をどう戻すか、再試行してよいか、ユーザーに何を伝えるかを決めます。
 
+## 読者向け補足：高度な MCP は発見性と制御のバランス
+
+MCP の advanced topics では、動的 tool、resource、prompt、transport、sampling などが登場します。便利になるほど、AI が何を発見し、何を実行できるかが広がるため、発見性と制御のバランスが重要になります。
+
+動的に tool を増やす場合は、tool 名、説明、入力 schema、危険度、承認要否を安定して返す必要があります。AI に見える説明が曖昧だと、意図しない tool 選択や危険な引数につながります。
+
+| 論点 | 設計の問い |
+| --- | --- |
+| Dynamic tools | いつ tool 一覧が変わるのか |
+| Resources | どの情報を参照専用にするのか |
+| Prompts | 再利用文脈を誰が更新するのか |
+| Transport | local / remote のどちらで信頼境界を置くのか |
+| Approval | 自動実行と人間承認をどこで分けるのか |
+
+### ミニ演習
+
+MCP server に新しい書き込み tool を追加する想定で、tool description、input schema、danger level、approval rule、audit log を設計します。AI が誤解しそうな説明文を一つ見つけて書き直します。
+
 ## 実務で試すワークフロー
 
 1. 既存 MCP server の tools を、読み取り・書き込み・外部送信に分類する。
