@@ -71,6 +71,19 @@ AI coding 越强，越需要清楚边界。因为它真的会改文件、跑命�
 
 如果你想把它变成可靠工程实践，可以继续看 [Reliable LLM Call Skeleton](../../../engineering/ai-developer-core/reliable-llm-call-skeleton/) 和 [Agent Harness：日志、审批与回放](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)。
 
+## 动手试试
+
+如果你有 ChatGPT Plus，试试用 Code Interpreter 做一个小任务：
+
+```text
+请帮我写一个 Python 脚本，生成一个包含 10 个随机数的列表，
+然后画一张柱状图。运行代码并展示结果。
+```
+
+观察 AI 的行为：它是否写了代码 → 运行代码 → 看到结果 → 解释输出？这就是 AI coding 工具的核心循环。如果运行出错，它会不会自动修复？
+
+如果你不写代码，也可以让 AI 解释一段你在网上看到的代码片段，感受它"理解项目"的能力。
+
 ## 一个实用判断
 
 判断 AI coding 是否真的帮到项目，可以看：

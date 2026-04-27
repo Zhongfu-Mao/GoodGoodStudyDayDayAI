@@ -64,6 +64,17 @@ Agent 的想法就是把这些步骤串起来，让 AI 不只给建议，而是�
 
 如果你想从工程角度理解 agent，可以继续读 [Agent 的状态、工具与反馈循环](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/) 和 [Agent Harness：日志、审批与回放](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)。
 
+## 动手试试
+
+打开 ChatGPT（需要开启 Code Interpreter / Advanced Data Analysis），发送：
+
+```text
+请帮我分析一下：最近 12 个月每月的天数是否都正确。
+先列出计划，然后用代码验证，最后总结结果。
+```
+
+观察 AI 的行为：它是否先列出了计划、然后写代码、运行代码、检查结果、给出结论？这就是一个简单的"目标 → 工具 → 验证"Agent 循环。
+
 ## 一个实用判断
 
 判断一个产品是不是“真 agent”，可以问：

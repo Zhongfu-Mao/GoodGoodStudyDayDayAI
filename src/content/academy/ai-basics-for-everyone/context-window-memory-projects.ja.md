@@ -60,6 +60,16 @@ Project の価値は、単にファイルを置くことではなく、毎回の
 
 さらに踏み込むなら、[Token と Context Window](../../../foundations/ai-developer-core/token-context-window/) と [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/) が次の入口です。
 
+## やってみよう
+
+ChatGPT か Claude で Project を作り、小さな実験をしてみてください。
+
+1. Project のシステム指示に自分の役割と業務背景を書く（例：「B2B SaaS のプロダクトマネージャー」）。
+2. よく使うドキュメントを 1 つアップロードする。
+3. 業務に関する質問を投げ、背景とドキュメントを踏まえた回答が返るか確認する。
+
+次に、空の会話（Project なし）で同じ質問をして、精度の違いを比べてみてください。
+
 ## 実用的な見方
 
 AI の出力が期待とずれた時は、まず次を確認します。

@@ -64,6 +64,17 @@ Agent に向く作業は、次の特徴を持ちます。
 
 工程寄りに理解したい場合は、[Agent の state、tool、feedback loop](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/) と [Agent Harness](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/) が次の入口です。
 
+## やってみよう
+
+ChatGPT（Code Interpreter をオンにして）で次を送ってみてください。
+
+```text
+最近 12 か月の各月の日数が正しいか分析してください。
+まず計画を立て、コードで検証し、結果をまとめてください。
+```
+
+AI が「計画 → コード実行 → 結果確認 → まとめ」の流れで動くかを観察してください。これが「目標 → ツール → 検証」の Agent ループの最小例です。
+
 ## 実用的な見方
 
 ある製品が本当に agent なのかを見るには、次を聞きます。

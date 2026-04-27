@@ -60,6 +60,16 @@ Project 的价值不是“把文件上传进去”本身，而是让 AI 每次�
 
 如果你想理解上下文窗口为什么会成为工程问题，可以读 [Token 与 Context Window](../../../foundations/ai-developer-core/token-context-window/) 和 [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/)。
 
+## 动手试试
+
+打开 ChatGPT 或 Claude，创建一个 Project（或在现有 Project 里），做一个小实验：
+
+1. 在 Project 的系统指令里写上你的角色和工作背景（比如"我是一名产品经理，负责 B 端 SaaS 产品"）。
+2. 上传一份你常用的文档（产品简介、团队手册等）。
+3. 然后在对话中问一个工作问题，看 AI 是否能结合你的背景和文档来回答。
+
+再在一个空白对话（没有 Project）里问同样的问题，比较两次回答的贴合度差异。
+
 ## 一个实用判断
 
 当 AI 输出不符合预期时，先不要说“它不懂”。可以先检查：

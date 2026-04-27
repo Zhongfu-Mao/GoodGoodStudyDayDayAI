@@ -71,6 +71,19 @@ Review なしの vibe coding は探索には強いですが、team や productio
 
 より信頼できる実践にするなら、[Reliable LLM Call Skeleton](../../../engineering/ai-developer-core/reliable-llm-call-skeleton/) と [Agent Harness](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/) が次の入口です。
 
+## やってみよう
+
+ChatGPT Plus をお持ちなら、Code Interpreter で小さなタスクを試してください。
+
+```text
+Python スクリプトを書いて、ランダムな数値を 10 個生成し、
+棒グラフを描いてください。コードを実行して結果を見せてください。
+```
+
+AI が「コードを書く → 実行する → 結果を確認する → 説明する」の流れで動くかを観察してください。エラーが出た場合、自動で修正するかも注目ポイントです。
+
+コードを書かない方は、ネットで見かけたコード片を AI に貼って「何をしているか説明して」と聞くだけでも、「プロジェクトを理解する力」を体感できます。
+
 ## 実用的な見方
 
 AI coding が本当に役立っているかは、次で見ます。

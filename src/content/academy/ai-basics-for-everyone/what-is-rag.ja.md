@@ -65,6 +65,20 @@ Embedding、vector、knowledge retrieval を理解したい場合は、[Embeddin
 
 小さく作ってみたい場合は、[RAG Minimum System](../../../engineering/ai-developer-core/rag-minimum-system/) が実装寄りの入口です。
 
+## やってみよう
+
+自分のメモやドキュメント（200〜500 文字）を ChatGPT か Claude に貼り、次の prompt を試してください。
+
+```text
+以下は私の学習メモです。
+[メモを貼り付け]
+
+上記の内容だけに基づいて、このメモの核心的なポイントを教えてください。
+メモに書かれていない情報は補足しないでください。
+```
+
+AI がメモだけに基づいて答えるか、それとも余計な情報を足すかを観察してください。これが一番シンプルな「手動 RAG」の体験です。
+
 ## 実用的な見方
 
 Knowledge base AI を見る時は、次を確認します。
