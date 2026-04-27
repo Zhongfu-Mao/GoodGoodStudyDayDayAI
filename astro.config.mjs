@@ -2,33 +2,12 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import pagefind from 'astro-pagefind';
+import { resolveBasePath, withBasePath } from './scripts/lib/base-path.mjs';
 
-const repository = process.env.GITHUB_REPOSITORY?.split('/')[1];
 const site =
   process.env.SITE_URL ??
   (process.env.GITHUB_REPOSITORY_OWNER ? `https://${process.env.GITHUB_REPOSITORY_OWNER}.github.io` : 'https://example.com');
-const base =
-  process.env.BASE_PATH ??
-  (repository && !repository.endsWith('.github.io') ? `/${repository}` : '/');
-const normalizedBase = base === '/' ? '/' : `/${base.replace(/^\/+|\/+$/g, '')}/`;
-
-function withBasePath(path) {
-  if (!path?.startsWith('/')) {
-    return path;
-  }
-
-  if (normalizedBase === '/') {
-    return path;
-  }
-
-  const basePrefix = normalizedBase.slice(0, -1);
-
-  if (path === normalizedBase || path === basePrefix || path.startsWith(`${basePrefix}/`)) {
-    return path;
-  }
-
-  return path === '/' ? normalizedBase : `${basePrefix}${path}`;
-}
+const base = resolveBasePath();
 
 function rehypeGitHubPagesBase() {
   return function transform(tree) {
@@ -49,11 +28,11 @@ function visitNode(node) {
 
   if (node.type === 'element' && node.properties) {
     if (typeof node.properties.href === 'string') {
-      node.properties.href = withBasePath(node.properties.href);
+      node.properties.href = withBasePath(node.properties.href, { basePath: base });
     }
 
     if (typeof node.properties.src === 'string') {
-      node.properties.src = withBasePath(node.properties.src);
+      node.properties.src = withBasePath(node.properties.src, { basePath: base });
     }
   }
 
@@ -70,7 +49,7 @@ function visitMarkdownNode(node) {
   }
 
   if ((node.type === 'link' || node.type === 'image') && typeof node.url === 'string') {
-    node.url = withBasePath(node.url);
+    node.url = withBasePath(node.url, { basePath: base });
   }
 
   if (Array.isArray(node.children)) {

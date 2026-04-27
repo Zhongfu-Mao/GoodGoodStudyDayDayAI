@@ -50,7 +50,7 @@ export function getEntryDifficulty(entry: BlogEntry): Difficulty {
   }
 
   if (
-    /getting-started|getting started|fundamentals|101|ai-fluency|using-chatgpt|personalizing|prompting-fundamentals|students|teachers|educators|foundations|入门|入門|基礎|基礎|学生|教育者/.test(
+    /getting-started|getting started|fundamentals|101|ai-fluency|using-chatgpt|personalizing|prompting-fundamentals|students|teachers|educators|foundations|入门|入門|基礎|学生|教育者/.test(
       haystack,
     )
   ) {
@@ -106,7 +106,7 @@ function cleanMarkdownText(text: string) {
   return text
     .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/[`*_>#]/g, '')
+    .replace(/[`*>#]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
 }

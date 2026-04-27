@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { resolveAppBasePath } from './scripts/lib/base-path.mjs';
 
 const configuredBaseUrl = process.env.PLAYWRIGHT_BASE_URL
   ? new URL(process.env.PLAYWRIGHT_BASE_URL)
@@ -8,16 +9,6 @@ const host = process.env.PLAYWRIGHT_HOST ?? configuredBaseUrl?.hostname ?? '127.
 const serverOrigin = configuredBaseUrl?.origin ?? `http://${host}:${port}`;
 const appBasePath = resolveAppBasePath();
 const readyUrl = new URL(appBasePath, `${serverOrigin}/`).toString();
-
-function resolveAppBasePath() {
-  const repository = process.env.GITHUB_REPOSITORY?.split('/')[1];
-  const rawBasePath =
-    process.env.BASE_PATH ??
-    (repository && !repository.endsWith('.github.io') ? `/${repository}` : '/');
-  const normalized = `/${rawBasePath.replace(/^\/+|\/+$/g, '')}`;
-
-  return normalized === '/' ? '/' : `${normalized}/`;
-}
 
 export default defineConfig({
   testDir: './tests/ui',

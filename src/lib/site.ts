@@ -118,19 +118,11 @@ export function stripLocaleSuffix(id: string, locale?: Locale) {
     return id;
   }
 
-  if (id.endsWith('.ja')) {
-    return id.slice(0, -3);
-  }
-
-  if (id.endsWith('ja')) {
-    return id.slice(0, -2);
-  }
-
-  return id;
+  return id.endsWith('.ja') ? id.slice(0, -3) : id;
 }
 
 export function isJapaneseId(id: string) {
-  return id.endsWith('.ja') || id.endsWith('ja');
+  return id.endsWith('.ja');
 }
 
 function withTrailingSlash(parts: string[]) {

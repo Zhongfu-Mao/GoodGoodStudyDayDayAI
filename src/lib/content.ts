@@ -17,6 +17,7 @@ type TagIndexItem = { slug: string; label: string; count: number };
 
 export const PUBLIC_TAG_MIN_COUNT = 2;
 const tagIndexCache = new Map<Locale, Promise<TagIndexItem[]>>();
+const entriesByLocaleCache = new Map<Locale, Promise<BlogEntryItem[]>>();
 
 export type AcademyModuleGroup = {
   series: string;
@@ -88,6 +89,18 @@ async function getCollectionEntries(collection: CollectionName) {
 }
 
 export async function getEntriesForLocale(locale: Locale) {
+  const cached = entriesByLocaleCache.get(locale);
+
+  if (cached) {
+    return cached;
+  }
+
+  const entries = buildEntriesForLocale(locale);
+  entriesByLocaleCache.set(locale, entries);
+  return entries;
+}
+
+async function buildEntriesForLocale(locale: Locale) {
   const entries = await Promise.all(collectionNames.map((collection) => getCollectionEntries(collection)));
   return entries
     .flat()

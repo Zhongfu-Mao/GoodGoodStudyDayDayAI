@@ -15,12 +15,12 @@ import {
   type CollectionName,
   type Locale,
 } from '../lib/site';
-import { baseLayout } from '../lib/i18n';
+import { baseLayout, homePage } from '../lib/i18n';
 import '../styles/global.css';
 
 const {
   title,
-  description = 'Good Good Study, Day Day AI',
+  description: providedDescription,
   locale = 'zh',
   languagePaths,
   ogType = 'website',
@@ -38,6 +38,7 @@ const {
   activeCategory?: CollectionName;
 };
 
+const description = providedDescription ?? homePage[locale].description;
 const taglineLines = baseLayout[locale].taglineLines;
 const tagline = taglineLines.join('');
 const ogLocale = locale === 'ja' ? 'ja_JP' : 'zh_CN';
