@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AI Basics: AI Coding Tools</title>
+  <desc id="desc">Abstract cover for an introductory article about Codex, Claude Code, and AI coding workflows.</desc>
+  <defs>
+    <linearGradient id="bg" x1="180" y1="120" x2="1460" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172554"/>
+      <stop offset="0.55" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1270 220) rotate(135) scale(560)">
+      <stop stop-color="#bfdbfe" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#bfdbfe" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" rx="56" fill="url(#bg)"/>
+  <circle cx="1270" cy="220" r="560" fill="url(#glow)"/>
+  <rect x="72" y="72" width="1456" height="756" rx="44" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)"/>
+  <rect x="790" y="214" width="610" height="430" rx="34" fill="rgba(15,23,42,0.46)" stroke="rgba(255,255,255,0.24)"/>
+  <circle cx="846" cy="270" r="13" fill="#fca5a5"/>
+  <circle cx="888" cy="270" r="13" fill="#fde68a"/>
+  <circle cx="930" cy="270" r="13" fill="#86efac"/>
+  <path d="M880 392L806 452L880 512M1310 392L1384 452L1310 512" stroke="white" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1034 556L1148 344" stroke="rgba(255,255,255,0.74)" stroke-width="16" stroke-linecap="round"/>
+  <rect x="970" y="690" width="270" height="58" rx="22" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.2)"/>
+  <text x="120" y="154" fill="white" font-size="24" font-family="Avenir Next, Segoe UI, sans-serif" letter-spacing="5">AI BASICS FOR EVERYONE</text>
+  <text x="120" y="314" fill="white" font-size="84" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">AI Coding</text>
+  <text x="120" y="412" fill="white" font-size="84" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">Tools</text>
+  <text x="124" y="522" fill="rgba(255,255,255,0.82)" font-size="32" font-family="Avenir Next, Segoe UI, sans-serif">from snippets to repo workflows</text>
+</svg>

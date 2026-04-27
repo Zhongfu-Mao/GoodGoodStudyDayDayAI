@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AI Basics: AI, Model, LLM</title>
+  <desc id="desc">Abstract cover for an introductory article about AI, models, and large language models.</desc>
+  <defs>
+    <linearGradient id="bg" x1="100" y1="80" x2="1500" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f766e"/>
+      <stop offset="0.52" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1180 210) rotate(135) scale(520)">
+      <stop stop-color="#ccfbf1" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ccfbf1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" rx="56" fill="url(#bg)"/>
+  <circle cx="1180" cy="210" r="520" fill="url(#glow)"/>
+  <rect x="72" y="72" width="1456" height="756" rx="44" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)"/>
+  <path d="M1020 210C1180 270 1260 388 1260 510C1260 640 1148 724 988 724C816 724 698 622 698 490C698 362 824 246 1020 210Z" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
+  <circle cx="980" cy="470" r="78" fill="rgba(15,23,42,0.45)" stroke="rgba(255,255,255,0.28)" stroke-width="3"/>
+  <circle cx="860" cy="390" r="52" fill="rgba(255,255,255,0.16)"/>
+  <circle cx="1132" cy="588" r="58" fill="rgba(255,255,255,0.13)"/>
+  <path d="M910 418L980 470L1132 588" stroke="rgba(255,255,255,0.7)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M860 390L980 470" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="round"/>
+  <text x="120" y="154" fill="white" font-size="24" font-family="Avenir Next, Segoe UI, sans-serif" letter-spacing="5">AI BASICS FOR EVERYONE</text>
+  <text x="120" y="312" fill="white" font-size="82" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">AI, Model,</text>
+  <text x="120" y="410" fill="white" font-size="82" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">and LLM</text>
+  <text x="124" y="520" fill="rgba(255,255,255,0.78)" font-size="30" font-family="Avenir Next, Segoe UI, sans-serif">from field to model to language system</text>
+  <rect x="120" y="692" width="480" height="72" rx="24" fill="rgba(15,23,42,0.34)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="154" y="737" fill="rgba(255,255,255,0.86)" font-size="26" font-family="Avenir Next, Segoe UI, sans-serif">Concept Map 01</text>
+</svg>

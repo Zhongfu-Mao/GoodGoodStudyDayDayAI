@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AI Academy Route: AI Fluency Enablement</title>
+  <desc id="desc">Abstract cover for a learning route about education, business enablement, and AI fluency.</desc>
+  <defs>
+    <linearGradient id="bg" x1="160" y1="100" x2="1460" y2="830" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#831843"/>
+      <stop offset="0.5" stop-color="#db2777"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1270 200) rotate(135) scale(580)">
+      <stop stop-color="#fbcfe8" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fbcfe8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" rx="56" fill="url(#bg)"/>
+  <circle cx="1270" cy="200" r="580" fill="url(#glow)"/>
+  <rect x="72" y="72" width="1456" height="756" rx="44" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)"/>
+  <circle cx="1088" cy="446" r="158" fill="rgba(15,23,42,0.34)" stroke="rgba(255,255,255,0.24)" stroke-width="4"/>
+  <circle cx="1088" cy="446" r="70" fill="rgba(255,255,255,0.72)"/>
+  <circle cx="860" cy="346" r="48" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
+  <circle cx="1324" cy="346" r="48" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
+  <circle cx="880" cy="626" r="48" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
+  <circle cx="1304" cy="626" r="48" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
+  <path d="M908 366L1038 420M1138 420L1276 366M918 606L1038 486M1138 486L1268 606" stroke="rgba(255,255,255,0.58)" stroke-width="5" stroke-linecap="round"/>
+  <text x="120" y="154" fill="white" font-size="24" font-family="Avenir Next, Segoe UI, sans-serif" letter-spacing="5">AI ACADEMY ROUTE</text>
+  <text x="120" y="312" fill="white" font-size="84" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">AI Fluency</text>
+  <text x="120" y="410" fill="white" font-size="84" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">Enablement</text>
+  <text x="124" y="520" fill="rgba(255,255,255,0.82)" font-size="32" font-family="Avenir Next, Segoe UI, sans-serif">teach · adapt · govern · scale</text>
+  <rect x="120" y="692" width="560" height="72" rx="24" fill="rgba(15,23,42,0.34)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="154" y="737" fill="rgba(255,255,255,0.86)" font-size="26" font-family="Avenir Next, Segoe UI, sans-serif">Learning that spreads safely</text>
+</svg>

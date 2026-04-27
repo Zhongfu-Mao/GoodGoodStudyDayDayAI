@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AI Academy Route: Everyday AI</title>
+  <desc id="desc">Abstract cover for a learning route for non-engineering friends and everyday AI work.</desc>
+  <defs>
+    <linearGradient id="bg" x1="160" y1="100" x2="1460" y2="830" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#78350f"/>
+      <stop offset="0.5" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1260 210) rotate(135) scale(580)">
+      <stop stop-color="#fef3c7" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fef3c7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" rx="56" fill="url(#bg)"/>
+  <circle cx="1260" cy="210" r="580" fill="url(#glow)"/>
+  <rect x="72" y="72" width="1456" height="756" rx="44" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)"/>
+  <path d="M830 636C948 514 1052 474 1178 494C1284 511 1344 458 1400 350" stroke="rgba(255,255,255,0.72)" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="830" cy="636" r="52" fill="rgba(255,255,255,0.18)" stroke="white" stroke-opacity="0.35" stroke-width="4"/>
+  <circle cx="1010" cy="520" r="52" fill="rgba(255,255,255,0.18)" stroke="white" stroke-opacity="0.35" stroke-width="4"/>
+  <circle cx="1190" cy="496" r="52" fill="rgba(255,255,255,0.18)" stroke="white" stroke-opacity="0.35" stroke-width="4"/>
+  <circle cx="1400" cy="350" r="52" fill="rgba(255,255,255,0.18)" stroke="white" stroke-opacity="0.35" stroke-width="4"/>
+  <text x="120" y="154" fill="white" font-size="24" font-family="Avenir Next, Segoe UI, sans-serif" letter-spacing="5">AI ACADEMY ROUTE</text>
+  <text x="120" y="312" fill="white" font-size="84" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">Everyday</text>
+  <text x="120" y="410" fill="white" font-size="84" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">AI Work</text>
+  <text x="124" y="520" fill="rgba(255,255,255,0.82)" font-size="32" font-family="Avenir Next, Segoe UI, sans-serif">writing · research · data · projects</text>
+  <rect x="120" y="692" width="520" height="72" rx="24" fill="rgba(15,23,42,0.34)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="154" y="737" fill="rgba(255,255,255,0.86)" font-size="26" font-family="Avenir Next, Segoe UI, sans-serif">For curious friends</text>
+</svg>

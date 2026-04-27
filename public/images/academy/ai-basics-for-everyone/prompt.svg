@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AI Basics: Prompt</title>
+  <desc id="desc">Abstract cover for an introductory article about prompts as clear task briefs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="180" y1="100" x2="1450" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7c2d12"/>
+      <stop offset="0.55" stop-color="#d97706"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1280 170) rotate(135) scale(560)">
+      <stop stop-color="#fde68a" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fde68a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" rx="56" fill="url(#bg)"/>
+  <circle cx="1280" cy="170" r="560" fill="url(#glow)"/>
+  <rect x="72" y="72" width="1456" height="756" rx="44" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)"/>
+  <rect x="790" y="214" width="570" height="390" rx="34" fill="rgba(15,23,42,0.38)" stroke="rgba(255,255,255,0.24)"/>
+  <rect x="846" y="278" width="346" height="26" rx="13" fill="rgba(255,255,255,0.72)"/>
+  <rect x="846" y="340" width="438" height="20" rx="10" fill="rgba(255,255,255,0.38)"/>
+  <rect x="846" y="392" width="390" height="20" rx="10" fill="rgba(255,255,255,0.32)"/>
+  <rect x="846" y="444" width="454" height="20" rx="10" fill="rgba(255,255,255,0.32)"/>
+  <rect x="846" y="512" width="220" height="48" rx="18" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.22)"/>
+  <path d="M710 360L790 410L710 460" stroke="white" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="120" y="154" fill="white" font-size="24" font-family="Avenir Next, Segoe UI, sans-serif" letter-spacing="5">AI BASICS FOR EVERYONE</text>
+  <text x="120" y="318" fill="white" font-size="88" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">Prompt</text>
+  <text x="124" y="424" fill="rgba(255,255,255,0.82)" font-size="32" font-family="Avenir Next, Segoe UI, sans-serif">not a spell, a task brief</text>
+  <rect x="120" y="692" width="480" height="72" rx="24" fill="rgba(15,23,42,0.34)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="154" y="737" fill="rgba(255,255,255,0.86)" font-size="26" font-family="Avenir Next, Segoe UI, sans-serif">Goal · Context · Format</text>
+</svg>

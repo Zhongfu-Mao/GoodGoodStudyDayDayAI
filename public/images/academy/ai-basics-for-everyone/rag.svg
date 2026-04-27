@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AI Basics: RAG</title>
+  <desc id="desc">Abstract cover for an introductory article about retrieval augmented generation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="160" y1="80" x2="1450" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#164e63"/>
+      <stop offset="0.48" stop-color="#0891b2"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1190 180) rotate(135) scale(560)">
+      <stop stop-color="#a5f3fc" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#a5f3fc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" rx="56" fill="url(#bg)"/>
+  <circle cx="1190" cy="180" r="560" fill="url(#glow)"/>
+  <rect x="72" y="72" width="1456" height="756" rx="44" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)"/>
+  <rect x="820" y="210" width="230" height="360" rx="26" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.24)"/>
+  <rect x="1100" y="286" width="230" height="360" rx="26" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.24)"/>
+  <rect x="936" y="590" width="300" height="96" rx="30" fill="rgba(15,23,42,0.38)" stroke="rgba(255,255,255,0.24)"/>
+  <path d="M1050 386H1100M1010 570L1010 590M1215 646L1215 686" stroke="white" stroke-opacity="0.72" stroke-width="8" stroke-linecap="round"/>
+  <rect x="860" y="270" width="132" height="18" rx="9" fill="rgba(255,255,255,0.68)"/>
+  <rect x="860" y="326" width="150" height="14" rx="7" fill="rgba(255,255,255,0.36)"/>
+  <rect x="1140" y="346" width="132" height="18" rx="9" fill="rgba(255,255,255,0.62)"/>
+  <rect x="1140" y="402" width="150" height="14" rx="7" fill="rgba(255,255,255,0.34)"/>
+  <text x="120" y="154" fill="white" font-size="24" font-family="Avenir Next, Segoe UI, sans-serif" letter-spacing="5">AI BASICS FOR EVERYONE</text>
+  <text x="120" y="332" fill="white" font-size="98" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">RAG</text>
+  <text x="124" y="438" fill="rgba(255,255,255,0.82)" font-size="32" font-family="Avenir Next, Segoe UI, sans-serif">retrieve, ground, generate</text>
+  <rect x="120" y="692" width="520" height="72" rx="24" fill="rgba(15,23,42,0.34)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="154" y="737" fill="rgba(255,255,255,0.86)" font-size="26" font-family="Avenir Next, Segoe UI, sans-serif">Search is only the first step</text>
+</svg>
