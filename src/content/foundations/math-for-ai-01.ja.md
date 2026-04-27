@@ -5,7 +5,7 @@ category: foundations
 tags:
   - "Agent"
 lang: ja
-draft: false
+draft: true
 ---
 
 # 基礎理論

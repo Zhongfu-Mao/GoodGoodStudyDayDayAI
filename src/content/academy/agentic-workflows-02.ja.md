@@ -6,7 +6,7 @@ tags:
   - Agent
   - LLM
 lang: ja
-draft: false
+draft: true
 ---
 
 # 講義メモ
