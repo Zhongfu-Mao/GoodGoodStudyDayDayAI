@@ -58,7 +58,7 @@ Attention は query、key、value の大きな行列計算を含む。素朴な�
 
 - [Token とコンテキストウィンドウ](../token-context-window/)：長い入力が prefill と cost に効く理由。
 - [Token、cost、model choice](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：性能と予算を同じ表で見る。
-- [Reliable LLM Call](../../../engineering/ai-developer-core/reliable-llm-call-timeout-retry-json-repair/)：timeout、retry、error recovery を同時に設計する。
+- [Reliable LLM Call Skeleton](../../../engineering/ai-developer-core/reliable-llm-call-skeleton/)：timeout、retry、error recovery を同時に設計する。
 
 ## 参考
 

@@ -62,7 +62,7 @@ Attention 告诉我们：上下文不是越多越好，而是越可寻址越好�
 
 - [Prompt 是什么](../../../academy/ai-basics-for-everyone/what-is-prompt/)：把 prompt 当作上下文组织方式来理解。
 - [结构化输出是什么](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：让输出 schema 也成为模型可见的模式。
-- [Reliable LLM Call：超时、重试与 JSON 修复](../../../engineering/ai-developer-core/reliable-llm-call-timeout-retry-json-repair/)：把上下文结构和工程兜底连起来。
+- [Reliable LLM Call Skeleton](../../../engineering/ai-developer-core/reliable-llm-call-skeleton/)：把上下文结构和工程兜底连起来。
 
 ## 参考
 

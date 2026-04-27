@@ -3,6 +3,8 @@ title: "AI レーダー日報：2026-04-18"
 date: 2026-04-18
 category: radar
 cadence: daily
+plainSummary: "AI レーダー日報：2026-04-18では、主要ニュースをモデル、Agent、開発ツール、AIインフラの観点で短時間に追えるよう整理します。"
+difficulty: intermediate
 tags:
   - Agent
   - Harness Engineering

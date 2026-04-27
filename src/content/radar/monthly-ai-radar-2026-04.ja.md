@@ -3,6 +3,8 @@ title: "AI レーダー月報：2026年4月（04-22 まで）"
 date: 2026-04-22
 category: radar
 cadence: monthly
+plainSummary: "AI レーダー月報：2026年4月（04-22 まで）では、月間トレンドをAgent、モデル、インフラ、プロダクト入口の変化として整理します。"
+difficulty: intermediate
 tags:
   - Agent
   - Open Models

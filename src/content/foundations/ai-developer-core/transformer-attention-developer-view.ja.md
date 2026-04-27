@@ -60,7 +60,7 @@ Attention が教えてくれるのは、コンテキストは多ければよい�
 
 - [Prompt とは何か](../../../academy/ai-basics-for-everyone/what-is-prompt/)：prompt を context organization として理解する。
 - [Structured Output](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：出力 schema も model が参照する pattern にする。
-- [Reliable LLM Call](../../../engineering/ai-developer-core/reliable-llm-call-timeout-retry-json-repair/)：構造と retry、repair を接続する。
+- [Reliable LLM Call Skeleton](../../../engineering/ai-developer-core/reliable-llm-call-skeleton/)：構造と retry、repair を接続する。
 
 ## 参考
 

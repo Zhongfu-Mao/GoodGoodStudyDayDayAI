@@ -3,6 +3,8 @@ title: "AI 雷达日报：2026-04-25"
 date: 2026-04-25
 category: radar
 cadence: daily
+plainSummary: "AI 雷达日报：2026-04-25：聚焦当天关键 AI 信号，按模型、Agent、开发工具和基础设施主线快速梳理。"
+difficulty: intermediate
 tags:
   - AI Engineering
   - Agent

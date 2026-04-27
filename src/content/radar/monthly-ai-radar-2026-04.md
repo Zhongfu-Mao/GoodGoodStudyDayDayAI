@@ -3,6 +3,8 @@ title: "AI 雷达月报：2026 年 4 月（截至 04-22）"
 date: 2026-04-22
 category: radar
 cadence: monthly
+plainSummary: "AI 雷达月报：2026 年 4 月（截至 04-22）：总结本月 Agent、模型、基础设施和产品入口变化，帮助读者把握月度主线。"
+difficulty: intermediate
 tags:
   - Agent
   - Open Models
