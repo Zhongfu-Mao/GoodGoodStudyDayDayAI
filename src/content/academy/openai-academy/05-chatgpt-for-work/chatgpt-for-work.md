@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：ChatGPT for Work"
 date: 2026-04-25
 category: academy
 description: "整理 OpenAI Academy 中 ChatGPT for Work 的任务、角色和行业三层应用框架。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：ChatGPT for Work 的核心内容整理成可复习、可实践的 05 ChatGPT for Work 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4isWF93VlOu8b5EpVONDeo/4ace7b74dc5d84236657e954f09c005f/Cover-work.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Workflow"

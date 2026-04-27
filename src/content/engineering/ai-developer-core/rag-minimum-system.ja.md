@@ -129,6 +129,12 @@ rag-lab/
 
 最後に、失敗例を `eval_questions.jsonl` へ戻す。RAG の評価セットは、実際の失敗から育てるものだ。一度作って終わりではない。
 
+## 関連基礎
+
+- [RAG とは何か](../../../academy/ai-basics-for-everyone/what-is-rag/)：非エンジニアにも説明できる概念入口。
+- [Embedding、ベクトル類似度、RAG](../../../foundations/ai-developer-core/embeddings-vector-rag/)：retrieval、ranking、grounding の基礎。
+- [Hallucination と Grounding](../../../academy/ai-basics-for-everyone/what-is-hallucination-grounding/)：引用、拒否、証拠境界を product requirement にする。
+
 ## 参考
 
 - [Full Stack LLM Bootcamp](https://fullstackdeeplearning.com/llm-bootcamp/)

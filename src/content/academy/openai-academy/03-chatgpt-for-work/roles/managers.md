@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：ChatGPT for Managers and Executives"
 date: 2026-04-25
 category: academy
 description: "整理管理者如何用 ChatGPT 支持战略判断、沟通、规划、复盘和决策准备。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：ChatGPT for Managers and Executives 的核心内容整理成可复习、可实践的 03.10 Managers and Executives 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/54U640Rg1XlL5A9UxhX8DY/576d590f1443e4abe0e85b94e79b38c3/managers.png?w=3840&q=90&fm=webp"
 lang: zh
 academy:

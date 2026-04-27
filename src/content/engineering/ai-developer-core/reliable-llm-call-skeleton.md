@@ -105,6 +105,12 @@ output_schema:
 
 实验完成后，不要只看“能不能出结果”。要看三组指标：一次通过率、retry 后通过率、人工复核率。第一批数据很小也没关系，关键是它们会成为后面 prompt、模型和 schema 调整的回归集。
 
+## 相关基础阅读
+
+- [结构化输出是什么](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：把输出契约先讲清楚。
+- [Token、成本与模型选择](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：为每次调用记录成本和模型选择理由。
+- [Eval、Benchmark 与产品质量](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)：让 wrapper 的成功率可以回归比较。
+
 ## 参考
 
 - [OpenAI Prompting](https://platform.openai.com/docs/guides/prompting)

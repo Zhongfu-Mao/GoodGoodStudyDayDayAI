@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：大学教員・教授"
 date: 2026-04-25
 category: academy
 description: "大学教員が研究、授業、評価、学生支援にAIを取り入れる方法を整理する。"
+plainSummary: "OpenAI Academyノート：大学教員・教授 の要点を、04.7 Faculty and Professors の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/QJTDrIOMOna26jJo6kUpj/fac5f8764e968d377fb130e5f177dc7d/faculty-professors.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPT入門"
 date: 2026-04-25
 category: academy
 description: "ChatGPTの最初の会話、良いユースケース、音声入力までの入門ルートを整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPT入門 の要点を、02.1 Getting Started with ChatGPT の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1Xk9723QKj2Vb9dC6RMebS/5e588c112042794e62178a224eaff418/getting-started.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT"

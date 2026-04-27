@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPTで調査する"
 date: 2026-04-25
 category: academy
 description: "ChatGPT searchとdeep researchを使い分け、根拠付きの調査結果へ進める方法を整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPTで調査する の要点を、02.5 Research with ChatGPT の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6vCtWVZH9dyolSQQhXzGyx/686abd0c6c92eb96129cb71f6ab7917e/search-deep-research.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT/Research"

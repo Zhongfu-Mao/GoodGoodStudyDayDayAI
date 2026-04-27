@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Working with Files in ChatGPT"
 date: 2026-04-25
 category: academy
 description: "整理如何用 ChatGPT 处理文档、表格、PDF、图片和连接应用中的上下文。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Working with Files in ChatGPT 的核心内容整理成可复习、可实践的 02.4 Working with Files 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7FdLCJL2BCjS8ef2BJ8rG0/8307b0a6be94e0333b43dbed5b93d187/using-files.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Workflow"

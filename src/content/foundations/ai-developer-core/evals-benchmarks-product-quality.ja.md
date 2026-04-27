@@ -49,6 +49,30 @@ LLM-as-a-Judge は評価システムの部品であり、判断責任を別モ�
 
 RAG または構造化出力のタスクに 30 件の eval を作る。人間が先にラベル付けし、その後 judge prompt を書く。judge と人間の一致率を見てから、prompt や retrieval を変更し、通過率と新しい失敗種類を見る。
 
+## 実務判断：Eval を開発リズムに入れる
+
+Eval はリリース前に一度だけ走らせるものではない。prompt、retrieval、model、tool が変わるたびに使う開発上の feedback loop である。小さな変更では smoke eval、大きな変更では full eval、production incident の例は regression set に戻す。
+
+評価セット自体も version 管理する。sample の出所、risk level、expected behavior を残す。rubric を変えたら理由を書く。model を上げるときは前後比較を残す。こうして初めて、「良くなった」の原因が model、prompt、data、rubric のどれかを追える。
+
+## 手を動かして試す：三層の eval set
+
+まず三層でよい。
+
+| 層 | 件数 | 用途 |
+| --- | ---: | --- |
+| smoke | 10 | 毎回走らせ、明らかな regression を見つける |
+| regression | 50 | 過去の失敗と高頻度 task を覆う |
+| release | 150+ | 公開前に、境界条件と高 risk task を見る |
+
+平台がなくても始められる。Markdown、CSV、Vitest fixture、notebook のどれでもよい。大切なのは、sample が安定し、結果を再現できることだ。
+
+## 関連して読む
+
+- [Eval とは何か](../../../academy/ai-basics-for-everyone/what-is-eval/)：team で評価語彙をそろえる。
+- [Evals](../../../academy/openai-academy/07-building-with-ai/evals/)：AI product development に eval を入れる。
+- [Production Optimization](../../../academy/openai-academy/07-building-with-ai/production-optimization/)：quality、cost、latency を一緒に見る。
+
 ## 参考
 
 - [OpenAI Agent Evals](https://platform.openai.com/docs/guides/agent-evals)
@@ -56,4 +80,3 @@ RAG または構造化出力のタスクに 30 件の eval を作る。人間が
 - [Hamel Husain: LLM Evals FAQ](https://hamel.dev/blog/posts/evals-faq/)
 - [Eugene Yan: An LLM-as-Judge Won't Save The Product](https://eugeneyan.com/writing/eval-process/)
 - [Chip Huyen: AI Engineering](https://www.oreilly.com/library/view/ai-engineering/9781098166298/)
-

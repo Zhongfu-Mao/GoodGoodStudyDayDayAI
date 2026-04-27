@@ -3,6 +3,8 @@ title: "AI Fluency for Educators"
 date: 2026-03-31
 category: academy
 description: "教育者版AI Fluency课程，聚焦教学上下文文档和课程设计四阶段"
+plainSummary: "这篇笔记把 AI Fluency for Educators 的核心内容整理成可复习、可实践的 AI Fluency 特定受众 学习路径。"
+difficulty: beginner
 coverImage: "/images/academy/anthropic-academy/covers/02-ai-fluency-audiences/ai-fluency-for-educators.svg"
 tags:
   - "教育"

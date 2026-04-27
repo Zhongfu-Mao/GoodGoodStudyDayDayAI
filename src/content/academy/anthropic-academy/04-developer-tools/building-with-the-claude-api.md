@@ -3,6 +3,8 @@ title: "Building with the Claude API"
 date: 2026-03-31
 category: academy
 description: "使用 Claude API 构建应用的开发者课程"
+plainSummary: "这篇笔记把 Building with the Claude API 的核心内容整理成可复习、可实践的 开发者与技术工具 学习路径。"
+difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/building-with-the-claude-api.svg"
 tags:
   - "开发者"

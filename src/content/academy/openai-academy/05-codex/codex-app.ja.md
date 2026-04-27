@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Codex App"
 date: 2026-04-25
 category: academy
 description: "Codex Appの基本的な使い方と、ローカル作業の進め方を整理する。"
+plainSummary: "OpenAI Academyノート：Codex App の要点を、05.4 Codex App の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2X2YDuHmP1dPfrPYk8BhS6/0efa2ae4c8505afe1f8b8398938db0a4/work-faster-codex.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

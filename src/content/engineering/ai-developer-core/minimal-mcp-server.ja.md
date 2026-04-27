@@ -115,6 +115,12 @@ MCP は Agent が外部ツールやデータ源へ接続するための仕組み
 
 書き込み能力を後で足すなら、別 server または別権限層にする。たとえば `suggest_article_patch` は diff を提案するだけにし、実際の書き込みは人間承認を必須にする。
 
+## 関連基礎
+
+- [MCP とは何か](../../../academy/ai-basics-for-everyone/what-is-mcp/)：実装前に protocol の役割をつかむ。
+- [Introduction to Model Context Protocol](../../../academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)：Anthropic Academy の MCP 入門。
+- [Agent = 状態、ツール、フィードバックループ](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/)：tool boundary と stop condition を理解する。
+
 ## 参考
 
 - [Anthropic Engineering](https://www.anthropic.com/engineering)

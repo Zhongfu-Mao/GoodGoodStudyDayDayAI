@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Workspace Agents"
 date: 2026-04-25
 category: academy
 description: "理解 Workspace agents 的触发器、流程、工具、权限和团队扩展边界。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Workspace Agents 的核心内容整理成可复习、可实践的 02.10 Workspace Agents 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/32nZFLTFUOKZWAbNt8mZ9E/3fed0abf03f542ee2a46c5ced153b362/agents.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Agents"

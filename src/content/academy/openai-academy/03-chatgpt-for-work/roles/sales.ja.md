@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：営業チームのためのChatGPT"
 date: 2026-04-25
 category: academy
 description: "営業準備、顧客理解、提案、フォローアップを支援する使い方を整理する。"
+plainSummary: "OpenAI Academyノート：営業チームのためのChatGPT の要点を、03.6 Sales Teams の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1R29scy3v5zFLkNH0KaSVt/b8cf3723aecd035b28ce13081f5410cf/sales.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

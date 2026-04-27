@@ -46,6 +46,7 @@ draft: false
 
 次は MCP です。
 
+- [MCP とは何か](../../ai-basics-for-everyone/what-is-mcp/)：protocol 実装へ進む前に、MCP が何を標準化するのかをつかむ。
 - [Introduction to Model Context Protocol](../../anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)：model が tool や資料へ標準的に接続する考え方。
 - [MCP Advanced Topics](../../anthropic-academy/05-agentic-mcp/model-context-protocol-advanced-topics/)：権限、capability description、複雑な integration。
 - [Minimal MCP Server](../../../engineering/ai-developer-core/minimal-mcp-server/)：最小実装で境界を理解する。
@@ -69,6 +70,7 @@ MCP の本質は、tool をたくさんつなぐことではなく、tool use �
 最後に読みます。
 
 - [Production Optimization](../../openai-academy/07-building-with-ai/production-optimization/)：latency、cost、reliability、monitoring。
+- [Context Engineering とは何か](../../ai-basics-for-everyone/what-is-context-engineering/)：context を product resource として扱う視点を持つ。
 - [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/)：context を prompt trick ではなく engineering design として扱う。
 - [Agent Harness](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)：agent behavior を trace、review、replay できるようにする。
 

@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Builder Bootcamp"
 date: 2026-04-25
 category: academy
 description: "整理 Builder Bootcamp 的学习路线：Agents、Evals、Codex、RAG、Production and Optimization。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Builder Bootcamp 的核心内容整理成可复习、可实践的 07.1 Builder Bootcamp 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
 tags:
   - "Building with AI"

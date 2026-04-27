@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPTで画像を作成する"
 date: 2026-04-25
 category: academy
 description: "画像生成と画像編集のプロンプト、反復、公開時の注意点を整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPTで画像を作成する の要点を、02.6 Image Creation の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4as9dmBmMnIulWoUEIBsOj/2441164935c8d325daa552d91c71f131/image-creation.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT"

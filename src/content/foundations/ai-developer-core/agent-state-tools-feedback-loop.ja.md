@@ -46,6 +46,31 @@ Agent の中心能力は「何歩も考える」ことではなく、「各ス�
 
 三段階の小さな Agent を作る。タスクを読み、読み取り専用ツールを呼び、構造化された状態を返す。第二版では、失敗時に再試行し、二回失敗したら人間確認へ進む。ログを比較し、状態、フィードバック、停止条件がデバッグ性をどう変えるかを見る。
 
+## 実務判断：Agent には product boundary が必要
+
+Agent が自由に動けるほど、product boundary は明確でなければならない。何を観察できるか、何を変更できるか、どの action に承認が必要か、どの error で停止するか、どの log を残すか。ここが曖昧だと、ユーザーは Agent がいつ助けているのか、いつ人が引き取るべきかを判断できない。
+
+すべての複雑なタスクを一つの大きな Agent に任せる必要はない。実務では、安定した workflow で主経路を処理し、小さな Agent が局所的な不確実性を担当し、高リスク地点で人が確認する形のほうが保守しやすい。
+
+## 手を動かして試す：Agent runbook を書く
+
+小さな Agent について runbook を書く。
+
+- Goal：完了をどう観測するか。
+- Input：ユーザーが必ず渡す情報は何か。
+- Tools：各 tool の権限と失敗時の挙動。
+- State：各 round で記録する field。
+- Stop：完了、失敗、ユーザー待ち、risk escalation。
+- Replay：問題発生時に log からどう復元するか。
+
+runbook が書けない場合、Agent の境界もまだ設計できていないことが多い。
+
+## 関連して読む
+
+- [Agent とは何か](../../../academy/ai-basics-for-everyone/what-is-agent/)：共通語彙を持つ。
+- [Building Agents](../../../academy/openai-academy/07-building-with-ai/agents/)：product としての Agent を見る。
+- [Agent Harness](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)：log、approval、replay を実装に落とす。
+
 ## 参考
 
 - [Anthropic: Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)

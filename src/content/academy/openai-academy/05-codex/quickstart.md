@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Codex Quickstart"
 date: 2026-04-25
 category: academy
 description: "整理 Codex 入门：设置、任务描述、工作区、验证和交付的基本路径。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Codex Quickstart 的核心内容整理成可复习、可实践的 05.1 Codex Quickstart 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/53QFGSGDJnCJxvj45fA6ev/bda24475ea40905884a9ca8c49ff3135/get-started-codex.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

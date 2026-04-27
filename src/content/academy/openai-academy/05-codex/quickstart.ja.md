@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Codex Quickstart"
 date: 2026-04-25
 category: academy
 description: "Codexの最初のセットアップ、タスク依頼、差分確認、検証の流れを整理する。"
+plainSummary: "OpenAI Academyノート：Codex Quickstart の要点を、05.1 Codex Quickstart の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/53QFGSGDJnCJxvj45fA6ev/bda24475ea40905884a9ca8c49ff3135/get-started-codex.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

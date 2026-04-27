@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Faculty and Professors"
 date: 2026-04-25
 category: academy
 description: "整理高校教师如何用 ChatGPT 支持课程设计、反馈、研究辅助和学术沟通。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Faculty and Professors 的核心内容整理成可复习、可实践的 04.7 Faculty and Professors 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/QJTDrIOMOna26jJo6kUpj/fac5f8764e968d377fb130e5f177dc7d/faculty-professors.png?w=3840&q=90&fm=webp"
 lang: zh
 academy:

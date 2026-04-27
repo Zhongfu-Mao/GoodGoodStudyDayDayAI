@@ -3,6 +3,8 @@ title: "Teaching AI Fluency"
 date: 2026-03-31
 category: academy
 description: "面向教育者的AI Fluency教学方法论，包含4D教学设计和课程整合策略"
+plainSummary: "这篇笔记把 Teaching AI Fluency 的核心内容整理成可复习、可实践的 AI Fluency 框架与基础 学习路径。"
+difficulty: beginner
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/teaching-ai-fluency.svg"
 tags:
   - "教育"

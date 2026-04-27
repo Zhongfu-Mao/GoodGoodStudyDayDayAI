@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：オペレーションチームのためのChat
 date: 2026-04-25
 category: academy
 description: "オペレーションの標準化、手順化、ボトルネック分析、改善案作成を整理する。"
+plainSummary: "OpenAI Academyノート：オペレーションチームのためのChatGPT の要点を、03.9 Operations Teams の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/66loCrCRxCGAdv5ElN6vc9/d844920d80ae903617bd7336fa6d99cc/operations.png?w=3840&q=90&fm=webp"
 tags:
   - "Operations"

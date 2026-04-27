@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：RAG"
 date: 2026-04-25
 category: academy
 description: "RAGの検索、分割、メタデータ、引用、評価を整理する。"
+plainSummary: "OpenAI Academyノート：RAG の要点を、07.4 RAG の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5xMpq7Q0JXMzdCm5GmMQc8/c32a4332c00d64537cc569e015587356/packs-patterns.png?w=3840&q=90&fm=webp"
 tags:
   - "RAG"

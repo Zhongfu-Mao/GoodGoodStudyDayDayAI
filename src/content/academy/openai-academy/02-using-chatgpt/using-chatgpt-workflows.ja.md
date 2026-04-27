@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPT活用の全体像"
 date: 2026-04-25
 category: academy
 description: "Projects、Custom GPTs、Skills、Workspace agentsまで、ChatGPT活用能力の段階を整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPT活用の全体像 の要点を、02 Using ChatGPT の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3UaiZFr75wVkOCJsHTd21x/54b2631e52804edcce8bc6ffbdd15722/Cover-using-chatgpt.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT"

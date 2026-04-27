@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：ChatGPT for Finance Teams"
 date: 2026-04-25
 category: academy
 description: "整理财务团队如何用 ChatGPT 改善报告、variance narrative、规划、数据检查和审计支持。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：ChatGPT for Finance Teams 的核心内容整理成可复习、可实践的 03.8 Finance Teams 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5oD5aOV77eWiWp6ZLigAVN/d6ea39d836ba4832394f25e3e3fcc9e4/finance.png?w=3840&q=90&fm=webp"
 lang: zh
 academy:

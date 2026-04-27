@@ -34,6 +34,8 @@ draft: false
 
 这一段最重要的收获是：不要把培训做成“功能演示大会”。更好的方式是围绕真实任务设计练习，让学习者看到 AI 如何改变工作过程。
 
+如果面向初学者，建议在第一节课前后加入两篇基础阅读：[AI 模型与 LLM 是什么](../../ai-basics-for-everyone/what-is-ai-model-llm/) 和 [Token、成本与模型选择](../../ai-basics-for-everyone/what-is-token-cost-model-choice/)。前者统一语言，后者让大家理解为什么不同任务需要不同模型和预算。
+
 ## 第二段：教育场景怎么落地
 
 如果面向学校、学生、教师或教育管理者，建议读：
@@ -63,6 +65,8 @@ draft: false
 ## 第四段：安全、边界和组织推广
 
 最后读 [Responsible and Safe Use](../../openai-academy/01-ai-fundamentals/responsible-safe-use/)。
+
+安全部分建议搭配 [幻觉与 Grounding](../../ai-basics-for-everyone/what-is-hallucination-grounding/) 一起讲。这样学员不会只听到“AI 会出错”，而是能学会用资料、引用、复核和边界来降低风险。
 
 任何 AI 推广都不能只讲效率。你还需要讲清楚：
 

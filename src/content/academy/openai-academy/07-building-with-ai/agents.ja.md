@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：エージェント構築"
 date: 2026-04-25
 category: academy
 description: "エージェントを構築するときの目標、ツール、状態、権限、評価を整理する。"
+plainSummary: "OpenAI Academyノート：エージェント構築 の要点を、07.2 Building Agents の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4dKFCy0mZpK1j5MfyBNL3p/08a0ce3067d2418be3bc7b848c02e09e/ai-techniques.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Agents"

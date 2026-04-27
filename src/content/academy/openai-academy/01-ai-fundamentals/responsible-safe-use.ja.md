@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：責任ある安全なAI利用"
 date: 2026-04-25
 category: academy
 description: "AIを安全に使うための人間の確認、透明性、プライバシー、専門判断の境界を整理する。"
+plainSummary: "安全性、プライバシー、正確性、bias、著作権、高リスク場面を、公開前に確認できる checklist に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Fluency"
@@ -117,6 +119,12 @@ AIを安全に使うための人間の確認、透明性、プライバシー、
 - 公式ページ：https://openai.com/academy/responsible-and-safe-use/
 - 関連画像：OpenAIがホストする外部画像URLを参照。画像ファイルはサイトに複製しない。
 - 公開方針：公式ページへのリンクを明示し、長い本文や公式プロンプト表は転載せず、日本語の学習メモとして要約・再構成する。
+
+## 関連基礎
+
+- [Hallucination と Grounding](../../../ai-basics-for-everyone/what-is-hallucination-grounding/)：重要な事実をどう確認するかを整理する。
+- [Structured Output](../../../ai-basics-for-everyone/what-is-structured-output/)：安全 checklist や risk table を再利用しやすくする。
+- [Eval とは何か](../../../ai-basics-for-everyone/what-is-eval/)：どの安全境界を評価できているかを確認する。
 
 ## 参考
 

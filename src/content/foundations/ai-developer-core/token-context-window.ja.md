@@ -48,6 +48,31 @@ Tokenizer はテキストを token に分割し、語彙表上の整数へ変換
 
 目的は唯一の正解を探すことではない。何をウィンドウに入れ、何を圧縮し、何を検索に逃がすかの感覚を作ることだ。
 
+## 実務判断：いつ token を節約するか
+
+すべての場面で token を最小化すればよいわけではない。問い合わせ要約、分類、軽い抽出では短い prompt と短い出力が効く。一方で、法務レビュー、コード変更、複雑な調査では、context を削りすぎると手戻りが増える。判断基準は「少ないほどよい」ではなく、「その token が成功率を上げるか、人間の確認コストを下げるか」である。
+
+token budget は、system prompt、user input、外部資料、期待する output に分けて考えると扱いやすい。system prompt は短く安定させる。user input は意味を落とさない。外部資料は重複を取り、順序と出典を整える。output は本当に必要な粒度に絞る。
+
+## 手を動かして試す：budget 表を作る
+
+自分の AI 機能に `token_budget.md` を作る。
+
+| 区画 | 予想 token | 圧縮可能か | 方針 |
+| --- | ---: | --- | --- |
+| system prompt | 300 | yes | 重複ルールを削る |
+| user input | 800 | no | 原文を保つ |
+| retrieved context | 4000 | yes | chunk 重複除去 + rerank |
+| output | 800 | yes | field と形式を制限 |
+
+20 個ほど実例を入れ、平均だけでなく P95 も見る。コスト問題は長文、長い履歴、巨大な tool result で突然出ることが多い。
+
+## 関連して読む
+
+- [Token、cost、model choice](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：非エンジニアにも説明しやすい入口。
+- [Context、Memory、Projects](../../../academy/ai-basics-for-everyone/context-window-memory-projects/)：一時的な context と長期資料管理を分ける。
+- [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/)：token budget を context design 全体へ広げる。
+
 ## 参考
 
 - [Stanford CS336: Language Modeling from Scratch](https://cs336.stanford.edu/)

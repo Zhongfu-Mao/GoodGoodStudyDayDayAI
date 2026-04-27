@@ -105,6 +105,12 @@ Happy path だけを通しても信頼性は分からない。最低でも次の
 
 結果は「出たかどうか」ではなく、初回通過率、retry 後通過率、人工確認率で見る。小さな評価セットでもよい。重要なのは、あとで prompt、model、schema を変えたときに同じ例で比較できることだ。
 
+## 関連基礎
+
+- [Structured Output](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：output contract を先に整理する。
+- [Token、cost、model choice](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：各 call の cost と model choice を記録する。
+- [Eval、Benchmark、プロダクト品質](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)：wrapper の pass rate を比較できるようにする。
+
 ## 参考
 
 - [OpenAI Prompting](https://platform.openai.com/docs/guides/prompting)

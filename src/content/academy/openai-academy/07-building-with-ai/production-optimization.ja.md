@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：本番運用と最適化"
 date: 2026-04-25
 category: academy
 description: "AIアプリを本番に出すときの監視、コスト、レイテンシ、品質改善を整理する。"
+plainSummary: "OpenAI Academyノート：本番運用と最適化 の要点を、07.5 Production and Optimization の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/16ClwJMGpPN3flMrO4DXyL/2a38515d0d3a674161bfa796e87e3889/Cover-building.png?w=3840&q=90&fm=webp"
 tags:
   - "AI Engineering"

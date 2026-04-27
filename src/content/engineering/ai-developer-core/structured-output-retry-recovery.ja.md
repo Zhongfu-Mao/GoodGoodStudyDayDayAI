@@ -114,6 +114,12 @@ Retry は同じ依頼を繰り返さない。エラーを渡して修復だけ�
 
 レポートには成功率だけでなく、最も壊れやすいフィールド、誤判定しやすいタグ、形式は正しいが意味が違う例も入れる。構造化出力の難しさは JSON ではなく、合法 object が正しい業務意味を持つかどうかにある。
 
+## 関連基礎
+
+- [Structured Output](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：schema、field、machine-readable output の入口。
+- [Transformer と Attention](../../../foundations/ai-developer-core/transformer-attention-developer-view/)：example と format がなぜ安定性に効くかを見る。
+- [Eval、Benchmark、プロダクト品質](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)：pass rate、failure field、人間確認を評価に入れる。
+
 ## 参考
 
 - [OpenAI Prompting](https://platform.openai.com/docs/guides/prompting)

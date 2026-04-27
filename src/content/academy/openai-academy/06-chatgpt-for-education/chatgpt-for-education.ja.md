@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPT for Education"
 date: 2026-04-25
 category: academy
 description: "教育現場での学習支援、授業設計、運営効率化、学術倫理を整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPT for Education の要点を、06 ChatGPT for Education の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1UQoFXTvJ2jAje7MD0FcrM/21ca718020e08c026fb708add6c62fba/Cover-education.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Fluency"

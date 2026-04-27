@@ -46,6 +46,31 @@ Agent 的核心能力不是“多想几步”，而是“每一步都能接触�
 
 写一个三步 Agent：读取任务、调用一个只读工具、输出结构化状态。然后加上第二版：失败时重试，超两次转人工确认。比较两版的日志，看状态、反馈和停止条件如何改变系统可调试性。
 
+## 工程判断：Agent 需要产品边界
+
+Agent 的能力越开放，越需要清楚的产品边界。先问它能观察什么、能改变什么、哪些动作需要批准、哪些错误必须停止、哪些日志需要保留。只有这些边界清楚，用户才知道 Agent 什么时候是在帮忙，什么时候需要人接手。
+
+不要把所有复杂任务都交给一个大 Agent。更常见的可维护形态是：稳定 workflow 处理主路径，小 Agent 处理局部不确定步骤，人类在高风险节点确认。这样系统更容易测试，也更容易解释失败原因。
+
+## 动手试试：写一份 Agent Runbook
+
+给一个小 Agent 写 runbook：
+
+- 目标：任务完成的可观察标准是什么。
+- 输入：用户必须提供哪些信息。
+- 工具：每个工具的权限等级和失败行为。
+- 状态：每轮要记录哪些字段。
+- 停止：完成、失败、等待用户和风险升级的条件。
+- 回放：出现问题时如何从日志复盘。
+
+如果 runbook 写不清，通常说明 Agent 的边界也还没设计清楚。
+
+## 延伸阅读
+
+- [Agent 是什么](../../../academy/ai-basics-for-everyone/what-is-agent/)：先建立共享词汇。
+- [Building Agents](../../../academy/openai-academy/07-building-with-ai/agents/)：从产品构建角度看 Agent。
+- [Agent Harness：日志、审批与回放](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)：把状态、权限和回放做成工程骨架。
+
 ## 参考
 
 - [Anthropic: Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)
@@ -53,4 +78,3 @@ Agent 的核心能力不是“多想几步”，而是“每一步都能接触�
 - [Berkeley RDI: LLM Agents](https://rdi.berkeley.edu/llm-agents/f24)
 - [DeepLearning.AI: Agentic AI](https://www.deeplearning.ai/courses/agentic-ai/)
 - [Google Agent Development Kit](https://adk.dev/)
-

@@ -3,6 +3,8 @@ title: "Introduction to Model Context Protocol"
 date: 2026-03-31
 category: academy
 description: "模型上下文协议（MCP）入门，MCP服务器、客户端和工具的基本概念"
+plainSummary: "这篇笔记把 Introduction to Model Context Protocol 的核心内容整理成可复习、可实践的 代理与 MCP 学习路径。"
+difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-model-context-protocol.svg"
 tags:
   - "代理"
@@ -325,6 +327,8 @@ response = await anthropic_client.messages.create(
 ## 相关笔记
 
 > **延伸阅读**
+> - [MCP 是什么](/academy/ai-basics-for-everyone/what-is-mcp/) — 面向所有读者的 MCP 概念入口
+> - [Minimal MCP Server](/engineering/ai-developer-core/minimal-mcp-server/) — 用最小只读服务理解实现边界
 > - [Model Context Protocol: Advanced Topics](/academy/anthropic-academy/05-agentic-mcp/model-context-protocol-advanced-topics/) — MCP 进阶
 > - [Introduction to Agent Skills](/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/) — Skills 生态
 > - [Introduction to subagents](/academy/anthropic-academy/05-agentic-mcp/introduction-to-subagents/) — 子代理与 MCP 的关系

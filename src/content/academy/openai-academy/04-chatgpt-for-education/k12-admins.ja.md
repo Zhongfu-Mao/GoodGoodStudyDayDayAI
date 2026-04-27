@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：K-12管理者"
 date: 2026-04-25
 category: academy
 description: "K-12管理者が方針、運営、コミュニケーションにAIを使うときの型を整理する。"
+plainSummary: "OpenAI Academyノート：K-12管理者 の要点を、04.1 K-12 Admins の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6WP3cXplfNeihB89e5eYy9/e33b5e2ab2dbe937cbdc2519d49cb26e/district-admins.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

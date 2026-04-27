@@ -3,6 +3,8 @@ title: "Agent Skills 入门"
 date: 2026-03-31
 category: academy
 description: "Claude Code 中 Skills 的定位、创建方式与排查思路"
+plainSummary: "这篇笔记把 Agent Skills 入门 的核心内容整理成可复习、可实践的 代理与 MCP 学习路径。"
+difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-agent-skills.svg"
 lang: zh
 academy:

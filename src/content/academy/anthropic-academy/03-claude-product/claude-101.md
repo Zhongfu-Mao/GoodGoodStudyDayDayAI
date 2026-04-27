@@ -3,6 +3,8 @@ title: "Claude 101：从入门到高效协作"
 date: 2026-03-31
 category: academy
 description: "一篇讲清 Claude 基本能力、使用方式与高效协作方法的入门笔记"
+plainSummary: "这篇笔记把 Claude 101：从入门到高效协作 的核心内容整理成可复习、可实践的 Claude 入门与产品 学习路径。"
+difficulty: beginner
 coverImage: "/images/academy/anthropic-academy/covers/03-claude-product/claude-101.svg"
 tags:
   - "产品"
@@ -1227,3 +1229,5 @@ HR团队可以使用Claude创建更好的入职体验和文档：
 > **延伸阅读**
 > - [Introduction to Claude Cowork](/academy/anthropic-academy/03-claude-product/introduction-to-claude-cowork/) — Claude 桌面产品
 > - [Building with the Claude API](/academy/anthropic-academy/04-developer-tools/building-with-the-claude-api/) — 开发者进阶
+> - [幻觉与 Grounding](/academy/ai-basics-for-everyone/what-is-hallucination-grounding/) — 使用研究、引用和文档功能时的事实复核
+> - [Context、Memory 与 Projects](/academy/ai-basics-for-everyone/context-window-memory-projects/) — Projects 与长期资料管理的基础概念

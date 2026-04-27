@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Responsible and Safe Use"
 date: 2026-04-25
 category: academy
 description: "整理 ChatGPT 负责任使用的边界：组织政策、人工复核、专业建议、透明披露和隐私同意。"
+plainSummary: "把安全、隐私、准确性、偏见、版权和高风险边界整理成 AI 输出发布前的复核清单。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Fluency"
@@ -192,6 +194,12 @@ AI 工具越好用，越容易让人忘记它不是责任主体。Responsible an
 ![Responsible and safe use of AI ](https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp)
 
 图片来自官方页面外链，本站只引用 URL，不复制图片文件。
+
+## 相关基础阅读
+
+- [幻觉与 Grounding](../../../ai-basics-for-everyone/what-is-hallucination-grounding/)：把“关键事实要复核”变成可执行的证据检查。
+- [结构化输出](../../../ai-basics-for-everyone/what-is-structured-output/)：让安全清单、风险分级和复核结果更容易被团队复用。
+- [Eval 是什么](../../../ai-basics-for-everyone/what-is-eval/)：用评测样例记录哪些安全边界已经覆盖，哪些还需要人工判断。
 
 ## 参考
 

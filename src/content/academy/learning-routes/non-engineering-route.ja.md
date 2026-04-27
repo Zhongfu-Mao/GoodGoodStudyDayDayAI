@@ -10,7 +10,7 @@ tags:
   - "AI Academy"
   - "Learning Route"
   - "ChatGPT for Work"
-  - "非エンジニア"
+  - "Non-Engineering Route"
 lang: ja
 academy:
   series: "AI Academy Learning Routes"
@@ -37,6 +37,8 @@ draft: false
 [Getting Started with ChatGPT](../../openai-academy/02-using-chatgpt/core-skills/getting-started/) から始めます。AI を検索欄ではなく、考える、書く、整理する、振り返る相手として使う感覚を作ります。
 
 次に [Prompting Fundamentals](../../openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/) を読みます。prompt template を暗記するより、目的、背景、材料、制約、出力形式をそろえることが大切です。
+
+使い始めの段階で、[Hallucination と Grounding](../../ai-basics-for-everyone/what-is-hallucination-grounding/) と [Structured Output](../../ai-basics-for-everyone/what-is-structured-output/) も読むと安心です。前者はどの出力を確認すべきか、後者は回答を表、checklist、JSON、workflow に変える方法を助けます。
 
 この段階で、最低限このような prompt を自分用に持てると十分です。
 
@@ -66,6 +68,8 @@ draft: false
 次に [Custom GPTs](../../openai-academy/02-using-chatgpt/workflows/custom-gpts/) と [Skills](../../openai-academy/02-using-chatgpt/workflows/skills/) を読み、いつ個人やチームの固定能力として整えるべきかを考えます。
 
 最後に [ChatGPT for Work](../../openai-academy/05-chatgpt-for-work/chatgpt-for-work/) を読み、個人利用からチーム利用、権限、知識、安全性へ広げます。
+
+この workflow をチームで何度も使うなら、[Token、cost、model choice](../../ai-basics-for-everyone/what-is-token-cost-model-choice/) も補足で読み、「便利」だけでなく「続けられる」設計にします。
 
 ## 残すべき成果物
 

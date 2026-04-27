@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Skillsの使い方"
 date: 2026-04-25
 category: academy
 description: "Skillsを再利用可能なワークフロー仕様として捉え、反復作業を安定化する方法を整理する。"
+plainSummary: "OpenAI Academyノート：Skillsの使い方 の要点を、02.9 Skills の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5HjfQo619jC918nhDM0S4p/a788f0e356c534e61f30e6607402b5ab/skills.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Workflow"

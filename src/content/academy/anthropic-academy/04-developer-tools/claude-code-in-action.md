@@ -3,6 +3,8 @@ title: "Claude Code in Action"
 date: 2026-03-31
 category: academy
 description: "Claude Code CLI 工具的实战指南"
+plainSummary: "这篇笔记把 Claude Code in Action 的核心内容整理成可复习、可实践的 开发者与技术工具 学习路径。"
+difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-code-in-action.svg"
 tags:
   - "Claude/Code"

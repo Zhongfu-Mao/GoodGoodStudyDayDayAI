@@ -121,6 +121,12 @@ Context engineering の失敗は、モデルが弱いというより、文脈 pa
 
 最後に `context_state.json` と `context_packet.md` を保存する。この二つは、後で Agent harness を作るときの出発点になる。
 
+## 関連基礎
+
+- [Context Engineering とは何か](../../../academy/ai-basics-for-everyone/what-is-context-engineering/)：軽い入口から context design を理解する。
+- [Token とコンテキストウィンドウ](../../../foundations/ai-developer-core/token-context-window/)：context と cost、latency をつなぐ。
+- [Transformer と Attention](../../../foundations/ai-developer-core/transformer-attention-developer-view/)：なぜ構造化 context が効くのかを見る。
+
 ## 参考
 
 - [Anthropic Engineering](https://www.anthropic.com/engineering)

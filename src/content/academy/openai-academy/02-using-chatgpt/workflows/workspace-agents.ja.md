@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Workspace Agents"
 date: 2026-04-25
 category: academy
 description: "Workspace agentsのトリガー、プロセス、ツール、権限、チーム展開の境界を整理する。"
+plainSummary: "OpenAI Academyノート：Workspace Agents の要点を、02.10 Workspace Agents の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/32nZFLTFUOKZWAbNt8mZ9E/3fed0abf03f542ee2a46c5ced153b362/agents.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Agents"

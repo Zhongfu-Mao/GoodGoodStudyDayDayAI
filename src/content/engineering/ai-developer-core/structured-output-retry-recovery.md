@@ -116,6 +116,12 @@ Retry prompt 不应该重新描述完整任务，而应该聚焦修复。例如�
 
 报告不要只写成功率。还要列出最常见的失败字段、最容易误判的标签、是否存在“格式正确但内容不对”的样例。结构化输出的真正难点往往不在 JSON，而在合法对象是否代表了正确业务含义。
 
+## 相关基础阅读
+
+- [结构化输出是什么](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：先用入门视角理解 schema、字段和机器可读输出。
+- [Transformer 与 Attention 的开发者解释](../../../foundations/ai-developer-core/transformer-attention-developer-view/)：理解示例和格式为什么会影响输出稳定性。
+- [Eval、Benchmark 与产品质量](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)：把通过率、失败字段和人工兜底纳入评测。
+
 ## 参考
 
 - [OpenAI Prompting](https://platform.openai.com/docs/guides/prompting)

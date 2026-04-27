@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Codexの高度なワークフロー"
 date: 2026-04-25
 category: academy
 description: "Codexの高度なワークフロー、自動化、レビュー、チーム運用を整理する。"
+plainSummary: "OpenAI Academyノート：Codexの高度なワークフロー の要点を、05.6 Advanced Codex Workflows の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/12SFSIJ9j7jHftRNhRno4E/0095fc04ab06244c0e76079413d191d4/advanced-workflows.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Writing with ChatGPT"
 date: 2026-04-25
 category: academy
 description: "把工作写作整理成 Plan、Draft、Revise、Package 四步流程。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Writing with ChatGPT 的核心内容整理成可复习、可实践的 03.1 Writing with ChatGPT 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7cfiyKI1Hz4PtBIZ5yV2Po/53d6f365498046c4596a2b5953039ccb/writing.png?w=3840&q=90&fm=webp"
 lang: zh
 academy:

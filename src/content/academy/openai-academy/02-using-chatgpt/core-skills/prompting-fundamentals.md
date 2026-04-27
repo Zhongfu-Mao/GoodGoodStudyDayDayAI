@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Prompting Fundamentals"
 date: 2026-04-25
 category: academy
 description: "把 prompt 写作拆成任务、上下文、理想输出和迭代反馈四个动作。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Prompting Fundamentals 的核心内容整理成可复习、可实践的 02.2 Prompting Fundamentals 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6KuWyesIgCbrJUzXckTYSx/20183733ba66b4b535fe978fc7ec985b/your-first-chat.png?w=3840&q=90&fm=webp"
 tags:
   - "Prompting"

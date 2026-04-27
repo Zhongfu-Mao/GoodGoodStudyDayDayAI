@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Codexの自動化・プラグイン・設定"
 date: 2026-04-25
 category: academy
 description: "Codexの自動化、プラグイン、skills、設定を安全に設計する方法を整理する。"
+plainSummary: "OpenAI Academyノート：Codexの自動化・プラグイン・設定 の要点を、06.2 Codex Workflows の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/WWbNfZvQUCV942pR9wPFw/69567e99135e87f695b94809ac026162/automations.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex for Work"

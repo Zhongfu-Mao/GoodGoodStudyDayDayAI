@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：ChatGPT for Sales Teams"
 date: 2026-04-25
 category: academy
 description: "整理销售团队如何用 ChatGPT 做账户研究、会议准备、跟进、方案和 deal coordination。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：ChatGPT for Sales Teams 的核心内容整理成可复习、可实践的 03.6 Sales Teams 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1R29scy3v5zFLkNH0KaSVt/b8cf3723aecd035b28ce13081f5410cf/sales.png?w=3840&q=90&fm=webp"
 lang: zh
 academy:

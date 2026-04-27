@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：金融サービス"
 date: 2026-04-25
 category: academy
 description: "金融サービスでのAI活用を、リスク、コンプライアンス、人間の確認を中心に整理する。"
+plainSummary: "OpenAI Academyノート：金融サービス の要点を、03.11 Financial Services の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4rAdwKviie1mydzTjs8y1P/6d4be3abda880c4b1fc4dd67f45debc4/financial.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

@@ -41,10 +41,32 @@ Attention 需要处理 query、key、value 之间的大量矩阵运算。朴素�
 
 这个实验会让推理速度从抽象指标变成设计约束：上下文不是免费水箱，而是会占用显存和时间的运行时状态。
 
+## 工程判断：性能优化从产品问题开始
+
+推理优化不要一上来就问“哪个引擎最快”。先问产品需要什么体验：用户是否在等首 token、是否能接受流式输出、是否必须一次读完整文档、是否有高并发、是否能预计算、是否能缓存。不同答案会导向完全不同的优化策略。
+
+短对话产品通常优先降低首 token 延迟；长文档产品优先减少 prefill 压力；Agent 产品优先控制工具结果和历史状态；批量离线任务优先吞吐和成本。把这些混在一起讨论，容易得到看似先进但不适配的架构。
+
+## 动手试试：把延迟拆成四段
+
+给每次调用记录四个时间：
+
+- 输入准备：RAG、工具调用、格式化上下文。
+- prefill：模型读完输入到首 token 前。
+- decode：首 token 到输出结束。
+- 后处理：JSON 修复、校验、写入数据库。
+
+当延迟拆开后，优化会清楚很多：有些问题应该改检索，有些问题应该改输出长度，有些问题才需要换模型或推理服务。
+
+## 延伸阅读
+
+- [Token 与上下文窗口](../token-context-window/)：理解为什么长输入会影响 prefill 和成本。
+- [Token、成本与模型选择](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：把性能和预算放在同一张图里。
+- [Reliable LLM Call：超时、重试与 JSON 修复](../../../engineering/ai-developer-core/reliable-llm-call-timeout-retry-json-repair/)：把延迟、超时和错误恢复一起设计。
+
 ## 参考
 
 - [Stanford CS336](https://cs336.stanford.edu/)
 - [Hung-yi Lee Machine Learning 2026 Spring](https://speech.ee.ntu.edu.tw/~hylee/ml/2026-spring.php)
 - [Karpathy build nanoGPT](https://github.com/karpathy/build-nanogpt)
 - [Chip Huyen: AI Engineering](https://www.oreilly.com/library/view/ai-engineering/9781098166298/)
-

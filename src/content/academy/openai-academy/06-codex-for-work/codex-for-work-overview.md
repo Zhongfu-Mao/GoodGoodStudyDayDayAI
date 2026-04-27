@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Codex for Work"
 date: 2026-04-25
 category: academy
 description: "整理 Codex for Work 面向非纯开发用户的任务、自动化、插件、skills 和设置路线。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Codex for Work 的核心内容整理成可复习、可实践的 06.1 Codex for Work 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2b3PBAK2QrcqJT5aYwkQKr/eaaebd4bb6f4743e1d92dd1698453285/cover-codex-for-work.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex for Work"

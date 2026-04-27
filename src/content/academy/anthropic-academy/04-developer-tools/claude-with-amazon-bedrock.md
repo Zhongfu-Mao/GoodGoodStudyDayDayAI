@@ -3,6 +3,8 @@ title: "Claude with Amazon Bedrock"
 date: 2026-03-31
 category: academy
 description: "通过 Amazon Bedrock 使用 Claude 的指南"
+plainSummary: "这篇笔记把 Claude with Amazon Bedrock 的核心内容整理成可复习、可实践的 开发者与技术工具 学习路径。"
+difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-with-amazon-bedrock.svg"
 tags:
   - "开发者"

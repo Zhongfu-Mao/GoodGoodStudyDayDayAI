@@ -46,6 +46,7 @@ draft: false
 
 接下来进入 MCP：
 
+- [MCP 是什么](../../ai-basics-for-everyone/what-is-mcp/)：先用非协议实现者视角理解 MCP 解决什么问题。
 - [Introduction to Model Context Protocol](../../anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)：理解模型如何通过标准协议接入工具和资料。
 - [MCP Advanced Topics](../../anthropic-academy/05-agentic-mcp/model-context-protocol-advanced-topics/)：看更复杂的权限、能力描述和集成方式。
 - [Minimal MCP Server](../../../engineering/ai-developer-core/minimal-mcp-server/)：从最小系统理解实现边界。
@@ -69,6 +70,7 @@ MCP 的重点不是“多接几个工具”，而是让工具调用变得可描�
 最后读：
 
 - [Production Optimization](../../openai-academy/07-building-with-ai/production-optimization/)：理解延迟、成本、可靠性和监控。
+- [Context Engineering 是什么](../../ai-basics-for-everyone/what-is-context-engineering/)：先把上下文当作产品资源来理解。
 - [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/)：把上下文从 prompt 技巧提升到工程设计。
 - [Agent Harness：日志、审批与回放](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)：让 agent 的行为可追踪、可复盘。
 

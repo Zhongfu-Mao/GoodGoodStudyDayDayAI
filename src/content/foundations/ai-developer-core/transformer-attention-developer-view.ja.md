@@ -40,10 +40,31 @@ Attention が教えてくれるのは、コンテキストは多ければよい�
 
 同じ抽出タスクを三つの形式で実行する。自然文だけの説明、見出し付きの説明、JSON schema 付きの説明。フィールド欠落率と形式エラー率を見る。さらに矛盾する例を一つ加え、出力がどれだけ引っ張られるかを確認する。
 
+## 実務判断：重要情報を探しやすくする
+
+開発者が attention の数式を暗記する必要はないが、「探しやすい context」を作る意識は必要だ。title、field name、source、順序がある情報は使われやすい。逆に、長い段落に埋もれた制約、例の中に混ざった反例、互いに矛盾する自然文の指示は、出力を不安定にする。
+
+複雑な task では、context を task goal、input data、守るべき rules、examples、output schema、checklist に分ける。区画名を安定させ、内容を混ぜすぎない。これは見た目の整理ではなく、生成時に model が見るべき場所を間違えにくくする工夫である。
+
+## 手を動かして試す：三つの構造を比べる
+
+同じ抽出タスクで、次の三つを試す。
+
+1. 一つの長い段落で説明する。
+2. Markdown heading と bullet list で分ける。
+3. XML または JSON 風の明確な区画にする。
+
+20 件ほどのサンプルで、field の欠落、format error、人間の修正時間を見る。構造化した prompt は必ず短いわけではないが、安定しやすく、eval もしやすい。
+
+## 関連して読む
+
+- [Prompt とは何か](../../../academy/ai-basics-for-everyone/what-is-prompt/)：prompt を context organization として理解する。
+- [Structured Output](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：出力 schema も model が参照する pattern にする。
+- [Reliable LLM Call](../../../engineering/ai-developer-core/reliable-llm-call-timeout-retry-json-repair/)：構造と retry、repair を接続する。
+
 ## 参考
 
 - [Stanford CS224N](https://web.stanford.edu/class/cs224n/)
 - [Stanford CS336](https://cs336.stanford.edu/)
 - [Karpathy Neural Networks: Zero to Hero](https://karpathy.ai/zero-to-hero.html)
 - [Anthropic Prompt Engineering Interactive Tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial)
-

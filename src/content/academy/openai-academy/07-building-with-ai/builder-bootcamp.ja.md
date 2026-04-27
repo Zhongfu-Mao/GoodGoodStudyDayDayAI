@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Builder Bootcamp"
 date: 2026-04-25
 category: academy
 description: "Builder Bootcampを、AIアプリを設計・構築・最適化する学習ルートとして整理する。"
+plainSummary: "OpenAI Academyノート：Builder Bootcamp の要点を、07.1 Builder Bootcamp の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
 tags:
   - "Building with AI"

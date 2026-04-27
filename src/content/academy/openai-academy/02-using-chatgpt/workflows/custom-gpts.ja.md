@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Custom GPTsの使い方"
 date: 2026-04-25
 category: academy
 description: "Custom GPTと通常チャットの違い、専用アシスタント化に向く場面を整理する。"
+plainSummary: "OpenAI Academyノート：Custom GPTsの使い方 の要点を、02.8 Custom GPTs の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2UV4fI7a8z34VgwSmpgzy1/2b09c857ffda3696fec60cad6fb18b86/custom-gpts.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Workflow"

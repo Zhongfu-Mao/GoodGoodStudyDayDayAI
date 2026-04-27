@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Using Custom GPTs"
 date: 2026-04-25
 category: academy
 description: "理解 Custom GPT 和普通聊天的差别，并整理适合构建专用助手的场景。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Using Custom GPTs 的核心内容整理成可复习、可实践的 02.8 Custom GPTs 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2UV4fI7a8z34VgwSmpgzy1/2b09c857ffda3696fec60cad6fb18b86/custom-gpts.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Workflow"

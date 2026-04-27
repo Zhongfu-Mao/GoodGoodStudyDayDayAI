@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Codex Automations, Plugins and Settings"
 date: 2026-04-25
 category: academy
 description: "整理 Codex for Work 中自动化、插件、skills 和设置如何让重复工作稳定化。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Codex Automations, Plugins and Settings 的核心内容整理成可复习、可实践的 06.2 Codex Workflows 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/WWbNfZvQUCV942pR9wPFw/69567e99135e87f695b94809ac026162/automations.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex for Work"

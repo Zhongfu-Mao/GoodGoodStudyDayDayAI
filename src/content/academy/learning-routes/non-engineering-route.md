@@ -10,7 +10,7 @@ tags:
   - "AI Academy"
   - "Learning Route"
   - "ChatGPT for Work"
-  - "非工程路线"
+  - "Non-Engineering Route"
 lang: zh
 academy:
   series: "AI Academy Learning Routes"
@@ -35,6 +35,8 @@ draft: false
 从 [Getting Started with ChatGPT](../../openai-academy/02-using-chatgpt/core-skills/getting-started/) 开始。你需要先形成一个简单习惯：不要把 AI 当搜索框，而是把它当作可以协助你思考、写作、整理和复盘的伙伴。
 
 接着读 [Prompting Fundamentals](../../openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/)。重点不是背 prompt 模板，而是学会把目标、背景、材料、限制和输出格式说清楚。
+
+如果你刚开始用 AI，建议顺手补两篇基础概念：[幻觉与 Grounding](../../ai-basics-for-everyone/what-is-hallucination-grounding/) 和 [结构化输出](../../ai-basics-for-everyone/what-is-structured-output/)。前者帮助你知道哪些输出必须复核，后者帮助你把回答变成表格、清单、JSON 或可执行工作流。
 
 读完这一段，至少能留下一个个人常用 prompt：
 
@@ -64,6 +66,8 @@ draft: false
 再读 [Custom GPTs](../../openai-academy/02-using-chatgpt/workflows/custom-gpts/) 和 [Skills](../../openai-academy/02-using-chatgpt/workflows/skills/)，理解什么时候应该把一个经验沉淀成团队或个人的固定能力。
 
 最后读 [ChatGPT for Work](../../openai-academy/05-chatgpt-for-work/chatgpt-for-work/)，把个人使用扩展到团队协作、权限、知识和安全边界。
+
+如果这个 workflow 会被多人复用，也可以补读 [Token、成本与模型选择](../../ai-basics-for-everyone/what-is-token-cost-model-choice/)，避免把“能用”误认为“长期可承受”。
 
 ## 这条路线的交付物
 

@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPTでブレインストーミングする
 date: 2026-04-25
 category: academy
 description: "発散、整理、評価、次のアクションまでをつなぐブレインストーミングの使い方を整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPTでブレインストーミングする の要点を、03.2 Brainstorming with ChatGPT の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2QucAPrnCRSUoZDbQFyK4P/736e90884baf0e1ebe6cbcdb2ba8beaf/brainstorming.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

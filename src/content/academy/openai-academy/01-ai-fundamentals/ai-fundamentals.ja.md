@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：AI Fundamentals"
 date: 2026-04-25
 category: academy
 description: "AI、モデル、LLM、学習プロセス、reasoningモデルの基礎を日本語で整理する。"
+plainSummary: "OpenAI Academyノート：AI Fundamentals の要点を、01 AI Fundamentals の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
 tags:
   - "LLM"

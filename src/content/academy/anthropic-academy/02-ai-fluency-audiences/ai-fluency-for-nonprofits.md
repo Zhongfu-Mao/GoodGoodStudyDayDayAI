@@ -3,6 +3,8 @@ title: "AI Fluency for Nonprofits"
 date: 2026-03-31
 category: academy
 description: "非营利组织版AI Fluency课程，聚焦数据隐私、写作、研究和工作流增强"
+plainSummary: "这篇笔记把 AI Fluency for Nonprofits 的核心内容整理成可复习、可实践的 AI Fluency 特定受众 学习路径。"
+difficulty: beginner
 coverImage: "/images/academy/anthropic-academy/covers/02-ai-fluency-audiences/ai-fluency-for-nonprofits.svg"
 lang: zh
 academy:

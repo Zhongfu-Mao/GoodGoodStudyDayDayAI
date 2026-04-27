@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：教師"
 date: 2026-04-25
 category: academy
 description: "教師が授業設計、差別化、フィードバック、振り返りにChatGPTを使う方法を整理する。"
+plainSummary: "OpenAI Academyノート：教師 の要点を、04.3 Teachers の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3oIacja57T4O2dlR52RbVJ/efd304faeede3b0e448e377cee270bb1/teachers.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

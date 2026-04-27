@@ -121,6 +121,12 @@ Context engineering 的失败通常不是模型“不聪明”，而是上下文
 
 实验结束后，把结构化 state 保存成 `context_state.json`，把每轮上下文保存成 `context_packet.md`。这两个文件会成为后续 Agent harness 的起点。
 
+## 相关基础阅读
+
+- [Context Engineering 是什么](../../../academy/ai-basics-for-everyone/what-is-context-engineering/)：用更轻的入口理解上下文设计。
+- [Token 与上下文窗口](../../../foundations/ai-developer-core/token-context-window/)：把上下文设计和成本、延迟连起来。
+- [Transformer 与 Attention 的开发者解释](../../../foundations/ai-developer-core/transformer-attention-developer-view/)：理解为什么结构化上下文更容易被模型使用。
+
 ## 参考
 
 - [Anthropic Engineering](https://www.anthropic.com/engineering)

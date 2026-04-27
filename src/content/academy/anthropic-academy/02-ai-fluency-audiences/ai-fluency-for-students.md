@@ -3,6 +3,8 @@ title: "AI Fluency for Students"
 date: 2026-03-31
 category: academy
 description: "学生版AI Fluency课程，涵盖AI辅助学习和职业规划应用"
+plainSummary: "这篇笔记把 AI Fluency for Students 的核心内容整理成可复习、可实践的 AI Fluency 特定受众 学习路径。"
+difficulty: beginner
 coverImage: "/images/academy/anthropic-academy/covers/02-ai-fluency-audiences/ai-fluency-for-students.svg"
 tags:
   - "教育"

@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPTのパーソナライズ"
 date: 2026-04-25
 category: academy
 description: "Custom Instructions、Memory、安定した作業スタイルの関係を整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPTのパーソナライズ の要点を、02.3 Personalizing ChatGPT の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2s9rOdoSHProR3I6Ai5P5/8ca619f82211ade2d76316f04aa3fbcc/personalizing-chatgpt.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT"

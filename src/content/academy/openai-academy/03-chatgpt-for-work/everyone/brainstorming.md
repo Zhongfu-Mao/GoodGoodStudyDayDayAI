@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Brainstorming with ChatGPT"
 date: 2026-04-25
 category: academy
 description: "用 wide to narrow 的流程，把发散想法变成可比较、可执行的方案。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Brainstorming with ChatGPT 的核心内容整理成可复习、可实践的 03.2 Brainstorming with ChatGPT 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2QucAPrnCRSUoZDbQFyK4P/736e90884baf0e1ebe6cbcdb2ba8beaf/brainstorming.png?w=3840&q=90&fm=webp"
 lang: zh
 academy:

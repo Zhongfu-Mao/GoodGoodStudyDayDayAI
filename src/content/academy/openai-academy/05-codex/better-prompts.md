@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Write Better Prompts for Codex"
 date: 2026-04-25
 category: academy
 description: "把 Codex prompt 写成可执行任务单，而不是普通聊天问题。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Write Better Prompts for Codex 的核心内容整理成可复习、可实践的 05.3 Better Codex Prompts 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1YcLAu9OdRty21jeeKHSmK/2ed897dec9d31f58f63b7c8f3d82cb94/prompts-codex.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

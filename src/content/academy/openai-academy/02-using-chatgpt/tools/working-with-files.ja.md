@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPTでファイルを扱う"
 date: 2026-04-25
 category: academy
 description: "文書、表、PDF、画像、接続アプリの文脈をChatGPTで扱う方法を整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPTでファイルを扱う の要点を、02.4 Working with Files の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7FdLCJL2BCjS8ef2BJ8rG0/8307b0a6be94e0333b43dbed5b93d187/using-files.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Workflow"

@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Financial Services"
 date: 2026-04-25
 category: academy
 description: "整理金融服务场景中的 AI 应用资源：prompt packs、预构建 GPT、治理和审计边界。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Financial Services 的核心内容整理成可复习、可实践的 03.11 Financial Services 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4rAdwKviie1mydzTjs8y1P/6d4be3abda880c4b1fc4dd67f45debc4/financial.png?w=3840&q=90&fm=webp"
 lang: zh
 academy:

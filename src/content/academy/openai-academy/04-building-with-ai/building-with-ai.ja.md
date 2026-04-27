@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Building with AI"
 date: 2026-04-25
 category: academy
 description: "AIアプリケーション構築の入口として、設計、評価、本番運用の流れを整理する。"
+plainSummary: "OpenAI Academyノート：Building with AI の要点を、04 Building with AI の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/16ClwJMGpPN3flMrO4DXyL/2a38515d0d3a674161bfa796e87e3889/Cover-building.png?w=3840&q=90&fm=webp"
 tags:
   - "Building with AI"

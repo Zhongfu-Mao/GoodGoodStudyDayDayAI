@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPT for Work"
 date: 2026-04-25
 category: academy
 description: "仕事の中でChatGPTを研究、文章、データ、会議、チームの型へ広げるルートを整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPT for Work の要点を、05 ChatGPT for Work の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4isWF93VlOu8b5EpVONDeo/4ace7b74dc5d84236657e954f09c005f/Cover-work.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Workflow"

@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：カリキュラムと授業設計"
 date: 2026-04-25
 category: academy
 description: "カリキュラム設計と授業改善にAIを使う方法を整理する。"
+plainSummary: "OpenAI Academyノート：カリキュラムと授業設計 の要点を、04.4 Curriculum and Instruction の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2yQ8xu6mS72v7qWA3ToiSU/cd1c9e16fd454fff099297f3087b2a65/curriculum-instruction.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：学習ルート全体"
 date: 2026-04-25
 category: academy
 description: "OpenAI Academyの公開学習構造を整理し、サイトで継続的に学べるルートへ落とし込む。"
+plainSummary: "OpenAI Academyノート：学習ルート全体 の要点を、00 学习路线总览 の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3pOt7hjYa1nUIIMMXdoEhD/b6493d0ba6756155a3ef880758e0a0b0/Academy-SEO.png?w=1600&h=900&fit=fill"
 tags:
   - "AI/Workflow"

@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Codex for Software Engineers"
 date: 2026-04-25
 category: academy
 description: "整理软件工程师如何把 Codex 放进日常开发、测试、审阅和维护工作。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Codex for Software Engineers 的核心内容整理成可复习、可实践的 05.5 Codex for SWEs 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7aH5Yfd36Abmlr7Ci2ZwrP/4a7eefabc5e51c2408b2120b7dd8c32a/SWE-codex.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

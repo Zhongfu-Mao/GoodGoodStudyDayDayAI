@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：OpenAIにおけるAIの応用"
 date: 2026-04-25
 category: academy
 description: "OpenAIのモデル能力がプロダクト、開発基盤、業務アプリへ展開される流れを整理する。"
+plainSummary: "OpenAI Academyノート：OpenAIにおけるAIの応用 の要点を、01.1 Applications of AI の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

@@ -34,6 +34,8 @@ draft: false
 
 ここで大事なのは、研修を機能紹介だけで終わらせないことです。実際のタスクを中心に練習を作り、AI が仕事の過程をどう変えるかを見せます。
 
+初学者向けに展開するなら、最初の授業の前後で [AI model と LLM](../../ai-basics-for-everyone/what-is-ai-model-llm/) と [Token、cost、model choice](../../ai-basics-for-everyone/what-is-token-cost-model-choice/) も入れておくとよいです。前者は共通言語を作り、後者は task ごとに model と予算を選ぶ理由を示します。
+
 ## 第二段階：教育場面への展開
 
 学校、学生、教師、教育管理者に向ける場合は、次を読みます。
@@ -63,6 +65,8 @@ draft: false
 ## 第四段階：安全、境界、組織展開
 
 最後に [Responsible and Safe Use](../../openai-academy/01-ai-fundamentals/responsible-safe-use/) を読みます。
+
+安全性の部分は [Hallucination と Grounding](../../ai-basics-for-everyone/what-is-hallucination-grounding/) と合わせて扱います。「AI は間違える」と言うだけでなく、資料、引用、review、利用境界で risk を下げる方法まで示せます。
 
 AI 展開は効率だけでは不十分です。次を明確にする必要があります。
 

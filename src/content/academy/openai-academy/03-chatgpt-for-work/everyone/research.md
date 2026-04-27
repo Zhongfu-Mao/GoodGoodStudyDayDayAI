@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：ChatGPT for Research"
 date: 2026-04-25
 category: academy
 description: "把研究任务拆成问题定义、来源搜集、证据综合、缺口标注和决策输出。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：ChatGPT for Research 的核心内容整理成可复习、可实践的 03.4 ChatGPT for Research 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24Zhocf65q1eBCqPljGtiH/b12cc424af8d1eacd56ee339e8214822/research.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT/Research"

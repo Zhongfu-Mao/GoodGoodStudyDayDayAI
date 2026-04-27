@@ -3,6 +3,8 @@ title: "Introduction to Claude Cowork"
 date: 2026-04-01
 category: academy
 description: "Claude Cowork 桌面产品介绍，面向非技术用户的AI协作工具"
+plainSummary: "这篇笔记把 Introduction to Claude Cowork 的核心内容整理成可复习、可实践的 Claude 入门与产品 学习路径。"
+difficulty: beginner
 coverImage: "/images/academy/anthropic-academy/covers/03-claude-product/introduction-to-claude-cowork.svg"
 tags:
   - "产品"

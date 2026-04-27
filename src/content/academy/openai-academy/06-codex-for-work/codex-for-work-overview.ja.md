@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Codex for Work"
 date: 2026-04-25
 category: academy
 description: "Codexを知識作業、資料整理、軽量な業務委任に広げる方法を整理する。"
+plainSummary: "OpenAI Academyノート：Codex for Work の要点を、06.1 Codex for Work の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2b3PBAK2QrcqJT5aYwkQKr/eaaebd4bb6f4743e1d92dd1698453285/cover-codex-for-work.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex for Work"

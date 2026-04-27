@@ -3,6 +3,8 @@ title: "Model Context Protocol: Advanced Topics"
 date: 2026-03-31
 category: academy
 description: "MCP进阶主题：动态工具、资源、提示模板和高级集成模式"
+plainSummary: "这篇笔记把 Model Context Protocol: Advanced Topics 的核心内容整理成可复习、可实践的 代理与 MCP 学习路径。"
+difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/model-context-protocol-advanced-topics.svg"
 tags:
   - "代理"
@@ -329,6 +331,8 @@ StreamableHTTP 传输让 MCP Client 能通过 HTTP 连接到**远程托管**的 
 ## 相关笔记
 
 > **延伸阅读**
+> - [MCP 是什么](/academy/ai-basics-for-everyone/what-is-mcp/) — 先回到协议解决的问题
+> - [Minimal MCP Server](/engineering/ai-developer-core/minimal-mcp-server/) — 将权限、输入和输出落到最小实现
 > - [Introduction to Model Context Protocol](/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/) — MCP 基础
 > - [Introduction to subagents](/academy/anthropic-academy/05-agentic-mcp/introduction-to-subagents/) — 子代理架构
 > - [Building with the Claude API](/academy/anthropic-academy/04-developer-tools/building-with-the-claude-api/) — API 开发生态

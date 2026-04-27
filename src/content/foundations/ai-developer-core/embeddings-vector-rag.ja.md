@@ -45,10 +45,34 @@ RAG の第一原則は、回答を追跡可能にすることだ。出典のな�
 
 サイト内の Radar や Academy から 20 本を選び、小さな RAG を作る。20 問を用意し、10 問は文書内で答えられるもの、5 問は複数文書の統合が必要なもの、5 問は意図的に答えがないものにする。top-3、top-8、keyword + vector を比較し、根拠性を見る。
 
+## 実務判断：部品を替える前に評価する
+
+RAG は、embedding model、vector DB、chunk size を次々に替えたくなりやすい。だが先に必要なのは、質問セットと失敗基準である。評価なしに部品を替えると、検索結果が増えたように見えても、product quality が上がったかは分からない。
+
+最低限見るべき点は四つある。正しい根拠が recall されたか、上位に並んだか、回答が根拠に忠実だったか、答えがないときに拒否できたか。このどれかが欠けると、流暢だが追跡できない回答になる。
+
+## 手を動かして試す：失敗分類表を作る
+
+失敗した回答に label を付ける。
+
+| 失敗タイプ | 典型例 | まず見る場所 |
+| --- | --- | --- |
+| no-recall | 正しい文書が取れていない | chunk、embedding、keyword hybrid |
+| low-rank | 根拠はあるが下位に沈む | rerank、metadata filter |
+| synthesis-error | 根拠はあるが回答が違う | prompt、引用制約、output check |
+| over-answer | 答えがないのに断言する | refusal rule、grounding eval |
+
+この表は「RAG が弱い」という感覚を、pipeline のどこを直すべきかに変えてくれる。
+
+## 関連して読む
+
+- [RAG とは何か](../../../academy/ai-basics-for-everyone/what-is-rag/)：共有語彙を作る入口。
+- [Hallucination と Grounding](../../../academy/ai-basics-for-everyone/what-is-hallucination-grounding/)：引用と拒否がなぜ重要かを整理する。
+- [RAG Minimum System](../../../engineering/ai-developer-core/rag-minimum-system/)：最小実装で全体の流れを見る。
+
 ## 参考
 
 - [Full Stack LLM Bootcamp](https://fullstackdeeplearning.com/llm-bootcamp/)
 - [Eugene Yan: LLM Patterns](https://eugeneyan.com/writing/llm-patterns/)
 - [DeepLearning.AI: Building Agentic RAG with LlamaIndex](https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex)
 - [OpenAI Agent Evals](https://platform.openai.com/docs/guides/agent-evals)
-

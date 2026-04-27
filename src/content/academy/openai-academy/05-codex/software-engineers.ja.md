@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ソフトウェアエンジニアのためのC
 date: 2026-04-25
 category: academy
 description: "ソフトウェアエンジニアがCodexを設計、実装、レビュー、検証に使う方法を整理する。"
+plainSummary: "OpenAI Academyノート：ソフトウェアエンジニアのためのCodex の要点を、05.5 Codex for SWEs の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7aH5Yfd36Abmlr7Ci2ZwrP/4a7eefabc5e51c2408b2120b7dd8c32a/SWE-codex.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

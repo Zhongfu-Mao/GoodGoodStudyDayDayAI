@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：リサーチのためのChatGPT"
 date: 2026-04-25
 category: academy
 description: "調査課題を問い、出典、比較、結論、残る不確実性へ整理する方法を扱う。"
+plainSummary: "OpenAI Academyノート：リサーチのためのChatGPT の要点を、03.4 ChatGPT for Research の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24Zhocf65q1eBCqPljGtiH/b12cc424af8d1eacd56ee339e8214822/research.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT/Research"

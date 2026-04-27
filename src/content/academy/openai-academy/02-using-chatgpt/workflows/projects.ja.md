@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPT Projectsの使い方"
 date: 2026-04-25
 category: academy
 description: "Projectsを継続テーマの文脈コンテナとして使う方法を整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPT Projectsの使い方 の要点を、02.7 Projects の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/L0cSoOsBFybec07VSIDJw/27647c6494be7191e0e2168f5bf27044/projects.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Workflow"

@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Evals"
 date: 2026-04-25
 category: academy
 description: "AIアプリの品質を測るための評価設計、rubric、失敗例、反復改善を整理する。"
+plainSummary: "OpenAI Academyノート：Evals の要点を、07.3 Evals の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
 tags:
   - "Evals"

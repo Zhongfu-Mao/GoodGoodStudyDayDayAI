@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：ChatGPT for Education"
 date: 2026-04-25
 category: academy
 description: "整理 ChatGPT for Education 在 K-12 和高等教育中的角色地图，并补充学习者视角的使用边界。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：ChatGPT for Education 的核心内容整理成可复习、可实践的 06 ChatGPT for Education 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1UQoFXTvJ2jAje7MD0FcrM/21ca718020e08c026fb708add6c62fba/Cover-education.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Fluency"

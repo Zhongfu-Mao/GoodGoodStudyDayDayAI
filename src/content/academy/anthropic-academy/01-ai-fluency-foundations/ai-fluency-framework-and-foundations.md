@@ -3,6 +3,8 @@ title: "AI Fluency: Framework & Foundations"
 date: 2026-03-31
 category: academy
 description: "AI Fluency 4Ds 框架的核心理论课程，涵盖授权-勤勉循环与描述-辨别循环"
+plainSummary: "这篇笔记把 AI Fluency: Framework & Foundations 的核心内容整理成可复习、可实践的 AI Fluency 框架与基础 学习路径。"
+difficulty: beginner
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/ai-fluency-framework-and-foundations.svg"
 lang: zh
 academy:

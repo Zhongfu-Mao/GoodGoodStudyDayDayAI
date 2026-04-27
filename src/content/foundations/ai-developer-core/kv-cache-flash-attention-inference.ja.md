@@ -37,10 +37,32 @@ Attention は query、key、value の大きな行列計算を含む。素朴な�
 
 同じモデルで、1k、8k、32k の入力を用意し、出力上限を 128、512、2048 に変える。初回 token 遅延、総時間、tokens/s、コストを記録する。さらに要約後入力を比較し、品質と速度の差を見る。
 
+## 実務判断：性能最適化は product question から始める
+
+推論最適化で最初に聞くべきことは「どの engine が一番速いか」ではない。ユーザーは first token を待っているのか、streaming を受け入れられるのか、全文を一度に読む必要があるのか、高並列なのか、事前計算や cache が使えるのか。答えによって、最適化の方向は大きく変わる。
+
+短い対話では first token latency が重要になる。長文分析では prefill の圧縮が効く。Agent では tool result と history の制御が効く。offline batch では throughput と cost が重要になる。これらを混ぜて議論すると、立派だが合わない architecture になりやすい。
+
+## 手を動かして試す：latency を四つに分ける
+
+各呼び出しで次の時間を記録する。
+
+- input preparation：RAG、tool call、context formatting。
+- prefill：入力を読み、first token が出るまで。
+- decode：first token から出力終了まで。
+- post-processing：JSON repair、validation、DB write。
+
+分けて測ると、どこを直すべきかが見える。検索を直すべき問題、出力長を直すべき問題、model や推論基盤を変えるべき問題は同じではない。
+
+## 関連して読む
+
+- [Token とコンテキストウィンドウ](../token-context-window/)：長い入力が prefill と cost に効く理由。
+- [Token、cost、model choice](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：性能と予算を同じ表で見る。
+- [Reliable LLM Call](../../../engineering/ai-developer-core/reliable-llm-call-timeout-retry-json-repair/)：timeout、retry、error recovery を同時に設計する。
+
 ## 参考
 
 - [Stanford CS336](https://cs336.stanford.edu/)
 - [Hung-yi Lee Machine Learning 2026 Spring](https://speech.ee.ntu.edu.tw/~hylee/ml/2026-spring.php)
 - [Karpathy build nanoGPT](https://github.com/karpathy/build-nanogpt)
 - [Chip Huyen: AI Engineering](https://www.oreilly.com/library/view/ai-engineering/9781098166298/)
-

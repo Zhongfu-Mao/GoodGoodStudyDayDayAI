@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Evals"
 date: 2026-04-25
 category: academy
 description: "整理 evals 在 AI 应用开发中的作用：把感觉好用变成可观察、可回归的质量标准。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Evals 的核心内容整理成可复习、可实践的 07.3 Evals 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
 tags:
   - "Evals"

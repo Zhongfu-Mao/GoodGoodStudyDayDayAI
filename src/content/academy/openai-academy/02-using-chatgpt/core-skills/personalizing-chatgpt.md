@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Personalizing ChatGPT"
 date: 2026-04-25
 category: academy
 description: "整理 Custom Instructions、Memory 和稳定工作风格之间的关系。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Personalizing ChatGPT 的核心内容整理成可复习、可实践的 02.3 Personalizing ChatGPT 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2s9rOdoSHProR3I6Ai5P5/8ca619f82211ade2d76316f04aa3fbcc/personalizing-chatgpt.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT"

@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Applications of AI at OpenAI"
 date: 2026-04-25
 category: academy
 description: "用产品、开发平台和应用形态三层理解 OpenAI 如何把模型能力变成可用工具。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Applications of AI at OpenAI 的核心内容整理成可复习、可实践的 01.1 Applications of AI 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
 lang: zh
 academy:

@@ -49,6 +49,30 @@ AI 系统最危险的不是简单问题答错，而是在高风险边界条件�
 
 给一个 RAG 或结构化输出任务做 30 条 eval。先人工标注，再写一个 judge prompt，比较 judge 与人工的一致率。然后修改 prompt 或检索策略，观察通过率变化和新增失败类型。
 
+## 工程判断：Eval 要进入开发节奏
+
+Eval 如果只在上线前跑一次，很快会变成文档摆设。更有用的方式是把 eval 接进每次 prompt、检索、模型、工具变更的开发节奏里。小改动跑 smoke eval，大改动跑完整 eval，线上事故样例回灌到回归集。
+
+评测集也需要版本管理。新增样例时记录来源、风险等级和预期行为；修改 rubric 时记录原因；模型升级时保留对比结果。这样团队才知道一次“效果变好”到底来自模型、prompt、数据，还是评测标准变宽了。
+
+## 动手试试：建立三层评测集
+
+从三层开始：
+
+| 层级 | 样例数 | 用途 |
+| --- | ---: | --- |
+| smoke | 10 | 每次改动都跑，抓明显回归 |
+| regression | 50 | 覆盖历史失败和高频任务 |
+| release | 150+ | 发布前跑，包含边界和高风险样例 |
+
+不要等有平台才开始。Markdown、CSV、Vitest fixture 或 notebook 都可以先用。关键是让样例稳定、结论可复现。
+
+## 延伸阅读
+
+- [Eval 是什么](../../../academy/ai-basics-for-everyone/what-is-eval/)：给团队建立评测共识。
+- [Evals](../../../academy/openai-academy/07-building-with-ai/evals/)：把评测放进 AI 产品开发流程。
+- [Production Optimization](../../../academy/openai-academy/07-building-with-ai/production-optimization/)：把质量、成本、延迟一起看。
+
 ## 参考
 
 - [OpenAI Agent Evals](https://platform.openai.com/docs/guides/agent-evals)
@@ -56,4 +80,3 @@ AI 系统最危险的不是简单问题答错，而是在高风险边界条件�
 - [Hamel Husain: LLM Evals FAQ](https://hamel.dev/blog/posts/evals-faq/)
 - [Eugene Yan: An LLM-as-Judge Won't Save The Product](https://eugeneyan.com/writing/eval-process/)
 - [Chip Huyen: AI Engineering](https://www.oreilly.com/library/view/ai-engineering/9781098166298/)
-

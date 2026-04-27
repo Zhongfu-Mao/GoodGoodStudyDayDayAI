@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Teachers"
 date: 2026-04-25
 category: academy
 description: "整理教师如何用 ChatGPT 支持备课、反馈、差异化材料和课堂活动设计。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Teachers 的核心内容整理成可复习、可实践的 04.3 Teachers 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3oIacja57T4O2dlR52RbVJ/efd304faeede3b0e448e377cee270bb1/teachers.png?w=3840&q=90&fm=webp"
 lang: zh
 academy:

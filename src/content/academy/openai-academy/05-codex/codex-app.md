@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Codex App"
 date: 2026-04-25
 category: academy
 description: "整理 Codex app 在项目工作区、线程、设置、审阅和自动化中的作用。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Codex App 的核心内容整理成可复习、可实践的 05.4 Codex App 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2X2YDuHmP1dPfrPYk8BhS6/0efa2ae4c8505afe1f8b8398938db0a4/work-faster-codex.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

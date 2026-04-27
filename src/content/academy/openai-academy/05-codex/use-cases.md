@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Codex Use Cases"
 date: 2026-04-25
 category: academy
 description: "整理适合交给 Codex 的任务类型：修 bug、加功能、写测试、整理内容和自动化。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Codex Use Cases 的核心内容整理成可复习、可实践的 05.2 Codex Use Cases 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24OTPuWTysZGgIBB1McPCm/7ddacff390e55131d6b2ffaa54ad4a94/real-tasks-codex.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

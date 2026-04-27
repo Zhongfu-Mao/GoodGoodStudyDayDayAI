@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Building Agents"
 date: 2026-04-25
 category: academy
 description: "把 agent 构建理解成工具、交接、护栏和评估共同组成的系统工程。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Building Agents 的核心内容整理成可复习、可实践的 07.2 Building Agents 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4dKFCy0mZpK1j5MfyBNL3p/08a0ce3067d2418be3bc7b848c02e09e/ai-techniques.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Agents"

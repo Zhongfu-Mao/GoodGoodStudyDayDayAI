@@ -128,6 +128,12 @@ Replay 也是 eval 的材料。真实失败比手写 benchmark 更有价值。�
 
 完成后，把 trace schema 和审批矩阵放进项目文档。后续无论用 OpenAI Agents SDK、Claude Code、ADK 还是自写 loop，这套 harness 设计都能复用。
 
+## 相关基础阅读
+
+- [Agent 是什么](../../../academy/ai-basics-for-everyone/what-is-agent/)：先统一 Agent 的基本语义。
+- [Agent = 状态、工具与反馈循环](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/)：把 harness 的日志、审批和停止条件放回系统结构。
+- [MCP 是什么](../../../academy/ai-basics-for-everyone/what-is-mcp/)：理解工具协议为什么需要权限和审计。
+
 ## 参考
 
 - [Anthropic Engineering](https://www.anthropic.com/engineering)

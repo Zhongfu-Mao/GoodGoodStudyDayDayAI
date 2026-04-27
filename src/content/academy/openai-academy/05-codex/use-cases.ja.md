@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Codex Use Cases"
 date: 2026-04-25
 category: academy
 description: "Codexに任せやすい修正、調査、テスト、リファクタリングなどの用途を整理する。"
+plainSummary: "OpenAI Academyノート：Codex Use Cases の要点を、05.2 Codex Use Cases の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24OTPuWTysZGgIBB1McPCm/7ddacff390e55131d6b2ffaa54ad4a94/real-tasks-codex.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPTでデータ分析する"
 date: 2026-04-25
 category: academy
 description: "データアップロード、分析、可視化、意思決定メモまでの流れを整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPTでデータ分析する の要点を、03.3 Data Analysis の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6S4rnSSNtBmG5MDBcNa4rZ/9ada1bbe8e037b15dc94f274ab8039fc/data-analysis.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

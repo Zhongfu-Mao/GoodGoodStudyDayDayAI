@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Production and Optimization"
 date: 2026-04-25
 category: academy
 description: "整理生产级 AI 应用需要同时优化质量、延迟、成本、可观测性和治理。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Production and Optimization 的核心内容整理成可复习、可实践的 07.5 Production and Optimization 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/16ClwJMGpPN3flMrO4DXyL/2a38515d0d3a674161bfa796e87e3889/Cover-building.png?w=3840&q=90&fm=webp"
 tags:
   - "AI Engineering"

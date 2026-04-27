@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：ChatGPTで書く"
 date: 2026-04-25
 category: academy
 description: "文章作成、編集、要約、トーン調整を仕事の流れに組み込む方法を整理する。"
+plainSummary: "OpenAI Academyノート：ChatGPTで書く の要点を、03.1 Writing with ChatGPT の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7cfiyKI1Hz4PtBIZ5yV2Po/53d6f365498046c4596a2b5953039ccb/writing.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

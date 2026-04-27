@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：RAG"
 date: 2026-04-25
 category: academy
 description: "整理 RAG 的学习重点：检索、上下文、来源、grounding 和评估。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：RAG 的核心内容整理成可复习、可实践的 07.4 RAG 学习路径。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5xMpq7Q0JXMzdCm5GmMQc8/c32a4332c00d64537cc569e015587356/packs-patterns.png?w=3840&q=90&fm=webp"
 tags:
   - "RAG"

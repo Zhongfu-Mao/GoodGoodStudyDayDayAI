@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Higher Education Staff"
 date: 2026-04-25
 category: academy
 description: "整理高校 staff 如何用 ChatGPT 改善校园服务、流程协调、沟通和信息整理。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Higher Education Staff 的核心内容整理成可复习、可实践的 04.6 Higher Education Staff 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4jkiAnrrcbHJFYO92cI5nB/b52f60860b8aa6e1a7e230f6d971eb02/university-staff.png?w=3840&q=90&fm=webp"
 tags:
   - "Operations"

@@ -45,10 +45,34 @@ RAG 的第一原则是：让答案可追溯。没有来源的回答很难调试�
 
 拿站点里的 20 篇 Radar 或 Academy 文章做一个小型 RAG。准备 20 个问题，其中 10 个能在文档中找到答案，5 个需要跨文档综合，5 个故意无答案。分别测试 top-3、top-8、关键词+向量混合检索，并记录 groundedness。
 
+## 工程判断：先评测，再换组件
+
+RAG 最容易陷入“不断换 embedding 模型、向量库和 chunk size”的循环。更稳的顺序是先定义问题集和失败标准，再动组件。否则检索结果看起来变多了，产品质量却不一定变好。
+
+判断一个 RAG 是否健康，至少看四个指标：正确证据是否被召回、证据是否排在前面、回答是否忠实引用证据、无答案时是否拒答。任何一个环节缺失，最终回答都可能看起来流畅但不可追溯。
+
+## 动手试试：做一个错误分类表
+
+为每次失败打标签：
+
+| 失败类型 | 典型现象 | 优先修复点 |
+| --- | --- | --- |
+| no-recall | 正确文档没被检索到 | chunk、embedding、关键词混合 |
+| low-rank | 正确文档排在噪声后面 | rerank、metadata filter |
+| synthesis-error | 证据在上下文里但回答错 | prompt、引用约束、输出检查 |
+| over-answer | 无答案问题被编造回答 | refusal rule、grounding eval |
+
+这个表比“感觉 RAG 不准”更有用，因为它把问题定位到链路中的具体环节。
+
+## 延伸阅读
+
+- [RAG 是什么](../../../academy/ai-basics-for-everyone/what-is-rag/)：给非工程同事解释 RAG 的最短路径。
+- [幻觉与 Grounding](../../../academy/ai-basics-for-everyone/what-is-hallucination-grounding/)：理解为什么引用和拒答是 RAG 的核心能力。
+- [RAG Minimum System](../../../engineering/ai-developer-core/rag-minimum-system/)：从最小实现看完整链路。
+
 ## 参考
 
 - [Full Stack LLM Bootcamp](https://fullstackdeeplearning.com/llm-bootcamp/)
 - [Eugene Yan: LLM Patterns](https://eugeneyan.com/writing/llm-patterns/)
 - [DeepLearning.AI: Building Agentic RAG with LlamaIndex](https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex)
 - [OpenAI Agent Evals](https://platform.openai.com/docs/guides/agent-evals)
-

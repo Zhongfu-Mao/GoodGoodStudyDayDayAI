@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Using ChatGPT"
 date: 2026-04-25
 category: academy
 description: "从第一条 prompt 到 Projects、Custom GPTs、Skills 和 Workspace agents，整理 ChatGPT 使用能力的递进路线。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Using ChatGPT 的核心内容整理成可复习、可实践的 02 Using ChatGPT 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3UaiZFr75wVkOCJsHTd21x/54b2631e52804edcce8bc6ffbdd15722/Cover-using-chatgpt.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT"

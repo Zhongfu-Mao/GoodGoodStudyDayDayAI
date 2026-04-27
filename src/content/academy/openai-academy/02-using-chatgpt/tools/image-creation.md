@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Creating Images with ChatGPT"
 date: 2026-04-25
 category: academy
 description: "整理图像生成和图像编辑 prompt 的关键要素、迭代方法和使用边界。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Creating Images with ChatGPT 的核心内容整理成可复习、可实践的 02.6 Image Creation 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4as9dmBmMnIulWoUEIBsOj/2441164935c8d325daa552d91c71f131/image-creation.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT"

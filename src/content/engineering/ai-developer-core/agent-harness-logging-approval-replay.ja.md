@@ -128,6 +128,12 @@ Replay は eval にもなる。手書き benchmark より、実際の失敗 trac
 
 完成したら、trace schema と approval matrix を project document として保存する。OpenAI Agents SDK、Claude Code、ADK、自作 loop のどれを使っても、この harness 設計は再利用できる。
 
+## 関連基礎
+
+- [Agent とは何か](../../../academy/ai-basics-for-everyone/what-is-agent/)：Agent の基本語彙をそろえる。
+- [Agent = 状態、ツール、フィードバックループ](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/)：harness の log、approval、stop condition を system structure として見る。
+- [MCP とは何か](../../../academy/ai-basics-for-everyone/what-is-mcp/)：tool protocol に権限と audit が必要な理由を理解する。
+
 ## 参考
 
 - [Anthropic Engineering](https://www.anthropic.com/engineering)

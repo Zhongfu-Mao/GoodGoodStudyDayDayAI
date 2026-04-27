@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Getting Started with ChatGPT"
 date: 2026-04-25
 category: academy
 description: "从 ChatGPT 是什么、如何开始第一段对话、如何识别好用例，到语音输入的基础使用路线。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Getting Started with ChatGPT 的核心内容整理成可复习、可实践的 02.1 Getting Started with ChatGPT 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1Xk9723QKj2Vb9dC6RMebS/5e588c112042794e62178a224eaff418/getting-started.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT"

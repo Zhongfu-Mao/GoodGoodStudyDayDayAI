@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：高等教育スタッフ"
 date: 2026-04-25
 category: academy
 description: "高等教育スタッフが窓口対応、資料整理、業務文書にAIを使う方法を整理する。"
+plainSummary: "OpenAI Academyノート：高等教育スタッフ の要点を、04.6 Higher Education Staff の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4jkiAnrrcbHJFYO92cI5nB/b52f60860b8aa6e1a7e230f6d971eb02/university-staff.png?w=3840&q=90&fm=webp"
 tags:
   - "Operations"

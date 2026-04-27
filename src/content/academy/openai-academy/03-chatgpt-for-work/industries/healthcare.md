@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Healthcare"
 date: 2026-04-25
 category: academy
 description: "整理医疗健康场景中 ChatGPT 的临床工作流辅助价值和专业复核边界。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Healthcare 的核心内容整理成可复习、可实践的 03.12 Healthcare 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4PiE6YggOhzl7SQezkdnSK/d1cf00d0269d1f9c061d0d4d4c925372/healthcare.png?w=3840&q=90&fm=webp"
 lang: zh
 academy:

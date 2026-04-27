@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AI Basics: Token, Cost, and Model Choice</title>
+  <desc id="desc">Abstract cover for an introductory article about tokens, model cost, and model selection.</desc>
+  <defs>
+    <linearGradient id="bg" x1="160" y1="90" x2="1450" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#713f12"/>
+      <stop offset="0.48" stop-color="#ca8a04"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1230 210) rotate(135) scale(560)">
+      <stop stop-color="#fef08a" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fef08a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" rx="56" fill="url(#bg)"/>
+  <circle cx="1230" cy="210" r="560" fill="url(#glow)"/>
+  <rect x="72" y="72" width="1456" height="756" rx="44" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)"/>
+  <rect x="820" y="236" width="420" height="392" rx="34" fill="rgba(15,23,42,0.34)" stroke="rgba(255,255,255,0.24)" stroke-width="4"/>
+  <rect x="876" y="304" width="92" height="92" rx="24" fill="rgba(255,255,255,0.22)"/>
+  <rect x="1000" y="304" width="92" height="92" rx="24" fill="rgba(255,255,255,0.32)"/>
+  <rect x="1124" y="304" width="92" height="92" rx="24" fill="rgba(255,255,255,0.22)"/>
+  <path d="M876 482H1216" stroke="rgba(255,255,255,0.54)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M876 552H1088" stroke="rgba(255,255,255,0.32)" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="1324" cy="306" r="86" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.28)" stroke-width="4"/>
+  <path d="M1324 258V354M1282 306H1366" stroke="white" stroke-opacity="0.72" stroke-width="12" stroke-linecap="round"/>
+  <text x="120" y="154" fill="white" font-size="24" font-family="Avenir Next, Segoe UI, sans-serif" letter-spacing="5">AI BASICS FOR EVERYONE</text>
+  <text x="120" y="332" fill="white" font-size="88" font-weight="750" font-family="Avenir Next, Segoe UI, sans-serif">Tokens</text>
+  <text x="124" y="438" fill="rgba(255,255,255,0.82)" font-size="32" font-family="Avenir Next, Segoe UI, sans-serif">cost · context · model choice</text>
+  <rect x="120" y="692" width="500" height="72" rx="24" fill="rgba(15,23,42,0.34)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="154" y="737" fill="rgba(255,255,255,0.86)" font-size="26" font-family="Avenir Next, Segoe UI, sans-serif">Spend where quality matters</text>
+</svg>

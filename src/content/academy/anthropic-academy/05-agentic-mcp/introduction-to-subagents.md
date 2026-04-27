@@ -3,6 +3,8 @@ title: "Introduction to subagents"
 date: 2026-03-31
 category: academy
 description: "子代理（Subagents）架构介绍，多代理系统协调模式"
+plainSummary: "这篇笔记把 Introduction to subagents 的核心内容整理成可复习、可实践的 代理与 MCP 学习路径。"
+difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-subagents.svg"
 tags:
   - "MCP"

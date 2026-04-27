@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Research with ChatGPT"
 date: 2026-04-25
 category: academy
 description: "对比 ChatGPT search 和 deep research，整理从问题到有来源结论的研究工作流。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Research with ChatGPT 的核心内容整理成可复习、可实践的 02.5 Research with ChatGPT 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6vCtWVZH9dyolSQQhXzGyx/686abd0c6c92eb96129cb71f6ab7917e/search-deep-research.png?w=3840&q=90&fm=webp"
 tags:
   - "ChatGPT/Research"

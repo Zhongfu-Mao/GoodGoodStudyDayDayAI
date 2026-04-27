@@ -129,6 +129,12 @@ rag-lab/
 
 最后把失败样例写回 `eval_questions.jsonl`。RAG 的评测集应该随着真实失败增长，而不是一次性写完就不动。
 
+## 相关基础阅读
+
+- [RAG 是什么](../../../academy/ai-basics-for-everyone/what-is-rag/)：给非工程读者的概念入口。
+- [Embedding、向量相似度与 RAG](../../../foundations/ai-developer-core/embeddings-vector-rag/)：理解检索、排序和 grounding 的基础。
+- [幻觉与 Grounding](../../../academy/ai-basics-for-everyone/what-is-hallucination-grounding/)：把引用、拒答和证据边界放进产品要求。
+
 ## 参考
 
 - [Full Stack LLM Bootcamp](https://fullstackdeeplearning.com/llm-bootcamp/)

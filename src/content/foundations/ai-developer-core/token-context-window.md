@@ -48,6 +48,31 @@ draft: false
 
 这个实验的目标不是找到唯一答案，而是培养直觉：哪些信息值得进窗口，哪些信息应该被压缩、检索、缓存或丢弃。
 
+## 工程判断：什么时候该省 token
+
+并不是所有场景都应该把 token 压到最低。客服摘要、批量分类、轻量抽取这类任务，通常应该用短 prompt、短输出和便宜模型；法务审阅、代码修改、复杂研究这类任务，少给上下文反而会增加返工成本。真正的判断标准不是“越省越好”，而是“每个 token 是否能提高成功率或降低人工复核成本”。
+
+可以把 token 预算拆成四类：固定系统提示、用户输入、外部资料、预期输出。固定系统提示要短而稳定；用户输入要保留原意；外部资料要去重、排序并标来源；输出长度要和用户实际需要匹配。这样一拆，很多成本问题会从“模型太贵”变成“上下文组装太粗”。
+
+## 动手试试：建立预算表
+
+给自己的 AI 功能建一张 `token_budget.md`：
+
+| 区块 | 预计 token | 是否可压缩 | 压缩策略 |
+| --- | ---: | --- | --- |
+| system prompt | 300 | 是 | 删除重复规则 |
+| user input | 800 | 否 | 保留原文 |
+| retrieved context | 4000 | 是 | chunk 去重 + rerank |
+| output | 800 | 是 | 限制格式和字段 |
+
+上线前先用 20 个真实样例填表，再看平均值、P95 和失败样例。只看平均 token 容易误判，因为成本爆炸通常发生在长文档、长历史或工具返回异常时。
+
+## 延伸阅读
+
+- [Token、成本与模型选择](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：从非工程视角理解 token 为什么影响预算。
+- [Context、Memory 与 Projects](../../../academy/ai-basics-for-everyone/context-window-memory-projects/)：理解上下文窗口和长期资料管理的区别。
+- [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/)：把 token budget 放进完整上下文设计。
+
 ## 参考
 
 - [Stanford CS336: Language Modeling from Scratch](https://cs336.stanford.edu/)

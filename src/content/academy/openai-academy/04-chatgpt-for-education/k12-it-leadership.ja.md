@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：K-12 ITリーダーシップ"
 date: 2026-04-25
 category: academy
 description: "K-12 ITリーダーが導入、権限、セキュリティ、支援体制を設計する観点を整理する。"
+plainSummary: "OpenAI Academyノート：K-12 ITリーダーシップ の要点を、04.2 K-12 IT Leadership の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/39yOlHOo7Fgk0znkkTWutQ/be3222a261f6f6055bcfb6ee80b2a69b/it-leadership.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

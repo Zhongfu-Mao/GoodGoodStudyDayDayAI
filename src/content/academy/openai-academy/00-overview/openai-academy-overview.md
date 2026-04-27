@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：学习路线总览"
 date: 2026-04-25
 category: academy
 description: "整理 OpenAI Academy 的公开学习结构，并把它映射成适合本站长期维护的课程笔记路线。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：学习路线总览 的核心内容整理成可复习、可实践的 00 学习路线总览 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3pOt7hjYa1nUIIMMXdoEhD/b6493d0ba6756155a3ef880758e0a0b0/Academy-SEO.png?w=1600&h=900&fit=fill"
 tags:
   - "AI/Workflow"

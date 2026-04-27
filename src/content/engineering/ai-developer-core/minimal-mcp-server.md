@@ -117,6 +117,12 @@ MCP 让 Agent 可以连接外部工具和数据源。对开发者来说，它的
 
 如果后续要加写入能力，先新增一个单独 server 或单独权限层。例如 `suggest_article_patch` 只生成 diff，不直接写文件；真正写入必须经过人工审批。
 
+## 相关基础阅读
+
+- [MCP 是什么](../../../academy/ai-basics-for-everyone/what-is-mcp/)：先建立非实现层面的协议心智模型。
+- [Introduction to Model Context Protocol](../../../academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)：补 Anthropic Academy 的 MCP 基础说明。
+- [Agent = 状态、工具与反馈循环](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/)：理解 MCP 为什么需要工具边界和停止条件。
+
 ## 参考
 
 - [Anthropic Engineering](https://www.anthropic.com/engineering)

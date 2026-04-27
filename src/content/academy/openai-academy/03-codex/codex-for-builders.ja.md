@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：Codex"
 date: 2026-04-25
 category: academy
 description: "Codexを開発者向けAI協働環境として理解するための入口を整理する。"
+plainSummary: "OpenAI Academyノート：Codex の要点を、03 Codex の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: intermediate
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4a0UlJKsQXDLL6k7khzEmr/ddac544c58137463e3963b22de3317c5/Cover-codex.png?w=3840&q=90&fm=webp"
 tags:
   - "Codex"

@@ -3,6 +3,8 @@ title: "OpenAI Academyノート：学生"
 date: 2026-04-25
 category: academy
 description: "学生がChatGPTを代行ではなく学習パートナーとして使う方法を整理する。"
+plainSummary: "OpenAI Academyノート：学生 の要点を、04.8 Students の学習ノートとして実務で試せる手順と確認観点に整理します。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/vbfAxGseczQBheNKzTqUQ/07b4a51033d2c9dee56d9429969e12a8/students.png?w=3840&q=90&fm=webp"
 lang: ja
 academy:

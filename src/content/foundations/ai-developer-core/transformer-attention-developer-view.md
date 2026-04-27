@@ -42,10 +42,31 @@ Attention 告诉我们：上下文不是越多越好，而是越可寻址越好�
 
 这个实验能把 attention 从抽象概念变成工程直觉：模型不是只接受命令，它是在上下文中寻找可复用模式。
 
+## 工程判断：让关键信息可寻址
+
+开发者不需要把 attention 公式背下来，但需要把“可寻址性”变成上下文设计原则。模型更容易使用有标题、有字段、有来源、有顺序的信息；更难使用散在段落里的约束、混在示例里的反例、或者互相矛盾的自然语言说明。
+
+在复杂任务里，可以把上下文拆成几个清楚区块：任务目标、输入资料、不可违反的规则、参考示例、输出 schema、检查清单。每个区块的名字要稳定，内容要尽量少交叉。这样做不是为了美观，而是为了减少模型在生成时“看错位置”的概率。
+
+## 动手试试：比较三种上下文结构
+
+拿同一个信息抽取任务，准备三版 prompt：
+
+1. 一整段自然语言说明。
+2. Markdown 标题 + bullet list。
+3. XML 或 JSON 风格的明确区块。
+
+用同一批 20 个样例测试字段缺失率、格式错误率和人工修改时间。你会很快看到：结构清楚的 prompt 不一定更短，但通常更稳定，也更容易评测。
+
+## 延伸阅读
+
+- [Prompt 是什么](../../../academy/ai-basics-for-everyone/what-is-prompt/)：把 prompt 当作上下文组织方式来理解。
+- [结构化输出是什么](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：让输出 schema 也成为模型可见的模式。
+- [Reliable LLM Call：超时、重试与 JSON 修复](../../../engineering/ai-developer-core/reliable-llm-call-timeout-retry-json-repair/)：把上下文结构和工程兜底连起来。
+
 ## 参考
 
 - [Stanford CS224N](https://web.stanford.edu/class/cs224n/)
 - [Stanford CS336](https://cs336.stanford.edu/)
 - [Karpathy Neural Networks: Zero to Hero](https://karpathy.ai/zero-to-hero.html)
 - [Anthropic Prompt Engineering Interactive Tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial)
-

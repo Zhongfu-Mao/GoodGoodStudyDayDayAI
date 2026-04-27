@@ -3,6 +3,8 @@ title: "OpenAI Academy 笔记：Using Skills"
 date: 2026-04-25
 category: academy
 description: "把 Skills 理解成可共享、可版本化的工作流说明书，用于重复任务的稳定执行。"
+plainSummary: "这篇笔记把 OpenAI Academy 笔记：Using Skills 的核心内容整理成可复习、可实践的 02.9 Skills 学习路径。"
+difficulty: beginner
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5HjfQo619jC918nhDM0S4p/a788f0e356c534e61f30e6607402b5ab/skills.png?w=3840&q=90&fm=webp"
 tags:
   - "AI/Workflow"
