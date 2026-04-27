@@ -13,8 +13,8 @@ const labels = {
   ja: {
     enable: '透明アクアリウムをオンにする',
     disable: '透明アクアリウムを一時停止',
-    tooltipOn: 'Aquarium on',
-    tooltipOff: 'Aquarium paused',
+    tooltipOn: 'アクアリウムは表示中',
+    tooltipOff: 'アクアリウムは一時停止中',
   },
 } as const;
 
@@ -34,7 +34,6 @@ const text = labels[locale];
     data-tooltip={text.tooltipOff}
     aria-label={text.enable}
     aria-pressed="false"
-    title={text.enable}
   >
     <svg
       viewBox="0 0 24 24"
@@ -197,7 +196,6 @@ const text = labels[locale];
       root.classList.toggle('is-active', enabled);
       button.setAttribute('aria-pressed', enabled ? 'true' : 'false');
       button.setAttribute('aria-label', label);
-      button.setAttribute('title', label);
       button.setAttribute('data-tooltip', enabled ? tooltipOn : tooltipOff);
     }
 

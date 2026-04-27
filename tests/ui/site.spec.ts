@@ -35,6 +35,7 @@ test.describe('published site UI', () => {
     await expect(
       page.getByRole('heading', { level: 1, name: /^(迷わず学び、使える形へ|AI 学習と実践のノート)$/ }),
     ).toBeVisible();
+    await expect(page.locator('[data-aquarium-toggle]')).toHaveAttribute('data-tooltip', /アクアリウムは/);
   });
 
   test('academy article keeps localized sibling links and article chrome', async ({ page }) => {
@@ -114,17 +115,28 @@ test.describe('published site UI', () => {
     await weeklyFilter.click();
     await expect(weeklyFilter).toHaveAttribute('aria-pressed', 'true');
 
+    const monthFilterTooltip = page.locator('[data-month-filter-tooltip]');
+    await expect(monthFilterTooltip).toHaveClass(/ui-tooltip-bottom/);
+    await expect(monthFilterTooltip).toHaveAttribute('data-tooltip', '按月份筛选图报');
+    await expect(page.locator('[data-month-filter]')).not.toHaveAttribute('title', /./);
+
     const visibleCards = page.locator('[data-gallery-card]:not([hidden])');
     await expect.poll(() => visibleCards.count()).toBeGreaterThan(0);
     expect(await visibleCards.count()).toBeLessThanOrEqual(totalCards);
 
-    await visibleCards.locator('[data-preview-trigger]').first().click();
+    const previewTrigger = visibleCards.locator('[data-preview-trigger]').first();
+    await expect(previewTrigger).toHaveClass(/ui-tooltip-inset-top/);
+    await expect(previewTrigger).toHaveAttribute('data-tooltip', /预览大图：/);
+    await expect(previewTrigger).not.toHaveAttribute('title', /./);
+
+    await previewTrigger.click();
 
     const dialog = page.locator('[data-gallery-dialog]');
     await expect(dialog).toHaveAttribute('open', '');
     await expect(dialog.locator('[data-dialog-title]')).not.toHaveText('');
     await expect(dialog.locator('[data-dialog-image]')).toHaveAttribute('src', /\/images\/radar\//);
     await expect(dialog.locator('[data-dialog-close]')).toHaveAttribute('data-tooltip', '关闭预览');
+    await expect(page.locator('.ui-tooltip[title]')).toHaveCount(0);
 
     await dialog.locator('[data-dialog-close]').click();
     await expect(dialog).not.toHaveAttribute('open', '');

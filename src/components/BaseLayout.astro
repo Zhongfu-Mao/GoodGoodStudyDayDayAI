@@ -148,7 +148,6 @@ const radarSubnavTooltip = (label: string) =>
                 href={item.href}
                 data-radar-subnav={item.hash}
                 data-tooltip={radarSubnavTooltip(item.label)}
-                title={radarSubnavTooltip(item.label)}
                 class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom rounded-xl px-3.5 py-1.5 text-sm"
               >
                 {item.label}
@@ -202,7 +201,6 @@ const radarSubnavTooltip = (label: string) =>
 
             button.setAttribute('aria-label', label);
             button.setAttribute('data-tooltip', label);
-            button.setAttribute('title', label);
           });
         }
 

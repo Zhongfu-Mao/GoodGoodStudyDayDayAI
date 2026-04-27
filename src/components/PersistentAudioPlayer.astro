@@ -255,7 +255,6 @@
 
           panel && panel.setAttribute('aria-label', text.region);
           close && close.setAttribute('aria-label', text.close);
-          close && close.setAttribute('title', text.close);
           close && close.setAttribute('data-tooltip', text.close);
           progress && progress.setAttribute('aria-label', text.progress);
           articleLinks.forEach(function (link) {
@@ -356,7 +355,6 @@
 
           if (toggle) {
             toggle.setAttribute('aria-label', isPlaying ? text.pause : text.play);
-            toggle.setAttribute('title', isPlaying ? text.pause : text.play);
             toggle.setAttribute('data-tooltip', isPlaying ? text.pause : text.play);
           }
           if (playIcon) playIcon.style.display = isPlaying ? 'none' : '';

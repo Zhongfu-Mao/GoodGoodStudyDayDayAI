@@ -70,7 +70,6 @@ const filterTooltip = {
               class="theme-chip theme-chip-link theme-segment-active ui-tooltip ui-tooltip-bottom rounded-xl px-3 py-1.5 text-xs"
               data-cadence-filter="all"
               data-tooltip={filterTooltip.all}
-              title={filterTooltip.all}
               aria-pressed="true"
             >
               {text.allCadences}
@@ -81,7 +80,6 @@ const filterTooltip = {
                 class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom rounded-xl px-3 py-1.5 text-xs"
                 data-cadence-filter={cadence}
                 data-tooltip={filterTooltip.cadence(cadenceLabels[cadence][locale])}
-                title={filterTooltip.cadence(cadenceLabels[cadence][locale])}
                 aria-pressed="false"
               >
                 {cadenceLabels[cadence][locale]}
@@ -89,18 +87,23 @@ const filterTooltip = {
             ))}
           </div>
           <label class="sr-only" for="radar-gallery-month">{text.monthFilter}</label>
-          <select
-            id="radar-gallery-month"
-            class="theme-button-soft rounded-xl px-3 py-1.5 text-xs"
-            data-month-filter
-            title={filterTooltip.month}
-            aria-label={filterTooltip.month}
+          <span
+            class="ui-tooltip ui-tooltip-bottom inline-flex"
+            data-month-filter-tooltip
+            data-tooltip={filterTooltip.month}
           >
-            <option value="all">{text.allMonths}</option>
-            {months.map(([value, label]) => (
-              <option value={value}>{label}</option>
-            ))}
-          </select>
+            <select
+              id="radar-gallery-month"
+              class="theme-button-soft rounded-xl px-3 py-1.5 text-xs"
+              data-month-filter
+              aria-label={filterTooltip.month}
+            >
+              <option value="all">{text.allMonths}</option>
+              {months.map(([value, label]) => (
+                <option value={value}>{label}</option>
+              ))}
+            </select>
+          </span>
         </div>
       </div>
     </section>
@@ -127,7 +130,6 @@ const filterTooltip = {
             class="theme-button-soft ui-tooltip ui-tooltip-left shrink-0 rounded-xl px-3 py-2 text-sm"
             data-dialog-close
             data-tooltip={text.closePreview}
-            title={text.closePreview}
             aria-label={text.closePreview}
           >
             x
@@ -142,7 +144,6 @@ const filterTooltip = {
             class="theme-action-primary ui-tooltip rounded-xl px-4 py-2 text-sm font-semibold"
             data-dialog-link
             data-tooltip={text.openArticle}
-            title={text.openArticle}
           >
             {text.openArticle}
           </a>

@@ -234,13 +234,32 @@
   .ui-tooltip:hover::before,
   .ui-tooltip:hover::after,
   .ui-tooltip:focus-visible::before,
-  .ui-tooltip:focus-visible::after {
+  .ui-tooltip:focus-visible::after,
+  .ui-tooltip:focus-within::before,
+  .ui-tooltip:focus-within::after {
     opacity: 1;
     transform: translate(-50%, 0) rotate(45deg);
   }
 
   .ui-tooltip:hover::after,
-  .ui-tooltip:focus-visible::after {
+  .ui-tooltip:focus-visible::after,
+  .ui-tooltip:focus-within::after {
+    transform: translate(-50%, 0);
+  }
+
+  .ui-tooltip-inset-top::after {
+    top: 0.75rem;
+    bottom: auto;
+    transform: translate(-50%, -0.28rem);
+  }
+
+  .ui-tooltip-inset-top::before {
+    display: none;
+  }
+
+  .ui-tooltip-inset-top:hover::after,
+  .ui-tooltip-inset-top:focus-visible::after,
+  .ui-tooltip-inset-top:focus-within::after {
     transform: translate(-50%, 0);
   }
 
@@ -260,12 +279,14 @@
   }
 
   .ui-tooltip-bottom:hover::before,
-  .ui-tooltip-bottom:focus-visible::before {
+  .ui-tooltip-bottom:focus-visible::before,
+  .ui-tooltip-bottom:focus-within::before {
     transform: translate(-50%, 0) rotate(45deg);
   }
 
   .ui-tooltip-bottom:hover::after,
-  .ui-tooltip-bottom:focus-visible::after {
+  .ui-tooltip-bottom:focus-visible::after,
+  .ui-tooltip-bottom:focus-within::after {
     transform: translate(-50%, 0);
   }
 
@@ -289,12 +310,14 @@
   }
 
   .ui-tooltip-left:hover::before,
-  .ui-tooltip-left:focus-visible::before {
+  .ui-tooltip-left:focus-visible::before,
+  .ui-tooltip-left:focus-within::before {
     transform: translate(0, -50%) rotate(45deg);
   }
 
   .ui-tooltip-left:hover::after,
-  .ui-tooltip-left:focus-visible::after {
+  .ui-tooltip-left:focus-visible::after,
+  .ui-tooltip-left:focus-within::after {
     transform: translate(0, -50%);
   }
 
@@ -316,12 +339,14 @@
   }
 
   .ui-tooltip-right:hover::before,
-  .ui-tooltip-right:focus-visible::before {
+  .ui-tooltip-right:focus-visible::before,
+  .ui-tooltip-right:focus-within::before {
     transform: translate(0, -50%) rotate(45deg);
   }
 
   .ui-tooltip-right:hover::after,
-  .ui-tooltip-right:focus-visible::after {
+  .ui-tooltip-right:focus-visible::after,
+  .ui-tooltip-right:focus-within::after {
     transform: translate(0, -50%);
   }
 

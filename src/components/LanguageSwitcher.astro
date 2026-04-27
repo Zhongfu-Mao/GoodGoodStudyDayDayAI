@@ -31,7 +31,6 @@ function localizedPath(targetLocale: Locale) {
     <a
       href={localizedPath(locale)}
       data-tooltip={tooltips[currentLocale][locale]}
-      title={tooltips[currentLocale][locale]}
       class:list={[
         'ui-tooltip ui-tooltip-bottom inline-flex items-center whitespace-nowrap rounded-xl px-3 py-1 font-medium transition',
         locale === currentLocale

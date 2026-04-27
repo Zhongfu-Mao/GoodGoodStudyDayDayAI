@@ -61,7 +61,7 @@ const displayTitle = cadence === 'daily'
     preview ? (
       <button
         type="button"
-        class="relative block w-full overflow-hidden bg-[#f5efe4] text-left"
+        class="ui-tooltip ui-tooltip-inset-top relative block w-full overflow-hidden bg-[#f5efe4] text-left"
         data-preview-trigger
         data-image-src={coverImage}
         data-image-alt={previewAlt}
@@ -69,7 +69,6 @@ const displayTitle = cadence === 'daily'
         data-meta={`${cadenceLabel} · ${dateLabel}`}
         data-href={href}
         data-tooltip={previewTooltip}
-        title={previewTooltip}
         aria-label={locale === 'ja' ? '画像をプレビュー' : '预览大图'}
       >
         <img
