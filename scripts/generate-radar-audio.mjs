@@ -1,8 +1,10 @@
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import { parseFrontmatter, updateFrontmatterValue } from './lib/frontmatter.mjs';
 import { extractSectionBlock, extractShortParagraphs, extractTopSignals } from './lib/markdown.mjs';
+import { compressSpeechMp3 } from './lib/audio-compression.mjs';
 import {
   addSourceFile,
   createNotebook,
@@ -150,7 +152,7 @@ async function main() {
   const audioPath = path.join(AUDIO_DIR, `${slug}.mp3`);
   const publicAudioUrl = `/audio/radar/${slug}.mp3`;
   const notebookTitle = `${meta.title} · Audio`;
-  const briefMemoPath = path.join('/tmp', `${slug}.brief.txt`);
+  const briefMemoPath = path.join(os.tmpdir(), `${slug}.brief.txt`);
 
   await mkdir(AUDIO_DIR, { recursive: true });
 
@@ -191,6 +193,8 @@ async function main() {
 
     console.log(`Downloading audio to ${path.relative(WORKSPACE_ROOT, audioPath)}...`);
     await runNotebooklm(['download', 'audio', '--notebook', notebookId, '--force', audioPath, '--json']);
+    console.log('Compressing audio to MP3 mono 64k...');
+    await compressSpeechMp3(audioPath);
 
     if (meta.audioUrl !== publicAudioUrl) {
       const latestRaw = await readFile(targetFile, 'utf8');

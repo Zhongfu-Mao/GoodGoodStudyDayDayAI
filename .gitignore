@@ -86,6 +86,7 @@ scripts/temp/
 scripts/output/
 scripts/*.local.*
 scripts/**/*.local.*
+public/audio/radar/.radar-audio-*/
 
 # Temporary/private artifacts
 *.tmp
