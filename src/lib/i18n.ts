@@ -202,6 +202,10 @@ export const categoryPage = {
     defaultListNote: '这里汇总了本分区文章。',
     academyLead: '按课程系列和模块浏览 AI Academy。',
     academyBrowse: '课程系列与模块列表。',
+    academyRoutesEyebrow: 'Learning Routes',
+    academyRoutesTitle: '先按角色选择路线',
+    academyRoutesDescription:
+      '如果不知道从哪篇 Academy 笔记开始，可以先选一条路线。三条路线分别面向非工程朋友、工程朋友、教育与业务推广，把已有课程内容串成可执行的阅读顺序。',
     academySeries: '课程系列',
     academyModule: '模块',
     academyTrack: '学习轨道',
@@ -224,6 +228,10 @@ export const categoryPage = {
     defaultListNote: 'この区分の記事を一覧しています。',
     academyLead: 'AI Academy をシリーズとモジュールごとに一覧できます。',
     academyBrowse: 'シリーズとモジュールの一覧です。',
+    academyRoutesEyebrow: 'Learning Routes',
+    academyRoutesTitle: 'まず役割から選ぶ',
+    academyRoutesDescription:
+      'どの記事から読めばよいか迷う場合は、先にルートを選べます。非エンジニア、エンジニア、教育・業務展開の 3 つの視点で、既存の Academy コンテンツを読み順に整理しています。',
     academySeries: 'シリーズ',
     academyModule: 'モジュール',
     academyTrack: '学習トラック',
@@ -374,6 +382,9 @@ export const startPage = {
       { title: '知道怎么用', description: '不追求一步到位，先学会把 AI 放进搜索、写作、整理、学习和工作流。' },
       { title: '能继续读下去', description: '读 AI 雷达和 Academy 时不再被术语劝退，知道哪些内容先略过也没关系。' },
     ],
+    basicsTitle: '先把 7 个高频概念打底',
+    basicsDescription:
+      '这组 AI Basics for Everyone 是本站的新手入口层：每篇先用人话解释一个核心概念，再接到已有 Academy、工程实践或底层原理内容，帮助你从“听过这个词”走到“知道下一篇该读什么”。',
     stepsTitle: '从 0 到能看懂本站',
     steps: [
       {
@@ -442,6 +453,9 @@ export const startPage = {
       { title: '使い方が見える', description: '検索、文章、整理、学習、仕事の流れに AI を入れる入口をつかみます。' },
       { title: '読み続けられる', description: 'AI Radar や Academy を読んでも、どこを深く読みどこを流すか判断できます。' },
     ],
+    basicsTitle: 'まず 7 つの頻出概念を押さえる',
+    basicsDescription:
+      'AI Basics for Everyone は、このサイトの入口となる小さなシリーズです。各記事で core concept をやさしく説明し、Academy、Engineering、Foundations の次に読む記事へつなげます。',
     stepsTitle: '0 からサイトを読める状態へ',
     steps: [
       {

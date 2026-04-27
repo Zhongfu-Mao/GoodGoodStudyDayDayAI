@@ -19,10 +19,27 @@ const { locale, category } = Astro.props as {
 };
 
 const entries = await getEntriesForLocale(locale);
+type EntryListItem = (typeof entries)[number];
+
+const academyLearningRouteSeries = 'AI Academy Learning Routes';
+const sortByAcademyOrder = (a: EntryListItem, b: EntryListItem) => {
+  const aOrder = a.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
+  const bOrder = b.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
+
+  return aOrder - bOrder || a.entry.data.title.localeCompare(b.entry.data.title, locale === 'ja' ? 'ja' : 'zh-Hans');
+};
+
 const categoryEntries = entries.filter((item) => item.entry.data.category === category);
 const isRadar = category === 'radar';
 const isAcademy = category === 'academy';
-const academyCatalogGroups = isAcademy ? await getAcademyCatalogGroups(locale) : [];
+const academyCatalogGroups = isAcademy
+  ? (await getAcademyCatalogGroups(locale)).filter((group) => group.series !== academyLearningRouteSeries)
+  : [];
+const academyRouteEntries = isAcademy
+  ? categoryEntries
+      .filter((item) => item.entry.data.academy?.series === academyLearningRouteSeries)
+      .sort(sortByAcademyOrder)
+  : [];
 const legacyAcademyEntries = isAcademy ? categoryEntries.filter((item) => !item.entry.data.academy) : [];
 
 const radarSections = radarCadences.map((cadence) => {
@@ -94,6 +111,23 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
     </div>
   ) : isAcademy ? (
     <div class="grid gap-8">
+      {academyRouteEntries.length > 0 ? (
+        <section class="theme-panel-strong rounded-[1.5rem] p-6 shadow-glow">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.academyRoutesEyebrow}</p>
+              <h3 class="theme-heading mt-2 text-3xl font-semibold">{text.academyRoutesTitle}</h3>
+              <p class="theme-muted mt-3 max-w-3xl text-sm leading-6">{text.academyRoutesDescription}</p>
+            </div>
+            <p class="theme-muted text-sm">{text.itemCount(academyRouteEntries.length)}</p>
+          </div>
+
+          <div class="mt-6 grid gap-5 md:grid-cols-3">
+            {academyRouteEntries.map((item) => <PostCard item={item} locale={locale} />)}
+          </div>
+        </section>
+      ) : null}
+
       {academyCatalogGroups.map((seriesGroup) => (
         <section id={slugifyTag(seriesGroup.series)} class="theme-panel rounded-[1.5rem] p-6">
           <div class="flex flex-wrap items-end justify-between gap-4">
