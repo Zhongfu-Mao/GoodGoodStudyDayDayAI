@@ -1,5 +1,5 @@
 ---
-title: "AI Radar Monthly: April 2026 (through 04-22)"
+title: "AI レーダー月報：2026年4月（04-22 まで）"
 date: 2026-04-22
 category: radar
 cadence: monthly

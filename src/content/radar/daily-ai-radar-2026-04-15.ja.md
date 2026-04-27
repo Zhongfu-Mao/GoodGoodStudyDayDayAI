@@ -1,5 +1,5 @@
 ---
-title: "AI Radar Daily: 2026-04-15"
+title: "AI レーダー日報：2026-04-15"
 date: 2026-04-15
 category: radar
 cadence: daily
