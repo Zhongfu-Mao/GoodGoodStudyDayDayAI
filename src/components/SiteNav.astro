@@ -11,23 +11,23 @@ const navItems = collectionNames.map((category) => ({
 }));
 ---
 
-<nav class="flex w-full flex-wrap items-center justify-center gap-2.5 2xl:flex-nowrap">
+<nav class="flex w-full flex-wrap items-center justify-center gap-2.5 xl:flex-nowrap xl:gap-1.5 xl:overflow-x-auto 2xl:gap-2.5" data-site-nav>
   <a
     href={homePath(locale)}
-    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2.5 text-[15px] 2xl:px-5"
+    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
   >
     {siteNav[locale].home}
   </a>
   <a
     href={startPath(locale)}
-    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2.5 text-[15px] 2xl:px-5"
+    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
   >
     {siteNav[locale].start}
   </a>
   {navItems.map((item) => (
     <a
       href={item.href}
-      class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-4 py-2.5 text-[15px] 2xl:px-5"
+      class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
     >
       {item.label}
     </a>

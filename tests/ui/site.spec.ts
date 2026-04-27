@@ -59,6 +59,28 @@ test.describe('published site UI', () => {
     await expect(page.locator('article[data-pagefind-body]')).toContainText('学習の要点');
   });
 
+  test('Japanese radar header stays compact and localized on desktop', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'desktop header layout only');
+
+    await page.setViewportSize({ width: 1366, height: 768 });
+    await gotoApp(page, '/ja/radar/');
+
+    const header = page.locator('header');
+    const siteNav = header.locator('[data-site-nav]:visible');
+    const headerSearch = header.locator('form[role="search"] input[name="q"]:visible').first();
+
+    await expect(siteNav.getByRole('link', { name: 'ホーム', exact: true })).toBeVisible();
+    await expect(siteNav.getByRole('link', { name: 'はじめに', exact: true })).toBeVisible();
+    await expect(siteNav.getByRole('link', { name: 'AI レーダー', exact: true })).toBeVisible();
+    await expect(siteNav.getByRole('link', { name: '実践', exact: true })).toBeVisible();
+    await expect(siteNav.getByRole('link', { name: '基礎', exact: true })).toBeVisible();
+    await expect(headerSearch).toHaveAttribute('placeholder', '検索…');
+    await expect(page.locator('[data-radar-subnav="#weekly"]')).toHaveText('週次');
+
+    const navBox = await siteNav.boundingBox();
+    expect(navBox?.height).toBeLessThan(58);
+  });
+
   test('radar archive switches cadence sections in the browser', async ({ page }) => {
     await gotoApp(page, '/radar/');
 

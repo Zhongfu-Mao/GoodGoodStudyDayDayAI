@@ -5,19 +5,19 @@ export const collectionNames = ['radar', 'academy', 'engineering', 'foundations'
 export type CollectionName = (typeof collectionNames)[number];
 
 export const collectionLabels: Record<CollectionName, { zh: string; ja: string }> = {
-  radar: { zh: 'AI 雷达', ja: 'AI Radar' },
+  radar: { zh: 'AI 雷达', ja: 'AI レーダー' },
   academy: { zh: 'AI Academy', ja: 'AI Academy' },
-  engineering: { zh: '工程实践', ja: 'エンジニアリング実践' },
-  foundations: { zh: '底层原理', ja: '基礎原理' },
+  engineering: { zh: '工程实践', ja: '実践' },
+  foundations: { zh: '底层原理', ja: '基礎' },
 };
 
 export const radarCadences = ['daily', 'weekly', 'monthly'] as const;
 export type RadarCadence = (typeof radarCadences)[number];
 
 export const cadenceLabels: Record<RadarCadence, { zh: string; ja: string }> = {
-  daily: { zh: 'Daily', ja: 'Daily' },
-  weekly: { zh: 'Weekly', ja: 'Weekly' },
-  monthly: { zh: 'Monthly', ja: 'Monthly' },
+  daily: { zh: 'Daily', ja: '日次' },
+  weekly: { zh: 'Weekly', ja: '週次' },
+  monthly: { zh: 'Monthly', ja: '月次' },
 };
 
 const rawBase = import.meta.env.BASE_URL || '/';
