@@ -3,8 +3,7 @@ title: "Math for AI 笔记：向量空间与余弦相似度"
 date: 2026-04-04
 category: foundations
 tags:
-  - Agent
-  - Math
+  - "Agent"
 lang: zh
 draft: false
 ---

@@ -5,9 +5,6 @@ category: academy
 description: "Skillsを再利用可能なワークフロー仕様として捉え、反復作業を安定化する方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5HjfQo619jC918nhDM0S4p/a788f0e356c534e61f30e6607402b5ab/skills.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "Skills"
   - "AI/Workflow"
 lang: ja
 academy:

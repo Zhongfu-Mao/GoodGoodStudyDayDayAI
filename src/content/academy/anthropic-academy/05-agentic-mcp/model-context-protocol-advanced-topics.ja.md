@@ -5,9 +5,6 @@ category: academy
 description: "MCP を実運用へ広げるときに出てくる設計論点や、安全性・拡張性の観点を整理した応用ノートです。"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/model-context-protocol-advanced-topics.svg"
 tags:
-  - "Anthropic Academy"
-  - "講座ノート"
-  - "MCP/Advanced"
   - "Agents"
 lang: ja
 academy:

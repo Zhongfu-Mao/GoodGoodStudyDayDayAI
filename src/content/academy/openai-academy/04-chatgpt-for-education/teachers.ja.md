@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "教師が授業設計、差別化、フィードバック、振り返りにChatGPTを使う方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3oIacja57T4O2dlR52RbVJ/efd304faeede3b0e448e377cee270bb1/teachers.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Education"
-  - "Teaching"
 lang: ja
 academy:
   series: "OpenAI Academy"

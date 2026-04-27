@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理高校教师如何用 ChatGPT 支持课程设计、反馈、研究辅助和学术沟通。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/QJTDrIOMOna26jJo6kUpj/fac5f8764e968d377fb130e5f177dc7d/faculty-professors.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Education"
-  - "Faculty"
 lang: zh
 academy:
   series: "OpenAI Academy"

@@ -5,8 +5,6 @@ category: academy
 description: "整理 Builder Bootcamp 的学习路线：Agents、Evals、Codex、RAG、Production and Optimization。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Building with AI"
   - "AI Engineering"
 lang: zh

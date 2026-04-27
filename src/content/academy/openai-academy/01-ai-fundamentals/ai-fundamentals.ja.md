@@ -5,9 +5,6 @@ category: academy
 description: "AI、モデル、LLM、学習プロセス、reasoningモデルの基礎を日本語で整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "AI/Fundamentals"
   - "LLM"
 lang: ja
 academy:

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理课程与教学设计团队如何用 ChatGPT 辅助标准对齐、rubric、材料改写和评价设计。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2yQ8xu6mS72v7qWA3ToiSU/cd1c9e16fd454fff099297f3087b2a65/curriculum-instruction.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Education"
-  - "Curriculum"
 lang: zh
 academy:
   series: "OpenAI Academy"

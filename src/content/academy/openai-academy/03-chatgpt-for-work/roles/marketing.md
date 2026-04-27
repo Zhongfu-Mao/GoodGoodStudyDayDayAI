@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理营销团队如何用 ChatGPT 从洞察、brief、资产、投放到复盘形成闭环。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/14MipR48ayyvUsaXwsG5Yr/c9a99c855ff1663fdd0c9d07b40cb8f2/marketing.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Work"
-  - "Marketing"
 lang: zh
 academy:
   series: "OpenAI Academy"

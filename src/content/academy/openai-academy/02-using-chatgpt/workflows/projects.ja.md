@@ -5,9 +5,6 @@ category: academy
 description: "Projectsを継続テーマの文脈コンテナとして使う方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/L0cSoOsBFybec07VSIDJw/27647c6494be7191e0e2168f5bf27044/projects.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Projects"
   - "AI/Workflow"
 lang: ja
 academy:

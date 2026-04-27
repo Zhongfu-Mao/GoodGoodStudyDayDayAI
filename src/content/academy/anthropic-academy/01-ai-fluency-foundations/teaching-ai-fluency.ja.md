@@ -5,9 +5,6 @@ category: academy
 description: "AI を教室や研修で扱うときに、ツール紹介で終わらず思考プロセスまで教えるための整理です。"
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/teaching-ai-fluency.svg"
 tags:
-  - "Anthropic Academy"
-  - "講座ノート"
-  - "AI Fluency/教育"
   - "Education"
 lang: ja
 academy:

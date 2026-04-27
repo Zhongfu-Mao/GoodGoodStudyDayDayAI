@@ -4,10 +4,9 @@ date: 2026-04-11
 category: radar
 cadence: daily
 tags:
-  - Agent
-  - Claude
-  - Perplexity
-  - RAG
+  - "Agent"
+  - "Claude"
+  - "RAG"
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-04-11.ja-infographic.png
 draft: false

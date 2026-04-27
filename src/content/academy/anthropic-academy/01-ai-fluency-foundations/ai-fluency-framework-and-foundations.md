@@ -4,11 +4,6 @@ date: 2026-03-31
 category: academy
 description: "AI Fluency 4Ds 框架的核心理论课程，涵盖授权-勤勉循环与描述-辨别循环"
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/ai-fluency-framework-and-foundations.svg"
-tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "AI/Fluency/框架"
-  - "AI/Fluency/基础"
 lang: zh
 academy:
   series: "Anthropic Academy"

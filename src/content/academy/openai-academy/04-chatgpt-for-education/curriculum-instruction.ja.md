@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "カリキュラム設計と授業改善にAIを使う方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2yQ8xu6mS72v7qWA3ToiSU/cd1c9e16fd454fff099297f3087b2a65/curriculum-instruction.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Education"
-  - "Curriculum"
 lang: ja
 academy:
   series: "OpenAI Academy"

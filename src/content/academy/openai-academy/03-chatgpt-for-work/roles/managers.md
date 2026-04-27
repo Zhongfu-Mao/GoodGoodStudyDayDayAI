@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理管理者如何用 ChatGPT 支持战略判断、沟通、规划、复盘和决策准备。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/54U640Rg1XlL5A9UxhX8DY/576d590f1443e4abe0e85b94e79b38c3/managers.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Work"
-  - "Management"
 lang: zh
 academy:
   series: "OpenAI Academy"

@@ -5,8 +5,6 @@ category: academy
 description: "ChatGPTの最初の会話、良いユースケース、音声入力までの入門ルートを整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1Xk9723QKj2Vb9dC6RMebS/5e588c112042794e62178a224eaff418/getting-started.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "ChatGPT"
   - "AI/Workflow"
 lang: ja

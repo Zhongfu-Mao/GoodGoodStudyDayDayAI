@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理 K-12 管理者在 ChatGPT 导入中的策略、政策、培训和运营责任。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6WP3cXplfNeihB89e5eYy9/e33b5e2ab2dbe937cbdc2519d49cb26e/district-admins.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Education"
-  - "K-12"
 lang: zh
 academy:
   series: "OpenAI Academy"

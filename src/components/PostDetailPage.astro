@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
-import { getAcademyCatalogAnchor, getAcademyCatalogGroupName, getEntriesForLocale } from '../lib/content';
+import { getAcademyCatalogAnchor, getAcademyCatalogGroupName, getEntriesForLocale, getPublicTagsForEntry } from '../lib/content';
 import {
   articlePath,
   categoryPath,
@@ -99,6 +99,7 @@ const isRadar = entry.data.category === 'radar';
 const difficulty = getEntryDifficulty(entry);
 const readingMinutes = estimateReadingMinutes(entry.body, locale);
 const plainSummary = isRadar ? getPlainSummary(entry, locale) : '';
+const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
 const articleHref = articlePath(entry.data.category, currentSlug, locale);
 const audioMeta = `${collectionLabels[entry.data.category][locale]} · ${formatDate(entry.data.date, locale)}`;
 const openCategoryHint = academyMeta ? text.openCategoryHintAcademy : text.openCategoryHintDefault;
@@ -409,13 +410,15 @@ const showTimeline = !academyMeta;
       </section>
     ) : null}
 
-    <div class="mt-8 flex flex-wrap gap-2">
-      {entry.data.tags.map((tag) => (
-        <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-sm">
-          {tag}
-        </a>
-      ))}
-    </div>
+    {publicTags.length > 0 ? (
+      <div class="mt-8 flex flex-wrap gap-2">
+        {publicTags.map((tag) => (
+          <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-sm">
+            {tag}
+          </a>
+        ))}
+      </div>
+    ) : null}
 
     {tocHeadings.length > 0 ? (
       <section class="theme-panel mt-6 rounded-[1.25rem] p-5 sm:hidden">

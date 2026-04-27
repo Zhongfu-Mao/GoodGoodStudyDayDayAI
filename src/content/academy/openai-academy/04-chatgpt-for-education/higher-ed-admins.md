@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理高校管理者如何从制度、政策、培训和校园级整合角度看 ChatGPT。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6BNZGeHpNMvRhlIsFeFHMl/f7d0552c7d2218a868be783d10045ce7/uni-admins.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Education"
-  - "Higher Education"
 lang: zh
 academy:
   series: "OpenAI Academy"

@@ -5,8 +5,6 @@ category: academy
 description: "从第一条 prompt 到 Projects、Custom GPTs、Skills 和 Workspace agents，整理 ChatGPT 使用能力的递进路线。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3UaiZFr75wVkOCJsHTd21x/54b2631e52804edcce8bc6ffbdd15722/Cover-using-chatgpt.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "ChatGPT"
   - "AI/Workflow"
 lang: zh

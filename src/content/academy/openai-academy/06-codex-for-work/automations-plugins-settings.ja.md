@@ -5,8 +5,6 @@ category: academy
 description: "Codexの自動化、プラグイン、skills、設定を安全に設計する方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/WWbNfZvQUCV942pR9wPFw/69567e99135e87f695b94809ac026162/automations.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Codex for Work"
   - "Automation"
 lang: ja

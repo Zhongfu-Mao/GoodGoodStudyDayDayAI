@@ -5,8 +5,6 @@ category: academy
 description: "整理 RAG 的学习重点：检索、上下文、来源、grounding 和评估。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5xMpq7Q0JXMzdCm5GmMQc8/c32a4332c00d64537cc569e015587356/packs-patterns.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "RAG"
   - "AI Engineering"
 lang: zh

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "用 wide to narrow 的流程，把发散想法变成可比较、可执行的方案。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2QucAPrnCRSUoZDbQFyK4P/736e90884baf0e1ebe6cbcdb2ba8beaf/brainstorming.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Work"
-  - "Brainstorming"
 lang: zh
 academy:
   series: "OpenAI Academy"

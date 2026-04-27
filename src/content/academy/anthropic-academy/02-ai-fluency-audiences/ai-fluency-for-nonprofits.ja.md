@@ -4,11 +4,6 @@ date: 2026-03-31
 category: academy
 description: "限られた人員や予算の中で、非営利組織が AI を実務支援に活かすための観点をまとめています。"
 coverImage: "/images/academy/anthropic-academy/covers/02-ai-fluency-audiences/ai-fluency-for-nonprofits.svg"
-tags:
-  - "Anthropic Academy"
-  - "講座ノート"
-  - "AI Fluency/非営利"
-  - "Nonprofits"
 lang: ja
 academy:
   series: "Anthropic Academy"

@@ -4,10 +4,9 @@ date: 2026-04-23
 category: radar
 cadence: daily
 tags:
-  - AI Engineering
-  - Agent
-  - Benchmark
-  - Multimodal
+  - "AI Engineering"
+  - "Agent"
+  - "Benchmark"
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-04-23.ja-infographic.png
 audioUrl: /audio/radar/daily-ai-radar-2026-04-23.ja.mp3

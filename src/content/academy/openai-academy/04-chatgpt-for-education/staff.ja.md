@@ -5,9 +5,6 @@ category: academy
 description: "高等教育スタッフが窓口対応、資料整理、業務文書にAIを使う方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4jkiAnrrcbHJFYO92cI5nB/b52f60860b8aa6e1a7e230f6d971eb02/university-staff.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Education"
   - "Operations"
 lang: ja
 academy:

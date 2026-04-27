@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理学生如何把 ChatGPT 用成学习伙伴，而不是代写工具。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/vbfAxGseczQBheNKzTqUQ/07b4a51033d2c9dee56d9429969e12a8/students.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Education"
-  - "Students"
 lang: zh
 academy:
   series: "OpenAI Academy"

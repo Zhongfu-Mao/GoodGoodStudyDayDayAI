@@ -6,6 +6,7 @@ import {
   collectionNames,
   radarGalleryPath,
   resolveSiteUrl,
+  slugifyTag,
   startPath,
   tagIndexPath,
   tagPath,
@@ -22,6 +23,7 @@ const recentVisualStories = entries
   .filter((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage)
   .slice(0, 3);
 const tagIndex = await getTagIndex(locale);
+const publicTagSlugs = new Set(tagIndex.map((tag) => tag.slug));
 const text = homePage[locale];
 const visualCount = entries.filter((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage).length;
 const startHref = startPath(locale);
@@ -47,6 +49,7 @@ const intentItems = [
     href: categoryPath('academy', locale),
   },
 ];
+const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(slugifyTag(tag)));
 ---
 
 <TransparentAquarium locale={locale} />
@@ -219,7 +222,7 @@ const intentItems = [
           </div>
           <p class="theme-heading mt-3 line-clamp-2 text-lg font-semibold leading-snug">{item.entry.data.title}</p>
           <div class="mt-auto flex flex-wrap gap-2 pt-4">
-            {item.entry.data.tags.slice(0, 3).map((tag) => (
+            {visibleTags(item.entry.data.tags).slice(0, 3).map((tag) => (
               <span class="theme-chip rounded-xl px-2.5 py-1 text-xs">{tag}</span>
             ))}
           </div>

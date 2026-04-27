@@ -6,10 +6,8 @@ description: "Embedding がテキストを検索可能な空間へ写像し、RA
 difficulty: beginner
 plainSummary: "Embedding はテキストをベクトル空間へ写像し、類似度検索で関連資料を探せるようにします。RAG の本質は文書を詰め込むことではなく、正しい根拠を文脈へ入れることです。"
 tags:
-  - AI Developer Core
-  - Embedding
-  - RAG
-  - Vector Search
+  - "AI Developer Core"
+  - "RAG"
 lang: ja
 draft: false
 ---

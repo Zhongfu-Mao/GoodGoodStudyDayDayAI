@@ -5,9 +5,6 @@ category: academy
 description: "教育現場での学習支援、授業設計、運営効率化、学術倫理を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1UQoFXTvJ2jAje7MD0FcrM/21ca718020e08c026fb708add6c62fba/Cover-education.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Education"
   - "AI/Fluency"
 lang: ja
 academy:

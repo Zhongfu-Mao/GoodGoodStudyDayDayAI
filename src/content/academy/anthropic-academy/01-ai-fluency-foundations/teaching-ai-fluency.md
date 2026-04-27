@@ -5,9 +5,6 @@ category: academy
 description: "面向教育者的AI Fluency教学方法论，包含4D教学设计和课程整合策略"
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/teaching-ai-fluency.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "AI/Fluency/教学"
   - "教育"
 lang: zh
 academy:

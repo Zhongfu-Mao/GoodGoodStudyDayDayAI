@@ -5,8 +5,6 @@ category: academy
 description: "タスク、文脈、出力形式、反復フィードバックに分けてプロンプトの基礎を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6KuWyesIgCbrJUzXckTYSx/20183733ba66b4b535fe978fc7ec985b/your-first-chat.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Prompting"
   - "ChatGPT"
 lang: ja

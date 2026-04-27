@@ -6,10 +6,9 @@ description: "モデル benchmark、タスク eval、プロダクト eval を分
 difficulty: intermediate
 plainSummary: "Benchmark は標準タスク上のモデル能力を示します。Eval は、自分たちのプロダクトが現実の入力、データ、ツール、制約の中でどれだけ信頼できるかを測ります。"
 tags:
-  - AI Developer Core
-  - Eval
-  - Benchmark
-  - Quality
+  - "AI Developer Core"
+  - "Benchmark"
+  - "Quality"
 lang: ja
 draft: false
 ---

@@ -5,9 +5,6 @@ category: academy
 description: "使用 Claude API 构建应用的开发者课程"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/building-with-the-claude-api.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "Claude/API"
   - "开发者"
 lang: zh
 academy:

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "営業準備、顧客理解、提案、フォローアップを支援する使い方を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1R29scy3v5zFLkNH0KaSVt/b8cf3723aecd035b28ce13081f5410cf/sales.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
-  - "Sales"
 lang: ja
 academy:
   series: "OpenAI Academy"

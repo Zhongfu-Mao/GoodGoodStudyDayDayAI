@@ -5,8 +5,6 @@ category: academy
 description: "把 OpenAI Academy 的 Building with AI 路线整理成从工具使用到系统构建的学习框架。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/16ClwJMGpPN3flMrO4DXyL/2a38515d0d3a674161bfa796e87e3889/Cover-building.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Building with AI"
   - "AI Engineering"
 lang: zh

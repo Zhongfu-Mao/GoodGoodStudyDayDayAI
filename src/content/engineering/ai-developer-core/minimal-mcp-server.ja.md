@@ -6,10 +6,9 @@ description: "ツール境界とプロトコルの心的モデルから、読み
 difficulty: intermediate
 plainSummary: "MCP の価値はモデルにボタンを増やすことではありません。外部ツールとデータを統一プロトコルで Agent に公開し、権限、入力、出力、失敗を明確にすることです。"
 tags:
-  - AI Developer Core
-  - MCP
-  - Tools
-  - Agent
+  - "AI Developer Core"
+  - "MCP"
+  - "Agent"
 lang: ja
 draft: false
 ---

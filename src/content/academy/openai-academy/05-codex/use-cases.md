@@ -5,8 +5,6 @@ category: academy
 description: "整理适合交给 Codex 的任务类型：修 bug、加功能、写测试、整理内容和自动化。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24OTPuWTysZGgIBB1McPCm/7ddacff390e55131d6b2ffaa54ad4a94/real-tasks-codex.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Codex"
   - "AI/Agents"
 lang: zh

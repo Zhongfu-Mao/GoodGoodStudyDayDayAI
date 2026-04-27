@@ -5,9 +5,6 @@ category: academy
 description: "教育者版AI Fluency课程，聚焦教学上下文文档和课程设计四阶段"
 coverImage: "/images/academy/anthropic-academy/covers/02-ai-fluency-audiences/ai-fluency-for-educators.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "AI/Fluency/教育者"
   - "教育"
 lang: zh
 academy:

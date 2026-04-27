@@ -5,8 +5,6 @@ category: academy
 description: "整理 Codex for Work 面向非纯开发用户的任务、自动化、插件、skills 和设置路线。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2b3PBAK2QrcqJT5aYwkQKr/eaaebd4bb6f4743e1d92dd1698453285/cover-codex-for-work.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Codex for Work"
   - "AI/Workflow"
 lang: zh

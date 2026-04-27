@@ -5,10 +5,7 @@ category: academy
 description: "整理 Custom Instructions、Memory 和稳定工作风格之间的关系。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2s9rOdoSHProR3I6Ai5P5/8ca619f82211ade2d76316f04aa3fbcc/personalizing-chatgpt.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "ChatGPT"
-  - "Personalization"
 lang: zh
 academy:
   series: "OpenAI Academy"

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "学生がChatGPTを代行ではなく学習パートナーとして使う方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/vbfAxGseczQBheNKzTqUQ/07b4a51033d2c9dee56d9429969e12a8/students.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Education"
-  - "Students"
 lang: ja
 academy:
   series: "OpenAI Academy"

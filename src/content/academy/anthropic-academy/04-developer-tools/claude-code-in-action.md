@@ -5,11 +5,8 @@ category: academy
 description: "Claude Code CLI 工具的实战指南"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-code-in-action.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
   - "Claude/Code"
   - "开发者"
-  - "编程"
 lang: zh
 academy:
   series: "Anthropic Academy"

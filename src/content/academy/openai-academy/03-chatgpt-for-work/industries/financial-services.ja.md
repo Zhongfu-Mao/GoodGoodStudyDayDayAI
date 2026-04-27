@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "金融サービスでのAI活用を、リスク、コンプライアンス、人間の確認を中心に整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4rAdwKviie1mydzTjs8y1P/6d4be3abda880c4b1fc4dd67f45debc4/financial.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
-  - "Financial Services"
 lang: ja
 academy:
   series: "OpenAI Academy"

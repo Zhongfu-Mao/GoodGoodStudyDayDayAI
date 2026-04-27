@@ -52,7 +52,7 @@ function parseTags(filePath) {
   const match = text.match(/^tags:\n((?:  - .*\n)+)/m);
 
   if (!match) {
-    throw new Error(`Missing tags block: ${filePath}`);
+    return [];
   }
 
   return match[1]
@@ -64,8 +64,11 @@ function parseTags(filePath) {
 
 function replaceTags(filePath, tags) {
   const text = fs.readFileSync(filePath, 'utf8');
-  const nextBlock = `tags:\n${tags.map((tag) => `  - ${JSON.stringify(tag)}`).join('\n')}\n`;
-  const nextText = text.replace(/^tags:\n(?:  - .*\n)+/m, nextBlock);
+  const tagsPattern = /^tags:\n(?:  - .*\n)+/m;
+  const nextBlock = tags.length > 0 ? `tags:\n${tags.map((tag) => `  - ${JSON.stringify(tag)}`).join('\n')}\n` : '';
+  const nextText = tagsPattern.test(text)
+    ? text.replace(tagsPattern, nextBlock)
+    : text.replace(/^(category: .*\n)/m, `$1${nextBlock}`);
 
   if (nextText === text) {
     return false;

@@ -5,8 +5,6 @@ category: academy
 description: "Codexを開発者向けAI協働環境として理解するための入口を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4a0UlJKsQXDLL6k7khzEmr/ddac544c58137463e3963b22de3317c5/Cover-codex.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Codex"
   - "AI/Agents"
 lang: ja

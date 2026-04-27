@@ -6,10 +6,8 @@ description: "Agent を状態、ツール、環境フィードバック、制御
 difficulty: intermediate
 plainSummary: "Agent は単に会話が上手いモデルではありません。観察、行動、記録、修正、停止ができる実行環境にモデルを置いたシステムです。"
 tags:
-  - AI Developer Core
-  - Agent
-  - Tool Use
-  - Feedback Loop
+  - "AI Developer Core"
+  - "Agent"
 lang: ja
 draft: false
 ---

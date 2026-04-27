@@ -5,10 +5,6 @@ category: academy
 description: "Vertex AI から Claude を使う際の導入イメージと、GCP ワークロードとの組み合わせ方を整理したノートです。"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-with-google-cloud-s-vertex-ai.svg"
 tags:
-  - "Anthropic Academy"
-  - "講座ノート"
-  - "Claude/VertexAI"
-  - "Google Cloud"
   - "開発者"
 lang: ja
 academy:

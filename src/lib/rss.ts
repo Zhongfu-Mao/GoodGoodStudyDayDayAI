@@ -1,5 +1,5 @@
 import rss from '@astrojs/rss';
-import { getEntriesForLocale } from './content';
+import { getEntriesForLocale, getPublicTagsForEntry } from './content';
 import { articlePath, type Locale } from './site';
 
 const siteTitles: Record<Locale, string> = {
@@ -20,18 +20,21 @@ export async function buildFeed({ site, locale }: { site: URL | undefined; local
   }
 
   const entries = await getEntriesForLocale(locale);
+  const items = await Promise.all(
+    entries.slice(0, RSS_ENTRY_LIMIT).map(async ({ entry, slug }) => ({
+      title: entry.data.title,
+      description: entry.data.description,
+      pubDate: entry.data.date,
+      link: articlePath(entry.data.category, slug, locale),
+      categories: await getPublicTagsForEntry(locale, entry.data.tags),
+    })),
+  );
 
   return rss({
     title: siteTitles[locale],
     description: siteDescriptions[locale],
     site,
-    items: entries.slice(0, RSS_ENTRY_LIMIT).map(({ entry, slug }) => ({
-      title: entry.data.title,
-      description: entry.data.description,
-      pubDate: entry.data.date,
-      link: articlePath(entry.data.category, slug, locale),
-      categories: entry.data.tags,
-    })),
+    items,
     customData: `<language>${locale === 'ja' ? 'ja-jp' : 'zh-cn'}</language>`,
   });
 }

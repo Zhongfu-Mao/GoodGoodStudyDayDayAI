@@ -5,10 +5,7 @@ category: academy
 description: "Custom Instructions、Memory、安定した作業スタイルの関係を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2s9rOdoSHProR3I6Ai5P5/8ca619f82211ade2d76316f04aa3fbcc/personalizing-chatgpt.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "ChatGPT"
-  - "Personalization"
 lang: ja
 academy:
   series: "OpenAI Academy"

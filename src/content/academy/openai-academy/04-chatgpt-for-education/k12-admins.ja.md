@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "K-12管理者が方針、運営、コミュニケーションにAIを使うときの型を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6WP3cXplfNeihB89e5eYy9/e33b5e2ab2dbe937cbdc2519d49cb26e/district-admins.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Education"
-  - "K-12"
 lang: ja
 academy:
   series: "OpenAI Academy"

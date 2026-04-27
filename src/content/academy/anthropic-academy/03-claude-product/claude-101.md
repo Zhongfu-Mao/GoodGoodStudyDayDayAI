@@ -5,9 +5,6 @@ category: academy
 description: "一篇讲清 Claude 基本能力、使用方式与高效协作方法的入门笔记"
 coverImage: "/images/academy/anthropic-academy/covers/03-claude-product/claude-101.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "Claude/入门"
   - "产品"
 lang: zh
 academy:

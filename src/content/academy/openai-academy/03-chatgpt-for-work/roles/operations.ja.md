@@ -5,9 +5,6 @@ category: academy
 description: "オペレーションの標準化、手順化、ボトルネック分析、改善案作成を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/66loCrCRxCGAdv5ElN6vc9/d844920d80ae903617bd7336fa6d99cc/operations.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
   - "Operations"
 lang: ja
 academy:

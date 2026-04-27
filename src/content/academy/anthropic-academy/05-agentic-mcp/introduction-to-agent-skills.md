@@ -4,11 +4,6 @@ date: 2026-03-31
 category: academy
 description: "Claude Code 中 Skills 的定位、创建方式与排查思路"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-agent-skills.svg"
-tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "代理/Skills"
-  - "MCP/生态"
 lang: zh
 academy:
   series: "Anthropic Academy"

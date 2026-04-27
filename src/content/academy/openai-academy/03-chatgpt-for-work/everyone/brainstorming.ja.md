@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "発散、整理、評価、次のアクションまでをつなぐブレインストーミングの使い方を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2QucAPrnCRSUoZDbQFyK4P/736e90884baf0e1ebe6cbcdb2ba8beaf/brainstorming.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
-  - "Brainstorming"
 lang: ja
 academy:
   series: "OpenAI Academy"

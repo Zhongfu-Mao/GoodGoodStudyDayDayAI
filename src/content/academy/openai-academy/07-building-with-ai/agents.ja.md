@@ -5,8 +5,6 @@ category: academy
 description: "エージェントを構築するときの目標、ツール、状態、権限、評価を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4dKFCy0mZpK1j5MfyBNL3p/08a0ce3067d2418be3bc7b848c02e09e/ai-techniques.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "AI/Agents"
   - "Building with AI"
 lang: ja

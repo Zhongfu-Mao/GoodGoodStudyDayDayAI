@@ -5,9 +5,6 @@ category: academy
 description: "画像生成と画像編集のプロンプト、反復、公開時の注意点を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4as9dmBmMnIulWoUEIBsOj/2441164935c8d325daa552d91c71f131/image-creation.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "Image Generation"
   - "ChatGPT"
 lang: ja
 academy:

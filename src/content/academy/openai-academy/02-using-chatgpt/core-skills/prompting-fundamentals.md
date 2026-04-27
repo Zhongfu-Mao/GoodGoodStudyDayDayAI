@@ -5,8 +5,6 @@ category: academy
 description: "把 prompt 写作拆成任务、上下文、理想输出和迭代反馈四个动作。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6KuWyesIgCbrJUzXckTYSx/20183733ba66b4b535fe978fc7ec985b/your-first-chat.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Prompting"
   - "ChatGPT"
 lang: zh

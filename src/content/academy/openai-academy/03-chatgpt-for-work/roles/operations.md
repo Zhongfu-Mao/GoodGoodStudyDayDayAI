@@ -5,9 +5,6 @@ category: academy
 description: "整理运营团队如何用 ChatGPT 改善流程、handoff、SOP、状态同步和瓶颈诊断。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/66loCrCRxCGAdv5ElN6vc9/d844920d80ae903617bd7336fa6d99cc/operations.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Work"
   - "Operations"
 lang: zh
 academy:

@@ -5,8 +5,6 @@ category: academy
 description: "整理高级 Codex 工作流：多步骤任务、自动化、复核点和长期维护。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/12SFSIJ9j7jHftRNhRno4E/0095fc04ab06244c0e76079413d191d4/advanced-workflows.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Codex"
   - "Automation"
 lang: zh

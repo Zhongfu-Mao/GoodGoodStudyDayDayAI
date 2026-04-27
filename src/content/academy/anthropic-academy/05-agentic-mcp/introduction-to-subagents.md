@@ -5,9 +5,6 @@ category: academy
 description: "子代理（Subagents）架构介绍，多代理系统协调模式"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-subagents.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "代理/子代理"
   - "MCP"
 lang: zh
 academy:

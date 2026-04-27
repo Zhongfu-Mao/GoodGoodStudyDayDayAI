@@ -5,9 +5,6 @@ category: academy
 description: "Claude Cowork の基本概念、Chat との違い、ファイルやツールをまたぐ委任型ワークフローを整理したノートです。"
 coverImage: "/images/academy/anthropic-academy/covers/03-claude-product/introduction-to-claude-cowork.svg"
 tags:
-  - "Anthropic Academy"
-  - "講座ノート"
-  - "Claude/Cowork"
   - "プロダクト"
 lang: ja
 academy:

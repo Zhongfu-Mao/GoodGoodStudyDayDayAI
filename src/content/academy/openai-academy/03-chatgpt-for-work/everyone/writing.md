@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "把工作写作整理成 Plan、Draft、Revise、Package 四步流程。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7cfiyKI1Hz4PtBIZ5yV2Po/53d6f365498046c4596a2b5953039ccb/writing.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Work"
-  - "Writing"
 lang: zh
 academy:
   series: "OpenAI Academy"

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "大学教員が研究、授業、評価、学生支援にAIを取り入れる方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/QJTDrIOMOna26jJo6kUpj/fac5f8764e968d377fb130e5f177dc7d/faculty-professors.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Education"
-  - "Faculty"
 lang: ja
 academy:
   series: "OpenAI Academy"

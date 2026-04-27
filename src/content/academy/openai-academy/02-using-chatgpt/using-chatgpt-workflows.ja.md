@@ -5,8 +5,6 @@ category: academy
 description: "Projects、Custom GPTs、Skills、Workspace agentsまで、ChatGPT活用能力の段階を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3UaiZFr75wVkOCJsHTd21x/54b2631e52804edcce8bc6ffbdd15722/Cover-using-chatgpt.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "ChatGPT"
   - "AI/Workflow"
 lang: ja

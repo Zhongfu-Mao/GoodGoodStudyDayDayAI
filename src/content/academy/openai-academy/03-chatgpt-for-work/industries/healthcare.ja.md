@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "医療・ヘルスケアでの臨床ワークフロー補助と専門家レビューの境界を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4PiE6YggOhzl7SQezkdnSK/d1cf00d0269d1f9c061d0d4d4c925372/healthcare.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
-  - "Healthcare"
 lang: ja
 academy:
   series: "OpenAI Academy"

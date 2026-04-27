@@ -5,9 +5,6 @@ category: academy
 description: "理解 Workspace agents 的触发器、流程、工具、权限和团队扩展边界。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/32nZFLTFUOKZWAbNt8mZ9E/3fed0abf03f542ee2a46c5ced153b362/agents.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "Workspace Agents"
   - "AI/Agents"
 lang: zh
 academy:

@@ -6,10 +6,7 @@ description: "围绕 JSON/schema 输出设计解析、校验、重试和降级�
 difficulty: intermediate
 plainSummary: "结构化输出不是让模型“尽量返回 JSON”，而是为模型输出建立 schema、验证器、修复策略和失败分支。"
 tags:
-  - AI Developer Core
-  - Structured Output
-  - Reliability
-  - JSON
+  - "AI Developer Core"
 lang: zh
 draft: false
 ---

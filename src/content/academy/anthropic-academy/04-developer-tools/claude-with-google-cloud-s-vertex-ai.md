@@ -5,10 +5,6 @@ category: academy
 description: "通过 Google Cloud Vertex AI 使用 Claude 的指南"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-with-google-cloud-s-vertex-ai.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "Claude/VertexAI"
-  - "GCP"
   - "开发者"
 lang: zh
 academy:

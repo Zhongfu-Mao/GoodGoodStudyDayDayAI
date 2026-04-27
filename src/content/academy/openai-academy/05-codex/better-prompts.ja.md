@@ -5,8 +5,6 @@ category: academy
 description: "Codexへ依頼するときの範囲、制約、検証、成果物の書き方を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1YcLAu9OdRty21jeeKHSmK/2ed897dec9d31f58f63b7c8f3d82cb94/prompts-codex.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Codex"
   - "Prompting"
 lang: ja

@@ -6,10 +6,8 @@ description: "Agent 実行環境を、観測、承認、停止、リプレイが
 difficulty: advanced
 plainSummary: "Agent Harness はモデル外側の実行環境です。ツール公開、権限制御、ログ、失敗復旧、回放、評価を決めます。"
 tags:
-  - AI Developer Core
-  - Agent Harness
-  - Observability
-  - Approval
+  - "AI Developer Core"
+  - "Observability"
 lang: ja
 draft: false
 ---

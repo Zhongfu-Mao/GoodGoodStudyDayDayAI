@@ -5,9 +5,6 @@ category: academy
 description: "Custom GPTと通常チャットの違い、専用アシスタント化に向く場面を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2UV4fI7a8z34VgwSmpgzy1/2b09c857ffda3696fec60cad6fb18b86/custom-gpts.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "Custom GPTs"
   - "AI/Workflow"
 lang: ja
 academy:

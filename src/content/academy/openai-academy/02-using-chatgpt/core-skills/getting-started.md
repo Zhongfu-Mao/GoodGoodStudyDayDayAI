@@ -5,8 +5,6 @@ category: academy
 description: "从 ChatGPT 是什么、如何开始第一段对话、如何识别好用例，到语音输入的基础使用路线。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1Xk9723QKj2Vb9dC6RMebS/5e588c112042794e62178a224eaff418/getting-started.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "ChatGPT"
   - "AI/Workflow"
 lang: zh

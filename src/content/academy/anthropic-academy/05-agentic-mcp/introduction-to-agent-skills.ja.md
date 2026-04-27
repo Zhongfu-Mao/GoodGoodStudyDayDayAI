@@ -4,11 +4,6 @@ date: 2026-03-31
 category: academy
 description: "Skills の役割、エージェントに知識や手順を与える考え方、設計の基本を整理したノートです。"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-agent-skills.svg"
-tags:
-  - "Anthropic Academy"
-  - "講座ノート"
-  - "Agents/Skills"
-  - "MCP/Ecosystem"
 lang: ja
 academy:
   series: "Anthropic Academy"

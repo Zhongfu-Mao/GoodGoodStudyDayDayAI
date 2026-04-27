@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理销售团队如何用 ChatGPT 做账户研究、会议准备、跟进、方案和 deal coordination。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1R29scy3v5zFLkNH0KaSVt/b8cf3723aecd035b28ce13081f5410cf/sales.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Work"
-  - "Sales"
 lang: zh
 academy:
   series: "OpenAI Academy"

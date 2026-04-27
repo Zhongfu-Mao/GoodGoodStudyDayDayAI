@@ -6,10 +6,9 @@ description: "一回の LLM 呼び出しを、観測、再試行、評価がで�
 difficulty: beginner
 plainSummary: "信頼できる LLM 呼び出しには、入力契約、出力契約、timeout、retry、ログ、コスト記録、最小 eval が必要です。"
 tags:
-  - AI Developer Core
-  - LLM App
-  - Observability
-  - Evaluation
+  - "AI Developer Core"
+  - "LLM App"
+  - "Observability"
 lang: ja
 draft: false
 ---

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "マーケティングの洞察、brief、コピー、実験、振り返りを一つの流れとして整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/14MipR48ayyvUsaXwsG5Yr/c9a99c855ff1663fdd0c9d07b40cb8f2/marketing.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
-  - "Marketing"
 lang: ja
 academy:
   series: "OpenAI Academy"

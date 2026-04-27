@@ -5,8 +5,6 @@ category: academy
 description: "整理 Codex app 在项目工作区、线程、设置、审阅和自动化中的作用。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2X2YDuHmP1dPfrPYk8BhS6/0efa2ae4c8505afe1f8b8398938db0a4/work-faster-codex.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Codex"
   - "AI Engineering"
 lang: zh

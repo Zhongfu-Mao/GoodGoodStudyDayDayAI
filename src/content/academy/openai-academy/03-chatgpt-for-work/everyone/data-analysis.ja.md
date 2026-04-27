@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "データアップロード、分析、可視化、意思決定メモまでの流れを整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6S4rnSSNtBmG5MDBcNa4rZ/9ada1bbe8e037b15dc94f274ab8039fc/data-analysis.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Data"
-  - "Data Analysis"
 lang: ja
 academy:
   series: "OpenAI Academy"

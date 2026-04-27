@@ -5,9 +5,6 @@ category: academy
 description: "整理 ChatGPT 负责任使用的边界：组织政策、人工复核、专业建议、透明披露和隐私同意。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "AI/Safety"
   - "AI/Fluency"
 lang: zh
 academy:

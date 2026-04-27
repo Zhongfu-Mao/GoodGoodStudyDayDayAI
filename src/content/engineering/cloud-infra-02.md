@@ -3,8 +3,7 @@ title: "Cloud & Infra 观察：CI/CD 与静态站点部署"
 date: 2026-04-10
 category: engineering
 tags:
-  - Agent
-  - CI/CD
+  - "Agent"
 lang: zh
 draft: false
 ---

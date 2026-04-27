@@ -5,10 +5,7 @@ category: academy
 description: "ChatGPT searchとdeep researchを使い分け、根拠付きの調査結果へ進める方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6vCtWVZH9dyolSQQhXzGyx/686abd0c6c92eb96129cb71f6ab7917e/search-deep-research.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "ChatGPT/Research"
-  - "Deep Research"
 lang: ja
 academy:
   series: "OpenAI Academy"

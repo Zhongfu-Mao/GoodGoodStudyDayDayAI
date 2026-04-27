@@ -5,9 +5,6 @@ category: academy
 description: "整理 OpenAI Academy 中 ChatGPT for Work 的任务、角色和行业三层应用框架。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4isWF93VlOu8b5EpVONDeo/4ace7b74dc5d84236657e954f09c005f/Cover-work.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Work"
   - "AI/Workflow"
 lang: zh
 academy:

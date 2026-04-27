@@ -5,8 +5,6 @@ category: academy
 description: "Builder Bootcampを、AIアプリを設計・構築・最適化する学習ルートとして整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Building with AI"
   - "AI Engineering"
 lang: ja

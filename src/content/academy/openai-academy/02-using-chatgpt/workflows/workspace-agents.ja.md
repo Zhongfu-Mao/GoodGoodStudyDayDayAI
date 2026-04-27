@@ -5,9 +5,6 @@ category: academy
 description: "Workspace agentsのトリガー、プロセス、ツール、権限、チーム展開の境界を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/32nZFLTFUOKZWAbNt8mZ9E/3fed0abf03f542ee2a46c5ced153b362/agents.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "Workspace Agents"
   - "AI/Agents"
 lang: ja
 academy:

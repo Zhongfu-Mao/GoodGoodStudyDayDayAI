@@ -10,7 +10,7 @@ export const blogSchema = z.object({
   cadence: z.enum(['daily', 'weekly', 'monthly']).optional(),
   difficulty: z.enum(['beginner', 'intermediate', 'advanced']).optional(),
   plainSummary: z.string().optional(),
-  tags: z.array(z.string()).min(1),
+  tags: z.array(z.string()).default([]),
   lang: z.enum(['zh', 'ja']).default('zh'),
   coverImage: z.string().optional(),
   audioUrl: z.string().optional(),

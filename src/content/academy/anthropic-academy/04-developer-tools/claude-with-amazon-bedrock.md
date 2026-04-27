@@ -5,10 +5,6 @@ category: academy
 description: "通过 Amazon Bedrock 使用 Claude 的指南"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-with-amazon-bedrock.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "Claude/Bedrock"
-  - "AWS"
   - "开发者"
 lang: zh
 academy:

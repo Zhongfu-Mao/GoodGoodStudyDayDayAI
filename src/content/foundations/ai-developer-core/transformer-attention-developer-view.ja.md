@@ -6,10 +6,8 @@ description: "Transformer と attention を、コンテキスト設計や構造�
 difficulty: beginner
 plainSummary: "Attention は、生成中の token が文脈内の他の token から手がかりを探す仕組みとして理解できます。これを知ると、例示や出力形式がなぜ効くのかが見えやすくなります。"
 tags:
-  - AI Developer Core
-  - Transformer
-  - Attention
-  - LLM
+  - "AI Developer Core"
+  - "LLM"
 lang: ja
 draft: false
 ---

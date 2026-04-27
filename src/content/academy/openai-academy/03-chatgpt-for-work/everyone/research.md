@@ -5,8 +5,6 @@ category: academy
 description: "把研究任务拆成问题定义、来源搜集、证据综合、缺口标注和决策输出。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24Zhocf65q1eBCqPljGtiH/b12cc424af8d1eacd56ee339e8214822/research.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "ChatGPT/Research"
   - "AI/Workflow"
 lang: zh

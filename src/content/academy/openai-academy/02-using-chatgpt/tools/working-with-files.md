@@ -5,9 +5,6 @@ category: academy
 description: "整理如何用 ChatGPT 处理文档、表格、PDF、图片和连接应用中的上下文。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7FdLCJL2BCjS8ef2BJ8rG0/8307b0a6be94e0333b43dbed5b93d187/using-files.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Files"
   - "AI/Workflow"
 lang: zh
 academy:

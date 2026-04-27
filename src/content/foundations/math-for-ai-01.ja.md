@@ -3,8 +3,7 @@ title: "Math for AI メモ: ベクトル空間とコサイン類似度"
 date: 2026-04-04
 category: foundations
 tags:
-  - Agent
-  - Math
+  - "Agent"
 lang: ja
 draft: false
 ---

@@ -3,8 +3,7 @@ title: "App Dev メモ: Astro のページと Content Collection"
 date: 2026-04-03
 category: engineering
 tags:
-  - Agent
-  - Docker
+  - "Agent"
 lang: ja
 draft: false
 ---

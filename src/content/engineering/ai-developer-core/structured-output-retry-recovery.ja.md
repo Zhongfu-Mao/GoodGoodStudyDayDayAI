@@ -6,10 +6,7 @@ description: "JSON/schema 出力を中心に、解析、検証、再試行、降
 difficulty: intermediate
 plainSummary: "構造化出力は、モデルに JSON をお願いすることではありません。schema、validator、修復戦略、失敗分岐を含めた出力契約です。"
 tags:
-  - AI Developer Core
-  - Structured Output
-  - Reliability
-  - JSON
+  - "AI Developer Core"
 lang: ja
 draft: false
 ---

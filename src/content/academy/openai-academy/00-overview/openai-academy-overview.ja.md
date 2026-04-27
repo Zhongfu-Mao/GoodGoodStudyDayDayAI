@@ -5,9 +5,6 @@ category: academy
 description: "OpenAI Academyの公開学習構造を整理し、サイトで継続的に学べるルートへ落とし込む。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3pOt7hjYa1nUIIMMXdoEhD/b6493d0ba6756155a3ef880758e0a0b0/Academy-SEO.png?w=1600&h=900&fit=fill"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "学習ルート"
   - "AI/Workflow"
 lang: ja
 academy:

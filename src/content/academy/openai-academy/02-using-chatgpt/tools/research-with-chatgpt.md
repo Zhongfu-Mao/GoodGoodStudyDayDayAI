@@ -5,10 +5,7 @@ category: academy
 description: "对比 ChatGPT search 和 deep research，整理从问题到有来源结论的研究工作流。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6vCtWVZH9dyolSQQhXzGyx/686abd0c6c92eb96129cb71f6ab7917e/search-deep-research.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "ChatGPT/Research"
-  - "Deep Research"
 lang: zh
 academy:
   series: "OpenAI Academy"

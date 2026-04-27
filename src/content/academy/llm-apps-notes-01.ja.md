@@ -3,8 +3,7 @@ title: "LLM Apps 入門メモ: Prompt から Tool Calling まで"
 date: 2026-04-02
 category: academy
 tags:
-  - Agent
-  - Python
+  - "Agent"
 lang: ja
 draft: false
 ---

@@ -5,8 +5,6 @@ category: academy
 description: "AIアプリケーション構築の入口として、設計、評価、本番運用の流れを整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/16ClwJMGpPN3flMrO4DXyL/2a38515d0d3a674161bfa796e87e3889/Cover-building.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Building with AI"
   - "AI Engineering"
 lang: ja

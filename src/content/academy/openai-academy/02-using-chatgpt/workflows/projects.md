@@ -5,9 +5,6 @@ category: academy
 description: "把 Projects 理解成持续主题的上下文容器，用来管理文件、指令、聊天和协作。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/L0cSoOsBFybec07VSIDJw/27647c6494be7191e0e2168f5bf27044/projects.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Projects"
   - "AI/Workflow"
 lang: zh
 academy:

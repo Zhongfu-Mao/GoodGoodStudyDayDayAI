@@ -5,9 +5,6 @@ category: academy
 description: "模型上下文协议（MCP）入门，MCP服务器、客户端和工具的基本概念"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-model-context-protocol.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "MCP/入门"
   - "代理"
 lang: zh
 academy:

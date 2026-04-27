@@ -5,9 +5,6 @@ category: academy
 description: "文書、表、PDF、画像、接続アプリの文脈をChatGPTで扱う方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7FdLCJL2BCjS8ef2BJ8rG0/8307b0a6be94e0333b43dbed5b93d187/using-files.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Files"
   - "AI/Workflow"
 lang: ja
 academy:

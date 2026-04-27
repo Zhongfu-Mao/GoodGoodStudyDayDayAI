@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理教师如何用 ChatGPT 支持备课、反馈、差异化材料和课堂活动设计。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3oIacja57T4O2dlR52RbVJ/efd304faeede3b0e448e377cee270bb1/teachers.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Education"
-  - "Teaching"
 lang: zh
 academy:
   series: "OpenAI Academy"

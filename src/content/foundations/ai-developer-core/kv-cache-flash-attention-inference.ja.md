@@ -6,10 +6,7 @@ description: "LLM 推論における prefill、decode、KV cache、attention 最
 difficulty: intermediate
 plainSummary: "LLM の推論速度はモデルサイズだけで決まりません。prefill、逐次 decode、KV cache、メモリ帯域、attention kernel が体感速度を左右します。"
 tags:
-  - AI Developer Core
-  - Inference
-  - KV Cache
-  - FlashAttention
+  - "AI Developer Core"
 lang: ja
 draft: false
 ---

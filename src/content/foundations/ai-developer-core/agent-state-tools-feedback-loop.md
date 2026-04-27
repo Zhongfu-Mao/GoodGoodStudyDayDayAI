@@ -6,10 +6,8 @@ description: "把 Agent 拆成状态、工具、环境反馈、控制循环和�
 difficulty: intermediate
 plainSummary: "Agent 不是一个更会聊天的模型，而是模型被放进一个能观察、行动、记录、纠错和停止的运行环境。"
 tags:
-  - AI Developer Core
-  - Agent
-  - Tool Use
-  - Feedback Loop
+  - "AI Developer Core"
+  - "Agent"
 lang: zh
 draft: false
 ---

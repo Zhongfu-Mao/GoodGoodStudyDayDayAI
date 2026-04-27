@@ -5,8 +5,6 @@ category: academy
 description: "Codexに任せやすい修正、調査、テスト、リファクタリングなどの用途を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24OTPuWTysZGgIBB1McPCm/7ddacff390e55131d6b2ffaa54ad4a94/real-tasks-codex.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Codex"
   - "AI/Agents"
 lang: ja

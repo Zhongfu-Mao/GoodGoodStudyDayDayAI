@@ -5,9 +5,6 @@ category: academy
 description: "整理 OpenAI Academy 的公开学习结构，并把它映射成适合本站长期维护的课程笔记路线。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3pOt7hjYa1nUIIMMXdoEhD/b6493d0ba6756155a3ef880758e0a0b0/Academy-SEO.png?w=1600&h=900&fit=fill"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "学习路线"
   - "AI/Workflow"
 lang: zh
 academy:

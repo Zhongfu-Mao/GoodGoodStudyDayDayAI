@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理 K-12 IT 负责人在 ChatGPT 推广中的账号、权限、数据、安全和系统准备问题。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/39yOlHOo7Fgk0znkkTWutQ/be3222a261f6f6055bcfb6ee80b2a69b/it-leadership.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Education"
-  - "IT"
 lang: zh
 academy:
   series: "OpenAI Academy"

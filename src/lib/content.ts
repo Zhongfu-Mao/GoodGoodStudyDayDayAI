@@ -13,6 +13,10 @@ import {
 } from './site';
 
 type BlogEntryItem = Awaited<ReturnType<typeof getCollectionEntries>>[number];
+type TagIndexItem = { slug: string; label: string; count: number };
+
+export const PUBLIC_TAG_MIN_COUNT = 2;
+const tagIndexCache = new Map<Locale, Promise<TagIndexItem[]>>();
 
 export type AcademyModuleGroup = {
   series: string;
@@ -96,9 +100,21 @@ export async function getEntriesForTag(locale: Locale, tagSlug: string) {
   return entries.filter((item) => item.entry.data.tags.some((tag: string) => slugifyTag(tag) === tagSlug));
 }
 
-export async function getTagIndex(locale: Locale) {
+export async function getAllTagIndex(locale: Locale) {
+  const cached = tagIndexCache.get(locale);
+
+  if (cached) {
+    return cached;
+  }
+
+  const tagIndex = buildAllTagIndex(locale);
+  tagIndexCache.set(locale, tagIndex);
+  return tagIndex;
+}
+
+async function buildAllTagIndex(locale: Locale) {
   const entries = await getEntriesForLocale(locale);
-  const tags = new Map<string, { slug: string; label: string; count: number }>();
+  const tags = new Map<string, TagIndexItem>();
 
   for (const { entry } of entries) {
     for (const tag of entry.data.tags) {
@@ -114,6 +130,15 @@ export async function getTagIndex(locale: Locale) {
   }
 
   return [...tags.values()].sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, 'zh-Hans'));
+}
+
+export async function getTagIndex(locale: Locale) {
+  return (await getAllTagIndex(locale)).filter((tag) => tag.count >= PUBLIC_TAG_MIN_COUNT);
+}
+
+export async function getPublicTagsForEntry(locale: Locale, tags: string[]) {
+  const publicTagSlugs = new Set((await getTagIndex(locale)).map((tag) => tag.slug));
+  return tags.filter((tag) => publicTagSlugs.has(slugifyTag(tag)));
 }
 
 export async function getTagStaticPaths(locale: Locale) {

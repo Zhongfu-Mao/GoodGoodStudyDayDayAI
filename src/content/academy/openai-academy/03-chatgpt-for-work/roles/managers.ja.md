@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "マネージャーと経営層が意思決定、コミュニケーション、会議準備に使う方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/54U640Rg1XlL5A9UxhX8DY/576d590f1443e4abe0e85b94e79b38c3/managers.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
-  - "Management"
 lang: ja
 academy:
   series: "OpenAI Academy"

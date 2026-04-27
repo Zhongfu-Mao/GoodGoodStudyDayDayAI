@@ -5,8 +5,6 @@ category: academy
 description: "整理 Codex for Work 中自动化、插件、skills 和设置如何让重复工作稳定化。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/WWbNfZvQUCV942pR9wPFw/69567e99135e87f695b94809ac026162/automations.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Codex for Work"
   - "Automation"
 lang: zh

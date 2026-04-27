@@ -6,10 +6,9 @@ description: "从工具边界和协议心智模型出发，设计一个只读的
 difficulty: intermediate
 plainSummary: "MCP 的价值不是让模型拥有更多按钮，而是用统一协议把外部工具和数据暴露给 Agent，并明确权限、输入、输出和失败方式。"
 tags:
-  - AI Developer Core
-  - MCP
-  - Tools
-  - Agent
+  - "AI Developer Core"
+  - "MCP"
+  - "Agent"
 lang: zh
 draft: false
 ---

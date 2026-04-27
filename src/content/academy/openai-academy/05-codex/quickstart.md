@@ -5,8 +5,6 @@ category: academy
 description: "整理 Codex 入门：设置、任务描述、工作区、验证和交付的基本路径。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/53QFGSGDJnCJxvj45fA6ev/bda24475ea40905884a9ca8c49ff3135/get-started-codex.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Codex"
   - "AI Engineering"
 lang: zh

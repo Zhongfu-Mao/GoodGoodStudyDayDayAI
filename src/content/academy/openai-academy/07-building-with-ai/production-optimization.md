@@ -5,9 +5,6 @@ category: academy
 description: "整理生产级 AI 应用需要同时优化质量、延迟、成本、可观测性和治理。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/16ClwJMGpPN3flMrO4DXyL/2a38515d0d3a674161bfa796e87e3889/Cover-building.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "Production"
   - "AI Engineering"
 lang: zh
 academy:

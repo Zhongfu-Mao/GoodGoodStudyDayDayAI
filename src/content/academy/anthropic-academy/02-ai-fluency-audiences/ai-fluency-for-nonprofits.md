@@ -4,11 +4,6 @@ date: 2026-03-31
 category: academy
 description: "非营利组织版AI Fluency课程，聚焦数据隐私、写作、研究和工作流增强"
 coverImage: "/images/academy/anthropic-academy/covers/02-ai-fluency-audiences/ai-fluency-for-nonprofits.svg"
-tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "AI/Fluency/非营利"
-  - "非营利组织"
 lang: zh
 academy:
   series: "Anthropic Academy"

@@ -5,8 +5,6 @@ category: academy
 description: "整理 Codex 在 OpenAI Academy 中的定位：从代码辅助到可委派任务、文件和工作流的 AI agent。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4a0UlJKsQXDLL6k7khzEmr/ddac544c58137463e3963b22de3317c5/Cover-codex.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Codex"
   - "AI/Agents"
 lang: zh

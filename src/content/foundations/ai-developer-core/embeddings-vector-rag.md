@@ -6,10 +6,8 @@ description: "解释 embedding 如何把文本变成可检索空间，以及 RAG
 difficulty: beginner
 plainSummary: "Embedding 把文本映射到向量空间，相似度检索让应用能找到相关材料。RAG 的关键不是把文档塞给模型，而是把正确证据带进上下文。"
 tags:
-  - AI Developer Core
-  - Embedding
-  - RAG
-  - Vector Search
+  - "AI Developer Core"
+  - "RAG"
 lang: zh
 draft: false
 ---

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理客户成功团队如何用 ChatGPT 管理客户上下文、行动项、续约风险和沟通质量。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/YV0SfzN3qIM6qCrQ3XTO0/b58c9038114293db5db3cc8832348a5c/customer-success.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Work"
-  - "Customer Success"
 lang: zh
 academy:
   series: "OpenAI Academy"

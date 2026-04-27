@@ -3,8 +3,7 @@ title: "Data Science チートシート: データ洗浄と特徴量設計"
 date: 2026-04-11
 category: foundations
 tags:
-  - Agent
-  - Data
+  - "Agent"
 lang: ja
 draft: false
 ---

@@ -5,9 +5,6 @@ category: academy
 description: "整理高校 staff 如何用 ChatGPT 改善校园服务、流程协调、沟通和信息整理。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4jkiAnrrcbHJFYO92cI5nB/b52f60860b8aa6e1a7e230f6d971eb02/university-staff.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Education"
   - "Operations"
 lang: zh
 academy:

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "整理财务团队如何用 ChatGPT 改善报告、variance narrative、规划、数据检查和审计支持。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5oD5aOV77eWiWp6ZLigAVN/d6ea39d836ba4832394f25e3e3fcc9e4/finance.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Work"
-  - "Finance"
 lang: zh
 academy:
   series: "OpenAI Academy"

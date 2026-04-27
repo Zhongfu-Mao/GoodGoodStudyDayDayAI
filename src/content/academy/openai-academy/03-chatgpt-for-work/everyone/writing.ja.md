@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "文章作成、編集、要約、トーン調整を仕事の流れに組み込む方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7cfiyKI1Hz4PtBIZ5yV2Po/53d6f365498046c4596a2b5953039ccb/writing.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
-  - "Writing"
 lang: ja
 academy:
   series: "OpenAI Academy"

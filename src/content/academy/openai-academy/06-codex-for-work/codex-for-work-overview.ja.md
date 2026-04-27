@@ -5,8 +5,6 @@ category: academy
 description: "Codexを知識作業、資料整理、軽量な業務委任に広げる方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2b3PBAK2QrcqJT5aYwkQKr/eaaebd4bb6f4743e1d92dd1698453285/cover-codex-for-work.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Codex for Work"
   - "AI/Workflow"
 lang: ja

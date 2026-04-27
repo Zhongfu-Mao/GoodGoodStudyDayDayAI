@@ -5,9 +5,6 @@ category: academy
 description: "Claude の基本的な使い方、対話の進め方、プロジェクト機能や各種プロダクトの位置づけをまとめた入門ノートです。"
 coverImage: "/images/academy/anthropic-academy/covers/03-claude-product/claude-101.svg"
 tags:
-  - "Anthropic Academy"
-  - "講座ノート"
-  - "Claude/入門"
   - "プロダクト"
 lang: ja
 academy:

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "K-12 ITリーダーが導入、権限、セキュリティ、支援体制を設計する観点を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/39yOlHOo7Fgk0znkkTWutQ/be3222a261f6f6055bcfb6ee80b2a69b/it-leadership.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Education"
-  - "IT"
 lang: ja
 academy:
   series: "OpenAI Academy"

@@ -5,8 +5,6 @@ category: academy
 description: "Codex Appの基本的な使い方と、ローカル作業の進め方を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2X2YDuHmP1dPfrPYk8BhS6/0efa2ae4c8505afe1f8b8398938db0a4/work-faster-codex.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Codex"
   - "AI Engineering"
 lang: ja

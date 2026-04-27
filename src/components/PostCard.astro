@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { articlePath, collectionLabels, resolveSiteUrl, tagPath, type CollectionName, type Locale } from '../lib/site';
+import { getPublicTagsForEntry } from '../lib/content';
 import { formatDate } from '../lib/i18n';
 import { difficultyLabels, estimateReadingMinutes, getEntryDifficulty, readingTimeText } from '../lib/entryMeta';
 
@@ -19,6 +20,7 @@ const categoryLabel = collectionLabels[entry.data.category][locale];
 const coverImageSrc = entry.data.coverImage ? resolveSiteUrl(entry.data.coverImage) : undefined;
 const difficulty = getEntryDifficulty(entry);
 const readingMinutes = estimateReadingMinutes(entry.body, locale);
+const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
 ---
 
 <article class="theme-panel theme-panel-link group rounded-[1.25rem] p-6 shadow-glow">
@@ -46,11 +48,13 @@ const readingMinutes = estimateReadingMinutes(entry.body, locale);
   {entry.data.description ? (
     <p class="theme-muted mt-3 line-clamp-3 text-sm leading-6">{entry.data.description}</p>
   ) : null}
-  <div class="mt-4 flex flex-wrap gap-2">
-    {entry.data.tags.map((tag) => (
-      <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs">
-        {tag}
-      </a>
-    ))}
-  </div>
+  {publicTags.length > 0 ? (
+    <div class="mt-4 flex flex-wrap gap-2">
+      {publicTags.map((tag) => (
+        <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs">
+          {tag}
+        </a>
+      ))}
+    </div>
+  ) : null}
 </article>

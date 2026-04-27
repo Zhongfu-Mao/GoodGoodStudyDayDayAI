@@ -5,9 +5,6 @@ category: academy
 description: "整理 OpenAI Academy 对 AI、模型、LLM、训练阶段和 reasoning 模型的基础解释。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "AI/Fundamentals"
   - "LLM"
 lang: zh
 academy:

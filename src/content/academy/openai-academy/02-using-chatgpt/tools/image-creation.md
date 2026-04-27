@@ -5,9 +5,6 @@ category: academy
 description: "整理图像生成和图像编辑 prompt 的关键要素、迭代方法和使用边界。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4as9dmBmMnIulWoUEIBsOj/2441164935c8d325daa552d91c71f131/image-creation.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "Image Generation"
   - "ChatGPT"
 lang: zh
 academy:

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "オンボーディング、ヘルスチェック、顧客対応、更新準備の支援方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/YV0SfzN3qIM6qCrQ3XTO0/b58c9038114293db5db3cc8832348a5c/customer-success.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
-  - "Customer Success"
 lang: ja
 academy:
   series: "OpenAI Academy"

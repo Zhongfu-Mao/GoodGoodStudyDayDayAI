@@ -6,10 +6,9 @@ description: "把一次 LLM 调用从 prompt 字符串升级成可观测、可�
 difficulty: beginner
 plainSummary: "可靠的 LLM 调用至少要包含输入契约、输出契约、超时、重试、日志、成本记录和最小评测。"
 tags:
-  - AI Developer Core
-  - LLM App
-  - Observability
-  - Evaluation
+  - "AI Developer Core"
+  - "LLM App"
+  - "Observability"
 lang: zh
 draft: false
 ---

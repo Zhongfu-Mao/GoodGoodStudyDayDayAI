@@ -5,9 +5,6 @@ category: academy
 description: "学生版AI Fluency课程，涵盖AI辅助学习和职业规划应用"
 coverImage: "/images/academy/anthropic-academy/covers/02-ai-fluency-audiences/ai-fluency-for-students.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "AI/Fluency/学生"
   - "教育"
 lang: zh
 academy:

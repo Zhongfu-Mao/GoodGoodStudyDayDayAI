@@ -5,8 +5,6 @@ category: academy
 description: "AIアプリの品質を測るための評価設計、rubric、失敗例、反復改善を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Evals"
   - "AI Engineering"
 lang: ja

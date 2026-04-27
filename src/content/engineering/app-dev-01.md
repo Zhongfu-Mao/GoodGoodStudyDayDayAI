@@ -3,8 +3,7 @@ title: "App Dev 速记：Astro 页面和内容集合"
 date: 2026-04-03
 category: engineering
 tags:
-  - Agent
-  - Docker
+  - "Agent"
 lang: zh
 draft: false
 ---

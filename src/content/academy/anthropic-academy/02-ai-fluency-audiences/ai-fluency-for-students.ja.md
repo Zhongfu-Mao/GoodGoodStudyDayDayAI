@@ -5,9 +5,6 @@ category: academy
 description: "学習補助に AI を使うときに、丸投げではなく理解を深める方向へ使うための基礎を整理しています。"
 coverImage: "/images/academy/anthropic-academy/covers/02-ai-fluency-audiences/ai-fluency-for-students.svg"
 tags:
-  - "Anthropic Academy"
-  - "講座ノート"
-  - "AI Fluency/学生"
   - "Education"
 lang: ja
 academy:

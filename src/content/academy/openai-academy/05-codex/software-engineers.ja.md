@@ -5,10 +5,7 @@ category: academy
 description: "ソフトウェアエンジニアがCodexを設計、実装、レビュー、検証に使う方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7aH5Yfd36Abmlr7Ci2ZwrP/4a7eefabc5e51c2408b2120b7dd8c32a/SWE-codex.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Codex"
-  - "Software Engineering"
 lang: ja
 academy:
   series: "OpenAI Academy"

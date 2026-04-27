@@ -4,11 +4,9 @@ date: 2026-04-26
 category: radar
 cadence: daily
 tags:
-  - AI Engineering
-  - Agent
-  - Reinforcement Learning
-  - Data Infrastructure
-  - Open Models
+  - "AI Engineering"
+  - "Agent"
+  - "Open Models"
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-04-26.ja-infographic.png
 audioUrl: /audio/radar/daily-ai-radar-2026-04-26.ja.mp3

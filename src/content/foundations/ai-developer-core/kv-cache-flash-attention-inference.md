@@ -6,10 +6,7 @@ description: "理解 LLM 推理中的 prefill、decode、KV cache 和 attention 
 difficulty: intermediate
 plainSummary: "LLM 推理速度不只取决于模型大小，还取决于 prefill、逐 token decode、KV cache、显存带宽和 attention kernel。"
 tags:
-  - AI Developer Core
-  - Inference
-  - KV Cache
-  - FlashAttention
+  - "AI Developer Core"
 lang: zh
 draft: false
 ---

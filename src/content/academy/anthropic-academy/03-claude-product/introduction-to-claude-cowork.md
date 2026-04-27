@@ -5,9 +5,6 @@ category: academy
 description: "Claude Cowork 桌面产品介绍，面向非技术用户的AI协作工具"
 coverImage: "/images/academy/anthropic-academy/covers/03-claude-product/introduction-to-claude-cowork.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "Claude/Cowork"
   - "产品"
 lang: zh
 academy:

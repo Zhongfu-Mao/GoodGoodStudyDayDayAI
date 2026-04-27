@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "用产品、开发平台和应用形态三层理解 OpenAI 如何把模型能力变成可用工具。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "AI/Fundamentals"
-  - "OpenAI/API"
 lang: zh
 academy:
   series: "OpenAI Academy"

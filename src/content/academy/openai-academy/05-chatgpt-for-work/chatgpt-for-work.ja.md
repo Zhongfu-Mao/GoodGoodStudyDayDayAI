@@ -5,9 +5,6 @@ category: academy
 description: "仕事の中でChatGPTを研究、文章、データ、会議、チームの型へ広げるルートを整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4isWF93VlOu8b5EpVONDeo/4ace7b74dc5d84236657e954f09c005f/Cover-work.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
   - "AI/Workflow"
 lang: ja
 academy:

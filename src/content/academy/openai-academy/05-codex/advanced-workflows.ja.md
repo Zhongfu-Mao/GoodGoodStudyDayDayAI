@@ -5,8 +5,6 @@ category: academy
 description: "Codexの高度なワークフロー、自動化、レビュー、チーム運用を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/12SFSIJ9j7jHftRNhRno4E/0095fc04ab06244c0e76079413d191d4/advanced-workflows.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
   - "Codex"
   - "Automation"
 lang: ja

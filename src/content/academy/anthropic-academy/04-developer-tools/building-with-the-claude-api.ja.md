@@ -5,9 +5,6 @@ category: academy
 description: "Claude API の基本概念、プロンプト設計、メッセージ構造、実装時の注意点を俯瞰する開発者向けノートです。"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/building-with-the-claude-api.svg"
 tags:
-  - "Anthropic Academy"
-  - "講座ノート"
-  - "Claude/API"
   - "開発者"
 lang: ja
 academy:

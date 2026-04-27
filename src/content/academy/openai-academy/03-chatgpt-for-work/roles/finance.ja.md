@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "財務分析、報告、予算、リスク確認でChatGPTを補助役として使う方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5oD5aOV77eWiWp6ZLigAVN/d6ea39d836ba4832394f25e3e3fcc9e4/finance.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Work"
-  - "Finance"
 lang: ja
 academy:
   series: "OpenAI Academy"

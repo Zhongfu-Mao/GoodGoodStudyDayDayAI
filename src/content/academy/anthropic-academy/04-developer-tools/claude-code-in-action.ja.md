@@ -5,11 +5,8 @@ category: academy
 description: "Claude Code を使った開発フロー、タスク分解、編集・実行・レビューの進め方を整理した実践ノートです。"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-code-in-action.svg"
 tags:
-  - "Anthropic Academy"
-  - "講座ノート"
   - "Claude/Code"
   - "開発者"
-  - "Coding"
 lang: ja
 academy:
   series: "Anthropic Academy"

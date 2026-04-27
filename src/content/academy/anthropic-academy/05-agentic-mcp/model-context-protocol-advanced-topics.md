@@ -5,9 +5,6 @@ category: academy
 description: "MCP进阶主题：动态工具、资源、提示模板和高级集成模式"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/model-context-protocol-advanced-topics.svg"
 tags:
-  - "Anthropic/Academy"
-  - "课程笔记"
-  - "MCP/进阶"
   - "代理"
 lang: zh
 academy:

@@ -6,10 +6,8 @@ description: "把 Transformer 和 attention 翻译成开发者能用来调试上
 difficulty: beginner
 plainSummary: "Attention 可以理解为每个 token 在生成时向上下文中其他 token 查询线索。理解它有助于解释长上下文、格式约束和示例提示为什么会影响输出。"
 tags:
-  - AI Developer Core
-  - Transformer
-  - Attention
-  - LLM
+  - "AI Developer Core"
+  - "LLM"
 lang: zh
 draft: false
 ---

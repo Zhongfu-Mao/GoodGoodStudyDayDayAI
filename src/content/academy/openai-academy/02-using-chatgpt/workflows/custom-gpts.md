@@ -5,9 +5,6 @@ category: academy
 description: "理解 Custom GPT 和普通聊天的差别，并整理适合构建专用助手的场景。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2UV4fI7a8z34VgwSmpgzy1/2b09c857ffda3696fec60cad6fb18b86/custom-gpts.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "Custom GPTs"
   - "AI/Workflow"
 lang: zh
 academy:

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "高等教育の管理者が学生支援、運営、方針文書にAIを使う方法を整理する。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6BNZGeHpNMvRhlIsFeFHMl/f7d0552c7d2218a868be783d10045ce7/uni-admins.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "講座ノート"
-  - "ChatGPT/Education"
-  - "Higher Education"
 lang: ja
 academy:
   series: "OpenAI Academy"

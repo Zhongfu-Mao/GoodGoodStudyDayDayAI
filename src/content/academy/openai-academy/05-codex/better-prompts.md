@@ -5,8 +5,6 @@ category: academy
 description: "把 Codex prompt 写成可执行任务单，而不是普通聊天问题。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1YcLAu9OdRty21jeeKHSmK/2ed897dec9d31f58f63b7c8f3d82cb94/prompts-codex.png?w=3840&q=90&fm=webp"
 tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
   - "Codex"
   - "Prompting"
 lang: zh

@@ -4,11 +4,6 @@ date: 2026-04-25
 category: academy
 description: "从决策问题出发，用 ChatGPT 辅助数据探索、异常发现、可视化和行动摘要。"
 coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6S4rnSSNtBmG5MDBcNa4rZ/9ada1bbe8e037b15dc94f274ab8039fc/data-analysis.png?w=3840&q=90&fm=webp"
-tags:
-  - "OpenAI/Academy"
-  - "课程笔记"
-  - "ChatGPT/Data"
-  - "Data Analysis"
 lang: zh
 academy:
   series: "OpenAI Academy"

@@ -6,10 +6,9 @@ description: "区分模型榜单、任务评测和产品评测，建立 AI 应�
 difficulty: intermediate
 plainSummary: "Benchmark 告诉我们模型在标准任务上的相对能力，eval 告诉我们自己的产品在真实任务上的可靠程度。AI 工程应该从可重复评测开始。"
 tags:
-  - AI Developer Core
-  - Eval
-  - Benchmark
-  - Quality
+  - "AI Developer Core"
+  - "Benchmark"
+  - "Quality"
 lang: zh
 draft: false
 ---

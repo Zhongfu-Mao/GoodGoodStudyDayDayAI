@@ -4,11 +4,6 @@ date: 2026-03-31
 category: academy
 description: "AI と協働するための 4D フレームワークを軸に、説明力・判断力・委任力の基本を整理した導入ノートです。"
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/ai-fluency-framework-and-foundations.svg"
-tags:
-  - "Anthropic Academy"
-  - "講座ノート"
-  - "AI Fluency/フレームワーク"
-  - "AI Fluency/基礎"
 lang: ja
 academy:
   series: "Anthropic Academy"
