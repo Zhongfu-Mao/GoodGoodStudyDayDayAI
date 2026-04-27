@@ -174,6 +174,14 @@ npm run test:ui
 npx playwright install chromium
 ```
 
+启用本地 pre-push hook / ローカルの pre-push hook を有効化:
+
+```bash
+npm run setup:hooks
+```
+
+启用后，`git push` 前会自动运行 `npm run check` 和 `npm run test:ui`。
+
 ## 浏览统计 / Analytics
 
 站点支持静态部署下的隐私友好浏览统计。默认没有配置时不会注入任何第三方脚本；需要统计时，在 GitHub 仓库的 Actions variables 中配置以下变量后重新部署。

@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "check:tags": "node scripts/check-bilingual-tags.mjs",
+    "setup:hooks": "git config core.hooksPath .githooks",
     "test:ui": "npm run build && playwright test",
     "test:ui:headed": "npm run build && playwright test --headed",
     "radar:audio": "node scripts/generate-radar-audio.mjs",
