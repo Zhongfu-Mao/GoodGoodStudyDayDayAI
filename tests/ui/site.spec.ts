@@ -1,5 +1,37 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { appPath, appUrlPattern, gotoApp } from './site-test-utils';
+
+const radarArchiveLayoutCases = [
+  { path: '/radar/#daily', section: 'daily', countText: '26 篇内容' },
+  { path: '/radar/#weekly', section: 'weekly', countText: '4 篇内容' },
+  { path: '/radar/#monthly', section: 'monthly', countText: '1 篇内容' },
+  { path: '/ja/radar/#daily', section: 'daily', countText: '26 記事' },
+  { path: '/ja/radar/#weekly', section: 'weekly', countText: '4 記事' },
+  { path: '/ja/radar/#monthly', section: 'monthly', countText: '1 記事' },
+] as const;
+
+async function expectCardsToFitViewport(page: Page, sectionSelector: string) {
+  const viewport = page.viewportSize();
+  if (!viewport) {
+    throw new Error('Expected a viewport size before checking radar card layout.');
+  }
+
+  const cards = page.locator(`${sectionSelector} [data-gallery-card]`);
+  const cardCount = await cards.count();
+  expect(cardCount).toBeGreaterThan(0);
+
+  for (let index = 0; index < cardCount; index += 1) {
+    const card = cards.nth(index);
+    const box = await card.boundingBox();
+    if (!box) {
+      throw new Error(`Expected radar card ${index + 1} in ${sectionSelector} to have a layout box.`);
+    }
+
+    expect(box.x).toBeGreaterThanOrEqual(-1);
+    expect(box.width).toBeLessThanOrEqual(viewport.width + 2);
+    expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 1);
+  }
+}
 
 test.describe('published site UI', () => {
   test('home page renders core navigation, theme toggle, and Japanese switch', async ({ page }) => {
@@ -101,7 +133,9 @@ test.describe('published site UI', () => {
     await expect(dailySection).toBeHidden();
     await expect(weeklySection).toBeVisible();
     await expect(weeklyNav).toHaveAttribute('aria-current', 'page');
-    await expect(weeklySection).toContainText('2 篇内容');
+    await expect(weeklySection).toContainText('4 篇内容');
+    await expect(weeklySection).toContainText('AI 雷达周报：2026-04-07 至 2026-04-13');
+    await expect(weeklySection).toContainText('AI 雷达周报：2026-04-01 至 2026-04-07');
     await expect(weeklySection).not.toContainText('AI 周报：RAG 检索质量新基准与 Agent 观测性演进');
     await expect(weeklySection).not.toContainText('AI 雷达周报：Agent 运行时架构与门控模型时代的到来');
 
@@ -115,7 +149,9 @@ test.describe('published site UI', () => {
     await gotoApp(page, '/ja/radar/#weekly');
     const japaneseWeeklySection = page.locator('[data-radar-section]#weekly');
     await expect(japaneseWeeklySection).toBeVisible();
-    await expect(japaneseWeeklySection).toContainText('2 記事');
+    await expect(japaneseWeeklySection).toContainText('4 記事');
+    await expect(japaneseWeeklySection).toContainText('AI レーダー週報：2026-04-07 〜 2026-04-13');
+    await expect(japaneseWeeklySection).toContainText('AI レーダー週報：2026-04-01 〜 2026-04-07');
     await expect(japaneseWeeklySection).not.toContainText('週刊 AI 動向：RAG 検索精度の新基準と Agent オブザーバビリティの進化');
 
     await gotoApp(page, '/ja/radar/#monthly');
@@ -126,6 +162,30 @@ test.describe('published site UI', () => {
     await expect(
       japaneseMonthlySection.locator('img[src="/images/radar/monthly-ai-radar-2026-04.ja-infographic.png"]'),
     ).toBeVisible();
+  });
+
+  test('radar archive cards stay inside the viewport across locales and cadences', async ({ page }) => {
+    await page.setViewportSize({ width: 721, height: 963 });
+
+    for (const layoutCase of radarArchiveLayoutCases) {
+      await gotoApp(page, layoutCase.path);
+
+      const section = page.locator(`[data-radar-section]#${layoutCase.section}`);
+      await expect(section).toBeVisible();
+      await expect(section).toContainText(layoutCase.countText);
+      await expectCardsToFitViewport(page, `[data-radar-section]#${layoutCase.section}`);
+    }
+
+    await gotoApp(page, '/ja/radar/#weekly');
+    const japaneseWeeklyImage = page.locator(
+      '[data-radar-section]#weekly a[href="/ja/radar/weekly-ai-radar-2026-04-01-to-2026-04-07/"] img[src="/images/radar/weekly-ai-radar-2026-04-01-to-2026-04-07.ja-infographic.png"]',
+    );
+    await expect(japaneseWeeklyImage).toBeVisible();
+    await expect(
+      page.locator(
+        '[data-radar-section]#weekly a[href="/ja/radar/weekly-ai-radar-2026-04-01-to-2026-04-07/"].radar-visual-placeholder',
+      ),
+    ).toHaveCount(0);
   });
 
   test('radar image wall filters cards and opens the preview dialog', async ({ page }) => {
