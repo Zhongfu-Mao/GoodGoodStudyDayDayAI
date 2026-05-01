@@ -42,7 +42,7 @@ test.describe('published site UI', () => {
     await gotoApp(page, '/academy/openai-academy/00-overview/openai-academy-overview/');
 
     await expect(page.getByRole('heading', { level: 1, name: 'OpenAI Academy 笔记：学习路线总览' })).toBeVisible();
-    await expect(page.locator('article[data-pagefind-body]')).toContainText('这条路线解决什么问题');
+    await expect(page.locator('article[data-pagefind-body]')).toContainText('本路线解决的核心问题');
 
     const languageSwitcher = page.locator('nav[aria-label="Language switcher"]');
     const japaneseLink = languageSwitcher.getByRole('link', { name: '日本語' });
@@ -56,8 +56,8 @@ test.describe('published site UI', () => {
     await japaneseLink.click();
 
     await expect(page).toHaveURL(appUrlPattern('/ja/academy/openai-academy/00-overview/openai-academy-overview/'));
-    await expect(page.getByRole('heading', { level: 1, name: 'OpenAI Academyノート：学習ルート全体' })).toBeVisible();
-    await expect(page.locator('article[data-pagefind-body]')).toContainText('学習の要点');
+    await expect(page.getByRole('heading', { level: 1, name: 'OpenAI Academyノート：学習ロードマップ全体像' })).toBeVisible();
+    await expect(page.locator('article[data-pagefind-body]')).toContainText('本ロードマップが解決する課題');
   });
 
   test('Japanese radar header stays compact and localized on desktop', async ({ page, isMobile }) => {
