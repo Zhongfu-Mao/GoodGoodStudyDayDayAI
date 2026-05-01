@@ -115,3 +115,6 @@ id_ed25519*
 *.private.md
 AGENTS.local.md
 PROJECT_MEMORY.local.md
+
+# AI 雷达自动化运行产物（仅本地，不应进仓库）
+.ai-radar-cleanup-log.jsonl

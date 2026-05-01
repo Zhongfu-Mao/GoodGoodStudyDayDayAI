@@ -30,10 +30,13 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
     "@astrojs/tailwind": "^6.0.0",
+    "@mozilla/readability": "^0.6.0",
     "@playwright/test": "^1.59.1",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.0.0",
     "autoprefixer": "^10.4.21",
+    "fast-xml-parser": "^5.7.2",
+    "jsdom": "^29.1.1",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.9.3",
