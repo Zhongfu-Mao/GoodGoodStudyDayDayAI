@@ -12,6 +12,7 @@
     "test:unit": "vitest run",
     "test:ui": "npm run build && playwright test",
     "test:ui:headed": "npm run build && playwright test --headed",
+    "test:ui:update-snapshots": "npm run build && playwright test tests/ui/visual-regression.spec.ts --update-snapshots",
     "audio:compress": "node scripts/compress-radar-audio.mjs",
     "radar:audio": "node scripts/generate-radar-audio.mjs",
     "radar:infographic": "node scripts/generate-radar-infographic.mjs",
