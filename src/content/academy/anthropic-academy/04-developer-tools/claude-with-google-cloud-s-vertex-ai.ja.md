@@ -1,13 +1,14 @@
 ---
-title: "Google Cloud Vertex AI で Claude を使う"
+title: "Claude on Google Cloud Vertex AI：GCP 環境での導入と運用管理"
 date: 2026-03-31
 category: academy
-description: "Vertex AI から Claude を使う際の導入イメージと、GCP ワークロードとの組み合わせ方を整理したノートです。"
-plainSummary: "Vertex AI 経由で Claude を使うときのプロジェクト設定、SDK、IAM、リージョン、監査と評価の勘所を整理します。"
+description: "Google Cloud Vertex AI から Claude を利用する際の環境構築、認証フロー、および GCP サービスとの統合方法をまとめた開発者ガイドです。"
+plainSummary: "Vertex AI 経由で Claude を使用する際のプロジェクト設定、gcloud 認証、SDK の相違点、および Cloud Logging や IAM を活用した運用管理について解説します。"
 difficulty: "advanced"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-with-google-cloud-s-vertex-ai.svg"
 tags:
   - "開発者"
+  - "Google Cloud"
 lang: ja
 academy:
   series: "Anthropic Academy"
@@ -18,75 +19,61 @@ academy:
   prerequisites: []
 draft: false
 ---
-Google Cloud の Vertex AI で Claude を使う場合、モデル呼び出しは Google Cloud のプロジェクト、IAM、リージョン、監査、請求の中に入ります。既存の GCP 運用に Claude を組み込みたいチームに向いた選択肢です。
+Google Cloud の Vertex AI を介して Claude を利用する場合、モデルの呼び出しは Google Cloud プロジェクト、IAM 権限、リージョン構成、および請求体系の中に統合されます。既存の GCP ワークロードに Claude を組み込み、セキュアかつ統合的に管理したいチームにとって最適な選択肢です。
 
-## このノートで押さえること
+## このノートのポイント
 
-- Vertex AI では GCP project、location、service account、IAM を前提にクライアントを作る。
-- モデル利用可否、リージョン、SDK のバージョンを環境ごとに確認する。
-- Cloud Logging、Monitoring、IAM Conditions など既存の GCP 管理機能と合わせて設計する。
-- プロンプト品質、構造化出力、eval はクラウド基盤に関係なく必要である。
+- **GCP エコシステムへの統合**：プロジェクト境界、ロケーション、サービスアカウント、および IAM を前提としたセキュアな設計が可能です。
+- **プラットフォーム固有の管理**：Cloud Logging による監査、Cloud Monitoring による監視、および IAM Conditions による詳細なアクセス制御を活用します。
+- **実装の相違点**：SDK の初期化方法やモデルの指定形式（`@` によるバージョン指定）など、Vertex AI 特有の仕様を理解する必要があります。
+- **共通の品質管理**：基盤が GCP であっても、プロンプトエンジニアリングや出力のバリデーション、継続的な評価（Eval）の重要性は変わりません。
 
-## Vertex AI で使う意味
+## Vertex AI を選択するメリット
 
-既に Google Cloud を利用している組織では、Vertex AI から Claude を呼ぶことで、認証、課金、監査、ネットワーク、データ基盤を既存の運用に寄せられます。
+既に Google Cloud を活用している組織では、Vertex AI から Claude を呼び出すことで、**認証、課金、監査、ネットワーク、データガバナンス**を既存の運用標準に集約できます。
 
-BigQuery、Cloud Storage、Cloud Run、Cloud Functions などと組み合わせる場合も、同じプロジェクト境界で管理しやすくなります。
+特に、BigQuery、Cloud Storage、Cloud Run、Cloud Functions などのサービスと組み合わせる場合、同一プロジェクト内でのデータ移動や、サービスアカウントによる細かい権限管理が可能になり、アーキテクチャ全体の整合性を保ちやすくなります。
 
-ただし Anthropic API と同じコードがそのまま動くわけではありません。SDK、モデル指定、リージョン、エラー処理の差分を理解します。
+## 実装の基本ステップ
 
-## 実装の基本
+1. **環境構築と権限設定**：GCP プロジェクトとロケーション（Region）を決定し、必要な API を有効化します。呼び出し元には最小権限を付与したサービスアカウント（Service Account）を使用します。
+2. **認証フロー**：API キーは不要です。`gcloud auth application-default login` などの標準的な認証方式（ADC）を利用して SDK を初期化します。
+3. **SDK の初期化**：`AnthropicVertex` クラスを使用します。モデル名には `claude-sonnet-4@20250514` のようにバージョンを明示する形式が用いられます。
 
-まず GCP project と location を決め、必要な API を有効化し、service account に最小権限を付与します。ローカル開発と本番実行では認証方法を分けるのが安全です。
+## GCP 運用におけるベストプラクティス
 
-SDK では、モデル名、最大トークン、temperature、メッセージ、システム指示を指定します。レスポンス形式は SDK のバージョンで変わることがあるため、薄い wrapper を作ると移行しやすくなります。
+- **IAM による権限分離**：開発、検証、本番、およびバッチ処理ごとにサービスアカウントを分け、環境間の影響を最小化します。
+- **可観測性の設計**：Cloud Logging には、リクエスト ID、モデル名、レイテンシ、トークン消費量、および独自のエラー種別を記録します。※ログに PII（個人を特定できる情報）や機密情報が混入しないよう注意してください。
+- **データ連携の安全確保**：BigQuery や Cloud Storage のデータを Claude に渡す際は、データの保持ポリシーやアクセス制御リスト（ACL）と整合性が取れているかを確認します。
 
-Vertex AI 経由でも、アプリケーション側では入力検証、出力検証、再試行、タイムアウト、ログを設計します。
+## 読者向け補足：GCP の運用標準と一体化する
 
-## GCP 運用で見るポイント
+Vertex AI で Claude を利用する最大の価値は、生成 AI 機能を既存の GCP 運用フレームワーク（ガバナンス、セキュリティ、監視）にシームレスに乗せられる点にあります。Secret Manager による秘匿情報の管理や、Workflows によるオーケストレーションと組み合わせることで、堅牢なエンタープライズ AI システムを構築できます。
 
-IAM では、呼び出し元の service account を用途ごとに分けます。開発、検証、本番、バッチ処理を同じ権限にしないことが重要です。
-
-Cloud Logging には、プロンプト全文ではなく、リクエスト ID、モデル、用途、レイテンシ、エラー種別、評価結果を残します。機密情報のログ混入を避けます。
-
-BigQuery や Cloud Storage と連携する場合、AI に渡すデータの範囲、保持期間、アクセス権を明確にします。
-
-## 読者向け補足：GCP の運用と一体で考える
-
-Vertex AI で Claude を使う場合、既存の GCP プロジェクト、サービスアカウント、監査ログ、データ基盤と接続しやすいことが大きな利点です。BigQuery、Cloud Run、Workflows、Secret Manager と組み合わせると、生成 AI 機能を既存の運用標準に乗せやすくなります。
-
-ただし、LLM 呼び出しは通常の REST API よりも失敗の種類が多くなります。quota、latency、出力形式の揺れ、リージョン差、provider 側のモデル更新を前提に、観測と回帰テストを用意します。
-
-| 観点 | 確認すること |
+| 管理項目 | Vertex AI 環境でのチェックポイント |
 | --- | --- |
-| Identity | service account、権限境界、鍵管理 |
-| Runtime | Cloud Run か batch か、timeout と再試行 |
-| Data | BigQuery、GCS、PII の扱い |
-| Observability | request id、latency、token、error reason |
+| **アイデンティティ** | サービスアカウントの分離、権限境界の定義 |
+| **ランタイム** | Cloud Run や GKE 上でのタイムアウト・リトライ設計 |
+| **データ保護** | VPC Service Controls の適用、データの所在地の限定 |
+| **観測性** | Cloud Logging/Monitoring によるエラー率とレイテンシの監視 |
 
 ### ミニ演習
 
-GCP 上の既存データを使って FAQ 生成を行う想定で、入力データ、Secret 管理、ログ、評価データ、失敗時の人間確認フローを設計します。
+GCP 上の BigQuery に格納されたデータを元に、Claude を使って FAQ を自動生成するパイプラインを想定してください。この際、使用するサービスアカウントの権限、Secret Manager の利用方法、および Cloud Logging に残すべき監査項目のリストを作成してみましょう。
 
-## 実務で試すワークフロー
+## 実務ワークフローの提案
 
-1. GCP project、location、service account、利用モデルを一覧化する。
-2. Claude 呼び出し wrapper を作り、SDK 固有の差分をアプリ本体から隔離する。
-3. Cloud Logging とアプリ側 eval を分け、品質と運用状態を両方追う。
+1. **リソースの特定**：GCP プロジェクト、ロケーション、サービスアカウント、および使用する Claude モデルのバージョンを決定する。
+2. **抽象化レイヤーの実装**：Claude 呼び出しをカプセル化する Wrapper を作成し、SDK 固有のインターフェース変更がアプリケーション本体に波及しないようにする。
+3. **モニタリングの設定**：Cloud Logging とアプリケーション独自の評価ログを連携させ、モデルの応答品質とインフラの稼働状態を多角的に監視する。
 
 ## Prompt pack
 
-- Vertex AI で Claude を使う本番アプリの設計レビュー項目を、IAM、ログ、データ境界、評価に分けてください。
-- この Anthropic API サンプルを Vertex AI 前提に移植する際の差分を説明してください。
-- BigQuery の分析結果を Claude に渡すアプリで、入力データの最小化と監査をどう設計すべきか整理してください。
+- 「Vertex AI で Claude を本番運用するための設計レビュー項目を、IAM、ログ設計、ネットワーク境界、および継続的評価の観点で整理してください。」
+- 「標準の Anthropic API サンプルコードを、Vertex AI 向けに移植する際の主要な変更点（認証、クライアント初期化、モデル指定）を説明してください。」
+- 「BigQuery の大規模データを Claude に渡す際、トークンコストの最適化とデータ監査をどのように両立すべきか提案してください。」
 
-## 自分で確認する
-
-- service account の権限が用途ごとに分かれている。
-- SDK 差分を wrapper で吸収している。
-- ログに機密データを残さない方針がある。
-
-## 関連して読む
+## 関連リソース
 
 - [Building with the Claude API](../building-with-the-claude-api/)
 - [Cloud & Infra](../../../../engineering/cloud-infra-02/)

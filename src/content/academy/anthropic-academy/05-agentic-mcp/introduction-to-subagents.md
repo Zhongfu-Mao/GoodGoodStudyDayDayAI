@@ -1,13 +1,14 @@
 ---
-title: "Introduction to subagents"
+title: "Introduction to Subagents"
 date: 2026-03-31
 category: academy
-description: "子代理（Subagents）架构介绍，多代理系统协调模式"
-plainSummary: "这篇笔记把 Introduction to subagents 的核心内容整理成可复习、可实践的 代理与 MCP 学习路径。"
+description: "子代理（Subagents）架构详解：多代理系统的协同模式与上下文管理优化。"
+plainSummary: "本笔记深入解析了 Subagents 的核心机制，探讨如何通过任务委托与上下文分离来优化 Claude Code 的执行效率。"
 difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-subagents.svg"
 tags:
   - "MCP"
+  - "Agents"
 lang: zh
 academy:
   series: "Anthropic Academy"
@@ -18,222 +19,151 @@ academy:
   prerequisites: []
 draft: false
 ---
-**适用对象：** Claude Code 用户
+**适用对象：** Claude Code 用户及代理系统开发者
 
-## 第一课：什么是 Subagents？
+## 第一课：理解 Subagents（子代理）
 
 ### 核心概念
 
-**Subagent（子代理）** 是 Claude Code 可以将任务委托给它的**专属助手**。每个 Subagent 拥有独立的上下文窗口，完成任务后仅将摘要返回主线程，所有中间步骤（文件读取、搜索、工具调用）都留在子代理的上下文中，**不会污染主对话**。
+**Subagent（子代理）** 是 Claude Code 的一个强大特性，它允许主代理将特定任务委托给一个**专属的临时助手**。每个 Subagent 运行在完全独立的上下文窗口中。任务完成后，它仅将关键摘要返回给主线程，而所有中间步骤（如繁琐的文件读取、大规模搜索及工具调用过程）均保留在子代理的上下文中，**从而避免污染主对话的有效信息空间**。
 
-### 为什么需要 Subagents？
+### 为什么 Subagents 至关重要？
 
-Claude Code 的主上下文窗口容量有限。每次工具调用、文件读取、搜索结果都会占用主上下文空间。**一旦主上下文填满，Claude 会开始遗忘对话的早期内容**。
+Claude Code 的主上下文窗口虽然庞大，但并非无限。频繁的工具调用、长文件的读取以及复杂的搜索结果会迅速填满上下文。**一旦主上下文过载，Claude 可能会丢失对话早期的关键指令或背景信息。**
 
-Subagent 的解决方案：
+Subagent 的工作机制如下：
 ```
-主线程发送任务
+主线程发出具体任务指令
     ↓
-Subagent 在独立上下文中工作
-（读文件、搜索、调用工具……）
+Subagent 在完全独立的上下文中执行
+（执行读取、搜索、多步工具调用……）
     ↓
-仅返回摘要给主线程
-（子代理的完整对话被丢弃）
+Subagent 仅将任务摘要与结论返回主线程
+（子代理的冗余执行细节被自动清理）
     ↓
-主线程上下文保持干净
+主线程上下文保持精简、聚焦且高效
 ```
 
-**权衡：** 获得简洁摘要，但失去了 Subagent 推理过程的可见性。
+**权衡：** 优势在于显著提升上下文效率；代价是主线程失去了对 Subagent 具体推理过程的实时可见性。
 
-### 实际示例
+### 场景对比
 
-**不用 Subagent：** 询问"哪个服务处理退款？" → Claude 读取 15 个文件，所有内容都进入主上下文。
+- **普通模式：** 询问“哪个服务处理退款逻辑？” → Claude 主动读取 15 个相关文件，所有文件内容瞬间挤占主上下文。
+- **Subagent 模式：** 专门的 `Explore` 子代理独立完成文件挖掘，主上下文仅记录“问题描述”与“精准的结论摘要”。
 
-**使用 Subagent：** Explore Subagent 独立挖掘信息，主上下文只记录"问题 + 摘要"。
+### 系统内置 Subagents
 
-### 内置 Subagents
+Claude Code 预置了三个核心 Subagent：
 
-Claude Code 自带三个内置 Subagent：
+| Subagent 名称 | 主要用途 |
+|---------------|----------|
+| **General purpose** | 处理需要“先探索、后执行”的多步骤复杂任务 |
+| **Explore** | 针对代码库的快速搜索、导航与信息检索 |
+| **Plan** | 在 Plan 模式下进行深入的代码架构研究与变更影响分析 |
 
-| Subagent | 用途 |
-|----------|------|
-| **General purpose** | 多步骤任务（需要探索 + 执行） |
-| **Explore** | 快速搜索和浏览代码库 |
-| **Plan** | Plan 模式下的代码库研究与分析 |
+除内置代理外，开发者还可以根据特定工作流创建**自定义 Subagent**。
 
-除内置 Subagent 外，还可以创建**自定义 Subagent**。
+## 第二课：如何创建自定义 Subagent
 
-## 第二课：创建 Subagent
+### 快速上手步骤
 
-### 创建步骤
+1. 在终端使用 `/agents` 命令进入 Subagent 管理界面。
+2. 选择 **Create new agent**。
+3. 定义作用域：
+   - **Project-level**：配置存储在当前仓库中，适合团队共享。
+   - **User-level**：存储在本地全局路径，跨项目可用。
+4. 描述功能：输入你对该代理的期望，**建议让 Claude 自动生成**名称、描述及系统提示词。
+5. 配置**工具权限**（按需授权）：
+   - Read-only（只读型）
+   - Edit（编辑型）
+   - Execution（执行型，如 Bash）
+   - MCP（第三方协议集成）
+6. 选择**推理模型**：Haiku（极致速度）/ Sonnet（综合平衡）/ Opus（深度分析）/ Inherit（随主线程）。
+7. 指定**UI 颜色**：用于在多代理交互界面中快速识别身份。
 
-1. 使用 `/agents` 斜杠命令打开 Subagent 管理界面
-2. 选择 **Create new agent**
-3. 选择作用范围：
-   - **Project-level**：仅在当前项目可用
-   - **User-level**：在本机所有项目中共享
-4. 描述你想要的 Subagent 功能，**让 Claude 自动生成**名称、描述和系统提示词（推荐）
-5. 自定义**工具权限**：
-   - Read-only 工具
-   - Edit 工具
-   - Execution 工具
-   - MCP 工具
-   - 其他工具
-6. 选择**模型**：Haiku（轻量快速）/ Sonnet（平衡）/ Opus（复杂分析）/ Inherit（继承主线程）
-7. 选择**颜色**（UI 标识，便于区分多个 Subagent）
+### 配置文件深度解析
 
-### 配置文件结构
-
-创建完成后，配置文件保存在 `.claude/agents/your-agent-name.md`：
+自定义代理的配置将以 Markdown 形式存储（路径：`.claude/agents/<name>.md`）：
 
 ```markdown
 ---
 name: code-quality-reviewer
-description: Use this agent when you need to review recently written or modified code for quality, security, and best practice compliance.
+description: 使用此代理对最近修改的代码进行质量、安全及最佳实践合规性审查。
 tools: Bash, Glob, Grep, Read, WebFetch, WebSearch
 model: sonnet
 color: purple
 ---
 
-You are an expert code reviewer specializing in quality assurance, security best practices, and adherence to project standards. Your role is to thoroughly examine recently written or modified code and identify issues that could impact reliability, security, maintainability, or performance.
+你是一位资深的后端架构师，擅长代码质量评估、安全漏洞扫描及项目规范审查。你的任务是严谨地分析变更，识别可能影响系统可靠性、可维护性或性能的潜在风险。
 ```
 
-**各字段说明：**
+**关键字段说明：**
+- `name`：唯一标识符，可在对话中通过 `@name` 手动引用。
+- `description`：**至关重要**。主代理会根据此描述自动判断何时应触发该子代理。
+- `tools`：明确该子代理可以动用的“军火库”边界。
 
-| 字段 | 说明 |
-|------|------|
-| `name` | Subagent 的唯一标识符，用 `@agent name` 引用 |
-| `description` | 控制主 Agent 何时调用此 Subagent（必须单行） |
-| `tools` | 此 Subagent 可访问的工具列表 |
-| `model` | 使用的 Claude 模型 |
-| `color` | UI 颜色标识 |
+### 实现主动触发
 
-正文（YAML frontmatter 之后）是**系统提示词**。
+若希望 Claude 在检测到特定变更时自动调用子代理，请在 `description` 中包含 **"proactively"** 关键词，并提供具体的触发逻辑或对话示例。
 
-### 让 Claude 自动触发 Subagent
+## 第三课：Subagent 的高效设计原则
 
-在 `description` 字段中加入 **"proactively"** 关键词，Claude 会在适当场景主动委托任务：
+### 四大黄金准则
 
-```
-description: Proactively suggest running this agent after major code changes...
-```
+#### 1. 精准的 Description（触发描述）
+Description 不仅决定了**何时**调用，还指导了主代理如何为子代理编写**任务输入**。
+- ❌ 模糊：执行代码审查。
+- ✅ 精确：审查 `git diff` 涉及的具体文件，并结合 `lint` 规则输出结构化报告。
 
-也可以在 description 中加入**示例对话**，帮助 Claude 理解触发场景。
+#### 2. 强推结构化输出（最重要的环节）
+在系统提示词中明确要求输出格式。这能让子代理知道何时该结束任务，防止其在独立上下文中无限循环。
+**示例要求：**
+- 1. 摘要：总体风险评估。
+- 2. 严重问题：安全及逻辑漏洞（必须修复）。
+- 3. 改进建议：性能及可读性优化。
+- 4. 审批结论：批准/拒绝/需修改。
 
-## 第三课：设计高效的 Subagents
+#### 3. 障碍汇报机制（Obstacle Reporting）
+当子代理在执行过程中发现环境怪癖、特殊的命令标志或依赖绕过方案时，**必须强制要求其在摘要中体现**。否则主线程在后续执行相同操作时将面临重复的困难，浪费 token 和时间。
 
-### 四大核心原则
+#### 4. 最小化工具授权
+只给它完成任务**必需**的工具。
+- 研究型子代理：仅给予 `Read`、`Grep`、`Glob`。
+- 审查型子代理：给予 `Bash`（用于 diff），但通常不需要 `Edit` 权限。
 
-#### 1. 精准的 Description
+## 第四课：最佳实践与决策指引
 
-`description` 有两个作用：
-- 控制**何时**触发 Subagent
-- 为主 Agent 提供写**输入提示词**的指引
+### 核心决策逻辑：中间过程是否关键？
 
-**对比示例（代码审查 Subagent）：**
-- ❌ 模糊 description → 主 Agent 写"用 git diff 找当前变更"（太模糊）
-- ✅ 加入"精确告知需要审查哪些文件" → 主 Agent 会列出具体文件名
+- **委托给 Subagent**：如果你只需要一个准确的最终结论（例如：“帮我分析这个报错的根因”）。
+- **保留在主线程**：如果你需要实时观察每一步推理，并根据中间结果动态调整策略。
 
-**技巧：** 在 description 中加入"返回可引用的来源"，主 Agent 委托时会包含此要求。
+### 最佳应用场景
 
-#### 2. 定义输出格式（最重要！）
+1. **深度调研与探索**：主线程只需要答案，不需要看子代理翻遍了哪些文件夹。
+2. **客观代码审查**：Claude 编写代码后再进行自我审查往往会有盲点。调用一个独立的 Reviewer Subagent，利用新鲜的上下文和特定的审查标准，效果显著更好。
+3. **风格化/特定领域任务**：例如一个专门负责文案润色的子代理，预置了品牌语调规范，而主线程则继续专注于技术逻辑。
 
-在系统提示词中定义**结构化输出格式**，带来两大好处：
-- 创造自然的终止点——Subagent 填完所有部分就知道完成了
-- 防止 Subagent 运行过长
+### 避坑指南（反模式）
 
-**代码审查输出格式示例：**
-```
-请以结构化格式提供审查结果：
-1. 摘要：审查内容概述和总体评估
-2. 严重问题：安全漏洞、数据完整性风险或必须立即修复的逻辑错误
-3. 主要问题：质量问题、架构偏差或显著的性能问题
-4. 次要问题：风格不一致、文档缺失或小优化
-5. 建议：改进建议、重构机会或最佳实践
-6. 审批状态：明确说明代码是否可以合并/部署或需要修改
-7. 遇到的障碍：报告审查中遇到的任何问题（环境问题、绕过方案、需要特殊标志的命令等）
-```
+- **❌ "专家"角色设定**：不要指望通过提示词声明“你是 Python 专家”来提升智力，模型本身的能力边界是固定的，子代理无法超越其底层模型。
+- **❌ 深度依赖的顺序管道**：将一个 Bug 修复拆解为“复现代理 → 调试代理 → 修复代理”通常会失败，因为上下文碎片的流失会导致后期代理无法理解前期的细微发现。
+- **❌ 哑铃式测试运行器**：如果子代理仅返回“测试失败”而不带详细日志，主线程将不得不重新运行测试以获取调试信息，效率极低。
 
-#### 3. 报告障碍（Obstacle Reporting）
+## 决策速查表
 
-当 Subagent 发现解决方法（如依赖问题的绕过方案、需要特殊标志的命令）时，**必须在摘要中汇报**，否则主线程需要重新发现这些信息，浪费 token。
-
-在输出格式中明确加入"遇到的障碍"章节，自动捕获：
-- 环境问题或环境怪癖
-- 任务中发现的绕过方案
-- 需要特殊标志或配置的命令
-- 导致问题的依赖或导入
-
-#### 4. 限制工具访问
-
-只给 Subagent 它**实际需要**的工具：
-
-| Subagent 类型 | 推荐工具 |
-|---------------|----------|
-| **研究/只读** | Glob, Grep, Read（不能修改文件） |
-| **代码审查** | Bash（运行 git diff），但不需要 Edit/Write |
-| **代码修改** | Edit, Write（明确需要修改文件时才给） |
-
-## 第四课：有效使用 Subagents
-
-### 决策核心原则
-
-**关键问题：中间过程重要吗？**
-
-- 如果**不重要**（只需最终结果）→ **委托给 Subagent**
-- 如果**重要**（需要看到并响应每一步）→ **留在主线程**
-
-### Subagents 的最佳场景
-
-**1. 研究任务**
-
-经典用例。主线程需要结论（如"JWT 在哪里验证？"），不需要看每个搜索过程。Subagent 读取数十个文件后返回：
-
-> "JWT 验证在 middleware/auth.js 第 42 行，从 route/api.js 中的 Express 路由调用"
-
-**2. 代码审查**
-
-Claude 以**旁观者视角**审查代码效果更好。如果主线程全程参与了代码编写，让它自己审查往往产生"护短"效应——它难以客观看待自己参与创建的代码。
-
-Reviewer Subagent 在独立上下文中运行 `git diff`，用新鲜视角审查，还可以在系统提示词中编码**团队的审查标准**，确保一致性。
-
-**3. 需要自定义系统提示词的任务**
-
-Claude Code 默认系统提示词强调简洁、代码导向——不适合所有场景：
-
-- **文案 Subagent**：定义语调、受众、风格（不同于技术写作）
-- **样式 Subagent**：预加载设计系统文件（颜色变量、间距规范、组件模式），确保写 CSS 前就知道项目规范
-
-### 常见反模式（不要这样做）
-
-**❌ 1. "专家"声明**
-
-"你是 Python 专家" / "你是 Kubernetes 专家" → 没有意义，Claude 本来就有这些知识，专家 Subagent 做不到主线程做不到的事。
-
-**❌ 2. 顺序管道（Sequential Pipelines）**
-
-将 Bug 修复拆成"复现 → 调试 → 修复"三个 Subagent 串联——看似合理，实则有问题：Bug 修复的每一步都依赖上一步的**发现**，信息在 Agent 间传递时会丢失。
-
-顺序管道只在任务**真正独立**时有效；当每步依赖前步发现时，用主线程效果更好。
-
-**❌ 3. 测试运行器**
-
-测试失败时，你需要**完整输出**来诊断问题。"测试运行器" Subagent 只返回"测试失败"，迫使你再创建调试脚本才能获取本可直接看到的信息。实测表明测试运行器模式在所有配置中表现最差。
-
-### 决策速查表
-
-| 场景 | 建议 |
-|------|------|
-| 研究和探索 | ✅ 用 Subagent |
-| 代码审查 | ✅ 用 Subagent |
-| 需要自定义系统提示词 | ✅ 用 Subagent |
-| "专家"角色扮演 | ❌ 不用 |
-| 多步骤依赖管道 | ❌ 不用 |
-| 运行测试（需要完整输出） | ❌ 不用 |
+| 任务类型 | 推荐方式 |
+|----------|----------|
+| 文档调研与代码检索 | ✅ Subagent |
+| 独立的第三方审查 | ✅ Subagent |
+| 预加载特定领域知识（如 CSS 规范） | ✅ Subagent |
+| 扮演“专家”身份 | ❌ 主线程 |
+| 运行测试（需实时日志） | ❌ 主线程 |
+| 强依赖的多步逻辑链路 | ❌ 主线程 |
 
 ## 相关笔记
 
 > **延伸阅读**
-> - [Introduction to Agent Skills](/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/) — Skills 框架
-> - [Introduction to Model Context Protocol](/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/) — MCP 协议基础
-> - [Model Context Protocol: Advanced Topics](/academy/anthropic-academy/05-agentic-mcp/model-context-protocol-advanced-topics/) — 进阶集成
+> - [Introduction to Agent Skills](/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/) — 掌握技能扩展框架
+> - [Introduction to Model Context Protocol](/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/) — 理解 MCP 核心协议
+> - [Model Context Protocol: Advanced Topics](/academy/anthropic-academy/05-agentic-mcp/model-context-protocol-advanced-topics/) — 进阶集成实践

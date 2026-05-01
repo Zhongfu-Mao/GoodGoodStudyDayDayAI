@@ -2,8 +2,8 @@
 title: "AI Fluency: Framework & Foundations"
 date: 2026-03-31
 category: academy
-description: "AI Fluency 4Ds 框架的核心理论课程，涵盖授权-勤勉循环与描述-辨别循环"
-plainSummary: "这篇笔记把 AI Fluency: Framework & Foundations 的核心内容整理成可复习、可实践的 AI Fluency 框架与基础 学习路径。"
+description: "AI Fluency 4Ds 框架的核心理论课程，涵盖「委派-勤勉」循环与「描述-辨别」循环。"
+plainSummary: "本笔记将 AI Fluency: Framework & Foundations 的核心内容提炼为系统化的学习路径，助力掌握 AI Fluency 的核心框架与基础实践。"
 difficulty: beginner
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/ai-fluency-framework-and-foundations.svg"
 lang: zh
@@ -15,262 +15,236 @@ academy:
   sourceUrl: "https://anthropic.skilljar.com/ai-fluency-framework-foundations"
   prerequisites:
     - "获取 Claude 访问权限：[claude.ai](https://claude.ai)"
-    - "AI Fluency 词汇表（可下载 PDF）"
+    - "阅读 AI Fluency 词汇表"
 draft: false
 ---
-**版权：** Copyright 2025 Rick Dakan, Joseph Feller, and Anthropic（CC BY-NC-SA 4.0）
+**版权说明：** Copyright 2025 Rick Dakan, Joseph Feller, and Anthropic（遵循 CC BY-NC-SA 4.0 协议）
 
 > **课程核心**
-> **AI Fluency** = 以有效（Effective）、高效（Efficient）、合乎伦理（Ethical）、安全（Safe）的方式与 AI 协作的综合能力。
-> 核心框架：**4Ds** — Delegation（授权）→ Description（描述）→ Discernment（辨别）→ Diligence（勤勉）
+> **AI Fluency（AI 流利度）** = 以有效（Effective）、高效（Efficient）、合乎伦理（Ethical）、安全（Safe）的方式与 AI 协作的综合能力。
+> 核心框架：**4Ds** —— Delegation（委派）→ Description（描述）→ Discernment（辨别）→ Diligence（勤勉）
 
 ## 第一章：简介
 
-### 1. 课程欢迎（Introduction to AI Fluency）
+### 1. 课程导引（Introduction to AI Fluency）
 
-**什么是 AI Fluency（AI 流利度）？**
+**什么是 AI Fluency？**
 
-AI Fluency 指以**有效（Effective）、高效（Efficient）、合乎伦理（Ethical）、安全（Safe）** 的方式与 AI 系统交互的能力。
+AI Fluency 指以**有效（Effective）、高效（Efficient）、合乎伦理（Ethical）且安全（Safe）**的方式与 AI 系统交互的能力。
 
-本课程的核心是 **4D 框架**：Delegation（委派）、Description（描述）、Discernment（辨别）、Diligence（勤勉）。
+本课程的核心围绕 **4D 框架**展开：Delegation（委派）、Description（描述）、Discernment（辨别）和 Diligence（勤勉）。
 
-**课程目标：** 培养在 AI 持续演进的环境中仍然持续相关的人机协作技能。
+**课程目标：** 在 AI 持续演进的浪潮中，培养能够持续产生价值的人机协作技能。
 
-**先决条件/资源：**
+**必备资源：**
 - 获取 Claude 访问权限：[claude.ai](https://claude.ai)
-- AI Fluency 词汇表（可下载 PDF）
+- AI Fluency 词汇表（建议下载 PDF 备查）
 
 ## 第二章：AI Fluency 框架
 
 ### 2. 为什么我们需要 AI Fluency？（Why do we need AI Fluency?）
 
-**人与 AI 协作的三种模式：**
+**人与 AI 协作的三种典型模式：**
 
 | 模式 | 说明 |
 |------|------|
-| **Automation（自动化）** | AI 根据你的指令完成特定任务，人负责下达指令 |
-| **Augmentation（增强）** | 人与 AI 作为创意思考和任务执行的协作伙伴 |
-| **Agency（代理）** | 你配置 AI 让其自主代表你工作，建立其知识库和行为规则 |
+| **Automation（自动化）** | AI 根据指令完成特定任务，人类负责下达指令并监督结果。 |
+| **Augmentation（增强）** | 人类与 AI 作为合作伙伴，共同进行创意思考与任务执行。 |
+| **Agency（代理）** | 配置 AI 使其能够自主代表人类工作，基于既定的知识库和行为准则运行。 |
 
-AI Fluency 的意义在于帮助用户在这三种模式中都能游刃有余地与 AI 协作。
+掌握 AI Fluency 能够帮助你在以上三种模式中切换自如，提升协作效能。
 
 ### 3. 4D 框架概览（The 4D Framework）
 
-4D 框架是 AI Fluency 的四大核心能力：
+4D 框架定义了 AI Fluency 的四大核心能力：
 
-| D | 能力 | 核心问题 |
+| 维度 | 能力定义 | 核心思考点 |
 |---|------|----------|
-| **Delegation（委派）** | 决定哪些工作交给 AI、哪些自己做 | 这个任务适合 AI 吗？ |
-| **Description（描述）** | 与 AI 系统进行清晰有效的沟通 | 我怎样表达才能让 AI 理解我的需求？ |
-| **Discernment（辨别）** | 批判性地评估 AI 的输出和行为 | AI 的回答质量如何？符合我的需求吗？ |
-| **Diligence（勤勉）** | 确保负责任、合乎伦理地使用 AI | 我的 AI 使用方式透明、负责任吗？ |
+| **Delegation（委派）** | 决策哪些任务交给 AI、哪些由人类独立完成。 | 该任务的性质是否契合当前的 AI 能力？ |
+| **Description（描述）** | 与 AI 系统进行清晰、精准且有效的沟通。 | 我该如何表达需求，才能让 AI 准确理解意图？ |
+| **Discernment（辨别）** | 批判性地评估 AI 的输出内容及其行为逻辑。 | AI 的回答质量如何？是否真正解决了我的问题？ |
+| **Diligence（勤勉）** | 确保以负责任且合乎伦理的方式使用 AI。 | 我的 AI 协作过程是否透明、合规且负责？ |
 
-这四种能力相互配合，贯穿所有类型的 AI 协作场景。
+这四种能力相辅相成，贯穿于所有 AI 协作场景的始终。
 
-## 第三章：深入理解 GenAI（第一部分）
+## 第三章：深入理解生成式 AI
 
 ### 4. 生成式 AI 基础（Generative AI fundamentals）
 
 **什么是生成式 AI？**
 
-生成式 AI（Generative AI）的核心能力是**创造新内容**，而不只是分析已有内容。
+生成式 AI（Generative AI）的核心价值在于**创造新内容**，而非仅仅分析或检索已有数据。
 
-**大语言模型（LLM）的工作原理：**
-- 基于**Transformer 架构**的算法突破
-- 依赖**海量训练数据**
-- 需要**强大算力**支撑
+**大语言模型（LLM）的三大支柱：**
+- **Transformer 架构**：算法层面的核心突破。
+- **海量训练数据**：模型能力的知识来源。
+- **强大算力支持**：模型运行的物理基础。
 
-**关键概念：**
-- **上下文窗口（Context Window）**：模型在单次对话中能处理的文本量上限
-- **涌现能力（Emergent Capabilities）**：随模型规模增大而涌现出的意外能力
+**关键概念点：**
+- **上下文窗口（Context Window）**：模型在单次对话中能够处理的信息量上限。
+- **涌现能力（Emergent Capabilities）**：当模型规模达到一定程度时，意外展现出的复杂处理能力。
 
 ### 5. 生成式 AI 的能力与局限（Capabilities & limitations）
 
-**主要能力：**
-- 跨语言任务的多功能性（写作、翻译、分析、编程等）
-- 保持连贯对话流的能力
-- 无需额外训练即可在多种任务间切换
+**核心优势：**
+- 强大的跨领域多功能性（写作、翻译、代码编写、深度分析等）。
+- 能够维持连贯的对话语境。
+- 具备零样本（Zero-shot）或少样本（Few-shot）的学习与任务切换能力。
 
-**主要局限：**
-- **知识截止日期（Knowledge Cutoff）**：训练数据有时间限制，对最新事件了解有限
-- **幻觉（Hallucinations）**：可能生成听起来合理但实际上不准确的内容
-- **上下文窗口限制**：处理超长文档时会有信息遗漏
-- **推理挑战**：复杂的多步骤逻辑推理仍有不足
+**现实局限：**
+- **知识截止日期（Knowledge Cutoff）**：训练数据的时间限制，导致其对最新资讯了解不足。
+- **幻觉（Hallucinations）**：可能生成表面逻辑通顺但事实错误的内容。
+- **上下文窗口限制**：在处理超长文档时，可能存在信息遗漏或关注点偏移。
+- **复杂推理挑战**：面对严密的多步骤逻辑推导时，仍可能出现偏差。
 
-> **注意：** 该领域持续快速演进，当前的局限可能随时被突破。
+> **提示：** AI 领域发展极快，当前的局限性正随着技术迭代被不断攻克。
 
 ## 第四章：委派（Delegation）
 
-### 6. 深入了解委派（A closer look at Delegation）
+### 6. 深入解析委派（A closer look at Delegation）
 
-**什么是委派？**
+**委派的本质：**
 
-委派（Delegation）是 AI Fluency 的第一个核心能力：**thoughtfully deciding what work to do yourself, what to collaborate on with AI, and what to let AI handle independently.**（思考哪些工作自己做，哪些与 AI 合作，哪些让 AI 独立处理。）
+委派（Delegation）是 AI Fluency 的首要能力，即**审慎地决定哪些工作亲力亲为、哪些与 AI 协作完成、哪些交由 AI 独立处理。**
 
 **委派的三个子能力：**
 
 | 子能力 | 说明 |
 |--------|------|
-| **Problem Awareness（问题意识）** | 在引入 AI 之前，清晰理解你的目标和任务性质 |
-| **Platform Awareness（平台意识）** | 了解不同 AI 系统各自能做什么 |
-| **Task Delegation（任务分配）** | 策略性地将工作分配给人和 AI，各自发挥优势 |
+| **Problem Awareness（问题意识）** | 在引入 AI 之前，对目标、约束和任务本质有深刻理解。 |
+| **Platform Awareness（平台意识）** | 识别并理解不同 AI 系统各自的擅长领域与短板。 |
+| **Task Delegation（任务分配）** | 策略性地编排工作流，使人类智慧与 AI 算力各展所长。 |
 
-**关键原则：**
-- 有效的委派需要**领域专业知识 + 对 AI 能力的理解**两者兼备
-- 目标不是将所有事情自动化，而是创造最有效的**人机协作**
+**核心原则：**
+- 有效的委派源于**领域专业知识**与**对 AI 能力边界理解**的结合。
+- 目标并非全盘自动化，而是构建最优质的**人机协作模式**。
 
 ### 7. 项目规划与委派实践（Project planning and Delegation）
 
-本节是一个贯穿整个课程的实践练习，帮助学员将委派概念应用于真实项目。
+实践练习：将委派概念应用于你真实关心的项目中。
 
-**项目选择标准：**
-- 涉及多种类型的任务（足够复杂）
-- 约 1 小时内可完成（可管理）
-- 你真正感兴趣的事情
+**项目选择建议：**
+- 包含多种类型的任务（具有一定复杂度）。
+- 预估可在 1 小时左右完成（可控性强）。
+- 具有真实的个人或职业兴趣驱动。
 
-**项目类型建议：**
-- **沟通类**：简报、新闻稿、演讲稿
-- **研究类**：话题调研、产品对比、历史事件探索
-- **创意类**：短篇故事大纲、网站结构设计、概念产品设计
-- **学习类**：技能学习计划、资源汇编、教程编写
+**项目场景参考：**
+- **沟通类**：撰写新闻稿、演讲大纲或项目周报。
+- **研究类**：行业趋势调研、产品竞品对比。
+- **创意类**：故事梗概创作、网站架构草案设计。
+- **学习类**：定制化的技能进修计划。
 
-**实践步骤：**
-1. 选择项目并与 Claude 对话，明确项目愿景
-2. 创建委派计划：哪些任务交给 AI，哪些自己完成
-3. 记录并保存计划，以便后续课程中练习 Description 和 Discernment
+**实践路径：**
+1. 与 Claude 对话，阐明项目愿景并细化任务清单。
+2. 制定委派计划：明确 AI 的角色与人类的角色。
+3. 记录初始计划，为后续的「描述」与「辨别」环节打下基础。
 
 ## 第五章：描述（Description）
 
-### 8. 深入了解描述（A closer look at Description）
+### 8. 深入解析描述（A closer look at Description）
 
-**什么是描述？**
+**描述的本质：**
 
-Description 超越了单纯"写提示词"的层面——它是创造一个**高效协作环境**的艺术，让人和 AI 都能有效工作。
+描述（Description）不仅仅是编写提示词，它是构建一个**高效协作环境**的艺术，确保 AI 能够精准对齐人类的意图。
 
-**Description 的三个维度：**
+**描述的三个维度：**
 
 | 维度 | 说明 | 示例 |
 |------|------|------|
-| **Product Description（产品描述）** | 清晰定义你想要的**输出内容**（格式、受众、风格） | "给我写一篇 500 字的博客文章，受众是非技术读者" |
-| **Process Description（过程描述）** | 引导 AI **如何思考和处理**任务 | "先列出大纲再写正文" / "用批判性视角分析" |
-| **Performance Description（表现描述）** | 指定 AI 的**交互行为**和风格 | "保持简洁" / "主动提问以获取更多信息" |
+| **Product（产品描述）** | 定义预期的**输出成果**（格式、受众、风格）。 | “请撰写一篇 500 字的博文，面向初学者介绍区块链。” |
+| **Process（过程描述）** | 引导 AI 的**思维路径与处理逻辑**。 | “请先分析现状，再列举优缺点，最后给出建议。” |
+| **Performance（表现描述）** | 指定 AI 的**交互风格与行为准则**。 | “语言简洁有力，遇到不确定的信息请主动提问。” |
 
-**核心理念：** AI 系统是**交互式伙伴**，不是数据库或自动售货机。提前清晰沟通能节省时间、产生更好的结果。
+**核心理念：** 将 AI 视为**交互式合作伙伴**，而非简单的指令接收器。
 
-### 9. 有效提示技术（Effective prompting techniques）
+### 9. 高效提示词技术（Effective prompting techniques）
 
-**提示工程（Prompt Engineering）** 是设计有效 AI 指令的实践，结合了清晰的人类沟通技巧和对 AI 工作原理的理解。
+**提示词工程（Prompt Engineering）** 是一种结合了人类沟通技巧与对模型机制理解的实践艺术。
 
-**六大核心提示技术：**
+**六大核心技术：**
 
-| # | 技术 | 说明 |
+| 序号 | 技术名称 | 实践建议 |
 |---|------|------|
-| 1 | **提供上下文** | 解释你想要什么、为什么要、相关背景信息 |
-| 2 | **展示示例** | 用例子演示你期望的输出风格或格式 |
-| 3 | **明确约束条件** | 清晰定义格式、长度等输出要求 |
-| 4 | **将复杂任务拆分步骤** | 引导 AI 逐步推理，避免一次性要求太多 |
-| 5 | **让 AI 先思考** | 给 AI 空间去处理问题，再给出答案 |
-| 6 | **定义 AI 的角色或语气** | 指定你希望 AI 以何种方式与你沟通 |
+| 1 | **提供充足的上下文** | 说明背景、目标以及“为什么要这么做”。 |
+| 2 | **少样本提示（Examples）** | 提供范例，让 AI 学习预期的输出风格和格式。 |
+| 3 | **明确约束条件** | 规定长度、语气、禁忌词等具体要求。 |
+| 4 | **任务拆解（Step-by-step）** | 将复杂任务分解，引导 AI 逐步推理。 |
+| 5 | **给予思考空间** | 鼓励 AI 在给出答案前先进行内部逻辑梳理（CoT）。 |
+| 6 | **角色设定** | 赋予 AI 特定的职业身份或人格特质。 |
 
-**秘密武器：** 直接让 AI 帮助改进你的提示词！
-
-> **关键认知：** 成功的提示是**迭代的**（可能也是与 AI 协作的！），根据结果不断调整是正常过程。
+**高阶技巧：** 直接邀请 AI 协助你优化和完善提示词！
 
 ## 第六章：辨别（Discernment）
 
-### 10. 深入了解辨别（A closer look at Discernment）
+### 10. 深入解析辨别（A closer look at Discernment）
 
-**什么是辨别？**
+**辨别的本质：**
 
-Discernment 是 Description 的另一面：Description 帮助你清晰传达意图，而 **Discernment 帮助你评估接收到的内容是否满足需求**。
+辨别（Discernment）是描述的反馈侧：它要求我们**批判性地评估 AI 的输出是否真正符合预期并具有实用价值**。
 
-**Discernment 的三个维度：**
+**辨别的三个维度：**
 
 | 维度 | 说明 |
 |------|------|
-| **Product Discernment（产品辨别）** | 评估 AI 输出内容本身的质量、准确性和相关性 |
-| **Process Discernment（过程辨别）** | 评估 AI 得出输出的方式——寻找逻辑错误、注意力偏差或不恰当的推理 |
-| **Performance Discernment（表现辨别）** | 评估 AI 在协作过程中的行为方式是否最适合你的需求 |
+| **Product（产品辨别）** | 检查输出内容的准确性、逻辑性及对受众的契合度。 |
+| **Process（过程辨别）** | 分析 AI 的推理过程，识别潜在的逻辑漏洞或偏见。 |
+| **Performance（表现辨别）** | 评估 AI 的沟通方式和协作态度是否需要调整。 |
 
 **核心原则：**
-- Discernment 与 Description 在**持续反馈循环**中共同运作
-- 即使是最先进的 AI 系统也需要人类的判断和监督
-- 你在某个领域的专业知识越深，你的辨别能力就越强
+- 辨别与描述构成了持续的**反馈闭环**。
+- 领域专业背景越强，辨别的敏感度与准确度就越高。
 
-### 11. Description-Discernment 循环（The Description-Discernment loop）
+### 11. 描述-辨别循环（The Description-Discernment loop）
 
-这是一个综合实践课，将 Description 和 Discernment 结合起来在真实项目中应用。
-
-**循环工作流：**
+这是 AI 协作中最核心的迭代过程：
 
 ```
-描述（Description）
-    ↓ 清晰传达：产品 + 过程 + 表现
-AI 执行任务
+描述（Description）—— 传达意图
     ↓
-辨别（Discernment）
-    ↓ 评估：产品 + 过程 + 表现
-根据评估调整描述
+AI 尝试执行
     ↓
-再次循环...
+辨别（Discernment）—— 评估效果
+    ↓
+优化描述（Refinement）—— 针对性调整
+    ↓
+循环迭代，直至达成目标
 ```
-
-**实践要点：**
-- 每次任务都要完整走一遍 D-D 循环
-- 记录哪些描述方式产生了更好的结果
-- 超出预期的收获同样值得记录
 
 ## 第七章：勤勉（Diligence）
 
-### 12. 深入了解勤勉（A closer look at Diligence）
+### 12. 深入解析勤勉（A closer look at Diligence）
 
-**什么是勤勉？**
+**勤勉的本质：**
 
-Diligence 是 AI Fluency 中专注于**负责任和合乎伦理的 AI 协作**的能力。与其他三个能力主要关注效率和有效性不同，Diligence 关注**伦理和安全**层面。
+勤勉（Diligence）侧重于**合乎伦理、安全且负责任**地使用 AI。
 
-**Diligence 的三个子能力：**
+**勤勉的三个支柱：**
 
 | 子能力 | 说明 |
 |--------|------|
-| **Creation Diligence（创作勤勉）** | 对使用 AI 创作的内容进行负责任的思考 |
-| **Transparency Diligence（透明勤勉）** | 对需要知情的人坦诚 AI 在你工作中的角色 |
-| **Deployment Diligence（部署勤勉）** | 对你使用或分享的 AI 输出承担验证和担保责任 |
+| **Creation（创作勤勉）** | 思考 AI 生成内容在伦理、原创性及社会影响层面的合理性。 |
+| **Transparency（透明勤勉）** | 对外坦诚 AI 在工作流程中所扮演的角色。 |
+| **Deployment（部署勤勉）** | 对外发布的最终成果承担验证、核实及担保的全部责任。 |
 
-**重要认知：**
-- 不同情境（个人、学术、职业）对透明度和验证的期望各不相同
-- 勤勉确保我们的 AI 协作不仅有效高效，而且**合乎伦理、安全负责**
+**勤勉声明示例：**
 
-**Diligence 声明示例：**
+> “本内容在起草过程中曾参考 [AI 名称] 生成的初稿，后经由本人进行深度核实、修改与润色。本人对内容的最终准确性与观点负责。”
 
-> "在创建本[文档/项目/内容]时，我与[AI 助手名称]合作完成了[具体任务：起草/研究/编辑]。所有最终内容均由我审核并修改，我对其准确性和适当性负全责。"
+## 第八章：总结与进阶
 
-## 第八章：总结与评估
+### 13. 课程总结（Conclusion）
 
-### 13. 课程结语（Conclusion）
+**4D 框架精要：**
+- **Delegation**：决定任务归属（谁来做）。
+- **Description**：明确协作意图（怎么做）。
+- **Discernment**：把控成果质量（做得如何）。
+- **Diligence**：坚守伦理底线（是否负责）。
 
-**4D 框架再梳理：**
+**最终愿景：** 实现**人类智慧与 AI 算力在优势互补基础上的深度对齐**。
 
-| 能力 | 核心 |
-|------|------|
-| **Delegation** | 决定哪些工作交给 AI、哪些自己做 |
-| **Description** | 与 AI 有效沟通 |
-| **Discernment** | 批判性地评估 AI 输出和行为 |
-| **Diligence** | 确保负责任的 AI 协作 |
+## 延伸阅读
 
-**结语要点：**
-- 最强大的成果来自于**人与 AI 建立在彼此优势之上**的协作
-- AI 系统有约束条件，Discernment 需要在系统约束内进行批判性思考
-- Diligence 确保问责制、透明度和责任感
-- 该框架的设计目标是：**随着 AI 能力持续演进，仍保持持续相关性**
-
-### 14. 附加活动（Additional activities）
-
-本节提供进一步探索 AI Fluency 的可选资源和练习，帮助学员将课程所学内化为日常习惯。
-
-## 相关笔记
-
-> **延伸阅读**
-> - [Teaching AI Fluency](/academy/anthropic-academy/01-ai-fluency-foundations/teaching-ai-fluency/) — 如何将 4D 框架教授给他人
-> - [AI Fluency for Educators](/academy/anthropic-academy/02-ai-fluency-audiences/ai-fluency-for-educators/) — 教育者如何在课堂中应用 4Ds
-> - [AI Fluency for Students](/academy/anthropic-academy/02-ai-fluency-audiences/ai-fluency-for-students/) — 学生学习与职业规划的 4D 应用
-> - [AI Fluency for Nonprofits](/academy/anthropic-academy/02-ai-fluency-audiences/ai-fluency-for-nonprofits/) — 非营利组织的 4D 框架实践
+> **关联内容**
+> - [Teaching AI Fluency](/academy/anthropic-academy/01-ai-fluency-foundations/teaching-ai-fluency/) —— 探讨如何将此框架传授给他人。
+> - [AI Fluency for Educators](/academy/anthropic-academy/02-ai-fluency-audiences/ai-fluency-for-educators/) —— 教育场景下的 4D 实践。
+> - [AI Fluency for Nonprofits](/academy/anthropic-academy/02-ai-fluency-audiences/ai-fluency-for-nonprofits/) —— 组织场景下的使命驱动 AI 实践。

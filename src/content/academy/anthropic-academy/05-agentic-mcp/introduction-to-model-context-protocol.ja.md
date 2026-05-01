@@ -8,6 +8,7 @@ difficulty: "advanced"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-model-context-protocol.svg"
 tags:
   - "Agents"
+  - "MCP"
 lang: ja
 academy:
   series: "Anthropic Academy"
