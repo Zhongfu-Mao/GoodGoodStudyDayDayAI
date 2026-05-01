@@ -1,11 +1,11 @@
 ---
-title: "AI Academy ルート：非エンジニア向け AI 活用"
+title: "AI Academy ルート：非エンジニアのための AI 活用ガイド"
 date: 2026-04-27
 category: academy
-description: "プロダクト、オペレーション、マーケティング、営業、管理部門の人に向けて、AI を日常業務へ入れるための学習ルートです。"
+description: "プロダクト、運用、マーケティング、営業、管理部門など、非エンジニアの方が AI を日常業務に導入し、仕事の質を向上させるための学習ロードマップです。"
 coverImage: "/images/academy/learning-routes/non-engineering-route.svg"
 difficulty: beginner
-plainSummary: "このルートは非エンジニア向けです。ChatGPT 入門、prompt、writing、research、data analysis、Projects、Custom GPTs、Skills から仕事での活用へ進みます。"
+plainSummary: "本ルートは非エンジニアを対象としています。ChatGPT 入門からプロンプト技術、ライティング、リサーチ、データ分析、さらに Projects、Custom GPTs、Skills を活用した業務自動化までを段階的に学びます。"
 tags:
   - "AI Academy"
   - "Learning Route"
@@ -22,69 +22,65 @@ academy:
 draft: false
 ---
 
-## このルートが向いている人
+## このルートの対象読者
 
-エンジニアではないけれど、AI を日常業務に入れたい人向けのルートです。目的は、技術用語をすべて覚えることではありません。
+エンジニアではないけれど、AI を日常業務に取り入れて生産性を高めたいと考えている方のためのルートです。技術用語を網羅することよりも、実務において以下の 3 つを安定して実行できる状態を目指します。
 
-まず目指すのは次の 3 つです。
+1. **適材適所の判断**：ChatGPT や Claude がどのタスクに向いているかを正しく理解する。
+2. **タスクの再構築**：実際の業務を AI が実行可能なステップに分解する。
+3. **仕組み化（Workflow）**：一度成功した対話を、再利用可能なワークフローとして定着させる。
 
-1. ChatGPT / Claude のような tool が何に向いているかを知る。
-2. 実際の仕事を、AI が参加できるタスクに分解する。
-3. うまくいった会話を、再利用できる workflow にする。
+## フェーズ 1：AI との対話スキルを身につける
 
-## 第一段階：まず依頼できるようになる
+まずは [Getting Started with ChatGPT](../../openai-academy/02-using-chatgpt/core-skills/getting-started/) から始めましょう。AI を単なる検索窓ではなく、思考、執筆、整理、そして振り返りを共に行う「デジタルな相棒」として使う感覚を養います。
 
-[Getting Started with ChatGPT](../../openai-academy/02-using-chatgpt/core-skills/getting-started/) から始めます。AI を検索欄ではなく、考える、書く、整理する、振り返る相手として使う感覚を作ります。
+次に [Prompting Fundamentals](../../openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/) を読みます。テンプレートの暗記ではなく、目的、背景、材料、制約、出力形式の 5 要素を揃えて伝えることの重要性を学びます。
 
-次に [Prompting Fundamentals](../../openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/) を読みます。prompt template を暗記するより、目的、背景、材料、制約、出力形式をそろえることが大切です。
+**基礎の補完**: 初期段階で [ハルシネーションとグラウンディング](../../ai-basics-for-everyone/what-is-hallucination-grounding/) および [構造化出力](../../ai-basics-for-everyone/what-is-structured-output/) も確認しておきましょう。前者は回答の妥当性を確認する視点を、後者は回答をリストやテーブルなどの扱いやすい形式に変える方法を教えてくれます。
 
-使い始めの段階で、[Hallucination と Grounding](../../ai-basics-for-everyone/what-is-hallucination-grounding/) と [Structured Output](../../ai-basics-for-everyone/what-is-structured-output/) も読むと安心です。前者はどの出力を確認すべきか、後者は回答を表、checklist、JSON、workflow に変える方法を助けます。
-
-この段階で、最低限このような prompt を自分用に持てると十分です。
+このフェーズの修了目安として、以下のような自分専用の基本プロンプトを構築できるようになりましょう。
 
 ```text
-私は[役割]で、今[タスク]に取り組んでいます。背景は[材料]です。
-まず[出力形式]に整理し、不確実な点と確認が必要な情報を出してください。
+私は[役割]で、現在[タスク]に取り組んでいます。背景情報は[提供可能な材料]です。
+まず[出力形式]で情報を整理し、不確実な点や私による確認が必要な箇所を抽出してください。
 ```
 
-## 第二段階：頻出業務に入れる
+## フェーズ 2：コア業務への導入
 
-次は仕事の種類ごとに読みます。
+続いて、業務の種類に合わせて専門的な活用法を学びます。
 
-| 仕事 | 推奨コンテンツ | 読んだ後にできること |
+| 業務カテゴリ | 推奨コンテンツ | 習得できるスキル |
 | --- | --- | --- |
-| Writing | [Writing](../../openai-academy/03-chatgpt-for-work/everyone/writing/) | 構成案、書き換え、トーン調整、複数案の作成 |
-| Research | [Research](../../openai-academy/03-chatgpt-for-work/everyone/research/) | 問いの分解、資料整理、結論の草稿化 |
-| Data Analysis | [Data Analysis](../../openai-academy/03-chatgpt-for-work/everyone/data-analysis/) | 表、指標、業務課題を一緒に整理する |
+| **執筆・作成** | [Writing](../../openai-academy/03-chatgpt-for-work/everyone/writing/) | 構成案の作成、文章の推敲、トーン調整、多角的な案の生成 |
+| **リサーチ** | [Research](../../openai-academy/03-chatgpt-for-work/everyone/research/) | 問いの構造化、情報の整理、結論のドラフト作成 |
+| **データ分析** | [Data Analysis](../../openai-academy/03-chatgpt-for-work/everyone/data-analysis/) | 表データや指標の整理、業務課題の構造化 |
 
-ここで大事なのは、AI を使うこと自体を目的にしないことです。毎週繰り返している仕事を見つけ、そこに AI を入れます。
+**ポイント**: AI を使うこと自体を目的にせず、毎週繰り返しているルーチンワークの中から AI が介在できる余地を見つけることが重要です。
 
-## 第三段階：一回の会話から workflow へ
+## フェーズ 3：対話からワークフローへ
 
-同じ種類のタスクが繰り返されるなら、毎回 blank chat から始める必要はありません。
+同じタスクを繰り返す場合、毎回ゼロからチャットを始める必要はありません。
 
-[Projects](../../openai-academy/02-using-chatgpt/workflows/projects/) で、資料、トーン、背景、目的を同じ作業空間にまとめます。
+1. **情報の集約**: [Projects](../../openai-academy/02-using-chatgpt/workflows/projects/) を活用し、関連資料や指示、背景情報を一つのプロジェクト空間にまとめます。
+2. **スキルの固定化**: [Custom GPTs](../../openai-academy/02-using-chatgpt/workflows/custom-gpts/) や [Skills](../../openai-academy/02-using-chatgpt/workflows/skills/) を読み、個人やチームの共有資産として AI の能力をカスタマイズする方法を学びます。
+3. **組織への展開**: [ChatGPT for Work](../../openai-academy/05-chatgpt-for-work/chatgpt-for-work/) を通じて、個人利用からチームでの活用、権限管理、セキュリティへの理解を深めます。
 
-次に [Custom GPTs](../../openai-academy/02-using-chatgpt/workflows/custom-gpts/) と [Skills](../../openai-academy/02-using-chatgpt/workflows/skills/) を読み、いつ個人やチームの固定能力として整えるべきかを考えます。
+**運用の視点**: ワークフローを定着させる際は、[トークン、コスト、モデル選択](../../ai-basics-for-everyone/what-is-token-cost-model-choice/) も参照し、「便利」であると同時に「継続可能」な設計を意識しましょう。
 
-最後に [ChatGPT for Work](../../openai-academy/05-chatgpt-for-work/chatgpt-for-work/) を読み、個人利用からチーム利用、権限、知識、安全性へ広げます。
+## 推奨される成果物
 
-この workflow をチームで何度も使うなら、[Token、cost、model choice](../../ai-basics-for-everyone/what-is-token-cost-model-choice/) も補足で読み、「便利」だけでなく「続けられる」設計にします。
+学習の締めくくりとして、以下の 3 つを作成することをお勧めします。
 
-## 残すべき成果物
+- **AI 活用タスクリスト**: 毎週どの業務に AI を活用するかを定義したもの。
+- **常用プロンプト・テンプレート**: 役割、目的、背景、形式が定義された自分用のテンプレート。
+- **再利用可能なワークフロー**: 議事録作成、リサーチ概要、週報ドラフト、顧客対応メールなどの定型フロー。
 
-読み終えたら、次の 3 つを残すと実務につながります。
+## 習得レベルのセルフチェック
 
-- 個人の AI 活用リスト：毎週どの仕事に AI を入れるか。
-- 常用 prompt template：役割、目的、材料、出力形式、確認点を含むもの。
-- 再利用できる workflow：議事録、research summary、週報、顧客メール、競合調査など。
+以下の 3 点ができるようになれば、Academy のより高度なコンテンツに進む準備ができています。
 
-## 入門できたかの判断
+1. 特定のタスクがなぜ AI に適しているのか（あるいは適していないのか）を説明できる。
+2. 抽象的な指示ではなく、十分な文脈（Context）を AI に渡すことができる。
+3. AI の回答を鵜呑みにせず、必要に応じて検証・修正を行うことができる。
 
-次ができれば、より深い Academy へ進めます。
-
-1. そのタスクがなぜ AI に向いているか説明できる。
-2. ただ一文を投げるのではなく、十分な context を渡せる。
-3. AI の出力を確認し、必要なら修正できる。
-
-非エンジニア向けルートの中心は、技術に詳しくなることではなく、AI を信頼できる日常の協働相手にすることです。
+非エンジニア向けルートの核心は、技術に詳しくなることではなく、**AI を信頼できる優秀な協働相手として使いこなすこと**にあります。
