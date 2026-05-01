@@ -12,6 +12,7 @@ tags:
   - CI/CD
 lang: zh
 coverImage: /images/radar/monthly-ai-radar-2026-04-market-ecosystem-infographic.png
+includeInRadarArchive: false
 draft: false
 ---
 
@@ -64,4 +65,3 @@ Agent 及 LLM 应用的部署模式正经历从“垂直自建”向“平台托
 - [MCP 深度解析](../../academy/ai-basics-for-everyone/what-is-mcp/)
 - [上下文工程实战手册（Context Engineering Playbook）](../../engineering/ai-developer-core/context-engineering-playbook/)
 - [云原生基础设施：CI/CD 与高效部署](../../engineering/cloud-infra-02/)
-

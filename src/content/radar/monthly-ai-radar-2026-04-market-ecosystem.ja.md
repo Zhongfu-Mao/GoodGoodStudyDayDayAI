@@ -11,7 +11,7 @@ tags:
   - MCP
   - CI/CD
 lang: ja
-coverImage: /images/radar/monthly-ai-radar-2026-04-market-ecosystem-infographic.png
+includeInRadarArchive: false
 draft: false
 ---
 

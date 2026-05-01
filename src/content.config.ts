@@ -15,6 +15,7 @@ export const blogSchema = z.object({
   coverImage: z.string().optional(),
   audioUrl: z.string().optional(),
   deckUrl: z.string().optional(),
+  includeInRadarArchive: z.boolean().default(true),
   academy: z
     .object({
       series: z.string(),

@@ -88,6 +88,8 @@ test.describe('published site UI', () => {
     const dailySection = page.locator('[data-radar-section]#daily');
     const weeklySection = page.locator('[data-radar-section]#weekly');
     const weeklyNav = page.locator('[data-radar-subnav="#weekly"]');
+    const monthlySection = page.locator('[data-radar-section]#monthly');
+    const monthlyNav = page.locator('[data-radar-subnav="#monthly"]');
 
     await expect(dailySection).toBeVisible();
     await expect(weeklySection).toBeHidden();
@@ -99,6 +101,31 @@ test.describe('published site UI', () => {
     await expect(dailySection).toBeHidden();
     await expect(weeklySection).toBeVisible();
     await expect(weeklyNav).toHaveAttribute('aria-current', 'page');
+    await expect(weeklySection).toContainText('2 篇内容');
+    await expect(weeklySection).not.toContainText('AI 周报：RAG 检索质量新基准与 Agent 观测性演进');
+    await expect(weeklySection).not.toContainText('AI 雷达周报：Agent 运行时架构与门控模型时代的到来');
+
+    await monthlyNav.click();
+    await expect(page).toHaveURL(/#monthly$/);
+    await expect(weeklySection).toBeHidden();
+    await expect(monthlySection).toBeVisible();
+    await expect(monthlySection).toContainText('1 篇内容');
+    await expect(monthlySection).not.toContainText('月度趋势研判：AI 工具链与部署生态的深层演进');
+
+    await gotoApp(page, '/ja/radar/#weekly');
+    const japaneseWeeklySection = page.locator('[data-radar-section]#weekly');
+    await expect(japaneseWeeklySection).toBeVisible();
+    await expect(japaneseWeeklySection).toContainText('2 記事');
+    await expect(japaneseWeeklySection).not.toContainText('週刊 AI 動向：RAG 検索精度の新基準と Agent オブザーバビリティの進化');
+
+    await gotoApp(page, '/ja/radar/#monthly');
+    const japaneseMonthlySection = page.locator('[data-radar-section]#monthly');
+    await expect(japaneseMonthlySection).toBeVisible();
+    await expect(japaneseMonthlySection).toContainText('1 記事');
+    await expect(japaneseMonthlySection).not.toContainText('月次トレンド分析：AI ツールチェーンとデプロイエコシステムの変遷');
+    await expect(
+      japaneseMonthlySection.locator('img[src="/images/radar/monthly-ai-radar-2026-04.ja-infographic.png"]'),
+    ).toBeVisible();
   });
 
   test('radar image wall filters cards and opens the preview dialog', async ({ page }) => {

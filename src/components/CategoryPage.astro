@@ -43,7 +43,9 @@ const academyRouteEntries = isAcademy
 const legacyAcademyEntries = isAcademy ? categoryEntries.filter((item) => !item.entry.data.academy) : [];
 
 const radarSections = radarCadences.map((cadence) => {
-  const items = categoryEntries.filter((item) => resolveRadarCadence(item) === cadence);
+  const items = categoryEntries.filter(
+    (item) => resolveRadarCadence(item) === cadence && item.entry.data.includeInRadarArchive,
+  );
   return {
     cadence,
     label: cadenceLabels[cadence][locale],
