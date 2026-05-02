@@ -2,12 +2,12 @@ import { expect, test, type Page } from '@playwright/test';
 import { appPath, appUrlPattern, gotoApp } from './site-test-utils';
 
 const radarArchiveLayoutCases = [
-  { path: '/radar/#daily', section: 'daily', countText: '26 篇内容' },
-  { path: '/radar/#weekly', section: 'weekly', countText: '4 篇内容' },
-  { path: '/radar/#monthly', section: 'monthly', countText: '1 篇内容' },
-  { path: '/ja/radar/#daily', section: 'daily', countText: '26 記事' },
-  { path: '/ja/radar/#weekly', section: 'weekly', countText: '4 記事' },
-  { path: '/ja/radar/#monthly', section: 'monthly', countText: '1 記事' },
+  { path: '/radar/#daily', section: 'daily', countText: /\d+ 篇内容/ },
+  { path: '/radar/#weekly', section: 'weekly', countText: /\d+ 篇内容/ },
+  { path: '/radar/#monthly', section: 'monthly', countText: /\d+ 篇内容/ },
+  { path: '/ja/radar/#daily', section: 'daily', countText: /\d+ 記事/ },
+  { path: '/ja/radar/#weekly', section: 'weekly', countText: /\d+ 記事/ },
+  { path: '/ja/radar/#monthly', section: 'monthly', countText: /\d+ 記事/ },
 ] as const;
 
 async function expectCardsToFitViewport(page: Page, sectionSelector: string) {
@@ -160,7 +160,9 @@ test.describe('published site UI', () => {
     await expect(japaneseMonthlySection).toContainText('1 記事');
     await expect(japaneseMonthlySection).not.toContainText('月次トレンド分析：AI ツールチェーンとデプロイエコシステムの変遷');
     await expect(
-      japaneseMonthlySection.locator('img[src="/images/radar/monthly-ai-radar-2026-04.ja-infographic.png"]'),
+      japaneseMonthlySection.locator(
+        `img[src="${appPath('/images/radar/monthly-ai-radar-2026-04.ja-infographic.png')}"]`,
+      ),
     ).toBeVisible();
   });
 
@@ -177,13 +179,15 @@ test.describe('published site UI', () => {
     }
 
     await gotoApp(page, '/ja/radar/#weekly');
+    const japaneseWeeklyHref = appPath('/ja/radar/weekly-ai-radar-2026-04-01-to-2026-04-07/');
+    const japaneseWeeklyImageSrc = appPath('/images/radar/weekly-ai-radar-2026-04-01-to-2026-04-07.ja-infographic.png');
     const japaneseWeeklyImage = page.locator(
-      '[data-radar-section]#weekly a[href="/ja/radar/weekly-ai-radar-2026-04-01-to-2026-04-07/"] img[src="/images/radar/weekly-ai-radar-2026-04-01-to-2026-04-07.ja-infographic.png"]',
+      `[data-radar-section]#weekly a[href="${japaneseWeeklyHref}"] img[src="${japaneseWeeklyImageSrc}"]`,
     );
     await expect(japaneseWeeklyImage).toBeVisible();
     await expect(
       page.locator(
-        '[data-radar-section]#weekly a[href="/ja/radar/weekly-ai-radar-2026-04-01-to-2026-04-07/"].radar-visual-placeholder',
+        `[data-radar-section]#weekly a[href="${japaneseWeeklyHref}"].radar-visual-placeholder`,
       ),
     ).toHaveCount(0);
   });

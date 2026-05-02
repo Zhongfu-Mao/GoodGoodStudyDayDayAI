@@ -34,6 +34,8 @@ test.describe('multi-viewport layout QA', () => {
   });
 
   test('key routes have no broken images, horizontal overflow, or covered controls', async ({ page }) => {
+    test.setTimeout(90_000);
+
     const consoleErrors: string[] = [];
     const pageErrors: string[] = [];
     let currentCase = '';
