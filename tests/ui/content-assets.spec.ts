@@ -96,11 +96,7 @@ test.describe('content and asset QA', () => {
         }
 
         const candidate = reference.pathname.endsWith('/')
-          ? path.join(
-              distRoot,
-              decodeURIComponent(reference.pathname.replace(/^\/+/, '')),
-              'index.html',
-            )
+          ? resolveDistAsset(`${reference.pathname}index.html`)
           : resolveDistAsset(reference.pathname);
 
         if (!fileExistsWithContent(candidate)) {
@@ -180,4 +176,3 @@ function pushReference(
 
   references.push({ original: value, pathname });
 }
-

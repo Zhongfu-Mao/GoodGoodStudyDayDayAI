@@ -1,10 +1,13 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
+import { resolveAppBasePath } from '../../scripts/lib/base-path.mjs';
+
 export const repoRoot = process.cwd();
 export const contentRoot = path.join(repoRoot, 'src', 'content');
 export const publicRoot = path.join(repoRoot, 'public');
 export const distRoot = path.join(repoRoot, 'dist');
+const appBasePath = resolveAppBasePath();
 
 export const contentCollections = [
   'radar',
@@ -153,12 +156,12 @@ export function isExternalUrl(value: string) {
 }
 
 export function resolvePublicAsset(value: string) {
-  const localPath = stripUrlDecorations(value).replace(/^\/+/, '');
+  const localPath = stripAppBasePath(stripUrlDecorations(value)).replace(/^\/+/, '');
   return path.join(publicRoot, decodeURIComponent(localPath));
 }
 
 export function resolveDistAsset(value: string) {
-  const localPath = stripUrlDecorations(value).replace(/^\/+/, '');
+  const localPath = stripAppBasePath(stripUrlDecorations(value)).replace(/^\/+/, '');
   return path.join(distRoot, decodeURIComponent(localPath));
 }
 
@@ -170,3 +173,17 @@ export function fileExistsWithContent(filePath: string) {
   }
 }
 
+function stripAppBasePath(value: string) {
+  if (!value.startsWith('/') || appBasePath === '/') {
+    return value;
+  }
+
+  const basePrefix = appBasePath.slice(0, -1);
+  if (value === basePrefix || value === appBasePath) {
+    return '/';
+  }
+
+  return value.startsWith(`${basePrefix}/`)
+    ? value.slice(basePrefix.length)
+    : value;
+}
