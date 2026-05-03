@@ -4,14 +4,14 @@ import { gotoApp } from './site-test-utils';
 
 const visualSnapshots = [
   {
-    name: 'home-desktop',
-    path: '/',
-    viewport: { width: 1366, height: 900 },
-  },
-  {
     name: 'ja-radar-weekly-review-narrow',
     path: '/ja/radar/#weekly',
     viewport: { width: 721, height: 963 },
+  },
+  {
+    name: 'home-desktop',
+    path: '/',
+    viewport: { width: 1366, height: 900 },
   },
   {
     name: 'radar-monthly-desktop',
@@ -96,5 +96,28 @@ async function stabilizeVisualPage(page: Page) {
 
   await page.waitForLoadState('load');
   await page.waitForTimeout(120);
-}
+  await page.evaluate(() => {
+    document.documentElement.dataset.theme = 'light';
+    document.documentElement.style.colorScheme = 'light';
+    window.scrollTo(0, 0);
+  });
+  await page.evaluate(async () => {
+    const images = Array.from(document.images).filter((image) => {
+      const box = image.getBoundingClientRect();
+      return box.width > 0 && box.height > 0 && box.bottom >= 0 && box.top <= window.innerHeight;
+    });
 
+    await Promise.all(
+      images.map(async (image) => {
+        if (!image.complete) {
+          await new Promise<void>((resolve) => {
+            image.addEventListener('load', () => resolve(), { once: true });
+            image.addEventListener('error', () => resolve(), { once: true });
+          });
+        }
+        await image.decode().catch(() => undefined);
+      }),
+    );
+  });
+  await page.waitForTimeout(80);
+}
