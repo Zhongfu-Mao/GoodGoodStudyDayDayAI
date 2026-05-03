@@ -8,7 +8,6 @@ difficulty: "advanced"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-with-amazon-bedrock.svg"
 tags:
   - "開発者"
-  - "AWS"
 lang: ja
 academy:
   series: "Anthropic Academy"

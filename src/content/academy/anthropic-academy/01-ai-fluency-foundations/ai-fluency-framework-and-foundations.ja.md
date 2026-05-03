@@ -6,9 +6,6 @@ description: "AI と協働するための 4D フレームワーク（Delegation,
 plainSummary: "AI Fluency の核心である 4D フレームワークを、戦略的委任、文脈共有、品質評価、および責任の循環として定義し、実務に落とし込むための基礎を解説します。"
 difficulty: "beginner"
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/ai-fluency-framework-and-foundations.svg"
-tags:
-  - "リテラシー"
-  - "AI-Fluency"
 lang: ja
 academy:
   series: "Anthropic Academy"

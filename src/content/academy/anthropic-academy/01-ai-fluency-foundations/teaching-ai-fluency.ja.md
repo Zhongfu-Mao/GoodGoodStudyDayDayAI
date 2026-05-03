@@ -8,6 +8,7 @@ difficulty: "beginner"
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/teaching-ai-fluency.svg"
 tags:
   - "Education"
+  - "AI-Fluency"
 lang: ja
 academy:
   series: "Anthropic Academy"

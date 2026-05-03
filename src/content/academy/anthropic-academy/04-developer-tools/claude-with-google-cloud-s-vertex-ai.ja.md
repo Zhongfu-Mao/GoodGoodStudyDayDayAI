@@ -8,7 +8,6 @@ difficulty: "advanced"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-with-google-cloud-s-vertex-ai.svg"
 tags:
   - "開発者"
-  - "Google Cloud"
 lang: ja
 academy:
   series: "Anthropic Academy"

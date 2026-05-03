@@ -8,7 +8,6 @@ difficulty: "advanced"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/building-with-the-claude-api.svg"
 tags:
   - "開発者"
-  - "API"
 lang: ja
 academy:
   series: "Anthropic Academy"
