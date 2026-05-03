@@ -1,6 +1,13 @@
 ---
 import SearchForm from './SearchForm.astro';
-import { categoryPath, collectionLabels, collectionNames, homePath, startPath, type Locale } from '../lib/site';
+import {
+  categoryPath,
+  collectionLabels,
+  collectionNames,
+  homePath,
+  startPath,
+  type Locale,
+} from '../lib/site';
 import { siteNav } from '../lib/i18n';
 
 const { locale, showSearch = true } = Astro.props as { locale: Locale; showSearch?: boolean };
@@ -8,26 +15,52 @@ const { locale, showSearch = true } = Astro.props as { locale: Locale; showSearc
 const navItems = collectionNames.map((category) => ({
   href: categoryPath(category, locale),
   label: collectionLabels[category][locale],
+  tooltip: {
+    zh: {
+      radar: '追踪 AI 动态：日报、周报、月报',
+      academy: '系统学习：课程笔记与学习路线',
+      engineering: '看落地实践：工作流、Agent 与工程方法',
+      foundations: '补底层理解：模型、数据与基础原理',
+    },
+    ja: {
+      radar: 'AI 動向を追う：日次・週次・月次',
+      academy: '体系的に学ぶ：講座ノートと学習ルート',
+      engineering: '実装を見る：ワークフロー、Agent、実践手法',
+      foundations: '土台を補う：モデル、データ、基礎原理',
+    },
+  }[locale][category],
 }));
+const homeTooltip = locale === 'ja'
+  ? '全体の入口：最新記事と学習導線を見る'
+  : '回到总览：从最新内容和学习入口开始';
+const startTooltip = locale === 'ja'
+  ? 'はじめての方向け：道筋を選び、概念を押さえる'
+  : '从零起步：先选路线，再补概念';
 ---
 
-<nav class="flex w-full flex-wrap items-center justify-center gap-2.5 xl:flex-nowrap xl:gap-1.5 xl:overflow-x-auto 2xl:gap-2.5" data-site-nav>
+<nav class="flex w-full flex-wrap items-center justify-center gap-2.5 xl:flex-nowrap xl:gap-1.5 xl:overflow-visible 2xl:gap-2.5" data-site-nav>
   <a
     href={homePath(locale)}
-    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
+    aria-label={siteNav[locale].home}
+    data-tooltip={homeTooltip}
+    class="theme-panel theme-panel-link ui-tooltip ui-tooltip-bottom inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
   >
     {siteNav[locale].home}
   </a>
   <a
     href={startPath(locale)}
-    class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
+    aria-label={siteNav[locale].start}
+    data-tooltip={startTooltip}
+    class="theme-panel theme-panel-link ui-tooltip ui-tooltip-bottom inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
   >
     {siteNav[locale].start}
   </a>
   {navItems.map((item) => (
     <a
       href={item.href}
-      class="theme-panel theme-panel-link inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
+      aria-label={item.label}
+      data-tooltip={item.tooltip}
+      class="theme-panel theme-panel-link ui-tooltip ui-tooltip-bottom inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
     >
       {item.label}
     </a>

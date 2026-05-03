@@ -7,8 +7,8 @@ const labels = languageSwitcher[currentLocale];
 const pathname = withoutBase(Astro.url.pathname);
 const paths = (Astro.props.paths ?? {}) as Partial<Record<Locale, string>>;
 const tooltips: Record<Locale, Record<Locale, string>> = {
-  zh: { zh: '切换到中文', ja: '切换到日本語' },
-  ja: { zh: '中文に切り替え', ja: '日本語に切り替え' },
+  zh: { zh: '中文版本', ja: '用日语阅读当前页面' },
+  ja: { zh: 'このページを中国語で読む', ja: '日本語版' },
 };
 
 function localizedPath(targetLocale: Locale) {
@@ -30,6 +30,7 @@ function localizedPath(targetLocale: Locale) {
   {locales.map((locale) => (
     <a
       href={localizedPath(locale)}
+      aria-label={labels[locale]}
       data-tooltip={tooltips[currentLocale][locale]}
       class:list={[
         'ui-tooltip ui-tooltip-bottom inline-flex items-center whitespace-nowrap rounded-xl px-3 py-1 font-medium transition',

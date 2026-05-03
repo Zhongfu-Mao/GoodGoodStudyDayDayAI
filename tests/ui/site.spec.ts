@@ -46,6 +46,14 @@ test.describe('published site UI', () => {
     for (const label of ['首页', '新手起步', 'AI 雷达', 'AI Academy', '工程实践', '底层原理']) {
       await expect(header.getByRole('link', { name: label }).first()).toBeVisible();
     }
+    await expect(header.getByRole('link', { name: '首页' }).first()).toHaveAttribute(
+      'data-tooltip',
+      '回到总览：从最新内容和学习入口开始',
+    );
+    await expect(header.getByRole('link', { name: '新手起步' }).first()).toHaveAttribute(
+      'data-tooltip',
+      '从零起步：先选路线，再补概念',
+    );
 
     await expect(page.locator('html')).toHaveAttribute('data-theme', /^(dark|light)$/);
     const initialTheme = await page.locator('html').getAttribute('data-theme');
@@ -59,7 +67,7 @@ test.describe('published site UI', () => {
     await expect(themeToggle).toHaveAttribute('data-tooltip', /切换到(深色|浅色)模式/);
 
     const japaneseHomeLink = page.getByRole('link', { name: '日本語' });
-    await expect(japaneseHomeLink).toHaveAttribute('data-tooltip', '切换到日本語');
+    await expect(japaneseHomeLink).toHaveAttribute('data-tooltip', '用日语阅读当前页面');
     await japaneseHomeLink.click();
 
     await expect(page).toHaveURL(appUrlPattern('/ja/'));
@@ -79,7 +87,7 @@ test.describe('published site UI', () => {
     const languageSwitcher = page.locator('nav[aria-label="Language switcher"]');
     const japaneseLink = languageSwitcher.getByRole('link', { name: '日本語' });
 
-    await expect(japaneseLink).toHaveAttribute('data-tooltip', '切换到日本語');
+    await expect(japaneseLink).toHaveAttribute('data-tooltip', '用日语阅读当前页面');
     await expect(japaneseLink).toHaveAttribute(
       'href',
       appPath('/ja/academy/openai-academy/00-overview/openai-academy-overview/'),
@@ -100,6 +108,20 @@ test.describe('published site UI', () => {
     const basicsSection = page.locator('[data-start-panel="basics"]#ai-basics-for-everyone');
     const routeSection = page.locator('[data-start-panel="route"]#first-step');
 
+    const startSubnavItems = page.locator('[data-start-subnav]');
+    await expect(startSubnavItems).toHaveCount(5);
+    await expect(
+      startSubnavItems.evaluateAll((items) => items.map((item) => item.getAttribute('data-start-subnav'))),
+    ).resolves.toEqual([
+      '#start-route',
+      '#ai-basics-for-everyone',
+      '#start-layers',
+      '#start-safety',
+      '#start-faq',
+    ]);
+    await expect(startSubnavItems.first()).toHaveAttribute('data-tooltip', '先判断当前位置，安排 30/60/90 天学习节奏');
+    await expect(page.locator('[data-start-subnav="#start-safety"]')).toHaveText('安全');
+    await expect(page.locator('[data-start-panel="route"]#start-plan')).toBeVisible();
     await expect(basicsLink).toHaveAttribute('href', '#ai-basics-for-everyone');
     await expect(routeLink).toHaveAttribute('href', '#first-step');
     await expect(routeSection).toBeVisible();
@@ -170,7 +192,7 @@ test.describe('published site UI', () => {
 
     await expect(dailySection).toBeVisible();
     await expect(weeklySection).toBeHidden();
-    await expect(weeklyNav).toHaveAttribute('data-tooltip', /切换到.+视图/);
+    await expect(weeklyNav).toHaveAttribute('data-tooltip', /按周复盘/);
 
     await weeklyNav.click();
 
