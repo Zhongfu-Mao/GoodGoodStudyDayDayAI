@@ -2,7 +2,6 @@
 import {
   articlePath,
   categoryPath,
-  collectionLabels,
   radarGalleryPath,
   resolveSiteUrl,
   slugifyTag,
@@ -11,8 +10,8 @@ import {
   type Locale,
 } from '../lib/site';
 import { getEntriesForLocale, getTagIndex } from '../lib/content';
-import { difficultyLabels, estimateReadingMinutes, getEntryDifficulty, readingTimeText } from '../lib/entryMeta';
-import { formatDate, startPage } from '../lib/i18n';
+import { estimateReadingMinutes, readingTimeText } from '../lib/entryMeta';
+import { startPage } from '../lib/i18n';
 
 const { locale } = Astro.props as { locale: Locale };
 const text = startPage[locale];
@@ -34,9 +33,6 @@ const latestRadar = entries.find((item) => item.entry.data.category === 'radar' 
 const aiBasicsEntries = entries
   .filter((item) => item.entry.data.category === 'academy' && item.entry.data.academy?.series === aiBasicsSeries)
   .sort(sortByAcademyOrder);
-const beginnerEntries = entries
-  .filter((item) => getEntryDifficulty(item.entry) === 'beginner' && item.entry.data.academy?.series !== aiBasicsSeries)
-  .slice(0, 4);
 const heroImage = latestRadar?.entry.data.coverImage ? resolveSiteUrl(latestRadar.entry.data.coverImage) : undefined;
 
 const normalizeHref = (href: string) => (href.startsWith('#') ? href : withBase(href));
@@ -62,7 +58,7 @@ const stripAiBasicsSeries = (title: string) => title.replace(aiBasicsTitlePrefix
     </h1>
     <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-100 md:text-xl">{text.heroDescription}</p>
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href="#ai-basics-for-everyone" class="start-hero-action rounded-2xl px-5 py-3 text-sm font-semibold">
+      <a href="#start-route" class="start-hero-action rounded-2xl px-5 py-3 text-sm font-semibold">
         {text.primaryCta}
       </a>
       <a href={categoryPath('radar', locale)} class="start-hero-action-secondary rounded-2xl px-5 py-3 text-sm font-semibold">
@@ -72,7 +68,7 @@ const stripAiBasicsSeries = (title: string) => title.replace(aiBasicsTitlePrefix
   </div>
 </section>
 
-<section class="mt-8" data-start-panel="route">
+<section id="start-route" class="mt-8 scroll-mt-56" data-start-panel="route">
   <div class="max-w-3xl">
     <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.audienceEyebrow}</p>
     <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.audienceTitle}</h2>
@@ -159,6 +155,25 @@ const stripAiBasicsSeries = (title: string) => title.replace(aiBasicsTitlePrefix
         </a>
       ))}
     </div>
+    <details id="start-glossary" class="theme-panel mt-6 scroll-mt-56 rounded-[1.25rem] p-5">
+      <summary class="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3">
+        <span>
+          <span class="theme-kicker block text-xs font-semibold uppercase tracking-[0.3em]">Glossary</span>
+          <span class="theme-heading mt-2 block text-2xl font-semibold">{text.glossaryTitle}</span>
+        </span>
+        <span class="theme-chip rounded-xl px-3 py-1 text-xs font-semibold">
+          {locale === 'ja' ? '開く' : '展开'}
+        </span>
+      </summary>
+      <div class="mt-5 grid gap-3 md:grid-cols-2">
+        {text.glossary.map((item) => (
+          <article class="theme-button-soft rounded-[1rem] p-4">
+            <h3 class="theme-heading text-lg font-semibold">{item.term}</h3>
+            <p class="theme-muted mt-2 text-sm leading-6">{item.description}</p>
+          </article>
+        ))}
+      </div>
+    </details>
   </section>
 ) : null}
 
@@ -208,39 +223,61 @@ const stripAiBasicsSeries = (title: string) => title.replace(aiBasicsTitlePrefix
   </ol>
 </section>
 
-<section id="start-pitfalls" class="mt-12 scroll-mt-56" data-start-panel="safety" hidden>
+<section id="start-plan" class="mt-12 scroll-mt-56" data-start-panel="route">
   <div class="max-w-3xl">
-    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.pitfallsEyebrow}</p>
-    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.pitfallsTitle}</h2>
-    <p class="theme-muted mt-4 text-base leading-7">{text.pitfallsDescription}</p>
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.planEyebrow}</p>
+    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.planTitle}</h2>
+    <p class="theme-muted mt-4 text-base leading-7">{text.planDescription}</p>
   </div>
-  <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-    {text.pitfalls.map((item) => (
-      <article class="theme-panel rounded-[1.25rem] p-5">
-        <h3 class="theme-heading text-lg font-semibold">{item.title}</h3>
-        <p class="theme-muted mt-3 text-sm leading-6">{item.description}</p>
-      </article>
+  <ol class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+    {text.planPhases.map((phase) => (
+      <li class="theme-panel rounded-[1.25rem] p-5">
+        <span class="theme-chip rounded-xl px-3 py-1 text-xs font-semibold tracking-wider">{phase.phase}</span>
+        <h3 class="theme-heading mt-4 text-lg font-semibold">{phase.name}</h3>
+        <p class="theme-muted mt-3 text-sm leading-6">{phase.description}</p>
+      </li>
     ))}
-  </div>
+  </ol>
+  <a href={startSubPath(locale, 'plan')} class="theme-chip theme-chip-link mt-6 inline-flex w-fit rounded-xl px-4 py-2 text-sm font-semibold">
+    {text.readMoreLabel}
+  </a>
 </section>
 
 <section id="start-safety" class="mt-12 scroll-mt-56" data-start-panel="safety" hidden>
-  <div class="max-w-3xl">
-    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.safetyEyebrow}</p>
-    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.safetyTitle}</h2>
-    <p class="theme-muted mt-4 text-base leading-7">{text.safetyDescription}</p>
+  <div id="start-pitfalls" class="scroll-mt-56">
+    <div class="max-w-3xl">
+      <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.pitfallsEyebrow}</p>
+      <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.pitfallsTitle}</h2>
+      <p class="theme-muted mt-4 text-base leading-7">{text.pitfallsDescription}</p>
+    </div>
+    <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {text.pitfalls.map((item) => (
+        <article class="theme-panel rounded-[1.25rem] p-5">
+          <h3 class="theme-heading text-lg font-semibold">{item.title}</h3>
+          <p class="theme-muted mt-3 text-sm leading-6">{item.description}</p>
+        </article>
+      ))}
+    </div>
   </div>
-  <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-    {text.safetyItems.map((item) => (
-      <article class="theme-panel rounded-[1.25rem] p-5">
-        <h3 class="theme-heading text-lg font-semibold">{item.title}</h3>
-        <p class="theme-muted mt-3 text-sm leading-6">{item.description}</p>
-      </article>
-    ))}
+
+  <div id="start-safety-baselines" class="mt-12 scroll-mt-56">
+    <div class="max-w-3xl">
+      <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.safetyEyebrow}</p>
+      <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.safetyTitle}</h2>
+      <p class="theme-muted mt-4 text-base leading-7">{text.safetyDescription}</p>
+    </div>
+    <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {text.safetyItems.map((item) => (
+        <article class="theme-panel rounded-[1.25rem] p-5">
+          <h3 class="theme-heading text-lg font-semibold">{item.title}</h3>
+          <p class="theme-muted mt-3 text-sm leading-6">{item.description}</p>
+        </article>
+      ))}
+    </div>
+    <a href={startSubPath(locale, 'safety')} class="theme-chip theme-chip-link mt-6 inline-flex w-fit rounded-xl px-4 py-2 text-sm font-semibold">
+      {text.readMoreLabel}
+    </a>
   </div>
-  <a href={startSubPath(locale, 'safety')} class="theme-chip theme-chip-link mt-6 inline-flex w-fit rounded-xl px-4 py-2 text-sm font-semibold">
-    {text.readMoreLabel}
-  </a>
 </section>
 
 <section id="start-landscape" class="mt-12 scroll-mt-56" data-start-panel="map" hidden>
@@ -259,60 +296,6 @@ const stripAiBasicsSeries = (title: string) => title.replace(aiBasicsTitlePrefix
     ))}
   </div>
   <p class="theme-muted mt-5 text-sm leading-6 max-w-3xl">{text.landscapeNote}</p>
-</section>
-
-<section id="start-glossary" class="mt-12 grid scroll-mt-56 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.72fr)]" data-start-panel="basics" hidden>
-  <section class="theme-panel rounded-[1.5rem] p-6">
-    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Glossary</p>
-    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight">{text.glossaryTitle}</h2>
-    <div class="mt-6 grid gap-3 md:grid-cols-2">
-      {text.glossary.map((item) => (
-        <article class="theme-button-soft rounded-[1rem] p-4">
-          <h3 class="theme-heading text-lg font-semibold">{item.term}</h3>
-          <p class="theme-muted mt-2 text-sm leading-6">{item.description}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <aside class="grid content-start gap-4 lg:sticky lg:top-28">
-    <section class="theme-panel rounded-[1.5rem] p-6">
-      <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Beginner Friendly</p>
-      <h2 class="theme-heading mt-3 text-2xl font-semibold">{difficultyLabels[locale].beginner}</h2>
-      <div class="mt-5 grid gap-3">
-        {beginnerEntries.map((item) => (
-          <a href={articlePath(item.entry.data.category, item.slug, locale)} class="theme-button-soft rounded-[1rem] p-4">
-            <div class="flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.2em] theme-muted">
-              <span>{collectionLabels[item.entry.data.category][locale]}</span>
-              <time datetime={item.entry.data.date.toISOString()}>{formatDate(item.entry.data.date, locale)}</time>
-            </div>
-            <p class="theme-heading mt-3 line-clamp-2 text-sm font-semibold leading-6">{item.entry.data.title}</p>
-            <p class="theme-muted mt-2 text-xs">{readingTimeText[locale](estimateReadingMinutes(item.entry.body, locale))}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-  </aside>
-</section>
-
-<section id="start-plan" class="mt-12 scroll-mt-56" data-start-panel="safety" hidden>
-  <div class="max-w-3xl">
-    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.planEyebrow}</p>
-    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.planTitle}</h2>
-    <p class="theme-muted mt-4 text-base leading-7">{text.planDescription}</p>
-  </div>
-  <ol class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-    {text.planPhases.map((phase) => (
-      <li class="theme-panel rounded-[1.25rem] p-5">
-        <span class="theme-chip rounded-xl px-3 py-1 text-xs font-semibold tracking-wider">{phase.phase}</span>
-        <h3 class="theme-heading mt-4 text-lg font-semibold">{phase.name}</h3>
-        <p class="theme-muted mt-3 text-sm leading-6">{phase.description}</p>
-      </li>
-    ))}
-  </ol>
-  <a href={startSubPath(locale, 'plan')} class="theme-chip theme-chip-link mt-6 inline-flex w-fit rounded-xl px-4 py-2 text-sm font-semibold">
-    {text.readMoreLabel}
-  </a>
 </section>
 
 <section id="start-faq" class="mt-12 scroll-mt-56" data-start-panel="faq" hidden>
@@ -361,20 +344,22 @@ const stripAiBasicsSeries = (title: string) => title.replace(aiBasicsTitlePrefix
     if (panels.length === 0 || subnavLinks.length === 0) return;
 
     const hashToPanel = new Map([
+      ['#start-route', 'route'],
       ['#first-step', 'route'],
       ['#start-first-day', 'route'],
+      ['#start-plan', 'route'],
       ['#ai-basics-for-everyone', 'basics'],
       ['#start-glossary', 'basics'],
       ['#start-layers', 'map'],
       ['#start-landscape', 'map'],
       ['#start-pitfalls', 'safety'],
       ['#start-safety', 'safety'],
-      ['#start-plan', 'safety'],
+      ['#start-safety-baselines', 'safety'],
       ['#start-faq', 'faq'],
       ['#start-next', 'faq'],
     ]);
     const panelToPrimaryHash = new Map([
-      ['route', '#first-step'],
+      ['route', '#start-route'],
       ['basics', '#ai-basics-for-everyone'],
       ['map', '#start-layers'],
       ['safety', '#start-safety'],
@@ -404,7 +389,12 @@ const stripAiBasicsSeries = (title: string) => title.replace(aiBasicsTitlePrefix
       if (shouldScroll) {
         const targetHash = window.location.hash || panelToPrimaryHash.get(activePanel) || '#first-step';
         const target = document.querySelector(targetHash);
-        target?.scrollIntoView({ block: 'start' });
+        if (target) {
+          const stickyHeader = document.querySelector('header');
+          const stickyBottom = stickyHeader?.getBoundingClientRect().bottom ?? 0;
+          const top = target.getBoundingClientRect().top + window.scrollY - stickyBottom - 24;
+          window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+        }
       }
     }
 
