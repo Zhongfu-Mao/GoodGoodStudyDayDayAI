@@ -388,16 +388,21 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
 
     {coverImageSrc ? (
       <div class:list={[
-        'mt-8 overflow-hidden rounded-[1.25rem]',
+        'theme-panel-soft relative mt-8 flex items-center justify-center overflow-hidden rounded-[1.25rem]',
+        isGeneratedInfographic ? 'min-h-[18rem]' : 'h-72',
         isGeneratedInfographic ? 'theme-panel p-4' : '',
       ]}>
+        <span class="theme-heading absolute inset-0 flex items-center justify-center text-3xl font-semibold opacity-45" aria-hidden="true">
+          AI
+        </span>
         <img
           src={coverImageSrc}
           alt={entry.data.title}
           class:list={[
-            'w-full rounded-[1rem]',
+            'relative z-10 w-full rounded-[1rem]',
             isGeneratedInfographic ? 'max-h-[42rem] object-contain' : 'h-72 object-cover',
           ]}
+          onerror="this.setAttribute('hidden', 'hidden')"
         />
       </div>
     ) : null}

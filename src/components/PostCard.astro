@@ -25,11 +25,16 @@ const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
 
 <article class="theme-panel theme-panel-link group rounded-[1.25rem] p-6 shadow-glow">
   {coverImageSrc ? (
-    <a href={href} class="mb-5 block overflow-hidden rounded-[1rem]">
+    <a
+      href={href}
+      class="theme-panel-soft relative mb-5 flex h-40 items-center justify-center overflow-hidden rounded-[1rem]"
+    >
+      <span class="theme-heading text-2xl font-semibold opacity-45" aria-hidden="true">AI</span>
       <img
         src={coverImageSrc}
         alt={entry.data.title}
-        class="h-40 w-full rounded-[1rem] object-cover transition duration-200 group-hover:scale-[1.02]"
+        class="absolute inset-0 h-full w-full rounded-[1rem] object-cover transition duration-200 group-hover:scale-[1.02]"
+        onerror="this.setAttribute('hidden', 'hidden')"
       />
     </a>
   ) : null}
