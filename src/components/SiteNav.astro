@@ -43,7 +43,7 @@ const startTooltip = locale === 'ja'
     href={homePath(locale)}
     aria-label={siteNav[locale].home}
     data-tooltip={homeTooltip}
-    class="theme-panel theme-panel-link ui-tooltip ui-tooltip-bottom inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
+    class="theme-panel theme-panel-link site-nav-tooltip ui-tooltip ui-tooltip-bottom inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
   >
     {siteNav[locale].home}
   </a>
@@ -51,7 +51,7 @@ const startTooltip = locale === 'ja'
     href={startPath(locale)}
     aria-label={siteNav[locale].start}
     data-tooltip={startTooltip}
-    class="theme-panel theme-panel-link ui-tooltip ui-tooltip-bottom inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
+    class="theme-panel theme-panel-link site-nav-tooltip ui-tooltip ui-tooltip-bottom inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
   >
     {siteNav[locale].start}
   </a>
@@ -60,7 +60,7 @@ const startTooltip = locale === 'ja'
       href={item.href}
       aria-label={item.label}
       data-tooltip={item.tooltip}
-      class="theme-panel theme-panel-link ui-tooltip ui-tooltip-bottom inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
+      class="theme-panel theme-panel-link site-nav-tooltip ui-tooltip ui-tooltip-bottom inline-flex shrink-0 items-center whitespace-nowrap rounded-2xl px-3 py-2.5 text-sm 2xl:px-5 2xl:text-[15px]"
     >
       {item.label}
     </a>
