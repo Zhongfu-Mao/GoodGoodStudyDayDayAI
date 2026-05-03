@@ -6,6 +6,7 @@ import {
   radarGalleryPath,
   resolveSiteUrl,
   slugifyTag,
+  startSubPath,
   withBase,
   type Locale,
 } from '../lib/site';
@@ -21,6 +22,7 @@ const publicTagSlugs = new Set(tagIndex.map((tag) => tag.slug));
 type EntryListItem = (typeof entries)[number];
 
 const aiBasicsSeries = 'AI Basics for Everyone';
+const aiBasicsTitlePrefixPattern = /^AI Basics for Everyone[：:]\s*/;
 const sortByAcademyOrder = (a: EntryListItem, b: EntryListItem) => {
   const aOrder = a.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
   const bOrder = b.entry.data.academy?.moduleOrder ?? Number.MAX_SAFE_INTEGER;
@@ -37,8 +39,9 @@ const beginnerEntries = entries
   .slice(0, 4);
 const heroImage = latestRadar?.entry.data.coverImage ? resolveSiteUrl(latestRadar.entry.data.coverImage) : undefined;
 
-const normalizeHref = (href: string) => withBase(href);
+const normalizeHref = (href: string) => (href.startsWith('#') ? href : withBase(href));
 const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(slugifyTag(tag)));
+const stripAiBasicsSeries = (title: string) => title.replace(aiBasicsTitlePrefixPattern, '');
 ---
 
 <section class="start-hero relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
@@ -69,7 +72,26 @@ const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(
   </div>
 </section>
 
-<section class="mt-10">
+<section class="mt-8" data-start-panel="route">
+  <div class="max-w-3xl">
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.audienceEyebrow}</p>
+    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.audienceTitle}</h2>
+    <p class="theme-muted mt-4 text-base leading-7">{text.audienceDescription}</p>
+  </div>
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    {text.audiences.map((item) => (
+      <article class="theme-panel rounded-[1.25rem] p-5 flex flex-col">
+        <h3 class="theme-heading text-lg font-semibold">{item.label}</h3>
+        <p class="theme-muted mt-3 text-sm leading-6 flex-1">{item.description}</p>
+        <a href={normalizeHref(item.ctaHref)} class="theme-chip theme-chip-link mt-4 inline-flex w-fit rounded-xl px-3 py-1 text-sm">
+          {item.ctaLabel}
+        </a>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="mt-12" data-start-panel="route">
   <div class="max-w-3xl">
     <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Why Start Here</p>
     <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.promiseTitle}</h2>
@@ -84,8 +106,30 @@ const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(
   </div>
 </section>
 
+<section id="start-layers" class="mt-12 scroll-mt-56" data-start-panel="map" hidden>
+  <div class="max-w-3xl">
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.layersEyebrow}</p>
+    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.layersTitle}</h2>
+    <p class="theme-muted mt-4 text-base leading-7">{text.layersDescription}</p>
+  </div>
+  <ol class="mt-6 grid gap-4 md:grid-cols-2">
+    {text.layers.map((layer) => (
+      <li class="theme-panel rounded-[1.25rem] p-5">
+        <div class="flex items-baseline gap-3">
+          <span class="theme-chip rounded-xl px-3 py-1 text-xs font-semibold tracking-wider">{layer.level}</span>
+          <h3 class="theme-heading text-lg font-semibold">{layer.name}</h3>
+        </div>
+        <p class="theme-muted mt-3 text-sm leading-6">{layer.description}</p>
+      </li>
+    ))}
+  </ol>
+  <a href={startSubPath(locale, 'layers')} class="theme-chip theme-chip-link mt-6 inline-flex w-fit rounded-xl px-4 py-2 text-sm font-semibold">
+    {text.readMoreLabel}
+  </a>
+</section>
+
 {aiBasicsEntries.length > 0 ? (
-  <section id="ai-basics-for-everyone" class="mt-12 scroll-mt-32">
+  <section id="ai-basics-for-everyone" class="mt-12 scroll-mt-56" data-start-panel="basics" hidden>
     <div class="max-w-3xl">
       <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">AI Basics for Everyone</p>
       <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.basicsTitle}</h2>
@@ -102,11 +146,12 @@ const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(
               {readingTimeText[locale](estimateReadingMinutes(item.entry.body, locale))}
             </span>
           </div>
-          <h3 class="theme-heading mt-4 text-xl font-semibold transition group-hover:opacity-85">{item.entry.data.title}</h3>
+          <h3 class="theme-heading mt-4 text-xl font-semibold transition group-hover:opacity-85">{stripAiBasicsSeries(item.entry.data.title)}</h3>
           {item.entry.data.description ? (
             <p class="theme-muted mt-3 line-clamp-3 text-sm leading-6">{item.entry.data.description}</p>
           ) : null}
           <div class="mt-4 flex flex-wrap gap-2">
+            <span class="theme-chip rounded-xl px-3 py-1 text-xs">{aiBasicsSeries}</span>
             {visibleTags(item.entry.data.tags).slice(0, 3).map((tag) => (
               <span class="theme-chip rounded-xl px-3 py-1 text-xs">{tag}</span>
             ))}
@@ -117,7 +162,7 @@ const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(
   </section>
 ) : null}
 
-<section id="first-step" class="mt-12 scroll-mt-32">
+<section id="first-step" class="mt-12 scroll-mt-56" data-start-panel="route">
   <div class="max-w-3xl">
     <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Route</p>
     <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.stepsTitle}</h2>
@@ -144,7 +189,79 @@ const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(
   </div>
 </section>
 
-<section class="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.72fr)]">
+<section id="start-first-day" class="mt-12 scroll-mt-56" data-start-panel="route">
+  <div class="max-w-3xl">
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.firstDayEyebrow}</p>
+    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.firstDayTitle}</h2>
+    <p class="theme-muted mt-4 text-base leading-7">{text.firstDayDescription}</p>
+  </div>
+  <ol class="mt-6 grid gap-4 md:grid-cols-2">
+    {text.firstDaySteps.map((step, index) => (
+      <li class="theme-panel rounded-[1.25rem] p-5">
+        <div class="theme-chip flex h-10 w-10 items-center justify-center rounded-2xl text-sm font-semibold">
+          {(index + 1).toString().padStart(2, '0')}
+        </div>
+        <h3 class="theme-heading mt-4 text-lg font-semibold">{step.title}</h3>
+        <p class="theme-muted mt-3 text-sm leading-6">{step.description}</p>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<section id="start-pitfalls" class="mt-12 scroll-mt-56" data-start-panel="safety" hidden>
+  <div class="max-w-3xl">
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.pitfallsEyebrow}</p>
+    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.pitfallsTitle}</h2>
+    <p class="theme-muted mt-4 text-base leading-7">{text.pitfallsDescription}</p>
+  </div>
+  <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {text.pitfalls.map((item) => (
+      <article class="theme-panel rounded-[1.25rem] p-5">
+        <h3 class="theme-heading text-lg font-semibold">{item.title}</h3>
+        <p class="theme-muted mt-3 text-sm leading-6">{item.description}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section id="start-safety" class="mt-12 scroll-mt-56" data-start-panel="safety" hidden>
+  <div class="max-w-3xl">
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.safetyEyebrow}</p>
+    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.safetyTitle}</h2>
+    <p class="theme-muted mt-4 text-base leading-7">{text.safetyDescription}</p>
+  </div>
+  <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {text.safetyItems.map((item) => (
+      <article class="theme-panel rounded-[1.25rem] p-5">
+        <h3 class="theme-heading text-lg font-semibold">{item.title}</h3>
+        <p class="theme-muted mt-3 text-sm leading-6">{item.description}</p>
+      </article>
+    ))}
+  </div>
+  <a href={startSubPath(locale, 'safety')} class="theme-chip theme-chip-link mt-6 inline-flex w-fit rounded-xl px-4 py-2 text-sm font-semibold">
+    {text.readMoreLabel}
+  </a>
+</section>
+
+<section id="start-landscape" class="mt-12 scroll-mt-56" data-start-panel="map" hidden>
+  <div class="max-w-3xl">
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.landscapeEyebrow}</p>
+    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.landscapeTitle}</h2>
+    <p class="theme-muted mt-4 text-base leading-7">{text.landscapeDescription}</p>
+  </div>
+  <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {text.landscapeVendors.map((vendor) => (
+      <article class="theme-panel rounded-[1.25rem] p-5">
+        <h3 class="theme-heading text-lg font-semibold">{vendor.name}</h3>
+        <p class="theme-muted mt-2 text-xs uppercase tracking-[0.18em]">{vendor.models}</p>
+        <p class="theme-muted mt-3 text-sm leading-6">{vendor.description}</p>
+      </article>
+    ))}
+  </div>
+  <p class="theme-muted mt-5 text-sm leading-6 max-w-3xl">{text.landscapeNote}</p>
+</section>
+
+<section id="start-glossary" class="mt-12 grid scroll-mt-56 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.72fr)]" data-start-panel="basics" hidden>
   <section class="theme-panel rounded-[1.5rem] p-6">
     <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Glossary</p>
     <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight">{text.glossaryTitle}</h2>
@@ -178,7 +295,46 @@ const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(
   </aside>
 </section>
 
-<section class="mt-12 theme-panel-strong rounded-[1.5rem] p-6 shadow-glow md:p-8">
+<section id="start-plan" class="mt-12 scroll-mt-56" data-start-panel="safety" hidden>
+  <div class="max-w-3xl">
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.planEyebrow}</p>
+    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.planTitle}</h2>
+    <p class="theme-muted mt-4 text-base leading-7">{text.planDescription}</p>
+  </div>
+  <ol class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+    {text.planPhases.map((phase) => (
+      <li class="theme-panel rounded-[1.25rem] p-5">
+        <span class="theme-chip rounded-xl px-3 py-1 text-xs font-semibold tracking-wider">{phase.phase}</span>
+        <h3 class="theme-heading mt-4 text-lg font-semibold">{phase.name}</h3>
+        <p class="theme-muted mt-3 text-sm leading-6">{phase.description}</p>
+      </li>
+    ))}
+  </ol>
+  <a href={startSubPath(locale, 'plan')} class="theme-chip theme-chip-link mt-6 inline-flex w-fit rounded-xl px-4 py-2 text-sm font-semibold">
+    {text.readMoreLabel}
+  </a>
+</section>
+
+<section id="start-faq" class="mt-12 scroll-mt-56" data-start-panel="faq" hidden>
+  <div class="max-w-3xl">
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.faqEyebrow}</p>
+    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.faqTitle}</h2>
+    <p class="theme-muted mt-4 text-base leading-7">{text.faqDescription}</p>
+  </div>
+  <div class="mt-6 grid gap-4 md:grid-cols-2">
+    {text.faqItems.map((item) => (
+      <article class="theme-panel rounded-[1.25rem] p-5">
+        <h3 class="theme-heading text-lg font-semibold">{item.question}</h3>
+        <p class="theme-muted mt-3 text-sm leading-6">{item.answer}</p>
+      </article>
+    ))}
+  </div>
+  <a href={startSubPath(locale, 'faq')} class="theme-chip theme-chip-link mt-6 inline-flex w-fit rounded-xl px-4 py-2 text-sm font-semibold">
+    {text.readMoreLabel}
+  </a>
+</section>
+
+<section id="start-next" class="mt-12 scroll-mt-56 theme-panel-strong rounded-[1.5rem] p-6 shadow-glow md:p-8" data-start-panel="faq" hidden>
   <div class="grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-end">
     <div>
       <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Next</p>
@@ -197,6 +353,85 @@ const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(
     </div>
   </div>
 </section>
+
+<script is:inline data-astro-rerun>
+  (() => {
+    const panels = Array.from(document.querySelectorAll('[data-start-panel]'));
+    const subnavLinks = Array.from(document.querySelectorAll('[data-start-subnav]'));
+    if (panels.length === 0 || subnavLinks.length === 0) return;
+
+    const hashToPanel = new Map([
+      ['#first-step', 'route'],
+      ['#start-first-day', 'route'],
+      ['#ai-basics-for-everyone', 'basics'],
+      ['#start-glossary', 'basics'],
+      ['#start-layers', 'map'],
+      ['#start-landscape', 'map'],
+      ['#start-pitfalls', 'safety'],
+      ['#start-safety', 'safety'],
+      ['#start-plan', 'safety'],
+      ['#start-faq', 'faq'],
+      ['#start-next', 'faq'],
+    ]);
+    const panelToPrimaryHash = new Map([
+      ['route', '#first-step'],
+      ['basics', '#ai-basics-for-everyone'],
+      ['map', '#start-layers'],
+      ['safety', '#start-safety'],
+      ['faq', '#start-faq'],
+    ]);
+    const abortController = new AbortController();
+
+    function getActivePanel() {
+      const hash = window.location.hash || '#first-step';
+      return hashToPanel.get(hash) ?? 'route';
+    }
+
+    function applyStartView(shouldScroll) {
+      const activePanel = getActivePanel();
+
+      for (const panel of panels) {
+        panel.hidden = panel.dataset.startPanel !== activePanel;
+      }
+
+      for (const link of subnavLinks) {
+        const linkPanel = hashToPanel.get(link.dataset.startSubnav ?? '') ?? 'route';
+        const isActive = linkPanel === activePanel;
+        link.classList.toggle('theme-segment-active', isActive);
+        link.setAttribute('aria-current', isActive ? 'page' : 'false');
+      }
+
+      if (shouldScroll) {
+        const targetHash = window.location.hash || panelToPrimaryHash.get(activePanel) || '#first-step';
+        const target = document.querySelector(targetHash);
+        target?.scrollIntoView({ block: 'start' });
+      }
+    }
+
+    function handleSubnavClick(event) {
+      const target = event.currentTarget?.dataset.startSubnav;
+      if (!target) return;
+
+      event.preventDefault();
+
+      if (window.location.hash !== target) {
+        window.history.pushState(null, '', target);
+      }
+
+      applyStartView(true);
+    }
+
+    window.addEventListener('hashchange', () => applyStartView(true), { signal: abortController.signal });
+    window.addEventListener('popstate', () => applyStartView(true), { signal: abortController.signal });
+
+    for (const link of subnavLinks) {
+      link.addEventListener('click', handleSubnavClick, { signal: abortController.signal });
+    }
+
+    document.addEventListener('astro:before-swap', () => abortController.abort(), { once: true });
+    applyStartView(Boolean(window.location.hash));
+  })();
+</script>
 
 <style>
   .start-hero {

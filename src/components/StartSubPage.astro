@@ -1,0 +1,62 @@
+---
+import { startPath, startSubPath, type Locale, type StartSubPageKey } from '../lib/site';
+import { startSubPages } from '../lib/i18n';
+
+const { locale, pageKey } = Astro.props as { locale: Locale; pageKey: StartSubPageKey };
+const text = startSubPages[pageKey][locale];
+---
+
+<article class="mx-auto max-w-4xl px-1 py-2">
+  <a href={startPath(locale)} class="theme-muted text-sm hover:opacity-80">{text.backToStart}</a>
+
+  <header class="mt-6">
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.eyebrow}</p>
+    <h1 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-5xl">{text.heading}</h1>
+    <p class="theme-muted mt-5 text-base leading-7 md:text-lg md:leading-8">{text.intro}</p>
+  </header>
+
+  <div class="mt-10 grid gap-8">
+    {text.sections.map((section) => {
+      const bullets: readonly string[] = (section as any).bullets ?? [];
+      return (
+        <section class="theme-panel rounded-[1.5rem] p-6 md:p-7">
+          <h2 class="theme-heading text-2xl font-semibold leading-snug md:text-[1.7rem]">{section.heading}</h2>
+          <div class="mt-4 grid gap-4">
+            {section.paragraphs.map((para) => (
+              <p class="theme-muted text-base leading-7">{para}</p>
+            ))}
+          </div>
+          {bullets.length > 0 ? (
+            <ul class="mt-5 grid gap-2">
+              {bullets.map((b) => (
+                <li class="theme-muted text-sm leading-6 pl-4 border-l-2 border-current/20">{b}</li>
+              ))}
+            </ul>
+          ) : null}
+        </section>
+      );
+    })}
+  </div>
+
+  {text.closing ? (
+    <section class="mt-10 theme-panel-strong rounded-[1.5rem] p-6 md:p-7 shadow-glow">
+      <p class="theme-heading text-base leading-7 md:text-lg md:leading-8">{text.closing}</p>
+    </section>
+  ) : null}
+
+  <section class="mt-12">
+    <h2 class="theme-heading text-2xl font-semibold">{text.relatedTitle}</h2>
+    <div class="mt-5 grid gap-3 md:grid-cols-3">
+      {text.related.map((item) => {
+        const target = startSubPages[item.key][locale];
+        return (
+          <a href={startSubPath(locale, item.key)} class="theme-button-soft rounded-[1rem] p-4 block">
+            <p class="theme-kicker text-[10px] uppercase tracking-[0.2em]">{target.eyebrow}</p>
+            <h3 class="theme-heading mt-2 text-base font-semibold leading-snug">{target.heading}</h3>
+            <p class="theme-muted mt-2 text-xs leading-5">{item.description}</p>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+</article>

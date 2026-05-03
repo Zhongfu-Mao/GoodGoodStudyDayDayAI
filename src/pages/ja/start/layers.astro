@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../../components/BaseLayout.astro';
+import StartSubPage from '../../../components/StartSubPage.astro';
+import { startSubPages } from '../../../lib/i18n';
+import { startSubPath } from '../../../lib/site';
+
+const pageKey = 'layers' as const;
+const locale = 'ja' as const;
+const text = startSubPages[pageKey][locale];
+---
+
+<BaseLayout
+  title={`${text.title} · Good Good Study, Day Day AI`}
+  description={text.metaDescription}
+  locale={locale}
+  languagePaths={{ zh: startSubPath('zh', pageKey) }}
+>
+  <StartSubPage locale={locale} pageKey={pageKey} />
+</BaseLayout>

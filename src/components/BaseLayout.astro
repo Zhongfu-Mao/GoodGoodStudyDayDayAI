@@ -11,6 +11,7 @@ import {
   categoryPath,
   homePath,
   resolveSiteUrl,
+  startPath,
   withBase,
   type CollectionName,
   type Locale,
@@ -27,6 +28,7 @@ const {
   ogImage,
   publishedTime,
   activeCategory,
+  showStartSubnav = false,
 } = Astro.props as {
   title: string;
   description?: string;
@@ -36,6 +38,7 @@ const {
   ogImage?: string;
   publishedTime?: string;
   activeCategory?: CollectionName;
+  showStartSubnav?: boolean;
 };
 
 const description = providedDescription ?? homePage[locale].description;
@@ -56,6 +59,21 @@ const radarSubnavItems = [
 ];
 const radarSubnavTooltip = (label: string) =>
   locale === 'ja' ? `${label} ビューに切り替え` : `切换到 ${label} 视图`;
+const startSubnavItems = locale === 'ja'
+  ? [
+      { hash: '#first-step', label: '道筋' },
+      { hash: '#ai-basics-for-everyone', label: '概念' },
+      { hash: '#start-layers', label: 'レイヤー' },
+      { hash: '#start-safety', label: '安全と計画' },
+      { hash: '#start-faq', label: 'FAQ' },
+    ]
+  : [
+      { hash: '#first-step', label: '路线' },
+      { hash: '#ai-basics-for-everyone', label: '概念' },
+      { hash: '#start-layers', label: '能力层' },
+      { hash: '#start-safety', label: '安全与节奏' },
+      { hash: '#start-faq', label: 'FAQ' },
+    ];
 ---
 
 <!doctype html>
@@ -150,6 +168,21 @@ const radarSubnavTooltip = (label: string) =>
                 data-radar-subnav={item.hash}
                 data-tooltip={radarSubnavTooltip(item.label)}
                 class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom rounded-xl px-3.5 py-1.5 text-sm"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      ) : null}
+      {showStartSubnav ? (
+        <div class="border-t border-[color:var(--theme-border)] px-6 pb-3 pt-2 xl:px-8">
+          <nav class="flex flex-wrap justify-center gap-2" aria-label={locale === 'ja' ? 'Start guide sections' : '新手起步分段导航'}>
+            {startSubnavItems.map((item) => (
+              <a
+                href={`${startPath(locale)}${item.hash}`}
+                data-start-subnav={item.hash}
+                class="theme-chip theme-chip-link rounded-xl px-3.5 py-1.5 text-sm"
               >
                 {item.label}
               </a>

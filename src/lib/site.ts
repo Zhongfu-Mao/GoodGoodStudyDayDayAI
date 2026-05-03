@@ -86,6 +86,12 @@ export function startPath(locale: Locale) {
   return withBase(`${localePrefix(locale)}/start/`);
 }
 
+export type StartSubPageKey = 'layers' | 'safety' | 'plan' | 'faq';
+
+export function startSubPath(locale: Locale, key: StartSubPageKey) {
+  return withBase(`${localePrefix(locale)}/start/${key}/`);
+}
+
 export function radarGalleryPath(locale: Locale) {
   return withBase(`${localePrefix(locale)}/radar/gallery/`);
 }
