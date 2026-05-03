@@ -188,7 +188,7 @@ test.describe('published site UI', () => {
 
     await gotoApp(page, '/ja/start/layers/');
     await expect(page.getByRole('heading', { level: 1, name: 'AI の 6 つの能力レイヤー' })).toBeVisible();
-    await expect(page.getByRole('link', { name: '← Start Here に戻る' })).toHaveAttribute(
+    await expect(page.getByRole('link', { name: '← スタートガイドに戻る' })).toHaveAttribute(
       'href',
       appPath('/ja/start/'),
     );
