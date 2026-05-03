@@ -73,8 +73,8 @@ LLM アプリケーションの開発において、一見プロンプト（Prom
 
 ## 関連して読む
 
-- [Token、cost、model choice](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：非エンジニアにも説明しやすい入口。
-- [Context、Memory、Projects](../../../academy/ai-basics-for-everyone/context-window-memory-projects/)：一時的な context と長期資料管理を分ける。
+- [Token、cost、model choice](../../../start/ai-basics-for-everyone/what-is-token-cost-model-choice/)：非エンジニアにも説明しやすい入口。
+- [Context、Memory、Projects](../../../start/ai-basics-for-everyone/context-window-memory-projects/)：一時的な context と長期資料管理を分ける。
 - [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/)：token budget を context design 全体へ広げる。
 
 ## 参考

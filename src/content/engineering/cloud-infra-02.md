@@ -89,4 +89,4 @@ jobs:
 ## 延伸阅读
 
 - 如果你想深入了解 Astro 的内容集合与路由设计，请阅读 [App Dev：Astro 页面与内容集合](../app-dev-01/)。
-- 如果你想了解 AI 工具如何辅助工程实践，请阅读 [AI Coding Tools](../../academy/ai-basics-for-everyone/ai-coding-tools/)。
+- 如果你想了解 AI 工具如何辅助工程实践，请阅读 [AI Coding Tools](../../start/ai-basics-for-everyone/ai-coding-tools/)。

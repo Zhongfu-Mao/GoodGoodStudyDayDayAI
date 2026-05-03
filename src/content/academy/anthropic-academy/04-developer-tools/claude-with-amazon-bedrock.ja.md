@@ -78,5 +78,5 @@ Bedrock を利用する真の価値は、モデルそのものの能力に加え
 
 ## 関連リソース
 
-- [Token・Cost・Model Choice](../../../ai-basics-for-everyone/what-is-token-cost-model-choice/)
+- [Token・Cost・Model Choice](/start/ai-basics-for-everyone/what-is-token-cost-model-choice/)
 - [Cloud & Infra](../../../../engineering/cloud-infra-02/)

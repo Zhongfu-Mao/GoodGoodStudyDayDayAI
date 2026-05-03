@@ -123,7 +123,7 @@ output_contract:
 
 ## 関連基礎
 
-- [Context Engineering とは何か](../../../academy/ai-basics-for-everyone/what-is-context-engineering/)：初心者向けのコンセプト解説。
+- [Context Engineering とは何か](../../../start/ai-basics-for-everyone/what-is-context-engineering/)：初心者向けのコンセプト解説。
 - [Token とコンテキストウィンドウ](../../../foundations/ai-developer-core/token-context-window/)：コンテキストとコスト、遅延の相関。
 - [Transformer と Attention](../../../foundations/ai-developer-core/transformer-attention-developer-view/)：なぜ構造化された文脈が効果的なのかを理論から探る。
 

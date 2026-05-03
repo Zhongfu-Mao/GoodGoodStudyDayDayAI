@@ -46,7 +46,7 @@ draft: false
 
 次に、AI モデルと外部ツールの架け橋となる MCP（Model Context Protocol）を学びます。
 
-- [MCP とは何か](../../ai-basics-for-everyone/what-is-mcp/)：プロトコルの実装に入る前に、MCP が標準化しようとしている課題の本質をつかむ。
+- [MCP とは何か](/start/ai-basics-for-everyone/what-is-mcp/)：プロトコルの実装に入る前に、MCP が標準化しようとしている課題の本質をつかむ。
 - [Introduction to Model Context Protocol](../../anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)：モデルがツールやデータソースへ標準的に接続するための設計思想。
 - [MCP Advanced Topics](../../anthropic-academy/05-agentic-mcp/model-context-protocol-advanced-topics/)：複雑な権限管理、機能記述（Capability Description）、高度なインテグレーション。
 - [Minimal MCP Server](../../../engineering/ai-developer-core/minimal-mcp-server/)：最小限の実装を通じて、システムの境界線を理解する。
@@ -70,7 +70,7 @@ draft: false
 最後に、AI 機能を長期運用可能な「システム」へと昇華させます。
 
 - [Production Optimization](../../openai-academy/07-building-with-ai/production-optimization/)：レイテンシ、コスト、信頼性、モニタリングの最適化。
-- [Context Engineering とは何か](../../ai-basics-for-everyone/what-is-context-engineering/)：コンテキストを重要なプロダクト・リソースとして扱う視点。
+- [Context Engineering とは何か](/start/ai-basics-for-everyone/what-is-context-engineering/)：コンテキストを重要なプロダクト・リソースとして扱う視点。
 - [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/)：コンテキスト管理をプロンプトのテクニックから「システム設計」へと引き上げる。
 - [Agent Harness](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)：Agent の振る舞いを追跡（Trace）、レビュー、リプレイ可能にする基盤。
 

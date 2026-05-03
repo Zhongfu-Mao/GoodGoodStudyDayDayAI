@@ -62,6 +62,6 @@ Agent 及 LLM 应用的部署模式正经历从“垂直自建”向“平台托
 
 ## 延伸阅读
 
-- [MCP 深度解析](../../academy/ai-basics-for-everyone/what-is-mcp/)
+- [MCP 深度解析](../../start/ai-basics-for-everyone/what-is-mcp/)
 - [上下文工程实战手册（Context Engineering Playbook）](../../engineering/ai-developer-core/context-engineering-playbook/)
 - [云原生基础设施：CI/CD 与高效部署](../../engineering/cloud-infra-02/)

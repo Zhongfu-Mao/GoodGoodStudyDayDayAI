@@ -104,4 +104,4 @@ URL 前缀约定：`/academy/...` 映射为中文内容，`/ja/academy/...` 映�
 ## 延伸阅读
 
 - 如果你想了解本站的完整部署流程，请阅读 [Cloud & Infra：CI/CD 与静态站点部署](../cloud-infra-02/)。
-- 如果你想理解 Markdown 内容如何被 AI 工具高效处理，请阅读 [AI Coding Tools](../../academy/ai-basics-for-everyone/ai-coding-tools/)。
+- 如果你想理解 Markdown 内容如何被 AI 工具高效处理，请阅读 [AI Coding Tools](../../start/ai-basics-for-everyone/ai-coding-tools/)。

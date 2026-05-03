@@ -66,8 +66,8 @@ RAG 开发最容易陷入“反复折腾 Embedding、向量库和切分策略”
 
 ## 延伸阅读
 
-- [RAG 是什么](../../../academy/ai-basics-for-everyone/what-is-rag/)：面向非技术背景的通俗解释。
-- [幻觉与 Grounding](../../../academy/ai-basics-for-everyone/what-is-hallucination-grounding/)：深入理解引用与拒答为何是 RAG 的核心竞争力。
+- [RAG 是什么](../../../start/ai-basics-for-everyone/what-is-rag/)：面向非技术背景的通俗解释。
+- [幻觉与 Grounding](../../../start/ai-basics-for-everyone/what-is-hallucination-grounding/)：深入理解引用与拒答为何是 RAG 的核心竞争力。
 - [RAG Minimum System](../../../engineering/ai-developer-core/rag-minimum-system/)：从最小化实现理解完整链路。
 
 ## 参考

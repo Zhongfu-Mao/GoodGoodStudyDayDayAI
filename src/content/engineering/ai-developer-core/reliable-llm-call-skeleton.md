@@ -107,8 +107,8 @@ output_schema:
 
 ## 相关基础阅读
 
-- [结构化输出是什么](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：明确输出契约的重要性。
-- [Token、成本与模型选择](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：为每次调用建立成本意识。
+- [结构化输出是什么](../../../start/ai-basics-for-everyone/what-is-structured-output/)：明确输出契约的重要性。
+- [Token、成本与模型选择](../../../start/ai-basics-for-everyone/what-is-token-cost-model-choice/)：为每次调用建立成本意识。
 - [Eval、Benchmark 与产品质量](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)：让 Wrapper 的成功率具备可回归性。
 
 ## 参考

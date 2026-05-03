@@ -46,7 +46,7 @@ draft: false
 
 接下来进入 Model Context Protocol (MCP) 领域：
 
-- [MCP 是什么](../../ai-basics-for-everyone/what-is-mcp/)：从非实现者的视角理解 MCP 解决的核心痛点。
+- [MCP 是什么](/start/ai-basics-for-everyone/what-is-mcp/)：从非实现者的视角理解 MCP 解决的核心痛点。
 - [Introduction to Model Context Protocol](../../anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)：理解模型如何通过标准协议接入工具与数据源。
 - [MCP Advanced Topics](../../anthropic-academy/05-agentic-mcp/model-context-protocol-advanced-topics/)：探讨复杂的权限管理、能力描述及集成策略。
 - [Minimal MCP Server](../../../engineering/ai-developer-core/minimal-mcp-server/)：通过最小化实现厘清系统的技术边界。
@@ -70,7 +70,7 @@ draft: false
 最后是关于工程化落地的核心课题：
 
 - [Production Optimization](../../openai-academy/07-building-with-ai/production-optimization/)：深入理解延迟、成本、可靠性及全链路监控。
-- [Context Engineering 是什么](../../ai-basics-for-everyone/what-is-context-engineering/)：将上下文（Context）作为一种核心的产品资源进行管理。
+- [Context Engineering 是什么](/start/ai-basics-for-everyone/what-is-context-engineering/)：将上下文（Context）作为一种核心的产品资源进行管理。
 - [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/)：将上下文处理从“提示词技巧”升华为“系统工程设计”。
 - [Agent Harness：日志、审批与回放](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)：确保 Agent 行为的可追踪性与可复盘性。
 

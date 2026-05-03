@@ -89,4 +89,4 @@ AI Fluency 教育では、学習者に「AI を使ってよいか」だけを問
 ## 関連リソース
 
 - [AI Fluency: Framework & Foundations（フレームワークと基礎）](../ai-fluency-framework-and-foundations/)
-- [Eval とは何か（評価の重要性）](../../../ai-basics-for-everyone/what-is-eval/)
+- [Eval とは何か（評価の重要性）](/start/ai-basics-for-everyone/what-is-eval/)

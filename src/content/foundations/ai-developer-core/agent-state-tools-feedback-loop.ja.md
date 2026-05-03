@@ -63,7 +63,7 @@ draft: false
 
 ## 関連して読む
 
-- [エージェントとは何か](../../../academy/ai-basics-for-everyone/what-is-agent/)：基礎概念の共有。
+- [エージェントとは何か](../../../start/ai-basics-for-everyone/what-is-agent/)：基礎概念の共有。
 - [Building Agents](../../../academy/openai-academy/07-building-with-ai/agents/)：製品開発としてのエージェント。
 - [Agent Harness](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)：ログ・承認・再現を実装に落とし込む。
 

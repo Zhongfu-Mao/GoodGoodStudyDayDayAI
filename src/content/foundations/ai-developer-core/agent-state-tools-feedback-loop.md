@@ -63,7 +63,7 @@ Agent 的能力越开放，就越需要清晰的产品边界。开发者应明�
 
 ## 延伸阅读
 
-- [Agent 是什么](../../../academy/ai-basics-for-everyone/what-is-agent/)：建立基础共识。
+- [Agent 是什么](../../../start/ai-basics-for-everyone/what-is-agent/)：建立基础共识。
 - [Building Agents](../../../academy/openai-academy/07-building-with-ai/agents/)：从产品构建视角审视 Agent。
 - [Agent Harness：日志、审批与回放](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)：将状态、权限与回放转化为工程骨架。
 

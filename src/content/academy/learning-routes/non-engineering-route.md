@@ -36,7 +36,7 @@ draft: false
 
 随后阅读 [Prompting Fundamentals](../../openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/)。重点不在于背诵提示词模版，而在于掌握**有效沟通的五要素**：明确目标、提供背景、提供材料、设定限制及定义输出格式。
 
-**进阶提示**：建议同步阅读 [幻觉与 Grounding](../../ai-basics-for-everyone/what-is-hallucination-grounding/) 和 [结构化输出](../../ai-basics-for-everyone/what-is-structured-output/)。前者助您识别必须复核的输出，后者助您将 AI 的回答转化为表格、清单、JSON 或可执行的流程。
+**进阶提示**：建议同步阅读 [幻觉与 Grounding](/start/ai-basics-for-everyone/what-is-hallucination-grounding/) 和 [结构化输出](/start/ai-basics-for-everyone/what-is-structured-output/)。前者助您识别必须复核的输出，后者助您将 AI 的回答转化为表格、清单、JSON 或可执行的流程。
 
 完成本阶段后，您应能构建并使用如下结构的个人常用提示词：
 
@@ -65,7 +65,7 @@ draft: false
 2. **能力固化**：阅读 [Custom GPTs](../../openai-academy/02-using-chatgpt/workflows/custom-gpts/) 和 [Skills](../../openai-academy/02-using-chatgpt/workflows/skills/)，理解如何将个人经验沉淀为团队共享的数字化能力。
 3. **团队协作**：通过 [ChatGPT for Work](../../openai-academy/05-chatgpt-for-work/chatgpt-for-work/)，将个人效率工具扩展至团队协作，关注权限管理、知识共享及安全边界。
 
-**工程化思考**：对于高频复用的 Workflow，建议阅读 [Token、成本与模型选择](../../ai-basics-for-everyone/what-is-token-cost-model-choice/)，以确保业务流程在成本上的长期可持续性。
+**工程化思考**：对于高频复用的 Workflow，建议阅读 [Token、成本与模型选择](/start/ai-basics-for-everyone/what-is-token-cost-model-choice/)，以确保业务流程在成本上的长期可持续性。
 
 ## 核心学习产出
 

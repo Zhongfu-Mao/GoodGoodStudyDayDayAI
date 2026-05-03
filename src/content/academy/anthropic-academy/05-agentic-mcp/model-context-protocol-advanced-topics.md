@@ -331,7 +331,7 @@ StreamableHTTP 传输让 MCP Client 能通过 HTTP 连接到**远程托管**的 
 ## 相关笔记
 
 > **延伸阅读**
-> - [MCP 是什么](/academy/ai-basics-for-everyone/what-is-mcp/) — 先回到协议解决的问题
+> - [MCP 是什么](/start/ai-basics-for-everyone/what-is-mcp/) — 先回到协议解决的问题
 > - [Minimal MCP Server](/engineering/ai-developer-core/minimal-mcp-server/) — 将权限、输入和输出落到最小实现
 > - [Introduction to Model Context Protocol](/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/) — MCP 基础
 > - [Introduction to subagents](/academy/anthropic-academy/05-agentic-mcp/introduction-to-subagents/) — 子代理架构

@@ -113,4 +113,4 @@ URL 設計としては、`/academy/...` を中国語、`/ja/academy/...` を日�
 ## 次に読むべきコンテンツ
 
 - 本サイトのデプロイフローの詳細：[Cloud & Infra：CI/CD とデプロイ](../cloud-infra-02/)
-- AI を活用したコンテンツ制作：[AI Coding Tools](../../academy/ai-basics-for-everyone/ai-coding-tools/)
+- AI を活用したコンテンツ制作：[AI Coding Tools](../../start/ai-basics-for-everyone/ai-coding-tools/)

@@ -131,9 +131,9 @@ rag-lab/
 
 ## 相关基础阅读
 
-- [RAG 是什么](../../../academy/ai-basics-for-everyone/what-is-rag/)：面向非工程读者的概念科普。
+- [RAG 是什么](../../../start/ai-basics-for-everyone/what-is-rag/)：面向非工程读者的概念科普。
 - [Embedding、向量相似度与 RAG](../../../foundations/ai-developer-core/embeddings-vector-rag/)：理解检索、排序与 Grounding 的底层基础。
-- [幻觉与 Grounding](../../../academy/ai-basics-for-everyone/what-is-hallucination-grounding/)：将引用、拒答和证据边界转化为产品级要求。
+- [幻觉与 Grounding](../../../start/ai-basics-for-everyone/what-is-hallucination-grounding/)：将引用、拒答和证据边界转化为产品级要求。
 
 ## 参考
 

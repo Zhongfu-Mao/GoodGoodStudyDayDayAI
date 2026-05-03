@@ -61,6 +61,6 @@ Agent や LLM アプリケーションのデプロイは、「垂直自作」か
 
 ## 関連記事
 
-- [MCP（Model Context Protocol）とは何か](../../academy/ai-basics-for-everyone/what-is-mcp/)
+- [MCP（Model Context Protocol）とは何か](../../start/ai-basics-for-everyone/what-is-mcp/)
 - [Context Engineering Playbook（実戦編）](../../engineering/ai-developer-core/context-engineering-playbook/)
 - [クラウドインフラ：CI/CD と効率的なデプロイ](../../engineering/cloud-infra-02/)

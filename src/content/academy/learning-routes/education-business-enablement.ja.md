@@ -34,7 +34,7 @@ draft: false
 
 **教育のポイント**: 研修を単なる「機能紹介」で終わらせないことが重要です。実際の業務タスクに基づいた演習を設計し、AI が仕事のプロセスをどう具体的に変えるかを学習者に体験させます。
 
-**基礎の補完**: 初学者向けに展開する場合は、最初のステップとして [AI モデルと LLM の基礎](../../ai-basics-for-everyone/what-is-ai-model-llm/) および [トークン、コスト、モデル選択の考え方](../../ai-basics-for-everyone/what-is-token-cost-model-choice/) を組み合わせることをお勧めします。前者は共通言語を作り、後者はタスクごとに適切なモデルと予算を選択する判断力を養います。
+**基礎の補完**: 初学者向けに展開する場合は、最初のステップとして [AI モデルと LLM の基礎](/start/ai-basics-for-everyone/what-is-ai-model-llm/) および [トークン、コスト、モデル選択の考え方](/start/ai-basics-for-everyone/what-is-token-cost-model-choice/) を組み合わせることをお勧めします。前者は共通言語を作り、後者はタスクごとに適切なモデルと予算を選択する判断力を養います。
 
 ## フェーズ 2：教育・学術現場への展開
 
@@ -66,7 +66,7 @@ draft: false
 
 最後に、[Responsible and Safe Use](../../openai-academy/01-ai-fundamentals/responsible-safe-use/) を通じて、持続可能な運用体制を学びます。
 
-**安全教育のアプローチ**: 安全性の概念を [ハルシネーションとグラウンディング](../../ai-basics-for-everyone/what-is-hallucination-grounding/) とセットで解説することで、「AI は間違える可能性がある」という抽象的な警告ではなく、根拠（ソース）の確認、引用のチェック、そして人間のレビューといった「具体的なリスク軽減策」を提示できるようになります。
+**安全教育のアプローチ**: 安全性の概念を [ハルシネーションとグラウンディング](/start/ai-basics-for-everyone/what-is-hallucination-grounding/) とセットで解説することで、「AI は間違える可能性がある」という抽象的な警告ではなく、根拠（ソース）の確認、引用のチェック、そして人間のレビューといった「具体的なリスク軽減策」を提示できるようになります。
 
 組織展開においては、以下のガイドラインを明確にすることが不可欠です。
 

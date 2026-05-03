@@ -89,4 +89,4 @@ Markdown と Astro コンポーネントを静的な HTML へコンパイルし�
 ## 次に読むべきコンテンツ
 
 - Astro のコンテンツ管理の詳細：[App Dev：Astro ページとコンテンツコレクション](../app-dev-01/)
-- AI を活用したエンジニアリングの実践：[AI Coding Tools](../../academy/ai-basics-for-everyone/ai-coding-tools/)
+- AI を活用したエンジニアリングの実践：[AI Coding Tools](../../start/ai-basics-for-everyone/ai-coding-tools/)

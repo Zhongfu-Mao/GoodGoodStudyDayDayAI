@@ -69,7 +69,7 @@ Attention 计算涉及 Query、Key、Value 之间的大量矩阵运算。朴素�
 ## 延伸阅读
 
 - [Token 与上下文窗口](../token-context-window/)：理解为什么长输入会影响 prefill 和成本。
-- [Token、成本与模型选择](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：把性能和预算放在同一张图里。
+- [Token、成本与模型选择](../../../start/ai-basics-for-everyone/what-is-token-cost-model-choice/)：把性能和预算放在同一张图里。
 - [Reliable LLM Call Skeleton](../../../engineering/ai-developer-core/reliable-llm-call-skeleton/)：把延迟、超时和错误恢复一起设计。
 
 ## 参考

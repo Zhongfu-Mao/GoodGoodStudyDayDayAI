@@ -85,5 +85,5 @@ Claude API の実装は簡単ですが、それを「製品」として成立さ
 
 ## 関連リソース
 
-- [Structured Output とは何か](../../../ai-basics-for-everyone/what-is-structured-output/)
+- [Structured Output とは何か](/start/ai-basics-for-everyone/what-is-structured-output/)
 - [Reliable LLM Call Skeleton](../../../../engineering/ai-developer-core/reliable-llm-call-skeleton/)

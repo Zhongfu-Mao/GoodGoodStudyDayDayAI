@@ -90,6 +90,6 @@ MCP を理解するときは、最初に tool の便利さではなく権限境�
 
 ## 関連して読む
 
-- [MCP とは何か](../../../ai-basics-for-everyone/what-is-mcp/)
+- [MCP とは何か](/start/ai-basics-for-everyone/what-is-mcp/)
 - [Minimal MCP Server](../../../../engineering/ai-developer-core/minimal-mcp-server/)
 - [MCP Advanced Topics](../model-context-protocol-advanced-topics/)

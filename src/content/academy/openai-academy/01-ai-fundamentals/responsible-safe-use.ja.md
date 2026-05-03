@@ -159,9 +159,9 @@ AIを活用して業界分析レポートを公開する際の、プライバシ
 
 ## 関連基礎
 
-- [Hallucination と Grounding](../../../ai-basics-for-everyone/what-is-hallucination-grounding/)：事実確認を「エビデンスチェック」へと変換する。
-- [Structured Output](../../../ai-basics-for-everyone/what-is-structured-output/)：安全評価の結果を共有・再利用しやすくする。
-- [Eval メソドロジー](../../../ai-basics-for-everyone/what-is-eval/)：安全性の境界がどこまでカバーされているかを追跡する。
+- [Hallucination と Grounding](/start/ai-basics-for-everyone/what-is-hallucination-grounding/)：事実確認を「エビデンスチェック」へと変換する。
+- [Structured Output](/start/ai-basics-for-everyone/what-is-structured-output/)：安全評価の結果を共有・再利用しやすくする。
+- [Eval メソドロジー](/start/ai-basics-for-everyone/what-is-eval/)：安全性の境界がどこまでカバーされているかを追跡する。
 
 ## 参考
 

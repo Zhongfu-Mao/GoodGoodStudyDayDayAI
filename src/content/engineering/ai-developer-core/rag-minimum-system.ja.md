@@ -131,9 +131,9 @@ rag-lab/
 
 ## 関連基礎
 
-- [RAG とは何か](../../../academy/ai-basics-for-everyone/what-is-rag/)：非エンジニアにも分かりやすい概念解説。
+- [RAG とは何か](../../../start/ai-basics-for-everyone/what-is-rag/)：非エンジニアにも分かりやすい概念解説。
 - [Embedding、ベクトル類似度、RAG](../../../foundations/ai-developer-core/embeddings-vector-rag/)：検索、ランキング、Grounding の基礎理論。
-- [ハルシネーションと Grounding](../../../academy/ai-basics-for-everyone/what-is-hallucination-grounding/)：引用、拒否、証拠の境界をプロダクト要件に落とし込む。
+- [ハルシネーションと Grounding](../../../start/ai-basics-for-everyone/what-is-hallucination-grounding/)：引用、拒否、証拠の境界をプロダクト要件に落とし込む。
 
 ## 参考
 

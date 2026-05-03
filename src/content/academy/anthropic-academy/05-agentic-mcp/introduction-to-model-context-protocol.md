@@ -327,7 +327,7 @@ response = await anthropic_client.messages.create(
 ## 相关笔记
 
 > **延伸阅读**
-> - [MCP 是什么](/academy/ai-basics-for-everyone/what-is-mcp/) — 面向所有读者的 MCP 概念入口
+> - [MCP 是什么](/start/ai-basics-for-everyone/what-is-mcp/) — 面向所有读者的 MCP 概念入口
 > - [Minimal MCP Server](/engineering/ai-developer-core/minimal-mcp-server/) — 用最小只读服务理解实现边界
 > - [Model Context Protocol: Advanced Topics](/academy/anthropic-academy/05-agentic-mcp/model-context-protocol-advanced-topics/) — MCP 进阶
 > - [Introduction to Agent Skills](/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/) — Skills 生态

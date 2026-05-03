@@ -130,9 +130,9 @@ Agent Bug 最棘手的地方在于不可复现性。回放能力允许我们将�
 
 ## 相关基础阅读
 
-- [Agent 是什么](../../../academy/ai-basics-for-everyone/what-is-agent/)：统一 Agent 的基本概念。
+- [Agent 是什么](../../../start/ai-basics-for-everyone/what-is-agent/)：统一 Agent 的基本概念。
 - [Agent = 状态、工具与反馈循环](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/)：将 Harness 的日志、审批和停止条件融入系统架构。
-- [MCP 是什么](../../../academy/ai-basics-for-everyone/what-is-mcp/)：理解工具协议为何需要权限控制与审计。
+- [MCP 是什么](../../../start/ai-basics-for-everyone/what-is-mcp/)：理解工具协议为何需要权限控制与审计。
 
 ## 参考资料
 

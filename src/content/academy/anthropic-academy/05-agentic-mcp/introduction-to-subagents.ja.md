@@ -89,5 +89,5 @@ Subagent は、単にエージェントの数を増やせば賢くなるとい�
 
 ## 関連リソース
 
-- [Agent とは何か](../../../ai-basics-for-everyone/what-is-agent/)
+- [Agent とは何か](/start/ai-basics-for-everyone/what-is-agent/)
 - [Agent Harness](../../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)

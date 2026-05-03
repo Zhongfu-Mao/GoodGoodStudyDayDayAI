@@ -92,5 +92,5 @@ AI は履歴書や自己紹介文の推敲を助けてくれますが、あな�
 
 ## 関連リソース
 
-- [Prompt とは何か](../../../ai-basics-for-everyone/what-is-prompt/)
-- [AI Coding Tools](../../../ai-basics-for-everyone/ai-coding-tools/)
+- [Prompt とは何か](/start/ai-basics-for-everyone/what-is-prompt/)
+- [AI Coding Tools](/start/ai-basics-for-everyone/ai-coding-tools/)

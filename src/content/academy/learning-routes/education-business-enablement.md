@@ -34,7 +34,7 @@ draft: false
 
 **核心原则**：避免将培训做成单纯的“功能演示”。应围绕真实的业务任务设计实操环节，让学习者切身感受 AI 如何重塑工作全过程。
 
-**基础补充**：针对初学者，建议在课程初期引入两篇基石阅读：[AI 模型与 LLM 核心原理](../../ai-basics-for-everyone/what-is-ai-model-llm/) 及 [Token、成本与模型选择策略](../../ai-basics-for-everyone/what-is-token-cost-model-choice/)。前者旨在统一术语体系，后者助其理解为何不同任务需要匹配不同的模型与预算。
+**基础补充**：针对初学者，建议在课程初期引入两篇基石阅读：[AI 模型与 LLM 核心原理](/start/ai-basics-for-everyone/what-is-ai-model-llm/) 及 [Token、成本与模型选择策略](/start/ai-basics-for-everyone/what-is-token-cost-model-choice/)。前者旨在统一术语体系，后者助其理解为何不同任务需要匹配不同的模型与预算。
 
 ## 第二阶段：教育与学术场景的深度集成
 
@@ -66,7 +66,7 @@ draft: false
 
 最后，请务必研读 [Responsible and Safe Use](../../openai-academy/01-ai-fundamentals/responsible-safe-use/)。
 
-**安全治理建议**：将安全教育与 [幻觉与 Grounding](../../ai-basics-for-everyone/what-is-hallucination-grounding/) 结合讲解。旨在让学员建立起科学的风险观：通过引用原始资料、设定审核边界及明确人工复核点来系统性降低风险。
+**安全治理建议**：将安全教育与 [幻觉与 Grounding](/start/ai-basics-for-everyone/what-is-hallucination-grounding/) 结合讲解。旨在让学员建立起科学的风险观：通过引用原始资料、设定审核边界及明确人工复核点来系统性降低风险。
 
 在组织内推广 AI 时，需明确以下核心规范：
 

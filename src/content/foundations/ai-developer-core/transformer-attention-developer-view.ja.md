@@ -68,8 +68,8 @@ Attention メカニズムが示唆しているのは、**「コンテキスト�
 
 ## 関連して読む
 
-- [Prompt とは何か](../../../academy/ai-basics-for-everyone/what-is-prompt/)：prompt を context organization として理解する。
-- [Structured Output](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：出力 schema も model が参照する pattern として設計する。
+- [Prompt とは何か](../../../start/ai-basics-for-everyone/what-is-prompt/)：prompt を context organization として理解する。
+- [Structured Output](../../../start/ai-basics-for-everyone/what-is-structured-output/)：出力 schema も model が参照する pattern として設計する。
 - [Reliable LLM Call Skeleton](../../../engineering/ai-developer-core/reliable-llm-call-skeleton/)：構造と retry、repair を接続する。
 
 ## 参考

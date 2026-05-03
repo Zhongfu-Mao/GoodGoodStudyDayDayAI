@@ -88,4 +88,4 @@ AI Fluency 并非通用技能的终点，而是学科专业知识的**放大器*
 
 - [AI Fluency 框架核心理论](../ai-fluency-framework-and-foundations/) —— 4D 模型基础
 - [面向教育者的 AI 实践](/academy/anthropic-academy/02-ai-fluency-audiences/ai-fluency-for-educators/) —— 课堂实操案例
-- [Eval 是什么](../../../ai-basics-for-everyone/what-is-eval/) —— 构建可复核的质量反馈
+- [Eval 是什么](/start/ai-basics-for-everyone/what-is-eval/) —— 构建可复核的质量反馈

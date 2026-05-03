@@ -36,7 +36,7 @@ draft: false
 
 次に [Prompting Fundamentals](../../openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/) を読みます。テンプレートの暗記ではなく、目的、背景、材料、制約、出力形式の 5 要素を揃えて伝えることの重要性を学びます。
 
-**基礎の補完**: 初期段階で [ハルシネーションとグラウンディング](../../ai-basics-for-everyone/what-is-hallucination-grounding/) および [構造化出力](../../ai-basics-for-everyone/what-is-structured-output/) も確認しておきましょう。前者は回答の妥当性を確認する視点を、後者は回答をリストやテーブルなどの扱いやすい形式に変える方法を教えてくれます。
+**基礎の補完**: 初期段階で [ハルシネーションとグラウンディング](/start/ai-basics-for-everyone/what-is-hallucination-grounding/) および [構造化出力](/start/ai-basics-for-everyone/what-is-structured-output/) も確認しておきましょう。前者は回答の妥当性を確認する視点を、後者は回答をリストやテーブルなどの扱いやすい形式に変える方法を教えてくれます。
 
 このフェーズの修了目安として、以下のような自分専用の基本プロンプトを構築できるようになりましょう。
 
@@ -65,7 +65,7 @@ draft: false
 2. **スキルの固定化**: [Custom GPTs](../../openai-academy/02-using-chatgpt/workflows/custom-gpts/) や [Skills](../../openai-academy/02-using-chatgpt/workflows/skills/) を読み、個人やチームの共有資産として AI の能力をカスタマイズする方法を学びます。
 3. **組織への展開**: [ChatGPT for Work](../../openai-academy/05-chatgpt-for-work/chatgpt-for-work/) を通じて、個人利用からチームでの活用、権限管理、セキュリティへの理解を深めます。
 
-**運用の視点**: ワークフローを定着させる際は、[トークン、コスト、モデル選択](../../ai-basics-for-everyone/what-is-token-cost-model-choice/) も参照し、「便利」であると同時に「継続可能」な設計を意識しましょう。
+**運用の視点**: ワークフローを定着させる際は、[トークン、コスト、モデル選択](/start/ai-basics-for-everyone/what-is-token-cost-model-choice/) も参照し、「便利」であると同時に「継続可能」な設計を意識しましょう。
 
 ## 推奨される成果物
 

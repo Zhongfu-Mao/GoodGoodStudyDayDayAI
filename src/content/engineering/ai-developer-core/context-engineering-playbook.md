@@ -118,7 +118,7 @@ Context Engineering 的失败往往不是因为模型“不够聪明”，而是
 
 ## 相关基础阅读
 
-- [Context Engineering 是什么](../../../academy/ai-basics-for-everyone/what-is-context-engineering/)：上下文设计的通俗入门。
+- [Context Engineering 是什么](../../../start/ai-basics-for-everyone/what-is-context-engineering/)：上下文设计的通俗入门。
 - [Token 与上下文窗口](../../../foundations/ai-developer-core/token-context-window/)：联系上下文设计与成本、延迟。
 - [Transformer 与 Attention 的开发者视角](../../../foundations/ai-developer-core/transformer-attention-developer-view/)：理解为什么结构化上下文更易被模型利用。
 

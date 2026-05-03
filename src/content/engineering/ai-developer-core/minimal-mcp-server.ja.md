@@ -117,7 +117,7 @@ MCP（Model Context Protocol）は、エージェントが外部ツールやデ�
 
 ## 関連基礎
 
-- [MCP とは何か](../../../academy/ai-basics-for-everyone/what-is-mcp/)：プロトコルの役割についてのメンタルモデルを構築する。
+- [MCP とは何か](../../../start/ai-basics-for-everyone/what-is-mcp/)：プロトコルの役割についてのメンタルモデルを構築する。
 - [Introduction to Model Context Protocol](../../../academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)：Anthropic Academy による MCP 入門。
 - [Agent = 状態、ツール、フィードバックループ](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/)：なぜツール境界と終了条件（Stop Condition）が必要なのかを理解する。
 

@@ -85,6 +85,6 @@ MCP の高度な設計では、動的 Tool、Resource、Prompt、さらに Trans
 
 ## 関連リソース
 
-- [MCP とは何か](../../../ai-basics-for-everyone/what-is-mcp/)
+- [MCP とは何か](/start/ai-basics-for-everyone/what-is-mcp/)
 - [Introduction to Model Context Protocol](../introduction-to-model-context-protocol/)
 - [Minimal MCP Server](../../../../engineering/ai-developer-core/minimal-mcp-server/)

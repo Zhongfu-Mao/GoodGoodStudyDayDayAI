@@ -82,5 +82,5 @@ draft: false
 
 ## 関連リソース
 
-- [Prompt とは何か](../../../ai-basics-for-everyone/what-is-prompt/)
-- [ハルシネーションと Grounding](../../../ai-basics-for-everyone/what-is-hallucination-grounding/)
+- [Prompt とは何か](/start/ai-basics-for-everyone/what-is-prompt/)
+- [ハルシネーションと Grounding](/start/ai-basics-for-everyone/what-is-hallucination-grounding/)

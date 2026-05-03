@@ -118,7 +118,7 @@ Schema に `status`（ステータス）や `confidence`（置信度）のよう
 
 ## 関連基礎
 
-- [構造化出力とは何か](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：非エンジニア視点での Schema と機械可読出力の必要性。
+- [構造化出力とは何か](../../../start/ai-basics-for-everyone/what-is-structured-output/)：非エンジニア視点での Schema と機械可読出力の必要性。
 - [Transformer と Attention の開発者向け解説](../../../foundations/ai-developer-core/transformer-attention-developer-view/)：例示やフォーマットがなぜモデルの安定性に寄与するのか。
 - [Eval、Benchmark とプロダクト品質](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)：通過率と失敗分類を評価体系に組み込む。
 

@@ -70,7 +70,7 @@ Attention 計算は、Query、Key、Value の間での膨大な行列演算を�
 ## 関連して読む
 
 - [Token とコンテキストウィンドウ](../token-context-window/)：長い入力が prefill と cost に効く理由。
-- [Token、cost、model choice](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：性能と予算を同じ表で見る。
+- [Token、cost、model choice](../../../start/ai-basics-for-everyone/what-is-token-cost-model-choice/)：性能と予算を同じ表で見る。
 - [Reliable LLM Call Skeleton](../../../engineering/ai-developer-core/reliable-llm-call-skeleton/)：timeout、retry、error recovery を同時に設計する。
 
 ## 参考

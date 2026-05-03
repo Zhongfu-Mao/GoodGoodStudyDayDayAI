@@ -1229,5 +1229,5 @@ HR团队可以使用Claude创建更好的入职体验和文档：
 > **延伸阅读**
 > - [Introduction to Claude Cowork](/academy/anthropic-academy/03-claude-product/introduction-to-claude-cowork/) — Claude 桌面产品
 > - [Building with the Claude API](/academy/anthropic-academy/04-developer-tools/building-with-the-claude-api/) — 开发者进阶
-> - [幻觉与 Grounding](/academy/ai-basics-for-everyone/what-is-hallucination-grounding/) — 使用研究、引用和文档功能时的事实复核
-> - [Context、Memory 与 Projects](/academy/ai-basics-for-everyone/context-window-memory-projects/) — Projects 与长期资料管理的基础概念
+> - [幻觉与 Grounding](/start/ai-basics-for-everyone/what-is-hallucination-grounding/) — 使用研究、引用和文档功能时的事实复核
+> - [Context、Memory 与 Projects](/start/ai-basics-for-everyone/context-window-memory-projects/) — Projects 与长期资料管理的基础概念

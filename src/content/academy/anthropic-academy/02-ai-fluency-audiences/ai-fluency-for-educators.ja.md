@@ -86,4 +86,4 @@ Teaching Context Document は、単にプロンプトを長くするためのも
 ## 関連リソース
 
 - [Teaching AI Fluency](../../01-ai-fluency-foundations/teaching-ai-fluency/)
-- [幻覚と Grounding](../../../ai-basics-for-everyone/what-is-hallucination-grounding/)
+- [幻覚と Grounding](/start/ai-basics-for-everyone/what-is-hallucination-grounding/)

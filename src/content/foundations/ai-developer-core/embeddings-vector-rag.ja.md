@@ -66,8 +66,8 @@ RAG 開発では、つい Embedding モデルやベクトル DB、チャンク�
 
 ## 関連して読む
 
-- [RAG とは何か](../../../academy/ai-basics-for-everyone/what-is-rag/)：概念を整理する入口。
-- [ハルシネーションと Grounding](../../../academy/ai-basics-for-everyone/what-is-hallucination-grounding/)：引用と拒否がなぜ重要かを理解する。
+- [RAG とは何か](../../../start/ai-basics-for-everyone/what-is-rag/)：概念を整理する入口。
+- [ハルシネーションと Grounding](../../../start/ai-basics-for-everyone/what-is-hallucination-grounding/)：引用と拒否がなぜ重要かを理解する。
 - [RAG Minimum System](../../../engineering/ai-developer-core/rag-minimum-system/)：最小実装から全体の流れを把握する。
 
 ## 参考

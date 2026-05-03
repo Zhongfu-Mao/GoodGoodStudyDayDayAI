@@ -130,9 +130,9 @@ Agent のバグ修正において最も困難なのは「再現性の欠如」�
 
 ## 関連基礎知識
 
-- [Agent とは何か](../../../academy/ai-basics-for-everyone/what-is-agent/)：Agent に関する基本語彙を整理します。
+- [Agent とは何か](../../../start/ai-basics-for-everyone/what-is-agent/)：Agent に関する基本語彙を整理します。
 - [Agent = 状態、ツール、フィードバックループ](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/)：Harness のログ、承認、停止条件をシステム構造として捉え直します。
-- [MCP とは何か](../../../academy/ai-basics-for-everyone/what-is-mcp/)：ツールプロトコルにおいて、なぜ権限管理と監査が必要なのかを理解します。
+- [MCP とは何か](../../../start/ai-basics-for-everyone/what-is-mcp/)：ツールプロトコルにおいて、なぜ権限管理と監査が必要なのかを理解します。
 
 ## 参考資料
 

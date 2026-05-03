@@ -117,7 +117,7 @@ MCP（Model Context Protocol）让 Agent 能够安全、规范地连接外部工
 
 ## 相关基础阅读
 
-- [MCP 是什么](../../../academy/ai-basics-for-everyone/what-is-mcp/)：建立关于协议设计的非实现层心智模型。
+- [MCP 是什么](../../../start/ai-basics-for-everyone/what-is-mcp/)：建立关于协议设计的非实现层心智模型。
 - [Introduction to Model Context Protocol](../../../academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)：补充 Anthropic Academy 关于 MCP 的基础理论。
 - [Agent = 状态、工具与反馈循环](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/)：理解为何 MCP 需要工具边界和停止条件。
 

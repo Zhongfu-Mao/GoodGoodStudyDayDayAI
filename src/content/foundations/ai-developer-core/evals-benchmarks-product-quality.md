@@ -69,7 +69,7 @@ AI 系统最隐蔽的风险在于：在处理简单问题时表现完美，却�
 
 ## 延伸阅读
 
-- [Eval 是什么](../../../academy/ai-basics-for-everyone/what-is-eval/)：在团队内部建立一致的评测语汇。
+- [Eval 是什么](../../../start/ai-basics-for-everyone/what-is-eval/)：在团队内部建立一致的评测语汇。
 - [Evals](../../../academy/openai-academy/07-building-with-ai/evals/)：深入了解如何将评测嵌入 AI 产品生命周期。
 - [Production Optimization](../../../academy/openai-academy/07-building-with-ai/production-optimization/)：平衡质量、成本与延迟的工程艺术。
 

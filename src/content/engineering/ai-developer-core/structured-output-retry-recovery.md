@@ -118,7 +118,7 @@ draft: false
 
 ## 相关基础阅读
 
-- [结构化输出是什么](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：从非工程视角理解 Schema 和机器可读输出的必要性。
+- [结构化输出是什么](../../../start/ai-basics-for-everyone/what-is-structured-output/)：从非工程视角理解 Schema 和机器可读输出的必要性。
 - [Transformer 与 Attention 的开发者视角](../../../foundations/ai-developer-core/transformer-attention-developer-view/)：理解 Few-shot 示例和格式约束如何影响模型的输出稳定性。
 - [Eval、Benchmark 与产品质量](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)：将通过率和失败分类纳入完整的评测体系。
 

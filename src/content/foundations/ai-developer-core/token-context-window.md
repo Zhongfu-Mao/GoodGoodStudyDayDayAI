@@ -73,8 +73,8 @@ draft: false
 
 ## 延伸阅读
 
-- [Token、成本与模型选择](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：从非工程视角理解 token 为什么影响预算。
-- [Context、Memory 与 Projects](../../../academy/ai-basics-for-everyone/context-window-memory-projects/)：理解上下文窗口和长期资料管理的区别。
+- [Token、成本与模型选择](../../../start/ai-basics-for-everyone/what-is-token-cost-model-choice/)：从非工程视角理解 token 为什么影响预算。
+- [Context、Memory 与 Projects](../../../start/ai-basics-for-everyone/context-window-memory-projects/)：理解上下文窗口和长期资料管理的区别。
 - [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/)：把 token budget 放进完整上下文设计。
 
 ## 参考

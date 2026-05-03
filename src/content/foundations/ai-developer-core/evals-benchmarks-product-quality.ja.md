@@ -69,7 +69,7 @@ RAG などのタスクに対して 30 件程度の Eval セットを作成して
 
 ## 関連して読む
 
-- [Eval とは何か](../../../academy/ai-basics-for-everyone/what-is-eval/)：チーム内で評価の共通語彙を確立する。
+- [Eval とは何か](../../../start/ai-basics-for-everyone/what-is-eval/)：チーム内で評価の共通語彙を確立する。
 - [Evals](../../../academy/openai-academy/07-building-with-ai/evals/)：AI プロダクトの開発フローに評価を組み込む。
 - [Production Optimization](../../../academy/openai-academy/07-building-with-ai/production-optimization/)：品質、コスト、レイテンシを総合的に判断する。
 

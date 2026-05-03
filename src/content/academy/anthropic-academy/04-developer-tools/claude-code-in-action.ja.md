@@ -85,5 +85,5 @@ Claude Code の強みは、編集能力そのものよりも、**調査 → 計�
 
 ## 関連リソース
 
-- [AI Coding Tools](../../../ai-basics-for-everyone/ai-coding-tools/)
+- [AI Coding Tools](/start/ai-basics-for-everyone/ai-coding-tools/)
 - [Agent Harness](../../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)

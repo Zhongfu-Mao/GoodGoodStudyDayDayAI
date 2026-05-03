@@ -107,8 +107,8 @@ output_schema:
 
 ## 関連基礎
 
-- [構造化出力とは何か](../../../academy/ai-basics-for-everyone/what-is-structured-output/)：出力契約の重要性を理解する。
-- [Token、コスト、モデル選択](../../../academy/ai-basics-for-everyone/what-is-token-cost-model-choice/)：一回の呼び出しごとのコスト意識を持つ。
+- [構造化出力とは何か](../../../start/ai-basics-for-everyone/what-is-structured-output/)：出力契約の重要性を理解する。
+- [Token、コスト、モデル選択](../../../start/ai-basics-for-everyone/what-is-token-cost-model-choice/)：一回の呼び出しごとのコスト意識を持つ。
 - [Eval、Benchmark、プロダクト品質](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)：ラッパーの成功率を定量的に比較できるようにする。
 
 ## 参考

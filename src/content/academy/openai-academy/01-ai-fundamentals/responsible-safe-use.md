@@ -186,9 +186,9 @@ AI 工具的便捷性往往会让人产生一种错觉，即可以将其视为�
 
 ## 相关基础阅读
 
-- [幻觉与证据追溯 (Grounding)](../../../ai-basics-for-everyone/what-is-hallucination-grounding/)：将“复核事实”转化为可执行的证据链检查。
-- [结构化输出 (Structured Output)](../../../ai-basics-for-everyone/what-is-structured-output/)：让安全评估结果更易于团队共享与自动化处理。
-- [评估 (Eval) 方法论](../../../ai-basics-for-everyone/what-is-eval/)：记录并追踪安全边界的覆盖情况。
+- [幻觉与证据追溯 (Grounding)](/start/ai-basics-for-everyone/what-is-hallucination-grounding/)：将“复核事实”转化为可执行的证据链检查。
+- [结构化输出 (Structured Output)](/start/ai-basics-for-everyone/what-is-structured-output/)：让安全评估结果更易于团队共享与自动化处理。
+- [评估 (Eval) 方法论](/start/ai-basics-for-everyone/what-is-eval/)：记录并追踪安全边界的覆盖情况。
 
 ## 参考资源
 
