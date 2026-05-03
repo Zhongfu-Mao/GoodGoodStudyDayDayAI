@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：MCP とは何か、AI が外部ツールとつながる標準規格"
 date: 2026-04-27
-category: academy
+category: start
 description: "AI と外部ツールを接続するオープンプロトコル「MCP」を、USB-C の例えを用いて分かりやすく解説します。"
-coverImage: "/images/academy/ai-basics-for-everyone/mcp.svg"
+coverImage: "/images/start/ai-basics-for-everyone/mcp.svg"
 difficulty: beginner
 plainSummary: "MCP（Model Context Protocol）は、AI が外部のツールやデータに標準化された方法で接続するためのプロトコルです。USB-C のように、一つの規格で多様なツールとの連携を可能にします。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 10
-  source: "サイト内 Academy / Engineering ガイド"
+  source: "サイト内 Start / Engineering ガイド"
   prerequisites: []
 draft: false
 ---
@@ -53,9 +53,9 @@ USB-C が普及する前は、機器ごとに専用のコネクタやケーブ�
 
 ## サイト内で次に読むもの
 
-[Introduction to Model Context Protocol](../../anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)：MCP の全体設計とアーキテクチャについて詳しく解説しています。
+[Introduction to Model Context Protocol](/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)：MCP の全体設計とアーキテクチャについて詳しく解説しています。
 
-[Minimal MCP Server](../../../engineering/ai-developer-core/minimal-mcp-server/)：実際に MCP サーバーを構築するための最小限の実装例を確認できます。
+[Minimal MCP Server](/engineering/ai-developer-core/minimal-mcp-server/)：実際に MCP サーバーを構築するための最小限の実装例を確認できます。
 
 ## やってみよう
 

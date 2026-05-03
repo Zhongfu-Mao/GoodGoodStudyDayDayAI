@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：構造化出力（Structured Output）とは何か、そのまま使える形式で出力させる"
 date: 2026-04-27
-category: academy
+category: start
 description: "AI に表、JSON、チェックリストなど構造化された形式で出力させる方法と、その実用的なメリットを解説します。"
-coverImage: "/images/academy/ai-basics-for-everyone/structured-output.svg"
+coverImage: "/images/start/ai-basics-for-everyone/structured-output.svg"
 difficulty: beginner
 plainSummary: "構造化出力（Structured Output）とは、AI に対して表・JSON・リストなど特定の形式を指定して回答させる手法です。自由な文章ではなく、次のステップですぐに活用できる「データ」として結果を受け取れます。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 12
-  source: "サイト内 Academy / Engineering ガイド"
+  source: "サイト内 Start / Engineering ガイド"
   prerequisites: []
 draft: false
 ---
@@ -68,7 +68,7 @@ AI のデフォルトの回答スタイルは、自然言語による段落構�
 
 ## サイト内で次に読むもの
 
-- **技術的な信頼性**：より厳密なデータ形式の担保については [Structured Output・Retry と Recovery](../../../engineering/ai-developer-core/structured-output-retry-recovery/) で解説しています。
+- **技術的な信頼性**：より厳密なデータ形式の担保については [Structured Output・Retry と Recovery](/engineering/ai-developer-core/structured-output-retry-recovery/) で解説しています。
 - **プロンプトの基礎**：形式指定の基本は [プロンプトとは何か](../what-is-prompt/) で復習できます。
 
 ## やってみよう：比較実験

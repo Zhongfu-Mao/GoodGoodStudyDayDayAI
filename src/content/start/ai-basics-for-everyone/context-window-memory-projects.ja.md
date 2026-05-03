@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：Context Window、Memory、Projects とは何か"
 date: 2026-04-27
-category: academy
+category: start
 description: "AI が現在認識している情報、長期的に記憶する情報、そして Project 機能による情報整理の違いを解説します。"
-coverImage: "/images/academy/ai-basics-for-everyone/context-memory-projects.svg"
+coverImage: "/images/start/ai-basics-for-everyone/context-memory-projects.svg"
 difficulty: beginner
 plainSummary: "Context Window は AI が「今この瞬間」見えている範囲、Memory は長期的な好みや事実の記憶、Projects は関連するファイルや指示を一つの作業空間に集約する仕組みです。"
 tags:
@@ -13,7 +13,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 3
-  source: "サイト内 Academy / Foundations ガイド"
+  source: "サイト内 Start / Foundations ガイド"
   prerequisites: []
 draft: false
 ---
@@ -54,11 +54,11 @@ Project の本質的な価値は、単にファイルを保存することでは
 
 ## サイト内で次に読むもの
 
-[Working with Files（ファイルの活用）](../../openai-academy/02-using-chatgpt/tools/working-with-files/) を読むことで、ファイルが AI のワークフローにどのように組み込まれるかを具体的にイメージできます。
+[Working with Files（ファイルの活用）](/academy/openai-academy/02-using-chatgpt/tools/working-with-files/) を読むことで、ファイルが AI のワークフローにどのように組み込まれるかを具体的にイメージできます。
 
-[Projects（プロジェクト管理）](../../openai-academy/02-using-chatgpt/workflows/projects/) では、単発のチャットを継続的な作業空間へと進化させる考え方を学べます。
+[Projects（プロジェクト管理）](/academy/openai-academy/02-using-chatgpt/workflows/projects/) では、単発のチャットを継続的な作業空間へと進化させる考え方を学べます。
 
-さらに技術的な理解を深めるなら、[Token と Context Window](../../../foundations/ai-developer-core/token-context-window/) や [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/) が次のステップとして最適です。
+さらに技術的な理解を深めるなら、[Token と Context Window](/foundations/ai-developer-core/token-context-window/) や [Context Engineering Playbook](/engineering/ai-developer-core/context-engineering-playbook/) が次のステップとして最適です。
 
 ## やってみよう
 

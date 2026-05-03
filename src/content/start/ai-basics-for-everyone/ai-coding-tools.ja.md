@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：AI Coding ツールの進化がエンジニアリングにもたらしたもの"
 date: 2026-04-27
-category: academy
+category: start
 description: "AI Coding ツールを単なる「コード補完」としてではなく、プロジェクトの探索、編集、検証、説明までを統合する「共同作業パートナー」として整理します。"
-coverImage: "/images/academy/ai-basics-for-everyone/ai-coding-tools.svg"
+coverImage: "/images/start/ai-basics-for-everyone/ai-coding-tools.svg"
 difficulty: beginner
 plainSummary: "AI Coding ツールの本質的な変化は、コードを書く速度の向上だけではありません。要件定義、コード探索、変更、検証、そして説明までを一貫して繋ぐ、新しい共同作業の形が生まれています。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 7
-  source: "サイト内 Academy / Engineering ガイド"
+  source: "サイト内 Start / Engineering ガイド"
   prerequisites: []
 draft: false
 ---
@@ -65,11 +65,11 @@ AI Coding ツールが強力になればなるほど、人間による管理境�
 
 ## サイト内で次に読むもの
 
-[Codex Quickstart](../../openai-academy/05-codex/quickstart/) や [Codex App](../../openai-academy/05-codex/codex-app/) では、Codex を用いた開発の基本的な流れを体験できます。
+[Codex Quickstart](/academy/openai-academy/05-codex/quickstart/) や [Codex App](/academy/openai-academy/05-codex/codex-app/) では、Codex を用いた開発の基本的な流れを体験できます。
 
-[Claude Code in Action](../../anthropic-academy/04-developer-tools/claude-code-in-action/) では、最新のターミナル型 AI エージェントのワークフローを学べます。
+[Claude Code in Action](/academy/anthropic-academy/04-developer-tools/claude-code-in-action/) では、最新のターミナル型 AI エージェントのワークフローを学べます。
 
-より堅牢な実践を目指すなら、[Reliable LLM Call Skeleton](../../../engineering/ai-developer-core/reliable-llm-call-skeleton/) や [Agent Harness](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/) が次のステップとして最適です。
+より堅牢な実践を目指すなら、[Reliable LLM Call Skeleton](/engineering/ai-developer-core/reliable-llm-call-skeleton/) や [Agent Harness](/engineering/ai-developer-core/agent-harness-logging-approval-replay/) が次のステップとして最適です。
 
 ## やってみよう
 

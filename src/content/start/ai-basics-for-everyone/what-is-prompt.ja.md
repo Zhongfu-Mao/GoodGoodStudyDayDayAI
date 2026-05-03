@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：プロンプト（Prompt）とは何か"
 date: 2026-04-27
-category: academy
+category: start
 description: "プロンプトを単なる「呪文」ではなく、目的、背景、制約、出力形式を明確に伝える「業務依頼書」として整理します。"
-coverImage: "/images/academy/ai-basics-for-everyone/prompt.svg"
+coverImage: "/images/start/ai-basics-for-everyone/prompt.svg"
 difficulty: beginner
 plainSummary: "プロンプト（Prompt）とは、AI に対する依頼文のことです。優れたプロンプトは、役割、目的、背景、材料、制約、そして期待する出力を明確に備えています。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 2
-  source: "サイト内 Academy ガイド"
+  source: "サイト内 Start ガイド"
   prerequisites: []
 draft: false
 ---
@@ -66,9 +66,9 @@ draft: false
 
 ## サイト内で次に読むもの
 
-- **初歩の初歩**：[Getting Started with ChatGPT](../../openai-academy/02-using-chatgpt/core-skills/getting-started/) から始めるのがおすすめです。
-- **体系的な学習**：[Prompting Fundamentals](../../openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/) を読むと、テクニックではなく「構造」としてプロンプトを捉えられるようになります。
-- **エンジニア向け**：コード生成やプロジェクト作業に進むなら、[Codex Better Prompts](../../openai-academy/05-codex/better-prompts/) が非常に役立ちます。
+- **初歩の初歩**：[Getting Started with ChatGPT](/academy/openai-academy/02-using-chatgpt/core-skills/getting-started/) から始めるのがおすすめです。
+- **体系的な学習**：[Prompting Fundamentals](/academy/openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/) を読むと、テクニックではなく「構造」としてプロンプトを捉えられるようになります。
+- **エンジニア向け**：コード生成やプロジェクト作業に進むなら、[Codex Better Prompts](/academy/openai-academy/05-codex/better-prompts/) が非常に役立ちます。
 
 ## やってみよう：実践ワーク
 

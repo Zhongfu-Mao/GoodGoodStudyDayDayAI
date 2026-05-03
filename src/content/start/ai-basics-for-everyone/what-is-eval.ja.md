@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：Eval（評価）とは何か、なぜ AI アプリに必要なのか"
 date: 2026-04-27
-category: academy
+category: start
 description: "AI の品質を客観的・再現可能に検証するためのテストセット、評価基準（ルーブリック）、回帰テストとしての Eval について解説します。"
-coverImage: "/images/academy/ai-basics-for-everyone/eval.svg"
+coverImage: "/images/start/ai-basics-for-everyone/eval.svg"
 difficulty: beginner
 plainSummary: "Eval は AI の出力品質を繰り返し検証する手法です。「なんとなく良さそう」という主観的な評価を、具体的なテストセット、基準、指標に基づく客観的なプロセスに変えます。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 6
-  source: "サイト内 Academy / Foundations ガイド"
+  source: "サイト内 Start / Foundations ガイド"
   prerequisites: []
 draft: false
 ---
@@ -66,9 +66,9 @@ AI アプリケーションを開発していなくても、Eval の考え方は
 
 ## サイト内で次に読むもの
 
-[Evals](../../openai-academy/07-building-with-ai/evals/)：AI アプリケーションにおいて、なぜ体系的な評価が不可欠なのかを詳しく学べます。
+[Evals](/academy/openai-academy/07-building-with-ai/evals/)：AI アプリケーションにおいて、なぜ体系的な評価が不可欠なのかを詳しく学べます。
 
-[Evals、Benchmarks、Product Quality](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)：独自の Eval と、一般的なベンチマークの違いを整理しています。
+[Evals、Benchmarks、Product Quality](/foundations/ai-developer-core/evals-benchmarks-product-quality/)：独自の Eval と、一般的なベンチマークの違いを整理しています。
 
 RAG（検索拡張生成）、エージェント、コーディングワークフローとステップが進むほど、Eval は継続的な改善の核となります。
 

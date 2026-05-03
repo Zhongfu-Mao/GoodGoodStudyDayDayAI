@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：Agent とは何か、なぜ重要なのか"
 date: 2026-04-27
-category: academy
+category: start
 description: "AI Agent（エージェント）を単なる流行語としてではなく、目標、状態、ツール、手順、権限、検証を備えた高度なワークフローとして整理します。"
-coverImage: "/images/academy/ai-basics-for-everyone/agent.svg"
+coverImage: "/images/start/ai-basics-for-everyone/agent.svg"
 difficulty: beginner
 plainSummary: "Agent は単に会話するだけのボットではなく、目標達成に向けてツールを使いこなし、手順を進め、自ら結果を確認・修正する AI ワークフローです。"
 tags:
@@ -13,7 +13,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 4
-  source: "サイト内 Academy / Engineering ガイド"
+  source: "サイト内 Start / Engineering ガイド"
   prerequisites: []
 draft: false
 ---
@@ -58,11 +58,11 @@ Agent が真価を発揮するのは、以下のような特徴を持つタス�
 
 ## サイト内で次に読むもの
 
-[Building Agents（エージェント構築）](../../openai-academy/07-building-with-ai/agents/) では、ツール、ハンドオフ（役割交代）、ガードレール、Eval（評価）をどう組み合わせるかの実践を学べます。
+[Building Agents（エージェント構築）](/academy/openai-academy/07-building-with-ai/agents/) では、ツール、ハンドオフ（役割交代）、ガードレール、Eval（評価）をどう組み合わせるかの実践を学べます。
 
-[Introduction to Subagents（サブエージェント導入）](../../anthropic-academy/05-agentic-mcp/introduction-to-subagents/) では、複雑なタスクを専門特化した小さなエージェントに分割する高度な設計手法を解説しています。
+[Introduction to Subagents（サブエージェント導入）](/academy/anthropic-academy/05-agentic-mcp/introduction-to-subagents/) では、複雑なタスクを専門特化した小さなエージェントに分割する高度な設計手法を解説しています。
 
-エンジニアリングの観点から深く理解したい場合は、[Agent の state、tool、feedback loop](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/) や [Agent Harness](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/) が次のステップとして最適です。
+エンジニアリングの観点から深く理解したい場合は、[Agent の state、tool、feedback loop](/foundations/ai-developer-core/agent-state-tools-feedback-loop/) や [Agent Harness](/engineering/ai-developer-core/agent-harness-logging-approval-replay/) が次のステップとして最適です。
 
 ## やってみよう
 

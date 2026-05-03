@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：Context Engineering 是什么，为何它比写 Prompt 更重要"
 date: 2026-04-27
-category: academy
+category: start
 description: "阐述为何单靠提示词工程（Prompt Engineering）已不足以支撑复杂的任务，以及上下文工程（Context Engineering）如何通过设计信息环境来释放 AI 的真实潜力。"
-coverImage: "/images/academy/ai-basics-for-everyone/context-engineering.svg"
+coverImage: "/images/start/ai-basics-for-everyone/context-engineering.svg"
 difficulty: beginner
 plainSummary: "上下文工程（Context Engineering）不只是打磨那句“提示词”，而是系统性地设计 AI 在执行任务时所接触到的所有信息、工具和规则。它是从“如何提问”向“如何设计信息环境”的思维进阶。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 11
-  source: "本站 Academy / Engineering 导读"
+  source: "本站新手起步 / Engineering 导读"
   prerequisites: []
 draft: false
 ---
@@ -68,7 +68,7 @@ draft: false
 ## 与本站内容的关联
 
 - 回顾 [Context Window、Memory 与 Projects 是什么](../context-window-memory-projects/)，夯实对上下文基础概念的认知。
-- 阅读 [Context Engineering Playbook（实战手册）](../../../engineering/ai-developer-core/context-engineering-playbook/)，学习工业级的上下文管理技术与工程范式。
+- 阅读 [Context Engineering Playbook（实战手册）](/engineering/ai-developer-core/context-engineering-playbook/)，学习工业级的上下文管理技术与工程范式。
 
 ## 动手尝试：设计一个信息环境
 

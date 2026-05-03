@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：Structured Output 是什么，如何获取 AI 的精准化结果"
 date: 2026-04-27
-category: academy
+category: start
 description: "深入解析什么是结构化输出，以及为何让 AI 输出表格、JSON、或特定清单格式比纯文本描述在实务中更具价值。"
-coverImage: "/images/academy/ai-basics-for-everyone/structured-output.svg"
+coverImage: "/images/start/ai-basics-for-everyone/structured-output.svg"
 difficulty: beginner
 plainSummary: "结构化输出（Structured Output）是指让 AI 严格按照预设格式（如表格、JSON、检查清单等）呈现结果。它能将 AI 的输出直接转化为可复用、可处理的数据，而非一段难以自动化处理的自由文本。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 12
-  source: "本站 Academy / Engineering 导读"
+  source: "本站新手起步 / Engineering 导读"
   prerequisites: []
 draft: false
 ---
@@ -74,7 +74,7 @@ AI 默认倾向于生成类似人类对话的自然语言段落。对于简单�
 
 ## 与本站进阶内容的关联
 
-若想在工程层面百分之百确保结构化输出的可靠性（例如防止 JSON 格式崩溃），请阅读 [Structured Output、Retry 与 Recovery](../../../engineering/ai-developer-core/structured-output-retry-recovery/)。
+若想在工程层面百分之百确保结构化输出的可靠性（例如防止 JSON 格式崩溃），请阅读 [Structured Output、Retry 与 Recovery](/engineering/ai-developer-core/structured-output-retry-recovery/)。
 
 若想让 Prompt 中的格式指令更加稳固，建议回顾 [Prompt 到底是什么](../what-is-prompt/)。
 

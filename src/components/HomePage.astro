@@ -3,7 +3,7 @@ import {
   articlePath,
   categoryPath,
   collectionLabels,
-  collectionNames,
+  primaryCategoryNames,
   radarGalleryPath,
   resolveSiteUrl,
   slugifyTag,
@@ -27,7 +27,7 @@ const publicTagSlugs = new Set(tagIndex.map((tag) => tag.slug));
 const text = homePage[locale];
 const visualCount = entries.filter((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage).length;
 const startHref = startPath(locale);
-const routeItems = collectionNames.map((category) => ({
+const routeItems = primaryCategoryNames.map((category) => ({
   category,
   href: categoryPath(category, locale),
   title: text.routes[category].title,

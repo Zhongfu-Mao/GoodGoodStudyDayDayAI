@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：RAG（検索拡張生成）とは何か、なぜ単なる検索ではないのか"
 date: 2026-04-27
-category: academy
+category: start
 description: "RAG（検索拡張生成）を、情報取得（Retrieval）、コンテキスト注入、回答生成、引用、評価のプロセスとして分かりやすく解説します。"
-coverImage: "/images/academy/ai-basics-for-everyone/rag.svg"
+coverImage: "/images/start/ai-basics-for-everyone/rag.svg"
 difficulty: beginner
 plainSummary: "RAG は、AI が回答を生成する前に関連資料を自動で探し、その資料をコンテキスト（背景情報）として読み込ませる手法です。単なる検索機能ではなく、検索、引用、生成、評価を統合したシステムです。"
 tags:
@@ -13,7 +13,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 5
-  source: "サイト内 Academy / Foundations / Engineering ガイド"
+  source: "サイト内 Start / Foundations / Engineering ガイド"
   prerequisites: []
 draft: false
 ---
@@ -56,9 +56,9 @@ RAG の難しさは、単にベクトルデータベースを接続すること�
 
 ## サイト内で次に読むもの
 
-- **基礎を固める**：[RAG](../../openai-academy/07-building-with-ai/rag/) で、OpenAI Academy による体系的な整理を学べます。
-- **原理を知る**：[Embeddings、Vector、RAG](../../../foundations/ai-developer-core/embeddings-vector-rag/) では、ベクトル検索や情報の数値化（埋め込み）について深掘りします。
-- **実装に挑戦する**：[RAG Minimum System](../../../engineering/ai-developer-core/rag-minimum-system/) は、実際に動く最小構成のシステムを作るためのガイドです。
+- **基礎を固める**：[RAG](/academy/openai-academy/07-building-with-ai/rag/) で、OpenAI Academy による体系的な整理を学べます。
+- **原理を知る**：[Embeddings、Vector、RAG](/foundations/ai-developer-core/embeddings-vector-rag/) では、ベクトル検索や情報の数値化（埋め込み）について深掘りします。
+- **実装に挑戦する**：[RAG Minimum System](/engineering/ai-developer-core/rag-minimum-system/) は、実際に動く最小構成のシステムを作るためのガイドです。
 
 ## やってみよう：手動 RAG 体験
 

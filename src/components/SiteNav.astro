@@ -3,8 +3,8 @@ import SearchForm from './SearchForm.astro';
 import {
   categoryPath,
   collectionLabels,
-  collectionNames,
   homePath,
+  primaryCategoryNames,
   startPath,
   type Locale,
 } from '../lib/site';
@@ -12,7 +12,7 @@ import { siteNav } from '../lib/i18n';
 
 const { locale, showSearch = true } = Astro.props as { locale: Locale; showSearch?: boolean };
 
-const navItems = collectionNames.map((category) => ({
+const navItems = primaryCategoryNames.map((category) => ({
   href: categoryPath(category, locale),
   label: collectionLabels[category][locale],
   tooltip: {

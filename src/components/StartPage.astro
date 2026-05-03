@@ -31,7 +31,7 @@ const sortByAcademyOrder = (a: EntryListItem, b: EntryListItem) => {
 
 const latestRadar = entries.find((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage);
 const aiBasicsEntries = entries
-  .filter((item) => item.entry.data.category === 'academy' && item.entry.data.academy?.series === aiBasicsSeries)
+  .filter((item) => item.entry.data.category === 'start' && item.entry.data.academy?.series === aiBasicsSeries)
   .sort(sortByAcademyOrder);
 const heroImage = latestRadar?.entry.data.coverImage ? resolveSiteUrl(latestRadar.entry.data.coverImage) : undefined;
 

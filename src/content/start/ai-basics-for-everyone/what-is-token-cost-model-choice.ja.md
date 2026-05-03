@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：Token・料金・モデル選び"
 date: 2026-04-27
-category: academy
+category: start
 description: "Token（トークン）の概念、AI サービスの料金体系、Context Window の制限、そしてタスクに最適なモデルの選び方を整理します。"
-coverImage: "/images/academy/ai-basics-for-everyone/token-cost-model.svg"
+coverImage: "/images/start/ai-basics-for-everyone/token-cost-model.svg"
 difficulty: beginner
 plainSummary: "Token は AI がテキストを処理する基本単位であり、課金の基準でもあります。Token と Context Window を理解することで、コスト管理やモデル選択がより戦略的になります。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 9
-  source: "サイト内 Academy / Foundations ガイド"
+  source: "サイト内 Start / Foundations ガイド"
   prerequisites: []
 draft: false
 ---
@@ -66,7 +66,7 @@ AI はテキストを「文字」や「単語」そのものではなく、ト�
 
 ## サイト内で次に読むもの
 
-技術的な詳細については [Token と Context Window](../../../foundations/ai-developer-core/token-context-window/) を参照してください。コンテキストの具体的な活用法については [Context Window・Memory・Projects とは](../context-window-memory-projects/) で詳しく解説しています。
+技術的な詳細については [Token と Context Window](/foundations/ai-developer-core/token-context-window/) を参照してください。コンテキストの具体的な活用法については [Context Window・Memory・Projects とは](../context-window-memory-projects/) で詳しく解説しています。
 
 ## やってみよう
 

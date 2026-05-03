@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：Token、计费与模型选择"
 date: 2026-04-27
-category: academy
+category: start
 description: "深入浅出地解释 Token 的概念、AI 的计费模式、上下文窗口的限制，以及如何为特定任务选择合适的模型。"
-coverImage: "/images/academy/ai-basics-for-everyone/token-cost-model.svg"
+coverImage: "/images/start/ai-basics-for-everyone/token-cost-model.svg"
 difficulty: beginner
 plainSummary: "Token 是 AI 处理文本的基本单位，也是衡量成本的核心标准。理解 Token 和上下文窗口，能助你精准控制成本并选对模型。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 9
-  source: "本站 Academy / Foundations 导读"
+  source: "本站新手起步 / Foundations 导读"
   prerequisites: []
 draft: false
 ---
@@ -76,7 +76,7 @@ AI 并不是直接按字符或单词来理解文本的，而是将其切分为 t
 
 ## 与本站进阶内容的关联
 
-若想深入探讨 token 化的技术细节及窗口限制，请阅读 [Token 与 Context Window](../../../foundations/ai-developer-core/token-context-window/)。
+若想深入探讨 token 化的技术细节及窗口限制，请阅读 [Token 与 Context Window](/foundations/ai-developer-core/token-context-window/)。
 
 若想学习如何通过管理上下文来大幅提升 AI 的任务表现，请阅读 [Context Window、Memory、Projects 是什么](../context-window-memory-projects/)。
 

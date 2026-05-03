@@ -62,6 +62,11 @@ const radar = defineCollection({
   schema: blogSchema,
 });
 
+const start = defineCollection({
+  loader: markdownLoader('./src/content/start'),
+  schema: blogSchema,
+});
+
 const academy = defineCollection({
   loader: markdownLoader('./src/content/academy'),
   schema: blogSchema,
@@ -79,6 +84,7 @@ const foundations = defineCollection({
 
 export const collections = {
   radar,
+  start,
   academy,
   engineering,
   foundations,

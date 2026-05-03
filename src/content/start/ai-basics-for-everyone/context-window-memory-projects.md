@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：Context Window、Memory 与 Projects 是什么"
 date: 2026-04-27
-category: academy
+category: start
 description: "深入探讨 AI 当前的感知范围、长期记忆机制，以及如何利用 Projects 管理文件和上下文以显著提升输出质量。"
-coverImage: "/images/academy/ai-basics-for-everyone/context-memory-projects.svg"
+coverImage: "/images/start/ai-basics-for-everyone/context-memory-projects.svg"
 difficulty: beginner
 plainSummary: "上下文窗口（Context Window）是 AI 当前能“看”到的信息范围，Memory 是长期的偏好或事实存储，而 Projects 则提供了一个将文件、指令和对话整合在一起的结构化工作空间。"
 tags:
@@ -13,7 +13,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 3
-  source: "本站 Academy / Foundations 导读"
+  source: "本站新手起步 / Foundations 导读"
   prerequisites: []
 draft: false
 ---
@@ -54,9 +54,9 @@ Project 的真正价值不在于“上传文件”这个动作，而在于它让
 
 ## 与本站内容的关联
 
-- 阅读 [Working with Files（文件操作指南）](../../openai-academy/02-using-chatgpt/tools/working-with-files/)，掌握文件如何高效进入 AI 工作流。
-- 阅读 [Projects 实战指南](../../openai-academy/02-using-chatgpt/workflows/projects/)，学习如何将碎片化的对话升级为可持续的生产力空间。
-- 若想从工程角度理解上下文的挑战，请查阅 [Token 与 Context Window](../../../foundations/ai-developer-core/token-context-window/) 和 [Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/)。
+- 阅读 [Working with Files（文件操作指南）](/academy/openai-academy/02-using-chatgpt/tools/working-with-files/)，掌握文件如何高效进入 AI 工作流。
+- 阅读 [Projects 实战指南](/academy/openai-academy/02-using-chatgpt/workflows/projects/)，学习如何将碎片化的对话升级为可持续的生产力空间。
+- 若想从工程角度理解上下文的挑战，请查阅 [Token 与 Context Window](/foundations/ai-developer-core/token-context-window/) 和 [Context Engineering Playbook](/engineering/ai-developer-core/context-engineering-playbook/)。
 
 ## 动手尝试：对比实验
 

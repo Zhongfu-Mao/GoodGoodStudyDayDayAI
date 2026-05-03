@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：ハルシネーションとは何か、AI の回答を信頼できるものにする方法"
 date: 2026-04-27
-category: academy
+category: start
 description: "AI がなぜ事実とは異なる内容を生成してしまうのか、その理由と RAG（検索拡張生成）・引用・Eval による信頼性向上の手法を解説します。"
-coverImage: "/images/academy/ai-basics-for-everyone/hallucination-grounding.svg"
+coverImage: "/images/start/ai-basics-for-everyone/hallucination-grounding.svg"
 difficulty: beginner
 plainSummary: "AI のハルシネーション（幻覚）は、悪意があるわけではなく、情報不足でも「もっともらしい文章」を生成してしまう構造的な特性です。Grounding は、根拠となるデータを提示することでこの問題を解決します。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 8
-  source: "サイト内 Academy / Foundations ガイド"
+  source: "サイト内 Start / Foundations ガイド"
   prerequisites: []
 draft: false
 ---

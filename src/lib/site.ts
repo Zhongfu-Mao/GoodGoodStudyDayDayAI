@@ -1,11 +1,13 @@
 export const locales = ['zh', 'ja'] as const;
 export type Locale = (typeof locales)[number];
 
-export const collectionNames = ['radar', 'academy', 'engineering', 'foundations'] as const;
+export const collectionNames = ['radar', 'start', 'academy', 'engineering', 'foundations'] as const;
 export type CollectionName = (typeof collectionNames)[number];
+export const primaryCategoryNames = ['radar', 'academy', 'engineering', 'foundations'] as const satisfies readonly CollectionName[];
 
 export const collectionLabels: Record<CollectionName, { zh: string; ja: string }> = {
   radar: { zh: 'AI 雷达', ja: 'AI レーダー' },
+  start: { zh: '新手起步', ja: 'はじめに' },
   academy: { zh: 'AI Academy', ja: 'AI Academy' },
   engineering: { zh: '工程实践', ja: '実践' },
   foundations: { zh: '底层原理', ja: '基礎' },

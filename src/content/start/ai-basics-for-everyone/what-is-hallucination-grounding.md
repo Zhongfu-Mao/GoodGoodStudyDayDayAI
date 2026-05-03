@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：幻觉是什么，如何让 AI 回答更可靠"
 date: 2026-04-27
-category: academy
+category: start
 description: "深入剖析 AI 幻觉的成因，并介绍如何通过检索（Retrieval）、引用（Citation）和评测（Eval）三道防线提升回答的可靠性。"
-coverImage: "/images/academy/ai-basics-for-everyone/hallucination-grounding.svg"
+coverImage: "/images/start/ai-basics-for-everyone/hallucination-grounding.svg"
 difficulty: beginner
 plainSummary: "AI 幻觉并非模型有意欺骗，而是在缺乏事实依据时生成了表面合理的虚假内容。Grounding 则是通过引入外部知识、标注引用和质量评测来约束 AI，使其回答有据可依。"
 tags:
@@ -12,9 +12,9 @@ tags:
 lang: zh
 academy:
   series: "AI Basics for Everyone"
-  module: "入口概念"
+  module: "基本概念"
   moduleOrder: 8
-  source: "本站 Academy / Foundations 导读"
+  source: "本站新手起步 / Foundations 导读"
   prerequisites: []
 draft: false
 ---
@@ -67,7 +67,7 @@ draft: false
 
 - **理解 RAG**：阅读 [RAG 是什么](../what-is-rag/)，了解外部资料如何充当 AI 的“事实锚点”。
 - **掌握评测**：阅读 [Eval 是什么](../what-is-eval/)，学习如何量化并发现幻觉。
-- **系统化治理**：阅读 [Evals、Benchmarks 与产品质量](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)，深入了解工业界如何建立产品级的可靠性标准。
+- **系统化治理**：阅读 [Evals、Benchmarks 与产品质量](/foundations/ai-developer-core/evals-benchmarks-product-quality/)，深入了解工业界如何建立产品级的可靠性标准。
 
 ## 动手试试：幻觉测试
 
@@ -91,4 +91,3 @@ draft: false
 4. 这个任务是否属于 AI 的**高风险区域**（如医学、法律或精确计算）？
 
 建立这种“Grounding 意识”，是高效、安全使用 AI 的必备基础。
-

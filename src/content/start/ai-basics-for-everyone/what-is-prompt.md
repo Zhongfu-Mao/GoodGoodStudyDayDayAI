@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：提示词（Prompt）到底是什么"
 date: 2026-04-27
-category: academy
+category: start
 description: "将提示词从“神秘咒语”还原为结构化的任务说明书：涵盖目标、背景、材料、约束与输出格式。"
-coverImage: "/images/academy/ai-basics-for-everyone/prompt.svg"
+coverImage: "/images/start/ai-basics-for-everyone/prompt.svg"
 difficulty: beginner
 plainSummary: "提示词（Prompt）本质上是你向 AI 下达的任务说明。好的提示词能够清晰阐述目标、上下文、限制条件及期望的输出格式。"
 tags:
@@ -12,9 +12,9 @@ tags:
 lang: zh
 academy:
   series: "AI Basics for Everyone"
-  module: "入口概念"
+  module: "基本概念"
   moduleOrder: 2
-  source: "本站 Academy 导读"
+  source: "本站新手起步 导读"
   prerequisites: []
 draft: false
 ---
@@ -64,9 +64,9 @@ draft: false
 
 ## 进阶学习路径
 
-- **快速上手**：阅读 [Getting Started with ChatGPT](../../openai-academy/02-using-chatgpt/core-skills/getting-started/)，建立基础的操作直觉。
-- **结构化思维**：阅读 [Prompting Fundamentals](../../openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/)，将提示词从“即兴提问”升级为“可复用的资产”。
-- **工程级应用**：如果你需要处理编程任务，请参考 [Codex Better Prompts](../../openai-academy/05-codex/better-prompts/)，学习如何在项目中进行更严谨的协作。
+- **快速上手**：阅读 [Getting Started with ChatGPT](/academy/openai-academy/02-using-chatgpt/core-skills/getting-started/)，建立基础的操作直觉。
+- **结构化思维**：阅读 [Prompting Fundamentals](/academy/openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/)，将提示词从“即兴提问”升级为“可复用的资产”。
+- **工程级应用**：如果你需要处理编程任务，请参考 [Codex Better Prompts](/academy/openai-academy/05-codex/better-prompts/)，学习如何在项目中进行更严谨的协作。
 
 ## 动手试试：体验结构化指令
 

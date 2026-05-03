@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：RAG 是什么，为什么它不仅是搜索"
 date: 2026-04-27
-category: academy
+category: start
 description: "深入浅出地解释 RAG 如何将检索、上下文和生成有机结合，让 AI 基于外部权威资料提供准确回答。"
-coverImage: "/images/academy/ai-basics-for-everyone/rag.svg"
+coverImage: "/images/start/ai-basics-for-everyone/rag.svg"
 difficulty: beginner
 plainSummary: "RAG（检索增强生成）是一种让 AI 先检索相关资料、再将其注入上下文生成答案的技术。它不仅是简单的搜索，而是检索、引用、生成与评估的系统化组合。"
 tags:
@@ -11,9 +11,9 @@ tags:
 lang: zh
 academy:
   series: "AI Basics for Everyone"
-  module: "入口概念"
+  module: "基本概念"
   moduleOrder: 5
-  source: "本站 Academy / Foundations / Engineering 导读"
+  source: "本站新手起步 / Foundations / Engineering 导读"
   prerequisites: []
 draft: false
 ---
@@ -57,9 +57,9 @@ RAG 的真正挑战往往不在于连接一个向量数据库，而在于**资�
 
 ## 进阶学习路径
 
-- **基础入门**：阅读 [RAG](../../openai-academy/07-building-with-ai/rag/)，了解 OpenAI Academy 对 RAG 的系统性拆解。
-- **深度原理**：想深入理解向量（Vector）、嵌入（Embedding）与知识检索，请阅读 [Embeddings、Vector 与 RAG](../../../foundations/ai-developer-core/embeddings-vector-rag/)。
-- **动手实践**：如果你想构建一个最小可运行系统，请参考 [RAG Minimum System](../../../engineering/ai-developer-core/rag-minimum-system/)。
+- **基础入门**：阅读 [RAG](/academy/openai-academy/07-building-with-ai/rag/)，了解 OpenAI Academy 对 RAG 的系统性拆解。
+- **深度原理**：想深入理解向量（Vector）、嵌入（Embedding）与知识检索，请阅读 [Embeddings、Vector 与 RAG](/foundations/ai-developer-core/embeddings-vector-rag/)。
+- **动手实践**：如果你想构建一个最小可运行系统，请参考 [RAG Minimum System](/engineering/ai-developer-core/rag-minimum-system/)。
 
 ## 动手试试：体验“人工 RAG”
 

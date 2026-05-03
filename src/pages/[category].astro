@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro';
 import CategoryPage from '../components/CategoryPage.astro';
-import { collectionLabels, collectionNames, type CollectionName } from '../lib/site';
+import { collectionLabels, primaryCategoryNames, type CollectionName } from '../lib/site';
 
 export async function getStaticPaths() {
-  return collectionNames.map((category) => ({
+  return primaryCategoryNames.map((category) => ({
     params: { category },
     props: { category },
   }));

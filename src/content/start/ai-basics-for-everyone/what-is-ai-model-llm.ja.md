@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：AI、モデル、LLM とは何か"
 date: 2026-04-27
-category: academy
+category: start
 description: "AI、モデル、そして大規模言語モデル（LLM）の相互関係を、初学者が混乱しない適切な粒度で整理します。"
-coverImage: "/images/academy/ai-basics-for-everyone/ai-model-llm.svg"
+coverImage: "/images/start/ai-basics-for-everyone/ai-model-llm.svg"
 difficulty: beginner
 plainSummary: "AI は知的な作業を機械に担わせる広大な分野を指し、モデルはその中で訓練された知能の核となる部分、LLM は特に言語やテキストの処理に秀でたモデルのことです。"
 tags:
@@ -13,7 +13,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 1
-  source: "サイト内 Academy / Foundations ガイド"
+  source: "サイト内 Start / Foundations ガイド"
   prerequisites: []
 draft: false
 ---
@@ -51,9 +51,9 @@ LLM を「正解を出す万能な機械」としてではなく、**「一緒�
 
 ## サイト内で次に読むもの
 
-まずは [AI Fundamentals（AI の基礎）](../../openai-academy/01-ai-fundamentals/ai-fundamentals/) を読むのがお勧めです。AI で何ができるのか、どのような点に注意すべきかの全体像を掴めます。
+まずは [AI Fundamentals（AI の基礎）](/academy/openai-academy/01-ai-fundamentals/ai-fundamentals/) を読むのがお勧めです。AI で何ができるのか、どのような点に注意すべきかの全体像を掴めます。
 
-モデルの内部構造に興味がある場合は、[Transformer と Attention](../../../foundations/ai-developer-core/transformer-attention-developer-view/) に進むと、「AI モデルは魔法ではなく、数学的な仕組みで動いている」という感覚がより明確になるでしょう。
+モデルの内部構造に興味がある場合は、[Transformer と Attention](/foundations/ai-developer-core/transformer-attention-developer-view/) に進むと、「AI モデルは魔法ではなく、数学的な仕組みで動いている」という感覚がより明確になるでしょう。
 
 ## やってみよう
 

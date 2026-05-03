@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：Eval 是什么，为什么 AI 应用需要评测"
 date: 2026-04-27
-category: academy
+category: start
 description: "将 Eval（评估）理解为 AI 应用的质量保证系统：通过测试集、评估标准和自动化流程，确保 AI 输出的稳定性和可靠性。"
-coverImage: "/images/academy/ai-basics-for-everyone/eval.svg"
+coverImage: "/images/start/ai-basics-for-everyone/eval.svg"
 difficulty: beginner
 plainSummary: "Eval 是对 AI 输出质量进行可重复检查的方法论。它将主观的“感觉不错”转化为客观的测试集、评分标准和性能指标。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 6
-  source: "本站 Academy / Foundations 导读"
+  source: "本站新手起步 / Foundations 导读"
   prerequisites: []
 draft: false
 ---
@@ -66,8 +66,8 @@ Eval 的终极目的不是为了刷出漂亮的分数，而是为了识别出系
 
 ## 与本站进阶内容的关联
 
-- 阅读 [Evals 实践指南](../../openai-academy/07-building-with-ai/evals/)，深入理解 AI 应用开发中的评测流程。
-- 阅读 [Evals、Benchmarks 与产品质量](../../../foundations/ai-developer-core/evals-benchmarks-product-quality/)，辨析 Eval 与 Benchmark（基准测试）的区别。
+- 阅读 [Evals 实践指南](/academy/openai-academy/07-building-with-ai/evals/)，深入理解 AI 应用开发中的评测流程。
+- 阅读 [Evals、Benchmarks 与产品质量](/foundations/ai-developer-core/evals-benchmarks-product-quality/)，辨析 Eval 与 Benchmark（基准测试）的区别。
 - 在构建 RAG 或 Agent 系统时，Eval 将成为你判断系统是否具备“生产级”稳定性的唯一标尺。
 
 ## 动手尝试：轻量级个人评测

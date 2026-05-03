@@ -100,6 +100,41 @@ test.describe('published site UI', () => {
     await expect(page.locator('article[data-pagefind-body]')).toContainText('本ロードマップが解決する課題');
   });
 
+  test('start basics article stays out of AI Academy and offers next lesson navigation', async ({ page }) => {
+    await gotoApp(page, '/start/ai-basics-for-everyone/what-is-ai-model-llm/');
+
+    const courseNavigation = page.locator('[data-course-navigation]');
+    const learningTrack = page.locator('aside section').filter({ hasText: '当前学习轨道文章列表。' });
+
+    await expect(page.locator('article[data-pagefind-body]')).toContainText('新手起步');
+    await expect(page.locator('article[data-pagefind-body]').locator('nav').first()).not.toContainText('AI Academy');
+    await expect(learningTrack).toContainText('12');
+    await expect(learningTrack.getByRole('link')).toHaveCount(12);
+    await expect(courseNavigation).toBeVisible();
+    await expect(courseNavigation.getByRole('heading', { name: '接着读下一节' })).toBeVisible();
+    await expect(courseNavigation.getByRole('link', { name: /下一节: 提示词/ })).toHaveAttribute(
+      'href',
+      appPath('/start/ai-basics-for-everyone/what-is-prompt/'),
+    );
+    await expect(courseNavigation).not.toContainText('AI Basics for Everyone：提示词');
+
+    await gotoApp(page, '/ja/start/ai-basics-for-everyone/what-is-ai-model-llm/');
+
+    const japaneseCourseNavigation = page.locator('[data-course-navigation]');
+    const japaneseLearningTrack = page.locator('aside section').filter({ hasText: '現在の学習トラックの記事一覧です。' });
+
+    await expect(page.locator('article[data-pagefind-body]')).toContainText('はじめに');
+    await expect(page.locator('article[data-pagefind-body]').locator('nav').first()).not.toContainText('AI Academy');
+    await expect(japaneseLearningTrack).toContainText('12');
+    await expect(japaneseLearningTrack.getByRole('link')).toHaveCount(12);
+    await expect(japaneseCourseNavigation).toBeVisible();
+    await expect(japaneseCourseNavigation.getByRole('heading', { name: '次のレッスンへ進む' })).toBeVisible();
+    await expect(japaneseCourseNavigation.getByRole('link', { name: /次のレッスン: プロンプト/ })).toHaveAttribute(
+      'href',
+      appPath('/ja/start/ai-basics-for-everyone/what-is-prompt/'),
+    );
+  });
+
   test('start guide keeps in-page anchors and localized subpage links', async ({ page }) => {
     await gotoApp(page, '/start/');
 

@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：智能体（Agent）是什么，为什么它正成为技术焦点"
 date: 2026-04-27
-category: academy
+category: start
 description: "深度解析 Agent 的核心构成：目标（Goal）、状态（State）、工具（Tools）、权限（Policy）与验证（Feedback）。"
-coverImage: "/images/academy/ai-basics-for-everyone/agent.svg"
+coverImage: "/images/start/ai-basics-for-everyone/agent.svg"
 difficulty: beginner
 plainSummary: "智能体（Agent）不仅是一个会聊天的机器人，更是一种能够自主调用工具、拆解步骤、观察反馈并自我迭代的 AI 工作流。它代表了 AI 从“生成内容”向“完成任务”的进化。"
 tags:
@@ -11,9 +11,9 @@ tags:
 lang: zh
 academy:
   series: "AI Basics for Everyone"
-  module: "入口概念"
+  module: "基本概念"
   moduleOrder: 4
-  source: "本站 Academy / Engineering 导读"
+  source: "本站新手起步 / Engineering 导读"
   prerequisites: []
 draft: false
 ---
@@ -57,9 +57,9 @@ Agent 并非万能。如果你的任务具备以下特征，普通的 AI 对话�
 
 ## 进阶学习路径
 
-- **构建基础**：阅读 [Building Agents](../../openai-academy/07-building-with-ai/agents/)，深入理解工具调用、任务交接与安全护栏。
-- **协作模式**：阅读 [Introduction to Subagents](../../anthropic-academy/05-agentic-mcp/introduction-to-subagents/)，了解复杂任务如何通过多个小 Agent 协同完成。
-- **工程实践**：如果你想从工程角度落地，请参考 [Agent 的状态、工具与反馈循环](../../../foundations/ai-developer-core/agent-state-tools-feedback-loop/) 以及 [Agent Harness：日志、审批与回放](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)。
+- **构建基础**：阅读 [Building Agents](/academy/openai-academy/07-building-with-ai/agents/)，深入理解工具调用、任务交接与安全护栏。
+- **协作模式**：阅读 [Introduction to Subagents](/academy/anthropic-academy/05-agentic-mcp/introduction-to-subagents/)，了解复杂任务如何通过多个小 Agent 协同完成。
+- **工程实践**：如果你想从工程角度落地，请参考 [Agent 的状态、工具与反馈循环](/foundations/ai-developer-core/agent-state-tools-feedback-loop/) 以及 [Agent Harness：日志、审批与回放](/engineering/ai-developer-core/agent-harness-logging-approval-replay/)。
 
 ## 动手试试：体验 Agent 的闭环思维
 

@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：AI Coding 工具如何重塑软件开发"
 date: 2026-04-27
-category: academy
+category: start
 description: "以非工程视角深度解析 Codex、Claude Code 等 AI 编程工具：从简单的代码补全，到全流程的任务协作。"
-coverImage: "/images/academy/ai-basics-for-everyone/ai-coding-tools.svg"
+coverImage: "/images/start/ai-basics-for-everyone/ai-coding-tools.svg"
 difficulty: beginner
 plainSummary: "AI 编程工具带来的变革不仅在于编写代码的速度，更在于它将需求拆解、代码探索、文件修改、运行验证和变更提交整合成了一种全新的“人机协作”模式。"
 tags:
@@ -12,9 +12,9 @@ tags:
 lang: zh
 academy:
   series: "AI Basics for Everyone"
-  module: "入口概念"
+  module: "基本概念"
   moduleOrder: 7
-  source: "本站 Academy / Engineering 导读"
+  source: "本站新手起步 / Engineering 导读"
   prerequisites: []
 draft: false
 ---
@@ -60,9 +60,9 @@ AI Coding 工具能力越强，就越需要建立清晰的协作边界。因为�
 
 ## 进阶学习路径
 
-- **快速起步**：阅读 [Codex Quickstart](../../openai-academy/05-codex/quickstart/) 和 [Codex App](../../openai-academy/05-codex/codex-app/)，理解代码生成模型的基础。
-- **实战演练**：阅读 [Claude Code in Action](../../anthropic-academy/04-developer-tools/claude-code-in-action/)，观察现代编程智能体（Coding Agent）的实际工作流。
-- **工程保障**：如果你想在团队中推广，请看 [Reliable LLM Call Skeleton](../../../engineering/ai-developer-core/reliable-llm-call-skeleton/) 和 [Agent Harness：日志、审批与回放](../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)。
+- **快速起步**：阅读 [Codex Quickstart](/academy/openai-academy/05-codex/quickstart/) 和 [Codex App](/academy/openai-academy/05-codex/codex-app/)，理解代码生成模型的基础。
+- **实战演练**：阅读 [Claude Code in Action](/academy/anthropic-academy/04-developer-tools/claude-code-in-action/)，观察现代编程智能体（Coding Agent）的实际工作流。
+- **工程保障**：如果你想在团队中推广，请看 [Reliable LLM Call Skeleton](/engineering/ai-developer-core/reliable-llm-call-skeleton/) 和 [Agent Harness：日志、审批与回放](/engineering/ai-developer-core/agent-harness-logging-approval-replay/)。
 
 ## 动手试试：体验 AI 的“思考-执行”循环
 

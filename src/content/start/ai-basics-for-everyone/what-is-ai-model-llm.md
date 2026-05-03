@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：AI、模型与 LLM 到底是什么"
 date: 2026-04-27
-category: academy
+category: start
 description: "用最直白的语言理清 AI、模型以及大语言模型（LLM）之间的层级关系，为你探索后续的深度课程打下坚实基础。"
-coverImage: "/images/academy/ai-basics-for-everyone/ai-model-llm.svg"
+coverImage: "/images/start/ai-basics-for-everyone/ai-model-llm.svg"
 difficulty: beginner
 plainSummary: "AI 是让机器模仿人类认知任务的科学领域，模型是承载特定任务能力的程序载体，而 LLM 则是目前最擅长处理语言、对话和代码的一类先进模型。"
 tags:
@@ -13,7 +13,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 1
-  source: "本站 Academy / Foundations 导读"
+  source: "本站新手起步 / Foundations 导读"
   prerequisites: []
 draft: false
 ---
@@ -54,8 +54,8 @@ LLM 的核心能力源自对海量数据的深度训练。它并不是机械地�
 
 ## 与本站内容的关联
 
-- 如果你希望立刻上手实操，请先阅读 [AI Fundamentals（AI 基础入门）](../../openai-academy/01-ai-fundamentals/ai-fundamentals/)。它将详细拆解 AI 的适用边界及避坑指南。
-- 如果你对底层的“魔法”感兴趣，想探究其工作原理，请阅读 [Transformer 与 Attention（开发者视角）](../../../foundations/ai-developer-core/transformer-attention-developer-view/)。理解底层机制将帮助你更精准地掌控 Prompt 技巧。
+- 如果你希望立刻上手实操，请先阅读 [AI Fundamentals（AI 基础入门）](/academy/openai-academy/01-ai-fundamentals/ai-fundamentals/)。它将详细拆解 AI 的适用边界及避坑指南。
+- 如果你对底层的“魔法”感兴趣，想探究其工作原理，请阅读 [Transformer 与 Attention（开发者视角）](/foundations/ai-developer-core/transformer-attention-developer-view/)。理解底层机制将帮助你更精准地掌控 Prompt 技巧。
 
 ## 动手尝试：对比实验
 

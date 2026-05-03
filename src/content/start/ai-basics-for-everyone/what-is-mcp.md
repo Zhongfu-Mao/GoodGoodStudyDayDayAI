@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：MCP 是什么，如何构建 AI 的“万能接口”"
 date: 2026-04-27
-category: academy
+category: start
 description: "通过 USB-C 的形象类比，深入浅出地解释 Model Context Protocol（MCP）协议：它是如何标准化连接 AI 模型与外部工具、数据及服务的。"
-coverImage: "/images/academy/ai-basics-for-everyone/mcp.svg"
+coverImage: "/images/start/ai-basics-for-everyone/mcp.svg"
 difficulty: beginner
 plainSummary: "MCP（Model Context Protocol）是一个开放的标准化协议，旨在打破 AI 与外部世界之间的连接壁垒。它如同 AI 领域的 USB-C 接口，让不同的模型与工具只需通过一个统一的标准即可实现高效互操作。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 10
-  source: "本站 Academy / Engineering 导读"
+  source: "本站新手起步 / Engineering 导读"
   prerequisites: []
 draft: false
 ---
@@ -70,8 +70,8 @@ MCP 的高效运行依赖于客户端与服务器的明确分工：
 
 ## 与本站进阶内容的关联
 
-- 阅读 [Model Context Protocol 入门指南](../../anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)，深入探讨协议的设计哲学与细节。
-- 阅读 [Minimal MCP Server（极简服务器构建）](../../../engineering/ai-developer-core/minimal-mcp-server/)，亲手尝试构建一个简单的 MCP 集成。
+- 阅读 [Model Context Protocol 入门指南](/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/)，深入探讨协议的设计哲学与细节。
+- 阅读 [Minimal MCP Server（极简服务器构建）](/engineering/ai-developer-core/minimal-mcp-server/)，亲手尝试构建一个简单的 MCP 集成。
 - 若想了解 Agent 是如何基于此能力进化的，请回顾 [Agent 是什么](../what-is-agent/)。
 
 ## 动手尝试：观察 MCP 的运作

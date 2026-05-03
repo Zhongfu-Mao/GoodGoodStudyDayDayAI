@@ -1,9 +1,9 @@
 ---
 title: "AI Basics for Everyone：コンテキスト・エンジニアリング（Context Engineering）とは何か、プロンプトを書くだけでは不十分な理由"
 date: 2026-04-27
-category: academy
+category: start
 description: "プロンプト・エンジニアリングの次のステップとして、AI が各ステップで参照する「情報環境」をどう設計するかを解説します。"
-coverImage: "/images/academy/ai-basics-for-everyone/context-engineering.svg"
+coverImage: "/images/start/ai-basics-for-everyone/context-engineering.svg"
 difficulty: beginner
 plainSummary: "コンテキスト・エンジニアリング（Context Engineering）は、単に良いプロンプトを書くことではなく、AI が各ステップで何を参照し、どのツールを使い、どのルールに従うべきかという「情報環境全体」を設計する実践です。"
 tags:
@@ -14,7 +14,7 @@ academy:
   series: "AI Basics for Everyone"
   module: "基本概念"
   moduleOrder: 11
-  source: "サイト内 Academy / Engineering ガイド"
+  source: "サイト内 Start / Engineering ガイド"
   prerequisites: []
 draft: false
 ---
@@ -67,7 +67,7 @@ AI が実際の業務フローに組み込まれるようになると、一本�
 ## サイト内で次に読むもの
 
 - **基礎知識**：[Context Window・Memory・Projects とは](../context-window-memory-projects/) で、AI が保持できる情報の仕組みを理解しましょう。
-- **実践ガイド**：[Context Engineering Playbook](../../../engineering/ai-developer-core/context-engineering-playbook/) で、より具体的なエンジニアリング手法を確認できます。
+- **実践ガイド**：[Context Engineering Playbook](/engineering/ai-developer-core/context-engineering-playbook/) で、より具体的なエンジニアリング手法を確認できます。
 
 ## やってみよう：比較実験
 
