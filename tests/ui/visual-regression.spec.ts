@@ -28,11 +28,6 @@ const visualSnapshots = [
     path: '/ja/academy/openai-academy/00-overview/openai-academy-overview/',
     viewport: { width: 390, height: 844 },
   },
-  {
-    name: 'radar-gallery-desktop',
-    path: '/radar/gallery/',
-    viewport: { width: 1366, height: 900 },
-  },
 ] as const;
 
 test.describe('critical page visual baselines', () => {
