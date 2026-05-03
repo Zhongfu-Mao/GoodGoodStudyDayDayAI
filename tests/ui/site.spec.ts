@@ -92,6 +92,51 @@ test.describe('published site UI', () => {
     await expect(page.locator('article[data-pagefind-body]')).toContainText('本ロードマップが解決する課題');
   });
 
+  test('start guide keeps in-page anchors and localized subpage links', async ({ page }) => {
+    await gotoApp(page, '/start/');
+
+    const basicsLink = page.getByRole('link', { name: '从基础系列开始' });
+    const routeLink = page.getByRole('link', { name: '查看学习路线' });
+    const basicsSection = page.locator('[data-start-panel="basics"]#ai-basics-for-everyone');
+    const routeSection = page.locator('[data-start-panel="route"]#first-step');
+
+    await expect(basicsLink).toHaveAttribute('href', '#ai-basics-for-everyone');
+    await expect(routeLink).toHaveAttribute('href', '#first-step');
+    await expect(routeSection).toBeVisible();
+    await expect(basicsSection).toBeHidden();
+
+    await basicsLink.click();
+    await expect(page).toHaveURL(appUrlPattern('/start/#ai-basics-for-everyone'));
+    await expect(routeSection).toBeHidden();
+    await expect(basicsSection).toBeVisible();
+    await expect(basicsSection.getByRole('heading', { name: /AI Basics for Everyone/ })).toHaveCount(0);
+    await expect(basicsSection.getByText('AI Basics for Everyone').first()).toBeVisible();
+
+    await page.locator('[data-start-subnav="#start-layers"]').click();
+    await expect(page).toHaveURL(appUrlPattern('/start/#start-layers'));
+    await expect(page.locator('[data-start-panel="map"]#start-layers')).toBeVisible();
+    await expect(page.getByRole('link', { name: '阅读完整指南 →' }).first()).toHaveAttribute(
+      'href',
+      appPath('/start/layers/'),
+    );
+
+    await gotoApp(page, '/start/layers/');
+    await expect(page.getByRole('heading', { level: 1, name: '看懂 AI 的 6 个能力层' })).toBeVisible();
+
+    const languageSwitcher = page.locator('nav[aria-label="Language switcher"]');
+    await expect(languageSwitcher.getByRole('link', { name: '日本語' })).toHaveAttribute(
+      'href',
+      appPath('/ja/start/layers/'),
+    );
+
+    await gotoApp(page, '/ja/start/layers/');
+    await expect(page.getByRole('heading', { level: 1, name: 'AI の 6 つの能力レイヤー' })).toBeVisible();
+    await expect(page.getByRole('link', { name: '← Start Here に戻る' })).toHaveAttribute(
+      'href',
+      appPath('/ja/start/'),
+    );
+  });
+
   test('Japanese radar header stays compact and localized on desktop', async ({ page, isMobile }) => {
     test.skip(isMobile, 'desktop header layout only');
 
