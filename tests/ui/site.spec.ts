@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 import { appPath, appUrlPattern, gotoApp } from './site-test-utils';
 
 const radarArchiveLayoutCases = [
@@ -9,6 +9,11 @@ const radarArchiveLayoutCases = [
   { path: '/ja/radar/#weekly', section: 'weekly', countText: /\d+ 記事/ },
   { path: '/ja/radar/#monthly', section: 'monthly', countText: /\d+ 記事/ },
 ] as const;
+
+async function expectSectionHasContentCount(section: Locator, countText: RegExp) {
+  await expect(section).toContainText(countText);
+  await expect(section.locator('[data-gallery-card]').first()).toBeVisible();
+}
 
 async function expectCardsToFitViewport(page: Page, sectionSelector: string) {
   const viewport = page.viewportSize();
@@ -235,7 +240,7 @@ test.describe('published site UI', () => {
     await expect(dailySection).toBeHidden();
     await expect(weeklySection).toBeVisible();
     await expect(weeklyNav).toHaveAttribute('aria-current', 'page');
-    await expect(weeklySection).toContainText('4 篇内容');
+    await expectSectionHasContentCount(weeklySection, /\d+ 篇内容/);
     await expect(weeklySection).toContainText('AI 雷达周报：2026-04-07 至 2026-04-13');
     await expect(weeklySection).toContainText('AI 雷达周报：2026-04-01 至 2026-04-07');
     await expect(weeklySection).not.toContainText('AI 周报：RAG 检索质量新基准与 Agent 观测性演进');
@@ -245,13 +250,13 @@ test.describe('published site UI', () => {
     await expect(page).toHaveURL(/#monthly$/);
     await expect(weeklySection).toBeHidden();
     await expect(monthlySection).toBeVisible();
-    await expect(monthlySection).toContainText('1 篇内容');
+    await expectSectionHasContentCount(monthlySection, /\d+ 篇内容/);
     await expect(monthlySection).not.toContainText('月度趋势研判：AI 工具链与部署生态的深层演进');
 
     await gotoApp(page, '/ja/radar/#weekly');
     const japaneseWeeklySection = page.locator('[data-radar-section]#weekly');
     await expect(japaneseWeeklySection).toBeVisible();
-    await expect(japaneseWeeklySection).toContainText('4 記事');
+    await expectSectionHasContentCount(japaneseWeeklySection, /\d+ 記事/);
     await expect(japaneseWeeklySection).toContainText('AI レーダー週報：2026-04-07 〜 2026-04-13');
     await expect(japaneseWeeklySection).toContainText('AI レーダー週報：2026-04-01 〜 2026-04-07');
     await expect(japaneseWeeklySection).not.toContainText('週刊 AI 動向：RAG 検索精度の新基準と Agent オブザーバビリティの進化');
@@ -259,7 +264,7 @@ test.describe('published site UI', () => {
     await gotoApp(page, '/ja/radar/#monthly');
     const japaneseMonthlySection = page.locator('[data-radar-section]#monthly');
     await expect(japaneseMonthlySection).toBeVisible();
-    await expect(japaneseMonthlySection).toContainText('1 記事');
+    await expectSectionHasContentCount(japaneseMonthlySection, /\d+ 記事/);
     await expect(japaneseMonthlySection).not.toContainText('月次トレンド分析：AI ツールチェーンとデプロイエコシステムの変遷');
     await expect(
       japaneseMonthlySection.locator(

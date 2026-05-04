@@ -3,26 +3,8 @@ import { expect, test, type Page } from '@playwright/test';
 import { gotoApp } from './site-test-utils';
 
 const visualSnapshots = [
-  {
-    name: 'ja-radar-weekly-review-narrow',
-    path: '/ja/radar/#weekly',
-    viewport: { width: 721, height: 963 },
-  },
-  {
-    name: 'home-desktop',
-    path: '/',
-    viewport: { width: 1366, height: 900 },
-  },
-  {
-    name: 'radar-monthly-desktop',
-    path: '/radar/#monthly',
-    viewport: { width: 1366, height: 900 },
-  },
-  {
-    name: 'ja-radar-monthly-review-narrow',
-    path: '/ja/radar/#monthly',
-    viewport: { width: 721, height: 963 },
-  },
+  // Keep pixel baselines on content-stable pages only. Radar archives and the
+  // home page include newly generated media, so structural UI tests cover them.
   {
     name: 'ja-academy-detail-phone',
     path: '/ja/academy/openai-academy/00-overview/openai-academy-overview/',
