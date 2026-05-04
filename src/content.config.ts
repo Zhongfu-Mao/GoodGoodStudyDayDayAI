@@ -30,35 +30,25 @@ export const blogSchema = z.object({
   draft: z.boolean().default(false),
 });
 
-const markdownLoader = (base: string) =>
+const generateLocalizedMarkdownId = ({ entry, data }: { entry: string; data: { lang?: string } }) => {
+  const normalized = entry.replace(/\\/g, '/').replace(/\.md$/, '');
+
+  if (data.lang === 'ja' && !normalized.endsWith('.ja')) {
+    return `${normalized}.ja`;
+  }
+
+  return normalized;
+};
+
+const markdownLoader = (base: string, pattern = '**/*.md') =>
   glob({
     base,
-    pattern: '**/*.md',
-    generateId: ({ entry, data }) => {
-      const normalized = entry.replace(/\\/g, '/').replace(/\.md$/, '');
-
-      if (data.lang === 'ja' && !normalized.endsWith('.ja')) {
-        return `${normalized}.ja`;
-      }
-
-      return normalized;
-    },
+    pattern,
+    generateId: generateLocalizedMarkdownId,
   });
 
 const radar = defineCollection({
-  loader: glob({
-    base: './src/content/radar',
-    pattern: '*.md',
-    generateId: ({ entry, data }) => {
-      const normalized = entry.replace(/\\/g, '/').replace(/\.md$/, '');
-
-      if (data.lang === 'ja' && !normalized.endsWith('.ja')) {
-        return `${normalized}.ja`;
-      }
-
-      return normalized;
-    },
-  }),
+  loader: markdownLoader('./src/content/radar', '*.md'),
   schema: blogSchema,
 });
 

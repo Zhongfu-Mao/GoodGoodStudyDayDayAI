@@ -18,6 +18,8 @@ type TagIndexItem = { slug: string; label: string; count: number };
 export const PUBLIC_TAG_MIN_COUNT = 2;
 const tagIndexCache = new Map<Locale, Promise<TagIndexItem[]>>();
 const entriesByLocaleCache = new Map<Locale, Promise<BlogEntryItem[]>>();
+const entryLookupCache = new Map<Locale, Promise<Map<string, BlogEntryItem>>>();
+const tagSlugCache = new Map<string, string>();
 
 export type AcademyModuleGroup = {
   series: string;
@@ -110,7 +112,7 @@ async function buildEntriesForLocale(locale: Locale) {
 
 export async function getEntriesForTag(locale: Locale, tagSlug: string) {
   const entries = await getEntriesForLocale(locale);
-  return entries.filter((item) => item.entry.data.tags.some((tag: string) => slugifyTag(tag) === tagSlug));
+  return entries.filter((item) => item.entry.data.tags.some((tag: string) => getCachedTagSlug(tag) === tagSlug));
 }
 
 export async function getAllTagIndex(locale: Locale) {
@@ -131,7 +133,7 @@ async function buildAllTagIndex(locale: Locale) {
 
   for (const { entry } of entries) {
     for (const tag of entry.data.tags) {
-      const slug = slugifyTag(tag);
+      const slug = getCachedTagSlug(tag);
       const existing = tags.get(slug);
 
       if (existing) {
@@ -151,7 +153,7 @@ export async function getTagIndex(locale: Locale) {
 
 export async function getPublicTagsForEntry(locale: Locale, tags: string[]) {
   const publicTagSlugs = new Set((await getTagIndex(locale)).map((tag) => tag.slug));
-  return tags.filter((tag) => publicTagSlugs.has(slugifyTag(tag)));
+  return tags.filter((tag) => publicTagSlugs.has(getCachedTagSlug(tag)));
 }
 
 export async function getTagStaticPaths(locale: Locale) {
@@ -192,10 +194,8 @@ export async function getLanguagePathsForEntry(
   for (const target of locales) {
     if (target === currentLocale) continue;
 
-    const targetEntries = await getEntriesForLocale(target);
-    const match = targetEntries.find(
-      (item) => item.collection === collection && item.slug === currentSlug,
-    );
+    const targetEntryLookup = await getEntryLookupForLocale(target);
+    const match = targetEntryLookup.get(entryLookupKey(collection, currentSlug));
 
     paths[target] = match
       ? articlePath(collection, match.slug, target)
@@ -211,6 +211,39 @@ export function getCategoryLabel(category: CollectionName, locale: Locale) {
 
 export function isEntryJapanese(entryId: string) {
   return isJapaneseId(entryId);
+}
+
+async function getEntryLookupForLocale(locale: Locale) {
+  const cached = entryLookupCache.get(locale);
+
+  if (cached) {
+    return cached;
+  }
+
+  const entryLookup = buildEntryLookupForLocale(locale);
+  entryLookupCache.set(locale, entryLookup);
+  return entryLookup;
+}
+
+async function buildEntryLookupForLocale(locale: Locale) {
+  const entries = await getEntriesForLocale(locale);
+  return new Map(entries.map((item) => [entryLookupKey(item.collection, item.slug), item]));
+}
+
+function entryLookupKey(collection: CollectionName, slug: string) {
+  return `${collection}:${slug}`;
+}
+
+function getCachedTagSlug(tag: string) {
+  const cached = tagSlugCache.get(tag);
+
+  if (cached) {
+    return cached;
+  }
+
+  const slug = slugifyTag(tag);
+  tagSlugCache.set(tag, slug);
+  return slug;
 }
 
 export async function getAcademySeriesGroups(locale: Locale): Promise<AcademyModuleGroup[]> {
