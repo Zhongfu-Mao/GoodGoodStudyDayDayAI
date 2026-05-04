@@ -7,6 +7,8 @@ import {
   getPostStaticPaths,
 } from '../../lib/content';
 import type { CollectionName } from '../../lib/site';
+import { stripLocaleSuffix } from '../../lib/site';
+import { buildBlogPostingJsonLd } from '../../lib/structuredData';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -22,6 +24,8 @@ if (!entry) {
 
 const { Content, headings } = await render(entry);
 const languagePaths = await getLanguagePathsForEntry(collection, entry, 'zh');
+const slug = stripLocaleSuffix(entry.id, 'zh');
+const structuredData = buildBlogPostingJsonLd({ entry, slug, locale: 'zh', site: Astro.site });
 ---
 
 <BaseLayout
@@ -33,6 +37,7 @@ const languagePaths = await getLanguagePathsForEntry(collection, entry, 'zh');
   ogImage={entry.data.coverImage}
   publishedTime={entry.data.date.toISOString()}
   activeCategory={entry.data.category}
+  structuredData={structuredData}
 >
   <PostDetailPage locale="zh" entry={entry} Content={Content} headings={headings} />
 </BaseLayout>

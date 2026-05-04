@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss';
 import { getEntriesForLocale, getPublicTagsForEntry } from './content';
-import { articlePath, type Locale } from './site';
+import { articlePath, homePath, resolveSiteUrl, type Locale } from './site';
 
 const siteTitles: Record<Locale, string> = {
   zh: 'Good Good Study, Day Day AI',
@@ -20,6 +20,8 @@ export async function buildFeed({ site, locale }: { site: URL | undefined; local
   }
 
   const entries = await getEntriesForLocale(locale);
+  const feedImageUrl = new URL(resolveSiteUrl('/favicon.svg'), site).toString();
+  const feedLink = new URL(homePath(locale), site).toString();
   const items = await Promise.all(
     entries.slice(0, RSS_ENTRY_LIMIT).map(async ({ entry, slug }) => ({
       title: entry.data.title,
@@ -35,6 +37,9 @@ export async function buildFeed({ site, locale }: { site: URL | undefined; local
     description: siteDescriptions[locale],
     site,
     items,
-    customData: `<language>${locale === 'ja' ? 'ja-jp' : 'zh-cn'}</language>`,
+    customData: [
+      `<language>${locale === 'ja' ? 'ja-jp' : 'zh-cn'}</language>`,
+      `<image><url>${feedImageUrl}</url><title>${siteTitles[locale]}</title><link>${feedLink}</link></image>`,
+    ].join(''),
   });
 }

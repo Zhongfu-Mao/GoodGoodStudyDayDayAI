@@ -29,6 +29,7 @@ const {
   publishedTime,
   activeCategory,
   showStartSubnav = false,
+  structuredData,
 } = Astro.props as {
   title: string;
   description?: string;
@@ -39,6 +40,7 @@ const {
   publishedTime?: string;
   activeCategory?: CollectionName;
   showStartSubnav?: boolean;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 
 const description = providedDescription ?? homePage[locale].description;
@@ -51,6 +53,8 @@ const resolvedOgImage = ogImage
   : undefined;
 const rssHref = withBase(locale === 'ja' ? '/ja/rss.xml' : '/rss.xml');
 const rssTitle = locale === 'ja' ? 'Good Good Study, Day Day AI – RSS' : 'Good Good Study, Day Day AI · RSS';
+const skipLinkLabel = locale === 'ja' ? '本文へ移動' : '跳到正文';
+const structuredDataJson = structuredData ? JSON.stringify(structuredData).replace(/</g, '\\u003c') : undefined;
 const showRadarSubnav = activeCategory === 'radar';
 const radarSubnavTooltips = {
   zh: {
@@ -127,6 +131,7 @@ const startSubnavItems = locale === 'ja'
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {resolvedOgImage ? <meta name="twitter:image" content={resolvedOgImage} /> : null}
+    {structuredDataJson ? <script is:inline type="application/ld+json" set:html={structuredDataJson}></script> : null}
     <ClientRouter />
     <Analytics />
     <script is:inline data-astro-rerun>
@@ -152,6 +157,12 @@ const startSubnavItems = locale === 'ja'
     <title>{title}</title>
   </head>
   <body class="theme-page min-h-screen antialiased">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-xl focus:bg-[var(--theme-page-text)] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[var(--theme-page-bg)] focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)]"
+    >
+      {skipLinkLabel}
+    </a>
     <div class="theme-grid fixed inset-0 -z-10 bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_25%,transparent_75%)]" />
     <div class="theme-divider-line fixed inset-x-0 top-0 -z-10 h-px" />
 
@@ -218,7 +229,7 @@ const startSubnavItems = locale === 'ja'
       ) : null}
     </header>
 
-    <main class="mx-auto max-w-6xl px-6 py-10">
+    <main id="main-content" class="mx-auto max-w-6xl px-6 py-10">
       <slot />
     </main>
     <PersistentAudioPlayer />
