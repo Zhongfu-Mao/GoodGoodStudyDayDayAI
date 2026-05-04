@@ -6,6 +6,7 @@ import PersistentAudioPlayer from './PersistentAudioPlayer.astro';
 import SearchForm from './SearchForm.astro';
 import SiteNav from './SiteNav.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import ThemeScript from './ThemeScript.astro';
 import {
   homePath,
   resolveSiteUrl,
@@ -87,26 +88,7 @@ const startSubnavItems = getStartSubnavItems(locale);
     {structuredDataJson ? <script is:inline type="application/ld+json" set:html={structuredDataJson}></script> : null}
     <ClientRouter />
     <Analytics />
-    <script is:inline data-astro-rerun>
-      (function () {
-        var storageKey = 'ggsdda-theme';
-        function readStoredTheme() {
-          try {
-            return localStorage.getItem(storageKey);
-          } catch (error) {
-            return null;
-          }
-        }
-
-        function getSystemTheme() {
-          return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-        }
-
-        var theme = readStoredTheme() || getSystemTheme();
-        document.documentElement.dataset.theme = theme;
-        document.documentElement.style.colorScheme = theme;
-      })();
-    </script>
+    <ThemeScript />
     <title>{title}</title>
   </head>
   <body class="theme-page min-h-screen antialiased">
@@ -186,85 +168,5 @@ const startSubnavItems = getStartSubnavItems(locale);
       <slot />
     </main>
     <PersistentAudioPlayer />
-    <script is:inline data-astro-rerun>
-      (function () {
-        var storageKey = 'ggsdda-theme';
-
-        function readStoredTheme() {
-          try {
-            return localStorage.getItem(storageKey);
-          } catch (error) {
-            return null;
-          }
-        }
-
-        function writeStoredTheme(theme) {
-          try {
-            localStorage.setItem(storageKey, theme);
-          } catch (error) {}
-        }
-
-        function getSystemTheme() {
-          return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-        }
-
-        function applyTheme(theme) {
-          document.documentElement.dataset.theme = theme;
-          document.documentElement.style.colorScheme = theme;
-
-          document.querySelectorAll('[data-theme-toggle]').forEach(function (button) {
-            var lightIcon = button.querySelector('[data-theme-icon-light]');
-            var darkIcon = button.querySelector('[data-theme-icon-dark]');
-            var isJapanese = document.documentElement.lang === 'ja';
-            var label = theme === 'light'
-              ? (isJapanese ? 'ダークモードに切り替え' : '切换到深色模式')
-              : (isJapanese ? 'ライトモードに切り替え' : '切换到浅色模式');
-
-            if (lightIcon) lightIcon.classList.toggle('hidden', theme === 'light');
-            if (darkIcon) darkIcon.classList.toggle('hidden', theme !== 'light');
-
-            button.setAttribute('aria-label', label);
-            button.setAttribute('data-tooltip', label);
-          });
-        }
-
-        function bindToggle(button) {
-          if (button.dataset.themeBound === 'true') return;
-          button.dataset.themeBound = 'true';
-
-          button.addEventListener('click', function () {
-            var nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-            writeStoredTheme(nextTheme);
-            applyTheme(nextTheme);
-          });
-        }
-
-        function initThemeControls() {
-          applyTheme(readStoredTheme() || getSystemTheme());
-          document.querySelectorAll('[data-theme-toggle]').forEach(bindToggle);
-        }
-
-        var mediaQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
-        if (mediaQuery && mediaQuery.addEventListener) {
-          mediaQuery.addEventListener('change', function () {
-            if (!readStoredTheme()) {
-              applyTheme(getSystemTheme());
-            }
-          });
-        }
-
-        window.addEventListener('storage', function (event) {
-          if (event.key === storageKey) {
-            applyTheme(event.newValue || getSystemTheme());
-          }
-        });
-
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initThemeControls, { once: true });
-        } else {
-          initThemeControls();
-        }
-      })();
-    </script>
   </body>
 </html>

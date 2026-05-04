@@ -7,6 +7,7 @@ import {
   createRehypeGitHubPagesBase,
   createRemarkGitHubPagesBase,
 } from './scripts/lib/github-pages-base.mjs';
+import { createRehypeImageAltFallback } from './scripts/lib/markdown-image-alt.mjs';
 
 const site =
   process.env.SITE_URL ??
@@ -14,6 +15,7 @@ const site =
 const base = resolveBasePath();
 const rehypeGitHubPagesBase = createRehypeGitHubPagesBase(base);
 const remarkGitHubPagesBase = createRemarkGitHubPagesBase(base);
+const rehypeImageAltFallback = createRehypeImageAltFallback();
 
 export default defineConfig({
   devToolbar: {
@@ -33,7 +35,7 @@ export default defineConfig({
   base,
   markdown: {
     remarkPlugins: [remarkGitHubPagesBase],
-    rehypePlugins: [rehypeGitHubPagesBase],
+    rehypePlugins: [rehypeImageAltFallback, rehypeGitHubPagesBase],
   },
   i18n: {
     defaultLocale: 'zh',

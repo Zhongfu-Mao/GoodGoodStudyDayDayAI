@@ -2,32 +2,72 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { collectionNames } from './lib/site';
 
-export const blogSchema = z.object({
+const difficultySchema = z.enum(['beginner', 'intermediate', 'advanced']);
+const academyMetaSchema = z.object({
+  series: z.string(),
+  module: z.string(),
+  moduleOrder: z.number().int().positive().optional(),
+  source: z.string().optional(),
+  sourceUrl: z.string().url().optional(),
+  prerequisites: z.array(z.string()).default([]),
+  completionScore: z.string().optional(),
+});
+
+const baseBlogSchema = z.object({
   title: z.string(),
   date: z.coerce.date(),
   category: z.enum(collectionNames),
   description: z.string().optional(),
-  cadence: z.enum(['daily', 'weekly', 'monthly']).optional(),
-  difficulty: z.enum(['beginner', 'intermediate', 'advanced']).optional(),
+  difficulty: difficultySchema.optional(),
   plainSummary: z.string().optional(),
   tags: z.array(z.string()).default([]),
   lang: z.enum(['zh', 'ja']).default('zh'),
   coverImage: z.string().optional(),
+  draft: z.boolean().default(false),
+});
+
+const forbiddenRadarFields = {
+  cadence: z.never().optional(),
+  audioUrl: z.never().optional(),
+  deckUrl: z.never().optional(),
+  includeInRadarArchive: z.never().optional(),
+} as const;
+
+const forbiddenCourseFields = {
+  academy: z.never().optional(),
+} as const;
+
+export const radarSchema = baseBlogSchema.extend({
+  category: z.literal('radar'),
+  cadence: z.enum(['daily', 'weekly', 'monthly']).optional(),
   audioUrl: z.string().optional(),
   deckUrl: z.string().optional(),
   includeInRadarArchive: z.boolean().default(true),
-  academy: z
-    .object({
-      series: z.string(),
-      module: z.string(),
-      moduleOrder: z.number().int().positive().optional(),
-      source: z.string().optional(),
-      sourceUrl: z.string().url().optional(),
-      prerequisites: z.array(z.string()).default([]),
-      completionScore: z.string().optional(),
-    })
-    .optional(),
-  draft: z.boolean().default(false),
+  ...forbiddenCourseFields,
+});
+
+export const startSchema = baseBlogSchema.extend({
+  category: z.literal('start'),
+  academy: academyMetaSchema.optional(),
+  ...forbiddenRadarFields,
+});
+
+export const academySchema = baseBlogSchema.extend({
+  category: z.literal('academy'),
+  academy: academyMetaSchema.optional(),
+  ...forbiddenRadarFields,
+});
+
+export const engineeringSchema = baseBlogSchema.extend({
+  category: z.literal('engineering'),
+  ...forbiddenRadarFields,
+  ...forbiddenCourseFields,
+});
+
+export const foundationsSchema = baseBlogSchema.extend({
+  category: z.literal('foundations'),
+  ...forbiddenRadarFields,
+  ...forbiddenCourseFields,
 });
 
 const generateLocalizedMarkdownId = ({ entry, data }: { entry: string; data: { lang?: string } }) => {
@@ -49,27 +89,27 @@ const markdownLoader = (base: string, pattern = '**/*.md') =>
 
 const radar = defineCollection({
   loader: markdownLoader('./src/content/radar', '*.md'),
-  schema: blogSchema,
+  schema: radarSchema,
 });
 
 const start = defineCollection({
   loader: markdownLoader('./src/content/start'),
-  schema: blogSchema,
+  schema: startSchema,
 });
 
 const academy = defineCollection({
   loader: markdownLoader('./src/content/academy'),
-  schema: blogSchema,
+  schema: academySchema,
 });
 
 const engineering = defineCollection({
   loader: markdownLoader('./src/content/engineering'),
-  schema: blogSchema,
+  schema: engineeringSchema,
 });
 
 const foundations = defineCollection({
   loader: markdownLoader('./src/content/foundations'),
-  schema: blogSchema,
+  schema: foundationsSchema,
 });
 
 export const collections = {
