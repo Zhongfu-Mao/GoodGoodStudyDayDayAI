@@ -1,8 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@source "../";
+
+@theme {
+  --shadow-glow: 0 0 0 1px rgba(56, 189, 248, 0.15), 0 20px 60px rgba(15, 23, 42, 0.35);
+}
 
 @layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
   html {
     color-scheme: dark;
     font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", "Noto Sans SC", "Noto Sans JP", sans-serif;

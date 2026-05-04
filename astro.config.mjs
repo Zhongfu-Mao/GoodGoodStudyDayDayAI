@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 import pagefind from 'astro-pagefind';
 import { resolveBasePath } from './scripts/lib/base-path.mjs';
 import {
@@ -22,7 +22,6 @@ export default defineConfig({
     enabled: false,
   },
   integrations: [
-    tailwind(),
     sitemap({
       i18n: {
         defaultLocale: 'zh',
@@ -43,5 +42,8 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: false,
     },
+  },
+  vite: {
+    plugins: [tailwindcss()],
   },
 });
