@@ -2,12 +2,12 @@
   "ci": {
     "collect": {
       "numberOfRuns": 1,
-      "startServerCommand": "npm run preview -- --host 127.0.0.1 --port 4322",
+      "startServerCommand": "GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI npm run preview -- --host 127.0.0.1 --port 4322",
       "startServerReadyPattern": "http://127.0.0.1:4322",
       "url": [
-        "http://127.0.0.1:4322/",
-        "http://127.0.0.1:4322/radar/gallery/",
-        "http://127.0.0.1:4322/academy/openai-academy/00-overview/openai-academy-overview/"
+        "http://127.0.0.1:4322/GoodGoodStudyDayDayAI/",
+        "http://127.0.0.1:4322/GoodGoodStudyDayDayAI/radar/gallery/",
+        "http://127.0.0.1:4322/GoodGoodStudyDayDayAI/academy/openai-academy/00-overview/openai-academy-overview/"
       ],
       "settings": {
         "chromeFlags": "--no-sandbox --disable-dev-shm-usage"
