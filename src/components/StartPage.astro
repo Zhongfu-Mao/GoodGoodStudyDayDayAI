@@ -4,6 +4,7 @@ import {
   articlePath,
   categoryPath,
   radarGalleryPath,
+  resolveSiteUrl,
   slugifyTag,
   startSubPath,
   withBase,
@@ -45,7 +46,7 @@ const radarImageHeight = 1536;
 <section class="start-hero relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
   {heroImage ? (
     <Image
-      src={latestRadar?.entry.data.coverImage ?? ''}
+      src={resolveSiteUrl(latestRadar?.entry.data.coverImage ?? '')}
       alt=""
       width={radarImageWidth}
       height={radarImageHeight}

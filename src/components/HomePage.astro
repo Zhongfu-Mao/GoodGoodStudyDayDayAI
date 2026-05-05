@@ -6,6 +6,7 @@ import {
   collectionLabels,
   primaryCategoryNames,
   radarGalleryPath,
+  resolveSiteUrl,
   slugifyTag,
   startPath,
   tagIndexPath,
@@ -60,7 +61,7 @@ const radarImageHeight = 1536;
   <div class="absolute inset-0 grid grid-cols-1 opacity-80 md:grid-cols-3" aria-hidden="true">
     {recentVisualStories.slice(0, 3).map((item) => (
       <Image
-        src={item.entry.data.coverImage ?? ''}
+        src={resolveSiteUrl(item.entry.data.coverImage ?? '')}
         alt=""
         width={radarImageWidth}
         height={radarImageHeight}
@@ -173,7 +174,7 @@ const radarImageHeight = 1536;
       {recentVisualStories.map((item) => (
         <a href={articlePath(item.entry.data.category, item.slug, locale)} class="theme-panel theme-panel-link overflow-hidden rounded-[1rem]">
           <Image
-            src={item.entry.data.coverImage ?? ''}
+            src={resolveSiteUrl(item.entry.data.coverImage ?? '')}
             alt={item.entry.data.title}
             width={radarImageWidth}
             height={radarImageHeight}
