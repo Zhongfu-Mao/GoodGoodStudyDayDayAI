@@ -1,11 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import {
   articlePath,
   categoryPath,
   collectionLabels,
   primaryCategoryNames,
   radarGalleryPath,
-  resolveSiteUrl,
   slugifyTag,
   startPath,
   tagIndexPath,
@@ -50,6 +50,8 @@ const intentItems = [
   },
 ];
 const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(slugifyTag(tag)));
+const radarImageWidth = 2752;
+const radarImageHeight = 1536;
 ---
 
 <TransparentAquarium locale={locale} />
@@ -57,9 +59,11 @@ const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(
 <section class="home-hero relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
   <div class="absolute inset-0 grid grid-cols-1 opacity-80 md:grid-cols-3" aria-hidden="true">
     {recentVisualStories.slice(0, 3).map((item) => (
-      <img
-        src={resolveSiteUrl(item.entry.data.coverImage ?? '')}
+      <Image
+        src={item.entry.data.coverImage ?? ''}
         alt=""
+        width={radarImageWidth}
+        height={radarImageHeight}
         loading="eager"
         decoding="async"
         class="h-full min-h-[34rem] w-full object-cover"
@@ -168,9 +172,11 @@ const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(
     <div class="grid gap-4 md:grid-cols-3 lg:grid-cols-3">
       {recentVisualStories.map((item) => (
         <a href={articlePath(item.entry.data.category, item.slug, locale)} class="theme-panel theme-panel-link overflow-hidden rounded-[1rem]">
-          <img
-            src={resolveSiteUrl(item.entry.data.coverImage ?? '')}
+          <Image
+            src={item.entry.data.coverImage ?? ''}
             alt={item.entry.data.title}
+            width={radarImageWidth}
+            height={radarImageHeight}
             loading="lazy"
             decoding="async"
             class="aspect-[16/10] w-full object-cover"

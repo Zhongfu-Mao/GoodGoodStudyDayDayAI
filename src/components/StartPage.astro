@@ -1,9 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import {
   articlePath,
   categoryPath,
   radarGalleryPath,
-  resolveSiteUrl,
   slugifyTag,
   startSubPath,
   withBase,
@@ -33,18 +33,22 @@ const latestRadar = entries.find((item) => item.entry.data.category === 'radar' 
 const aiBasicsEntries = entries
   .filter((item) => item.entry.data.category === 'start' && item.entry.data.academy?.series === aiBasicsSeries)
   .sort(sortByAcademyOrder);
-const heroImage = latestRadar?.entry.data.coverImage ? resolveSiteUrl(latestRadar.entry.data.coverImage) : undefined;
+const heroImage = latestRadar?.entry.data.coverImage;
 
 const normalizeHref = (href: string) => (href.startsWith('#') ? href : withBase(href));
 const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(slugifyTag(tag)));
 const stripAiBasicsSeries = (title: string) => title.replace(aiBasicsTitlePrefixPattern, '');
+const radarImageWidth = 2752;
+const radarImageHeight = 1536;
 ---
 
 <section class="start-hero relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
   {heroImage ? (
-    <img
-      src={heroImage}
+    <Image
+      src={latestRadar?.entry.data.coverImage ?? ''}
       alt=""
+      width={radarImageWidth}
+      height={radarImageHeight}
       loading="eager"
       decoding="async"
       class="absolute inset-0 h-full w-full object-cover opacity-40"
