@@ -41,6 +41,9 @@ const { locale, entry, Content, headings = [] } = Astro.props as {
 const isGeneratedInfographic =
   typeof entry.data.coverImage === 'string' && entry.data.coverImage.includes('/images/radar/');
 const coverImageSrc = entry.data.coverImage ? resolveSiteUrl(entry.data.coverImage) : undefined;
+const transitionKey = entry.id.replace(/[^A-Za-z0-9_-]/g, '-');
+const coverTransitionName = `cover-${transitionKey}`;
+const titleTransitionName = `title-${transitionKey}`;
 const audioSrc = entry.data.audioUrl ? resolveSiteUrl(entry.data.audioUrl) : undefined;
 const deckHref = entry.data.deckUrl ? resolveSiteUrl(entry.data.deckUrl) : undefined;
 const currentSlug = stripLocaleSuffix(entry.id, locale);
@@ -330,7 +333,7 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
       <span>{text.readingTime}: {readingTimeText[locale](readingMinutes)}</span>
     </div>
 
-    <h1 class="theme-heading mt-4 text-3xl font-semibold md:text-5xl">{entry.data.title}</h1>
+    <h1 class="theme-heading mt-4 text-3xl font-semibold md:text-5xl" transition:name={titleTransitionName}>{entry.data.title}</h1>
 
     {entry.data.description ? (
       <p class="theme-muted mt-4 max-w-3xl text-base leading-7 md:text-lg">{entry.data.description}</p>
@@ -398,6 +401,7 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
         <img
           src={coverImageSrc}
           alt={entry.data.title}
+          transition:name={coverTransitionName}
           class:list={[
             'relative z-10 w-full rounded-[1rem]',
             isGeneratedInfographic ? 'max-h-[42rem] object-contain' : 'h-72 object-cover',

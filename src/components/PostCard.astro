@@ -18,6 +18,9 @@ const { entry } = item;
 const href = articlePath(entry.data.category, item.slug, locale);
 const categoryLabel = collectionLabels[entry.data.category][locale];
 const coverImageSrc = entry.data.coverImage ? resolveSiteUrl(entry.data.coverImage) : undefined;
+const transitionKey = entry.id.replace(/[^A-Za-z0-9_-]/g, '-');
+const coverTransitionName = `cover-${transitionKey}`;
+const titleTransitionName = `title-${transitionKey}`;
 const difficulty = getEntryDifficulty(entry);
 const readingMinutes = estimateReadingMinutes(entry.body, locale);
 const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
@@ -33,6 +36,7 @@ const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
       <img
         src={coverImageSrc}
         alt={entry.data.title}
+        transition:name={coverTransitionName}
         class="absolute inset-0 h-full w-full rounded-[1rem] object-cover transition duration-200 group-hover:scale-[1.02]"
         onerror="this.setAttribute('hidden', 'hidden')"
       />
@@ -47,7 +51,7 @@ const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
     <span class="theme-chip rounded-xl px-3 py-1 text-xs">{difficultyLabels[locale][difficulty]}</span>
     <span class="theme-chip rounded-xl px-3 py-1 text-xs">{readingTimeText[locale](readingMinutes)}</span>
   </div>
-  <h3 class="theme-heading text-xl font-semibold transition group-hover:opacity-85">
+  <h3 class="theme-heading text-xl font-semibold transition group-hover:opacity-85" transition:name={titleTransitionName}>
     <a href={href}>{entry.data.title}</a>
   </h3>
   {entry.data.description ? (

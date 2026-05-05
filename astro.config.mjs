@@ -34,6 +34,9 @@ export default defineConfig({
   ],
   site,
   base,
+  prefetch: {
+    defaultStrategy: 'hover',
+  },
   markdown: {
     remarkPlugins: [remarkGitHubPagesBase],
     rehypePlugins: [rehypeImageAltFallback, rehypeGitHubPagesBase],
