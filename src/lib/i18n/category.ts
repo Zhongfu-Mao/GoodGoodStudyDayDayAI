@@ -29,10 +29,12 @@ export const categoryPage = {
     lead: 'テーマごとに記事を一覧できます。',
     browse: 'この区分の一覧です。',
     empty: 'この区分にはまだ記事がありません。',
-    radarLead: 'まず図解で眺め、気になるものを原文へ。Daily / Weekly / Monthly ごとに一覧できます。',
+    radarLead:
+      'まず図解で眺め、気になるものを原文へ。Daily / Weekly / Monthly ごとに一覧できます。',
     radarBrowse: 'Daily / Weekly / Monthly を、図解カード優先で並べています。',
     radarGallery: 'Image Wall',
-    radarGalleryHint: 'この一覧も図解カード優先です。Overview では絞り込みと大きなプレビューを使えます。',
+    radarGalleryHint:
+      'この一覧も図解カード優先です。Overview では絞り込みと大きなプレビューを使えます。',
     radarArchive: 'Archive',
     radarArchiveNote: (label: string) => `${label} visual flow`,
     radarEmpty: 'まだ記事がありません。',

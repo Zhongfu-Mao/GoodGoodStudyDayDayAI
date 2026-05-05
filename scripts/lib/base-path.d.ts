@@ -4,9 +4,7 @@ export function resolveBasePath(options?: {
   trailingSlash?: boolean;
 }): string;
 
-export function resolveAppBasePath(options?: {
-  env?: Record<string, string | undefined>;
-}): string;
+export function resolveAppBasePath(options?: { env?: Record<string, string | undefined> }): string;
 
 export function withBasePath(
   path: string,

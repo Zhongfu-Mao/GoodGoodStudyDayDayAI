@@ -66,12 +66,19 @@ const openAiAcademyTracks = [
   {
     name: { zh: 'ChatGPT for Education', ja: 'ChatGPT for Education' },
     order: 4,
-    pathParts: ['/openai-academy/04-chatgpt-for-education/', '/openai-academy/06-chatgpt-for-education/'],
+    pathParts: [
+      '/openai-academy/04-chatgpt-for-education/',
+      '/openai-academy/06-chatgpt-for-education/',
+    ],
   },
   {
     name: { zh: 'Codex', ja: 'Codex' },
     order: 5,
-    pathParts: ['/openai-academy/03-codex/', '/openai-academy/05-codex/', '/openai-academy/06-codex-for-work/'],
+    pathParts: [
+      '/openai-academy/03-codex/',
+      '/openai-academy/05-codex/',
+      '/openai-academy/06-codex-for-work/',
+    ],
   },
   {
     name: { zh: 'Building with AI', ja: 'Building with AI' },
@@ -103,7 +110,9 @@ export async function getEntriesForLocale(locale: Locale) {
 }
 
 async function buildEntriesForLocale(locale: Locale) {
-  const entries = await Promise.all(collectionNames.map((collection) => getCollectionEntries(collection)));
+  const entries = await Promise.all(
+    collectionNames.map((collection) => getCollectionEntries(collection)),
+  );
   return entries
     .flat()
     .filter((item) => item.locale === locale && !item.entry.data.draft)
@@ -112,7 +121,9 @@ async function buildEntriesForLocale(locale: Locale) {
 
 export async function getEntriesForTag(locale: Locale, tagSlug: string) {
   const entries = await getEntriesForLocale(locale);
-  return entries.filter((item) => item.entry.data.tags.some((tag: string) => getCachedTagSlug(tag) === tagSlug));
+  return entries.filter((item) =>
+    item.entry.data.tags.some((tag: string) => getCachedTagSlug(tag) === tagSlug),
+  );
 }
 
 export async function getAllTagIndex(locale: Locale) {
@@ -144,7 +155,9 @@ async function buildAllTagIndex(locale: Locale) {
     }
   }
 
-  return [...tags.values()].sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, 'zh-Hans'));
+  return [...tags.values()].sort(
+    (a, b) => b.count - a.count || a.label.localeCompare(b.label, 'zh-Hans'),
+  );
 }
 
 export async function getTagIndex(locale: Locale) {
@@ -261,7 +274,8 @@ export async function getAcademySeriesGroups(locale: Locale): Promise<AcademyMod
     const moduleOrder = academy.moduleOrder ?? Number.MAX_SAFE_INTEGER;
     const moduleName = academy.module;
     const seriesName = academy.series;
-    const seriesModules = seriesMap.get(seriesName) ?? new Map<string, AcademyModuleGroup['modules'][number]>();
+    const seriesModules =
+      seriesMap.get(seriesName) ?? new Map<string, AcademyModuleGroup['modules'][number]>();
     const existingModule = seriesModules.get(moduleName);
 
     if (existingModule) {
@@ -282,7 +296,8 @@ export async function getAcademySeriesGroups(locale: Locale): Promise<AcademyMod
     .map(([series, modules]) => ({
       series,
       modules: [...modules.values()].sort(
-        (a, b) => a.order - b.order || a.name.localeCompare(b.name, locale === 'ja' ? 'ja' : 'zh-Hans'),
+        (a, b) =>
+          a.order - b.order || a.name.localeCompare(b.name, locale === 'ja' ? 'ja' : 'zh-Hans'),
       ),
     }))
     .sort((a, b) => a.series.localeCompare(b.series, locale === 'ja' ? 'ja' : 'zh-Hans'));
@@ -324,15 +339,15 @@ export async function getAcademyCatalogGroups(locale: Locale): Promise<AcademyCa
 
     seriesGroup.itemCount += 1;
     seriesGroup.groups.sort(
-      (a, b) => a.order - b.order || a.name.localeCompare(b.name, locale === 'ja' ? 'ja' : 'zh-Hans'),
+      (a, b) =>
+        a.order - b.order || a.name.localeCompare(b.name, locale === 'ja' ? 'ja' : 'zh-Hans'),
     );
     seriesMap.set(academy.series, seriesGroup);
   }
 
   return [...seriesMap.values()].sort(
     (a, b) =>
-      a.order - b.order ||
-      a.series.localeCompare(b.series, locale === 'ja' ? 'ja' : 'zh-Hans'),
+      a.order - b.order || a.series.localeCompare(b.series, locale === 'ja' ? 'ja' : 'zh-Hans'),
   );
 }
 

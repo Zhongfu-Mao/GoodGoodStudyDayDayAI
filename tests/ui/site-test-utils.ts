@@ -10,9 +10,7 @@ export function appPath(path = '/') {
     return normalizedPath;
   }
 
-  return normalizedPath === '/'
-    ? appBasePath
-    : `${appBasePath.slice(0, -1)}${normalizedPath}`;
+  return normalizedPath === '/' ? appBasePath : `${appBasePath.slice(0, -1)}${normalizedPath}`;
 }
 
 export function appUrlPattern(path = '/') {

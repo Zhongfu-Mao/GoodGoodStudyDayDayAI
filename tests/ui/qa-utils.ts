@@ -9,12 +9,7 @@ export const publicRoot = path.join(repoRoot, 'public');
 export const distRoot = path.join(repoRoot, 'dist');
 const appBasePath = resolveAppBasePath();
 
-export const contentCollections = [
-  'radar',
-  'academy',
-  'engineering',
-  'foundations',
-] as const;
+export const contentCollections = ['radar', 'academy', 'engineering', 'foundations'] as const;
 
 export type ContentCollection = (typeof contentCollections)[number];
 export type Locale = 'zh' | 'ja';
@@ -84,39 +79,37 @@ export function parseFrontmatter(markdown: string): Frontmatter {
     return {};
   }
 
-  return match[1]
-    .split(/\r?\n/)
-    .reduce<Frontmatter>((frontmatter, rawLine) => {
-      const line = rawLine.trim();
-      if (!line || line.startsWith('#') || line.startsWith('- ')) {
-        return frontmatter;
-      }
-
-      const keyMatch = line.match(/^([A-Za-z][\w-]*):\s*(.*)$/);
-      if (!keyMatch) {
-        return frontmatter;
-      }
-
-      const [, key, rawValue] = keyMatch;
-      if (
-        key === 'title' ||
-        key === 'date' ||
-        key === 'category' ||
-        key === 'cadence' ||
-        key === 'lang' ||
-        key === 'coverImage' ||
-        key === 'audioUrl' ||
-        key === 'deckUrl'
-      ) {
-        frontmatter[key] = String(parseScalar(rawValue)) as never;
-      }
-
-      if (key === 'draft' || key === 'includeInRadarArchive') {
-        frontmatter[key] = parseScalar(rawValue) === true;
-      }
-
+  return match[1].split(/\r?\n/).reduce<Frontmatter>((frontmatter, rawLine) => {
+    const line = rawLine.trim();
+    if (!line || line.startsWith('#') || line.startsWith('- ')) {
       return frontmatter;
-    }, {});
+    }
+
+    const keyMatch = line.match(/^([A-Za-z][\w-]*):\s*(.*)$/);
+    if (!keyMatch) {
+      return frontmatter;
+    }
+
+    const [, key, rawValue] = keyMatch;
+    if (
+      key === 'title' ||
+      key === 'date' ||
+      key === 'category' ||
+      key === 'cadence' ||
+      key === 'lang' ||
+      key === 'coverImage' ||
+      key === 'audioUrl' ||
+      key === 'deckUrl'
+    ) {
+      frontmatter[key] = String(parseScalar(rawValue)) as never;
+    }
+
+    if (key === 'draft' || key === 'includeInRadarArchive') {
+      frontmatter[key] = parseScalar(rawValue) === true;
+    }
+
+    return frontmatter;
+  }, {});
 }
 
 export function collectContentEntries() {
@@ -128,8 +121,7 @@ export function collectContentEntries() {
         const relativePath = toPosixPath(path.relative(collectionRoot, filePath));
         const slug = relativePath.replace(/\.md$/, '');
         const frontmatter = parseFrontmatter(fs.readFileSync(filePath, 'utf8'));
-        const locale: Locale =
-          frontmatter.lang === 'ja' || slug.endsWith('.ja') ? 'ja' : 'zh';
+        const locale: Locale = frontmatter.lang === 'ja' || slug.endsWith('.ja') ? 'ja' : 'zh';
 
         return {
           filePath,
@@ -183,7 +175,5 @@ function stripAppBasePath(value: string) {
     return '/';
   }
 
-  return value.startsWith(`${basePrefix}/`)
-    ? value.slice(basePrefix.length)
-    : value;
+  return value.startsWith(`${basePrefix}/`) ? value.slice(basePrefix.length) : value;
 }

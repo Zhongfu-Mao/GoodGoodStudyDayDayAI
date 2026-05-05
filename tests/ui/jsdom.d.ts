@@ -4,4 +4,3 @@ declare module 'jsdom' {
     window: Window & typeof globalThis;
   }
 }
-

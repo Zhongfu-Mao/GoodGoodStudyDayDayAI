@@ -31,8 +31,16 @@ const startSubnavItems = {
   ja: [
     { hash: '#start-route', label: '道筋', tooltip: '現在地を確認し、30/60/90 日の進め方を決める' },
     { hash: '#ai-basics-for-everyone', label: '概念', tooltip: '12 本の短文で頻出概念を押さえる' },
-    { hash: '#start-layers', label: 'レイヤー', tooltip: '日常利用から Agent までの能力層を整理する' },
-    { hash: '#start-safety', label: '安全', tooltip: 'よくある誤解を避け、安全な使い方の境界を作る' },
+    {
+      hash: '#start-layers',
+      label: 'レイヤー',
+      tooltip: '日常利用から Agent までの能力層を整理する',
+    },
+    {
+      hash: '#start-safety',
+      label: '安全',
+      tooltip: 'よくある誤解を避け、安全な使い方の境界を作る',
+    },
     { hash: '#start-faq', label: 'FAQ', tooltip: '初心者がつまずきやすい疑問を先に解く' },
   ],
 } as const;

@@ -44,7 +44,10 @@ function decodeHtmlEntities(value) {
 
 function extractMeta(html, key, attr = 'property') {
   const pattern = new RegExp(`<meta[^>]+${attr}=["']${key}["'][^>]+content=["']([^"']+)["']`, 'i');
-  const reversePattern = new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+${attr}=["']${key}["']`, 'i');
+  const reversePattern = new RegExp(
+    `<meta[^>]+content=["']([^"']+)["'][^>]+${attr}=["']${key}["']`,
+    'i',
+  );
   const match = html.match(pattern) ?? html.match(reversePattern);
   return match ? decodeHtmlEntities(match[1]) : '';
 }

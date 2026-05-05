@@ -59,9 +59,11 @@ async function resolveTargetFile(explicitFile, requestedLang) {
 
   const lang = requestedLang === 'ja' ? 'ja' : 'zh';
   const files = (await readdir(RADAR_DIR))
-    .filter((file) => (lang === 'ja'
-      ? /^weekly-ai-radar-\d{4}-\d{2}-\d{2}-to-\d{4}-\d{2}-\d{2}\.ja\.md$/.test(file)
-      : /^weekly-ai-radar-\d{4}-\d{2}-\d{2}-to-\d{4}-\d{2}-\d{2}\.md$/.test(file)))
+    .filter((file) =>
+      lang === 'ja'
+        ? /^weekly-ai-radar-\d{4}-\d{2}-\d{2}-to-\d{4}-\d{2}-\d{2}\.ja\.md$/.test(file)
+        : /^weekly-ai-radar-\d{4}-\d{2}-\d{2}-to-\d{4}-\d{2}-\d{2}\.md$/.test(file),
+    )
     .sort();
 
   const latest = files.at(-1);
@@ -74,7 +76,9 @@ async function resolveTargetFile(explicitFile, requestedLang) {
 }
 
 function parseWeeklyDateRange(filePath) {
-  const match = path.basename(filePath).match(/^weekly-ai-radar-(\d{4}-\d{2}-\d{2})-to-(\d{4}-\d{2}-\d{2})(?:\.ja)?\.md$/);
+  const match = path
+    .basename(filePath)
+    .match(/^weekly-ai-radar-(\d{4}-\d{2}-\d{2})-to-(\d{4}-\d{2}-\d{2})(?:\.ja)?\.md$/);
 
   if (!match) {
     throw new Error('Weekly radar filename does not contain a valid date range.');
@@ -182,7 +186,15 @@ async function main() {
     ]);
 
     await waitForLatestArtifact(notebookId, 'audio');
-    await runNotebooklm(['download', 'audio', '--notebook', notebookId, '--force', audioPath, '--json']);
+    await runNotebooklm([
+      'download',
+      'audio',
+      '--notebook',
+      notebookId,
+      '--force',
+      audioPath,
+      '--json',
+    ]);
 
     console.log('Generating weekly slide deck...');
     await runNotebooklm([

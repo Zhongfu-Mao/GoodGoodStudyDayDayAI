@@ -3,7 +3,12 @@ export type Locale = (typeof locales)[number];
 
 export const collectionNames = ['radar', 'start', 'academy', 'engineering', 'foundations'] as const;
 export type CollectionName = (typeof collectionNames)[number];
-export const primaryCategoryNames = ['radar', 'academy', 'engineering', 'foundations'] as const satisfies readonly CollectionName[];
+export const primaryCategoryNames = [
+  'radar',
+  'academy',
+  'engineering',
+  'foundations',
+] as const satisfies readonly CollectionName[];
 
 export const collectionLabels: Record<CollectionName, { zh: string; ja: string }> = {
   radar: { zh: 'AI 雷达', ja: 'AI レーダー' },

@@ -9,9 +9,13 @@ describe('site helpers', () => {
   });
 
   it('only strips the dotted Japanese locale suffix', () => {
-    expect(stripLocaleSuffix('daily-ai-radar-2026-04-26.ja', 'ja')).toBe('daily-ai-radar-2026-04-26');
+    expect(stripLocaleSuffix('daily-ai-radar-2026-04-26.ja', 'ja')).toBe(
+      'daily-ai-radar-2026-04-26',
+    );
     expect(stripLocaleSuffix('ninja', 'ja')).toBe('ninja');
-    expect(stripLocaleSuffix('daily-ai-radar-2026-04-26.ja', 'zh')).toBe('daily-ai-radar-2026-04-26.ja');
+    expect(stripLocaleSuffix('daily-ai-radar-2026-04-26.ja', 'zh')).toBe(
+      'daily-ai-radar-2026-04-26.ja',
+    );
   });
 
   it('slugifies public tags consistently', () => {

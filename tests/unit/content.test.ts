@@ -46,9 +46,7 @@ describe('content helpers', () => {
         mockEntry('weekly-draft.ja', 'radar', { lang: 'ja', date: '2026-04-03', draft: true }),
         mockEntry('weekly-zh', 'radar', { lang: 'zh', date: '2026-04-04' }),
       ],
-      start: [
-        mockEntry('basics/newer.ja', 'start', { lang: 'ja', date: '2026-04-05' }),
-      ],
+      start: [mockEntry('basics/newer.ja', 'start', { lang: 'ja', date: '2026-04-05' })],
     };
 
     const { getEntriesForLocale } = await import('../../src/lib/content');
@@ -64,12 +62,12 @@ describe('content helpers', () => {
         mockEntry('daily-1', 'radar', { tags: ['Agent', 'Solo'] }),
         mockEntry('daily-2', 'radar', { tags: ['Agent'] }),
       ],
-      engineering: [
-        mockEntry('engineering-1', 'engineering', { tags: ['CI/CD'] }),
-      ],
+      engineering: [mockEntry('engineering-1', 'engineering', { tags: ['CI/CD'] })],
     };
 
-    const { getAllTagIndex, getPublicTagsForEntry, getTagIndex } = await import('../../src/lib/content');
+    const { getAllTagIndex, getPublicTagsForEntry, getTagIndex } = await import(
+      '../../src/lib/content'
+    );
 
     expect((await getAllTagIndex('zh')).map((tag) => [tag.slug, tag.count])).toEqual([
       ['agent', 2],
@@ -85,11 +83,7 @@ describe('content helpers', () => {
     const zhOnlyEntry = mockEntry('zh-only', 'radar', { lang: 'zh' });
 
     collections = {
-      radar: [
-        zhEntry,
-        zhOnlyEntry,
-        mockEntry('shared-slug.ja', 'radar', { lang: 'ja' }),
-      ],
+      radar: [zhEntry, zhOnlyEntry, mockEntry('shared-slug.ja', 'radar', { lang: 'ja' })],
     };
 
     const { getLanguagePathsForEntry } = await import('../../src/lib/content');
@@ -128,11 +122,7 @@ describe('content helpers', () => {
   });
 });
 
-function mockEntry(
-  id: string,
-  collection: string,
-  overrides: MockEntryOverride = {},
-): MockEntry {
+function mockEntry(id: string, collection: string, overrides: MockEntryOverride = {}): MockEntry {
   return {
     id,
     collection,

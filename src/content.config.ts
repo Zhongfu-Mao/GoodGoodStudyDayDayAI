@@ -70,7 +70,13 @@ export const foundationsSchema = baseBlogSchema.extend({
   ...forbiddenCourseFields,
 });
 
-const generateLocalizedMarkdownId = ({ entry, data }: { entry: string; data: { lang?: string } }) => {
+const generateLocalizedMarkdownId = ({
+  entry,
+  data,
+}: {
+  entry: string;
+  data: { lang?: string };
+}) => {
   const normalized = entry.replace(/\\/g, '/').replace(/\.md$/, '');
 
   if (data.lang === 'ja' && !normalized.endsWith('.ja')) {

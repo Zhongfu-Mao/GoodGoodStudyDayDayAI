@@ -11,7 +11,9 @@ import { createRehypeImageAltFallback } from './scripts/lib/markdown-image-alt.m
 
 const site =
   process.env.SITE_URL ??
-  (process.env.GITHUB_REPOSITORY_OWNER ? `https://${process.env.GITHUB_REPOSITORY_OWNER}.github.io` : 'https://example.com');
+  (process.env.GITHUB_REPOSITORY_OWNER
+    ? `https://${process.env.GITHUB_REPOSITORY_OWNER}.github.io`
+    : 'https://example.com');
 const base = resolveBasePath();
 const rehypeGitHubPagesBase = createRehypeGitHubPagesBase(base);
 const remarkGitHubPagesBase = createRemarkGitHubPagesBase(base);

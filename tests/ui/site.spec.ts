@@ -29,7 +29,9 @@ async function expectCardsToFitViewport(page: Page, sectionSelector: string) {
     const card = cards.nth(index);
     const box = await card.boundingBox();
     if (!box) {
-      throw new Error(`Expected radar card ${index + 1} in ${sectionSelector} to have a layout box.`);
+      throw new Error(
+        `Expected radar card ${index + 1} in ${sectionSelector} to have a layout box.`,
+      );
     }
 
     expect(box.x).toBeGreaterThanOrEqual(-1);
@@ -44,7 +46,10 @@ test.describe('published site UI', () => {
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'zh');
     await expect(
-      page.getByRole('heading', { level: 1, name: /^(学 AI 不迷路，用 AI 有方法|一份 AI 学习与实践笔记)$/ }),
+      page.getByRole('heading', {
+        level: 1,
+        name: /^(学 AI 不迷路，用 AI 有方法|一份 AI 学习与实践笔记)$/,
+      }),
     ).toBeVisible();
 
     const header = page.locator('header');
@@ -78,15 +83,23 @@ test.describe('published site UI', () => {
     await expect(page).toHaveURL(appUrlPattern('/ja/'));
     await expect(page.locator('html')).toHaveAttribute('lang', 'ja');
     await expect(
-      page.getByRole('heading', { level: 1, name: /^(迷わず学び、使える形へ|AI 学習と実践のノート)$/ }),
+      page.getByRole('heading', {
+        level: 1,
+        name: /^(迷わず学び、使える形へ|AI 学習と実践のノート)$/,
+      }),
     ).toBeVisible();
-    await expect(page.locator('[data-aquarium-toggle]')).toHaveAttribute('data-tooltip', /アクアリウムは/);
+    await expect(page.locator('[data-aquarium-toggle]')).toHaveAttribute(
+      'data-tooltip',
+      /アクアリウムは/,
+    );
   });
 
   test('academy article keeps localized sibling links and article chrome', async ({ page }) => {
     await gotoApp(page, '/academy/openai-academy/00-overview/openai-academy-overview/');
 
-    await expect(page.getByRole('heading', { level: 1, name: 'OpenAI Academy 笔记：学习路线总览' })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'OpenAI Academy 笔记：学习路线总览' }),
+    ).toBeVisible();
     await expect(page.locator('article[data-pagefind-body]')).toContainText('本路线解决的核心问题');
 
     const languageSwitcher = page.locator('nav[aria-label="Language switcher"]');
@@ -100,19 +113,31 @@ test.describe('published site UI', () => {
 
     await japaneseLink.click();
 
-    await expect(page).toHaveURL(appUrlPattern('/ja/academy/openai-academy/00-overview/openai-academy-overview/'));
-    await expect(page.getByRole('heading', { level: 1, name: 'OpenAI Academyノート：学習ロードマップ全体像' })).toBeVisible();
-    await expect(page.locator('article[data-pagefind-body]')).toContainText('本ロードマップが解決する課題');
+    await expect(page).toHaveURL(
+      appUrlPattern('/ja/academy/openai-academy/00-overview/openai-academy-overview/'),
+    );
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'OpenAI Academyノート：学習ロードマップ全体像' }),
+    ).toBeVisible();
+    await expect(page.locator('article[data-pagefind-body]')).toContainText(
+      '本ロードマップが解決する課題',
+    );
   });
 
-  test('start basics article stays out of AI Academy and offers next lesson navigation', async ({ page }) => {
+  test('start basics article stays out of AI Academy and offers next lesson navigation', async ({
+    page,
+  }) => {
     await gotoApp(page, '/start/ai-basics-for-everyone/what-is-ai-model-llm/');
 
     const courseNavigation = page.locator('[data-course-navigation]');
-    const learningTrack = page.locator('aside section').filter({ hasText: '当前学习轨道文章列表。' });
+    const learningTrack = page
+      .locator('aside section')
+      .filter({ hasText: '当前学习轨道文章列表。' });
 
     await expect(page.locator('article[data-pagefind-body]')).toContainText('新手起步');
-    await expect(page.locator('article[data-pagefind-body]').locator('nav').first()).not.toContainText('AI Academy');
+    await expect(
+      page.locator('article[data-pagefind-body]').locator('nav').first(),
+    ).not.toContainText('AI Academy');
     await expect(learningTrack).toContainText('12');
     await expect(learningTrack.getByRole('link')).toHaveCount(12);
     await expect(courseNavigation).toBeVisible();
@@ -126,18 +151,23 @@ test.describe('published site UI', () => {
     await gotoApp(page, '/ja/start/ai-basics-for-everyone/what-is-ai-model-llm/');
 
     const japaneseCourseNavigation = page.locator('[data-course-navigation]');
-    const japaneseLearningTrack = page.locator('aside section').filter({ hasText: '現在の学習トラックの記事一覧です。' });
+    const japaneseLearningTrack = page
+      .locator('aside section')
+      .filter({ hasText: '現在の学習トラックの記事一覧です。' });
 
     await expect(page.locator('article[data-pagefind-body]')).toContainText('はじめに');
-    await expect(page.locator('article[data-pagefind-body]').locator('nav').first()).not.toContainText('AI Academy');
+    await expect(
+      page.locator('article[data-pagefind-body]').locator('nav').first(),
+    ).not.toContainText('AI Academy');
     await expect(japaneseLearningTrack).toContainText('12');
     await expect(japaneseLearningTrack.getByRole('link')).toHaveCount(12);
     await expect(japaneseCourseNavigation).toBeVisible();
-    await expect(japaneseCourseNavigation.getByRole('heading', { name: '次のレッスンへ進む' })).toBeVisible();
-    await expect(japaneseCourseNavigation.getByRole('link', { name: /次のレッスン: プロンプト/ })).toHaveAttribute(
-      'href',
-      appPath('/ja/start/ai-basics-for-everyone/what-is-prompt/'),
-    );
+    await expect(
+      japaneseCourseNavigation.getByRole('heading', { name: '次のレッスンへ進む' }),
+    ).toBeVisible();
+    await expect(
+      japaneseCourseNavigation.getByRole('link', { name: /次のレッスン: プロンプト/ }),
+    ).toHaveAttribute('href', appPath('/ja/start/ai-basics-for-everyone/what-is-prompt/'));
   });
 
   test('start guide keeps in-page anchors and localized subpage links', async ({ page }) => {
@@ -151,7 +181,9 @@ test.describe('published site UI', () => {
     const startSubnavItems = page.locator('[data-start-subnav]');
     await expect(startSubnavItems).toHaveCount(5);
     await expect(
-      startSubnavItems.evaluateAll((items) => items.map((item) => item.getAttribute('data-start-subnav'))),
+      startSubnavItems.evaluateAll((items) =>
+        items.map((item) => item.getAttribute('data-start-subnav')),
+      ),
     ).resolves.toEqual([
       '#start-route',
       '#ai-basics-for-everyone',
@@ -159,7 +191,10 @@ test.describe('published site UI', () => {
       '#start-safety',
       '#start-faq',
     ]);
-    await expect(startSubnavItems.first()).toHaveAttribute('data-tooltip', '先判断当前位置，安排 30/60/90 天学习节奏');
+    await expect(startSubnavItems.first()).toHaveAttribute(
+      'data-tooltip',
+      '先判断当前位置，安排 30/60/90 天学习节奏',
+    );
     await expect(page.locator('[data-start-subnav="#start-safety"]')).toHaveText('安全');
     await expect(page.locator('[data-start-panel="route"]#start-plan')).toBeVisible();
     await expect(basicsLink).toHaveAttribute('href', '#ai-basics-for-everyone');
@@ -171,7 +206,9 @@ test.describe('published site UI', () => {
     await expect(page).toHaveURL(appUrlPattern('/start/#ai-basics-for-everyone'));
     await expect(routeSection).toBeHidden();
     await expect(basicsSection).toBeVisible();
-    await expect(basicsSection.getByRole('heading', { name: /AI Basics for Everyone/ })).toHaveCount(0);
+    await expect(
+      basicsSection.getByRole('heading', { name: /AI Basics for Everyone/ }),
+    ).toHaveCount(0);
     await expect(basicsSection.getByText('AI Basics for Everyone').first()).toBeVisible();
 
     await page.locator('[data-start-subnav="#start-layers"]').click();
@@ -183,7 +220,9 @@ test.describe('published site UI', () => {
     );
 
     await gotoApp(page, '/start/layers/');
-    await expect(page.getByRole('heading', { level: 1, name: '看懂 AI 的 6 个能力层' })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 1, name: '看懂 AI 的 6 个能力层' }),
+    ).toBeVisible();
 
     const languageSwitcher = page.locator('nav[aria-label="Language switcher"]');
     await expect(languageSwitcher.getByRole('link', { name: '日本語' })).toHaveAttribute(
@@ -192,14 +231,19 @@ test.describe('published site UI', () => {
     );
 
     await gotoApp(page, '/ja/start/layers/');
-    await expect(page.getByRole('heading', { level: 1, name: 'AI の 6 つの能力レイヤー' })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'AI の 6 つの能力レイヤー' }),
+    ).toBeVisible();
     await expect(page.getByRole('link', { name: '← スタートガイドに戻る' })).toHaveAttribute(
       'href',
       appPath('/ja/start/'),
     );
   });
 
-  test('Japanese radar header stays compact and localized on desktop', async ({ page, isMobile }) => {
+  test('Japanese radar header stays compact and localized on desktop', async ({
+    page,
+    isMobile,
+  }) => {
     test.skip(isMobile, 'desktop header layout only');
 
     await page.setViewportSize({ width: 1366, height: 768 });
@@ -244,7 +288,9 @@ test.describe('published site UI', () => {
     await expect(weeklySection).toContainText('AI 雷达周报：2026-04-07 至 2026-04-13');
     await expect(weeklySection).toContainText('AI 雷达周报：2026-04-01 至 2026-04-07');
     await expect(weeklySection).not.toContainText('AI 周报：RAG 检索质量新基准与 Agent 观测性演进');
-    await expect(weeklySection).not.toContainText('AI 雷达周报：Agent 运行时架构与门控模型时代的到来');
+    await expect(weeklySection).not.toContainText(
+      'AI 雷达周报：Agent 运行时架构与门控模型时代的到来',
+    );
 
     await monthlyNav.click();
     await expect(page).toHaveURL(/#monthly$/);
@@ -259,13 +305,17 @@ test.describe('published site UI', () => {
     await expectSectionHasContentCount(japaneseWeeklySection, /\d+ 記事/);
     await expect(japaneseWeeklySection).toContainText('AI レーダー週報：2026-04-07 〜 2026-04-13');
     await expect(japaneseWeeklySection).toContainText('AI レーダー週報：2026-04-01 〜 2026-04-07');
-    await expect(japaneseWeeklySection).not.toContainText('週刊 AI 動向：RAG 検索精度の新基準と Agent オブザーバビリティの進化');
+    await expect(japaneseWeeklySection).not.toContainText(
+      '週刊 AI 動向：RAG 検索精度の新基準と Agent オブザーバビリティの進化',
+    );
 
     await gotoApp(page, '/ja/radar/#monthly');
     const japaneseMonthlySection = page.locator('[data-radar-section]#monthly');
     await expect(japaneseMonthlySection).toBeVisible();
     await expectSectionHasContentCount(japaneseMonthlySection, /\d+ 記事/);
-    await expect(japaneseMonthlySection).not.toContainText('月次トレンド分析：AI ツールチェーンとデプロイエコシステムの変遷');
+    await expect(japaneseMonthlySection).not.toContainText(
+      '月次トレンド分析：AI ツールチェーンとデプロイエコシステムの変遷',
+    );
     await expect(
       japaneseMonthlySection.locator(
         `img[src="${appPath('/images/radar/monthly-ai-radar-2026-04.ja-infographic.png')}"]`,
@@ -273,7 +323,9 @@ test.describe('published site UI', () => {
     ).toBeVisible();
   });
 
-  test('radar archive cards stay inside the viewport across locales and cadences', async ({ page }) => {
+  test('radar archive cards stay inside the viewport across locales and cadences', async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 721, height: 963 });
 
     for (const layoutCase of radarArchiveLayoutCases) {
@@ -287,7 +339,9 @@ test.describe('published site UI', () => {
 
     await gotoApp(page, '/ja/radar/#weekly');
     const japaneseWeeklyHref = appPath('/ja/radar/weekly-ai-radar-2026-04-01-to-2026-04-07/');
-    const japaneseWeeklyImageSrc = appPath('/images/radar/weekly-ai-radar-2026-04-01-to-2026-04-07.ja-infographic.png');
+    const japaneseWeeklyImageSrc = appPath(
+      '/images/radar/weekly-ai-radar-2026-04-01-to-2026-04-07.ja-infographic.png',
+    );
     const japaneseWeeklyImage = page.locator(
       `[data-radar-section]#weekly a[href="${japaneseWeeklyHref}"] img[src="${japaneseWeeklyImageSrc}"]`,
     );
@@ -354,11 +408,18 @@ test.describe('published site UI', () => {
 
     await expect(searchRoot).toHaveAttribute('data-pagefind-ready', 'true', { timeout: 15_000 });
     await expect(searchRoot.getByRole('textbox')).toHaveValue('OpenAI');
-    await expect(searchRoot.locator('.pagefind-ui__search-clear')).toHaveAttribute('data-tooltip', '清除搜索关键词');
-    await expect(searchRoot.locator('.pagefind-ui__result').first()).toBeVisible({ timeout: 15_000 });
+    await expect(searchRoot.locator('.pagefind-ui__search-clear')).toHaveAttribute(
+      'data-tooltip',
+      '清除搜索关键词',
+    );
+    await expect(searchRoot.locator('.pagefind-ui__result').first()).toBeVisible({
+      timeout: 15_000,
+    });
   });
 
-  test('radar audio mini-player button opens and closes the persistent player', async ({ page }) => {
+  test('radar audio mini-player button opens and closes the persistent player', async ({
+    page,
+  }) => {
     await gotoApp(page, '/radar/daily-ai-radar-2026-04-26/');
 
     const player = page.locator('[data-global-audio-player]');
@@ -372,8 +433,14 @@ test.describe('published site UI', () => {
     await expect(player).toBeVisible();
     await expect(player.locator('[data-audio-title]')).toContainText('AI 雷达日报：2026-04-26');
     await expect(player).toHaveAttribute('data-playback-state', /^(playing|paused)$/);
-    await expect(player.locator('[data-audio-toggle]')).toHaveAttribute('data-tooltip', /^(播放|暂停)$/);
-    await expect(player.locator('[data-audio-close]')).toHaveAttribute('data-tooltip', '关闭播放器');
+    await expect(player.locator('[data-audio-toggle]')).toHaveAttribute(
+      'data-tooltip',
+      /^(播放|暂停)$/,
+    );
+    await expect(player.locator('[data-audio-close]')).toHaveAttribute(
+      'data-tooltip',
+      '关闭播放器',
+    );
 
     await player.getByRole('button', { name: '关闭播放器' }).click();
     await expect(player).toBeHidden();

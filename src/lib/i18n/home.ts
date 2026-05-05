@@ -2,7 +2,8 @@ export const homePage = {
   zh: {
     eyebrow: 'Good Good Study, Day Day AI',
     title: '一份 AI 学习与实践笔记',
-    description: '这里把 AI 动态、课程笔记、工程实践和底层原理整理成一条可以慢慢走的路。你可以先看图报抓住重点，也可以从新手路线开始，把零散信息变成自己的理解和方法。',
+    description:
+      '这里把 AI 动态、课程笔记、工程实践和底层原理整理成一条可以慢慢走的路。你可以先看图报抓住重点，也可以从新手路线开始，把零散信息变成自己的理解和方法。',
     featured: '精选文章',
     latest: '最新文章',
     tags: '标签',
@@ -15,7 +16,8 @@ export const homePage = {
     visualUnit: '张图报',
     tagUnit: '个标签',
     intentTitle: '先从最顺手的入口开始',
-    intentDescription: '不用先搞懂所有术语。你现在只是好奇、想补基础，还是想把 AI 用到工作里，都有对应入口。',
+    intentDescription:
+      '不用先搞懂所有术语。你现在只是好奇、想补基础，还是想把 AI 用到工作里，都有对应入口。',
     intentItems: {
       beginner: {
         label: '我刚开始学 AI',
@@ -37,12 +39,14 @@ export const homePage = {
       },
     },
     routesTitle: '四个内容分区，各司其职',
-    routesDescription: 'AI 雷达负责跟踪变化，Academy 负责系统学习，工程实践负责落地，底层原理负责补齐理解框架。',
+    routesDescription:
+      'AI 雷达负责跟踪变化，Academy 负责系统学习，工程实践负责落地，底层原理负责补齐理解框架。',
     routeCta: '进入分区',
     routes: {
       radar: {
         title: 'AI 雷达',
-        description: 'Daily / Weekly / Monthly 跟踪 AI 主线，图卡优先，适合快速建立当天或本周的全局感。',
+        description:
+          'Daily / Weekly / Monthly 跟踪 AI 主线，图卡优先，适合快速建立当天或本周的全局感。',
       },
       academy: {
         title: 'AI Academy',
@@ -58,22 +62,31 @@ export const homePage = {
       },
     },
     useTitle: '今天你想怎么开始？',
-    useDescription: '不用一次读完，也不用先成为专家。只是路过，就先看今日图报；想认真补课，就从新手路线开始；已经在做项目，就去工程实践找可以借鉴的方法。',
+    useDescription:
+      '不用一次读完，也不用先成为专家。只是路过，就先看今日图报；想认真补课，就从新手路线开始；已经在做项目，就去工程实践找可以借鉴的方法。',
     useCases: [
       { label: '没时间', description: '看 AI 雷达图片墙，用三五分钟抓住最近的 AI 主线。' },
-      { label: '想补课', description: '从新手起步或 AI Academy 开始，一篇一篇补，不需要先成为专家。' },
-      { label: '想落地', description: '去工程实践看工具、脚本和流程怎么跑起来，把经验带回自己的工作。' },
+      {
+        label: '想补课',
+        description: '从新手起步或 AI Academy 开始，一篇一篇补，不需要先成为专家。',
+      },
+      {
+        label: '想落地',
+        description: '去工程实践看工具、脚本和流程怎么跑起来，把经验带回自己的工作。',
+      },
       { label: '想补基础', description: '看底层原理，把模型、数据和系统这些关键词真正串起来。' },
     ],
     visualTitle: '先看图，再读文',
-    visualDescription: 'AI 雷达已经积累了一批信息图。它们适合做第一层入口：先建立画面和结构，再决定要不要进入原文。',
+    visualDescription:
+      'AI 雷达已经积累了一批信息图。它们适合做第一层入口：先建立画面和结构，再决定要不要进入原文。',
     recentVisuals: '最近图报',
     recentVisualsCta: '查看图片墙',
   },
   ja: {
     eyebrow: 'Good Good Study, Day Day AI',
     title: 'AI 学習と実践のノート',
-    description: 'AI の動き、講座ノート、実践記録、基礎原理を、少しずつ進める学習ルートとして整理しています。まず図解で要点をつかんでも、Start からゆっくり学んでも大丈夫です。',
+    description:
+      'AI の動き、講座ノート、実践記録、基礎原理を、少しずつ進める学習ルートとして整理しています。まず図解で要点をつかんでも、Start からゆっくり学んでも大丈夫です。',
     featured: '注目記事',
     latest: '最新記事',
     tags: 'タグ',
@@ -86,18 +99,21 @@ export const homePage = {
     visualUnit: '図解',
     tagUnit: 'タグ',
     intentTitle: 'いちばん入りやすい場所から',
-    intentDescription: '用語を全部知っている必要はありません。少し気になるだけでも、基礎を補いたい時でも、仕事に使いたい時でも、入口を選べます。',
+    intentDescription:
+      '用語を全部知っている必要はありません。少し気になるだけでも、基礎を補いたい時でも、仕事に使いたい時でも、入口を選べます。',
     intentItems: {
       beginner: {
         label: 'AI を学び始めたばかり',
         title: 'まず大事な言葉から',
-        description: 'モデル、プロンプト、コンテキスト、エージェント、RAG など、頻出語を軽い導線で整理します。',
+        description:
+          'モデル、プロンプト、コンテキスト、エージェント、RAG など、頻出語を軽い導線で整理します。',
         cta: 'Start へ',
       },
       radar: {
         label: '今日の変化を知りたい',
         title: '今日の変化をつかむ',
-        description: 'AI Radar と Image Wall で最近の流れを見て、気になったものだけ本文へ進みます。',
+        description:
+          'AI Radar と Image Wall で最近の流れを見て、気になったものだけ本文へ進みます。',
         cta: 'AI Radar へ',
       },
       system: {
@@ -108,20 +124,24 @@ export const homePage = {
       },
     },
     routesTitle: '4 つの入口',
-    routesDescription: 'AI Radar は変化を追い、AI Academy は体系化し、実践は手を動かす流れへつなげ、基礎は理解の土台を補います。',
+    routesDescription:
+      'AI Radar は変化を追い、AI Academy は体系化し、実践は手を動かす流れへつなげ、基礎は理解の土台を補います。',
     routeCta: 'セクションへ',
     routes: {
       radar: {
         title: 'AI Radar',
-        description: 'Daily / Weekly / Monthly で AI の主要な流れを追います。図解カードから全体像をつかめます。',
+        description:
+          'Daily / Weekly / Monthly で AI の主要な流れを追います。図解カードから全体像をつかめます。',
       },
       academy: {
         title: 'AI Academy',
-        description: 'OpenAI や Anthropic などの講座内容を、復習しやすい学習ノートとして整理します。',
+        description:
+          'OpenAI や Anthropic などの講座内容を、復習しやすい学習ノートとして整理します。',
       },
       engineering: {
         title: 'エンジニアリング実践',
-        description: 'ツール、オートメーション、クラウド、実運用の知見を、日々のワークフローにつなげます。',
+        description:
+          'ツール、オートメーション、クラウド、実運用の知見を、日々のワークフローにつなげます。',
       },
       foundations: {
         title: '基礎原理',
@@ -129,15 +149,30 @@ export const homePage = {
       },
     },
     useTitle: '今日はどこから始める？',
-    useDescription: '全部を一度に読む必要も、最初から詳しい必要もありません。少し見るだけなら今日の図解、腰を据えて学ぶならスタートガイド、実務に近づけたいなら実践から入れます。',
+    useDescription:
+      '全部を一度に読む必要も、最初から詳しい必要もありません。少し見るだけなら今日の図解、腰を据えて学ぶならスタートガイド、実務に近づけたいなら実践から入れます。',
     useCases: [
-      { label: '時間がない', description: 'AI Radar の Image Wall で、最近の AI の主線を数分でつかみます。' },
-      { label: '学び直したい', description: 'Start や AI Academy から、一つずつ補っていけます。専門家である必要はありません。' },
-      { label: '実践したい', description: '実践で、ツールやスクリプト、ワークフローがどう動くかを見ます。' },
-      { label: '基礎を固めたい', description: '基礎で、モデル、データ、システムの見取り図をつなげます。' },
+      {
+        label: '時間がない',
+        description: 'AI Radar の Image Wall で、最近の AI の主線を数分でつかみます。',
+      },
+      {
+        label: '学び直したい',
+        description:
+          'Start や AI Academy から、一つずつ補っていけます。専門家である必要はありません。',
+      },
+      {
+        label: '実践したい',
+        description: '実践で、ツールやスクリプト、ワークフローがどう動くかを見ます。',
+      },
+      {
+        label: '基礎を固めたい',
+        description: '基礎で、モデル、データ、システムの見取り図をつなげます。',
+      },
     ],
     visualTitle: 'まず図解、そこから本文へ',
-    visualDescription: 'AI Radar には図解が増えています。全体像を先につかみ、気になったテーマだけ本文で深掘りできます。',
+    visualDescription:
+      'AI Radar には図解が増えています。全体像を先につかみ、気になったテーマだけ本文で深掘りできます。',
     recentVisuals: '最近の図解',
     recentVisualsCta: 'Image Wall へ',
   },

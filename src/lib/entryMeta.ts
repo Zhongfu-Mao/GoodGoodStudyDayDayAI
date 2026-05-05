@@ -74,7 +74,8 @@ export function estimateReadingMinutes(body: string | undefined, locale: Locale)
   }
 
   const cleaned = cleanMarkdownText(body);
-  const cjkCount = (cleaned.match(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu) ?? []).length;
+  const cjkCount = (cleaned.match(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu) ?? [])
+    .length;
   const wordCount = (cleaned.match(/[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)*/g) ?? []).length;
   const divisor = locale === 'ja' ? 520 : 460;
   const estimated = Math.ceil((cjkCount + wordCount * 1.5) / divisor);
@@ -112,13 +113,14 @@ function cleanMarkdownText(text: string) {
 }
 
 function getRepresentativeLead(body: string, locale: Locale) {
-  const italicBlocks = [...body.matchAll(/(?:^|\n)\*([^*\n][^\n]{34,})\*/g)].map((match) => cleanMarkdownText(match[1]));
+  const italicBlocks = [...body.matchAll(/(?:^|\n)\*([^*\n][^\n]{34,})\*/g)].map((match) =>
+    cleanMarkdownText(match[1]),
+  );
 
   for (const block of italicBlocks) {
     const firstSentenceBreak = Math.max(block.indexOf('。'), block.indexOf('.'));
     const sourceLead =
-      firstSentenceBreak >= 0 &&
-      (block.startsWith('代表图来自') || block.startsWith('代表画像は'));
+      firstSentenceBreak >= 0 && (block.startsWith('代表图来自') || block.startsWith('代表画像は'));
     const cleaned = sourceLead ? block.slice(firstSentenceBreak + 1).trim() : block;
 
     if (cleaned.length >= (locale === 'ja' ? 28 : 24)) {
@@ -164,7 +166,11 @@ function trimSummary(text: string, locale: Locale) {
     return sliced.slice(0, sentenceBoundary + 1).trim();
   }
 
-  const phraseBoundary = Math.max(sliced.lastIndexOf('；'), sliced.lastIndexOf('，'), sliced.lastIndexOf('、'));
+  const phraseBoundary = Math.max(
+    sliced.lastIndexOf('；'),
+    sliced.lastIndexOf('，'),
+    sliced.lastIndexOf('、'),
+  );
 
   if (phraseBoundary >= Math.floor(maxLength * 0.62)) {
     return sliced.slice(0, phraseBoundary + 1).trim();

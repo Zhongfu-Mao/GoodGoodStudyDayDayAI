@@ -59,9 +59,11 @@ async function resolveTargetFile(explicitFile, requestedLang) {
 
   const lang = requestedLang === 'ja' ? 'ja' : 'zh';
   const files = (await readdir(RADAR_DIR))
-    .filter((file) => (lang === 'ja'
-      ? /^monthly-ai-radar-\d{4}-\d{2}\.ja\.md$/.test(file)
-      : /^monthly-ai-radar-\d{4}-\d{2}\.md$/.test(file)))
+    .filter((file) =>
+      lang === 'ja'
+        ? /^monthly-ai-radar-\d{4}-\d{2}\.ja\.md$/.test(file)
+        : /^monthly-ai-radar-\d{4}-\d{2}\.md$/.test(file),
+    )
     .sort();
 
   const latest = files.at(-1);
@@ -84,7 +86,9 @@ function parseMonthlyPeriod(filePath) {
 }
 
 function parseWeeklyRangeFromFilename(fileName) {
-  const match = fileName.match(/^weekly-ai-radar-(\d{4}-\d{2}-\d{2})-to-(\d{4}-\d{2}-\d{2})(?:\.ja)?\.md$/);
+  const match = fileName.match(
+    /^weekly-ai-radar-(\d{4}-\d{2}-\d{2})-to-(\d{4}-\d{2}-\d{2})(?:\.ja)?\.md$/,
+  );
 
   if (!match) {
     return null;
@@ -193,7 +197,15 @@ async function main() {
     ]);
 
     await waitForLatestArtifact(notebookId, 'audio', { timeout: 1200 });
-    await runNotebooklm(['download', 'audio', '--notebook', notebookId, '--force', audioPath, '--json']);
+    await runNotebooklm([
+      'download',
+      'audio',
+      '--notebook',
+      notebookId,
+      '--force',
+      audioPath,
+      '--json',
+    ]);
 
     console.log('Generating monthly slide deck...');
     await runNotebooklm([

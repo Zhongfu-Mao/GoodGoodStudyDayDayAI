@@ -17,18 +17,17 @@
 // 输出：单行 JSON 到 stdout。失败时 exit code != 0，错误信息在 JSON.error。
 // Exit codes: 0 成功 / 1 参数或运行时错误 / 2 HTTP 4xx-5xx / 3 RSS 解析失败。
 
-import { setTimeout as delay } from "node:timers/promises";
-import { Readability } from "@mozilla/readability";
-import { JSDOM } from "jsdom";
-import { XMLParser } from "fast-xml-parser";
+import { setTimeout as delay } from 'node:timers/promises';
+import { Readability } from '@mozilla/readability';
+import { JSDOM } from 'jsdom';
+import { XMLParser } from 'fast-xml-parser';
 
 const UA_PRESETS = {
   chrome:
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
   safari:
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15",
-  firefox:
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Gecko/20100101 Firefox/131.0",
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15',
+  firefox: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Gecko/20100101 Firefox/131.0',
 };
 
 const HELP_TEXT = `用法:
@@ -55,21 +54,21 @@ Exit codes:
 `;
 
 function parseArgs(argv) {
-  const args = { mode: "auto", timeout: 20, retries: 2, ua: "chrome", help: false };
+  const args = { mode: 'auto', timeout: 20, retries: 2, ua: 'chrome', help: false };
   const positional = [];
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
-    if (a === "--help" || a === "-h") args.help = true;
-    else if (a === "--mode") args.mode = argv[++i];
-    else if (a === "--timeout") args.timeout = Number(argv[++i]);
-    else if (a === "--retries") args.retries = Number(argv[++i]);
-    else if (a === "--ua") args.ua = argv[++i];
-    else if (a.startsWith("--")) throw new Error(`未知参数: ${a}（用 --help 查看用法）`);
+    if (a === '--help' || a === '-h') args.help = true;
+    else if (a === '--mode') args.mode = argv[++i];
+    else if (a === '--timeout') args.timeout = Number(argv[++i]);
+    else if (a === '--retries') args.retries = Number(argv[++i]);
+    else if (a === '--ua') args.ua = argv[++i];
+    else if (a.startsWith('--')) throw new Error(`未知参数: ${a}（用 --help 查看用法）`);
     else positional.push(a);
   }
   if (args.help) return args;
   if (positional.length !== 1) {
-    throw new Error("必须提供且仅提供一个 URL 参数（用 --help 查看用法）");
+    throw new Error('必须提供且仅提供一个 URL 参数（用 --help 查看用法）');
   }
   args.url = positional[0];
   return args;
@@ -86,17 +85,17 @@ async function fetchWithRetry(url, { timeoutSec, retries, ua }) {
     const timer = setTimeout(() => ac.abort(), timeoutSec * 1000);
     try {
       const res = await fetch(url, {
-        redirect: "follow",
+        redirect: 'follow',
         signal: ac.signal,
         headers: {
-          "user-agent": resolveUA(ua),
+          'user-agent': resolveUA(ua),
           accept:
-            "text/html,application/xhtml+xml,application/xml;q=0.9,application/rss+xml;q=0.9,*/*;q=0.8",
-          "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,ja;q=0.6",
+            'text/html,application/xhtml+xml,application/xml;q=0.9,application/rss+xml;q=0.9,*/*;q=0.8',
+          'accept-language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,ja;q=0.6',
         },
       });
       const buf = Buffer.from(await res.arrayBuffer());
-      const contentType = res.headers.get("content-type") || "";
+      const contentType = res.headers.get('content-type') || '';
       const finalUrl = res.url || url;
       clearTimeout(timer);
       if (!res.ok) {
@@ -107,7 +106,7 @@ async function fetchWithRetry(url, { timeoutSec, retries, ua }) {
             status: res.status,
             finalUrl,
             contentType,
-            body: buf.toString("utf8"),
+            body: buf.toString('utf8'),
             error: `HTTP ${res.status}`,
           };
         }
@@ -117,7 +116,7 @@ async function fetchWithRetry(url, { timeoutSec, retries, ua }) {
           status: res.status,
           finalUrl,
           contentType,
-          body: buf.toString("utf8"),
+          body: buf.toString('utf8'),
         };
       }
     } catch (err) {
@@ -126,19 +125,19 @@ async function fetchWithRetry(url, { timeoutSec, retries, ua }) {
     }
     if (attempt < retries) await delay(500 * Math.pow(2, attempt));
   }
-  throw lastErr ?? new Error("fetch 失败");
+  throw lastErr ?? new Error('fetch 失败');
 }
 
 function looksLikeRSS(contentType, body) {
   if (/(application|text)\/(rss|atom|xml)/i.test(contentType)) return true;
   const head = body.slice(0, 512).toLowerCase();
-  return head.includes("<rss") || head.includes("<feed") || head.includes("<?xml");
+  return head.includes('<rss') || head.includes('<feed') || head.includes('<?xml');
 }
 
 function parseRSS(body) {
   const parser = new XMLParser({
     ignoreAttributes: false,
-    attributeNamePrefix: "@_",
+    attributeNamePrefix: '@_',
     trimValues: true,
   });
   const doc = parser.parse(body);
@@ -156,30 +155,27 @@ function parseRSS(body) {
           : [];
   for (const it of list) {
     const link =
-      typeof it.link === "string"
+      typeof it.link === 'string'
         ? it.link
         : Array.isArray(it.link)
-          ? it.link.find((l) => l?.["@_rel"] !== "self")?.["@_href"] ||
-            it.link[0]?.["@_href"] ||
+          ? it.link.find((l) => l?.['@_rel'] !== 'self')?.['@_href'] ||
+            it.link[0]?.['@_href'] ||
             it.link[0]
-          : it.link?.["@_href"] || it.link;
+          : it.link?.['@_href'] || it.link;
     items.push({
-      title: typeof it.title === "string" ? it.title : it.title?.["#text"] || "",
-      link: link || "",
-      published: it.pubDate || it.published || it.updated || "",
+      title: typeof it.title === 'string' ? it.title : it.title?.['#text'] || '',
+      link: link || '',
+      published: it.pubDate || it.published || it.updated || '',
       summary:
-        (typeof it.description === "string" ? it.description : "") ||
-        (typeof it.summary === "string" ? it.summary : it.summary?.["#text"]) ||
-        "",
+        (typeof it.description === 'string' ? it.description : '') ||
+        (typeof it.summary === 'string' ? it.summary : it.summary?.['#text']) ||
+        '',
       author:
-        (typeof it.author === "string" ? it.author : it.author?.name) ||
-        it["dc:creator"] ||
-        "",
+        (typeof it.author === 'string' ? it.author : it.author?.name) || it['dc:creator'] || '',
     });
   }
   return {
-    feedTitle:
-      doc?.rss?.channel?.title || doc?.feed?.title?.["#text"] || doc?.feed?.title || "",
+    feedTitle: doc?.rss?.channel?.title || doc?.feed?.title?.['#text'] || doc?.feed?.title || '',
     items,
   };
 }
@@ -225,31 +221,31 @@ async function main() {
   if (!fetched.ok) {
     out.error = fetched.error;
     out.body = fetched.body?.slice(0, 2000);
-    process.stdout.write(JSON.stringify(out) + "\n");
+    process.stdout.write(JSON.stringify(out) + '\n');
     process.exit(2);
   }
 
   let mode = args.mode;
-  if (mode === "auto") {
-    mode = looksLikeRSS(fetched.contentType, fetched.body) ? "rss" : "readability";
+  if (mode === 'auto') {
+    mode = looksLikeRSS(fetched.contentType, fetched.body) ? 'rss' : 'readability';
   }
 
   out.mode = mode;
-  if (mode === "raw" || mode === "html") {
+  if (mode === 'raw' || mode === 'html') {
     out.body = fetched.body;
-  } else if (mode === "rss") {
+  } else if (mode === 'rss') {
     try {
       out.feed = parseRSS(fetched.body);
     } catch (err) {
       out.error = `RSS 解析失败: ${err.message}`;
       out.body = fetched.body;
-      process.stdout.write(JSON.stringify(out) + "\n");
+      process.stdout.write(JSON.stringify(out) + '\n');
       process.exit(3);
     }
-  } else if (mode === "readability") {
+  } else if (mode === 'readability') {
     const article = extractReadable(fetched.body, fetched.finalUrl);
     if (!article) {
-      out.error = "Readability 抽取失败，回退原始 HTML";
+      out.error = 'Readability 抽取失败，回退原始 HTML';
       out.body = fetched.body;
     } else {
       out.article = article;
@@ -258,12 +254,10 @@ async function main() {
     throw new Error(`未知 mode: ${mode}`);
   }
 
-  process.stdout.write(JSON.stringify(out) + "\n");
+  process.stdout.write(JSON.stringify(out) + '\n');
 }
 
 main().catch((err) => {
-  process.stdout.write(
-    JSON.stringify({ ok: false, error: err?.message || String(err) }) + "\n",
-  );
+  process.stdout.write(JSON.stringify({ ok: false, error: err?.message || String(err) }) + '\n');
   process.exit(1);
 });

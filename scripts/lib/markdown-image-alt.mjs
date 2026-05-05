@@ -29,10 +29,7 @@ function visitNode(node, fallbackAlt) {
 
 function resolveFallbackAlt(file, fallbackAlt) {
   const data = file?.data;
-  const frontmatter =
-    data?.astro?.frontmatter ??
-    data?.frontmatter ??
-    data?.matter;
+  const frontmatter = data?.astro?.frontmatter ?? data?.frontmatter ?? data?.matter;
   const title = frontmatter?.title;
 
   return typeof title === 'string' && title.trim() ? title.trim() : fallbackAlt;

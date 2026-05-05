@@ -51,17 +51,12 @@ test.describe('content and asset QA', () => {
 
         const assetPath = resolvePublicAsset(value);
         if (!fileExistsWithContent(assetPath)) {
-          problems.push(
-            `${entry.collection}/${entry.relativePath} ${key} is missing ${value}`,
-          );
+          problems.push(`${entry.collection}/${entry.relativePath} ${key} is missing ${value}`);
         }
       }
 
       const coverImage = entry.frontmatter.coverImage;
-      if (
-        entry.collection === 'radar' &&
-        coverImage?.startsWith('/images/radar/')
-      ) {
+      if (entry.collection === 'radar' && coverImage?.startsWith('/images/radar/')) {
         const fileName = path.basename(stripUrlDecorations(coverImage));
         const hasJapaneseMarker = /\.ja[-.]/.test(fileName);
         if (entry.locale === 'ja' && !hasJapaneseMarker) {
@@ -150,10 +145,7 @@ function collectLocalAssetReferences(document: Document) {
   return references;
 }
 
-function pushReference(
-  references: Array<{ original: string; pathname: string }>,
-  value: string,
-) {
+function pushReference(references: Array<{ original: string; pathname: string }>, value: string) {
   if (
     value.startsWith('#') ||
     value.startsWith('data:') ||

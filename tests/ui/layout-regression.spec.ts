@@ -49,7 +49,9 @@ test.describe('multi-viewport layout QA', () => {
     test.skip(isMobile, 'custom viewport crawl covers mobile, tablet, and desktop');
   });
 
-  test('key routes have no broken images, horizontal overflow, or covered controls', async ({ page }) => {
+  test('key routes have no broken images, horizontal overflow, or covered controls', async ({
+    page,
+  }) => {
     test.setTimeout(90_000);
 
     const consoleErrors: string[] = [];
@@ -87,10 +89,7 @@ test.describe('multi-viewport layout QA', () => {
 
 async function scanViewportAtScrollPositions(page: Page, label: string) {
   const positions = await page.evaluate(() => {
-    const maxScroll = Math.max(
-      0,
-      document.documentElement.scrollHeight - window.innerHeight,
-    );
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
     return Array.from(new Set([0, Math.floor(maxScroll / 2), maxScroll]));
   });
 
@@ -188,9 +187,19 @@ async function scanViewportAtScrollPositions(page: Page, label: string) {
           })
           .flatMap((element) => {
             const rect = element.getBoundingClientRect();
-            const centerX = Math.min(window.innerWidth - 1, Math.max(1, rect.left + rect.width / 2));
-            const centerY = Math.min(window.innerHeight - 1, Math.max(1, rect.top + rect.height / 2));
-            if (stickyHeaderBottom > 0 && centerY <= stickyHeaderBottom + 2 && !element.closest('header')) {
+            const centerX = Math.min(
+              window.innerWidth - 1,
+              Math.max(1, rect.left + rect.width / 2),
+            );
+            const centerY = Math.min(
+              window.innerHeight - 1,
+              Math.max(1, rect.top + rect.height / 2),
+            );
+            if (
+              stickyHeaderBottom > 0 &&
+              centerY <= stickyHeaderBottom + 2 &&
+              !element.closest('header')
+            ) {
               return [];
             }
 
@@ -238,7 +247,10 @@ async function scanViewportAtScrollPositions(page: Page, label: string) {
       }
     });
 
-    expect(audit.horizontalOverflow, `${label} at scrollY ${y} has horizontal overflow`).toBeLessThanOrEqual(4);
+    expect(
+      audit.horizontalOverflow,
+      `${label} at scrollY ${y} has horizontal overflow`,
+    ).toBeLessThanOrEqual(4);
     expect(audit.brokenImages, `${label} at scrollY ${y} has broken images`).toEqual([]);
     expect(audit.coveredInteractive, `${label} at scrollY ${y} has covered controls`).toEqual([]);
     expect(audit.clippedControls, `${label} at scrollY ${y} has clipped controls`).toEqual([]);

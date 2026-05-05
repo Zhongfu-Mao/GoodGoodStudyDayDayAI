@@ -24,7 +24,9 @@ async function main() {
     const after = (await stat(filePath)).size;
     totalAfter += after;
     const suffix = result.skipped ? ' (already mono 64k)' : '';
-    console.log(`${path.basename(filePath)}: ${formatMb(before)} MB -> ${formatMb(after)} MB${suffix}`);
+    console.log(
+      `${path.basename(filePath)}: ${formatMb(before)} MB -> ${formatMb(after)} MB${suffix}`,
+    );
   }
 
   console.log(`Total: ${formatMb(totalBefore)} MB -> ${formatMb(totalAfter)} MB`);

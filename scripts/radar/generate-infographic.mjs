@@ -2,7 +2,11 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { parseFrontmatter, stripFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
-import { extractSectionBlock, extractShortParagraphs, extractTopSignals } from '../lib/markdown.mjs';
+import {
+  extractSectionBlock,
+  extractShortParagraphs,
+  extractTopSignals,
+} from '../lib/markdown.mjs';
 import {
   addSourceFile,
   createNotebook,
@@ -145,29 +149,28 @@ function buildHeuristicBrief(meta, body) {
   const branches = topSignals.map((signal, index) => ({
     label: signal,
     note:
-      summaryCandidates[index]
-      ?? (meta.lang === 'ja'
-        ? '今日の流れを支える補助シグナル'
-        : '支撑当天主线的辅助信号'),
+      summaryCandidates[index] ??
+      (meta.lang === 'ja' ? '今日の流れを支える補助シグナル' : '支撑当天主线的辅助信号'),
   }));
 
   return {
     centralTheme: meta.title,
     mainline: inferMainline(meta, body),
     branches,
-    designConstraints: meta.lang === 'ja'
-      ? [
-          'ブログ冒頭のヒーロー画像として使える横長レイアウト',
-          'ポスターではなく、編集的な情報図解',
-          '文字は少なく、大きく、読みやすく',
-          '人物写真コラージュより、関係図・記号・流れを重視',
-        ]
-      : [
-          '适合作为博客文章顶部横向头图',
-          '更像编辑型信息图，不要做成营销海报',
-          '文字尽量少且大，避免小字堆砌',
-          '尽量用结构关系、节点、流向表达，而不是人物拼贴',
-        ],
+    designConstraints:
+      meta.lang === 'ja'
+        ? [
+            'ブログ冒頭のヒーロー画像として使える横長レイアウト',
+            'ポスターではなく、編集的な情報図解',
+            '文字は少なく、大きく、読みやすく',
+            '人物写真コラージュより、関係図・記号・流れを重視',
+          ]
+        : [
+            '适合作为博客文章顶部横向头图',
+            '更像编辑型信息图，不要做成营销海报',
+            '文字尽量少且大，避免小字堆砌',
+            '尽量用结构关系、节点、流向表达，而不是人物拼贴',
+          ],
   };
 }
 
@@ -254,9 +257,10 @@ async function maybeRefineBriefWithLLM(meta, body, heuristicBrief, options) {
     messages: [
       {
         role: 'system',
-        content: meta.lang === 'ja'
-          ? 'あなたは編集デザインのブリーフを作るアートディレクターです。ブログ冒頭に載せる横長インフォグラフィック用に、主線・分岐・制約を高密度かつ視覚設計しやすい JSON へ整えてください。小さな文字を大量に置かず、図解として成立する brief にしてください。'
-          : '你是一名为技术博客封面服务的编辑型信息图创意总监。请把日报正文整理成适合横向信息图的结构化 brief：只保留一条主线、3 到 5 个分支、以及明确的视觉约束。避免生成需要大量小字排版的 brief。',
+        content:
+          meta.lang === 'ja'
+            ? 'あなたは編集デザインのブリーフを作るアートディレクターです。ブログ冒頭に載せる横長インフォグラフィック用に、主線・分岐・制約を高密度かつ視覚設計しやすい JSON へ整えてください。小さな文字を大量に置かず、図解として成立する brief にしてください。'
+            : '你是一名为技术博客封面服务的编辑型信息图创意总监。请把日报正文整理成适合横向信息图的结构化 brief：只保留一条主线、3 到 5 个分支、以及明确的视觉约束。避免生成需要大量小字排版的 brief。',
       },
       {
         role: 'user',
@@ -268,7 +272,9 @@ async function maybeRefineBriefWithLLM(meta, body, heuristicBrief, options) {
           escapeJson(heuristicBrief),
           '原始正文：',
           body,
-        ].filter(Boolean).join('\n\n'),
+        ]
+          .filter(Boolean)
+          .join('\n\n'),
       },
     ],
     response_format: {
@@ -295,7 +301,9 @@ async function maybeRefineBriefWithLLM(meta, body, heuristicBrief, options) {
       throw error;
     }
 
-    console.warn(`warn brief-refine ${meta.title} -> ${error instanceof Error ? error.message : error}`);
+    console.warn(
+      `warn brief-refine ${meta.title} -> ${error instanceof Error ? error.message : error}`,
+    );
     return heuristicBrief;
   }
 }
@@ -305,7 +313,9 @@ function inferOpenAIPrompt(meta, brief) {
     .slice(0, 5)
     .map((branch, index) => `${index + 1}. ${branch.label}: ${branch.note}`)
     .join('\n');
-  const constraints = brief.designConstraints.map((item, index) => `${index + 1}. ${item}`).join('\n');
+  const constraints = brief.designConstraints
+    .map((item, index) => `${index + 1}. ${item}`)
+    .join('\n');
 
   if (meta.lang === 'ja') {
     return [
@@ -359,7 +369,9 @@ async function generateWithOpenAI(meta, body, targetFile, imagePath, options) {
     background: 'opaque',
   };
 
-  console.log(`Generating infographic with ${options.model} for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
+  console.log(
+    `Generating infographic with ${options.model} for ${path.relative(WORKSPACE_ROOT, targetFile)}...`,
+  );
   const json = await callOpenAIJson({
     url: `${baseUrl}/v1/images/generations`,
     apiKey,
@@ -429,7 +441,15 @@ async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
     await waitForLatestArtifact(notebookId, 'infographic', { timeout: 600 });
 
     console.log(`Downloading infographic to ${path.relative(WORKSPACE_ROOT, imagePath)}...`);
-    await runNotebooklm(['download', 'infographic', '--notebook', notebookId, '--force', imagePath, '--json']);
+    await runNotebooklm([
+      'download',
+      'infographic',
+      '--notebook',
+      notebookId,
+      '--force',
+      imagePath,
+      '--json',
+    ]);
   } finally {
     await maybeDeleteNotebook(notebookId, options.keepNotebook);
   }

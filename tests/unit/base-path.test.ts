@@ -20,11 +20,13 @@ describe('base path helpers', () => {
     expect(withBasePath('/images/radar/card.png', { basePath: '/GoodGoodStudyDayDayAI' })).toBe(
       '/GoodGoodStudyDayDayAI/images/radar/card.png',
     );
-    expect(withBasePath('/GoodGoodStudyDayDayAI/images/radar/card.png', { basePath: '/GoodGoodStudyDayDayAI' })).toBe(
-      '/GoodGoodStudyDayDayAI/images/radar/card.png',
-    );
-    expect(withBasePath('https://example.com/card.png', { basePath: '/GoodGoodStudyDayDayAI' })).toBe(
-      'https://example.com/card.png',
-    );
+    expect(
+      withBasePath('/GoodGoodStudyDayDayAI/images/radar/card.png', {
+        basePath: '/GoodGoodStudyDayDayAI',
+      }),
+    ).toBe('/GoodGoodStudyDayDayAI/images/radar/card.png');
+    expect(
+      withBasePath('https://example.com/card.png', { basePath: '/GoodGoodStudyDayDayAI' }),
+    ).toBe('https://example.com/card.png');
   });
 });

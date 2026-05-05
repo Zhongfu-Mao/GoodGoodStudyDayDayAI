@@ -69,9 +69,7 @@ export function updateFrontmatterValue(source, field, value, options = {}) {
   if (fieldPattern.test(frontmatter)) {
     updatedFrontmatter = frontmatter.replace(fieldPattern, `${field}: ${value}`);
   } else if (anchorPattern.test(frontmatter)) {
-    const replacement = position === 'after'
-      ? `$&\n${field}: ${value}`
-      : `${field}: ${value}\n$&`;
+    const replacement = position === 'after' ? `$&\n${field}: ${value}` : `${field}: ${value}\n$&`;
     updatedFrontmatter = frontmatter.replace(anchorPattern, replacement);
   } else {
     updatedFrontmatter = `${frontmatter}\n${field}: ${value}`;

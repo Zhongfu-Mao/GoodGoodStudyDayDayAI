@@ -7,8 +7,8 @@ const shouldFix = process.argv.includes('--fix');
 const tagTranslations = new Map(
   Object.entries({
     'Anthropic/Academy': 'Anthropic Academy',
-    '课程笔记': '講座ノート',
-    '学习路线': '学習ルート',
+    课程笔记: '講座ノート',
+    学习路线: '学習ルート',
     'AI/Fluency/框架': 'AI Fluency/フレームワーク',
     'AI/Fluency/基础': 'AI Fluency/基礎',
     'AI/Fluency/教学': 'AI Fluency/教育',
@@ -16,12 +16,12 @@ const tagTranslations = new Map(
     'AI/Fluency/非营利': 'AI Fluency/非営利',
     'AI/Fluency/学生': 'AI Fluency/学生',
     'Claude/入门': 'Claude/入門',
-    '产品': 'プロダクト',
-    '开发者': '開発者',
-    '编程': 'Coding',
-    '教育': 'Education',
-    '非营利组织': 'Nonprofits',
-    '代理': 'Agents',
+    产品: 'プロダクト',
+    开发者: '開発者',
+    编程: 'Coding',
+    教育: 'Education',
+    非营利组织: 'Nonprofits',
+    代理: 'Agents',
     '代理/Skills': 'Agents/Skills',
     '代理/子代理': 'Agents/Subagents',
     'MCP/入门': 'MCP/Getting Started',
@@ -65,7 +65,8 @@ function parseTags(filePath) {
 function replaceTags(filePath, tags) {
   const text = fs.readFileSync(filePath, 'utf8');
   const tagsPattern = /^tags:\n(?:  - .*\n)+/m;
-  const nextBlock = tags.length > 0 ? `tags:\n${tags.map((tag) => `  - ${JSON.stringify(tag)}`).join('\n')}\n` : '';
+  const nextBlock =
+    tags.length > 0 ? `tags:\n${tags.map((tag) => `  - ${JSON.stringify(tag)}`).join('\n')}\n` : '';
   const nextText = tagsPattern.test(text)
     ? text.replace(tagsPattern, nextBlock)
     : text.replace(/^(category: .*\n)/m, `$1${nextBlock}`);
@@ -132,5 +133,7 @@ if (mismatches.length > 0 && !shouldFix) {
   process.exitCode = 1;
 } else {
   const verb = shouldFix ? 'fixed' : 'checked';
-  console.log(`Bilingual tag parity ${verb}: ${mismatches.length} mismatch${mismatches.length === 1 ? '' : 'es'}.`);
+  console.log(
+    `Bilingual tag parity ${verb}: ${mismatches.length} mismatch${mismatches.length === 1 ? '' : 'es'}.`,
+  );
 }

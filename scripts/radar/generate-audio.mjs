@@ -3,7 +3,11 @@ import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import { parseFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
-import { extractSectionBlock, extractShortParagraphs, extractTopSignals } from '../lib/markdown.mjs';
+import {
+  extractSectionBlock,
+  extractShortParagraphs,
+  extractTopSignals,
+} from '../lib/markdown.mjs';
 import { compressSpeechMp3 } from '../lib/audio-compression.mjs';
 import {
   addSourceFile,
@@ -70,23 +74,27 @@ function parseArgs(argv) {
 }
 
 function buildBriefMemo(body, meta) {
-  const headings = meta.lang === 'ja'
-    ? {
-        scope: ['対象範囲'],
-        engineering: ['1. 🛠️ AI Engineering & アーキテクチャ', '1. 🛠️ AI Engineering & Architecture'],
-        models: ['2. 🧠 モデル最前線 & アルゴリズム探索', '2. 🧠 Model Frontier & Research'],
-        tools: ['3. 💻 実装コード & ツール', '3. 💻 Tools & Code'],
-        market: ['4. 📰 業界・ビジネス速報', '4. 📰 Industry & Business'],
-        mail: ['📬 Newsletter 精选', '📬 メール補遺', '📬 補遺'],
-      }
-    : {
-        scope: ['本期范围'],
-        engineering: ['1. 🛠️ AI Engineering & 架构'],
-        models: ['2. 🧠 模型前沿 & 算法探索'],
-        tools: ['3. 💻 实战代码 & 工具库'],
-        market: ['4. 📰 行业与商业快讯'],
-        mail: ['📬 Newsletter 精选', '📬 邮件补遗'],
-      };
+  const headings =
+    meta.lang === 'ja'
+      ? {
+          scope: ['対象範囲'],
+          engineering: [
+            '1. 🛠️ AI Engineering & アーキテクチャ',
+            '1. 🛠️ AI Engineering & Architecture',
+          ],
+          models: ['2. 🧠 モデル最前線 & アルゴリズム探索', '2. 🧠 Model Frontier & Research'],
+          tools: ['3. 💻 実装コード & ツール', '3. 💻 Tools & Code'],
+          market: ['4. 📰 業界・ビジネス速報', '4. 📰 Industry & Business'],
+          mail: ['📬 Newsletter 精选', '📬 メール補遺', '📬 補遺'],
+        }
+      : {
+          scope: ['本期范围'],
+          engineering: ['1. 🛠️ AI Engineering & 架构'],
+          models: ['2. 🧠 模型前沿 & 算法探索'],
+          tools: ['3. 💻 实战代码 & 工具库'],
+          market: ['4. 📰 行业与商业快讯'],
+          mail: ['📬 Newsletter 精选', '📬 邮件补遗'],
+        };
 
   const scopeBlock = extractSectionBlock(body, headings.scope);
   const engineeringBlock = extractSectionBlock(body, headings.engineering);
@@ -99,13 +107,27 @@ function buildBriefMemo(body, meta) {
   const memoSections = [
     meta.lang === 'ja' ? `タイトル：${meta.title}` : `标题：${meta.title}`,
     meta.lang === 'ja' ? '言語：日本語' : '语言：中文',
-    signals.length > 0 ? (meta.lang === 'ja' ? `主要トピック：${signals.join('；')}` : `关键主题：${signals.join('；')}`) : '',
+    signals.length > 0
+      ? meta.lang === 'ja'
+        ? `主要トピック：${signals.join('；')}`
+        : `关键主题：${signals.join('；')}`
+      : '',
     scopeBlock ? `${meta.lang === 'ja' ? '範囲とソース' : '范围与来源'}：\n${scopeBlock}` : '',
-    engineeringBlock ? `${meta.lang === 'ja' ? 'エンジニアリングとアーキテクチャ' : '工程与架构'}：\n${extractShortParagraphs(engineeringBlock).join('\n')}` : '',
-    modelsBlock ? `${meta.lang === 'ja' ? 'モデルと研究' : '模型与研究'}：\n${extractShortParagraphs(modelsBlock).join('\n')}` : '',
-    toolsBlock ? `${meta.lang === 'ja' ? 'ツールと実装' : '工具与实践'}：\n${extractShortParagraphs(toolsBlock, 2).join('\n')}` : '',
-    marketBlock ? `${meta.lang === 'ja' ? '業界とビジネス' : '行业与商业'}：\n${extractShortParagraphs(marketBlock, 2).join('\n')}` : '',
-    mailBlock ? `${meta.lang === 'ja' ? 'Newsletter 精选' : 'Newsletter 精选'}：\n${extractShortParagraphs(mailBlock, 2).join('\n')}` : '',
+    engineeringBlock
+      ? `${meta.lang === 'ja' ? 'エンジニアリングとアーキテクチャ' : '工程与架构'}：\n${extractShortParagraphs(engineeringBlock).join('\n')}`
+      : '',
+    modelsBlock
+      ? `${meta.lang === 'ja' ? 'モデルと研究' : '模型与研究'}：\n${extractShortParagraphs(modelsBlock).join('\n')}`
+      : '',
+    toolsBlock
+      ? `${meta.lang === 'ja' ? 'ツールと実装' : '工具与实践'}：\n${extractShortParagraphs(toolsBlock, 2).join('\n')}`
+      : '',
+    marketBlock
+      ? `${meta.lang === 'ja' ? '業界とビジネス' : '行业与商业'}：\n${extractShortParagraphs(marketBlock, 2).join('\n')}`
+      : '',
+    mailBlock
+      ? `${meta.lang === 'ja' ? 'Newsletter 精选' : 'Newsletter 精选'}：\n${extractShortParagraphs(mailBlock, 2).join('\n')}`
+      : '',
     meta.lang === 'ja'
       ? '要求：把上面内容整理成适合 5 分钟内听完的简明音频，不展开无关背景。'
       : '要求：把上面内容整理成适合 3-6 分钟内听完的简明音频，只保留最重要主线与信号关系。',
@@ -121,9 +143,11 @@ async function resolveTargetFile(explicitFile, requestedLang) {
 
   const lang = requestedLang === 'ja' ? 'ja' : 'zh';
   const files = (await readdir(RADAR_DIR))
-    .filter((file) => (lang === 'ja'
-      ? /^daily-ai-radar-\d{4}-\d{2}-\d{2}\.ja\.md$/.test(file)
-      : /^daily-ai-radar-\d{4}-\d{2}-\d{2}\.md$/.test(file)))
+    .filter((file) =>
+      lang === 'ja'
+        ? /^daily-ai-radar-\d{4}-\d{2}-\d{2}\.ja\.md$/.test(file)
+        : /^daily-ai-radar-\d{4}-\d{2}-\d{2}\.md$/.test(file),
+    )
     .sort();
 
   const latest = files.at(-1);
@@ -192,7 +216,15 @@ async function main() {
     console.log(`Audio artifact ${artifact.id} ready.`);
 
     console.log(`Downloading audio to ${path.relative(WORKSPACE_ROOT, audioPath)}...`);
-    await runNotebooklm(['download', 'audio', '--notebook', notebookId, '--force', audioPath, '--json']);
+    await runNotebooklm([
+      'download',
+      'audio',
+      '--notebook',
+      notebookId,
+      '--force',
+      audioPath,
+      '--json',
+    ]);
     console.log('Compressing audio to MP3 mono 64k...');
     await compressSpeechMp3(audioPath);
 
