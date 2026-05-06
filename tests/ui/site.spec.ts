@@ -169,7 +169,7 @@ test.describe('published site UI', () => {
     await expect(
       page.getByRole('heading', {
         level: 1,
-        name: /^(学 AI 不迷路，用 AI 有方法|一份 AI 学习与实践笔记)$/,
+        name: /^(学 AI 不迷路，用 AI 有方法|看懂 AI 变化，把 AI 用起来)$/,
       }),
     ).toBeVisible();
 
@@ -206,7 +206,7 @@ test.describe('published site UI', () => {
     await expect(
       page.getByRole('heading', {
         level: 1,
-        name: /^(迷わず学び、使える形へ|AI 学習と実践のノート)$/,
+        name: /^(迷わず学び、使える形へ|AI の変化を読み解き、日常で使える形にする)$/,
       }),
     ).toBeVisible();
     await expect(page.locator('[data-aquarium-toggle]')).toHaveAttribute(

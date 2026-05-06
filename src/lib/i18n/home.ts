@@ -1,9 +1,9 @@
 export const homePage = {
   zh: {
     eyebrow: 'Good Good Study, Day Day AI',
-    title: '一份 AI 学习与实践笔记',
+    title: '看懂 AI 变化，把 AI 用起来',
     description:
-      '这里把 AI 动态、课程笔记、工程实践和底层原理整理成一条可以慢慢走的路。你可以先看图报抓住重点，也可以从新手路线开始，把零散信息变成自己的理解和方法。',
+      '每日 AI 雷达帮你三分钟了解今天发生了什么；新手路线、系统课程和工程实践带你一步步把 AI 变成日常工具。不用先成为专家，从你最顺手的入口开始就行。',
     featured: '精选文章',
     latest: '最新文章',
     tags: '标签',
@@ -15,32 +15,32 @@ export const homePage = {
     contentUnit: '篇内容',
     visualUnit: '张图报',
     tagUnit: '个标签',
-    intentTitle: '先从最顺手的入口开始',
+    intentTitle: '三个入口，按你的状态进入',
     intentDescription:
-      '不用先搞懂所有术语。你现在只是好奇、想补基础，还是想把 AI 用到工作里，都有对应入口。',
+      '不用先搞懂所有术语。你只是好奇、想补基础，还是想把 AI 用到工作里——下面三个入口对应三种状态，选最贴近自己的那个就行。',
     intentItems: {
       beginner: {
-        label: '我刚开始学 AI',
-        title: '从几个核心词开始',
-        description: '用一条轻量路线理解模型、Prompt、上下文、Agent、RAG 这些高频概念。',
+        label: '我刚接触 AI',
+        title: '用最短时间听懂术语',
+        description: '一条轻量路线，把模型、Prompt、上下文、Agent、RAG 这些高频词变成日常语言。读完就知道该看什么、该跳过什么。',
         cta: '进入新手路线',
       },
       radar: {
-        label: '我想知道今天发生了什么',
-        title: '先抓住今日主线',
-        description: '用 AI 雷达和图片墙快速看懂最近发生了什么，再决定是否深挖原文。',
+        label: '我想跟上 AI 变化',
+        title: '每天三分钟抓住重点',
+        description: 'AI 雷达每日精选行业动态，图片墙适合快速浏览，文字版适合深读。先建立全局感，再决定要不要追原文。',
         cta: '看 AI 雷达',
       },
       system: {
         label: '我想系统提升',
-        title: '把零散学习串成路线',
-        description: '从 Academy、工程实践和底层原理进入，把看过的材料慢慢沉淀成自己的体系。',
+        title: '把零散知识串成体系',
+        description: '从 Academy 课程、工程实践和底层原理进入，把平时看的碎片材料慢慢沉淀成自己的理解框架。',
         cta: '看学习地图',
       },
     },
-    routesTitle: '四个内容分区，各司其职',
+    routesTitle: '四个分区，按需探索',
     routesDescription:
-      'AI 雷达负责跟踪变化，Academy 负责系统学习，工程实践负责落地，底层原理负责补齐理解框架。',
+      'AI 雷达跟踪变化，Academy 系统学习，工程实践解决落地问题，底层原理补齐基础。不用全读，按你当下的需求进入。',
     routeCta: '进入分区',
     routes: {
       radar: {
@@ -61,9 +61,9 @@ export const homePage = {
         description: '补齐数学、数据、模型和系统基础，避免只追热点却看不懂结构变化。',
       },
     },
-    useTitle: '今天你想怎么开始？',
+    useTitle: '按你当下的状态进入',
     useDescription:
-      '不用一次读完，也不用先成为专家。只是路过，就先看今日图报；想认真补课，就从新手路线开始；已经在做项目，就去工程实践找可以借鉴的方法。',
+      '只是路过就先看今日图报；想认真补课就从新手路线开始；已经在做项目就去工程实践找可借鉴的方法。不用一次读完，也不用先成为专家。',
     useCases: [
       { label: '没时间', description: '看 AI 雷达图片墙，用三五分钟抓住最近的 AI 主线。' },
       {
@@ -76,17 +76,17 @@ export const homePage = {
       },
       { label: '想补基础', description: '看底层原理，把模型、数据和系统这些关键词真正串起来。' },
     ],
-    visualTitle: '先看图，再读文',
+    visualTitle: '先看图报，再深读',
     visualDescription:
-      'AI 雷达已经积累了一批信息图。它们适合做第一层入口：先建立画面和结构，再决定要不要进入原文。',
+      'AI 雷达的信息图是快速建立全局感的第一层入口——先看画面和结构，再决定哪些值得进入原文。三五分钟就能扫完。',
     recentVisuals: '最近图报',
     recentVisualsCta: '查看图片墙',
   },
   ja: {
     eyebrow: 'Good Good Study, Day Day AI',
-    title: 'AI 学習と実践のノート',
+    title: 'AI の変化を読み解き、日常で使える形にする',
     description:
-      'AI の動き、講座ノート、実践記録、基礎原理を、少しずつ進める学習ルートとして整理しています。まず図解で要点をつかんでも、Start からゆっくり学んでも大丈夫です。',
+      'Daily AI Radar で今日の動きを 3 分でつかみ、Start、体系的な講座ノート、実践記録から少しずつ AI を日常の道具にしていけます。専門家になってから読む必要はありません。いちばん入りやすい入口から始めてください。',
     featured: '注目記事',
     latest: '最新記事',
     tags: 'タグ',
@@ -98,34 +98,35 @@ export const homePage = {
     contentUnit: '記事',
     visualUnit: '図解',
     tagUnit: 'タグ',
-    intentTitle: 'いちばん入りやすい場所から',
+    intentTitle: '3 つの入口から、今の状態に合わせて入る',
     intentDescription:
-      '用語を全部知っている必要はありません。少し気になるだけでも、基礎を補いたい時でも、仕事に使いたい時でも、入口を選べます。',
+      '用語を全部知っている必要はありません。少し気になる、基礎を補いたい、仕事に使いたい——下の 3 つはそのまま 3 つの状態に対応しています。今の自分に一番近いものを選べば大丈夫です。',
     intentItems: {
       beginner: {
-        label: 'AI を学び始めたばかり',
-        title: 'まず大事な言葉から',
+        label: 'AI に触れ始めたばかり',
+        title: '短時間で用語が聞き取れるようにする',
         description:
-          'モデル、プロンプト、コンテキスト、エージェント、RAG など、頻出語を軽い導線で整理します。',
+          'モデル、プロンプト、コンテキスト、エージェント、RAG などの頻出語を、軽いルートで日常の言葉に置き換えます。読み終えると、何を読むべきか、何を飛ばしてよいかが見えてきます。',
         cta: 'Start へ',
       },
       radar: {
-        label: '今日の変化を知りたい',
-        title: '今日の変化をつかむ',
+        label: 'AI の変化についていきたい',
+        title: '毎日 3 分で要点をつかむ',
         description:
-          'AI Radar と Image Wall で最近の流れを見て、気になったものだけ本文へ進みます。',
+          'Daily AI Radar が日々の動きを選び、Image Wall は流し見に、本文は深読み用に使えます。まず全体感を作り、追うべき原文だけ選べます。',
         cta: 'AI Radar へ',
       },
       system: {
         label: '体系的に伸ばしたい',
-        title: 'ばらばらの学びをつなぐ',
-        description: 'AI Academy、実践、基礎から、読んだものを少しずつ自分の体系にしていきます。',
+        title: 'ばらばらの知識を体系にする',
+        description:
+          'AI Academy、実践、基礎原理から入り、普段見ている断片的な材料を少しずつ自分の理解フレームにしていきます。',
         cta: '学習地図へ',
       },
     },
-    routesTitle: '4 つの入口',
+    routesTitle: '4 つのセクションを必要に応じて探索する',
     routesDescription:
-      'AI Radar は変化を追い、AI Academy は体系化し、実践は手を動かす流れへつなげ、基礎は理解の土台を補います。',
+      'AI Radar は変化を追い、AI Academy は体系的に学び、実践は落とし込み方を扱い、基礎原理は土台を補います。全部読む必要はありません。今の目的に合う場所から入ってください。',
     routeCta: 'セクションへ',
     routes: {
       radar: {
@@ -148,9 +149,9 @@ export const homePage = {
         description: '数学、データ、モデル、システムの基礎を補い、変化の背景を理解します。',
       },
     },
-    useTitle: '今日はどこから始める？',
+    useTitle: '今の状態に合わせて入る',
     useDescription:
-      '全部を一度に読む必要も、最初から詳しい必要もありません。少し見るだけなら今日の図解、腰を据えて学ぶならスタートガイド、実務に近づけたいなら実践から入れます。',
+      '少し見るだけなら今日の図解、腰を据えて学ぶなら Start、すでにプロジェクトがあるなら実践から入れます。全部を一度に読む必要も、最初から詳しい必要もありません。',
     useCases: [
       {
         label: '時間がない',
@@ -170,9 +171,9 @@ export const homePage = {
         description: '基礎で、モデル、データ、システムの見取り図をつなげます。',
       },
     ],
-    visualTitle: 'まず図解、そこから本文へ',
+    visualTitle: 'まず図解を見て、それから深読む',
     visualDescription:
-      'AI Radar には図解が増えています。全体像を先につかみ、気になったテーマだけ本文で深掘りできます。',
+      'AI Radar の図解は、全体感を素早く作るための第一層です。先に絵と構造を見て、深掘りする価値があるものだけ本文へ進めます。3〜5 分で一通り見渡せます。',
     recentVisuals: '最近の図解',
     recentVisualsCta: 'Image Wall へ',
   },
