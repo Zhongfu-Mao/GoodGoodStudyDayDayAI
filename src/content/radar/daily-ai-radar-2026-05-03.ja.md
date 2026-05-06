@@ -11,7 +11,7 @@ tags:
   - Open Models
   - AI Engineering
 lang: ja
-coverImage: "/images/radar/daily-ai-radar-2026-05-03.ja-infographic.png"
+coverImage: "/images/radar/daily-ai-radar-2026-05-03.ja-infographic.webp"
 audioUrl: "/audio/radar/daily-ai-radar-2026-05-03.ja.mp3"
 draft: false
 ---

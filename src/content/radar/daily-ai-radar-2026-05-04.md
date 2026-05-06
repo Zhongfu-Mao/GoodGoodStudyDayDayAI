@@ -11,7 +11,7 @@ tags:
   - AI Engineering
   - AI Economics
 lang: zh
-coverImage: "/images/radar/daily-ai-radar-2026-05-04-infographic.png"
+coverImage: "/images/radar/daily-ai-radar-2026-05-04-infographic.webp"
 audioUrl: "/audio/radar/daily-ai-radar-2026-05-04.mp3"
 draft: false
 ---

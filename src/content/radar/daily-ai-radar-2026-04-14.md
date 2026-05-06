@@ -11,7 +11,7 @@ tags:
   - OpenClaw
   - Claude
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-04-14-infographic.png
+coverImage: /images/radar/daily-ai-radar-2026-04-14-infographic.webp
 draft: false
 ---
 ## 本期范围

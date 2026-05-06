@@ -12,7 +12,7 @@ tags:
   - Open Models
   - AI Infrastructure
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-04-27.ja-infographic.png
+coverImage: /images/radar/daily-ai-radar-2026-04-27.ja-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-04-27.ja.mp3
 draft: false
 ---

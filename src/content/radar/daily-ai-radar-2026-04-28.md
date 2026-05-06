@@ -12,7 +12,7 @@ tags:
   - AI Infrastructure
   - Privacy
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-04-28-infographic.png
+coverImage: /images/radar/daily-ai-radar-2026-04-28-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-04-28.mp3
 draft: false
 ---

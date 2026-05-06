@@ -11,7 +11,7 @@ tags:
   - AI Infrastructure
   - Open Models
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-05-01-infographic.png
+coverImage: /images/radar/daily-ai-radar-2026-05-01-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-05-01.mp3
 draft: false
 ---

@@ -33,7 +33,7 @@ function parseArgs(argv) {
     briefMode: 'auto',
     size: '1536x1024',
     quality: 'medium',
-    outputFormat: 'png',
+    outputFormat: 'webp',
     allMissing: false,
     overwrite: false,
   };

@@ -11,7 +11,7 @@ tags:
   - AI Infrastructure
   - Search
 lang: zh
-coverImage: "/images/radar/daily-ai-radar-2026-05-06-infographic.png"
+coverImage: "/images/radar/daily-ai-radar-2026-05-06-infographic.webp"
 audioUrl: "/audio/radar/daily-ai-radar-2026-05-06.mp3"
 draft: false
 ---

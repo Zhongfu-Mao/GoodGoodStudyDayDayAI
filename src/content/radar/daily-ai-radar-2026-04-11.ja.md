@@ -10,7 +10,7 @@ tags:
   - "Claude"
   - "RAG"
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-04-11.ja-infographic.png
+coverImage: /images/radar/daily-ai-radar-2026-04-11.ja-infographic.webp
 draft: false
 ---
 ## 対象範囲

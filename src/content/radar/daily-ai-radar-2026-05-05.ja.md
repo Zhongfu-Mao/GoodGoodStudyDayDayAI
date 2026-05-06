@@ -11,7 +11,7 @@ tags:
   - Evaluation
   - AI Infrastructure
 lang: ja
-coverImage: "/images/radar/daily-ai-radar-2026-05-05.ja-infographic.png"
+coverImage: "/images/radar/daily-ai-radar-2026-05-05.ja-infographic.webp"
 audioUrl: "/audio/radar/daily-ai-radar-2026-05-05.ja.mp3"
 draft: false
 ---

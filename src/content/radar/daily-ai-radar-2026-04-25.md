@@ -12,7 +12,7 @@ tags:
   - Open Models
   - Retrieval
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-04-25-infographic.png
+coverImage: /images/radar/daily-ai-radar-2026-04-25-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-04-25.mp3
 draft: false
 ---

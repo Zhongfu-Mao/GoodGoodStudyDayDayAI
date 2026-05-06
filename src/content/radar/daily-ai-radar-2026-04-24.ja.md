@@ -11,7 +11,7 @@ tags:
   - Retrieval
   - Model Release
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-04-24.ja-infographic.png
+coverImage: /images/radar/daily-ai-radar-2026-04-24.ja-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-04-24.ja.mp3
 draft: false
 ---

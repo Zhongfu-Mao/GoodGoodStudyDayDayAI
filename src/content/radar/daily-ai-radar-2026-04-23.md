@@ -10,7 +10,7 @@ tags:
   - "Agent"
   - "Benchmark"
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-04-23-infographic.png
+coverImage: /images/radar/daily-ai-radar-2026-04-23-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-04-23.mp3
 draft: false
 ---

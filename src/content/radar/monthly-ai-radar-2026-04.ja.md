@@ -11,7 +11,7 @@ tags:
   - AI Infrastructure
   - Coding Agents
 lang: ja
-coverImage: /images/radar/monthly-ai-radar-2026-04.ja-infographic.png
+coverImage: /images/radar/monthly-ai-radar-2026-04.ja-infographic.webp
 audioUrl: /audio/radar/monthly-ai-radar-2026-04.ja.mp3?v=monthly
 deckUrl: /decks/radar/monthly-ai-radar-2026-04.ja.pdf
 draft: false
@@ -141,7 +141,7 @@ RAG の競争は「類似テキストの検索」から「推論可能なエビ�
 
 - **Audio Overview**: /audio/radar/monthly-ai-radar-2026-04.ja.mp3?v=monthly
 - **Slide Deck**: /decks/radar/monthly-ai-radar-2026-04.ja.pdf
-- **Infographic**: /images/radar/monthly-ai-radar-2026-04.ja-infographic.png
+- **Infographic**: /images/radar/monthly-ai-radar-2026-04.ja-infographic.webp
 
 ## 月内週報ナビゲーション
 
