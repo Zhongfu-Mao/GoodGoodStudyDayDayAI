@@ -40,6 +40,127 @@ async function expectCardsToFitViewport(page: Page, sectionSelector: string) {
   }
 }
 
+async function expectArticleBodyContrast(page: Page, minimumRatio: number) {
+  const result = await page.locator('.theme-prose').evaluate((prose) => {
+    type Rgba = { r: number; g: number; b: number; a: number };
+
+    function parseColor(value: string): Rgba | null {
+      const hex = value.trim().match(/^#([0-9a-f]{6})$/i);
+      if (hex) {
+        return {
+          r: Number.parseInt(hex[1].slice(0, 2), 16),
+          g: Number.parseInt(hex[1].slice(2, 4), 16),
+          b: Number.parseInt(hex[1].slice(4, 6), 16),
+          a: 1,
+        };
+      }
+
+      const match = value.match(/rgba?\(([^)]+)\)/);
+      if (!match) return null;
+
+      const parts = match[1]
+        .trim()
+        .split(/\s*,\s*|\s+\/\s+|\s+/)
+        .map((part) => Number.parseFloat(part));
+      if (parts.length < 3 || parts.some((part) => Number.isNaN(part))) return null;
+
+      return {
+        r: parts[0],
+        g: parts[1],
+        b: parts[2],
+        a: parts[3] ?? 1,
+      };
+    }
+
+    function luminance(color: Rgba) {
+      const channels = [color.r, color.g, color.b].map((channel) => {
+        const normalized = channel / 255;
+        return normalized <= 0.03928
+          ? normalized / 12.92
+          : ((normalized + 0.055) / 1.055) ** 2.4;
+      });
+
+      return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+    }
+
+    function contrastRatio(foreground: Rgba, background: Rgba) {
+      const foregroundLum = luminance(foreground);
+      const backgroundLum = luminance(background);
+      const lighter = Math.max(foregroundLum, backgroundLum);
+      const darker = Math.min(foregroundLum, backgroundLum);
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    const rootStyle = getComputedStyle(document.documentElement);
+    const themeBackground =
+      parseColor(rootStyle.getPropertyValue('--theme-page-bg').trim()) ??
+      parseColor(rootStyle.backgroundColor) ??
+      { r: 2, g: 6, b: 23, a: 1 };
+
+    const proseStyle = getComputedStyle(prose);
+
+    function proseColorPropertyFor(element: Element) {
+      const property = element.matches('h1, h2, h3, h4, th')
+        ? '--tw-prose-headings'
+        : element.matches('a')
+          ? '--tw-prose-links'
+          : element.matches('strong')
+            ? '--tw-prose-bold'
+            : '--tw-prose-body';
+
+      return property;
+    }
+
+    const candidates = [...prose.querySelectorAll('p, li, h2, h3, strong, a')]
+      .filter((element) => {
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        return (
+          rect.width > 0 &&
+          rect.height > 0 &&
+          style.visibility !== 'hidden' &&
+          style.display !== 'none' &&
+          (element.textContent ?? '').trim().length >= 8
+        );
+      })
+      .slice(0, 24);
+
+    const samples = candidates.map((element) => {
+      const style = getComputedStyle(element);
+      const property = proseColorPropertyFor(element);
+      const fallbackValue = proseStyle.getPropertyValue(property).trim();
+      const color = parseColor(style.color) ?? parseColor(fallbackValue);
+      if (!color) {
+        return {
+          text: (element.textContent ?? '').trim().slice(0, 80),
+          contrast: 0,
+          color: style.color,
+          fallback: `${property}: ${fallbackValue}`,
+        };
+      }
+
+      return {
+        text: (element.textContent ?? '').trim().replace(/\s+/g, ' ').slice(0, 80),
+        contrast: contrastRatio(color, themeBackground),
+        color: style.color,
+        fallback: `${property}: ${fallbackValue}`,
+      };
+    });
+
+    return {
+      count: samples.length,
+      minimum: Math.min(...samples.map((sample) => sample.contrast)),
+      weakest: samples.sort((a, b) => a.contrast - b.contrast).at(0),
+    };
+  });
+
+  expect(result.count).toBeGreaterThan(0);
+  expect(
+    result.minimum,
+    `Weakest article contrast ${result.minimum.toFixed(2)} for "${result.weakest?.text ?? ''}" (${result.weakest?.color ?? 'no color'}; ${result.weakest?.fallback ?? 'no fallback'})`,
+  ).toBeGreaterThanOrEqual(minimumRatio);
+}
+
 test.describe('published site UI', () => {
   test('home page renders core navigation, theme toggle, and Japanese switch', async ({ page }) => {
     await gotoApp(page, '/');
@@ -122,6 +243,18 @@ test.describe('published site UI', () => {
     await expect(page.locator('article[data-pagefind-body]')).toContainText(
       '本ロードマップが解決する課題',
     );
+  });
+
+  test('article body stays readable in dark mode', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('ggsdda-theme', 'dark');
+    });
+
+    await gotoApp(page, '/radar/daily-ai-radar-2026-05-06/');
+
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page.locator('.theme-prose')).toBeVisible();
+    await expectArticleBodyContrast(page, 4.5);
   });
 
   test('start basics article stays out of AI Academy and offers next lesson navigation', async ({
@@ -318,7 +451,7 @@ test.describe('published site UI', () => {
     );
     await expect(
       japaneseMonthlySection.locator(
-        `img[src="${appPath('/images/radar/monthly-ai-radar-2026-04.ja-infographic.png')}"]`,
+        `img[src="${appPath('/images/radar/monthly-ai-radar-2026-04.ja-infographic.webp')}"]`,
       ),
     ).toBeVisible();
   });
@@ -340,7 +473,7 @@ test.describe('published site UI', () => {
     await gotoApp(page, '/ja/radar/#weekly');
     const japaneseWeeklyHref = appPath('/ja/radar/weekly-ai-radar-2026-04-01-to-2026-04-07/');
     const japaneseWeeklyImageSrc = appPath(
-      '/images/radar/weekly-ai-radar-2026-04-01-to-2026-04-07.ja-infographic.png',
+      '/images/radar/weekly-ai-radar-2026-04-01-to-2026-04-07.ja-infographic.webp',
     );
     const japaneseWeeklyImage = page.locator(
       `[data-radar-section]#weekly a[href="${japaneseWeeklyHref}"] img[src="${japaneseWeeklyImageSrc}"]`,
