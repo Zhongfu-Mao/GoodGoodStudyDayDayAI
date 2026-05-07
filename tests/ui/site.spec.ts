@@ -15,6 +15,40 @@ async function expectSectionHasContentCount(section: Locator, countText: RegExp)
   await expect(section.locator('[data-gallery-card]').first()).toBeVisible();
 }
 
+async function expectSectionCardsMatchCadence(
+  section: Locator,
+  cadence: 'daily' | 'weekly' | 'monthly',
+) {
+  const cards = section.locator('[data-gallery-card]');
+  const cardCount = await cards.count();
+  expect(cardCount).toBeGreaterThan(0);
+
+  const cadences = await cards.evaluateAll((items) =>
+    items.map((item) => item.getAttribute('data-cadence')),
+  );
+  expect(cadences, `Expected all visible radar cards to use ${cadence} cadence.`).toEqual(
+    Array(cardCount).fill(cadence),
+  );
+}
+
+async function expectSectionHasLocaleInfographic(section: Locator, locale: 'zh' | 'ja') {
+  const image = section.locator('[data-gallery-card] img[src*="/images/radar/"]').first();
+  await expect(image).toBeVisible();
+  const src = await image.getAttribute('src');
+  expect(src).toBeTruthy();
+
+  if (locale === 'ja') {
+    expect(src).toMatch(/\/images\/radar\/.+\.ja-infographic\.webp/);
+    return;
+  }
+
+  await expect(image).toHaveAttribute(
+    'src',
+    /\/images\/radar\/.+-infographic\.webp/,
+  );
+  expect(src).not.toContain('.ja-infographic');
+}
+
 async function expectCardsToFitViewport(page: Page, sectionSelector: string) {
   const viewport = page.viewportSize();
   if (!viewport) {
@@ -161,6 +195,17 @@ async function expectArticleBodyContrast(page: Page, minimumRatio: number) {
   ).toBeGreaterThanOrEqual(minimumRatio);
 }
 
+async function gotoFirstRadarArticle(page: Page, locale: 'zh' | 'ja' = 'zh') {
+  await gotoApp(page, locale === 'ja' ? '/ja/radar/#daily' : '/radar/#daily');
+
+  const firstArticleLink = page
+    .locator('[data-radar-section]#daily [data-gallery-card] a[href]')
+    .first();
+  await expect(firstArticleLink).toBeVisible();
+  await firstArticleLink.click();
+  await expect(page.locator('article[data-pagefind-body]')).toBeVisible();
+}
+
 test.describe('published site UI', () => {
   test('home page renders core navigation, theme toggle, and Japanese switch', async ({ page }) => {
     await gotoApp(page, '/');
@@ -250,7 +295,7 @@ test.describe('published site UI', () => {
       localStorage.setItem('ggsdda-theme', 'dark');
     });
 
-    await gotoApp(page, '/radar/daily-ai-radar-2026-05-06/');
+    await gotoFirstRadarArticle(page);
 
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await expect(page.locator('.theme-prose')).toBeVisible();
@@ -418,8 +463,7 @@ test.describe('published site UI', () => {
     await expect(weeklySection).toBeVisible();
     await expect(weeklyNav).toHaveAttribute('aria-current', 'page');
     await expectSectionHasContentCount(weeklySection, /\d+ 篇内容/);
-    await expect(weeklySection).toContainText('AI 雷达周报：2026-04-07 至 2026-04-13');
-    await expect(weeklySection).toContainText('AI 雷达周报：2026-04-01 至 2026-04-07');
+    await expectSectionCardsMatchCadence(weeklySection, 'weekly');
     await expect(weeklySection).not.toContainText('AI 周报：RAG 检索质量新基准与 Agent 观测性演进');
     await expect(weeklySection).not.toContainText(
       'AI 雷达周报：Agent 运行时架构与门控模型时代的到来',
@@ -430,14 +474,14 @@ test.describe('published site UI', () => {
     await expect(weeklySection).toBeHidden();
     await expect(monthlySection).toBeVisible();
     await expectSectionHasContentCount(monthlySection, /\d+ 篇内容/);
+    await expectSectionCardsMatchCadence(monthlySection, 'monthly');
     await expect(monthlySection).not.toContainText('月度趋势研判：AI 工具链与部署生态的深层演进');
 
     await gotoApp(page, '/ja/radar/#weekly');
     const japaneseWeeklySection = page.locator('[data-radar-section]#weekly');
     await expect(japaneseWeeklySection).toBeVisible();
     await expectSectionHasContentCount(japaneseWeeklySection, /\d+ 記事/);
-    await expect(japaneseWeeklySection).toContainText('AI レーダー週報：2026-04-07 〜 2026-04-13');
-    await expect(japaneseWeeklySection).toContainText('AI レーダー週報：2026-04-01 〜 2026-04-07');
+    await expectSectionCardsMatchCadence(japaneseWeeklySection, 'weekly');
     await expect(japaneseWeeklySection).not.toContainText(
       '週刊 AI 動向：RAG 検索精度の新基準と Agent オブザーバビリティの進化',
     );
@@ -446,14 +490,11 @@ test.describe('published site UI', () => {
     const japaneseMonthlySection = page.locator('[data-radar-section]#monthly');
     await expect(japaneseMonthlySection).toBeVisible();
     await expectSectionHasContentCount(japaneseMonthlySection, /\d+ 記事/);
+    await expectSectionCardsMatchCadence(japaneseMonthlySection, 'monthly');
     await expect(japaneseMonthlySection).not.toContainText(
       '月次トレンド分析：AI ツールチェーンとデプロイエコシステムの変遷',
     );
-    await expect(
-      japaneseMonthlySection.locator(
-        `img[src="${appPath('/images/radar/monthly-ai-radar-2026-04.ja-infographic.webp')}"]`,
-      ),
-    ).toBeVisible();
+    await expectSectionHasLocaleInfographic(japaneseMonthlySection, 'ja');
   });
 
   test('radar archive cards stay inside the viewport across locales and cadences', async ({
@@ -471,19 +512,9 @@ test.describe('published site UI', () => {
     }
 
     await gotoApp(page, '/ja/radar/#weekly');
-    const japaneseWeeklyHref = appPath('/ja/radar/weekly-ai-radar-2026-04-01-to-2026-04-07/');
-    const japaneseWeeklyImageSrc = appPath(
-      '/images/radar/weekly-ai-radar-2026-04-01-to-2026-04-07.ja-infographic.webp',
-    );
-    const japaneseWeeklyImage = page.locator(
-      `[data-radar-section]#weekly a[href="${japaneseWeeklyHref}"] img[src="${japaneseWeeklyImageSrc}"]`,
-    );
-    await expect(japaneseWeeklyImage).toBeVisible();
-    await expect(
-      page.locator(
-        `[data-radar-section]#weekly a[href="${japaneseWeeklyHref}"].radar-visual-placeholder`,
-      ),
-    ).toHaveCount(0);
+    const japaneseWeeklySection = page.locator('[data-radar-section]#weekly');
+    await expectSectionHasLocaleInfographic(japaneseWeeklySection, 'ja');
+    await expect(japaneseWeeklySection.locator('.radar-visual-placeholder')).toHaveCount(0);
   });
 
   test('radar image wall filters cards and opens the preview dialog', async ({ page }) => {
@@ -553,10 +584,11 @@ test.describe('published site UI', () => {
   test('radar audio mini-player button opens and closes the persistent player', async ({
     page,
   }) => {
-    await gotoApp(page, '/radar/daily-ai-radar-2026-04-26/');
+    await gotoFirstRadarArticle(page);
 
     const player = page.locator('[data-global-audio-player]');
     await expect(player).toBeHidden();
+    const articleTitle = await page.locator('article[data-pagefind-body] h1').innerText();
 
     const miniPlayerButton = page.getByRole('button', { name: '在全站播放器中播放音频' });
     await expect(miniPlayerButton).toHaveAttribute('data-tooltip', '在全站播放器中播放音频');
@@ -564,7 +596,7 @@ test.describe('published site UI', () => {
     await miniPlayerButton.click();
 
     await expect(player).toBeVisible();
-    await expect(player.locator('[data-audio-title]')).toContainText('AI 雷达日报：2026-04-26');
+    await expect(player.locator('[data-audio-title]')).toContainText(articleTitle);
     await expect(player).toHaveAttribute('data-playback-state', /^(playing|paused)$/);
     await expect(player.locator('[data-audio-toggle]')).toHaveAttribute(
       'data-tooltip',
