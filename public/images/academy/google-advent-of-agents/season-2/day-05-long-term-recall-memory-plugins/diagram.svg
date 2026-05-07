@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Season 2 Day 05 learning flow</title>
+  <desc id="desc">A learning flow diagram for Long Term Recall: Memory Plugins.</desc>
+  <rect width="1200" height="760" fill="#fbfdff"/>
+  <text x="70" y="72" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="760">Day 05: Long Term Recall: Memory Plugins</text>
+  <g font-family="Inter, Arial, sans-serif" text-anchor="middle">
+    <rect x="82" y="164" width="236" height="118" rx="20" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="200" y="214" fill="#075985" font-size="23" font-weight="760">Question</text>
+    <text x="200" y="247" fill="#334155" font-size="16">What changes in the system?</text>
+    <rect x="482" y="164" width="236" height="118" rx="20" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="600" y="214" fill="#166534" font-size="23" font-weight="760">Design</text>
+    <text x="600" y="247" fill="#334155" font-size="16">Boundary, state, tool, policy</text>
+    <rect x="882" y="164" width="236" height="118" rx="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="1000" y="214" fill="#9a3412" font-size="23" font-weight="760">Artifact</text>
+    <text x="1000" y="247" fill="#334155" font-size="16">Diagram, lab, checklist</text>
+    <rect x="282" y="448" width="236" height="118" rx="20" fill="#fae8ff" stroke="#c026d3" stroke-width="2"/>
+    <text x="400" y="498" fill="#86198f" font-size="23" font-weight="760">Evaluate</text>
+    <text x="400" y="531" fill="#334155" font-size="16">Trace and regression check</text>
+    <rect x="682" y="448" width="236" height="118" rx="20" fill="#111827"/>
+    <text x="800" y="498" fill="#ffffff" font-size="23" font-weight="760">Production</text>
+    <text x="800" y="531" fill="#cbd5e1" font-size="16">Failure, auth, rollout</text>
+  </g>
+  <g stroke="#94a3b8" stroke-width="3" stroke-linecap="round" fill="none">
+    <path d="M318 223H482"/>
+    <path d="M718 223H882"/>
+    <path d="M1000 282C1000 385 800 380 800 448"/>
+    <path d="M682 507H518"/>
+    <path d="M400 448C400 380 200 385 200 282"/>
+  </g>
+  <text x="70" y="690" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="20">一份 memory policy：什么能记、何时过期、谁能删除、如何引用。</text>
+</svg>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="980" viewBox="0 0 1400 980" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Context memory skills layers</title>
+  <desc id="desc">A layered diagram showing the difference between prompt context, session state, long-term memory, and skills in an agent system.</desc>
+  <rect width="1400" height="980" rx="36" fill="#f8fafc"/>
+  <rect x="54" y="50" width="1292" height="880" rx="32" fill="#ffffff" stroke="#dbe3ea"/>
+  <text x="96" y="120" fill="#0f172a" font-size="34" font-weight="760" font-family="Avenir Next, Segoe UI, sans-serif">Context, memory, skills: separate the layers</text>
+  <text x="96" y="162" fill="#475569" font-size="20" font-family="Avenir Next, Segoe UI, sans-serif">Agent 可靠性来自分层：哪些内容本轮需要、哪些内容跨轮保留、哪些能力按需加载。</text>
+  <g font-family="Avenir Next, Segoe UI, sans-serif">
+    <rect x="132" y="238" width="1136" height="104" rx="26" fill="#dbeafe" stroke="#60a5fa"/>
+    <text x="172" y="296" fill="#1d4ed8" font-size="26" font-weight="760">Prompt context</text>
+    <text x="460" y="296" fill="#0f172a" font-size="22">Only what the model needs for this turn</text>
+    <rect x="132" y="378" width="1136" height="104" rx="26" fill="#dcfce7" stroke="#86efac"/>
+    <text x="172" y="436" fill="#166534" font-size="26" font-weight="760">Session state</text>
+    <text x="460" y="436" fill="#0f172a" font-size="22">Current task progress, selected files, temporary artifacts</text>
+    <rect x="132" y="518" width="1136" height="104" rx="26" fill="#fef3c7" stroke="#fbbf24"/>
+    <text x="172" y="576" fill="#92400e" font-size="26" font-weight="760">Long-term memory</text>
+    <text x="460" y="576" fill="#0f172a" font-size="22">Stable preferences, durable facts, user-approved knowledge</text>
+    <rect x="132" y="658" width="1136" height="104" rx="26" fill="#ede9fe" stroke="#c4b5fd"/>
+    <text x="172" y="716" fill="#5b21b6" font-size="26" font-weight="760">Skills</text>
+    <text x="460" y="716" fill="#0f172a" font-size="22">Procedural knowledge loaded on demand, not dumped into every prompt</text>
+  </g>
+  <path d="M700 342V378M700 482V518M700 622V658" stroke="#64748b" stroke-width="7" stroke-linecap="round"/>
+  <rect x="182" y="834" width="1036" height="62" rx="20" fill="#0f172a"/>
+  <text x="222" y="873" fill="#f8fafc" font-size="22" font-family="Avenir Next, Segoe UI, sans-serif">Design test: if a fact appears in every prompt, prove it really belongs there.</text>
+</svg>

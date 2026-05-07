@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">ADK Dev Skills: Accelerated Multiagent Triage cover</title>
+  <desc id="desc">Google Advent of Agents Season 2 Day 16 cover image.</desc>
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="70" y="70" width="1060" height="490" rx="34" fill="#ffffff" stroke="#d9e2ee" stroke-width="2"/>
+  <circle cx="1015" cy="160" r="88" fill="#14b8a6" opacity=".14"/>
+  <circle cx="190" cy="490" r="104" fill="#f59e0b" opacity=".16"/>
+  <text x="120" y="145" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="760">Season 2 / Day 16</text>
+  <text x="120" y="208" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="780">ADK Dev Skills: Accelerated Multiagent Triage</text>
+  <text x="120" y="268" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="23">把复杂问题先分诊，再决定该由哪个工具、Skill 或 Agent 处理。</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="21" font-weight="720" text-anchor="middle">
+    <rect x="125" y="358" width="190" height="78" rx="18" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="220" y="405" fill="#075985">Boundary</text>
+    <rect x="375" y="358" width="190" height="78" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="470" y="405" fill="#166534">Artifact</text>
+    <rect x="625" y="358" width="190" height="78" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="720" y="405" fill="#9a3412">Lab</text>
+    <rect x="875" y="358" width="190" height="78" rx="18" fill="#111827"/>
+    <text x="970" y="405" fill="#ffffff">Production</text>
+  </g>
+  <g stroke="#64748b" stroke-width="3" stroke-linecap="round"><path d="M315 397H375"/><path d="M565 397H625"/><path d="M815 397H875"/></g>
+</svg>

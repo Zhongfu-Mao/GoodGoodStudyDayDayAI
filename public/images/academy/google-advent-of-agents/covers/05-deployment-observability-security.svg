@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Deployment observability and security cover</title>
+  <desc id="desc">A cover showing deployment, tracing, evaluation, identity, and safety gates for production agents.</desc>
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="70" y="70" width="1060" height="490" rx="34" fill="#ffffff" stroke="#d9e2ee" stroke-width="2"/>
+  <text x="120" y="150" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="760">Google Advent of Agents</text>
+  <text x="120" y="202" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="26">Deployment, Observability, and Security</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="19" font-weight="720" text-anchor="middle">
+    <rect x="130" y="324" width="160" height="72" rx="16" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="210" y="367" fill="#075985">Local ADK</text>
+    <rect x="350" y="324" width="160" height="72" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="430" y="367" fill="#166534">Deploy</text>
+    <rect x="570" y="324" width="160" height="72" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="650" y="367" fill="#92400e">Trace</text>
+    <rect x="790" y="324" width="160" height="72" rx="16" fill="#fae8ff" stroke="#c026d3" stroke-width="2"/>
+    <text x="870" y="367" fill="#86198f">Evaluate</text>
+    <rect x="1010" y="324" width="90" height="72" rx="16" fill="#111827"/>
+    <text x="1055" y="367" fill="#ffffff">Gate</text>
+  </g>
+  <g stroke="#64748b" stroke-width="3" stroke-linecap="round">
+    <path d="M290 360H350"/>
+    <path d="M510 360H570"/>
+    <path d="M730 360H790"/>
+    <path d="M950 360H1010"/>
+  </g>
+  <text x="120" y="492" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="23">A production agent is not done when it replies. It is done when it can be deployed, traced, evaluated, authorized, and stopped.</text>
+</svg>

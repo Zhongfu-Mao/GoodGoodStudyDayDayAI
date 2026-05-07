@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Production agent control plane</title>
+  <desc id="desc">Diagram of deployment, observability, evaluation, identity, and security controls around a production agent runtime.</desc>
+  <rect width="1200" height="760" fill="#fbfdff"/>
+  <text x="70" y="72" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="760">Production agent control plane</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="390" y="238" width="420" height="170" rx="24" fill="#111827"/>
+    <text x="494" y="306" fill="#ffffff" font-size="30" font-weight="760">Agent runtime</text>
+    <text x="466" y="352" fill="#cbd5e1" font-size="19">model, tools, state, callbacks</text>
+    <rect x="86" y="134" width="240" height="96" rx="18" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="140" y="176" fill="#075985" font-size="22" font-weight="760">Deployment</text>
+    <text x="128" y="205" fill="#334155" font-size="16">Agent Engine / Cloud Run</text>
+    <rect x="86" y="326" width="240" height="96" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="126" y="368" fill="#166534" font-size="22" font-weight="760">Observability</text>
+    <text x="132" y="397" fill="#334155" font-size="16">traces, spans, replay</text>
+    <rect x="86" y="518" width="240" height="96" rx="18" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="152" y="560" fill="#92400e" font-size="22" font-weight="760">Evals</text>
+    <text x="118" y="589" fill="#334155" font-size="16">trajectory and rubric tests</text>
+    <rect x="874" y="134" width="240" height="96" rx="18" fill="#fae8ff" stroke="#c026d3" stroke-width="2"/>
+    <text x="938" y="176" fill="#86198f" font-size="22" font-weight="760">Identity</text>
+    <text x="912" y="205" fill="#334155" font-size="16">end-user auth propagation</text>
+    <rect x="874" y="326" width="240" height="96" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="942" y="368" fill="#9a3412" font-size="22" font-weight="760">Safety</text>
+    <text x="908" y="397" fill="#334155" font-size="16">guardrails, Model Armor</text>
+    <rect x="874" y="518" width="240" height="96" rx="18" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+    <text x="928" y="560" fill="#334155" font-size="22" font-weight="760">Durability</text>
+    <text x="912" y="589" fill="#334155" font-size="16">resume, retry, batch jobs</text>
+  </g>
+  <g stroke="#94a3b8" stroke-width="3" stroke-linecap="round" fill="none">
+    <path d="M326 182C420 182 410 238 470 270"/>
+    <path d="M326 374H390"/>
+    <path d="M326 566C420 566 410 408 470 376"/>
+    <path d="M810 270C868 238 856 182 874 182"/>
+    <path d="M810 374H874"/>
+    <path d="M810 376C868 408 856 566 874 566"/>
+  </g>
+  <text x="70" y="705" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="20">Treat each control as a release requirement. Missing controls become production incidents, not documentation gaps.</text>
+</svg>

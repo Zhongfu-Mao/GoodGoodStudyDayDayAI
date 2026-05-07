@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="840" viewBox="0 0 1400 840" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Agent engineering stack map</title>
+  <desc id="desc">A layered diagram mapping Advent of Agents topics from development kit to protocols, deployment, observability, evaluation, and security.</desc>
+  <rect width="1400" height="840" rx="36" fill="#f8fafc"/>
+  <rect x="54" y="50" width="1292" height="740" rx="32" fill="#ffffff" stroke="#dbe3ea"/>
+  <text x="96" y="120" fill="#0f172a" font-size="34" font-weight="760" font-family="Avenir Next, Segoe UI, sans-serif">Agent engineering stack</text>
+  <text x="96" y="162" fill="#475569" font-size="20" font-family="Avenir Next, Segoe UI, sans-serif">Advent of Agents 主题重组：从本地构建，到互操作、部署、观测、评估与安全。</text>
+  <g font-family="Avenir Next, Segoe UI, sans-serif">
+    <rect x="112" y="224" width="1176" height="76" rx="20" fill="#e0f2fe" stroke="#7dd3fc"/>
+    <text x="142" y="272" fill="#075985" font-size="24" font-weight="700">1. Build core</text>
+    <text x="358" y="272" fill="#0f172a" font-size="22">ADK, Gemini models, tools, sessions, artifacts, code execution</text>
+    <rect x="112" y="324" width="1176" height="76" rx="20" fill="#dcfce7" stroke="#86efac"/>
+    <text x="142" y="372" fill="#166534" font-size="24" font-weight="700">2. Shape context</text>
+    <text x="358" y="372" fill="#0f172a" font-size="22">skills, memory plugins, compaction, caching, rewind, state design</text>
+    <rect x="112" y="424" width="1176" height="76" rx="20" fill="#fef3c7" stroke="#fcd34d"/>
+    <text x="142" y="472" fill="#92400e" font-size="24" font-weight="700">3. Connect systems</text>
+    <text x="358" y="472" fill="#0f172a" font-size="22">MCP, managed tools, API Registry, A2A, A2UI, Workspace connectors</text>
+    <rect x="112" y="524" width="1176" height="76" rx="20" fill="#fce7f3" stroke="#f9a8d4"/>
+    <text x="142" y="572" fill="#9d174d" font-size="24" font-weight="700">4. Operate reliably</text>
+    <text x="358" y="572" fill="#0f172a" font-size="22">Agent Engine, Cloud Run, batch jobs, durable execution, identity propagation</text>
+    <rect x="112" y="624" width="1176" height="76" rx="20" fill="#ede9fe" stroke="#c4b5fd"/>
+    <text x="142" y="672" fill="#5b21b6" font-size="24" font-weight="700">5. Govern quality</text>
+    <text x="358" y="672" fill="#0f172a" font-size="22">hierarchical tracing, evalsets, rubric scoring, guardrails, Model Armor</text>
+  </g>
+  <path d="M700 300V324M700 400V424M700 500V524M700 600V624" stroke="#64748b" stroke-width="7" stroke-linecap="round"/>
+</svg>

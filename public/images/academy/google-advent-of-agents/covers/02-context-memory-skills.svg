@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Context memory and skills cover</title>
+  <desc id="desc">Cover image for an agent engineering article about context, memory, skills, and state management.</desc>
+  <defs>
+    <linearGradient id="bg" x1="100" y1="70" x2="1500" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="0.45" stop-color="#4338ca"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="26" stdDeviation="30" flood-color="#020617" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" rx="52" fill="url(#bg)"/>
+  <circle cx="1280" cy="170" r="360" fill="#a78bfa" opacity="0.17"/>
+  <circle cx="390" cy="700" r="320" fill="#2dd4bf" opacity="0.14"/>
+  <rect x="76" y="72" width="1448" height="756" rx="42" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.22"/>
+  <g filter="url(#shadow)">
+    <rect x="830" y="186" width="520" height="520" rx="38" fill="#07111f" fill-opacity="0.66" stroke="#ffffff" stroke-opacity="0.24"/>
+    <circle cx="1090" cy="432" r="118" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.32" stroke-width="5"/>
+    <rect x="922" y="270" width="146" height="58" rx="18" fill="#60a5fa"/>
+    <rect x="1118" y="270" width="146" height="58" rx="18" fill="#34d399"/>
+    <rect x="922" y="536" width="146" height="58" rx="18" fill="#fbbf24"/>
+    <rect x="1118" y="536" width="146" height="58" rx="18" fill="#f472b6"/>
+    <path d="M1010 328L1056 374M1176 328L1128 374M1010 536L1056 492M1176 536L1128 492" stroke="#ffffff" stroke-opacity="0.7" stroke-width="9" stroke-linecap="round"/>
+    <text x="945" y="306" fill="#082f49" font-size="20" font-weight="760" font-family="Avenir Next, Segoe UI, sans-serif">context</text>
+    <text x="1144" y="306" fill="#052e16" font-size="20" font-weight="760" font-family="Avenir Next, Segoe UI, sans-serif">memory</text>
+    <text x="956" y="572" fill="#422006" font-size="20" font-weight="760" font-family="Avenir Next, Segoe UI, sans-serif">skills</text>
+    <text x="1156" y="572" fill="#4a044e" font-size="20" font-weight="760" font-family="Avenir Next, Segoe UI, sans-serif">state</text>
+  </g>
+  <text x="132" y="158" fill="#ddd6fe" font-size="25" font-family="Avenir Next, Segoe UI, sans-serif" letter-spacing="5">AGENT ENGINEERING LAYER 02</text>
+  <text x="132" y="306" fill="white" font-size="82" font-weight="760" font-family="Avenir Next, Segoe UI, sans-serif">Context</text>
+  <text x="132" y="404" fill="white" font-size="82" font-weight="760" font-family="Avenir Next, Segoe UI, sans-serif">Memory & Skills</text>
+  <text x="138" y="510" fill="#ede9fe" font-size="32" font-family="Avenir Next, Segoe UI, sans-serif">Load less · remember better · act with boundaries</text>
+  <rect x="134" y="662" width="640" height="76" rx="24" fill="#020617" fill-opacity="0.32" stroke="#ffffff" stroke-opacity="0.16"/>
+  <text x="168" y="710" fill="#f8fafc" font-size="27" font-family="Avenir Next, Segoe UI, sans-serif">Big context is not the same as good memory</text>
+</svg>

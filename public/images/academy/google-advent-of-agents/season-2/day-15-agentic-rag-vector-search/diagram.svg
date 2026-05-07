@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Day 15 system pattern</title>
+  <desc id="desc">A system pattern diagram for Grounding with ADK: Agentic RAG with Vector Search 2.0.</desc>
+  <rect width="1200" height="760" fill="#fbfdff"/>
+  <text x="70" y="72" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="760">Day 15: Grounding with ADK: Agentic RAG with Vector Search 2.0</text>
+  <g font-family="Inter, Arial, sans-serif" text-anchor="middle" font-size="19" font-weight="720">
+    <rect x="70" y="210" width="180" height="90" rx="18" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="160" y="263" fill="#075985">question</text>
+    <rect x="295" y="210" width="180" height="90" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="385" y="263" fill="#166534">retrieval plan</text>
+    <rect x="520" y="210" width="180" height="90" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="610" y="263" fill="#9a3412">evidence</text>
+    <rect x="745" y="210" width="180" height="90" rx="18" fill="#fae8ff" stroke="#c026d3" stroke-width="2"/>
+    <text x="835" y="263" fill="#86198f">answer</text>
+    <rect x="970" y="210" width="160" height="90" rx="18" fill="#111827"/>
+    <text x="1050" y="263" fill="#ffffff">citation check</text>
+  </g>
+  <g stroke="#94a3b8" stroke-width="3" stroke-linecap="round" fill="none">
+    <path d="M250 255H295"/><path d="M475 255H520"/><path d="M700 255H745"/><path d="M925 255H970"/>
+  </g>
+  <rect x="160" y="430" width="880" height="118" rx="22" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="600" y="480" text-anchor="middle" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="760">Artifact</text>
+  <text x="600" y="520" text-anchor="middle" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="20">一张 RAG contract：检索意图、过滤条件、引用格式、无结果处理。</text>
+  <text x="70" y="690" fill="#b45309" font-family="Inter, Arial, sans-serif" font-size="20">Risk: 检索结果如果不带来源和置信度，会把幻觉包装成 grounded answer。</text>
+</svg>

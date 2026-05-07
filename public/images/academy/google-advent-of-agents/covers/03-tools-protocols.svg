@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Tools and protocol boundaries cover</title>
+  <desc id="desc">A visual map of MCP, A2A, A2UI and API registry boundaries for agent systems.</desc>
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="70" y="72" width="1060" height="486" rx="34" fill="#ffffff" stroke="#d7e0ea" stroke-width="2"/>
+  <circle cx="990" cy="160" r="70" fill="#f97316" opacity=".14"/>
+  <circle cx="210" cy="472" r="92" fill="#14b8a6" opacity=".14"/>
+  <text x="118" y="150" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="760">Google Advent of Agents</text>
+  <text x="118" y="202" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="26">Tools, Protocols, and Boundaries</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">
+    <rect x="125" y="292" width="190" height="92" rx="18" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+    <text x="180" y="349" fill="#155e75">MCP</text>
+    <rect x="385" y="292" width="190" height="92" rx="18" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <text x="440" y="349" fill="#166534">A2A</text>
+    <rect x="645" y="292" width="190" height="92" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="700" y="349" fill="#9a3412">A2UI</text>
+    <rect x="905" y="292" width="190" height="92" rx="18" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="946" y="349" fill="#5b21b6">Registry</text>
+  </g>
+  <g stroke="#64748b" stroke-width="3" stroke-linecap="round">
+    <path d="M315 338H385"/>
+    <path d="M575 338H645"/>
+    <path d="M835 338H905"/>
+  </g>
+  <text x="118" y="478" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="23">Tool access, agent collaboration, interactive UI, and governed enterprise APIs should not be mixed into one vague integration layer.</text>
+</svg>

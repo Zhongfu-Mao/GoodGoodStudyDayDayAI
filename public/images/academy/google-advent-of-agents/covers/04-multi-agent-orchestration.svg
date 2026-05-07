@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Multi-agent orchestration cover</title>
+  <desc id="desc">A cover showing several agent orchestration patterns converging into a decision memo.</desc>
+  <rect width="1200" height="630" fill="#f7f9fb"/>
+  <rect x="70" y="70" width="1060" height="490" rx="34" fill="#ffffff" stroke="#d9e2ee" stroke-width="2"/>
+  <text x="120" y="150" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="760">Google Advent of Agents</text>
+  <text x="120" y="202" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="26">Multi-Agent Orchestration Patterns</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="20" font-weight="720">
+    <rect x="140" y="302" width="150" height="70" rx="16" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="177" y="345" fill="#075985">Plan</text>
+    <rect x="350" y="244" width="150" height="70" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="380" y="287" fill="#166534">Research</text>
+    <rect x="350" y="360" width="150" height="70" rx="16" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="390" y="403" fill="#92400e">Verify</text>
+    <rect x="560" y="302" width="150" height="70" rx="16" fill="#fae8ff" stroke="#c026d3" stroke-width="2"/>
+    <text x="594" y="345" fill="#86198f">Critic</text>
+    <rect x="770" y="302" width="250" height="70" rx="16" fill="#111827"/>
+    <text x="817" y="345" fill="#ffffff">Decision Memo</text>
+  </g>
+  <g stroke="#64748b" stroke-width="3" stroke-linecap="round" fill="none">
+    <path d="M290 337C325 337 325 279 350 279"/>
+    <path d="M290 337C325 337 325 395 350 395"/>
+    <path d="M500 279C535 279 535 337 560 337"/>
+    <path d="M500 395C535 395 535 337 560 337"/>
+    <path d="M710 337H770"/>
+  </g>
+  <text x="120" y="492" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="23">Sequential, coordinator, fanout, hierarchy, critic loops, and human approval are product choices, not decorations.</text>
+</svg>

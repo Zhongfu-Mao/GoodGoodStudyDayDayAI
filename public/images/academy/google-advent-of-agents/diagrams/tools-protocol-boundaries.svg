@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Agent protocol boundary diagram</title>
+  <desc id="desc">Diagram separating MCP, API Registry, A2A, and A2UI responsibilities around an agent runtime.</desc>
+  <rect width="1200" height="720" fill="#fbfdff"/>
+  <text x="70" y="72" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="760">Protocol boundaries for production agents</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="458" y="178" width="284" height="150" rx="22" fill="#111827"/>
+    <text x="522" y="244" fill="#ffffff" font-size="28" font-weight="760">Agent runtime</text>
+    <text x="504" y="286" fill="#cbd5e1" font-size="19">reasoning, policy, state</text>
+    <rect x="82" y="144" width="276" height="128" rx="20" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+    <text x="158" y="197" fill="#155e75" font-size="26" font-weight="760">MCP</text>
+    <text x="114" y="234" fill="#334155" font-size="18">tools, resources, prompts</text>
+    <rect x="82" y="392" width="276" height="128" rx="20" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="132" y="445" fill="#5b21b6" font-size="26" font-weight="760">API Registry</text>
+    <text x="120" y="482" fill="#334155" font-size="18">approved enterprise APIs</text>
+    <rect x="842" y="144" width="276" height="128" rx="20" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <text x="936" y="197" fill="#166534" font-size="26" font-weight="760">A2A</text>
+    <text x="882" y="234" fill="#334155" font-size="18">agent-to-agent tasks</text>
+    <rect x="842" y="392" width="276" height="128" rx="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="925" y="445" fill="#9a3412" font-size="26" font-weight="760">A2UI</text>
+    <text x="878" y="482" fill="#334155" font-size="18">interactive UI payloads</text>
+  </g>
+  <g fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M358 208C400 208 415 228 458 228" stroke="#0891b2"/>
+    <path d="M358 456C420 456 424 300 458 300" stroke="#7c3aed"/>
+    <path d="M742 228C786 228 800 208 842 208" stroke="#16a34a"/>
+    <path d="M742 300C796 300 798 456 842 456" stroke="#ea580c"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" font-size="18" fill="#475569">
+    <text x="114" y="606">Use MCP when the agent needs external capabilities.</text>
+    <text x="114" y="637">Use Registry when tool access needs admin governance.</text>
+    <text x="668" y="606">Use A2A when another agent owns execution.</text>
+    <text x="668" y="637">Use A2UI when the response should become interactive.</text>
+  </g>
+</svg>

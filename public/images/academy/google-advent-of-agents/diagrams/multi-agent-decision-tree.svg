@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Multi-agent pattern decision tree</title>
+  <desc id="desc">Decision tree for selecting sequential, coordinator, fanout, hierarchical, generator critic, and human in the loop patterns.</desc>
+  <rect width="1200" height="760" fill="#fbfdff"/>
+  <text x="70" y="72" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="760">Choosing a multi-agent pattern</text>
+  <g font-family="Inter, Arial, sans-serif" text-anchor="middle">
+    <rect x="440" y="118" width="320" height="86" rx="18" fill="#111827"/>
+    <text x="600" y="170" fill="#ffffff" font-size="24" font-weight="760">What makes the task hard?</text>
+    <rect x="74" y="292" width="218" height="86" rx="18" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="183" y="326" fill="#075985" font-size="21" font-weight="760">Known order</text>
+    <text x="183" y="356" fill="#334155" font-size="16">Sequential</text>
+    <rect x="353" y="292" width="218" height="86" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="462" y="326" fill="#166534" font-size="21" font-weight="760">Many specialists</text>
+    <text x="462" y="356" fill="#334155" font-size="16">Coordinator</text>
+    <rect x="632" y="292" width="218" height="86" rx="18" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="741" y="326" fill="#92400e" font-size="21" font-weight="760">Independent evidence</text>
+    <text x="741" y="356" fill="#334155" font-size="16">Parallel fanout</text>
+    <rect x="911" y="292" width="218" height="86" rx="18" fill="#fae8ff" stroke="#c026d3" stroke-width="2"/>
+    <text x="1020" y="326" fill="#86198f" font-size="21" font-weight="760">Nested planning</text>
+    <text x="1020" y="356" fill="#334155" font-size="16">Hierarchy</text>
+    <rect x="232" y="520" width="250" height="92" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="357" y="555" fill="#9a3412" font-size="21" font-weight="760">Quality needs critique</text>
+    <text x="357" y="586" fill="#334155" font-size="16">Generator-Critic</text>
+    <rect x="718" y="520" width="250" height="92" rx="18" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+    <text x="843" y="555" fill="#334155" font-size="21" font-weight="760">Risk needs approval</text>
+    <text x="843" y="586" fill="#334155" font-size="16">Human in the loop</text>
+  </g>
+  <g stroke="#94a3b8" stroke-width="3" stroke-linecap="round" fill="none">
+    <path d="M600 204V244"/>
+    <path d="M183 292C183 244 600 244 600 244"/>
+    <path d="M462 292C462 244 600 244 600 244"/>
+    <path d="M741 292C741 244 600 244 600 244"/>
+    <path d="M1020 292C1020 244 600 244 600 244"/>
+    <path d="M462 378C462 470 357 470 357 520"/>
+    <path d="M741 378C741 470 843 470 843 520"/>
+  </g>
+  <text x="70" y="700" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="20">Start with the simplest pattern that matches the coordination problem, then add approval or critique only where risk demands it.</text>
+</svg>
