@@ -58,7 +58,7 @@ export const homePage = {
       },
       foundations: {
         title: '底层原理',
-        description: '补齐数学、数据、模型和系统基础，避免只追热点却看不懂结构变化。',
+        description: '构建对 AI 的深层理解——不是补数学课，而是建立"为什么它这样工作"的心智模型，让你在选方案、做判断时有自己的依据。',
       },
     },
     useTitle: '按你当下的状态进入',
@@ -74,7 +74,7 @@ export const homePage = {
         label: '想落地',
         description: '去工程实践看工具、脚本和流程怎么跑起来，把经验带回自己的工作。',
       },
-      { label: '想补基础', description: '看底层原理，把模型、数据和系统这些关键词真正串起来。' },
+      { label: '想补基础', description: '看底层原理，建立"AI 为什么这样工作"的心智模型，做判断时有自己的依据。' },
     ],
     visualTitle: '先看图报，再深读',
     visualDescription:
@@ -146,7 +146,8 @@ export const homePage = {
       },
       foundations: {
         title: '基礎原理',
-        description: '数学、データ、モデル、システムの基礎を補い、変化の背景を理解します。',
+        description:
+          'AI を深く理解するための入口です。数学を補習するというより、「なぜそう動くのか」という心のモデルを作り、判断や選択に自分なりの軸を持てるようにします。',
       },
     },
     useTitle: '今の状態に合わせて入る',
@@ -168,7 +169,8 @@ export const homePage = {
       },
       {
         label: '基礎を固めたい',
-        description: '基礎で、モデル、データ、システムの見取り図をつなげます。',
+        description:
+          '基礎原理で、「AI はなぜそう動くのか」という心のモデルを作り、判断するときの自分なりの軸を持ちます。',
       },
     ],
     visualTitle: 'まず図解を見て、それから深読む',
