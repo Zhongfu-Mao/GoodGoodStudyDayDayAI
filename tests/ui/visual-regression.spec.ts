@@ -3,11 +3,14 @@ import { expect, test, type Page } from '@playwright/test';
 import { gotoApp } from './site-test-utils';
 
 const visualSnapshots = [
-  // Keep pixel baselines on content-stable pages only. Radar archives and the
-  // home page include newly generated media, so structural UI tests cover them.
+  // Keep pixel baselines on content-stable regions only. Global navigation,
+  // public tags, radar archives, and the home page include dynamic content, so
+  // structural UI tests cover those surfaces instead.
   {
     name: 'ja-academy-detail-phone',
     path: '/ja/academy/openai-academy/00-overview/openai-academy-overview/',
+    clipHeight: 760,
+    target: 'article[data-pagefind-body]',
     viewport: { width: 390, height: 844 },
   },
 ] as const;
@@ -32,12 +35,24 @@ test.describe('critical page visual baselines', () => {
       await page.setViewportSize(snapshot.viewport);
       await gotoApp(page, snapshot.path);
       await stabilizeVisualPage(page);
-      await expect(page.locator('main')).toBeVisible();
+      const target = page.locator(snapshot.target).first();
+      await expect(target).toBeVisible();
+      await target.evaluate((element) => element.scrollIntoView({ block: 'start' }));
+      await page.waitForTimeout(80);
+      const targetBox = await target.boundingBox();
+      if (!targetBox) {
+        throw new Error(`Expected visual snapshot target "${snapshot.target}" to have a layout box.`);
+      }
 
       await expect(page).toHaveScreenshot(`${snapshot.name}.png`, {
         animations: 'disabled',
         caret: 'hide',
-        fullPage: false,
+        clip: {
+          height: Math.min(Math.floor(targetBox.height), snapshot.clipHeight),
+          width: Math.floor(targetBox.width),
+          x: Math.max(0, Math.floor(targetBox.x)),
+          y: Math.max(0, Math.floor(targetBox.y)),
+        },
         maxDiffPixelRatio: 0.015,
         scale: 'css',
       });
