@@ -116,6 +116,11 @@ const difficulty = getEntryDifficulty(entry);
 const readingMinutes = estimateReadingMinutes(entry.body, locale);
 const plainSummary = isRadar ? getPlainSummary(entry, locale) : '';
 const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
+const updatedDate = entry.data.updatedDate;
+const showUpdatedDate = Boolean(updatedDate && updatedDate.getTime() !== entry.data.date.getTime());
+const dateLabels = locale === 'ja'
+  ? { published: '公開', updated: '更新' }
+  : { published: '发布', updated: '更新' };
 const articleHref = articlePath(entry.data.category, currentSlug, locale);
 const audioMeta = `${collectionLabels[entry.data.category][locale]} · ${formatDate(entry.data.date, locale)}`;
 const openCategoryHint =
@@ -324,7 +329,13 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
       <span class="theme-chip rounded-xl px-3 py-1">
         {collectionLabels[entry.data.category][locale]}
       </span>
-      <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date, locale)}</time>
+      <time datetime={entry.data.date.toISOString()}>{dateLabels.published} {formatDate(entry.data.date, locale)}</time>
+      {showUpdatedDate && updatedDate ? (
+        <>
+          <span>·</span>
+          <time datetime={updatedDate.toISOString()}>{dateLabels.updated} {formatDate(updatedDate, locale)}</time>
+        </>
+      ) : null}
       <span>·</span>
       <span>{entry.data.lang.toUpperCase()}</span>
       <span>·</span>

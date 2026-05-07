@@ -36,6 +36,7 @@ const structuredData = buildBlogPostingJsonLd({ entry, slug, locale: 'ja', site:
   ogType="article"
   ogImage={entry.data.coverImage}
   publishedTime={entry.data.date.toISOString()}
+  modifiedTime={(entry.data.updatedDate ?? entry.data.date).toISOString()}
   activeCategory={entry.data.category}
   structuredData={structuredData}
 >

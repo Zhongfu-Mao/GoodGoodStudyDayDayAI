@@ -24,6 +24,11 @@ const titleTransitionName = `title-${transitionKey}`;
 const difficulty = getEntryDifficulty(entry);
 const readingMinutes = estimateReadingMinutes(entry.body, locale);
 const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
+const updatedDate = entry.data.updatedDate;
+const showUpdatedDate = Boolean(updatedDate && updatedDate.getTime() !== entry.data.date.getTime());
+const dateLabels = locale === 'ja'
+  ? { published: '公開', updated: '更新' }
+  : { published: '发布', updated: '更新' };
 ---
 
 <article class="theme-panel theme-panel-link group rounded-[1.25rem] p-6 shadow-glow">
@@ -45,7 +50,12 @@ const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
 
   <div class="theme-muted mb-4 flex items-center justify-between gap-4 text-xs uppercase tracking-[0.2em]">
     <span>{categoryLabel}</span>
-    <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date, locale)}</time>
+    <div class="flex shrink-0 flex-col items-end gap-1 text-right">
+      <time datetime={entry.data.date.toISOString()}>{dateLabels.published} {formatDate(entry.data.date, locale)}</time>
+      {showUpdatedDate && updatedDate ? (
+        <time datetime={updatedDate.toISOString()}>{dateLabels.updated} {formatDate(updatedDate, locale)}</time>
+      ) : null}
+    </div>
   </div>
   <div class="mb-4 flex flex-wrap gap-2">
     <span class="theme-chip rounded-xl px-3 py-1 text-xs">{difficultyLabels[locale][difficulty]}</span>

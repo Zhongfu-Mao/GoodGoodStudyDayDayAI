@@ -16,6 +16,7 @@ const academyMetaSchema = z.object({
 const baseBlogSchema = z.object({
   title: z.string(),
   date: z.coerce.date(),
+  updatedDate: z.coerce.date().optional(),
   category: z.enum(collectionNames),
   description: z.string().optional(),
   difficulty: difficultySchema.optional(),

@@ -26,6 +26,7 @@ const {
   ogType = 'website',
   ogImage,
   publishedTime,
+  modifiedTime,
   activeCategory,
   showStartSubnav = false,
   structuredData,
@@ -37,6 +38,7 @@ const {
   ogType?: 'website' | 'article';
   ogImage?: string;
   publishedTime?: string;
+  modifiedTime?: string;
   activeCategory?: CollectionName;
   showStartSubnav?: boolean;
   structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
@@ -81,6 +83,9 @@ const startSubnavItems = getStartSubnavItems(locale);
     {resolvedOgImage ? <meta property="og:image" content={resolvedOgImage} /> : null}
     {ogType === 'article' && publishedTime ? (
       <meta property="article:published_time" content={publishedTime} />
+    ) : null}
+    {ogType === 'article' && modifiedTime ? (
+      <meta property="article:modified_time" content={modifiedTime} />
     ) : null}
 
     <meta name="twitter:card" content={resolvedOgImage ? 'summary_large_image' : 'summary'} />

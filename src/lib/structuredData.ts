@@ -26,6 +26,7 @@ export function buildBlogPostingJsonLd({ entry, slug, locale, site }: BlogPostin
   const description = entry.data.description ?? entry.data.plainSummary;
   const image = entry.data.coverImage ? [toAssetUrl(entry.data.coverImage, site)] : undefined;
   const date = entry.data.date.toISOString();
+  const modifiedDate = (entry.data.updatedDate ?? entry.data.date).toISOString();
 
   return omitUndefined({
     '@context': 'https://schema.org',
@@ -34,7 +35,7 @@ export function buildBlogPostingJsonLd({ entry, slug, locale, site }: BlogPostin
     description,
     inLanguage: locale === 'ja' ? 'ja-JP' : 'zh-CN',
     datePublished: date,
-    dateModified: date,
+    dateModified: modifiedDate,
     url,
     mainEntityOfPage: {
       '@type': 'WebPage',
