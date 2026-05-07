@@ -1,11 +1,12 @@
 ---
-title: "AI Academy ルート：非エンジニアのための AI 活用ガイド"
+title: "入口ルート：日常業務から AI Academy に入る"
 date: 2026-04-27
+updatedDate: 2026-05-07
 category: academy
-description: "プロダクト、運用、マーケティング、営業、管理部門など、非エンジニアの方が AI を日常業務に導入し、仕事の質を向上させるための学習ロードマップです。"
+description: "プロダクト、運用、マーケティング、営業、管理部門向け。OpenAI Academy で ChatGPT workflow を作り、Anthropic Academy で協働境界を補い、必要に応じて Google Advent の Agent engineering 事例へ進みます。"
 coverImage: "/images/academy/learning-routes/non-engineering-route.svg"
 difficulty: beginner
-plainSummary: "本ルートは非エンジニアを対象としています。ChatGPT 入門からプロンプト技術、ライティング、リサーチ、データ分析、さらに Projects、Custom GPTs、Skills を活用した業務自動化までを段階的に学びます。"
+plainSummary: "日常業務のための AI Academy 入口カードです。ChatGPT の基礎と業務活用から始め、安全境界、協働方法、再利用可能な workflow へ進みます。"
 tags:
   - "AI Academy"
   - "Learning Route"
@@ -29,6 +30,16 @@ draft: false
 1. **適材適所の判断**：ChatGPT や Claude がどのタスクに向いているかを正しく理解する。
 2. **タスクの再構築**：実際の業務を AI が実行可能なステップに分解する。
 3. **仕組み化（Workflow）**：一度成功した対話を、再利用可能なワークフローとして定着させる。
+
+## 三つの分区の読み方
+
+この入口カードは、Academy 全体を順番に読むためではなく、どこから始めるかを決めるためのものです。
+
+| 分区 | このルートでの使い方 |
+| --- | --- |
+| **OpenAI Academy** | 主線。ChatGPT の基礎、業務シーン、research、writing、data analysis、Projects、Skills を押さえる。 |
+| **Anthropic Academy** | 境界を補う。AI Fluency、Claude の協働方法、Skills、人間と Agent の役割分担を理解する。 |
+| **Google Advent of Agents** | 選択読書。これらの能力が Agent system としてどう engineering されるかを知りたい段階で Season 2 の事例を読む。 |
 
 ## フェーズ 1：AI との対話スキルを身につける
 

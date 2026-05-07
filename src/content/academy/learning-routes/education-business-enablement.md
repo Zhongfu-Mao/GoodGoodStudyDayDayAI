@@ -1,11 +1,12 @@
 ---
-title: "AI Academy 路线：如何构建组织内的 AI 素养（AI Fluency）"
+title: "入口路线：组织赋能者如何建设 AI Fluency"
 date: 2026-04-27
+updatedDate: 2026-05-07
 category: academy
-description: "面向教育者、培训师、业务推动者及组织赋能团队的 AI 学习路线：从 AI 素养框架出发，深入探讨教学设计、行业应用场景及安全合规准则。"
+description: "面向教育者、培训负责人和业务推动者：先用 Anthropic Academy 建立 AI Fluency 与教学框架，再用 OpenAI Academy 补教育、行业和安全实践，最后用 Google Advent 案例理解 Agent 工程如何进入组织流程。"
 coverImage: "/images/academy/learning-routes/education-business-enablement.svg"
 difficulty: beginner
-plainSummary: "本路线旨在协助教育及组织赋能人员，通过系统学习 AI 素养（AI Fluency）、先进教学法、ChatGPT 教育/办公应用及行业案例，实现组织内的 AI 转型。"
+plainSummary: "本路线是组织赋能者进入 AI Academy 的入口卡：围绕 AI Fluency、教育设计、业务推广、安全治理和 Agent 工程案例，帮助团队安全持续地采用 AI。"
 tags:
   - "AI Fluency"
 lang: zh
@@ -24,6 +25,16 @@ draft: false
 如果您不仅仅满足于个人的单点提效，而是致力于**赋能一个群体**去理解并应用 AI，那么本路线将是您的核心指引。典型角色包括：教育工作者、企业培训负责人、业务推动者（Enablement）、创新项目团队、内部布道者及组织管理者。
 
 本路线的核心目标是构建 **AI 素养（AI Fluency）**：不仅知晓 AI 的定义，更能清晰阐述其原理、进行实操演示、设计教学练习、识别潜在风险，并能将 AI 稳健地植入具体的业务场景。
+
+## 三大分区读法
+
+组织赋能路线不是只看工具功能，而是把课程内容转成可培训、可推广、可治理的组织能力：
+
+| 分区 | 在本路线中的用途 |
+| --- | --- |
+| **Anthropic Academy** | 主线。先建立 AI Fluency、教学方法、人机协作边界和 Claude / Skills 的组织化用法。 |
+| **OpenAI Academy** | 场景补充。补教育、办公、行业、安全使用和 ChatGPT for Work 的落地案例。 |
+| **Google Advent of Agents** | 管理者选读。理解 Agent 系统进入企业流程时需要的评估、安全、身份、观测和审批机制。 |
 
 ## 第一阶段：构建 AI 素养（AI Fluency）框架
 

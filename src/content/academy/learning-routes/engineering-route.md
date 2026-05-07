@@ -1,11 +1,12 @@
 ---
-title: "AI Academy 路线：工程师如何系统化掌握 AI"
+title: "入口路线：工程师如何进入 Agent 工程主线"
 date: 2026-04-27
+updatedDate: 2026-05-07
 category: academy
-description: "专为工程师设计的 AI 学习路线：涵盖从 Codex / Claude Code 到 MCP、Agents、RAG、Evals、生产环境优化及上下文工程（Context Engineering）的全方位进阶。"
+description: "面向工程师：先用 OpenAI Academy 建立构建 AI 产品的基础，再用 Anthropic Academy 补 MCP、Skills、Subagents，最后以 Google Advent Season 2 进入完整 Agent 工程主线。"
 coverImage: "/images/academy/learning-routes/engineering-route.svg"
 difficulty: intermediate
-plainSummary: "本路线专为技术人员打造，旨在将 AI 辅助编程、MCP 协议、智能体（Agent）、RAG 检索增强生成、评估系统、生产环境优化及上下文工程整合为一套可落地的技术架构。"
+plainSummary: "本路线是工程师进入 AI Academy 的入口卡：把 Codex、Claude Code、MCP、Agents、RAG、Evals、部署、身份和观测串成一条可落地的工程路径。"
 tags:
   - "AI Engineering"
 lang: zh
@@ -29,6 +30,16 @@ draft: false
 2. 如何设计与之配套的工具集、权限控制、日志审计、审批流及回放机制？
 3. RAG、Agent、Evals 分别旨在解决哪些具体的工程难题？
 4. 明确产品功能（Product Feature）与单纯的提示词演示（Prompt Demo）之间的界限。
+
+## 三大分区读法
+
+工程师路线建议把三个课程分区当作递进关系，而不是平铺目录：
+
+| 分区 | 在本路线中的用途 |
+| --- | --- |
+| **OpenAI Academy** | 建立 AI 产品基础：Codex、Agents、RAG、Evals、生产优化。 |
+| **Anthropic Academy** | 补协作与协议：Claude Code、MCP、Skills、Subagents，以及可复用的 Agent 工作方式。 |
+| **Google Advent of Agents** | 主线深读：按 Season 2 的 31 天，从 ADK、工具边界、多 Agent、评估、安全、部署、身份、观测一路读到 A2A / A2UI。 |
 
 ## 第一阶段：AI Coding 深入真实项目
 

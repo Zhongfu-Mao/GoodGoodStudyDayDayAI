@@ -1,11 +1,12 @@
 ---
-title: "AI Academy ルート：エンジニアのための AI 活用ロードマップ"
+title: "入口ルート：エンジニアが Agent 工程主線へ入る"
 date: 2026-04-27
+updatedDate: 2026-05-07
 category: academy
-description: "Codex / Claude Code から MCP、Agents、RAG、Evals、Production、Context Engineering まで、エンジニアが AI をシステムとして組み込むための実践的ルートです。"
+description: "エンジニア向け。OpenAI Academy で AI product の基礎を作り、Anthropic Academy で MCP、Skills、Subagents を補い、Google Advent Season 2 で Agent engineering の全体像へ進みます。"
 coverImage: "/images/academy/learning-routes/engineering-route.svg"
 difficulty: intermediate
-plainSummary: "本ルートはエンジニアを対象としています。AI coding、MCP、Agent、RAG、Evals、本番環境の最適化、そして Context Engineering を一つの堅牢な実践ルートとして統合します。"
+plainSummary: "エンジニア向けの AI Academy 入口カードです。Codex、Claude Code、MCP、Agents、RAG、Evals、deploy、identity、observability を一つの工程ルートとしてつなげます。"
 tags:
   - "AI Engineering"
 lang: ja
@@ -29,6 +30,16 @@ draft: false
 2. ツール利用、権限管理、ログ、承認フロー、リプレイメカニズムをどう設計するか。
 3. RAG、Agent、Evals はそれぞれどのようなエンジニアリング上の課題を解決するのか。
 4. どこまでが「プロダクト機能」で、どこからが単なる「プロンプトによるデモ」なのか。
+
+## 三つの分区の読み方
+
+エンジニア向けルートでは、三つの course 分区を並列ではなく段階的に使います。
+
+| 分区 | このルートでの使い方 |
+| --- | --- |
+| **OpenAI Academy** | AI product の基礎を作る：Codex、Agents、RAG、Evals、production optimization。 |
+| **Anthropic Academy** | 協働と protocol を補う：Claude Code、MCP、Skills、Subagents、再利用可能な Agent workflow。 |
+| **Google Advent of Agents** | 主線として深読する：Season 2 の 31 日で、ADK、tool boundary、multi-agent、eval、安全、deploy、identity、observability、A2A / A2UI をつなげる。 |
 
 ## フェーズ 1：AI Coding の実プロジェクトへの導入
 

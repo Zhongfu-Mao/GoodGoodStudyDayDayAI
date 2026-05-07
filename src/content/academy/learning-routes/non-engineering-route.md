@@ -1,11 +1,12 @@
 ---
-title: "AI Academy 路线：非技术背景读者如何开启 AI 之路"
+title: "入口路线：日常工作者如何进入 AI Academy"
 date: 2026-04-27
+updatedDate: 2026-05-07
 category: academy
-description: "专为产品、运营、市场、销售、管理及职能团队设计的 AI 学习路线：从基础应用起步，逐步将 AI 深度融入真实的业务工作流。"
+description: "面向产品、运营、市场、销售、管理和职能团队：先用 OpenAI Academy 建立 ChatGPT 工作流，再用 Anthropic Academy 补协作边界，最后按需进入 Google Advent 的 Agent 工程案例。"
 coverImage: "/images/academy/learning-routes/non-engineering-route.svg"
 difficulty: beginner
-plainSummary: "本路线专为非技术背景读者打造，涵盖 ChatGPT 入门、Prompt 技巧、文案创作、深度研究、数据分析、Projects 协作、Custom GPTs 及 Skills 进阶，助力职场进阶。"
+plainSummary: "本路线是日常工作者进入 AI Academy 的入口卡：从 ChatGPT 入门和工作场景开始，逐步补齐安全边界、协作方法和可复用工作流。"
 tags:
   - "AI Academy"
   - "Learning Route"
@@ -29,6 +30,16 @@ draft: false
 1. **精准定位**：明确 ChatGPT / Claude 等工具的最佳适用场景。
 2. **任务拆解**：学会将真实的业务需求转化为 AI 可高效执行的任务。
 3. **流程沉淀**：将高效的对话经验转化为可重复使用的业务工作流（Workflow）。
+
+## 三大分区读法
+
+这张入口卡不是要您读完整个 Academy，而是帮您决定从哪里开始：
+
+| 分区 | 在本路线中的用途 |
+| --- | --- |
+| **OpenAI Academy** | 主线。先掌握 ChatGPT 基础、工作场景、研究、写作、数据分析、Projects 和 Skills。 |
+| **Anthropic Academy** | 补边界。理解 AI Fluency、Claude 协作方式、Skills 和人机分工。 |
+| **Google Advent of Agents** | 选读。等您想理解“这些能力如何被工程化成 Agent 系统”时，再读 Season 2 的相关案例。 |
 
 ## 第一阶段：开启有效对话
 

@@ -1,11 +1,12 @@
 ---
-title: "AI Academy ルート：教育支援とビジネス展開のための AI Fluency"
+title: "入口ルート：組織で AI Fluency を育てる"
 date: 2026-04-27
+updatedDate: 2026-05-07
 category: academy
-description: "教育者、研修担当、ビジネス推進、組織内イネーブルメント（Enablement）に向けて、AI Fluency の構築から組織への安全な導入までをガイドする学習ルートです。"
+description: "教育者、研修担当、業務推進者向け。Anthropic Academy で AI Fluency と教育設計を作り、OpenAI Academy で教育・業務・安全活用を補い、Google Advent で Agent engineering の組織導入リスクを理解します。"
 coverImage: "/images/academy/learning-routes/education-business-enablement.svg"
 difficulty: beginner
-plainSummary: "本ルートは教育、研修、ビジネス展開の担当者を対象としています。AI フルエンシー（AI Fluency）、効果的な教育手法、ChatGPT の教育・業務活用、業界別事例、そして安全な運用を統合的に学びます。"
+plainSummary: "組織イネーブルメント向けの AI Academy 入口カードです。AI Fluency、教育設計、業務展開、安全 governance、Agent engineering の事例をつなげます。"
 tags:
   - "AI Fluency"
 lang: ja
@@ -24,6 +25,16 @@ draft: false
 自分自身の効率化にとどまらず、**「組織やチーム全体」**が AI を正しく理解し、活用できるように導きたいと考えている方のためのルートです。主な対象は、教育関係者、研修担当、ビジネス推進（Enablement）、イノベーションチーム、社内エバンジェリスト、およびマネージャー層です。
 
 本ルートの最終目標は、組織内に **AI フルエンシー（AI Fluency）**を確立することです。これは単に AI の定義を知っているだけでなく、その仕組みを説明し、活用法を示し、効果的な練習を設計し、リスクを特定して実務に正しく組み込む能力を指します。
+
+## 三つの分区の読み方
+
+組織向けルートでは、tool の機能紹介ではなく、教育、展開、governance に変換する視点で各分区を使います。
+
+| 分区 | このルートでの使い方 |
+| --- | --- |
+| **Anthropic Academy** | 主線。AI Fluency、教え方、人間と AI の協働境界、Claude / Skills の組織利用を押さえる。 |
+| **OpenAI Academy** | 場面を補う。教育、仕事、業界別事例、安全利用、ChatGPT for Work の導入例を読む。 |
+| **Google Advent of Agents** | 管理者向けの選択読書。Agent system が業務プロセスに入るときの eval、安全、identity、observability、approval を理解する。 |
 
 ## フェーズ 1：AI フルエンシー（AI Fluency）のフレームワークを構築する
 
