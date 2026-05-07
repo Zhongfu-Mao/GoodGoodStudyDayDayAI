@@ -45,6 +45,31 @@ const startSubnavItems = {
   ],
 } as const;
 
+const academySubnavItems = {
+  zh: [
+    { hash: '#routes', label: '路线', tooltip: '先按角色选择 AI Academy 的阅读路径' },
+    { hash: '#openai-academy', label: 'OpenAI', tooltip: 'ChatGPT、Codex、Building with AI 等官方课程笔记' },
+    {
+      hash: '#google-advent-of-agents',
+      label: 'Google Advent',
+      tooltip: '以 Season 2 三十一天为主线的 Agent 工程课程',
+    },
+    { hash: '#anthropic-academy', label: 'Anthropic', tooltip: 'Claude、MCP、Skills 与 Subagents 相关课程' },
+    { hash: '#other-academy', label: '其他', tooltip: '没有归入课程系列的 Academy 笔记' },
+  ],
+  ja: [
+    { hash: '#routes', label: 'ルート', tooltip: '役割別に AI Academy の読み順を選ぶ' },
+    { hash: '#openai-academy', label: 'OpenAI', tooltip: 'ChatGPT、Codex、Building with AI などの講義ノート' },
+    {
+      hash: '#google-advent-of-agents',
+      label: 'Google Advent',
+      tooltip: 'Season 2 の 31 日を主線にした Agent engineering course',
+    },
+    { hash: '#anthropic-academy', label: 'Anthropic', tooltip: 'Claude、MCP、Skills、Subagents の関連講義' },
+    { hash: '#other-academy', label: 'その他', tooltip: 'シリーズ未分類の Academy ノート' },
+  ],
+} as const;
+
 export function getRadarSubnavItems(locale: Locale): SectionNavItem[] {
   return [
     {
@@ -72,5 +97,12 @@ export function getStartSubnavItems(locale: Locale): SectionNavItem[] {
   return startSubnavItems[locale].map((item) => ({
     ...item,
     href: `${startPath(locale)}${item.hash}`,
+  }));
+}
+
+export function getAcademySubnavItems(locale: Locale): SectionNavItem[] {
+  return academySubnavItems[locale].map((item) => ({
+    ...item,
+    href: `${categoryPath('academy', locale)}${item.hash}`,
   }));
 }

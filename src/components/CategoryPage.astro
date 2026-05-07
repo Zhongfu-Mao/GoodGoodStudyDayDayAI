@@ -112,9 +112,9 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       ))}
     </div>
   ) : isAcademy ? (
-    <div class="grid gap-8">
+    <div class="grid gap-8" data-academy-view>
       {academyRouteEntries.length > 0 ? (
-        <section class="theme-panel-strong rounded-[1.5rem] p-6 shadow-glow">
+        <section id="routes" class="theme-panel-strong rounded-[1.5rem] p-6 shadow-glow scroll-mt-80 xl:scroll-mt-40" data-academy-section>
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.academyRoutesEyebrow}</p>
@@ -131,7 +131,7 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       ) : null}
 
       {academyCatalogGroups.map((seriesGroup) => (
-        <section id={slugifyTag(seriesGroup.series)} class="theme-panel rounded-[1.5rem] p-6">
+        <section id={slugifyTag(seriesGroup.series)} class="theme-panel rounded-[1.5rem] p-6 scroll-mt-80 xl:scroll-mt-40" data-academy-section hidden>
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.academySeries}</p>
@@ -172,7 +172,7 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       ))}
 
       {legacyAcademyEntries.length > 0 ? (
-        <section class="theme-panel rounded-[1.5rem] p-6">
+        <section id="other-academy" class="theme-panel rounded-[1.5rem] p-6 scroll-mt-80 xl:scroll-mt-40" data-academy-section hidden>
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.academyLegacy}</p>
@@ -257,6 +257,69 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
 
       document.addEventListener('astro:before-swap', () => abortController.abort(), { once: true });
       applyRadarView();
+    })();
+  </script>
+) : null}
+
+{isAcademy ? (
+  <script is:inline data-astro-rerun>
+    (() => {
+      const root = document.querySelector('[data-academy-view]');
+      if (!root) return;
+
+      const sections = Array.from(root.querySelectorAll('[data-academy-section]'));
+      const validIds = new Set(sections.map((section) => section.id));
+      const subnavLinks = Array.from(document.querySelectorAll('[data-academy-subnav]'));
+      const fallbackId = validIds.has('routes') ? 'routes' : sections[0]?.id;
+      const abortController = new AbortController();
+
+      if (!fallbackId) return;
+
+      function getActiveId() {
+        const id = window.location.hash.replace(/^#/, '');
+        return validIds.has(id) ? id : fallbackId;
+      }
+
+      function applyAcademyView() {
+        const activeId = getActiveId();
+
+        for (const section of sections) {
+          section.hidden = section.id !== activeId;
+        }
+
+        for (const link of subnavLinks) {
+          const target = link.dataset.academySubnav?.replace(/^#/, '');
+          const isActive = target === activeId;
+          link.hidden = target ? !validIds.has(target) : true;
+          link.classList.toggle('theme-segment-active', isActive);
+          if (target) {
+            link.setAttribute('aria-current', isActive ? 'page' : 'false');
+          }
+        }
+      }
+
+      function handleSubnavClick(event) {
+        const target = event.currentTarget?.dataset.academySubnav;
+        if (!target) return;
+
+        event.preventDefault();
+
+        if (window.location.hash !== target) {
+          window.history.pushState(null, '', target);
+        }
+
+        applyAcademyView();
+      }
+
+      window.addEventListener('hashchange', applyAcademyView, { signal: abortController.signal });
+      window.addEventListener('popstate', applyAcademyView, { signal: abortController.signal });
+
+      for (const link of subnavLinks) {
+        link.addEventListener('click', handleSubnavClick, { signal: abortController.signal });
+      }
+
+      document.addEventListener('astro:before-swap', () => abortController.abort(), { once: true });
+      applyAcademyView();
     })();
   </script>
 ) : null}
