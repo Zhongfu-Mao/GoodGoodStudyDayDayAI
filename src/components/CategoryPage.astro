@@ -54,6 +54,14 @@ const radarSections = radarCadences.map((cadence) => {
 });
 
 const text = categoryPage[locale];
+const academySummary = isAcademy
+  ? {
+      eyebrow: text.academyRoutesEyebrow,
+      title: text.academyRoutesTitle,
+      description: text.academyRoutesDescription,
+      detail: text.academyBrowse,
+    }
+  : undefined;
 
 const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =>
   groupKind === 'track' ? order.toString().padStart(2, '0') : order.toString();
@@ -62,13 +70,19 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
 {isRadar ? (
   null
 ) : (
-  <section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
-    <p class="theme-kicker text-sm uppercase tracking-[0.28em]">{collectionLabels[category][locale]}</p>
-    <h1 class="theme-heading mt-3 text-3xl font-semibold md:text-5xl">{collectionLabels[category][locale]}</h1>
-    <p class="theme-muted mt-4 max-w-2xl">{isAcademy ? text.academyLead : text.lead}</p>
+  <section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow" data-academy-summary={isAcademy ? 'true' : undefined}>
+    <p class="theme-kicker text-sm uppercase tracking-[0.28em]" data-academy-summary-eyebrow>
+      {academySummary?.eyebrow ?? collectionLabels[category][locale]}
+    </p>
+    <h1 class="theme-heading mt-3 text-3xl font-semibold md:text-5xl" data-academy-summary-title>
+      {academySummary?.title ?? collectionLabels[category][locale]}
+    </h1>
+    <p class="theme-muted mt-4 max-w-2xl" data-academy-summary-description>
+      {academySummary?.description ?? (isAcademy ? text.academyLead : text.lead)}
+    </p>
 
     {isAcademy ? (
-      <p class="theme-muted mt-8 max-w-xl text-sm">{text.academyBrowse}</p>
+      <p class="theme-muted mt-8 max-w-xl text-sm" data-academy-summary-detail>{academySummary?.detail}</p>
     ) : (
       <p class="theme-muted mt-8 max-w-xl text-sm">{text.defaultListNote}</p>
     )}
@@ -114,7 +128,15 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
   ) : isAcademy ? (
     <div class="grid gap-8" data-academy-view>
       {academyRouteEntries.length > 0 ? (
-        <section id="routes" class="theme-panel-strong rounded-[1.5rem] p-6 shadow-glow scroll-mt-80 xl:scroll-mt-40" data-academy-section>
+        <section
+          id="routes"
+          class="theme-panel-strong rounded-[1.5rem] p-6 shadow-glow scroll-mt-80 xl:scroll-mt-40"
+          data-academy-section
+          data-academy-eyebrow={text.academyRoutesEyebrow}
+          data-academy-title={text.academyRoutesTitle}
+          data-academy-description={text.academyRoutesDescription}
+          data-academy-detail={text.academyBrowse}
+        >
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.academyRoutesEyebrow}</p>
@@ -131,11 +153,21 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       ) : null}
 
       {academyCatalogGroups.map((seriesGroup) => (
-        <section id={slugifyTag(seriesGroup.series)} class="theme-panel rounded-[1.5rem] p-6 scroll-mt-80 xl:scroll-mt-40" data-academy-section hidden>
+        <section
+          id={slugifyTag(seriesGroup.series)}
+          class="theme-panel rounded-[1.5rem] p-6 scroll-mt-80 xl:scroll-mt-40"
+          data-academy-section
+          data-academy-eyebrow={text.academySeries}
+          data-academy-title={seriesGroup.series}
+          data-academy-description={text.academySeriesDescription(seriesGroup.series)}
+          data-academy-detail={`${seriesGroup.groupKind === 'track' ? text.trackCount(seriesGroup.groups.length) : text.moduleCount(seriesGroup.groups.length)} · ${text.itemCount(seriesGroup.itemCount)}`}
+          hidden
+        >
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.academySeries}</p>
               <h3 class="theme-heading mt-2 text-3xl font-semibold">{seriesGroup.series}</h3>
+              <p class="theme-muted mt-3 max-w-3xl text-sm leading-6">{text.academySeriesDescription(seriesGroup.series)}</p>
             </div>
             <p class="theme-muted text-sm">
               {seriesGroup.groupKind === 'track' ? text.trackCount(seriesGroup.groups.length) : text.moduleCount(seriesGroup.groups.length)}
@@ -172,11 +204,21 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       ))}
 
       {legacyAcademyEntries.length > 0 ? (
-        <section id="other-academy" class="theme-panel rounded-[1.5rem] p-6 scroll-mt-80 xl:scroll-mt-40" data-academy-section hidden>
+        <section
+          id="other-academy"
+          class="theme-panel rounded-[1.5rem] p-6 scroll-mt-80 xl:scroll-mt-40"
+          data-academy-section
+          data-academy-eyebrow={text.academyLegacy}
+          data-academy-title={text.academyLegacy}
+          data-academy-description={text.academyLegacyDescription}
+          data-academy-detail={text.itemCount(legacyAcademyEntries.length)}
+          hidden
+        >
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.academyLegacy}</p>
               <h3 class="theme-heading mt-2 text-2xl font-semibold">{text.academyLegacy}</h3>
+              <p class="theme-muted mt-3 max-w-3xl text-sm leading-6">{text.academyLegacyDescription}</p>
             </div>
             <p class="theme-muted text-sm">{text.itemCount(legacyAcademyEntries.length)}</p>
           </div>
@@ -270,6 +312,11 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       const sections = Array.from(root.querySelectorAll('[data-academy-section]'));
       const validIds = new Set(sections.map((section) => section.id));
       const subnavLinks = Array.from(document.querySelectorAll('[data-academy-subnav]'));
+      const summary = document.querySelector('[data-academy-summary]');
+      const summaryEyebrow = summary?.querySelector('[data-academy-summary-eyebrow]');
+      const summaryTitle = summary?.querySelector('[data-academy-summary-title]');
+      const summaryDescription = summary?.querySelector('[data-academy-summary-description]');
+      const summaryDetail = summary?.querySelector('[data-academy-summary-detail]');
       const fallbackId = validIds.has('routes') ? 'routes' : sections[0]?.id;
       const abortController = new AbortController();
 
@@ -282,6 +329,7 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
 
       function applyAcademyView() {
         const activeId = getActiveId();
+        const activeSection = sections.find((section) => section.id === activeId);
 
         for (const section of sections) {
           section.hidden = section.id !== activeId;
@@ -294,6 +342,21 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
           link.classList.toggle('theme-segment-active', isActive);
           if (target) {
             link.setAttribute('aria-current', isActive ? 'page' : 'false');
+          }
+        }
+
+        if (activeSection) {
+          if (summaryEyebrow && activeSection.dataset.academyEyebrow) {
+            summaryEyebrow.textContent = activeSection.dataset.academyEyebrow;
+          }
+          if (summaryTitle && activeSection.dataset.academyTitle) {
+            summaryTitle.textContent = activeSection.dataset.academyTitle;
+          }
+          if (summaryDescription && activeSection.dataset.academyDescription) {
+            summaryDescription.textContent = activeSection.dataset.academyDescription;
+          }
+          if (summaryDetail && activeSection.dataset.academyDetail) {
+            summaryDetail.textContent = activeSection.dataset.academyDetail;
           }
         }
       }

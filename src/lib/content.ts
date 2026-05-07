@@ -87,6 +87,12 @@ const openAiAcademyTracks = [
   },
 ] as const;
 
+const academySeriesOrder: Record<string, number> = {
+  'OpenAI Academy': 0,
+  'Anthropic Academy': 1,
+  'Google Advent of Agents': 2,
+};
+
 async function getCollectionEntries(collection: CollectionName) {
   const entries = await getCollection(collection);
   return entries.map((entry) => ({
@@ -319,7 +325,7 @@ export async function getAcademyCatalogGroups(locale: Locale): Promise<AcademyCa
     const catalogGroup = resolveAcademyCatalogGroup(item.entry);
     const seriesGroup = seriesMap.get(academy.series) ?? {
       series: academy.series,
-      order: isOpenAiAcademy ? 0 : 10,
+      order: academySeriesOrder[academy.series] ?? 10,
       groupKind: isOpenAiAcademy ? 'track' : 'module',
       itemCount: 0,
       groups: [],
