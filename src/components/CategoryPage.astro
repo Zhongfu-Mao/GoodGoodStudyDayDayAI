@@ -5,6 +5,7 @@ import {
   cadenceLabels,
   collectionLabels,
   radarCadences,
+  radarGalleryPath,
   slugifyTag,
   type CollectionName,
   type Locale,
@@ -102,6 +103,25 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
 
   {isRadar ? (
     <div class="relative left-1/2 w-screen max-w-[1680px] -translate-x-1/2 px-5 sm:px-8" data-radar-view>
+      <section class="theme-panel-strong mb-6 rounded-[1.5rem] p-5 shadow-glow md:p-6">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div class="max-w-3xl">
+            <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{collectionLabels.radar[locale]}</p>
+            <h1 class="theme-heading mt-2 text-3xl font-semibold md:text-5xl">
+              {collectionLabels.radar[locale]}
+            </h1>
+            <p class="theme-muted mt-4 text-sm leading-6 md:text-base md:leading-7">{text.radarLead}</p>
+          </div>
+          <a
+            href={radarGalleryPath(locale)}
+            class="theme-action-primary inline-flex rounded-[1rem] px-4 py-3 text-sm font-semibold"
+          >
+            {text.radarGallery}
+          </a>
+        </div>
+        <p class="theme-muted mt-4 max-w-3xl text-sm leading-6">{text.radarGalleryHint}</p>
+      </section>
+
       {radarSections.map((section) => (
         <section id={section.cadence} class="scroll-mt-80 xl:scroll-mt-40" data-radar-section hidden={section.cadence !== 'daily'}>
           <div class="mb-4">

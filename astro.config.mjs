@@ -50,5 +50,8 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ['pdfjs-dist'],
+    },
   },
 });

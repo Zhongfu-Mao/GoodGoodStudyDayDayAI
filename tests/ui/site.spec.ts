@@ -446,6 +446,13 @@ test.describe('published site UI', () => {
   test('radar archive switches cadence sections in the browser', async ({ page }) => {
     await gotoApp(page, '/radar/');
 
+    await expect(page.getByRole('heading', { level: 1, name: 'AI 雷达' })).toBeVisible();
+    await expect(page.getByRole('link', { name: '图片墙' })).toHaveAttribute(
+      'href',
+      appPath('/radar/gallery/'),
+    );
+    await expect(page.locator('body')).toContainText('先看图，再进入原文');
+
     const dailySection = page.locator('[data-radar-section]#daily');
     const weeklySection = page.locator('[data-radar-section]#weekly');
     const weeklyNav = page.locator('[data-radar-subnav="#weekly"]');
@@ -478,6 +485,11 @@ test.describe('published site UI', () => {
     await expect(monthlySection).not.toContainText('月度趋势研判：AI 工具链与部署生态的深层演进');
 
     await gotoApp(page, '/ja/radar/#weekly');
+    await expect(page.getByRole('heading', { level: 1, name: 'AI レーダー' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Image Wall' })).toHaveAttribute(
+      'href',
+      appPath('/ja/radar/gallery/'),
+    );
     const japaneseWeeklySection = page.locator('[data-radar-section]#weekly');
     await expect(japaneseWeeklySection).toBeVisible();
     await expectSectionHasContentCount(japaneseWeeklySection, /\d+ 記事/);
@@ -495,6 +507,21 @@ test.describe('published site UI', () => {
       '月次トレンド分析：AI ツールチェーンとデプロイエコシステムの変遷',
     );
     await expectSectionHasLocaleInfographic(japaneseMonthlySection, 'ja');
+  });
+
+  test('mobile radar header leaves room for content', async ({ page, isMobile }) => {
+    test.skip(!isMobile, 'mobile header layout only');
+
+    await gotoApp(page, '/radar/');
+
+    const headerBox = await page.locator('header').boundingBox();
+    expect(headerBox?.height).toBeLessThan(260);
+    await expect(page.locator('header form[role="search"]:visible')).toHaveCount(0);
+    await expect(page.locator('[data-mobile-search-link]')).toHaveAttribute(
+      'href',
+      appPath('/search/'),
+    );
+    await expect(page.getByRole('heading', { level: 1, name: 'AI 雷达' })).toBeVisible();
   });
 
   test('radar archive cards stay inside the viewport across locales and cadences', async ({
@@ -556,6 +583,70 @@ test.describe('published site UI', () => {
 
     await dialog.locator('[data-dialog-close]').click();
     await expect(dialog).not.toHaveAttribute('open', '');
+  });
+
+  test('radar detail media stays in-page for image and deck previews', async ({ page }) => {
+    await gotoApp(page, '/radar/daily-ai-radar-2026-05-09/');
+
+    await expect(page.getByText('打开音频', { exact: true })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: '在全站播放器中播放音频' })).toBeVisible();
+
+    const coverPreviewTrigger = page.locator('[data-cover-preview-trigger]');
+    await expect(coverPreviewTrigger).toHaveCount(1);
+    await coverPreviewTrigger.click();
+
+    const coverDialog = page.locator('[data-cover-preview-dialog]');
+    await expect(coverDialog).toHaveAttribute('open', '');
+    await expect(coverDialog.locator('[data-cover-preview-image]')).toHaveAttribute(
+      'src',
+      /\/images\/radar\/daily-ai-radar-2026-05-09-infographic\.webp/,
+    );
+    await coverDialog.getByRole('button', { name: '关闭全屏' }).click();
+    await expect(coverDialog).not.toHaveAttribute('open', '');
+
+    const weeklyPath = '/radar/weekly-ai-radar-2026-04-27-to-2026-05-03/';
+    await gotoApp(page, weeklyPath);
+
+    const deckPreviewTrigger = page.getByRole('button', { name: '预览文稿' });
+    await expect(deckPreviewTrigger).toBeVisible();
+    await expect(page.locator('article[data-pagefind-body] a[href$=".pdf"]')).toHaveCount(0);
+    await deckPreviewTrigger.click();
+
+    const deckDialog = page.locator('[data-deck-preview-dialog]');
+    await expect(deckDialog).toHaveAttribute('open', '');
+    await expect(deckDialog.locator('[data-deck-preview-canvas]')).toBeVisible();
+    await expect
+      .poll(async () =>
+        deckDialog.locator('[data-deck-preview-canvas]').evaluate((canvas) => {
+          const element = canvas as HTMLCanvasElement;
+          return element.width > 300 && element.height > 150;
+        }),
+      )
+      .toBe(true);
+    const canvasBox = await deckDialog.locator('[data-deck-preview-canvas]').boundingBox();
+    expect(canvasBox?.width ?? 0).toBeGreaterThan(300);
+    expect(canvasBox?.height ?? 0).toBeGreaterThan(150);
+    await expect(deckDialog.locator('[data-deck-page-status]')).toHaveText('1 / 8');
+    await expect(page).toHaveURL(appUrlPattern(weeklyPath));
+  });
+
+  test('radar detail secondary navigation opens archive cadences', async ({ page }) => {
+    await gotoApp(page, '/radar/daily-ai-radar-2026-05-09/');
+
+    const weeklySubnav = page.locator('[data-radar-subnav="#weekly"]');
+    await expect(weeklySubnav).toHaveAttribute('href', appPath('/radar/#weekly'));
+    await weeklySubnav.click();
+
+    await expect(page).toHaveURL(appUrlPattern('/radar/#weekly'));
+    await expect(page.locator('[data-radar-section]#weekly')).toBeVisible();
+    await expect(page.locator('[data-radar-section]#daily')).toBeHidden();
+
+    const monthlySubnav = page.locator('[data-radar-subnav="#monthly"]');
+    await monthlySubnav.click();
+
+    await expect(page).toHaveURL(appUrlPattern('/radar/#monthly'));
+    await expect(page.locator('[data-radar-section]#monthly')).toBeVisible();
+    await expect(page.locator('[data-radar-section]#weekly')).toBeHidden();
   });
 
   test('site search form submits and Pagefind applies the query', async ({ page }) => {

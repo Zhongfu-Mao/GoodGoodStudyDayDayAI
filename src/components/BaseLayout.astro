@@ -10,11 +10,12 @@ import ThemeScript from './ThemeScript.astro';
 import {
   homePath,
   resolveSiteUrl,
+  searchPath,
   withBase,
   type CollectionName,
   type Locale,
 } from '../lib/site';
-import { baseLayout, homePage } from '../lib/i18n';
+import { baseLayout, homePage, siteNav } from '../lib/i18n';
 import { getAcademySubnavItems, getRadarSubnavItems, getStartSubnavItems } from '../lib/navigation';
 import '../styles/global.css';
 
@@ -130,12 +131,34 @@ const startSubnavItems = getStartSubnavItems(locale);
           <div class="hidden xl:block">
             <SearchForm locale={locale} placement="header" />
           </div>
+          <a
+            href={searchPath(locale)}
+            class="theme-toggle ui-tooltip ui-tooltip-bottom inline-grid h-11 w-11 place-items-center rounded-2xl xl:hidden"
+            data-mobile-search-link
+            data-tooltip={siteNav[locale].search}
+            aria-label={siteNav[locale].search}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-5 w-5"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+          </a>
           <ThemeToggle />
           <LanguageSwitcher paths={languagePaths} />
         </div>
       </div>
-      <div class="px-6 pb-4 xl:hidden">
-        <SiteNav locale={locale} />
+      <div class="px-4 pb-3 sm:px-6 xl:hidden">
+        <SiteNav locale={locale} showSearch={false} />
       </div>
       {showRadarSubnav ? (
         <div class="border-t border-[color:var(--theme-border)] px-6 pb-3 pt-2 xl:px-8">
@@ -187,9 +210,36 @@ const startSubnavItems = getStartSubnavItems(locale);
       ) : null}
     </header>
 
-    <main id="main-content" class="mx-auto max-w-6xl px-6 py-10">
+    <main id="main-content" class="mx-auto max-w-6xl px-5 py-7 sm:px-6 sm:py-10">
       <slot />
     </main>
     <PersistentAudioPlayer />
+    <script is:inline data-astro-rerun>
+      (() => {
+        const links = Array.from(document.querySelectorAll('[data-radar-subnav]'));
+        if (links.length === 0) return;
+
+        const isRadarArchive = Boolean(document.querySelector('[data-radar-view]'));
+        if (isRadarArchive) return;
+
+        const abortController = new AbortController();
+
+        for (const link of links) {
+          link.addEventListener(
+            'click',
+            (event) => {
+              const href = event.currentTarget?.getAttribute('href');
+              if (!href) return;
+
+              event.preventDefault();
+              window.location.assign(href);
+            },
+            { signal: abortController.signal },
+          );
+        }
+
+        document.addEventListener('astro:before-swap', () => abortController.abort(), { once: true });
+      })();
+    </script>
   </body>
 </html>
