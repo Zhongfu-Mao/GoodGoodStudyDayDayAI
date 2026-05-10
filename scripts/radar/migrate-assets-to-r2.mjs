@@ -17,10 +17,6 @@ const ASSET_GROUPS = [
     match: (file) => file.endsWith('.mp3'),
   },
   {
-    dir: path.join(WORKSPACE_ROOT, 'public/decks/radar'),
-    match: (file) => file.endsWith('.pdf'),
-  },
-  {
     dir: path.join(WORKSPACE_ROOT, 'public/images/radar'),
     match: (file) => /-infographic\.(png|jpe?g|webp)$/i.test(file),
   },

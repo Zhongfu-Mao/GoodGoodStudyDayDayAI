@@ -15,7 +15,7 @@ coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/mon
 audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-04.ja.mp3
 audioDuration: 1111
 audioSize: 8891435
-deckUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-04.ja.pdf
+deckUrl: /decks/radar/monthly-ai-radar-2026-04.ja.pdf
 draft: false
 ---
 
