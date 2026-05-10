@@ -5,6 +5,7 @@ import { getEntriesForLocale } from './content';
 import { articlePath, homePath, resolveSiteUrl, type Locale } from './site';
 
 const PODCAST_ENTRY_LIMIT = 100;
+const EPISODE_DETAIL_CHAR_LIMIT = 7000;
 
 const showMeta: Record<
   Locale,
@@ -19,20 +20,20 @@ const showMeta: Record<
   }
 > = {
   zh: {
-    title: 'Good Good Study, Day Day AI · AI Radar Briefing',
+    title: 'AI 雷达',
     description:
-      '把 Good Good Study, Day Day AI 的 AI 日报、周报和月报变成可以订阅收听的音频简报。',
-    author: 'Mao Zhongfu',
+      '每日、每周、每月追踪 AI 工程、模型、Agent 与产业信号，把 Good Good Study, Day Day AI 的 AI 雷达变成可以订阅收听的音频简报。',
+    author: '清风明月',
     email: 'maozhongfu0827@gmail.com',
     language: 'zh-cn',
     category: 'Technology',
     artwork: '/images/podcast-cover.jpg',
   },
   ja: {
-    title: 'Good Good Study, Day Day AI · AI Radar Briefing',
+    title: 'AI レーダー',
     description:
-      'Good Good Study, Day Day AI の AI 日次、週次、月次レーダーを購読できる音声ブリーフィングとして届けます。',
-    author: 'Mao Zhongfu',
+      'Good Good Study, Day Day AI の日次・週次・月次 AI レーダーを、モデル、Agent、AI エンジニアリング、産業シグナルまで追える音声ブリーフィングとして届けます。',
+    author: '清風明月',
     email: 'maozhongfu0827@gmail.com',
     language: 'ja-jp',
     category: 'Technology',
@@ -67,10 +68,17 @@ export async function buildPodcastFeed({
       const audioLength =
         entry.data.audioSize ?? (await getLocalPublicAssetSize(entry.data.audioUrl));
       const duration = entry.data.audioDuration;
+      const articleUrl = new URL(articlePath(entry.data.category, slug, locale), site).toString();
+      const episodeDescription = buildEpisodeDescription({
+        summary: entry.data.plainSummary ?? entry.data.description ?? entry.data.title,
+        body: entry.body,
+        articleUrl,
+        locale,
+      });
 
       return {
         title: entry.data.title,
-        description: entry.data.plainSummary ?? entry.data.description ?? entry.data.title,
+        description: episodeDescription,
         pubDate: entry.data.date,
         link: articlePath(entry.data.category, slug, locale),
         enclosure: {
@@ -80,6 +88,7 @@ export async function buildPodcastFeed({
         },
         customData: [
           duration ? `<itunes:duration>${duration}</itunes:duration>` : '',
+          `<itunes:summary>${escapeXmlText(episodeDescription)}</itunes:summary>`,
           `<itunes:explicit>${entry.data.audioExplicit ? 'true' : 'false'}</itunes:explicit>`,
           `<itunes:episodeType>full</itunes:episodeType>`,
           `<itunes:image href="${escapeXmlAttribute(coverUrl)}" />`,
@@ -93,7 +102,6 @@ export async function buildPodcastFeed({
   return rss({
     xmlns: {
       itunes: 'http://www.itunes.com/dtds/podcast-1.0.dtd',
-      content: 'http://purl.org/rss/1.0/modules/content/',
     },
     title: show.title,
     description: show.description,
@@ -117,7 +125,7 @@ function resolveAbsoluteUrl(url: string, site: URL) {
 }
 
 async function getLocalPublicAssetSize(url: string | undefined) {
-  if (!url || !url.startsWith('/')) {
+  if (!url?.startsWith('/')) {
     return 0;
   }
 
@@ -130,6 +138,57 @@ async function getLocalPublicAssetSize(url: string | undefined) {
   } catch {
     return 0;
   }
+}
+
+function buildEpisodeDescription({
+  summary,
+  body,
+  articleUrl,
+  locale,
+}: {
+  summary: string;
+  body: string | undefined;
+  articleUrl: string;
+  locale: Locale;
+}) {
+  const bodyText = body ? markdownToPodcastText(body) : '';
+  const readMore = locale === 'ja' ? '全文を読む' : '阅读全文';
+  const parts = [
+    summary.trim(),
+    bodyText ? truncateAtParagraphBoundary(bodyText, EPISODE_DETAIL_CHAR_LIMIT) : '',
+    `${readMore}: ${articleUrl}`,
+  ].filter(Boolean);
+
+  return parts.join('\n\n');
+}
+
+function markdownToPodcastText(markdown: string) {
+  return markdown
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/```[\s\S]*?```/g, (match) => match.replace(/```[^\n]*\n?|```/g, ''))
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
+    .replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, '$1 ($2)')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/^>\s?/gm, '')
+    .replace(/^\s*[-*+]\s+/gm, '- ')
+    .replace(/^\s*\d+\.\s+/gm, '')
+    .replace(/^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/gm, '')
+    .replace(/<\/?[^>]+>/g, '')
+    .replace(/[*_~`]/g, '')
+    .replace(/\r\n/g, '\n')
+    .replace(/[ \t]+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+function truncateAtParagraphBoundary(text: string, limit: number) {
+  if (text.length <= limit) {
+    return text;
+  }
+
+  const boundary = text.lastIndexOf('\n\n', limit);
+  const cutPoint = boundary > limit * 0.6 ? boundary : limit;
+  return `${text.slice(0, cutPoint).trimEnd()}...`;
 }
 
 function escapeXmlText(value: string) {
