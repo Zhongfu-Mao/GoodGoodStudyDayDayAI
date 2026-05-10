@@ -11,8 +11,10 @@ tags:
   - Context Engineering
   - Claude
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-04-22.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-04-22.ja.mp3?v=ja
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-04-22.ja-infographic.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-04-22.ja.mp3
+audioDuration: 1210
+audioSize: 9677616
 draft: false
 ---
 ## 対象範囲

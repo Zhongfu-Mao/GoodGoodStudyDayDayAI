@@ -10,8 +10,10 @@ tags:
   - "Agent"
   - "Open Models"
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-04-26-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-04-26.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-04-26-infographic.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-04-26.mp3
+audioDuration: 1254
+audioSize: 10031001
 draft: false
 ---
 ## 本期范围
