@@ -18,7 +18,7 @@ export function appUrlPattern(path = '/') {
 }
 
 export async function gotoApp(page: Page, path = '/') {
-  await page.goto(appPath(path));
+  await page.goto(appPath(path), { waitUntil: 'domcontentloaded' });
 }
 
 function escapeRegExp(value: string) {

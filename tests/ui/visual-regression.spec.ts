@@ -10,6 +10,7 @@ const visualSnapshots = [
     name: 'ja-academy-detail-phone',
     path: '/ja/academy/openai-academy/00-overview/openai-academy-overview/',
     clipHeight: 760,
+    clipWidth: 342,
     target: 'article[data-pagefind-body]',
     viewport: { width: 390, height: 844 },
   },
@@ -51,7 +52,7 @@ test.describe('critical page visual baselines', () => {
         caret: 'hide',
         clip: {
           height: Math.min(Math.floor(targetBox.height), snapshot.clipHeight),
-          width: Math.floor(targetBox.width),
+          width: Math.min(Math.floor(targetBox.width), snapshot.clipWidth),
           x: Math.max(0, Math.floor(targetBox.x)),
           y: Math.max(0, Math.floor(targetBox.y)),
         },

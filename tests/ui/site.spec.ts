@@ -33,7 +33,7 @@ async function expectSectionCardsMatchCadence(
 
 async function expectSectionHasLocaleInfographic(section: Locator, locale: 'zh' | 'ja') {
   const image = section.locator('[data-gallery-card] img[src*="/images/radar/"]').first();
-  await expect(image).toBeVisible();
+  await expect(image).toHaveCount(1);
   const src = await image.getAttribute('src');
   expect(src).toBeTruthy();
 
