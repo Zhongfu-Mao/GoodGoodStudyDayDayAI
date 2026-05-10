@@ -219,7 +219,7 @@ test.describe('published site UI', () => {
     ).toBeVisible();
 
     const header = page.locator('header');
-    for (const label of ['首页', '新手起步', 'AI 雷达', 'AI Academy', '工程实践', '底层原理']) {
+    for (const label of ['首页', '新手起步', 'AI 雷达', 'AI 学院', '工程实践', '底层原理']) {
       await expect(header.getByRole('link', { name: label }).first()).toBeVisible();
     }
     await expect(header.getByRole('link', { name: '首页' }).first()).toHaveAttribute(
@@ -229,6 +229,14 @@ test.describe('published site UI', () => {
     await expect(header.getByRole('link', { name: '新手起步' }).first()).toHaveAttribute(
       'data-tooltip',
       '从零起步：先选路线，再补概念',
+    );
+    await expect(page.getByRole('link', { name: '进入 AI 雷达入口' })).toHaveAttribute(
+      'href',
+      appPath('/radar/'),
+    );
+    await expect(page.locator('a').filter({ hasText: '看 AI 雷达' })).toHaveAttribute(
+      'href',
+      appPath('/radar/'),
     );
 
     await expect(page.locator('html')).toHaveAttribute('data-theme', /^(dark|light)$/);
@@ -434,10 +442,12 @@ test.describe('published site UI', () => {
     await expect(siteNav.getByRole('link', { name: 'ホーム', exact: true })).toBeVisible();
     await expect(siteNav.getByRole('link', { name: 'はじめに', exact: true })).toBeVisible();
     await expect(siteNav.getByRole('link', { name: 'AI レーダー', exact: true })).toBeVisible();
+    await expect(siteNav.getByRole('link', { name: 'AIアカデミー', exact: true })).toBeVisible();
     await expect(siteNav.getByRole('link', { name: '実践', exact: true })).toBeVisible();
     await expect(siteNav.getByRole('link', { name: '基礎', exact: true })).toBeVisible();
     await expect(headerSearch).toHaveAttribute('placeholder', '検索…');
-    await expect(page.locator('[data-radar-subnav="#weekly"]')).toHaveText('週次');
+    await expect(page.locator('[data-radar-subnav="#weekly"]')).toHaveText('週報');
+    await expect(page.locator('header a[href$="/ja/radar/gallery/"]')).toHaveCount(0);
 
     const navBox = await siteNav.boundingBox();
     expect(navBox?.height).toBeLessThan(58);
@@ -446,12 +456,20 @@ test.describe('published site UI', () => {
   test('radar archive switches cadence sections in the browser', async ({ page }) => {
     await gotoApp(page, '/radar/');
 
-    await expect(page.getByRole('heading', { level: 1, name: 'AI 雷达' })).toBeVisible();
-    await expect(page.getByRole('link', { name: '图片墙' })).toHaveAttribute(
+    await expect(page.getByRole('heading', { level: 1, name: 'AI 雷达入口' })).toBeVisible();
+    await expect(page.locator('[data-radar-hub]')).toContainText(
+      '日报看最新，周报看脉络，月报看趋势，图片墙适合快速浏览',
+    );
+    await expect(page.locator('[data-radar-hub-card]')).toHaveCount(4);
+    await expect(page.locator('[data-radar-hub-card]').nth(0)).toHaveAttribute('data-radar-hub-card', 'daily');
+    await expect(page.locator('[data-radar-hub-card]').nth(3)).toHaveAttribute('data-radar-hub-card', 'gallery');
+    await expect(page.locator('[data-radar-hub-card="gallery"]')).toHaveAttribute(
       'href',
       appPath('/radar/gallery/'),
     );
-    await expect(page.locator('body')).toContainText('先看图，再进入原文');
+    await expect(page.locator('[data-radar-hub-card="daily"]')).toContainText('日报');
+    await expect(page.getByRole('heading', { level: 2, name: '按周期浏览' })).toHaveCount(0);
+    await expect(page.locator('header a[href$="/radar/gallery/"]')).toHaveCount(0);
 
     const dailySection = page.locator('[data-radar-section]#daily');
     const weeklySection = page.locator('[data-radar-section]#weekly');
@@ -459,13 +477,19 @@ test.describe('published site UI', () => {
     const monthlySection = page.locator('[data-radar-section]#monthly');
     const monthlyNav = page.locator('[data-radar-subnav="#monthly"]');
 
-    await expect(dailySection).toBeVisible();
+    await expect(dailySection).toBeHidden();
     await expect(weeklySection).toBeHidden();
     await expect(weeklyNav).toHaveAttribute('data-tooltip', /按周复盘/);
+
+    await page.locator('[data-radar-hub-card="daily"]').click();
+    await expect(page).toHaveURL(/#daily$/);
+    await expect(page.locator('[data-radar-hub]')).toBeHidden();
+    await expect(dailySection).toBeVisible();
 
     await weeklyNav.click();
 
     await expect(page).toHaveURL(/#weekly$/);
+    await expect(page.locator('[data-radar-hub]')).toBeHidden();
     await expect(dailySection).toBeHidden();
     await expect(weeklySection).toBeVisible();
     await expect(weeklyNav).toHaveAttribute('aria-current', 'page');
@@ -478,6 +502,7 @@ test.describe('published site UI', () => {
 
     await monthlyNav.click();
     await expect(page).toHaveURL(/#monthly$/);
+    await expect(page.locator('[data-radar-hub]')).toBeHidden();
     await expect(weeklySection).toBeHidden();
     await expect(monthlySection).toBeVisible();
     await expectSectionHasContentCount(monthlySection, /\d+ 篇内容/);
@@ -485,11 +510,8 @@ test.describe('published site UI', () => {
     await expect(monthlySection).not.toContainText('月度趋势研判：AI 工具链与部署生态的深层演进');
 
     await gotoApp(page, '/ja/radar/#weekly');
-    await expect(page.getByRole('heading', { level: 1, name: 'AI レーダー' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Image Wall' })).toHaveAttribute(
-      'href',
-      appPath('/ja/radar/gallery/'),
-    );
+    await expect(page.locator('[data-radar-hub]')).toBeHidden();
+    await expect(page.getByRole('heading', { level: 2, name: '周期で見る' })).toHaveCount(0);
     const japaneseWeeklySection = page.locator('[data-radar-section]#weekly');
     await expect(japaneseWeeklySection).toBeVisible();
     await expectSectionHasContentCount(japaneseWeeklySection, /\d+ 記事/);
@@ -521,7 +543,7 @@ test.describe('published site UI', () => {
       'href',
       appPath('/search/'),
     );
-    await expect(page.getByRole('heading', { level: 1, name: 'AI 雷达' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'AI 雷达入口' })).toBeVisible();
   });
 
   test('radar archive cards stay inside the viewport across locales and cadences', async ({
@@ -549,6 +571,9 @@ test.describe('published site UI', () => {
 
     const cards = page.locator('[data-gallery-card]');
     await expect(cards.first()).toBeVisible();
+    await expect(page.locator('[data-gallery-grid]')).toHaveClass(/radar-wall/);
+    await expect(page.locator('[data-topic-filter]').first()).toBeVisible();
+    await expect(page.getByText('快速筛选')).toBeVisible();
 
     const totalCards = await cards.count();
     expect(totalCards).toBeGreaterThan(0);
@@ -567,18 +592,59 @@ test.describe('published site UI', () => {
     await expect.poll(() => visibleCards.count()).toBeGreaterThan(0);
     expect(await visibleCards.count()).toBeLessThanOrEqual(totalCards);
 
+    const topicAllFilter = page.locator('[data-topic-filter="all"]');
+    const topicFilters = page.locator('[data-topic-filter]:not([data-topic-filter="all"])');
+    const topicFilterCount = await topicFilters.count();
+    if (topicFilterCount > 0) {
+      await page.locator('[data-cadence-filter="all"]').click();
+      const firstTopicFilter = topicFilters.first();
+      await expect(firstTopicFilter).not.toHaveClass(/ui-tooltip/);
+      await expect(firstTopicFilter).not.toHaveAttribute('data-tooltip', /./);
+      await firstTopicFilter.click();
+      await expect(firstTopicFilter).toHaveAttribute('aria-pressed', 'true');
+      await expect(firstTopicFilter).toHaveClass(/radar-topic-chip-active/);
+      await expect(topicAllFilter).toHaveAttribute('aria-pressed', 'false');
+      await expect(topicAllFilter).not.toHaveClass(/radar-topic-chip-active/);
+      await expect.poll(() => visibleCards.count()).toBeGreaterThan(0);
+
+      if (topicFilterCount > 1) {
+        const secondTopicFilter = topicFilters.nth(1);
+        await secondTopicFilter.click();
+        await expect(firstTopicFilter).toHaveAttribute('aria-pressed', 'true');
+        await expect(secondTopicFilter).toHaveAttribute('aria-pressed', 'true');
+        await expect(secondTopicFilter).toHaveClass(/radar-topic-chip-active/);
+
+        await firstTopicFilter.click();
+        await expect(firstTopicFilter).toHaveAttribute('aria-pressed', 'false');
+        await expect(firstTopicFilter).not.toHaveClass(/radar-topic-chip-active/);
+        await expect(secondTopicFilter).toHaveAttribute('aria-pressed', 'true');
+      }
+
+      await topicAllFilter.click();
+      await expect(topicAllFilter).toHaveAttribute('aria-pressed', 'true');
+      await expect(topicAllFilter).toHaveClass(/radar-topic-chip-active/);
+    }
+
     const previewTrigger = visibleCards.locator('[data-preview-trigger]').first();
-    await expect(previewTrigger).toHaveClass(/ui-tooltip-inset-top/);
-    await expect(previewTrigger).toHaveAttribute('data-tooltip', /预览大图：/);
+    await expect(previewTrigger).not.toHaveClass(/ui-tooltip/);
+    await expect(previewTrigger).not.toHaveAttribute('data-tooltip', /./);
     await expect(previewTrigger).not.toHaveAttribute('title', /./);
+    await expect(previewTrigger.locator('span')).toHaveCount(0);
 
     await previewTrigger.click();
 
     const dialog = page.locator('[data-gallery-dialog]');
     await expect(dialog).toHaveAttribute('open', '');
-    await expect(dialog.locator('[data-dialog-title]')).not.toHaveText('');
+    await expect(dialog).toHaveClass(/radar-gallery-dialog/);
+    await expect(dialog.locator('[data-dialog-title]')).toHaveCount(0);
     await expect(dialog.locator('[data-dialog-image]')).toHaveAttribute('src', /\/images\/radar\//);
-    await expect(dialog.locator('[data-dialog-close]')).toHaveAttribute('data-tooltip', '关闭预览');
+    await expect(dialog.locator('[data-dialog-close]')).not.toHaveAttribute('data-tooltip', /./);
+    const dialogBox = await dialog.boundingBox();
+    const viewport = page.viewportSize();
+    expect(dialogBox?.x).toBeLessThanOrEqual(1);
+    expect(dialogBox?.y).toBeLessThanOrEqual(1);
+    expect(dialogBox?.width ?? 0).toBeGreaterThanOrEqual((viewport?.width ?? 0) - 2);
+    expect(dialogBox?.height ?? 0).toBeGreaterThanOrEqual((viewport?.height ?? 0) - 2);
     await expect(page.locator('.ui-tooltip[title]')).toHaveCount(0);
 
     await dialog.locator('[data-dialog-close]').click();
@@ -652,17 +718,28 @@ test.describe('published site UI', () => {
   test('site search form submits and Pagefind applies the query', async ({ page }) => {
     await gotoApp(page, '/');
 
-    const searchBox = page.locator('form[role="search"] input[name="q"]:visible').first();
-    await searchBox.fill('OpenAI');
-    await searchBox.press('Enter');
+    const headerSearchBox = page.locator('form[role="search"] input[name="q"]:visible');
+    if ((await headerSearchBox.count()) > 0) {
+      await headerSearchBox.first().fill('OpenAI');
+      await headerSearchBox.first().press('Enter');
 
-    await expect(page).toHaveURL(appUrlPattern('/search/'));
-    expect(new URL(page.url()).searchParams.get('q')).toBe('OpenAI');
+      await expect(page).toHaveURL(appUrlPattern('/search/'));
+      expect(new URL(page.url()).searchParams.get('q')).toBe('OpenAI');
+    } else {
+      const mobileSearchLink = page.locator('[data-mobile-search-link]:visible');
+      await expect(mobileSearchLink).toHaveAttribute('href', appPath('/search/'));
+      await mobileSearchLink.click();
+      await expect(page).toHaveURL(appUrlPattern('/search/'));
+    }
 
     const searchRoot = page.locator('[data-pagefind-ui-root]');
 
     await expect(searchRoot).toHaveAttribute('data-pagefind-ready', 'true', { timeout: 15_000 });
-    await expect(searchRoot.getByRole('textbox')).toHaveValue('OpenAI');
+    const pagefindInput = searchRoot.getByRole('textbox');
+    if ((await headerSearchBox.count()) === 0) {
+      await pagefindInput.fill('OpenAI');
+    }
+    await expect(pagefindInput).toHaveValue('OpenAI');
     await expect(searchRoot.locator('.pagefind-ui__search-clear')).toHaveAttribute(
       'data-tooltip',
       '清除搜索关键词',
