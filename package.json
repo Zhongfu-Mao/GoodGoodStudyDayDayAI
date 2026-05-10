@@ -22,6 +22,9 @@
     "test:ui:headed": "GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI npm run build && GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI playwright test --headed",
     "test:ui:update-snapshots": "GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI npm run build && GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI playwright test tests/ui/visual-regression.spec.ts --update-snapshots",
     "audio:compress": "node scripts/radar/compress-audio.mjs",
+    "assets:migrate:r2": "node scripts/radar/migrate-assets-to-r2.mjs",
+    "podcast:cover": "node scripts/radar/generate-podcast-cover.mjs",
+    "podcast:cover:concepts": "node scripts/radar/generate-podcast-cover-concepts.mjs",
     "radar:audio": "node scripts/radar/generate-audio.mjs",
     "radar:infographic": "node scripts/radar/generate-infographic.mjs",
     "radar:infographic:openai": "node scripts/radar/generate-infographic.mjs --backend openai",
@@ -31,6 +34,7 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
+    "@aws-sdk/client-s3": "^3.1045.0",
     "astro": "^5.13.0",
     "astro-pagefind": "^1.8.6",
     "clsx": "^2.1.1",

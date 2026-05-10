@@ -1,7 +1,9 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { getAudioFileMetadata } from '../lib/audio-metadata.mjs';
 import { parseFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
+import { publishRadarAsset } from '../lib/radar-assets.mjs';
 import {
   addSourceFile,
   createNotebook,
@@ -236,14 +238,37 @@ async function main() {
       '--json',
     ]);
 
+    const audio = await getAudioFileMetadata(audioPath);
+    const publishedAudioUrl = await publishRadarAsset({
+      localPath: audioPath,
+      publicUrl: publicAudioUrl,
+      label: 'monthly audio',
+    });
+    const publishedDeckUrl = await publishRadarAsset({
+      localPath: deckPath,
+      publicUrl: publicDeckUrl,
+      label: 'monthly deck',
+    });
     let updated = raw;
 
-    if (meta.audioUrl !== publicAudioUrl) {
-      updated = updateFrontmatterValue(updated, 'audioUrl', publicAudioUrl);
+    if (meta.audioUrl !== publishedAudioUrl) {
+      updated = updateFrontmatterValue(updated, 'audioUrl', publishedAudioUrl);
     }
 
-    if (meta.deckUrl !== publicDeckUrl) {
-      updated = updateFrontmatterValue(updated, 'deckUrl', publicDeckUrl);
+    if (audio.duration) {
+      updated = updateFrontmatterValue(updated, 'audioDuration', audio.duration, {
+        anchor: 'audioUrl',
+        position: 'after',
+      });
+    }
+
+    updated = updateFrontmatterValue(updated, 'audioSize', audio.size, {
+      anchor: 'audioDuration',
+      position: 'after',
+    });
+
+    if (meta.deckUrl !== publishedDeckUrl) {
+      updated = updateFrontmatterValue(updated, 'deckUrl', publishedDeckUrl);
     }
 
     if (updated !== raw) {
@@ -251,7 +276,7 @@ async function main() {
       console.log('Updated monthly frontmatter with audioUrl and deckUrl.');
     }
 
-    console.log(`Done. Monthly assets ready: ${publicAudioUrl} and ${publicDeckUrl}`);
+    console.log(`Done. Monthly assets ready: ${publishedAudioUrl} and ${publishedDeckUrl}`);
   } finally {
     await maybeDeleteNotebook(notebookId, options.keepNotebook);
   }

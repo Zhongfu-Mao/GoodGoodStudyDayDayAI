@@ -2,7 +2,9 @@ import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
+import { getAudioFileMetadata } from '../lib/audio-metadata.mjs';
 import { parseFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
+import { publishRadarAsset } from '../lib/radar-assets.mjs';
 import {
   extractSectionBlock,
   extractShortParagraphs,
@@ -227,17 +229,40 @@ async function main() {
     ]);
     console.log('Compressing audio to MP3 mono 64k...');
     await compressSpeechMp3(audioPath);
+    const audio = await getAudioFileMetadata(audioPath);
+    const publishedAudioUrl = await publishRadarAsset({
+      localPath: audioPath,
+      publicUrl: publicAudioUrl,
+      label: 'daily audio',
+    });
 
-    if (meta.audioUrl !== publicAudioUrl) {
-      const latestRaw = await readFile(targetFile, 'utf8');
-      const updated = updateFrontmatterValue(latestRaw, 'audioUrl', publicAudioUrl);
-      await writeFile(targetFile, updated, 'utf8');
-      console.log(`Updated frontmatter audioUrl -> ${publicAudioUrl}`);
-    } else {
-      console.log(`audioUrl already set to ${publicAudioUrl}`);
+    const latestRaw = await readFile(targetFile, 'utf8');
+    let updated = latestRaw;
+
+    if (meta.audioUrl !== publishedAudioUrl) {
+      updated = updateFrontmatterValue(updated, 'audioUrl', publishedAudioUrl);
     }
 
-    console.log(`Done. Audio ready at ${publicAudioUrl}`);
+    if (audio.duration) {
+      updated = updateFrontmatterValue(updated, 'audioDuration', audio.duration, {
+        anchor: 'audioUrl',
+        position: 'after',
+      });
+    }
+
+    updated = updateFrontmatterValue(updated, 'audioSize', audio.size, {
+      anchor: 'audioDuration',
+      position: 'after',
+    });
+
+    if (updated !== latestRaw) {
+      await writeFile(targetFile, updated, 'utf8');
+      console.log(`Updated frontmatter audio metadata for ${publishedAudioUrl}`);
+    } else {
+      console.log(`audio metadata already set for ${publishedAudioUrl}`);
+    }
+
+    console.log(`Done. Audio ready at ${publishedAudioUrl}`);
   } finally {
     if (options.sourceMode === 'brief') {
       await rm(briefMemoPath, { force: true });

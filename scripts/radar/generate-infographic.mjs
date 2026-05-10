@@ -2,6 +2,7 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { parseFrontmatter, stripFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
+import { assetUrlMatchesPublicAsset, publishRadarAsset } from '../lib/radar-assets.mjs';
 import {
   extractSectionBlock,
   extractShortParagraphs,
@@ -503,7 +504,7 @@ async function processFile(targetFile, options) {
   const imagePath = path.join(IMAGE_DIR, `${slug}-infographic.${imageExtension}`);
   const publicImageUrl = `/images/radar/${slug}-infographic.${imageExtension}`;
 
-  if (!options.overwrite && meta.coverImage === publicImageUrl) {
+  if (!options.overwrite && assetUrlMatchesPublicAsset(meta.coverImage, publicImageUrl)) {
     console.log(`skip ${path.basename(targetFile)} (coverImage already set)`);
     return { status: 'skipped', targetFile, publicImageUrl };
   }
@@ -516,20 +517,26 @@ async function processFile(targetFile, options) {
     throw new Error(`Unsupported backend: ${options.backend}`);
   }
 
-  if (meta.coverImage !== publicImageUrl) {
+  const publishedImageUrl = await publishRadarAsset({
+    localPath: imagePath,
+    publicUrl: publicImageUrl,
+    label: 'radar infographic',
+  });
+
+  if (meta.coverImage !== publishedImageUrl) {
     const latestRaw = await readFile(targetFile, 'utf8');
-    const updated = updateFrontmatterValue(latestRaw, 'coverImage', publicImageUrl, {
+    const updated = updateFrontmatterValue(latestRaw, 'coverImage', publishedImageUrl, {
       anchor: 'lang',
       position: 'after',
     });
     await writeFile(targetFile, updated, 'utf8');
-    console.log(`Updated frontmatter coverImage -> ${publicImageUrl}`);
+    console.log(`Updated frontmatter coverImage -> ${publishedImageUrl}`);
   } else {
-    console.log(`coverImage already set to ${publicImageUrl}`);
+    console.log(`coverImage already set to ${publishedImageUrl}`);
   }
 
-  console.log(`Done. Infographic ready at ${publicImageUrl}`);
-  return { status: 'generated', targetFile, publicImageUrl };
+  console.log(`Done. Infographic ready at ${publishedImageUrl}`);
+  return { status: 'generated', targetFile, publicImageUrl: publishedImageUrl };
 }
 
 async function main() {
