@@ -5,7 +5,7 @@ category: academy
 description: "調査課題の設定から、信頼できる出典の特定、情報の比較検証、結論の導出、そして不確実性の管理まで、ChatGPTをリサーチ・パートナーとして活用する方法を整理します。"
 plainSummary: "OpenAI Academyの「ChatGPT for Research」のエッセンスを、実務で即座に実践・復習できる学習パス「03.4 ChatGPT for Research」として構成しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24Zhocf65q1eBCqPljGtiH/b12cc424af8d1eacd56ee339e8214822/research.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/everyone/research.ja.svg"
 tags:
   - "ChatGPT/Research"
   - "AI/Workflow"

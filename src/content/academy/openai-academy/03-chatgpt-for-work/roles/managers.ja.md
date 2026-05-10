@@ -5,7 +5,7 @@ category: academy
 description: "マネージャーやエグゼクティブが意思決定、組織内コミュニケーション、戦略立案、振り返りにChatGPTを活用する方法を整理します。"
 plainSummary: "OpenAI Academyの「ChatGPT for Managers and Executives」のエッセンスを、実務で即座に実践・復習できる学習パス「03.10 Managers and Executives」として構成しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/54U640Rg1XlL5A9UxhX8DY/576d590f1443e4abe0e85b94e79b38c3/managers.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/managers.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

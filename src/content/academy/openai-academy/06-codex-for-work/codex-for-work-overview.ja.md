@@ -5,7 +5,7 @@ category: academy
 description: "Codex を単なる「コード生成ツール」から、知識作業、資料整理、および軽量な業務自動化を支える「タスク委任ツール」へと拡張するための指針を整理します。"
 plainSummary: "OpenAI Academy「06.1 Codex for Work」の要点を、業務効率化とタスク自動化の観点から再構成した学習ノートです。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2b3PBAK2QrcqJT5aYwkQKr/eaaebd4bb6f4743e1d92dd1698453285/cover-codex-for-work.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/06-codex-for-work/codex-for-work-overview.ja.svg"
 tags:
   - "Codex for Work"
   - "AI/Workflow"

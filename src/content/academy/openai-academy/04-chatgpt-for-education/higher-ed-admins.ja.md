@@ -5,7 +5,7 @@ category: academy
 description: "大学や研究機関の管理職が ChatGPT を活用して、校務の効率化、意思決定の高度化、学生サービスの向上、およびデジタルトランスフォーメーションを推進する方法を整理します。"
 plainSummary: "OpenAI Academy の「Higher Ed Admins」の要点を、高等教育機関のガバナンスを AI で強化するための手順と確認観点にまとめた学習ノートです。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4A5Yfd36Abmlr7Ci2ZwrP/4a7eefabc5e51c2408b2120b7dd8c32a/higher-ed-admins.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/higher-ed-admins.ja.svg"
 tags:
   - "Education"
   - "Administration"

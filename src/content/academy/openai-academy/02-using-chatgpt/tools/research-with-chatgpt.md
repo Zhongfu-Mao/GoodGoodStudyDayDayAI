@@ -5,7 +5,7 @@ category: academy
 description: "深度对比 ChatGPT Search 与 Deep Research 的应用场景，构建从模糊需求到证据链支撑的研究工作流。"
 plainSummary: "本笔记提炼了 OpenAI Academy「02.5 Research with ChatGPT」的核心要点，助力用户在快速事实查询与复杂战略调研间灵活切换。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6vCtWVZH9dyolSQQhXzGyx/686abd0c6c92eb96129cb71f6ab7917e/search-deep-research.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/tools/research-with-chatgpt.svg"
 tags:
   - "ChatGPT/Research"
 lang: zh

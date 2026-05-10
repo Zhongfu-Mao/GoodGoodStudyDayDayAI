@@ -5,7 +5,7 @@ category: academy
 description: "深入探讨评估 (Evals) 在 AI 应用开发中的核心作用：将主观感知的“好用”转化为客观、可衡量的质量标准。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 Evals 的核心内容提炼为 07.3 Evals 结构化学习路径，旨在提供可复习、可实践的专业指南。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/evals.svg"
 tags:
   - "Evals"
   - "AI Engineering"

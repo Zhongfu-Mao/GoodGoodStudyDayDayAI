@@ -5,7 +5,7 @@ category: academy
 description: "K-12（初等・中等教育）の管理者が、方針策定、運営改善、およびコミュニケーションに AI を活用するための実践的な手法をまとめます。"
 plainSummary: "OpenAI Academy「04.1 K-12 Admins」の要点を、実務で即座に活用できる手順と評価の観点に再構成した学習ノートです。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/66N6hYQvC6ZqH3T0L4WpX6/9c48b2d1d0e5f2e8b2b2b2b2b2b2b2b2/k12-admins.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/k12-admins.ja.svg"
 tags:
   - "Education"
   - "Leadership"

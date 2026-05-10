@@ -5,7 +5,7 @@ category: academy
 description: "探讨软件工程师如何将 Codex 深度集成至开发、测试、代码审查及系统维护的日常全流程。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 Codex for Software Engineers 的核心内容提炼为 05.5 软件工程实践路径，旨在提供可复习、可落地的专业指南。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7aH5Yfd36Abmlr7Ci2ZwrP/4a7eefabc5e51c2408b2120b7dd8c32a/SWE-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/software-engineers.svg"
 tags:
   - "Codex"
 lang: zh

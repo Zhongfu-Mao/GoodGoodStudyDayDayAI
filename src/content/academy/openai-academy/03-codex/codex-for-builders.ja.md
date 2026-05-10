@@ -5,7 +5,7 @@ category: academy
 description: "Codexを単なるコード補完ツールではなく、開発者のための「AI協働環境」として理解し、活用するための基本を整理します。"
 plainSummary: "OpenAI Academyノート：Codex の要点を、03 Codex の学習ノートとして実務で試せる手順と確認観点に整理します。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4a0UlJKsQXDLL6k7khzEmr/ddac544c58137463e3963b22de3317c5/Cover-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-codex/codex-for-builders.ja.svg"
 tags:
   - "Codex"
   - "AI/Agents"

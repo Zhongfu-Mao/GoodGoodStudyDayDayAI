@@ -5,7 +5,7 @@ category: academy
 description: "Codexのセットアップから、タスクの依頼、差分（Diff）の確認、そして自動検証までのエンドツーエンドのワークフローを整理します。"
 plainSummary: "OpenAI Academyノート：Codex Quickstart の要点を、最初のタスク委任を確実に成功させるためのステップバイステップ・ガイドとして再構成します。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/53QFGSGDJnCJxvj45fA6ev/bda24475ea40905884a9ca8c49ff3135/get-started-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/quickstart.ja.svg"
 tags:
   - "Codex"
   - "AI Engineering"

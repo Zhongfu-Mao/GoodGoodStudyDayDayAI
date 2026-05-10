@@ -5,7 +5,7 @@ category: academy
 description: "通过“从发散到收敛 (Wide to Narrow)”的系统化流程，将零散的想法转化为可比较、可执行的高质量方案。"
 plainSummary: "本篇笔记将 OpenAI Academy 中关于头脑风暴的 ChatGPT 应用核心内容，整理为可复习、可实践的 03.2 Brainstorming with ChatGPT 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2QucAPrnCRSUoZDbQFyK4P/736e90884baf0e1ebe6cbcdb2ba8beaf/brainstorming.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/everyone/brainstorming.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

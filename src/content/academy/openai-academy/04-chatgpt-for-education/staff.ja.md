@@ -5,7 +5,7 @@ category: academy
 description: "教育機関の事務・行政スタッフが ChatGPT を活用して、校務の効率化、ドキュメント作成の迅速化、コミュニケーションの質向上、および定型業務の自動化を推進する方法を整理します。"
 plainSummary: "OpenAI Academy の「Staff」の要点を、教育現場のバックオフィス業務を AI でスマートにするための手順と確認観点にまとめた学習ノートです。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4jkiAnrrcbHJFYO92cI5nB/b52f60860b8aa6e1a7e230f6d971eb02/university-staff.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/staff.ja.svg"
 tags:
   - "Operations"
 lang: ja

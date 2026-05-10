@@ -5,7 +5,7 @@ category: academy
 description: "AI アプリケーションの設計、構築、最適化を体系的に学ぶ Builder Bootcamp の核心を、実践的な学習ルートとして整理します。"
 plainSummary: "OpenAI Academy の Builder Bootcamp セッションの要点を、実務で即座に活用可能な 07.1 生産級 AI アプリケーション構築フレームワークとして再構成しました。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/builder-bootcamp.ja.svg"
 tags:
   - "Building with AI"
   - "AI Engineering"

@@ -5,7 +5,7 @@ category: academy
 description: "整理 ChatGPT for Education 在 K-12 和高等教育中的角色地图，并补充学习者视角的使用边界。"
 plainSummary: "这篇笔记把 OpenAI Academy 笔记：ChatGPT for Education 的核心内容整理成可复习、可实践的 06 ChatGPT for Education 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1UQoFXTvJ2jAje7MD0FcrM/21ca718020e08c026fb708add6c62fba/Cover-education.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/06-chatgpt-for-education/chatgpt-for-education.svg"
 tags:
   - "AI/Fluency"
 lang: zh
@@ -237,7 +237,7 @@ Anthropic Academy 的 AI Fluency for Educators 更强调如何教授 AI 流利�
 
 ### 外链视觉素材
 
-![ChatGPT for education](https://images.ctfassets.net/kftzwdyauwt9/1UQoFXTvJ2jAje7MD0FcrM/21ca718020e08c026fb708add6c62fba/Cover-education.png?w=3840&q=90&fm=webp)
+![ChatGPT for education](/images/academy/openai-academy/covers/06-chatgpt-for-education/chatgpt-for-education.svg)
 
 图片来自官方页面外链，本站只引用 URL，不复制图片文件。
 

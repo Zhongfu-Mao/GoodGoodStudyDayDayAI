@@ -5,7 +5,7 @@ category: academy
 description: "探讨高校行政与运营团队如何利用 ChatGPT 提升校园服务效能、优化沟通流程及高效整合行政信息。"
 plainSummary: "本笔记提炼了 OpenAI Academy「04.6 Higher Education Staff」的核心内容，旨在帮助高校 staff 将 AI 应用于学生支持与校园管理。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4jkiAnrrcbHJFYO92cI5nB/b52f60860b8aa6e1a7e230f6d971eb02/university-staff.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/staff.svg"
 tags:
   - "Operations"
 lang: zh

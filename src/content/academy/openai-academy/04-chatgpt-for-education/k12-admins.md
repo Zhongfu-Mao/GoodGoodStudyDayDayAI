@@ -5,7 +5,7 @@ category: academy
 description: "探讨中小学领导者如何利用 ChatGPT 优化校园行政、促进师生沟通、制定 AI 使用政策并引领教育创新。"
 plainSummary: "本篇笔记将 OpenAI Academy 中针对 K12 Admins 的核心建议转化为一套领导力实践蓝图，助力中小学管理者构建面向未来的智慧校园。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/66N6hYQvC6ZqH3T0L4WpX6/9c48b2d1d0e5f2e8b2b2b2b2b2b2b2b2/k12-admins.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/k12-admins.svg"
 tags:
   - "Education"
   - "Leadership"

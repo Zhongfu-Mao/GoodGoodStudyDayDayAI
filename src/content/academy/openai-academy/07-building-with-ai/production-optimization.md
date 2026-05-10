@@ -5,7 +5,7 @@ category: academy
 description: "探讨生产级 AI 应用的构建与优化，涵盖质量保障、延迟控制、成本管理、可观测性及系统治理等核心维度。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 Production and Optimization 的核心内容提炼为 07.5 生产与优化的结构化学习路径，旨在提供可复习、可实践的专业指南。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/16ClwJMGpPN3flMrO4DXyL/2a38515d0d3a674161bfa796e87e3889/Cover-building.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/production-optimization.svg"
 tags:
   - "AI Engineering"
 lang: zh

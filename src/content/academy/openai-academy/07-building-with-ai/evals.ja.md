@@ -5,7 +5,7 @@ category: academy
 description: "AI アプリケーションの品質を客観的に測定するための評価設計、ルーブリック（採点基準）、テストセットの構築、およびイテレーションによる継続改善手法を整理します。"
 plainSummary: "OpenAI Academy の Evals セッションの要点を、実務で即座に導入可能な 07.3 Evals フレームワークとして再構成しました。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/evals.ja.svg"
 tags:
   - "Evals"
   - "AI Engineering"

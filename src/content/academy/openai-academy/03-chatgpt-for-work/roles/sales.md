@@ -5,7 +5,7 @@ category: academy
 description: "整理销售团队如何利用 ChatGPT 进行大客户研究、商谈准备、客户触达、方案设计及交易协同。"
 plainSummary: "本篇笔记将 OpenAI Academy 中关于销售团队的 ChatGPT 应用核心内容，整理为可复习、可实践的 03.6 Sales Teams 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1R29scy3v5zFLkNH0KaSVt/b8cf3723aecd035b28ce13081f5410cf/sales.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/sales.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

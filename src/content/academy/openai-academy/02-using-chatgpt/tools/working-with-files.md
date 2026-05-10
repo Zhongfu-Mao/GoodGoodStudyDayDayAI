@@ -5,7 +5,7 @@ category: academy
 description: "深入理解如何利用 ChatGPT 高效处理文档、表格、PDF 及图片，并掌握第三方应用的文件集成技巧。"
 plainSummary: "本笔记将 OpenAI Academy 关于文件处理的核心内容整合为一套可实践的学习路径，涵盖总结、改写、数据分析及信息提取等实战场景。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7FdLCJL2BCjS8ef2BJ8rG0/8307b0a6be94e0333b43dbed5b93d187/using-files.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/tools/working-with-files.svg"
 tags:
   - "AI/Workflow"
 lang: zh

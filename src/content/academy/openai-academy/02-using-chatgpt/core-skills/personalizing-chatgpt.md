@@ -5,7 +5,7 @@ category: academy
 description: "深度解析 Custom Instructions、Memory 与构建稳定、高效工作风格之间的核心逻辑。"
 plainSummary: "本笔记将 OpenAI Academy 关于个性化设置的核心内容提炼为一套实操框架，旨在帮助用户减少重复指令，使 ChatGPT 真正理解其业务角色与交付标准。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2s9rOdoSHProR3I6Ai5P5/8ca619f82211ade2d76316f04aa3fbcc/personalizing-chatgpt.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/core-skills/personalizing-chatgpt.svg"
 tags:
   - "ChatGPT"
   - "Personalization"

@@ -5,7 +5,7 @@ category: academy
 description: "探讨高等教育管理者如何利用 ChatGPT 提升行政效率、优化决策支持、增强学生服务及推动校园数字化转型。"
 plainSummary: "本篇笔记将 OpenAI Academy 中针对 Higher Ed Admins 的核心洞察转化为一套行政管理工具包，助力高校管理层在 AI 时代实现治理现代化。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4A5Yfd36Abmlr7Ci2ZwrP/4a7eefabc5e51c2408b2120b7dd8c32a/higher-ed-admins.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/higher-ed-admins.svg"
 tags:
   - "Education"
   - "Administration"

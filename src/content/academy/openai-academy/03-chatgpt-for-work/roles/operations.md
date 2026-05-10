@@ -5,7 +5,7 @@ category: academy
 description: "整理运营团队如何用 ChatGPT 改善流程、handoff、SOP、状态同步和瓶颈诊断。"
 plainSummary: "这篇笔记把 OpenAI Academy 笔记：ChatGPT for Operations Teams 的核心内容整理成可复习、可实践的 03.9 Operations Teams 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/66loCrCRxCGAdv5ElN6vc9/d844920d80ae903617bd7336fa6d99cc/operations.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/operations.svg"
 tags:
   - "Operations"
 lang: zh
@@ -203,7 +203,7 @@ Operations 页把 ChatGPT 放在信息整理、节奏维护和执行推进的位
 
 ### 外链视觉素材
 
-![ChatGPT for operations teams](https://images.ctfassets.net/kftzwdyauwt9/66loCrCRxCGAdv5ElN6vc9/d844920d80ae903617bd7336fa6d99cc/operations.png?w=3840&q=90&fm=webp)
+![ChatGPT for operations teams](/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/operations.svg)
 
 图片来自官方页面外链，本站只引用 URL，不复制图片文件。
 

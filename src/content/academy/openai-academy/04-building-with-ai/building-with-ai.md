@@ -5,7 +5,7 @@ category: academy
 description: "将 OpenAI Academy 的 Building with AI 路径提炼为从“工具应用”迈向“系统构建”的进阶学习框架。"
 plainSummary: "本笔记将 OpenAI Academy：Building with AI 的核心内容整理为可复习、可实践的 04 Building with AI 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/16ClwJMGpPN3flMrO4DXyL/2a38515d0d3a674161bfa796e87e3889/Cover-building.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-building-with-ai/building-with-ai.svg"
 tags:
   - "Building with AI"
   - "AI Engineering"

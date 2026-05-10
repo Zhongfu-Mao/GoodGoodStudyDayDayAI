@@ -5,7 +5,7 @@ category: academy
 description: "DALL·E 3 を活用した画像生成、インペインティングによる編集、およびビジネス利用における注意点をマスターする。"
 plainSummary: "OpenAI Academy の「Image Creation」をベースに、プロンプト設計から画像の微調整、ブランド一貫性の維持、著作権上の考慮事項まで、実務で役立つ画像活用術を整理しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4as9dmBmMnIulWoUEIBsOj/2441164935c8d325daa552d91c71f131/image-creation.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/tools/image-creation.ja.svg"
 tags:
   - "ChatGPT"
 lang: ja

@@ -5,7 +5,7 @@ category: academy
 description: "Codex for Work における自動化（Automations）、プラグイン、独自の Skills、および詳細設定を組み合わせ、定型業務を安定したワークフローに変換するための設計指針をまとめます。"
 plainSummary: "OpenAI Academy「06.2 Codex Workflows」の要点を、実務での安全性とスケーラビリティの観点から再構成した学習ノートです。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/WWbNfZvQUCV942pR9wPFw/69567e99135e87f695b94809ac026162/automations.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/06-codex-for-work/automations-plugins-settings.ja.svg"
 tags:
   - "Codex for Work"
   - "Automation"

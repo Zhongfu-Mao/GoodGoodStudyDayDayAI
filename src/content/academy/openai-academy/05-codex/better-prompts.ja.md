@@ -5,7 +5,7 @@ category: academy
 description: "Codex への依頼における範囲定義、制約事項の提示、検証方法、および成果物の品質を高めるプロンプティング技法を整理します。"
 plainSummary: "OpenAI Academy の「Better Codex Prompts」の要点を、実務で精度の高いコード生成を実現するための手順と確認観点にまとめた学習ノートです。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1YcLAu9OdRty21jeeKHSmK/2ed897dec9d31f58f63b7c8f3d82cb94/prompts-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/better-prompts.ja.svg"
 tags:
   - "Codex"
   - "Prompting"

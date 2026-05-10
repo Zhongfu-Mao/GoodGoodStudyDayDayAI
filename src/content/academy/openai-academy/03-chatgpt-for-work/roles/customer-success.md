@@ -5,7 +5,7 @@ category: academy
 description: "整理客户成功团队如何利用 ChatGPT 沉淀客户上下文、管理行动项、识别续约风险并提升沟通质量。"
 plainSummary: "本篇笔记将 OpenAI Academy 中关于客户成功团队的 ChatGPT 应用核心内容，整理为可复习、可实践的 03.7 Customer Success Teams 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/YV0SfzN3qIM6qCrQ3XTO0/b58c9038114293db5db3cc8832348a5c/customer-success.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/customer-success.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

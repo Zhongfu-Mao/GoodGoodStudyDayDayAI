@@ -5,7 +5,7 @@ category: academy
 description: "AI、モデル、LLM、学習プロセス、そして推理（Reasoning）モデルの基礎概念を体系的に整理します。"
 plainSummary: "OpenAI Academyノート：AI Fundamentals の要点を、AI活用のための標準的な認知フレームワークとして構造化し、実務で活用できる形式にまとめます。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/01-ai-fundamentals/ai-fundamentals.ja.svg"
 tags:
   - "LLM"
 lang: ja

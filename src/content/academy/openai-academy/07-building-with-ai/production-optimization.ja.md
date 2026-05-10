@@ -5,7 +5,7 @@ category: academy
 description: "AI アプリケーションを本番環境へデプロイする際のモニタリング、コスト管理、レイテンシ削減、および品質の継続的改善手法を整理します。"
 plainSummary: "OpenAI Academy の「本番運用と最適化」セッションの要点を、実務で即座に検証可能な 07.5 Production and Optimization チェックリストとして再構成しました。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/16ClwJMGpPN3flMrO4DXyL/2a38515d0d3a674161bfa796e87e3889/Cover-building.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/production-optimization.ja.svg"
 tags:
   - "AI Engineering"
 lang: ja

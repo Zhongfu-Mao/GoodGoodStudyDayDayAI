@@ -5,7 +5,7 @@ category: academy
 description: "実務における文章作成、編集、要約、トーン調整をシームレスにワークフローへ組み込むための手法を整理します。"
 plainSummary: "OpenAI Academy：Writing with ChatGPT の要点を、「03.1 Writing with ChatGPT」の学習ノートとして、実務で即座に試せる手順と確認ポイントに整理します。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7cfiyKI1Hz4PtBIZ5yV2Po/53d6f365498046c4596a2b5953039ccb/writing.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/everyone/writing.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

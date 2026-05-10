@@ -5,7 +5,7 @@ category: academy
 description: "探讨教师如何利用 ChatGPT 辅助备课、优化反馈、设计差异化教学材料及课堂互动，实现教学效能的跃迁。"
 plainSummary: "本笔记提炼了 OpenAI Academy「04.3 Teachers」的核心内容，强调 AI 如何作为教师的“超级助教”来增强而非替代专业判断。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3oIacja57T4O2dlR52RbVJ/efd304faeede3b0e448e377cee270bb1/teachers.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/teachers.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

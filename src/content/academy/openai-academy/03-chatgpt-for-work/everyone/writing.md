@@ -5,7 +5,7 @@ category: academy
 description: "将职场写作构建为 Plan、Draft、Revise、Package 的四步标准工作流。"
 plainSummary: "本笔记将 OpenAI Academy：Writing with ChatGPT 的核心内容整理为可复习、可实践的 03.1 Writing with ChatGPT 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7cfiyKI1Hz4PtBIZ5yV2Po/53d6f365498046c4596a2b5953039ccb/writing.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/everyone/writing.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

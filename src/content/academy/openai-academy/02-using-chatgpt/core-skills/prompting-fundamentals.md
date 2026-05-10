@@ -5,7 +5,7 @@ category: academy
 description: "将提示词 (Prompt) 的撰写逻辑拆解为：任务定义、上下文补充、理想输出描述以及迭代反馈四个核心环节。"
 plainSummary: "本笔记将 OpenAI Academy 关于提示词基础的核心内容整合为一套标准化的“委派框架”，旨在帮助用户通过精准的表达提升 AI 交付成果的确定性。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6KuWyesIgCbrJUzXckTYSx/20183733ba66b4b535fe978fc7ec985b/your-first-chat.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/core-skills/prompting-fundamentals.svg"
 tags:
   - "Prompting"
   - "ChatGPT"

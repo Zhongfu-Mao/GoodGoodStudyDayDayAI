@@ -5,7 +5,7 @@ category: academy
 description: "详解 Codex 入门路径：从环境设置、任务定义到工作区配置、验证与交付的完整流程。"
 plainSummary: "本篇笔记将 OpenAI Academy 中关于 Codex Quickstart 的核心内容提炼为一套可复现、可实践的学习路径，助力开发者快速上手。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/53QFGSGDJnCJxvj45fA6ev/bda24475ea40905884a9ca8c49ff3135/get-started-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/quickstart.svg"
 tags:
   - "Codex"
   - "AI Engineering"
@@ -170,7 +170,7 @@ Codex 的入门重点不仅在于“让 AI 编写代码”，更在于学习如�
 
 ### 视觉资源索引
 
-![Quickstart](https://images.ctfassets.net/kftzwdyauwt9/53QFGSGDJnCJxvj45fA6ev/bda24475ea40905884a9ca8c49ff3135/get-started-codex.png?w=3840&q=90&fm=webp)
+![Quickstart](/images/academy/openai-academy/covers/05-codex/quickstart.svg)
 
 *注：图片引用自官方页面，版权归原作者所有。*
 

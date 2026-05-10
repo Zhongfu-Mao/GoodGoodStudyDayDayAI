@@ -5,7 +5,7 @@ category: academy
 description: "从第一条 prompt 到 Projects、Custom GPTs、Skills 和 Workspace agents，整理 ChatGPT 使用能力的递进路线。"
 plainSummary: "这篇笔记把 OpenAI Academy 笔记：Using ChatGPT 的核心内容整理成可复习、可实践的 02 Using ChatGPT 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3UaiZFr75wVkOCJsHTd21x/54b2631e52804edcce8bc6ffbdd15722/Cover-using-chatgpt.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/using-chatgpt-workflows.svg"
 tags:
   - "ChatGPT"
   - "AI/Workflow"
@@ -233,7 +233,7 @@ Anthropic Academy 的 Description 强调如何清楚描述任务、过程和期�
 
 ### 外链视觉素材
 
-![Using ChatGPT](https://images.ctfassets.net/kftzwdyauwt9/3UaiZFr75wVkOCJsHTd21x/54b2631e52804edcce8bc6ffbdd15722/Cover-using-chatgpt.png?w=3840&q=90&fm=webp)
+![Using ChatGPT](/images/academy/openai-academy/covers/02-using-chatgpt/using-chatgpt-workflows.svg)
 
 图片来自官方页面外链，本站只引用 URL，不复制图片文件。
 

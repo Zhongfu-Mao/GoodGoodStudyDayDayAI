@@ -5,7 +5,7 @@ category: academy
 description: "Workspace Agents の起動トリガー、実行プロセス、ツール連携、権限管理、およびチーム展開における境界条件を体系的に整理する。"
 plainSummary: "OpenAI Academy の「Workspace Agents」をベースに、AI を単なる「回答者」から「実行者」へと進化させ、組織のワークフローを自律的に遂行させるための設計フレームワークをまとめました。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/32nZFLTFUOKZWAbNt8mZ9E/3fed0abf03f542ee2a46c5ced153b362/agents.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/workflows/workspace-agents.ja.svg"
 tags:
   - "AI/Agents"
 lang: ja

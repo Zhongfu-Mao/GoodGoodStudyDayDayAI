@@ -5,7 +5,7 @@ category: academy
 description: "整理市场营销团队如何利用 ChatGPT 实现从市场洞察、项目简报、创意素材到广告投放及效果复盘的全链路闭环。"
 plainSummary: "本篇笔记将 OpenAI Academy 中关于市场营销团队的 ChatGPT 应用核心内容，整理为可复习、可实践的 03.5 Marketing Teams 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/14MipR48ayyvUsaXwsG5Yr/c9a99c855ff1663fdd0c9d07b40cb8f2/marketing.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/marketing.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

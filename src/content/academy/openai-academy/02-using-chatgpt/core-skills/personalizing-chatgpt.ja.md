@@ -5,7 +5,7 @@ category: academy
 description: "Custom Instructions（カスタム指示）、Memory（記憶機能）、および安定したワークスタイルの構築に向けた活用法を整理する。"
 plainSummary: "OpenAI Academy の「Personalization」をベースに、ユーザーの役割、トーン、出力形式の好みを AI に学習させ、毎回同じ説明を繰り返す手間を省くための設定術をまとめました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2s9rOdoSHProR3I6Ai5P5/8ca619f82211ade2d76316f04aa3fbcc/personalizing-chatgpt.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/core-skills/personalizing-chatgpt.ja.svg"
 tags:
   - "ChatGPT"
   - "Personalization"

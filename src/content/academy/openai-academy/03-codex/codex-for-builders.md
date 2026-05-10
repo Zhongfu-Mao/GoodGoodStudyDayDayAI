@@ -5,7 +5,7 @@ category: academy
 description: "梳理 Codex 在 OpenAI Academy 中的核心定位：从单纯的代码辅助工具，演进为能够处理委派任务、文件操作及工作流管理的 AI 智能体 (Agent)。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 Codex 的核心内容，提炼为 03 Codex 的结构化学习路径，旨在提供可复习、可实践的专业指南。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4a0UlJKsQXDLL6k7khzEmr/ddac544c58137463e3963b22de3317c5/Cover-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-codex/codex-for-builders.svg"
 tags:
   - "Codex"
   - "AI/Agents"

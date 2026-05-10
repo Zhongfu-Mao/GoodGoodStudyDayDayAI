@@ -5,7 +5,7 @@ category: academy
 description: "AIを安全かつ倫理的に活用するために、人間による確認、透明性の確保、プライバシー保護、そして専門的判断の境界線を明確にします。"
 plainSummary: "安全性、プライバシー、正確性、バイアス、著作権、そして高リスクな利用シーンを網羅した、公開前チェックリストを作成します。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/01-ai-fundamentals/responsible-safe-use.ja.svg"
 tags:
   - "AI/Fluency"
 lang: ja

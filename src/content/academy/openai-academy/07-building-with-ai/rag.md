@@ -5,7 +5,7 @@ category: academy
 description: "深度剖析 RAG（检索增强生成）的核心技术环节：文档检索、上下文编排、来源校验、归因（Grounding）及系统化评估。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 RAG 的核心洞察整理为一套可复用、可工程化落地的 07.4 RAG 技术路径。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5xMpq7Q0JXMzdCm5GmMQc8/c32a4332c00d64537cc569e015587356/packs-patterns.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/rag.svg"
 tags:
   - "RAG"
   - "AI Engineering"

@@ -5,7 +5,7 @@ category: academy
 description: "K-12（初等・中等教育）の IT 責任者が、AI 導入におけるインフラ、セキュリティ、およびガバナンスを設計するための指針を整理します。"
 plainSummary: "OpenAI Academy「04.2 K-12 IT Leadership」の要点を、技術的な導入検討とリスク管理の観点から再構成した学習ノートです。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3A5Yfd36Abmlr7Ci2ZwrP/4a7eefabc5e51c2408b2120b7dd8c32a/k12-it-leadership.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/k12-it-leadership.ja.svg"
 tags:
   - "Education"
   - "IT Leadership"

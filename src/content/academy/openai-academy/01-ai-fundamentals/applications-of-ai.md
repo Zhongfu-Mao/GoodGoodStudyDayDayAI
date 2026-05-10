@@ -5,7 +5,7 @@ category: academy
 description: "通过产品形态、开发平台与应用架构三个维度，深度理解 OpenAI 如何将底层模型能力转化为高效的生产力工具。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 Applications of AI 的核心内容提炼为 01.1 应用场景结构化学习路径，旨在提供可复习、可实践的参考指南。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/01-ai-fundamentals/applications-of-ai.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

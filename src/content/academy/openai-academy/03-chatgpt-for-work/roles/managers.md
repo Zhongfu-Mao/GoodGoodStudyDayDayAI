@@ -5,7 +5,7 @@ category: academy
 description: "整理管理者如何利用 ChatGPT 辅助战略研判、沟通管理、规划复盘及决策支撑。"
 plainSummary: "本篇笔记将 OpenAI Academy 中关于管理者与高管的 ChatGPT 应用核心内容，整理为可复习、可实践的 03.10 Managers and Executives 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/54U640Rg1XlL5A9UxhX8DY/576d590f1443e4abe0e85b94e79b38c3/managers.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/managers.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

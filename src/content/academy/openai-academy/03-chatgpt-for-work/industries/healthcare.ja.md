@@ -5,7 +5,7 @@ category: academy
 description: "医療・ヘルスケアでの臨床ワークフロー補助と専門家レビューの境界を整理する。"
 plainSummary: "OpenAI Academyノート：ヘルスケア の要点を、03.12 Healthcare の学習ノートとして実務で試せる手順と確認観点に整理します。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4PiE6YggOhzl7SQezkdnSK/d1cf00d0269d1f9c061d0d4d4c925372/healthcare.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/industries/healthcare.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

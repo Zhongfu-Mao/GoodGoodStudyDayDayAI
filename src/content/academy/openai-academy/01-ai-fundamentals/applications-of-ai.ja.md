@@ -5,7 +5,7 @@ category: academy
 description: "OpenAIのモデル能力が、プロダクト、開発プラットフォーム、そして具体的な業務アプリケーションへと展開されるプロセスを体系的に整理します。"
 plainSummary: "OpenAI Academyノート：OpenAIにおけるAIの応用 の要点を、実務におけるAIプロダクト選定のガイドラインとして再構成します。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/01-ai-fundamentals/applications-of-ai.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

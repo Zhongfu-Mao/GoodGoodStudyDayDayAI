@@ -5,7 +5,7 @@ category: academy
 description: "Codex App の基本的な操作方法から、ローカル環境での効率的な開発プロセス構築までを整理します。"
 plainSummary: "OpenAI Academy の「Codex App」の要点を、実務で即座に試せる手順と確認観点にまとめた学習ノートです。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2X2YDuHmP1dPfrPYk8BhS6/0efa2ae4c8505afe1f8b8398938db0a4/work-faster-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/codex-app.ja.svg"
 tags:
   - "Codex"
   - "AI Engineering"

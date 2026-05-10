@@ -5,7 +5,7 @@ category: academy
 description: "文書、表データ、PDF、画像、および外部アプリ連携における ChatGPT のファイル処理機能をマスターする。"
 plainSummary: "OpenAI Academy の「Working with Files」をベースに、実務で即座に活用できるドキュメント分析、データ抽出、ワークフローの最適化手法を体系的にまとめました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7FdLCJL2BCjS8ef2BJ8rG0/8307b0a6be94e0333b43dbed5b93d187/using-files.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/tools/working-with-files.ja.svg"
 tags:
   - "AI/Workflow"
 lang: ja

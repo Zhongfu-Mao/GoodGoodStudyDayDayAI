@@ -5,7 +5,7 @@ category: academy
 description: "整理财务团队如何利用 ChatGPT 优化财务报告、差异原因说明 (Variance Narrative)、预算规划、数据勾稽检查及审计支持。"
 plainSummary: "本篇笔记将 OpenAI Academy 中关于财务团队的 ChatGPT 应用核心内容，整理为可复习、可实践的 03.8 Finance Teams 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5oD5aOV77eWiWp6ZLigAVN/d6ea39d836ba4832394f25e3e3fcc9e4/finance.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/finance.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

@@ -5,7 +5,7 @@ category: academy
 description: "深度解析 OpenAI Academy 中关于 AI、模型、LLM、训练阶段及推理 (Reasoning) 模型的基础定义与核心逻辑。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 AI Fundamentals 的核心内容转化为结构化学习路径，旨在帮助学习者建立标准化的 AI 认知框架。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/01-ai-fundamentals/ai-fundamentals.svg"
 tags:
   - "LLM"
 lang: zh

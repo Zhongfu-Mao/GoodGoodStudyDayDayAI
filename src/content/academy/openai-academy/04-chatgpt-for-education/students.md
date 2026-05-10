@@ -5,7 +5,7 @@ category: academy
 description: "探讨学生如何将 ChatGPT 转化为学习伙伴，而非简单的代写工具，建立健康的 AI 协作观。"
 plainSummary: "本笔记提炼了 OpenAI Academy「04.8 Students」的核心内容，旨在帮助学生将 ChatGPT 应用于概念理解、错误诊断及复习规划。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/vbfAxGseczQBheNKzTqUQ/07b4a51033d2c9dee56d9429969e12a8/students.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/students.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

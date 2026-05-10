@@ -5,7 +5,7 @@ category: academy
 description: "業務プロセスの標準化、マニュアル作成、ボトルネック分析、改善案の策定など、オペレーション業務を効率化する方法を整理します。"
 plainSummary: "OpenAI Academyの「ChatGPT for Operations Teams」のエッセンスを、実務で即座に実践・復習できる学習パス「03.9 Operations Teams」として構成しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/66loCrCRxCGAdv5ElN6vc9/d844920d80ae903617bd7336fa6d99cc/operations.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/operations.ja.svg"
 tags:
   - "Operations"
 lang: ja

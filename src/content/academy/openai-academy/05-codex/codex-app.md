@@ -5,7 +5,7 @@ category: academy
 description: "深入探讨 Codex App 在项目工作区管理、多线程任务协作、工程设置、代码审阅及自动化流程中的核心价值。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 Codex App 的核心内容提炼为 05.4 应用指南，旨在提供可复习、可落地的专业实践路径。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2X2YDuHmP1dPfrPYk8BhS6/0efa2ae4c8505afe1f8b8398938db0a4/work-faster-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/codex-app.svg"
 tags:
   - "Codex"
   - "AI Engineering"

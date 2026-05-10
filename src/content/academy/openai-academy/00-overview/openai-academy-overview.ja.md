@@ -5,7 +5,7 @@ category: academy
 description: "OpenAI Academyの公開学習体系を整理し、当サイトで継続的に学習可能なロードマップとして再構成した全体概要です。"
 plainSummary: "OpenAI Academy：学習ロードマップ全体像 の要点を、「00 学習ロードマップ全体像」の学習ノートとして、実務での活用手順や確認ポイントとともに整理します。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3pOt7hjYa1nUIIMMXdoEhD/b6493d0ba6756155a3ef880758e0a0b0/Academy-SEO.png?w=1600&h=900&fit=fill"
+coverImage: "/images/academy/openai-academy/covers/00-overview/openai-academy-overview.ja.svg"
 tags:
   - "AI/Workflow"
 lang: ja

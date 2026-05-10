@@ -5,7 +5,7 @@ category: academy
 description: "財務分析、報告、予算、リスク確認でChatGPTを補助役として使う方法を整理する。"
 plainSummary: "OpenAI Academyノート：財務チームのためのChatGPT の要点を、03.8 Finance Teams の学習ノートとして実務で試せる手順と確認観点に整理します。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5oD5aOV77eWiWp6ZLigAVN/d6ea39d836ba4832394f25e3e3fcc9e4/finance.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/finance.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

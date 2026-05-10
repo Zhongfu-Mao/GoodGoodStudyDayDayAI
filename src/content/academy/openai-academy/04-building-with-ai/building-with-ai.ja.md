@@ -5,7 +5,7 @@ category: academy
 description: "AIアプリケーション構築の第一歩として、要件定義から設計、評価、そして本番運用に至る一連のプロセスを整理します。"
 plainSummary: "OpenAI Academy：Building with AI の要点を、「04 Building with AI」の学習ノートとして、実務での設計手順や確認ポイントとともに整理します。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/16ClwJMGpPN3flMrO4DXyL/2a38515d0d3a674161bfa796e87e3889/Cover-building.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-building-with-ai/building-with-ai.ja.svg"
 tags:
   - "Building with AI"
   - "AI Engineering"

@@ -5,7 +5,7 @@ category: academy
 description: "深度解析图像生成与编辑的 Prompt 构建逻辑，掌握视觉资产从创意构思到精准迭代的全流程技巧。"
 plainSummary: "本笔记提炼了 OpenAI Academy「02.6 Image Creation」的核心内容，助力用户高效生成专业且符合商业需求的视觉作品。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4as9dmBmMnIulWoUEIBsOj/2441164935c8d325daa552d91c71f131/image-creation.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/tools/image-creation.svg"
 tags:
   - "ChatGPT"
 lang: zh

@@ -5,7 +5,7 @@ category: academy
 description: "学生が ChatGPT を単なる「代筆ツール」としてではなく、理解を深めるための「学習パートナー」として活用するための実践的な手法をまとめます。"
 plainSummary: "OpenAI Academy「04.8 Students」の要点を、学術的誠実さを保ちながら学習効果を最大化するためのステップに再構成した学習ノートです。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/vbfAxGseczQBheNKzTqUQ/07b4a51033d2c9dee56d9429969e12a8/students.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/students.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

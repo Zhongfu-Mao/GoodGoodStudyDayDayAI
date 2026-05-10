@@ -5,7 +5,7 @@ category: academy
 description: "探讨 AI 的负责任使用边界：涵盖组织政策对齐、人工复核机制、专业建议风险评估、透明度披露及隐私保护原则。"
 plainSummary: "将安全性、隐私性、事实准确性、潜在偏见、版权合规及高风险场景界定，提炼为 AI 内容发布前的结构化复核清单。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7rejk8WKElp9L5xYFBO1Zk/a0cf6457b6fbcf6c26e8ce2e257dddc1/Cover-fundamentals.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/01-ai-fundamentals/responsible-safe-use.svg"
 tags:
   - "AI/Fluency"
 lang: zh

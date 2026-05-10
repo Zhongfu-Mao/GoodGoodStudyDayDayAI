@@ -5,7 +5,7 @@ category: academy
 description: "探讨课程设计与教学支持团队如何利用 ChatGPT 优化课程标准对齐、评估设计及差异化教学资源开发。"
 plainSummary: "本笔记提炼了 OpenAI Academy「04.4 Curriculum and Instruction」的核心要点，助力教研团队构建标准化、个性化且高效的教学系统。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2yQ8xu6mS72v7qWA3ToiSU/cd1c9e16fd454fff099297f3087b2a65/curriculum-instruction.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/curriculum-instruction.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

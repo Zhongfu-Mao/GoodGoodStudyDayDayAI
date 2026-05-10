@@ -5,7 +5,7 @@ category: academy
 description: "実務においてChatGPTを調査、執筆、データ分析、会議、そしてチーム全体のワークフローへと統合するためのロードマップを整理します。"
 plainSummary: "OpenAI Academy：ChatGPT for Work の要点を、「05 ChatGPT for Work」の学習ノートとして、実務での導入手順や確認ポイントとともに整理します。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4isWF93VlOu8b5EpVONDeo/4ace7b74dc5d84236657e954f09c005f/Cover-work.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-chatgpt-for-work/chatgpt-for-work.ja.svg"
 tags:
   - "AI/Workflow"
 lang: ja

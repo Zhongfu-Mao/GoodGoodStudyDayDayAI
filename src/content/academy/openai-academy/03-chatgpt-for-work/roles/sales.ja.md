@@ -5,7 +5,7 @@ category: academy
 description: "アカウント・リサーチ、商談準備、顧客提案、フォローアップ、ディール管理など、営業プロセス全体をChatGPTで強化する方法を整理します。"
 plainSummary: "OpenAI Academyの「ChatGPT for Sales Teams」のエッセンスを、実務で即座に実践・復習できる学習パス「03.6 Sales Teams」として構成しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1R29scy3v5zFLkNH0KaSVt/b8cf3723aecd035b28ce13081f5410cf/sales.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/sales.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

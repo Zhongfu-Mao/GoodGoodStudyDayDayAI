@@ -5,7 +5,7 @@ category: academy
 description: "系统整理 OpenAI Academy 的公开学习结构，并将其映射为适合本站长期维护的课程笔记路线。"
 plainSummary: "本笔记将 OpenAI Academy：学习路线总览 的核心内容整理为可复习、可实践的 00 学习路线总览 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3pOt7hjYa1nUIIMMXdoEhD/b6493d0ba6756155a3ef880758e0a0b0/Academy-SEO.png?w=1600&h=900&fit=fill"
+coverImage: "/images/academy/openai-academy/covers/00-overview/openai-academy-overview.svg"
 tags:
   - "AI/Workflow"
 lang: zh

@@ -5,7 +5,7 @@ category: academy
 description: "探讨中小学 IT 负责人如何规划 AI 基础设施、保障数据隐私、建立安全边界并推动全校范围的 AI 素养提升。"
 plainSummary: "本篇笔记将 OpenAI Academy 中针对 K12 IT Leadership 的核心原则转化为一套技术治理蓝图，助力 IT 领导者构建安全、可靠的智慧校园。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3A5Yfd36Abmlr7Ci2ZwrP/4a7eefabc5e51c2408b2120b7dd8c32a/k12-it-leadership.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/k12-it-leadership.svg"
 tags:
   - "Education"
   - "IT Leadership"

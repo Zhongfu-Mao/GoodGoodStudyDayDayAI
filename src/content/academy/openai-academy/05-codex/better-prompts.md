@@ -5,7 +5,7 @@ category: academy
 description: "将 Codex 提示词 (Prompt) 转化为结构化的工程任务说明书，实现从“对话”到“执行”的实质性转变。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 Write Better Prompts for Codex 的核心内容提炼为 05.3 提示词优化路径，旨在提供可复习、可落地的专业指南。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1YcLAu9OdRty21jeeKHSmK/2ed897dec9d31f58f63b7c8f3d82cb94/prompts-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/better-prompts.svg"
 tags:
   - "Codex"
   - "Prompting"

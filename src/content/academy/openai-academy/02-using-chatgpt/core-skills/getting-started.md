@@ -5,7 +5,7 @@ category: academy
 description: "从 ChatGPT 是什么、如何开始第一段对话、如何识别好用例，到语音输入的基础使用路线。"
 plainSummary: "这篇笔记把 OpenAI Academy 笔记：Getting Started with ChatGPT 的核心内容整理成可复习、可实践的 02.1 Getting Started with ChatGPT 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/1Xk9723QKj2Vb9dC6RMebS/5e588c112042794e62178a224eaff418/getting-started.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/core-skills/getting-started.svg"
 tags:
   - "ChatGPT"
   - "AI/Workflow"
@@ -221,7 +221,7 @@ ChatGPT 是一款对话式 AI 助手，旨在辅助人类进行思考、写作�
 
 ### 外链视觉素材
 
-![Getting started with ChatGPT](https://images.ctfassets.net/kftzwdyauwt9/1Xk9723QKj2Vb9dC6RMebS/5e588c112042794e62178a224eaff418/getting-started.png?w=3840&q=90&fm=webp)
+![Getting started with ChatGPT](/images/academy/openai-academy/covers/02-using-chatgpt/core-skills/getting-started.svg)
 
 图片来自官方页面外链，本站只引用 URL，不复制图片文件。
 

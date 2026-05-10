@@ -5,7 +5,7 @@ category: academy
 description: "RAG（検索拡張生成）における高度な検索技術、データ分割、メタデータ設計、引用形式、および評価手法を体系的に整理します。"
 plainSummary: "OpenAI Academy の RAG セッションにおける核心的なインサイトを、実務で即座に活用可能な 07.4 RAG 実装フレームワークとして再構成しました。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5xMpq7Q0JXMzdCm5GmMQc8/c32a4332c00d64537cc569e015587356/packs-patterns.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/rag.ja.svg"
 tags:
   - "RAG"
   - "AI Engineering"

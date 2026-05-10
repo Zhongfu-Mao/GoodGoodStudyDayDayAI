@@ -5,7 +5,7 @@ category: academy
 description: "アイデアの発散、構造化、評価、そして具体的なアクションへの落とし込みまで、ChatGPTを思考のパートナーとして活用する「Wide to Narrow」プロセスを整理します。"
 plainSummary: "OpenAI Academyの「Brainstorming with ChatGPT」のエッセンスを、実務で即座に実践・復習できる学習パス「03.2 Brainstorming with ChatGPT」として構成しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2QucAPrnCRSUoZDbQFyK4P/736e90884baf0e1ebe6cbcdb2ba8beaf/brainstorming.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/everyone/brainstorming.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

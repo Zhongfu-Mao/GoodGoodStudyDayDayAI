@@ -5,7 +5,7 @@ category: academy
 description: "探索高级 Codex 工作流：涵盖多步任务编排、自动化集成、关键复核点设立及长期维护策略。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 Advanced Codex Workflows 的核心内容转化为一套可执行的工程化流程，助力复杂任务的自动化与安全交付。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/12SFSIJ9j7jHftRNhRno4E/0095fc04ab06244c0e76079413d191d4/advanced-workflows.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/advanced-workflows.svg"
 tags:
   - "Codex"
   - "Automation"
@@ -159,7 +159,7 @@ draft: false
 
 ### 视觉资源索引
 
-![Advanced Workflows](https://images.ctfassets.net/kftzwdyauwt9/12SFSIJ9j7jHftRNhRno4E/0095fc04ab06244c0e76079413d191d4/advanced-workflows.png?w=3840&q=90&fm=webp)
+![Advanced Workflows](/images/academy/openai-academy/covers/05-codex/advanced-workflows.svg)
 
 *注：图片引自官方，仅用于教学展示。*
 

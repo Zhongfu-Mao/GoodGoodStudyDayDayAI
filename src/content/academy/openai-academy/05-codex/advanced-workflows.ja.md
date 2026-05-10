@@ -5,7 +5,7 @@ category: academy
 description: "多段階のタスク実行、自動化の設計、レビュープロセスの統合、およびチームでの運用を高度化する方法を整理します。"
 plainSummary: "OpenAI Academy の「Advanced Codex Workflows」の要点を、複雑な工程を安全に自動化するための手順と確認観点にまとめた学習ノートです。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/12SFSIJ9j7jHftRNhRno4E/0095fc04ab06244c0e76079413d191d4/advanced-workflows.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/advanced-workflows.ja.svg"
 tags:
   - "Codex"
   - "Automation"

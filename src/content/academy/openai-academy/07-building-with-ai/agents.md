@@ -5,7 +5,7 @@ category: academy
 description: "将智能体 (Agent) 构建视为由工具集成、任务交接、安全护栏与效果评估共同构成的系统工程。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 Building Agents 的核心内容提炼为 07.2 Building Agents 结构化学习路径，旨在提供可复习、可实践的专业指南。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4dKFCy0mZpK1j5MfyBNL3p/08a0ce3067d2418be3bc7b848c02e09e/ai-techniques.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/agents.svg"
 tags:
   - "AI/Agents"
   - "Building with AI"

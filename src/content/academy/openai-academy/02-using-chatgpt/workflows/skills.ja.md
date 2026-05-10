@@ -5,7 +5,7 @@ category: academy
 description: "Skills を再利用可能な「標準作業手順（SOP）」として定義し、反復的なタスクを安定的に実行する方法を整理する。"
 plainSummary: "OpenAI Academy の「Skills」をベースに、特定のタスクを高品質かつ安定的に遂行するための Skills の設計方法、構成要素、および実務での応用シーンをまとめました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5HjfQo619jC918nhDM0S4p/a788f0e356c534e61f30e6607402b5ab/skills.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/workflows/skills.ja.svg"
 tags:
   - "AI/Workflow"
 lang: ja

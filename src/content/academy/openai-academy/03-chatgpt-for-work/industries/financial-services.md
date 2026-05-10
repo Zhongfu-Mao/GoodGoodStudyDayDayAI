@@ -5,7 +5,7 @@ category: academy
 description: "整理金融服务场景中的 AI 应用资源：prompt packs、预构建 GPT、治理和审计边界。"
 plainSummary: "这篇笔记把 OpenAI Academy 笔记：Financial Services 的核心内容整理成可复习、可实践的 03.11 Financial Services 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4rAdwKviie1mydzTjs8y1P/6d4be3abda880c4b1fc4dd67f45debc4/financial.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/industries/financial-services.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"
@@ -180,7 +180,7 @@ draft: false
 
 ### 外链视觉素材
 
-![Financial services](https://images.ctfassets.net/kftzwdyauwt9/4rAdwKviie1mydzTjs8y1P/6d4be3abda880c4b1fc4dd67f45debc4/financial.png?w=3840&q=90&fm=webp)
+![Financial services](/images/academy/openai-academy/covers/03-chatgpt-for-work/industries/financial-services.svg)
 
 图片来自官方页面外链，本站只引用 URL，不复制图片文件。
 

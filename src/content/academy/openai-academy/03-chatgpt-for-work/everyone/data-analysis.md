@@ -5,7 +5,7 @@ category: academy
 description: "以业务决策为导向，利用 ChatGPT 辅助数据探索、异常识别、可视化呈现与行动摘要提炼。"
 plainSummary: "本笔记将 OpenAI Academy：Analyzing Data with ChatGPT 的核心内容整理为可复习、可实践的 03.3 Data Analysis 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6S4rnSSNtBmG5MDBcNa4rZ/9ada1bbe8e037b15dc94f274ab8039fc/data-analysis.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/everyone/data-analysis.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

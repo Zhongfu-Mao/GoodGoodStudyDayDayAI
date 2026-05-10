@@ -5,7 +5,7 @@ category: academy
 description: "オンボーディング、アカウント・ヘルスチェック、顧客コミュニケーション、更新準備など、カスタマーサクセス業務をChatGPTで最適化する方法を整理します。"
 plainSummary: "OpenAI Academyの「ChatGPT for Customer Success Teams」のエッセンスを、実務で即座に実践・復習できる学習パス「03.7 Customer Success Teams」として構成しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/YV0SfzN3qIM6qCrQ3XTO0/b58c9038114293db5db3cc8832348a5c/customer-success.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/customer-success.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

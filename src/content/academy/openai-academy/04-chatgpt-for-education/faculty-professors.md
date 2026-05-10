@@ -5,7 +5,7 @@ category: academy
 description: "探讨高校教师如何利用 ChatGPT 支持课程设计、学术沟通、研究辅助及学生反馈，同时平衡学术诚信与技术创新。"
 plainSummary: "本篇笔记将 OpenAI Academy 中针对 Faculty and Professors 的核心策略转化为一套实用的学术工具包，助力高等教育工作者在 AI 时代重塑教学与科研。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/QJTDrIOMOna26jJo6kUpj/fac5f8764e968d377fb130e5f177dc7d/faculty-professors.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/faculty-professors.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"

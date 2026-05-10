@@ -5,7 +5,7 @@ category: academy
 description: "解析 Custom GPT 与常规会话的差异，探讨如何构建具备专业知识与特定行为逻辑的数字助手。"
 plainSummary: "本笔记将 OpenAI Academy 关于 Custom GPTs 的核心内容整理为一套设计框架，旨在帮助用户将重复性的工作模式封装为稳定、高效的专用助手。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2UV4fI7a8z34VgwSmpgzy1/2b09c857ffda3696fec60cad6fb18b86/custom-gpts.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/workflows/custom-gpts.svg"
 tags:
   - "AI/Workflow"
 lang: zh

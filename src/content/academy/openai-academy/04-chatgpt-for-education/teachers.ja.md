@@ -5,7 +5,7 @@ category: academy
 description: "教師が ChatGPT を活用して授業設計、個別最適な学習支援、校務効率化を進めながら、学術的誠実性の課題に向き合う方法を整理します。"
 plainSummary: "OpenAI Academy の Teachers 向け提案を、教育現場で使いやすい実践ツールキットとして再構成した学習ノートです。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/3oIacja57T4O2dlR52RbVJ/efd304faeede3b0e448e377cee270bb1/teachers.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/teachers.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

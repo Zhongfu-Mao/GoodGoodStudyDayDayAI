@@ -5,7 +5,7 @@ category: academy
 description: "マーケティング・インサイトの獲得、プロジェクト・ブリーフの作成、クリエイティブ制作、施策の実行から振り返りまで、マーケティング・サイクル全体でのChatGPT活用法を整理します。"
 plainSummary: "OpenAI Academyの「ChatGPT for Marketing Teams」のエッセンスを、実務で即座に実践・復習できる学習パス「03.5 Marketing Teams」として構成しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/14MipR48ayyvUsaXwsG5Yr/c9a99c855ff1663fdd0c9d07b40cb8f2/marketing.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/roles/marketing.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

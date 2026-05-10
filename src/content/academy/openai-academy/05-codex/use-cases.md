@@ -5,7 +5,7 @@ category: academy
 description: "深入探讨 Codex 的工程实践：涵盖 Bug 修复、功能扩展、自动化测试及内容工程等核心用例。"
 plainSummary: "本笔记将 OpenAI Academy 中关于 Codex Use Cases 的内容转化为一套体系化的工程实践指南，帮助开发者高效委派任务。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24OTPuWTysZGgIBB1McPCm/7ddacff390e55131d6b2ffaa54ad4a94/real-tasks-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/use-cases.svg"
 tags:
   - "Codex"
   - "AI/Agents"
@@ -145,7 +145,7 @@ draft: false
 
 ### 视觉资源索引
 
-![Codex Use Cases](https://images.ctfassets.net/kftzwdyauwt9/24OTPuWTysZGgIBB1McPCm/7ddacff390e55131d6b2ffaa54ad4a94/real-tasks-codex.png?w=3840&q=90&fm=webp)
+![Codex Use Cases](/images/academy/openai-academy/covers/05-codex/use-cases.svg)
 
 *注：图片引自官方，仅用于教学展示。*
 

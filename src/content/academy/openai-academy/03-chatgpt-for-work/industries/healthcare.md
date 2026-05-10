@@ -5,7 +5,7 @@ category: academy
 description: "整理医疗健康场景中 ChatGPT 的临床工作流辅助价值和专业复核边界。"
 plainSummary: "这篇笔记把 OpenAI Academy 笔记：Healthcare 的核心内容整理成可复习、可实践的 03.12 Healthcare 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4PiE6YggOhzl7SQezkdnSK/d1cf00d0269d1f9c061d0d4d4c925372/healthcare.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/industries/healthcare.svg"
 lang: zh
 academy:
   series: "OpenAI Academy"
@@ -339,7 +339,7 @@ AI 可以帮助补齐结构，但不能替代责任交接。谁接收、谁复�
 
 ### 外链视觉素材
 
-![Healthcare](https://images.ctfassets.net/kftzwdyauwt9/4PiE6YggOhzl7SQezkdnSK/d1cf00d0269d1f9c061d0d4d4c925372/healthcare.png?w=3840&q=90&fm=webp)
+![Healthcare](/images/academy/openai-academy/covers/03-chatgpt-for-work/industries/healthcare.svg)
 
 图片来自官方页面外链，本站只引用 URL，不复制图片文件。
 

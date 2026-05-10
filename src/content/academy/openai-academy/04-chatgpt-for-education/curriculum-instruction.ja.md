@@ -5,7 +5,7 @@ category: academy
 description: "カリキュラム開発チームや教務支援部門が、AI を活用して学習目標の最適化、評価基準（ルーブリック）の策定、および教材の個別最適化を行うためのワークフローを整理します。"
 plainSummary: "OpenAI Academy「04.4 Curriculum and Instruction」の要点を、標準化とパーソナライズの両立という観点から再構成した学習ノートです。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2yQ8xu6mS72v7qWA3ToiSU/cd1c9e16fd454fff099297f3087b2a65/curriculum-instruction.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/curriculum-instruction.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

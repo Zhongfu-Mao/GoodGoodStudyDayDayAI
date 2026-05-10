@@ -5,7 +5,7 @@ category: academy
 description: "Projects を特定のテーマに基づいた継続的な「文脈コンテナ」として活用し、関連資料や指示を効率的に管理する手法を学ぶ。"
 plainSummary: "OpenAI Academy の「Projects」をベースに、長期的なプロジェクトや複雑な調査タスクにおいて、文脈を維持しつつ一貫性のある出力を得るためのプロジェクト構築術を整理しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/L0cSoOsBFybec07VSIDJw/27647c6494be7191e0e2168f5bf27044/projects.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/workflows/projects.ja.svg"
 tags:
   - "AI/Workflow"
 lang: ja

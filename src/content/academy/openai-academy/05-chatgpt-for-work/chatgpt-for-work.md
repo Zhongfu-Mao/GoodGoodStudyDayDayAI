@@ -5,7 +5,7 @@ category: academy
 description: "系统梳理 OpenAI Academy 中 ChatGPT for Work 的任务、角色与行业三维应用框架。"
 plainSummary: "本笔记将 OpenAI Academy：ChatGPT for Work 的核心内容整理为可复习、可实践的 05 ChatGPT for Work 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4isWF93VlOu8b5EpVONDeo/4ace7b74dc5d84236657e954f09c005f/Cover-work.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-chatgpt-for-work/chatgpt-for-work.svg"
 tags:
   - "AI/Workflow"
 lang: zh

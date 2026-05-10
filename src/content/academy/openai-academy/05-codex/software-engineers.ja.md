@@ -5,7 +5,7 @@ category: academy
 description: "設計、実装、コードレビュー、および検証の各フェーズでソフトウェアエンジニアが Codex を効果的に活用する方法を解説します。"
 plainSummary: "OpenAI Academy の「Codex for SWEs」の要点を、実務で即座に応用可能な手順と確認観点に整理した学習ノートです。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/7aH5Yfd36Abmlr7Ci2ZwrP/4a7eefabc5e51c2408b2120b7dd8c32a/SWE-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/software-engineers.ja.svg"
 tags:
   - "Codex"
 lang: ja

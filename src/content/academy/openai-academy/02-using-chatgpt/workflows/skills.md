@@ -5,7 +5,7 @@ category: academy
 description: "将 Skills 视为可共享且具备版本化管理潜力的标准工作流说明书，助力团队实现复杂任务的高质量复现。"
 plainSummary: "本笔记深度解析了 Skills 的底层结构、核心要素及实战场景，旨在通过标准化工作流提升团队在处理多步骤任务时的输出稳定性与专业性。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/5HjfQo619jC918nhDM0S4p/a788f0e356c534e61f30e6607402b5ab/skills.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/workflows/skills.svg"
 tags:
   - "AI/Workflow"
 lang: zh

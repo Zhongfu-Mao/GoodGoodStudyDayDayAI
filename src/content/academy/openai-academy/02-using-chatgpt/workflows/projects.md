@@ -5,7 +5,7 @@ category: academy
 description: "深入理解如何将 Projects 作为特定主题的持续上下文容器，高效管理文档、指令及团队协作流程。"
 plainSummary: "本笔记将 OpenAI Academy 关于 Projects 的核心内容整理为一套可复用的工作方法，旨在帮助用户通过构建结构化的工作空间实现复杂任务的长期演进。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/L0cSoOsBFybec07VSIDJw/27647c6494be7191e0e2168f5bf27044/projects.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/workflows/projects.svg"
 tags:
   - "AI/Workflow"
 lang: zh

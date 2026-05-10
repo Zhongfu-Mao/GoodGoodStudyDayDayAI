@@ -5,7 +5,7 @@ category: academy
 description: "ChatGPT Search と Deep Research を使い分け、信頼性の高い根拠に基づいた調査プロセスを構築する。"
 plainSummary: "OpenAI Academy の「Research with ChatGPT」をベースに、最新情報の検索から複雑な多段階調査、情報の検証、ソース管理まで、プロフェッショナルな調査ワークフローを体系化しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6vCtWVZH9dyolSQQhXzGyx/686abd0c6c92eb96129cb71f6ab7917e/search-deep-research.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/tools/research-with-chatgpt.ja.svg"
 tags:
   - "ChatGPT/Research"
 lang: ja

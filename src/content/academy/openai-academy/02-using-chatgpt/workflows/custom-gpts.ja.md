@@ -5,7 +5,7 @@ category: academy
 description: "特定のタスクに特化した専用アシスタント（Custom GPTs）を作成し、ワークフローを標準化・効率化する手法を学ぶ。"
 plainSummary: "OpenAI Academy の「Custom GPTs」をベースに、専用 GPT の作成手順、インストラクションの最適化、知識ベースの構築、およびチーム内での展開方法を整理しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2UV4fI7a8z34VgwSmpgzy1/2b09c857ffda3696fec60cad6fb18b86/custom-gpts.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/workflows/custom-gpts.ja.svg"
 tags:
   - "AI/Workflow"
 lang: ja

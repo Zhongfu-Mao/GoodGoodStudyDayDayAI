@@ -5,7 +5,7 @@ category: academy
 description: "バグ修正、機能追加、テスト作成、リファクタリング、およびドキュメント整備など、Codex が最も真価を発揮するエンジニアリング・シナリオを整理します。"
 plainSummary: "OpenAI Academy の「Codex Use Cases」の要点を、実務で効果的なタスク委任を行うための手順と確認観点にまとめた学習ノートです。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24OTPuWTysZGgIBB1McPCm/7ddacff390e55131d6b2ffaa54ad4a94/real-tasks-codex.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/05-codex/use-cases.ja.svg"
 tags:
   - "Codex"
   - "AI/Agents"

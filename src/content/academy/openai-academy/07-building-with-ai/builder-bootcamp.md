@@ -5,7 +5,7 @@ category: academy
 description: "系统梳理 Builder Bootcamp 的生产级 AI 应用路径：涵盖智能体（Agents）、评估（Evals）、Codex 协作、RAG 架构及生产环境优化。"
 plainSummary: "本笔记将 OpenAI Academy Builder Bootcamp 的核心技术模块整理为一套系统化、可实践的 07.1 生产级 AI 应用构建路径。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/55LIDFbkE55YVmGTtgvsKP/1eeb345e40fadae3c52419d1508077ef/technical-learning-tracks.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/builder-bootcamp.svg"
 tags:
   - "Building with AI"
   - "AI Engineering"

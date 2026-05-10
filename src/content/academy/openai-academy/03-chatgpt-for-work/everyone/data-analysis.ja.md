@@ -5,7 +5,7 @@ category: academy
 description: "データのアップロードからクレンジング、高度な分析、視覚化、そして意思決定支援メモの作成までの一連のプロセスをChatGPTで実行する方法を整理します。"
 plainSummary: "OpenAI Academyの「Analyzing Data with ChatGPT」のエッセンスを、実務で即座に実践・復習できる学習パス「03.3 Data Analysis」として構成しました。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6S4rnSSNtBmG5MDBcNa4rZ/9ada1bbe8e037b15dc94f274ab8039fc/data-analysis.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/everyone/data-analysis.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"

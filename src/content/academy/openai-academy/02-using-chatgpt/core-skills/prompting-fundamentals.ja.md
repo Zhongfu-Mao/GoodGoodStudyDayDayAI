@@ -5,7 +5,7 @@ category: academy
 description: "タスク、文脈、出力形式、反復フィードバックに分けてプロンプトの基礎を整理する。"
 plainSummary: "OpenAI Academyノート：プロンプトの基礎 の要点を、02.2 Prompting Fundamentals の学習ノートとして実務で試せる手順と確認観点に整理します。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/6KuWyesIgCbrJUzXckTYSx/20183733ba66b4b535fe978fc7ec985b/your-first-chat.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/core-skills/prompting-fundamentals.ja.svg"
 tags:
   - "Prompting"
   - "ChatGPT"

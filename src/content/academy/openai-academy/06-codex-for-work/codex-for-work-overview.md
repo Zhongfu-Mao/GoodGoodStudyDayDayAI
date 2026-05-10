@@ -5,7 +5,7 @@ category: academy
 description: "探讨如何将 Codex 从单纯的编程辅助工具扩展为面向知识工作、资料综合及流程协作的通用任务委派平台。"
 plainSummary: "本笔记提炼了 OpenAI Academy「06.1 Codex for Work」的核心路径，助力用户将 Codex 转化为端到端的业务执行助手。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/2b3PBAK2QrcqJT5aYwkQKr/eaaebd4bb6f4743e1d92dd1698453285/cover-codex-for-work.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/06-codex-for-work/codex-for-work-overview.svg"
 tags:
   - "Codex for Work"
   - "AI/Workflow"

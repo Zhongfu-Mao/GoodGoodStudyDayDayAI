@@ -5,7 +5,7 @@ category: academy
 description: "深入解析 Workspace Agents 的核心机制：从触发逻辑、执行流程到工具集成与权限治理。"
 plainSummary: "本笔记将 OpenAI Academy 关于 Workspace Agents 的内容提炼为一套可执行的系统设计框架，旨在帮助组织将 AI 从“对话助手”升级为“流程执行者”。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/32nZFLTFUOKZWAbNt8mZ9E/3fed0abf03f542ee2a46c5ced153b362/agents.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/workflows/workspace-agents.svg"
 tags:
   - "AI/Agents"
 lang: zh

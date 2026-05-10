@@ -5,7 +5,7 @@ category: academy
 description: "将研究任务拆解为问题定义、来源搜集、证据合成、信息缺口标注及决策输出，全方位提升调研质量。"
 plainSummary: "本篇笔记将 OpenAI Academy 中关于调研研究的 ChatGPT 应用核心内容，整理为可复习、可实践的 03.4 ChatGPT for Research 学习路径。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/24Zhocf65q1eBCqPljGtiH/b12cc424af8d1eacd56ee339e8214822/research.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/everyone/research.svg"
 tags:
   - "ChatGPT/Research"
   - "AI/Workflow"

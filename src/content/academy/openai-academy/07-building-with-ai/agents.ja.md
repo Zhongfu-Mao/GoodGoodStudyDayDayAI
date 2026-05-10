@@ -5,7 +5,7 @@ category: academy
 description: "単なる自動化を超え、目標設定、ツール利用、状態管理、権限、および終了条件を備えた高度な AI エージェントの設計手法を整理します。"
 plainSummary: "OpenAI Academy の Building Agents セッションの要点を、実務で応用可能な 07.2 Agent デザインフレームワークとして再構成しました。"
 difficulty: intermediate
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/4dKFCy0mZpK1j5MfyBNL3p/08a0ce3067d2418be3bc7b848c02e09e/ai-techniques.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/agents.ja.svg"
 tags:
   - "AI/Agents"
   - "Building with AI"

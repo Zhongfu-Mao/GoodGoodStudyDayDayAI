@@ -5,7 +5,7 @@ category: academy
 description: "大学の教員や研究者が、研究支援、講義設計、学生へのフィードバック、および学術的インテグリティの維持に AI を活用するための指針をまとめます。"
 plainSummary: "OpenAI Academy「04.7 Faculty and Professors」の要点を、高等教育における研究と教育の両面から再構成した学習ノートです。"
 difficulty: beginner
-coverImage: "https://images.ctfassets.net/kftzwdyauwt9/QJTDrIOMOna26jJo6kUpj/fac5f8764e968d377fb130e5f177dc7d/faculty-professors.png?w=3840&q=90&fm=webp"
+coverImage: "/images/academy/openai-academy/covers/04-chatgpt-for-education/faculty-professors.ja.svg"
 lang: ja
 academy:
   series: "OpenAI Academy"
