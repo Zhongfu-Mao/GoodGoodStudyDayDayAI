@@ -61,8 +61,16 @@ const startSubnavItems = {
 const academySubnavItems = {
   zh: [
     { hash: '#routes', label: '路线', tooltip: '先按角色选择 AI Academy 的阅读路径' },
-    { hash: '#openai-academy', label: 'OpenAI', tooltip: 'ChatGPT、Codex、Building with AI 等官方课程笔记' },
-    { hash: '#anthropic-academy', label: 'Anthropic', tooltip: 'Claude、MCP、Skills 与 Subagents 相关课程' },
+    {
+      hash: '#openai-academy',
+      label: 'OpenAI',
+      tooltip: 'ChatGPT、Codex、Building with AI 等官方课程笔记',
+    },
+    {
+      hash: '#anthropic-academy',
+      label: 'Anthropic',
+      tooltip: 'Claude、MCP、Skills 与 Subagents 相关课程',
+    },
     {
       hash: '#google-advent-of-agents',
       label: 'Google Advent',
@@ -72,8 +80,16 @@ const academySubnavItems = {
   ],
   ja: [
     { hash: '#routes', label: 'ルート', tooltip: '役割別に AI Academy の読み順を選ぶ' },
-    { hash: '#openai-academy', label: 'OpenAI', tooltip: 'ChatGPT、Codex、Building with AI などの講義ノート' },
-    { hash: '#anthropic-academy', label: 'Anthropic', tooltip: 'Claude、MCP、Skills、Subagents の関連講義' },
+    {
+      hash: '#openai-academy',
+      label: 'OpenAI',
+      tooltip: 'ChatGPT、Codex、Building with AI などの講義ノート',
+    },
+    {
+      hash: '#anthropic-academy',
+      label: 'Anthropic',
+      tooltip: 'Claude、MCP、Skills、Subagents の関連講義',
+    },
     {
       hash: '#google-advent-of-agents',
       label: 'Google Advent',

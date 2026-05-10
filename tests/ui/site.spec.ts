@@ -42,10 +42,7 @@ async function expectSectionHasLocaleInfographic(section: Locator, locale: 'zh' 
     return;
   }
 
-  await expect(image).toHaveAttribute(
-    'src',
-    /\/images\/radar\/.+-infographic\.webp/,
-  );
+  await expect(image).toHaveAttribute('src', /\/images\/radar\/.+-infographic\.webp/);
   expect(src).not.toContain('.ja-infographic');
 }
 
@@ -109,9 +106,7 @@ async function expectArticleBodyContrast(page: Page, minimumRatio: number) {
     function luminance(color: Rgba) {
       const channels = [color.r, color.g, color.b].map((channel) => {
         const normalized = channel / 255;
-        return normalized <= 0.03928
-          ? normalized / 12.92
-          : ((normalized + 0.055) / 1.055) ** 2.4;
+        return normalized <= 0.03928 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4;
       });
 
       return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
@@ -126,10 +121,8 @@ async function expectArticleBodyContrast(page: Page, minimumRatio: number) {
     }
 
     const rootStyle = getComputedStyle(document.documentElement);
-    const themeBackground =
-      parseColor(rootStyle.getPropertyValue('--theme-page-bg').trim()) ??
-      parseColor(rootStyle.backgroundColor) ??
-      { r: 2, g: 6, b: 23, a: 1 };
+    const themeBackground = parseColor(rootStyle.getPropertyValue('--theme-page-bg').trim()) ??
+      parseColor(rootStyle.backgroundColor) ?? { r: 2, g: 6, b: 23, a: 1 };
 
     const proseStyle = getComputedStyle(prose);
 
@@ -461,8 +454,14 @@ test.describe('published site UI', () => {
       '日报看最新，周报看脉络，月报看趋势，图片墙适合快速浏览',
     );
     await expect(page.locator('[data-radar-hub-card]')).toHaveCount(4);
-    await expect(page.locator('[data-radar-hub-card]').nth(0)).toHaveAttribute('data-radar-hub-card', 'daily');
-    await expect(page.locator('[data-radar-hub-card]').nth(3)).toHaveAttribute('data-radar-hub-card', 'gallery');
+    await expect(page.locator('[data-radar-hub-card]').nth(0)).toHaveAttribute(
+      'data-radar-hub-card',
+      'daily',
+    );
+    await expect(page.locator('[data-radar-hub-card]').nth(3)).toHaveAttribute(
+      'data-radar-hub-card',
+      'gallery',
+    );
     await expect(page.locator('[data-radar-hub-card="gallery"]')).toHaveAttribute(
       'href',
       appPath('/radar/gallery/'),

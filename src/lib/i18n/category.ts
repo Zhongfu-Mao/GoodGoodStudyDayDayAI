@@ -50,7 +50,8 @@ export const categoryPage = {
           'Anthropic Academy 更适合补齐 AI Fluency、Claude 使用方式和 Agentic engineering 的协作范式，尤其是 MCP、Skills、Subagents 与 Claude Code 相关内容。它强调边界清晰的人机协作和可复用的工作流。',
         'Google Advent of Agents':
           'Google Advent of Agents 以 Season 2 三十一天为主线，把 ADK、模型分层、MCP、Skills、多 Agent 编排、RAG、评估、安全、部署、身份、观测、A2A 和 A2UI 串成一条工程化学习路径。Season 1 作为背景补课使用。',
-      })[series] ?? '这一分区收纳同一课程系列下的模块与文章，可以按模块顺序逐步阅读，也可以直接跳到当前需要的能力点。',
+      })[series] ??
+      '这一分区收纳同一课程系列下的模块与文章，可以按模块顺序逐步阅读，也可以直接跳到当前需要的能力点。',
     academySeries: '课程系列',
     academyModule: '模块',
     academyTrack: '学习轨道',
@@ -110,7 +111,8 @@ export const categoryPage = {
           'Anthropic Academy は AI Fluency、Claude の使い方、Agentic engineering の協働パターンを補う分区です。特に MCP、Skills、Subagents、Claude Code に関する内容から、人間と Agent の境界を明確にする設計を学べます。',
         'Google Advent of Agents':
           'Google Advent of Agents は Season 2 の 31 日を主線に、ADK、model routing、MCP、Skills、multi-agent orchestration、RAG、eval、安全、deploy、identity、observability、A2A、A2UI を一つの engineering path として読む分区です。Season 1 は背景補足として使います。',
-      })[series] ?? 'この分区では同じ course series の module と記事をまとめています。順番に読むことも、必要な capability へ直接進むこともできます。',
+      })[series] ??
+      'この分区では同じ course series の module と記事をまとめています。順番に読むことも、必要な capability へ直接進むこともできます。',
     academySeries: 'シリーズ',
     academyModule: 'モジュール',
     academyTrack: '学習トラック',

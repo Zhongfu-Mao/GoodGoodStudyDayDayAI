@@ -41,7 +41,9 @@ test.describe('critical page visual baselines', () => {
       await page.waitForTimeout(80);
       const targetBox = await target.boundingBox();
       if (!targetBox) {
-        throw new Error(`Expected visual snapshot target "${snapshot.target}" to have a layout box.`);
+        throw new Error(
+          `Expected visual snapshot target "${snapshot.target}" to have a layout box.`,
+        );
       }
 
       await expect(page).toHaveScreenshot(`${snapshot.name}.png`, {

@@ -55,6 +55,11 @@ const resolvedOgImage = ogImage
   : undefined;
 const rssHref = withBase(locale === 'ja' ? '/ja/rss.xml' : '/rss.xml');
 const rssTitle = locale === 'ja' ? 'Good Good Study, Day Day AI – RSS' : 'Good Good Study, Day Day AI · RSS';
+const podcastHref = withBase(locale === 'ja' ? '/ja/podcast.xml' : '/podcast.xml');
+const podcastTitle =
+  locale === 'ja'
+    ? 'Good Good Study, Day Day AI – AI Radar Briefing'
+    : 'Good Good Study, Day Day AI · AI Radar Briefing';
 const skipLinkLabel = locale === 'ja' ? '本文へ移動' : '跳到正文';
 const structuredDataJson = structuredData ? JSON.stringify(structuredData).replace(/</g, '\\u003c') : undefined;
 const showRadarSubnav = activeCategory === 'radar';
@@ -74,6 +79,7 @@ const startSubnavItems = getStartSubnavItems(locale);
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
     <link rel="alternate" type="application/rss+xml" title={rssTitle} href={rssHref} />
+    <link rel="alternate" type="application/rss+xml" title={podcastTitle} href={podcastHref} />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />

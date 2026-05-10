@@ -30,6 +30,9 @@ const baseBlogSchema = z.object({
 const forbiddenRadarFields = {
   cadence: z.never().optional(),
   audioUrl: z.never().optional(),
+  audioDuration: z.never().optional(),
+  audioExplicit: z.never().optional(),
+  audioSize: z.never().optional(),
   deckUrl: z.never().optional(),
   includeInRadarArchive: z.never().optional(),
 } as const;
@@ -42,6 +45,9 @@ export const radarSchema = baseBlogSchema.extend({
   category: z.literal('radar'),
   cadence: z.enum(['daily', 'weekly', 'monthly']).optional(),
   audioUrl: z.string().optional(),
+  audioDuration: z.number().int().positive().optional(),
+  audioExplicit: z.boolean().default(false),
+  audioSize: z.number().int().positive().optional(),
   deckUrl: z.string().optional(),
   includeInRadarArchive: z.boolean().default(true),
   ...forbiddenCourseFields,

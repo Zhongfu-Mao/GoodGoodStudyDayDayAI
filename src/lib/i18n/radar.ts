@@ -23,7 +23,8 @@ export const radarGalleryPage = {
   },
   ja: {
     title: 'AI Radar Image Wall',
-    description: '最近の AI 図解を一面のビジュアルウォールとして眺めます。まず絵とテーマを見て、気になるものだけ記事へ進めます。',
+    description:
+      '最近の AI 図解を一面のビジュアルウォールとして眺めます。まず絵とテーマを見て、気になるものだけ記事へ進めます。',
     eyebrow: 'Visual Radar',
     countLabel: 'images',
     backToRadar: 'AI Radar へ戻る',

@@ -22,19 +22,22 @@ export const homePage = {
       beginner: {
         label: '我刚接触 AI',
         title: '用最短时间听懂术语',
-        description: '一条轻量路线，把模型、Prompt、上下文、Agent、RAG 这些高频词变成日常语言。读完就知道该看什么、该跳过什么。',
+        description:
+          '一条轻量路线，把模型、Prompt、上下文、Agent、RAG 这些高频词变成日常语言。读完就知道该看什么、该跳过什么。',
         cta: '进入新手路线',
       },
       radar: {
         label: '我想跟上 AI 变化',
         title: '每天三分钟抓住重点',
-        description: 'AI 雷达每日精选行业动态，图片墙适合快速浏览，文字版适合深读。先建立全局感，再决定要不要追原文。',
+        description:
+          'AI 雷达每日精选行业动态，图片墙适合快速浏览，文字版适合深读。先建立全局感，再决定要不要追原文。',
         cta: '看 AI 雷达',
       },
       system: {
         label: '我想系统提升',
         title: '把零散知识串成体系',
-        description: '从 Academy 课程、工程实践和底层原理进入，把平时看的碎片材料慢慢沉淀成自己的理解框架。',
+        description:
+          '从 Academy 课程、工程实践和底层原理进入，把平时看的碎片材料慢慢沉淀成自己的理解框架。',
         cta: '看学习地图',
       },
     },
@@ -58,7 +61,8 @@ export const homePage = {
       },
       foundations: {
         title: '底层原理',
-        description: '构建对 AI 的深层理解——不是补数学课，而是建立"为什么它这样工作"的心智模型，让你在选方案、做判断时有自己的依据。',
+        description:
+          '构建对 AI 的深层理解——不是补数学课，而是建立"为什么它这样工作"的心智模型，让你在选方案、做判断时有自己的依据。',
       },
     },
     useTitle: '按你当下的状态进入',
@@ -74,7 +78,10 @@ export const homePage = {
         label: '想落地',
         description: '去工程实践看工具、脚本和流程怎么跑起来，把经验带回自己的工作。',
       },
-      { label: '想补基础', description: '看底层原理，建立"AI 为什么这样工作"的心智模型，做判断时有自己的依据。' },
+      {
+        label: '想补基础',
+        description: '看底层原理，建立"AI 为什么这样工作"的心智模型，做判断时有自己的依据。',
+      },
     ],
     visualTitle: '先看图报，再深读',
     visualDescription:
