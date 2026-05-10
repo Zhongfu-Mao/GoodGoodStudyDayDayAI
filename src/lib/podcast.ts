@@ -5,7 +5,6 @@ import { getEntriesForLocale } from './content';
 import { articlePath, homePath, resolveSiteUrl, type Locale } from './site';
 
 const PODCAST_ENTRY_LIMIT = 100;
-const EPISODE_DETAIL_CHAR_LIMIT = 7000;
 
 const showMeta: Record<
   Locale,
@@ -69,10 +68,16 @@ export async function buildPodcastFeed({
         entry.data.audioSize ?? (await getLocalPublicAssetSize(entry.data.audioUrl));
       const duration = entry.data.audioDuration;
       const articleUrl = new URL(articlePath(entry.data.category, slug, locale), site).toString();
+      const episodeSummary = buildEpisodeSummary({
+        summary: entry.data.plainSummary ?? entry.data.description ?? entry.data.title,
+        articleUrl,
+        locale,
+      });
       const episodeDescription = buildEpisodeDescription({
         summary: entry.data.plainSummary ?? entry.data.description ?? entry.data.title,
-        body: entry.body,
         articleUrl,
+        coverUrl,
+        title: entry.data.title,
         locale,
       });
 
@@ -88,7 +93,7 @@ export async function buildPodcastFeed({
         },
         customData: [
           duration ? `<itunes:duration>${duration}</itunes:duration>` : '',
-          `<itunes:summary>${escapeXmlText(episodeDescription)}</itunes:summary>`,
+          `<itunes:summary>${escapeXmlText(episodeSummary)}</itunes:summary>`,
           `<itunes:explicit>${entry.data.audioExplicit ? 'true' : 'false'}</itunes:explicit>`,
           `<itunes:episodeType>full</itunes:episodeType>`,
           `<itunes:image href="${escapeXmlAttribute(coverUrl)}" />`,
@@ -142,53 +147,39 @@ async function getLocalPublicAssetSize(url: string | undefined) {
 
 function buildEpisodeDescription({
   summary,
-  body,
+  articleUrl,
+  coverUrl,
+  title,
+  locale,
+}: {
+  summary: string;
+  articleUrl: string;
+  coverUrl: string;
+  title: string;
+  locale: Locale;
+}) {
+  const readMore = locale === 'ja' ? '全文を読む' : '阅读全文';
+  const imageAlt = locale === 'ja' ? `${title} のカバー画像` : `${title} 封面图`;
+  const parts = [
+    `<p>${escapeHtmlText(summary.trim())}</p>`,
+    `<p><a href="${escapeHtmlAttribute(articleUrl)}">${escapeHtmlText(readMore)}</a></p>`,
+    `<p><img src="${escapeHtmlAttribute(coverUrl)}" alt="${escapeHtmlAttribute(imageAlt)}" /></p>`,
+  ].filter(Boolean);
+
+  return parts.join('');
+}
+
+function buildEpisodeSummary({
+  summary,
   articleUrl,
   locale,
 }: {
   summary: string;
-  body: string | undefined;
   articleUrl: string;
   locale: Locale;
 }) {
-  const bodyText = body ? markdownToPodcastText(body) : '';
   const readMore = locale === 'ja' ? '全文を読む' : '阅读全文';
-  const parts = [
-    summary.trim(),
-    bodyText ? truncateAtParagraphBoundary(bodyText, EPISODE_DETAIL_CHAR_LIMIT) : '',
-    `${readMore}: ${articleUrl}`,
-  ].filter(Boolean);
-
-  return parts.join('\n\n');
-}
-
-function markdownToPodcastText(markdown: string) {
-  return markdown
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/```[\s\S]*?```/g, (match) => match.replace(/```[^\n]*\n?|```/g, ''))
-    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
-    .replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, '$1 ($2)')
-    .replace(/^#{1,6}\s+/gm, '')
-    .replace(/^>\s?/gm, '')
-    .replace(/^\s*[-*+]\s+/gm, '- ')
-    .replace(/^\s*\d+\.\s+/gm, '')
-    .replace(/^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/gm, '')
-    .replace(/<\/?[^>]+>/g, '')
-    .replace(/[*_~`]/g, '')
-    .replace(/\r\n/g, '\n')
-    .replace(/[ \t]+\n/g, '\n')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
-}
-
-function truncateAtParagraphBoundary(text: string, limit: number) {
-  if (text.length <= limit) {
-    return text;
-  }
-
-  const boundary = text.lastIndexOf('\n\n', limit);
-  const cutPoint = boundary > limit * 0.6 ? boundary : limit;
-  return `${text.slice(0, cutPoint).trimEnd()}...`;
+  return [summary.trim(), `${readMore}: ${articleUrl}`].filter(Boolean).join('\n\n');
 }
 
 function escapeXmlText(value: string) {
@@ -197,4 +188,12 @@ function escapeXmlText(value: string) {
 
 function escapeXmlAttribute(value: string) {
   return escapeXmlText(value).replace(/"/g, '&quot;');
+}
+
+function escapeHtmlText(value: string) {
+  return escapeXmlText(value);
+}
+
+function escapeHtmlAttribute(value: string) {
+  return escapeHtmlText(value).replace(/"/g, '&quot;');
 }

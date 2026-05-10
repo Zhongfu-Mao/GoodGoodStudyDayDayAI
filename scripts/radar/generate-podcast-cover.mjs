@@ -6,6 +6,7 @@ import { chromium } from 'playwright';
 const WORKSPACE_ROOT = process.cwd();
 const OUTPUT_PATH = path.join(WORKSPACE_ROOT, 'public/images/podcast-cover.jpg');
 const SIZE = 3000;
+const COVER_SCALE = 1.2;
 
 const bars = [
   [460, 1460, 54, 230],
@@ -130,6 +131,7 @@ function renderCoverHtml() {
         border: 7px solid rgba(219, 234, 254, 0.14);
         outline: 2px solid rgba(255, 255, 255, 0.07);
         outline-offset: -120px;
+        transform: scale(${COVER_SCALE});
       }
       .frame::before {
         content: "";
@@ -145,8 +147,8 @@ function renderCoverHtml() {
         position: absolute;
         left: 270px;
         top: 270px;
-        right: 270px;
-        bottom: 330px;
+        right: 230px;
+        bottom: 235px;
         border: 2px solid rgba(219, 234, 254, 0.1);
       }
       .corner {
@@ -162,18 +164,18 @@ function renderCoverHtml() {
         border-width: 8px 0 0 8px;
       }
       .corner-tr {
-        right: 270px;
+        right: 230px;
         top: 270px;
         border-width: 8px 8px 0 0;
       }
       .corner-bl {
         left: 270px;
-        bottom: 330px;
+        bottom: 235px;
         border-width: 0 0 8px 8px;
       }
       .corner-br {
-        right: 270px;
-        bottom: 330px;
+        right: 230px;
+        bottom: 235px;
         border-width: 0 8px 8px 0;
       }
       .radar-screen {
@@ -419,29 +421,29 @@ function renderCoverHtml() {
       .bar-light { background: rgba(248, 250, 252, 0.88); }
       .series {
         position: absolute;
-        left: 370px;
+        left: 305px;
         bottom: 720px;
         color: rgba(191, 219, 254, 0.62);
-        font-size: 38px;
+        font-size: 42px;
         line-height: 1;
         font-weight: 700;
         letter-spacing: 0;
       }
       .title-rule {
         position: absolute;
-        left: 370px;
+        left: 305px;
         bottom: 688px;
-        width: 380px;
-        height: 5px;
+        width: 440px;
+        height: 6px;
         background: linear-gradient(90deg, #38bdf8, rgba(56, 189, 248, 0));
         box-shadow: 0 0 24px rgba(56, 189, 248, 0.34);
       }
       .radar {
         position: absolute;
-        left: 360px;
-        bottom: 455px;
+        left: 295px;
+        bottom: 445px;
         color: #38bdf8;
-        font-size: 210px;
+        font-size: 238px;
         line-height: 1;
         font-weight: 800;
         letter-spacing: 0;
@@ -449,33 +451,34 @@ function renderCoverHtml() {
       }
       .briefing {
         position: absolute;
-        left: 365px;
-        bottom: 330px;
+        left: 300px;
+        bottom: 285px;
         color: #dbeafe;
-        font-size: 92px;
+        font-size: 112px;
         line-height: 1;
         font-weight: 500;
         letter-spacing: 0;
       }
       .brand {
         position: absolute;
-        left: 370px;
-        bottom: 220px;
+        left: 305px;
+        bottom: 170px;
         color: rgba(159, 183, 214, 0.74);
-        font-size: 54px;
+        font-size: 58px;
         line-height: 1;
         font-weight: 600;
         letter-spacing: 0;
       }
       .signature {
         position: absolute;
-        right: 340px;
-        bottom: 320px;
-        color: rgba(219, 234, 254, 0.24);
+        right: 250px;
+        bottom: 275px;
+        color: rgba(219, 234, 254, 0.34);
         font-family: "Hiragino Mincho ProN", "Yu Mincho", "Songti SC", serif;
-        font-size: 72px;
+        font-size: 88px;
         font-weight: 700;
         letter-spacing: 0;
+        text-shadow: 0 0 28px rgba(125, 211, 252, 0.16);
       }
     </style>
   </head>
