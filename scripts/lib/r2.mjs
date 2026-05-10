@@ -90,25 +90,28 @@ export function createR2Client() {
   });
 }
 
-export async function objectExists(client, key) {
+export async function headR2Object(client, key) {
   try {
-    await client.send(
+    return await client.send(
       new HeadObjectCommand({
         Bucket: requireR2Env('R2_BUCKET'),
         Key: key,
       }),
     );
-    return true;
   } catch (error) {
     const statusCode = error?.$metadata?.httpStatusCode;
     const name = error?.name;
 
     if (statusCode === 404 || name === 'NotFound' || name === 'NoSuchKey') {
-      return false;
+      return null;
     }
 
     throw error;
   }
+}
+
+export async function objectExists(client, key) {
+  return Boolean(await headR2Object(client, key));
 }
 
 export async function uploadToR2(client, { localPath, key, skipExisting = true } = {}) {
@@ -116,11 +119,16 @@ export async function uploadToR2(client, { localPath, key, skipExisting = true }
     throw new Error('uploadToR2 requires localPath and key.');
   }
 
-  if (skipExisting && (await objectExists(client, key))) {
-    return { publicUrl: getPublicUrl(key), uploaded: false };
+  const file = await stat(localPath);
+
+  if (skipExisting) {
+    const remote = await headR2Object(client, key);
+
+    if (remote?.ContentLength === file.size) {
+      return { publicUrl: getPublicUrl(key), uploaded: false };
+    }
   }
 
-  const file = await stat(localPath);
   const contentType =
     CONTENT_TYPES[path.extname(localPath).toLowerCase()] ?? 'application/octet-stream';
 
