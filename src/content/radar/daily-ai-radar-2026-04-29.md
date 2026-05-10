@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间窗口：2026-04-26 ~ 2026-04-29（过去 72 小时）
 
+---
+![How Stripe Detects Fraudulent Transactions Within 100 ms](https://substackcdn.com/image/fetch/$s_!1CyU!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4019e3ea-61ad-420f-b90c-647df317c351_2908x2008.png)
+
+*代表图来自 [How Stripe Detects Fraudulent Transactions Within 100 ms](https://blog.bytebytego.com/p/how-stripe-detects-fraudulent-transactions)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 本期视角
 
 今日的 AI 信号集中体现了“AI 进入真实系统边界”的深度演进：Stripe 展示了如何在极低延迟下整合模型推理与实时风控规则；Sakana AI 尝试用小规模模型学会调度复杂的智能体团队。与此同时，英伟达的 Nemotron 系列与小米、Kimi 的开放模型竞赛，正将多模态与长上下文能力推向企业级生产环境。而在产业端，跨境并购的监管趋严预示着 Agent 产品已成为涉及组织知识与数据主权的核心基础设施。

@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间：2026-05-01 至 2026-05-04。
 
+---
+![AI evals are becoming the new compute bottleneck](https://cdn-uploads.huggingface.co/production/uploads/6413251362e6057cbb6259bd/ukJJW86oJu36zOJwqZJBG.png)
+
+*代表图来自 [AI evals are becoming the new compute bottleneck](https://huggingface.co/blog/evaleval/eval-costs-bottleneck)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 封面图说明
 
 今天的封面图适合画成一张“Agent 经济账本”：左侧是 RL/MDP、value function 与 reward design，代表模型行为如何被塑造；中间是 eval pipeline、agent rollout、技能、脚本和知识工作桌面，代表工程化落地；右侧是用量计费、compute fraud、低价开放模型和实时医疗数据，代表 AI 正在进入更真实的成本与监管环境。

@@ -18,6 +18,10 @@ audioSize: 8511928
 draft: false
 ---
 
+---
+![AI evals are becoming the new compute bottleneck](https://cdn-uploads.huggingface.co/production/uploads/6413251362e6057cbb6259bd/ukJJW86oJu36zOJwqZJBG.png)
+
+*代表画像は [AI evals are becoming the new compute bottleneck](https://huggingface.co/blog/evaleval/eval-costs-bottleneck) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
 ## 対象範囲
 
 - 対象期間：2026-05-01 から 2026-05-04 まで。

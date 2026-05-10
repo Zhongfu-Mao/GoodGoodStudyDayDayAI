@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间窗口：2026-04-29 至 2026-05-02。
 
+---
+![AINews Agents for Everything Else: Codex for Knowledge Work, Claude for Creative Work](https://substackcdn.com/image/youtube/w_728,c_limit/zepu8Kk6FBQ)
+
+*代表图来自 [[AINews] Agents for Everything Else: Codex for Knowledge Work, Claude for Creative Work](https://www.latent.space/p/ainews-agents-for-everything-else)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 封面图说明
 
 今天的代表图建议用“AI 工作台的分层仪表盘”来呈现：左侧是 Agent 工程与提示优化，中心是模型能力与评测曲线，右侧是 Newsletter 捕捉到的产品化落地场景。画面重点放在“从模型发布到真实工作流”的传导链路，而不是单个模型的排行榜。

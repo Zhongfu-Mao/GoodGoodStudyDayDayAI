@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间窗口：2026-05-06 至 2026-05-09。
 
+---
+![AINews Anthropic growing 10x/year while everyone else is laying off >10% of their workforce](https://substackcdn.com/image/fetch/$s_!tOlW!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F021c44bf-dba1-44ad-b3a5-d4de3e6a7644_1728x954.jpeg)
+
+*代表图来自 [[AINews] Anthropic growing 10x/year while everyone else is laying off >10% of their workforce](https://www.latent.space/p/ainews-anthropic-growing-10xyear)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 封面图说明
 
 今天的主线是“Agent 进入真实系统摩擦区”：语音接口、长程任务、企业数据、后端控制面和本地安全模型都在逼近生产边界，模型能力之外的上下文、工具、成本和治理开始决定可用性。

@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间窗口：2026-05-05 至 2026-05-08。
 
+---
+![AINews Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized](https://substackcdn.com/image/fetch/$s_!Kb-H!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd1acd7ed-b0f8-4448-ac16-0dc71920093e_1354x872.png)
+
+*代表图来自 [[AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized](https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 封面图说明
 
 今天的主线是“Agent 系统开始进入基础设施约束期”：推理前缀缓存、训练网络、多 Agent 编排、评测基准和本地知识底座都在从概念验证走向可复用工程能力。

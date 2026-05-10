@@ -22,6 +22,11 @@ draft: false
 
 - 対象期間：2026-05-07 から 2026-05-10 まで。
 
+---
+![EP214: Claude Code vs. OpenClaw: 5 Design Dimensions](https://substackcdn.com/image/fetch/$s_!oEvb!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F49df56c9-1f92-4f88-bd16-8cd59dab407c_2484x3002.jpeg)
+
+*代表画像は [EP214: Claude Code vs. OpenClaw: 5 Design Dimensions](https://blog.bytebytego.com/p/ep214-claude-code-vs-openclaw-5-design) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
+
 ## カバー画像メモ
 
 今日の主軸は「Agent がモデル性能からシステム責任へ移っている」ことです。ブラウザ安全性、医療判断、個人デスクトップ、音声配信、完全なソフトウェア再構築 benchmark が、Agent をより現実の環境へ押し出しています。重要なのは賢さだけでなく、制約、検証、追跡、既存 workflow への組み込みです。

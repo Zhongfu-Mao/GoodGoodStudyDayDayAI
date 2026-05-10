@@ -18,6 +18,10 @@ audioSize: 6627768
 draft: false
 ---
 
+---
+![EP213: MCP vs Skills, Clearly Explained](https://substackcdn.com/image/fetch/$s_!7jIm!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5632abfa-88b9-4f40-8feb-13b4a7c6e1ce_2484x3002.png)
+
+*代表画像は [EP213: MCP vs Skills, Clearly Explained](https://blog.bytebytego.com/p/ep213-mcp-vs-skills-clearly-explained) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
 ## 対象範囲
 
 - 対象期間：2026-04-30 から 2026-05-03 まで。

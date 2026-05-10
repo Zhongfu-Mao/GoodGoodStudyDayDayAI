@@ -22,6 +22,11 @@ draft: false
 
 - 対象期間：2026-05-04 から 2026-05-07 まで。
 
+---
+![Build a Deep Researcher That Beats OpenAI, Gemini, and Perplexity](https://substackcdn.com/image/fetch/$s_!ndas!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F34fbc4d4-b55d-4ad2-ba3a-5f86f1255424_680x380.png)
+
+*代表画像は [Build a Deep Researcher That Beats OpenAI, Gemini, and Perplexity](https://blog.dailydoseofds.com/p/build-a-deep-researcher-that-beats) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
+
 ## カバー画像メモ
 
 今日のカバーは「AI エンジニアリングの階層図」として描くと分かりやすい。下層には vLLM、MTP drafter、SGLang、Decoupled DiLoCo などの推論・学習基盤、中層には Onyx、CrewAI、agent harness、observability feedback loop のような監査可能な実装フレーム、上層には企業導入会社、金融・医療ワークフロー、豆包の課金階層を置く構図。モデル能力が、統制でき、課金でき、納品できる業務システムへ再包装されている流れを表す。

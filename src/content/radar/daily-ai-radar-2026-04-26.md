@@ -24,6 +24,11 @@ draft: false
 
 *代表图说明：今日 AI 演进的主旋律并非单一模型的爆发，而是 AI 工程栈向“可部署、可解释、可治理”深水区的持续渗透。MCP widgets 将工具输出直接转化为交互界面；ByteByteGo 重新梳理了数据与 API 基础设施的底层逻辑；而 DeepSeek V4 的长上下文 MoE 架构，则试图在模型能力与推理成本的平衡木上给出最优工程解。*
 
+---
+![mcp-use - Connect Any LLM to Any MCP Server](https://raw.githubusercontent.com/mcp-use/mcp-use/refs/heads/main/static/og_image_docs.jpg)
+
+*代表图来自 [mcp-use - Connect Any LLM to Any MCP Server](https://manufact.com/docs/typescript/server/ui-widgets)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 1. 🛠️ AI Engineering & 架构
 
 ### mcp-use：赋予 MCP Server 原生交付 React UI Widgets 的能力

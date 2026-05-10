@@ -25,6 +25,7 @@
     "assets:migrate:r2": "node scripts/radar/migrate-assets-to-r2.mjs",
     "podcast:cover": "node scripts/radar/generate-podcast-cover.mjs",
     "podcast:cover:concepts": "node scripts/radar/generate-podcast-cover-concepts.mjs",
+    "radar:images": "node scripts/radar/fill-images.mjs",
     "radar:audio": "node scripts/radar/generate-audio.mjs",
     "radar:infographic": "node scripts/radar/generate-infographic.mjs",
     "radar:infographic:openai": "node scripts/radar/generate-infographic.mjs --backend openai",

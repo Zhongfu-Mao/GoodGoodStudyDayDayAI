@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间窗口：2026-05-03 至 2026-05-06。
 
+---
+![How Instacart Built a Search for Billions of Products](https://substackcdn.com/image/fetch/$s_!r5T4!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F06aaf987-618a-4074-84c6-2625879c1678_2086x1654.png)
+
+*代表图来自 [How Instacart Built a Search for Billions of Products](https://blog.bytebytego.com/p/how-instacart-built-a-search-for)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 封面图说明
 
 今天的封面图适合画成一张“AI 系统重心迁移图”：左侧是搜索、RAG、生成式 UI、Agent 操作手册和评测反馈环，代表工程层正在变厚；中间是 GPT-5.2 Pro 参与理论物理推导、Random Patches 与 BM25 等算法工具，代表模型能力与经典方法重新组合；右侧是海上数据中心、企业部署公司、CTO 流向 Anthropic 和客户体验平台融资，代表 AI 从模型 API 继续外溢到算力、组织和产业结构。

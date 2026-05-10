@@ -26,6 +26,11 @@ draft: false
 
 *代表图说明：今日 AI 工程化的核心趋势在于，智能体（Agent）正从单纯的模型调用，深度下沉至真实的软件开发与知识工作环境。Frontier SWE 将长时软件工程任务转化为可训练的仿真环境；Every 推出的 Compound Engineering 插件则通过跨工具工作流实现了工程技能的资产化。与此同时，Monologue 与 Spiral 正在探索如何将零散的会议、语音及写作记忆沉淀为 Agent 持续可用的长时上下文。*
 
+---
+![Building long-horizon SWE environments on Hugging Face: Frontier SWE × OpenEnv](https://cdn-uploads.huggingface.co/production/uploads/654f790a2adb0688a0cd7e85/ygG4UDEUR8K_qk77hJKK7.png)
+
+*代表图来自 [Building long-horizon SWE environments on Hugging Face: Frontier SWE × OpenEnv](https://huggingface.co/blog/rycerzes/building-long-horizon-swe-environments-on-openenv)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 1. 🛠️ AI Engineering & 架构
 
 ### Frontier SWE × OpenEnv：构建长时软件工程任务的标准化训练环境

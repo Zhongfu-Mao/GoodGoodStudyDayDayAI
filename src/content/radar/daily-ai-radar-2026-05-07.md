@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间窗口：2026-05-04 至 2026-05-07。
 
+---
+![Build a Deep Researcher That Beats OpenAI, Gemini, and Perplexity](https://substackcdn.com/image/fetch/$s_!ndas!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F34fbc4d4-b55d-4ad2-ba3a-5f86f1255424_680x380.png)
+
+*代表图来自 [Build a Deep Researcher That Beats OpenAI, Gemini, and Perplexity](https://blog.dailydoseofds.com/p/build-a-deep-researcher-that-beats)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 封面图说明
 
 今天的封面图适合画成一张“AI 工程栈分层图”：底层是 vLLM、MTP drafter、SGLang、Decoupled DiLoCo 等推理与训练基础设施；中层是 Onyx、CrewAI、agent harness、observability feedback loop 这类可审计工程框架；上层是企业部署公司、金融/医疗工作流和豆包订阅分层，代表模型能力正在被重新包装成可治理、可计费、可交付的业务系统。

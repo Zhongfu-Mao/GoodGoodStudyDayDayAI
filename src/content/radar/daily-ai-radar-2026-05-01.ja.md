@@ -18,6 +18,10 @@ audioSize: 7803279
 draft: false
 ---
 
+---
+![Two Skills to Fix the Context Gap in Claude Code](https://substackcdn.com/image/fetch/$s_!k649!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F290b4488-414f-4a29-b77c-ae7c5fefb698_1240x824.png)
+
+*代表画像は [Two Skills to Fix the Context Gap in Claude Code](https://blog.dailydoseofds.com/p/two-skills-to-fix-the-context-gap) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
 ## 対象範囲
 
 - 対象期間：2026-04-28 〜 2026-05-01（過去 72 時間）

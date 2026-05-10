@@ -16,6 +16,11 @@ audioDuration: 1127
 audioSize: 9016823
 draft: false
 ---
+
+---
+![mcp-use - Connect Any LLM to Any MCP Server](https://raw.githubusercontent.com/mcp-use/mcp-use/refs/heads/main/static/og_image_docs.jpg)
+
+*代表画像は [mcp-use - Connect Any LLM to Any MCP Server](https://manufact.com/docs/typescript/server/ui-widgets) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
 ## 対象範囲
 
 - 対象期間：2026-04-23 〜 2026-04-26（過去 72 時間）

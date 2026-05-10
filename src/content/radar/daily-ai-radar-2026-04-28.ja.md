@@ -19,6 +19,10 @@ audioSize: 6105528
 draft: false
 ---
 
+---
+![OpenRA-RL: An Open Platform for AI Agents in Real-Time Strategy Games](https://cdn-uploads.huggingface.co/production/uploads/69b213aaf6b5a9f6ab0a509e/cfgsYH3-MfF6hj_idcPAa.png)
+
+*代表画像は [OpenRA-RL: An Open Platform for AI Agents in Real-Time Strategy Games](https://huggingface.co/blog/jadetan/openra-rl) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
 ## 対象範囲
 
 - 対象期間：2026-04-25 〜 2026-04-28（過去 72 時間）

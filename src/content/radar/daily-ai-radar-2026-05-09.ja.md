@@ -22,6 +22,11 @@ draft: false
 
 - 対象期間：2026-05-06 から 2026-05-09 まで。
 
+---
+![AINews Anthropic growing 10x/year while everyone else is laying off >10% of their workforce](https://substackcdn.com/image/fetch/$s_!tOlW!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F021c44bf-dba1-44ad-b3a5-d4de3e6a7644_1728x954.jpeg)
+
+*代表画像は [[AINews] Anthropic growing 10x/year while everyone else is laying off >10% of their workforce](https://www.latent.space/p/ainews-anthropic-growing-10xyear) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
+
 ## カバー画像メモ
 
 今日の主軸は「Agent が実システムの摩擦面に入った」ことです。音声インターフェース、長時間タスク、企業データ、backend control plane、ローカル安全モデルが本番境界に近づき、モデル能力だけでなく context、tool、cost、governance が可用性を左右し始めています。

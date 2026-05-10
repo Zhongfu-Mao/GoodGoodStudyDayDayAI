@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间窗口：2026-04-30 至 2026-05-03。
 
+---
+![EP213: MCP vs Skills, Clearly Explained](https://substackcdn.com/image/fetch/$s_!7jIm!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5632abfa-88b9-4f40-8feb-13b4a7c6e1ce_2484x3002.png)
+
+*代表图来自 [EP213: MCP vs Skills, Clearly Explained](https://blog.bytebytego.com/p/ep213-mcp-vs-skills-clearly-explained)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 封面图说明
 
 今天的代表图建议用“Agent 运行时控制台”来呈现：左侧是 MCP、Skills、权限和人工介入组成的工程边界，中间是检索、记忆、持久执行和长上下文性能层，右侧是开放模型、评测曲线和现实世界系统故障。画面重点放在“模型能力必须被运行时与治理层接住”，而不是单纯展示模型排行榜。

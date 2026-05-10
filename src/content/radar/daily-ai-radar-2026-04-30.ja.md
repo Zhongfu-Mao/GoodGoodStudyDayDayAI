@@ -18,6 +18,10 @@ audioSize: 6746260
 draft: false
 ---
 
+---
+![AINews The Inference Inflection](https://substackcdn.com/image/fetch/$s_!S0YQ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fabf7db12-c072-4887-b686-4de7a38fa84c_680x380.jpeg)
+
+*代表画像は [[AINews] The Inference Inflection](https://www.latent.space/p/ainews-the-inference-inflection) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
 ## 対象範囲
 
 - 対象期間：2026-04-27 〜 2026-04-30（過去 72 時間）

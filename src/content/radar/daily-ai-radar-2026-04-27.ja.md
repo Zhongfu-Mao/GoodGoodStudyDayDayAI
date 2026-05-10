@@ -18,6 +18,11 @@ audioDuration: 927
 audioSize: 7413323
 draft: false
 ---
+
+---
+![Building long-horizon SWE environments on Hugging Face: Frontier SWE × OpenEnv](https://cdn-uploads.huggingface.co/production/uploads/654f790a2adb0688a0cd7e85/ygG4UDEUR8K_qk77hJKK7.png)
+
+*代表画像は [Building long-horizon SWE environments on Hugging Face: Frontier SWE × OpenEnv](https://huggingface.co/blog/rycerzes/building-long-horizon-swe-environments-on-openenv) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
 ## 対象範囲
 
 - 対象期間：2026-04-24 〜 2026-04-27（過去 72 時間）

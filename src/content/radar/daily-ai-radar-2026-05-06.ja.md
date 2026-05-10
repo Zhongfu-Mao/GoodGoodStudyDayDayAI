@@ -18,6 +18,10 @@ audioSize: 6785130
 draft: false
 ---
 
+---
+![How Instacart Built a Search for Billions of Products](https://substackcdn.com/image/fetch/$s_!r5T4!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F06aaf987-618a-4074-84c6-2625879c1678_2086x1654.png)
+
+*代表画像は [How Instacart Built a Search for Billions of Products](https://blog.bytebytego.com/p/how-instacart-built-a-search-for) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
 ## 本日の範囲
 
 - 対象期間：2026-05-03 から 2026-05-06 まで。

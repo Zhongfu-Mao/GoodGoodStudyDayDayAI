@@ -18,6 +18,10 @@ audioSize: 7403710
 draft: false
 ---
 
+---
+![How Stripe Detects Fraudulent Transactions Within 100 ms](https://substackcdn.com/image/fetch/$s_!1CyU!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4019e3ea-61ad-420f-b90c-647df317c351_2908x2008.png)
+
+*代表画像は [How Stripe Detects Fraudulent Transactions Within 100 ms](https://blog.bytebytego.com/p/how-stripe-detects-fraudulent-transactions) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
 ## 対象範囲
 
 - 対象期間：2026-04-26 〜 2026-04-29（過去 72 時間）

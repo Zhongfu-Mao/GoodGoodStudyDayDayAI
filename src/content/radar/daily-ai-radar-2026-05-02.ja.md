@@ -18,6 +18,10 @@ audioSize: 9747416
 draft: false
 ---
 
+---
+![AINews Agents for Everything Else: Codex for Knowledge Work, Claude for Creative Work](https://substackcdn.com/image/youtube/w_728,c_limit/zepu8Kk6FBQ)
+
+*代表画像は [[AINews] Agents for Everything Else: Codex for Knowledge Work, Claude for Creative Work](https://www.latent.space/p/ainews-agents-for-everything-else) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
 ## 対象範囲
 
 - 対象期間：2026-04-29 から 2026-05-02 まで。

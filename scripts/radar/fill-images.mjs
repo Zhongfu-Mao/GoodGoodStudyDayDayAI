@@ -17,7 +17,7 @@ function extractCandidateUrls(content) {
   const urls = [];
 
   for (const line of normalizeNewlines(content).split('\n')) {
-    if (!/(链接|Direct Link|Source)/i.test(line)) {
+    if (!/(链接|リンク|来源|出典|Direct Link|Source)/i.test(line)) {
       continue;
     }
 
@@ -98,20 +98,24 @@ function escapeAltText(text) {
   return text.replace(/[\[\]]/g, '').trim();
 }
 
-function buildImageBlock({ title, image, url }) {
-  const safeTitle = escapeAltText(title || 'Representative image');
-  return [
-    '---',
-    `![${safeTitle}](${image})`,
-    '',
-    `*代表图来自 [${title || url}](${url})。它对应这期日报里最能概括当天主线的一条原始信号。*`,
-    '',
-  ].join('\n');
+function getLocaleFromFile(file) {
+  return file.endsWith('.ja.md') ? 'ja' : 'zh';
 }
 
-function insertAfterScope(content, imageBlock) {
+function buildImageBlock({ title, image, url, locale }) {
+  const safeTitle = escapeAltText(title || 'Representative image');
+  const caption =
+    locale === 'ja'
+      ? `*代表画像は [${title || url}](${url}) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*`
+      : `*代表图来自 [${title || url}](${url})。它对应这期日报里最能概括当天主线的一条原始信号。*`;
+
+  return ['---', `![${safeTitle}](${image})`, '', caption, ''].join('\n');
+}
+
+function insertAfterScope(content, imageBlock, locale) {
   const normalized = normalizeNewlines(content);
-  const match = normalized.match(/(## 本期范围[\s\S]*?)(\n## )/);
+  const scopeHeading = locale === 'ja' ? '対象期間' : '本期范围';
+  const match = normalized.match(new RegExp(`(## ${scopeHeading}[\\s\\S]*?)(\\n## )`));
   if (match) {
     return normalized.replace(match[0], `${match[1].trimEnd()}\n\n${imageBlock}${match[2]}`);
   }
@@ -130,13 +134,25 @@ function insertAfterScope(content, imageBlock) {
 }
 
 async function main() {
-  const files = (await readdir(TARGET_DIR))
-    .filter((file) => /^daily-ai-radar-\d{4}-\d{2}-\d{2}\.md$/.test(file))
-    .sort();
+  const requestedFiles = process.argv
+    .slice(2)
+    .filter((arg) => !arg.startsWith('-'))
+    .map((arg) => path.basename(arg));
+  const files = requestedFiles.length > 0
+    ? requestedFiles
+    : (await readdir(TARGET_DIR))
+        .filter((file) => /^daily-ai-radar-\d{4}-\d{2}-\d{2}(?:\.ja)?\.md$/.test(file))
+        .sort();
 
   for (const file of files) {
+    if (!/^daily-ai-radar-\d{4}-\d{2}-\d{2}(?:\.ja)?\.md$/.test(file)) {
+      console.warn(`warn ${file} is not a daily radar markdown file`);
+      continue;
+    }
+
     const fullPath = path.join(TARGET_DIR, file);
     const content = await readFile(fullPath, 'utf8');
+    const locale = getLocaleFromFile(file);
 
     if (hasRepresentativeImage(content)) {
       console.log(`skip ${file} (already has image)`);
@@ -157,6 +173,7 @@ async function main() {
           url,
           title: metadata.title || url,
           image: metadata.image,
+          locale,
         };
         break;
       } catch (error) {
@@ -169,7 +186,7 @@ async function main() {
       continue;
     }
 
-    const updated = insertAfterScope(content, buildImageBlock(chosen));
+    const updated = insertAfterScope(content, buildImageBlock(chosen), locale);
     await writeFile(fullPath, updated, 'utf8');
     console.log(`updated ${file} -> ${chosen.url}`);
   }

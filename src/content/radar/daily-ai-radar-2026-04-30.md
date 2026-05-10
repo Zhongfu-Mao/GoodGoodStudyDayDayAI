@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间窗口：2026-04-27 ~ 2026-04-30（过去 72 小时）
 
+---
+![AINews The Inference Inflection](https://substackcdn.com/image/fetch/$s_!S0YQ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fabf7db12-c072-4887-b686-4de7a38fa84c_680x380.jpeg)
+
+*代表图来自 [[AINews] The Inference Inflection](https://www.latent.space/p/ainews-the-inference-inflection)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 本期视角
 
 今日的 AI 信号描绘了一张“推理时代的系统账本”：推理算力的消耗正从单纯的 GPU 扩展至 CPU、沙箱（Sandbox）与智能体运行环境（Agent Runtime）；Wise 的技术栈揭示了金融级产品如何通过平台化护栏（Guardrail）实现自治；而 IBM 与 NeuML 的新模型则证明了通过精细化的数据与后训练工程，小参数模型依然能在大模型时代卡位关键业务场景。此外，评测成本的激增与内容标识监管的落地，标志着 AI 产业正加速向合规与成本效益的平衡点靠拢。

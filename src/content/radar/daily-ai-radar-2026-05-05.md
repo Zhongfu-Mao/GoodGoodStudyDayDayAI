@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间窗口：2026-05-02 至 2026-05-05。
 
+---
+![Connecting LLMs to the Real World: Tool Use, Function Calling, and MCP](https://substackcdn.com/image/fetch/$s_!wSzf!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1df71e21-5907-42aa-8eac-313641100529_2450x1228.png)
+
+*代表图来自 [Connecting LLMs to the Real World: Tool Use, Function Calling, and MCP](https://blog.bytebytego.com/p/connecting-llms-to-the-real-world)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 封面图说明
 
 今天的封面图适合画成一张“Agent 生产线剖面图”：左侧是 Function Calling、MCP、Prompt Injection 防线和最小权限工具层，代表系统边界；中间是 harness、context pipeline、open model routing 与 benchmark/eval 数据工厂，代表工程化能力；右侧是 FDE 进入银行流程、AI 项目管理和机器人/硬件生态，代表 AI 从实验室进入组织与现实世界。

@@ -405,15 +405,17 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
     {coverImageSrc ? (
       <div class:list={[
         'theme-panel-soft relative mt-8 flex items-center justify-center overflow-hidden rounded-[1.25rem]',
-        isGeneratedInfographic || isStartKnowledgeCard ? 'min-h-[28rem] md:min-h-[36rem]' : 'h-72',
-        isGeneratedInfographic || isStartKnowledgeCard ? 'theme-panel p-4' : '',
+        isGeneratedInfographic || isStartKnowledgeCard ? 'theme-panel p-3 sm:p-4' : 'h-72',
       ]}>
         <span class="theme-heading absolute inset-0 flex items-center justify-center text-3xl font-semibold opacity-45" aria-hidden="true">
           AI
         </span>
         <button
           type="button"
-          class="group relative z-10 block w-full cursor-zoom-in rounded-[1rem] text-left focus:outline-none focus:ring-2 focus:ring-cyan-300/70"
+          class:list={[
+            'group relative z-10 block w-full cursor-zoom-in rounded-[1rem] text-left focus:outline-none focus:ring-2 focus:ring-cyan-300/70',
+            isGeneratedInfographic || isStartKnowledgeCard ? 'leading-none' : '',
+          ]}
           data-cover-preview-trigger
           aria-label={text.coverPreviewOpen}
         >
@@ -422,8 +424,8 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
             alt={entry.data.title}
             transition:name={coverTransitionName}
             class:list={[
-              'w-full rounded-[1rem] transition duration-200 group-hover:brightness-110',
-              isGeneratedInfographic || isStartKnowledgeCard ? 'max-h-[42rem] object-contain' : 'h-72 object-cover',
+              'block w-full rounded-[1rem] transition duration-200 group-hover:brightness-110',
+              isGeneratedInfographic || isStartKnowledgeCard ? 'h-auto object-contain' : 'h-72 object-cover',
             ]}
             onerror="this.setAttribute('hidden', 'hidden')"
           />

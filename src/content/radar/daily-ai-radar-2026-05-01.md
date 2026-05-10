@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间窗口：2026-04-28 ~ 2026-05-01（过去 72 小时）
 
+---
+![Two Skills to Fix the Context Gap in Claude Code](https://substackcdn.com/image/fetch/$s_!k649!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F290b4488-414f-4a29-b77c-ae7c5fefb698_1240x824.png)
+
+*代表图来自 [Two Skills to Fix the Context Gap in Claude Code](https://blog.dailydoseofds.com/p/two-skills-to-fix-the-context-gap)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 封面图说明
 
 本期封面图聚焦于“生产环境中的 Agent 系统账本”这一核心维度：中心区域呈现了 Claude Code 的上下文鸿沟（Context Gap）、MCP 工具层设计、BitNet 训练实践、RAG 数据结构优化及 Agent 运行时（Runtime）。左侧集成 Bright Data、InsForge、cua、Stash 及 agent-vault 等工程化组件；右侧连接 Axolotl、Blockify、REDMOD 以及 DeepSeek V4 的成本演进曲线。外圈辅以 Figure 人形机器人量产进程、云巨头 AI 资本开支（Capex）及技术领袖回归一线（CTO to IC）的人才趋势。整体传达出明确信号：AI 竞争已从单一模型能力的博弈，进化为对上下文、执行效率、成本模型、可靠性及组织架构的综合治理。

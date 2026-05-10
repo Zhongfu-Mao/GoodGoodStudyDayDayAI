@@ -22,6 +22,11 @@ draft: false
 
 - 覆盖时间：2026-05-07 至 2026-05-10。
 
+---
+![EP214: Claude Code vs. OpenClaw: 5 Design Dimensions](https://substackcdn.com/image/fetch/$s_!oEvb!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F49df56c9-1f92-4f88-bd16-8cd59dab407c_2484x3002.jpeg)
+
+*代表图来自 [EP214: Claude Code vs. OpenClaw: 5 Design Dimensions](https://blog.bytebytego.com/p/ep214-claude-code-vs-openclaw-5-design)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 代表图说明
 
 今天的主线是“Agent 从模型能力进入系统责任区”。浏览器安全、医疗决策、个人桌面、音频分发、完整软件重建评测都在把 Agent 推向更真实的环境；关键不再只是模型是否聪明，而是它能否被约束、验证、追踪并嵌入现有工作流。

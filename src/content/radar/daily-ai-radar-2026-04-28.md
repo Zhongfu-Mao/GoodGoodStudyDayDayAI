@@ -23,6 +23,11 @@ draft: false
 
 - 覆盖时间窗口：2026-04-25 ~ 2026-04-28（过去 72 小时）
 
+---
+![OpenRA-RL: An Open Platform for AI Agents in Real-Time Strategy Games](https://cdn-uploads.huggingface.co/production/uploads/69b213aaf6b5a9f6ab0a509e/cfgsYH3-MfF6hj_idcPAa.png)
+
+*代表图来自 [OpenRA-RL: An Open Platform for AI Agents in Real-Time Strategy Games](https://huggingface.co/blog/jadetan/openra-rl)。它对应这期日报里最能概括当天主线的一条原始信号。*
+
 ## 本期视角
 
 今日的 AI 演进揭示了智能体（Agent）正从“演示驱动”转向“可验证的生产系统”：从基于强化学习的 RTS 游戏策略训练，到电商搜索中常识知识图谱的深度集成；从物理 AI 在工业场景的部署挑战，到医疗影像中直接从原始信号学习的突破。此外，轻量化隐私过滤工具与 Agent 化社区运营流的出现，标志着 AI 工程化正全方位渗透进垂直业务的合规与运营体系。

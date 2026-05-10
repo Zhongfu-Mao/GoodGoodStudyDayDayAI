@@ -2,7 +2,8 @@
   class="global-audio-player"
   data-global-audio-player
   hidden
-  transition:persist="global-audio-player"
+  transition:name="global-audio-player"
+  transition:persist
 >
   <audio data-global-audio preload="metadata"></audio>
 
@@ -219,6 +220,10 @@
               }
               self.sync();
             });
+          });
+
+          document.addEventListener('astro:before-swap', function () {
+            writeStoredTrack(self.track, audio);
           });
         },
 

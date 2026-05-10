@@ -22,6 +22,11 @@ draft: false
 
 - 対象期間：2026-05-05 から 2026-05-08 まで。
 
+---
+![AINews Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized](https://substackcdn.com/image/fetch/$s_!Kb-H!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd1acd7ed-b0f8-4448-ac16-0dc71920093e_1354x872.png)
+
+*代表画像は [[AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized](https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
+
 ## カバー画像メモ
 
 今日の主軸は「Agent システムがインフラ制約の段階に入った」ことです。推論時の prefix cache、学習ネットワーク、マルチ Agent 編成、評価基盤、ローカル知識ベースが、概念実証から再利用できる工程能力へ移り始めています。
