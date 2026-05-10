@@ -26,7 +26,7 @@ const showMeta: Record<
     email: 'maozhongfu0827@gmail.com',
     language: 'zh-cn',
     category: 'Technology',
-    artwork: '/images/podcast-cover.jpg',
+    artwork: '/images/podcast-cover-ai-radar-20260510.jpg',
   },
   ja: {
     title: 'AI レーダー',
@@ -36,7 +36,7 @@ const showMeta: Record<
     email: 'maozhongfu0827@gmail.com',
     language: 'ja-jp',
     category: 'Technology',
-    artwork: '/images/podcast-cover.jpg',
+    artwork: '/images/podcast-cover-ai-radar-20260510.jpg',
   },
 };
 

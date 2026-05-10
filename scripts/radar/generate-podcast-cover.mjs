@@ -4,7 +4,7 @@ import process from 'node:process';
 import { chromium } from 'playwright';
 
 const WORKSPACE_ROOT = process.cwd();
-const OUTPUT_PATH = path.join(WORKSPACE_ROOT, 'public/images/podcast-cover.jpg');
+const OUTPUT_PATH = path.join(WORKSPACE_ROOT, 'public/images/podcast-cover-ai-radar-20260510.jpg');
 const SIZE = 3000;
 const COVER_SCALE = 1.2;
 
