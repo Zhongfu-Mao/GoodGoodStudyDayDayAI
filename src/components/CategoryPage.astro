@@ -55,6 +55,44 @@ const radarSections = radarCadences.map((cadence) => {
 });
 
 const text = categoryPage[locale];
+const radarCardCounts = Object.fromEntries(
+  radarSections.map((section) => [section.cadence, section.items.length]),
+) as Record<(typeof radarSections)[number]['cadence'], number>;
+const radarGalleryCount = isRadar
+  ? categoryEntries.filter((item) => item.entry.data.coverImage).length
+  : 0;
+const radarHubItems = isRadar
+  ? [
+      {
+        key: 'daily',
+        title: text.radarHubCards.daily.title,
+        description: text.radarHubCards.daily.description,
+        href: '#daily',
+        count: radarCardCounts.daily,
+      },
+      {
+        key: 'weekly',
+        title: text.radarHubCards.weekly.title,
+        description: text.radarHubCards.weekly.description,
+        href: '#weekly',
+        count: radarCardCounts.weekly,
+      },
+      {
+        key: 'monthly',
+        title: text.radarHubCards.monthly.title,
+        description: text.radarHubCards.monthly.description,
+        href: '#monthly',
+        count: radarCardCounts.monthly,
+      },
+      {
+        key: 'gallery',
+        title: text.radarHubCards.gallery.title,
+        description: text.radarHubCards.gallery.description,
+        href: radarGalleryPath(locale),
+        count: radarGalleryCount,
+      },
+    ]
+  : [];
 const academySummary = isAcademy
   ? {
       eyebrow: text.academyRoutesEyebrow,
@@ -103,33 +141,45 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
 
   {isRadar ? (
     <div class="relative left-1/2 w-screen max-w-[1680px] -translate-x-1/2 px-5 sm:px-8" data-radar-view>
-      <section class="theme-panel-strong mb-6 rounded-[1.5rem] p-5 shadow-glow md:p-6">
-        <div class="flex flex-wrap items-end justify-between gap-4">
-          <div class="max-w-3xl">
-            <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{collectionLabels.radar[locale]}</p>
-            <h1 class="theme-heading mt-2 text-3xl font-semibold md:text-5xl">
-              {collectionLabels.radar[locale]}
-            </h1>
-            <p class="theme-muted mt-4 text-sm leading-6 md:text-base md:leading-7">{text.radarLead}</p>
-          </div>
-          <a
-            href={radarGalleryPath(locale)}
-            class="theme-action-primary inline-flex rounded-[1rem] px-4 py-3 text-sm font-semibold"
-          >
-            {text.radarGallery}
-          </a>
+      <section class="mb-6 grid gap-5 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.35fr)]" data-radar-hub>
+        <div class="theme-panel-strong rounded-[1.5rem] p-5 shadow-glow md:p-6">
+          <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{collectionLabels.radar[locale]}</p>
+          <h1 class="theme-heading mt-2 text-3xl font-semibold md:text-5xl">
+            {text.radarHubTitle}
+          </h1>
+          <p class="theme-muted mt-4 text-sm leading-6 md:text-base md:leading-7">{text.radarHubDescription}</p>
         </div>
-        <p class="theme-muted mt-4 max-w-3xl text-sm leading-6">{text.radarGalleryHint}</p>
+
+        <div class="grid gap-3 sm:grid-cols-2" aria-label={text.radarHubTitle}>
+          {radarHubItems.map((item) => (
+            <a
+              href={item.href}
+              class="theme-panel group flex min-h-[8.5rem] flex-col justify-between rounded-[1rem] p-4 transition duration-200 hover:-translate-y-0.5 hover:border-[color:var(--theme-accent)]"
+              data-radar-hub-card={item.key}
+            >
+              <span>
+                <span class="theme-kicker text-xs uppercase tracking-[0.18em]">
+                  {item.key === 'gallery' ? text.radarGallery : item.title}
+                </span>
+                <strong class="theme-heading mt-2 block text-xl font-semibold">{item.title}</strong>
+                <span class="theme-muted mt-2 block text-sm leading-5">{item.description}</span>
+              </span>
+              <span class="mt-4 inline-flex items-center justify-between gap-3 text-sm font-semibold text-[color:var(--theme-accent)]">
+                <span>{text.itemCount(item.count)}</span>
+                <span aria-hidden="true">-&gt;</span>
+              </span>
+            </a>
+          ))}
+        </div>
       </section>
 
       {radarSections.map((section) => (
-        <section id={section.cadence} class="scroll-mt-80 xl:scroll-mt-40" data-radar-section hidden={section.cadence !== 'daily'}>
+        <section id={section.cadence} class="scroll-mt-80 xl:scroll-mt-40" data-radar-section hidden>
           <div class="mb-4">
             <div>
               <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{section.label}</p>
-              <h1 class="theme-heading mt-2 text-2xl font-semibold">
-                {text.itemCount(section.items.length)}
-              </h1>
+              <h2 class="theme-heading mt-2 text-2xl font-semibold">{text.radarSectionTitle[section.cadence]}</h2>
+              <p class="theme-muted mt-2 text-sm">{text.itemCount(section.items.length)}</p>
             </div>
           </div>
 
@@ -270,6 +320,7 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       const root = document.querySelector('[data-radar-view]');
       if (!root) return;
 
+      const hub = root.querySelector('[data-radar-hub]');
       const sections = Array.from(root.querySelectorAll('[data-radar-section]'));
       const validIds = new Set(sections.map((section) => section.id));
       const subnavLinks = Array.from(document.querySelectorAll('[data-radar-subnav]'));
@@ -277,11 +328,16 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
 
       function getActiveId() {
         const id = window.location.hash.replace(/^#/, '');
-        return validIds.has(id) ? id : 'daily';
+        return validIds.has(id) ? id : '';
       }
 
       function applyRadarView() {
         const activeId = getActiveId();
+        const hasActiveSection = Boolean(activeId);
+
+        if (hub) {
+          hub.hidden = hasActiveSection;
+        }
 
         for (const section of sections) {
           section.hidden = section.id !== activeId;

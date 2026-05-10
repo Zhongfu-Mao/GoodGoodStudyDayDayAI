@@ -12,9 +12,18 @@ import { siteNav } from '../lib/i18n';
 
 const { locale, showSearch = true } = Astro.props as { locale: Locale; showSearch?: boolean };
 
+const navLabels = {
+  zh: {
+    academy: 'AI 学院',
+  },
+  ja: {
+    academy: 'AIアカデミー',
+  },
+} as const;
+
 const navItems = primaryCategoryNames.map((category) => ({
   href: categoryPath(category, locale),
-  label: collectionLabels[category][locale],
+  label: category === 'academy' ? navLabels[locale].academy : collectionLabels[category][locale],
   tooltip: {
     zh: {
       radar: '追踪 AI 动态：日报、周报、月报',

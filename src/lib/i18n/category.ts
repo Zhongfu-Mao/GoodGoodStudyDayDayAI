@@ -3,10 +3,33 @@ export const categoryPage = {
     lead: '按主题浏览文章。',
     browse: '本分区文章列表。',
     empty: '本分区暂无内容。',
-    radarLead: '先看图，再进入原文；按 Daily、Weekly、Monthly 浏览全部更新。',
-    radarBrowse: '日、周、月都以图卡优先呈现，想深挖再打开原文。',
+    radarHubTitle: 'AI 雷达入口',
+    radarHubDescription:
+      'AI 雷达按时间节奏整理 AI 领域动态：日报看最新，周报看脉络，月报看趋势，图片墙适合快速浏览。',
+    radarHubCards: {
+      gallery: {
+        title: '图片墙',
+        description: '先看封面图，快速扫主题',
+      },
+      daily: {
+        title: '日报',
+        description: '每天更新，适合追最新',
+      },
+      weekly: {
+        title: '周报',
+        description: '一周汇总，适合补课',
+      },
+      monthly: {
+        title: '月报',
+        description: '趋势复盘，适合看方向',
+      },
+    },
+    radarSectionTitle: {
+      daily: '最近日报',
+      weekly: '周报归档',
+      monthly: '月报归档',
+    },
     radarGallery: '图片墙',
-    radarGalleryHint: '当前列表也采用图卡优先；总览页提供筛选和大图预览。',
     radarArchive: '归档',
     radarArchiveNote: (label: string) => `${label} 图卡流`,
     radarEmpty: '该分组暂无内容。',
@@ -40,12 +63,33 @@ export const categoryPage = {
     lead: 'テーマごとに記事を一覧できます。',
     browse: 'この区分の一覧です。',
     empty: 'この区分にはまだ記事がありません。',
-    radarLead:
-      'まず図解で眺め、気になるものを原文へ。Daily / Weekly / Monthly ごとに一覧できます。',
-    radarBrowse: 'Daily / Weekly / Monthly を、図解カード優先で並べています。',
+    radarHubTitle: 'AI レーダー入口',
+    radarHubDescription:
+      'AI レーダーは時間軸で AI 動向を整理します。Daily は最新、Weekly は流れ、Monthly は傾向、Image Wall はざっと眺める入口です。',
+    radarHubCards: {
+      gallery: {
+        title: 'Image Wall',
+        description: 'まず図解を眺めてテーマをつかむ',
+      },
+      daily: {
+        title: 'Daily',
+        description: '日々の更新で最新を追う',
+      },
+      weekly: {
+        title: 'Weekly',
+        description: '一週間の流れをまとめて補う',
+      },
+      monthly: {
+        title: 'Monthly',
+        description: '月単位の傾向と方向性を見る',
+      },
+    },
+    radarSectionTitle: {
+      daily: '最新 Daily',
+      weekly: 'Weekly Archive',
+      monthly: 'Monthly Archive',
+    },
     radarGallery: 'Image Wall',
-    radarGalleryHint:
-      'この一覧も図解カード優先です。Overview では絞り込みと大きなプレビューを使えます。',
     radarArchive: 'Archive',
     radarArchiveNote: (label: string) => `${label} visual flow`,
     radarEmpty: 'まだ記事がありません。',

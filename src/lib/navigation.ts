@@ -1,4 +1,4 @@
-import { cadenceLabels, categoryPath, startPath, type Locale } from './site';
+import { categoryPath, startPath, type Locale } from './site';
 
 export type SectionNavItem = {
   href: string;
@@ -17,6 +17,19 @@ const radarSubnavTooltips = {
     daily: '日々のモデル、プロダクト、実践動向を素早く確認',
     weekly: '週ごとのテーマ、流れ、重要変化を振り返る',
     monthly: '月次のトレンド、構造変化、長期シグナルを見る',
+  },
+} as const;
+
+const radarSubnavLabels = {
+  zh: {
+    daily: '日报',
+    weekly: '周报',
+    monthly: '月报',
+  },
+  ja: {
+    daily: '日報',
+    weekly: '週報',
+    monthly: '月報',
   },
 } as const;
 
@@ -75,19 +88,19 @@ export function getRadarSubnavItems(locale: Locale): SectionNavItem[] {
     {
       href: `${categoryPath('radar', locale)}#daily`,
       hash: '#daily',
-      label: cadenceLabels.daily[locale],
+      label: radarSubnavLabels[locale].daily,
       tooltip: radarSubnavTooltips[locale].daily,
     },
     {
       href: `${categoryPath('radar', locale)}#weekly`,
       hash: '#weekly',
-      label: cadenceLabels.weekly[locale],
+      label: radarSubnavLabels[locale].weekly,
       tooltip: radarSubnavTooltips[locale].weekly,
     },
     {
       href: `${categoryPath('radar', locale)}#monthly`,
       hash: '#monthly',
-      label: cadenceLabels.monthly[locale],
+      label: radarSubnavLabels[locale].monthly,
       tooltip: radarSubnavTooltips[locale].monthly,
     },
   ];
