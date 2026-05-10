@@ -8,11 +8,11 @@ Current default: keep public podcast media on GitHub Pages. Use R2 only after a 
 
 - R2 bucket: `ggsdda-media`
 - Budget alert: `R2 emergency budget alert - $1`
-- Public development URL: enabled
+- Public development URL: disabled
 - Custom R2 domain: not connected yet
 - Cloudflare zone/domain: none found in the dashboard
 
-The public development URL can be disabled after the GitHub Pages feed has been deployed and verified without `r2.dev` URLs.
+GitHub Pages feed and media URLs are the active public podcast delivery path.
 
 ## Guardrail 0: R2 Is Explicit Opt-In
 
@@ -52,7 +52,7 @@ Once a Cloudflare zone exists in this account:
    npm run audit:r2-public-urls
    ```
 
-7. Disable the R2 public development URL.
+7. Keep the R2 public development URL disabled.
 
 ## Guardrail 2: Cache Rules
 
@@ -138,11 +138,11 @@ npm run check:r2-public-base
 npm run audit:r2-public-urls
 ```
 
-`audit:r2-public-urls` is expected to fail until the existing published media URLs have moved to the custom domain.
+`audit:r2-public-urls` should pass while podcast media is served from GitHub Pages or a future custom media domain.
 
 ## Emergency Kill Switch
 
-If an attack or runaway usage starts before custom-domain controls exist:
+If an attack or runaway usage starts before custom-domain controls exist and R2 public access has been re-enabled:
 
 1. Go to R2 > `ggsdda-media` > Settings.
 2. Disable the Public Development URL.
