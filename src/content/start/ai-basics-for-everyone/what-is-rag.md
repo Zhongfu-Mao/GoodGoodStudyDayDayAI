@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：RAG 是什么，为什么它不仅是搜索"
 date: 2026-04-27
 category: start
 description: "深入浅出地解释 RAG 如何将检索、上下文和生成有机结合，让 AI 基于外部权威资料提供准确回答。"
-coverImage: "/images/start/ai-basics-for-everyone/rag.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/rag-concept-card.zh.svg"
 difficulty: beginner
 plainSummary: "RAG（检索增强生成）是一种让 AI 先检索相关资料、再将其注入上下文生成答案的技术。它不仅是简单的搜索，而是检索、引用、生成与评估的系统化组合。"
 tags:

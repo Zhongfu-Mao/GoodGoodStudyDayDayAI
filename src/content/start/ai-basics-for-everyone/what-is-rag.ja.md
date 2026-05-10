@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：RAG（検索拡張生成）とは何か、な�
 date: 2026-04-27
 category: start
 description: "RAG（検索拡張生成）を、情報取得（Retrieval）、コンテキスト注入、回答生成、引用、評価のプロセスとして分かりやすく解説します。"
-coverImage: "/images/start/ai-basics-for-everyone/rag.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/rag-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "RAG は、AI が回答を生成する前に関連資料を自動で探し、その資料をコンテキスト（背景情報）として読み込ませる手法です。単なる検索機能ではなく、検索、引用、生成、評価を統合したシステムです。"
 tags:

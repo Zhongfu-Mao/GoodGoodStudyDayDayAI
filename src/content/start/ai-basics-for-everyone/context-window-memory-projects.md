@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：Context Window、Memory 与 Projects 是什么"
 date: 2026-04-27
 category: start
 description: "深入探讨 AI 当前的感知范围、长期记忆机制，以及如何利用 Projects 管理文件和上下文以显著提升输出质量。"
-coverImage: "/images/start/ai-basics-for-everyone/context-memory-projects.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/context-memory-projects-concept-card.zh.svg"
 difficulty: beginner
 plainSummary: "上下文窗口（Context Window）是 AI 当前能“看”到的信息范围，Memory 是长期的偏好或事实存储，而 Projects 则提供了一个将文件、指令和对话整合在一起的结构化工作空间。"
 tags:

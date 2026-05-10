@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：幻觉是什么，如何让 AI 回答更可靠"
 date: 2026-04-27
 category: start
 description: "深入剖析 AI 幻觉的成因，并介绍如何通过检索（Retrieval）、引用（Citation）和评测（Eval）三道防线提升回答的可靠性。"
-coverImage: "/images/start/ai-basics-for-everyone/hallucination-grounding.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/grounding-concept-card.zh.svg"
 difficulty: beginner
 plainSummary: "AI 幻觉并非模型有意欺骗，而是在缺乏事实依据时生成了表面合理的虚假内容。Grounding 则是通过引入外部知识、标注引用和质量评测来约束 AI，使其回答有据可依。"
 tags:

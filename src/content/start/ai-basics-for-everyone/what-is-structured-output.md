@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：Structured Output 是什么，如何获取 AI �
 date: 2026-04-27
 category: start
 description: "深入解析什么是结构化输出，以及为何让 AI 输出表格、JSON、或特定清单格式比纯文本描述在实务中更具价值。"
-coverImage: "/images/start/ai-basics-for-everyone/structured-output.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/structured-output-concept-card.zh.svg"
 difficulty: beginner
 plainSummary: "结构化输出（Structured Output）是指让 AI 严格按照预设格式（如表格、JSON、检查清单等）呈现结果。它能将 AI 的输出直接转化为可复用、可处理的数据，而非一段难以自动化处理的自由文本。"
 tags:

@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：Eval（評価）とは何か、なぜ AI アプ
 date: 2026-04-27
 category: start
 description: "AI の品質を客観的・再現可能に検証するためのテストセット、評価基準（ルーブリック）、回帰テストとしての Eval について解説します。"
-coverImage: "/images/start/ai-basics-for-everyone/eval.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/eval-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "Eval は AI の出力品質を繰り返し検証する手法です。「なんとなく良さそう」という主観的な評価を、具体的なテストセット、基準、指標に基づく客観的なプロセスに変えます。"
 tags:

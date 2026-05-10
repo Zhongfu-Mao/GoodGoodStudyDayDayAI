@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：AI Coding ツールの進化がエンジニア�
 date: 2026-04-27
 category: start
 description: "AI Coding ツールを単なる「コード補完」としてではなく、プロジェクトの探索、編集、検証、説明までを統合する「共同作業パートナー」として整理します。"
-coverImage: "/images/start/ai-basics-for-everyone/ai-coding-tools.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/ai-coding-tools-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "AI Coding ツールの本質的な変化は、コードを書く速度の向上だけではありません。要件定義、コード探索、変更、検証、そして説明までを一貫して繋ぐ、新しい共同作業の形が生まれています。"
 tags:

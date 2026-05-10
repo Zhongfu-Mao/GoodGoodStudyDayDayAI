@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：Agent とは何か、なぜ重要なのか"
 date: 2026-04-27
 category: start
 description: "AI Agent（エージェント）を単なる流行語としてではなく、目標、状態、ツール、手順、権限、検証を備えた高度なワークフローとして整理します。"
-coverImage: "/images/start/ai-basics-for-everyone/agent.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/agent-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "Agent は単に会話するだけのボットではなく、目標達成に向けてツールを使いこなし、手順を進め、自ら結果を確認・修正する AI ワークフローです。"
 tags:

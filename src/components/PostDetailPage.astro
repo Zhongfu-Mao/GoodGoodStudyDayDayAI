@@ -40,6 +40,8 @@ const { locale, entry, Content, headings = [] } = Astro.props as {
 };
 const isGeneratedInfographic =
   typeof entry.data.coverImage === 'string' && entry.data.coverImage.includes('/images/radar/');
+const isStartKnowledgeCard =
+  typeof entry.data.coverImage === 'string' && entry.data.coverImage.includes('/images/start/') && entry.data.coverImage.includes('/cards/');
 const coverImageSrc = entry.data.coverImage ? resolveSiteUrl(entry.data.coverImage) : undefined;
 const transitionKey = entry.id.replace(/[^A-Za-z0-9_-]/g, '-');
 const coverTransitionName = `cover-${transitionKey}`;
@@ -403,8 +405,8 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
     {coverImageSrc ? (
       <div class:list={[
         'theme-panel-soft relative mt-8 flex items-center justify-center overflow-hidden rounded-[1.25rem]',
-        isGeneratedInfographic ? 'min-h-[18rem]' : 'h-72',
-        isGeneratedInfographic ? 'theme-panel p-4' : '',
+        isGeneratedInfographic || isStartKnowledgeCard ? 'min-h-[28rem] md:min-h-[36rem]' : 'h-72',
+        isGeneratedInfographic || isStartKnowledgeCard ? 'theme-panel p-4' : '',
       ]}>
         <span class="theme-heading absolute inset-0 flex items-center justify-center text-3xl font-semibold opacity-45" aria-hidden="true">
           AI
@@ -421,7 +423,7 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
             transition:name={coverTransitionName}
             class:list={[
               'w-full rounded-[1rem] transition duration-200 group-hover:brightness-110',
-              isGeneratedInfographic ? 'max-h-[42rem] object-contain' : 'h-72 object-cover',
+              isGeneratedInfographic || isStartKnowledgeCard ? 'max-h-[42rem] object-contain' : 'h-72 object-cover',
             ]}
             onerror="this.setAttribute('hidden', 'hidden')"
           />

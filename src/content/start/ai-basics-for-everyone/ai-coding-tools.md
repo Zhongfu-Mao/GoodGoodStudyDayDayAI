@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：AI Coding 工具如何重塑软件开发"
 date: 2026-04-27
 category: start
 description: "以非工程视角深度解析 Codex、Claude Code 等 AI 编程工具：从简单的代码补全，到全流程的任务协作。"
-coverImage: "/images/start/ai-basics-for-everyone/ai-coding-tools.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/ai-coding-tools-concept-card.zh.svg"
 difficulty: beginner
 plainSummary: "AI 编程工具带来的变革不仅在于编写代码的速度，更在于它将需求拆解、代码探索、文件修改、运行验证和变更提交整合成了一种全新的“人机协作”模式。"
 tags:

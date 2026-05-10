@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：プロンプト（Prompt）とは何か"
 date: 2026-04-27
 category: start
 description: "プロンプトを単なる「呪文」ではなく、目的、背景、制約、出力形式を明確に伝える「業務依頼書」として整理します。"
-coverImage: "/images/start/ai-basics-for-everyone/prompt.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/prompt-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "プロンプト（Prompt）とは、AI に対する依頼文のことです。優れたプロンプトは、役割、目的、背景、材料、制約、そして期待する出力を明確に備えています。"
 tags:

@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：コンテキスト・エンジニアリング�
 date: 2026-04-27
 category: start
 description: "プロンプト・エンジニアリングの次のステップとして、AI が各ステップで参照する「情報環境」をどう設計するかを解説します。"
-coverImage: "/images/start/ai-basics-for-everyone/context-engineering.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/context-engineering-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "コンテキスト・エンジニアリング（Context Engineering）は、単に良いプロンプトを書くことではなく、AI が各ステップで何を参照し、どのツールを使い、どのルールに従うべきかという「情報環境全体」を設計する実践です。"
 tags:

@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：Context Window、Memory、Projects とは何か
 date: 2026-04-27
 category: start
 description: "AI が現在認識している情報、長期的に記憶する情報、そして Project 機能による情報整理の違いを解説します。"
-coverImage: "/images/start/ai-basics-for-everyone/context-memory-projects.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/context-memory-projects-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "Context Window は AI が「今この瞬間」見えている範囲、Memory は長期的な好みや事実の記憶、Projects は関連するファイルや指示を一つの作業空間に集約する仕組みです。"
 tags:

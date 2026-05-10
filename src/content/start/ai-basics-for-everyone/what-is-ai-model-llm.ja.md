@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：AI、モデル、LLM とは何か"
 date: 2026-04-27
 category: start
 description: "AI、モデル、そして大規模言語モデル（LLM）の相互関係を、初学者が混乱しない適切な粒度で整理します。"
-coverImage: "/images/start/ai-basics-for-everyone/ai-model-llm.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/ai-model-llm-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "AI は知的な作業を機械に担わせる広大な分野を指し、モデルはその中で訓練された知能の核となる部分、LLM は特に言語やテキストの処理に秀でたモデルのことです。"
 tags:

@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：構造化出力（Structured Output）とは何
 date: 2026-04-27
 category: start
 description: "AI に表、JSON、チェックリストなど構造化された形式で出力させる方法と、その実用的なメリットを解説します。"
-coverImage: "/images/start/ai-basics-for-everyone/structured-output.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/structured-output-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "構造化出力（Structured Output）とは、AI に対して表・JSON・リストなど特定の形式を指定して回答させる手法です。自由な文章ではなく、次のステップですぐに活用できる「データ」として結果を受け取れます。"
 tags:

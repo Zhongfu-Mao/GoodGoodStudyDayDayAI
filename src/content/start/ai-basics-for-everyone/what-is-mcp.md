@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：MCP 是什么，如何构建 AI 的“万能接
 date: 2026-04-27
 category: start
 description: "通过 USB-C 的形象类比，深入浅出地解释 Model Context Protocol（MCP）协议：它是如何标准化连接 AI 模型与外部工具、数据及服务的。"
-coverImage: "/images/start/ai-basics-for-everyone/mcp.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/mcp-concept-card.zh.svg"
 difficulty: beginner
 plainSummary: "MCP（Model Context Protocol）是一个开放的标准化协议，旨在打破 AI 与外部世界之间的连接壁垒。它如同 AI 领域的 USB-C 接口，让不同的模型与工具只需通过一个统一的标准即可实现高效互操作。"
 tags:

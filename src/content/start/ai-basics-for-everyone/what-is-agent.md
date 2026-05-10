@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：智能体（Agent）是什么，为什么它正
 date: 2026-04-27
 category: start
 description: "深度解析 Agent 的核心构成：目标（Goal）、状态（State）、工具（Tools）、权限（Policy）与验证（Feedback）。"
-coverImage: "/images/start/ai-basics-for-everyone/agent.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/agent-concept-card.zh.svg"
 difficulty: beginner
 plainSummary: "智能体（Agent）不仅是一个会聊天的机器人，更是一种能够自主调用工具、拆解步骤、观察反馈并自我迭代的 AI 工作流。它代表了 AI 从“生成内容”向“完成任务”的进化。"
 tags:

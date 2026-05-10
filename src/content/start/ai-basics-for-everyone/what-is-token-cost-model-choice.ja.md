@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：Token・料金・モデル選び"
 date: 2026-04-27
 category: start
 description: "Token（トークン）の概念、AI サービスの料金体系、Context Window の制限、そしてタスクに最適なモデルの選び方を整理します。"
-coverImage: "/images/start/ai-basics-for-everyone/token-cost-model.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/token-cost-model-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "Token は AI がテキストを処理する基本単位であり、課金の基準でもあります。Token と Context Window を理解することで、コスト管理やモデル選択がより戦略的になります。"
 tags:

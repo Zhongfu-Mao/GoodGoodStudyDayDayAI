@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：MCP とは何か、AI が外部ツールとつ�
 date: 2026-04-27
 category: start
 description: "AI と外部ツールを接続するオープンプロトコル「MCP」を、USB-C の例えを用いて分かりやすく解説します。"
-coverImage: "/images/start/ai-basics-for-everyone/mcp.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/mcp-concept-card.ja.svg"
 difficulty: beginner
 plainSummary: "MCP（Model Context Protocol）は、AI が外部のツールやデータに標準化された方法で接続するためのプロトコルです。USB-C のように、一つの規格で多様なツールとの連携を可能にします。"
 tags:

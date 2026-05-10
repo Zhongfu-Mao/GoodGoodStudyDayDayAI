@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="1500" viewBox="0 0 1200 1500" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 是什么？</title>
+  <desc id="desc">Agent = 有目标、能行动、会复核的 AI 工作流。 它不是单次回答问题，而是持续推进一件事直到可验收。</desc>
+  <defs>
+    <linearGradient id="pageBg" x1="120" y1="0" x2="1080" y2="1500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f3442"/>
+      <stop offset="0.52" stop-color="#071827"/>
+      <stop offset="1" stop-color="#152033"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="100" y1="70" x2="1100" y2="1420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fbfdff"/>
+      <stop offset="1" stop-color="#edf8fa"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#5eead4"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="28" stdDeviation="34" flood-color="#020617" flood-opacity="0.32"/>
+    </filter>
+    <style>
+      .sans { font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "Hiragino Sans", "Hiragino Sans GB", sans-serif; }
+      .mono { font-family: "SFMono-Regular", "Cascadia Code", "Menlo", monospace; }
+      .ink { fill: #0f172a; }
+      .muted { fill: #475569; }
+      .soft { fill: #64748b; }
+      .white { fill: #f8fafc; }
+      .cyan { fill: #67e8f9; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="1500" rx="64" fill="url(#pageBg)"/>
+  <path d="M92 0v1500M252 0v1500M412 0v1500M572 0v1500M732 0v1500M892 0v1500M1052 0v1500M0 128h1200M0 288h1200M0 448h1200M0 608h1200M0 768h1200M0 928h1200M0 1088h1200M0 1248h1200M0 1408h1200" stroke="#7dd3fc" stroke-opacity="0.05"/>
+  <circle cx="1028" cy="180" r="280" fill="#0f766e" fill-opacity="0.14"/>
+  <circle cx="176" cy="1328" r="280" fill="#34d399" fill-opacity="0.10"/>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="64" width="1056" height="1372" rx="56" fill="url(#paper)" stroke="#b7dce6" stroke-width="3"/>
+  </g>
+
+  <rect x="112" y="104" width="976" height="118" rx="34" fill="#071525"/>
+  <text letter-spacing="5" x="154" y="154" class="sans cyan" font-size="25" font-weight="800">AI BASICS FOR EVERYONE</text>
+  <text x="154" y="196" class="sans white" font-size="28" font-weight="650">智能体概念卡</text>
+  <rect x="870" y="132" width="172" height="58" rx="22" fill="#123f5c" stroke="#38bdf8" stroke-opacity="0.45"/>
+  <text x="956" y="170" text-anchor="middle" class="mono cyan" font-size="24" font-weight="800">Agent</text>
+
+  <text x="112" y="334" class="sans ink" font-size="78" font-weight="860">Agent 是什么？</text>
+  <text x="118" y="394" class="sans muted" font-size="32">不是“更会聊天”，而是“能把任务往前推进”。</text>
+
+  <rect x="112" y="460" width="976" height="170" rx="36" fill="#e6f8f8" stroke="#9bd8df" stroke-width="2"/>
+  <rect x="148" y="494" width="128" height="48" rx="18" fill="#0f766e"/>
+  <text x="180" y="527" class="sans white" font-size="24" font-weight="850">一句话</text>
+  <text x="148" y="582" class="sans ink" font-size="30" font-weight="820">Agent = 有目标、能行动、会复核的 AI 工作流。</text>
+<text x="148" y="620" class="sans ink" font-size="30" font-weight="820">它不是单次回答问题，而是持续推进一件事直到可验收。</text>
+
+  <text x="112" y="710" class="sans ink" font-size="40" font-weight="860">四个核心要素</text>
+  <text x="112" y="750" class="sans muted" font-size="25">少了其中任何一个，都很容易退化成普通聊天。</text>
+
+  <g transform="translate(112 788)">
+    <rect width="472" height="150" rx="30" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="66" cy="66" r="37" fill="#dbeafe"/>
+    <text x="50" y="78" class="sans" font-size="42" font-weight="900" fill="#2563eb">1</text>
+    <text x="126" y="58" class="sans ink" font-size="32" font-weight="850">目标</text>
+    <text x="126" y="92" class="mono soft" font-size="20">Goal</text>
+    <text x="126" y="126" class="sans muted" font-size="24">知道最终要交付什么。</text>
+  </g>
+
+<g transform="translate(616 788)">
+    <rect width="472" height="150" rx="30" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="66" cy="66" r="37" fill="#fef3c7"/>
+    <text x="50" y="78" class="sans" font-size="42" font-weight="900" fill="#b45309">2</text>
+    <text x="126" y="58" class="sans ink" font-size="32" font-weight="850">状态</text>
+    <text x="126" y="92" class="mono soft" font-size="20">State</text>
+    <text x="126" y="126" class="sans muted" font-size="24">记住进度、线索和中间产物。</text>
+  </g>
+
+<g transform="translate(112 966)">
+    <rect width="472" height="150" rx="30" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="66" cy="66" r="37" fill="#dcfce7"/>
+    <text x="50" y="78" class="sans" font-size="42" font-weight="900" fill="#15803d">3</text>
+    <text x="126" y="58" class="sans ink" font-size="32" font-weight="850">工具</text>
+    <text x="126" y="92" class="mono soft" font-size="20">Tools</text>
+    <text x="126" y="126" class="sans muted" font-size="24">能操作浏览器、文件、代码/API。</text>
+  </g>
+
+<g transform="translate(616 966)">
+    <rect width="472" height="150" rx="30" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="66" cy="66" r="37" fill="#f3e8ff"/>
+    <text x="50" y="78" class="sans" font-size="42" font-weight="900" fill="#7c3aed">4</text>
+    <text x="126" y="58" class="sans ink" font-size="32" font-weight="850">反馈</text>
+    <text x="126" y="92" class="mono soft" font-size="20">Feedback</text>
+    <text x="126" y="126" class="sans muted" font-size="24">检查结果，并按偏差修正。</text>
+  </g>
+
+  <rect x="112" y="1176" width="976" height="146" rx="34" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="148" y="1224" class="sans ink" font-size="34" font-weight="860">判断一件事是不是 Agent</text>
+  <g transform="translate(148 1252)">
+    <rect x="0" y="0" width="172" height="48" rx="18" fill="#0f766e"/>
+<text x="86" y="32" text-anchor="middle" class="sans white" font-size="23" font-weight="820">计划</text>
+<path d="M194 24h48" stroke="#1e3a5f" stroke-width="4" stroke-linecap="round"/>
+<path d="M232 11l18 13-18 13" fill="none" stroke="#1e3a5f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="270" y="0" width="172" height="48" rx="18" fill="#155e75"/>
+<text x="356" y="32" text-anchor="middle" class="sans white" font-size="23" font-weight="820">行动</text>
+<path d="M464 24h48" stroke="#1e3a5f" stroke-width="4" stroke-linecap="round"/>
+<path d="M502 11l18 13-18 13" fill="none" stroke="#1e3a5f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="540" y="0" width="172" height="48" rx="18" fill="#2563eb"/>
+<text x="626" y="32" text-anchor="middle" class="sans white" font-size="23" font-weight="820">验证</text>
+<path d="M734 24h48" stroke="#1e3a5f" stroke-width="4" stroke-linecap="round"/>
+<path d="M772 11l18 13-18 13" fill="none" stroke="#1e3a5f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="810" y="0" width="128" height="48" rx="18" fill="#7c3aed"/>
+<text x="874" y="32" text-anchor="middle" class="sans white" font-size="23" font-weight="820">交付</text>
+  </g>
+
+  <g transform="translate(112 1360)">
+    <rect width="976" height="58" rx="24" fill="url(#accent)" opacity="0.92"/>
+    <text x="34" y="38" class="sans ink" font-size="22" font-weight="850">记住：Agent 的关键不是“像人”，而是能沿着目标持续推进。</text>
+  </g>
+</svg>

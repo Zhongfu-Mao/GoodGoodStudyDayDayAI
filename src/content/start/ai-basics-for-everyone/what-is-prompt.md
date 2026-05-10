@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：提示词（Prompt）到底是什么"
 date: 2026-04-27
 category: start
 description: "将提示词从“神秘咒语”还原为结构化的任务说明书：涵盖目标、背景、材料、约束与输出格式。"
-coverImage: "/images/start/ai-basics-for-everyone/prompt.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/prompt-concept-card.zh.svg"
 difficulty: beginner
 plainSummary: "提示词（Prompt）本质上是你向 AI 下达的任务说明。好的提示词能够清晰阐述目标、上下文、限制条件及期望的输出格式。"
 tags:

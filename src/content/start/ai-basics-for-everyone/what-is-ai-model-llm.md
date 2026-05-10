@@ -3,7 +3,7 @@ title: "AI Basics for Everyone：AI、模型与 LLM 到底是什么"
 date: 2026-04-27
 category: start
 description: "用最直白的语言理清 AI、模型以及大语言模型（LLM）之间的层级关系，为你探索后续的深度课程打下坚实基础。"
-coverImage: "/images/start/ai-basics-for-everyone/ai-model-llm.svg"
+coverImage: "/images/start/ai-basics-for-everyone/cards/ai-model-llm-concept-card.zh.svg"
 difficulty: beginner
 plainSummary: "AI 是让机器模仿人类认知任务的科学领域，模型是承载特定任务能力的程序载体，而 LLM 则是目前最擅长处理语言、对话和代码的一类先进模型。"
 tags:
