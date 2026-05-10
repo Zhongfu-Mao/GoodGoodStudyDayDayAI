@@ -1,13 +1,15 @@
 ---
 import {
+  articlePath,
   cadenceLabels,
   categoryPath,
   collectionLabels,
+  resolveSiteUrl,
   type Locale,
 } from '../lib/site';
-import RadarVisualCard from './RadarVisualCard.astro';
 import { getEntriesForLocale } from '../lib/content';
 import { radarGalleryPage } from '../lib/i18n';
+import { resolveRadarCadence } from '../lib/radar';
 
 const { locale } = Astro.props as { locale: Locale };
 const text = radarGalleryPage[locale];
@@ -29,6 +31,31 @@ const filterTooltip = {
   month: locale === 'ja' ? '月で図解を絞り込む' : '按月份筛选图报',
   cadence: (label: string) => locale === 'ja' ? `${label} の図解だけ表示` : `只看 ${label} 图报`,
 };
+const topicCounts = new Map<string, number>();
+
+for (const item of entries) {
+  for (const tag of item.entry.data.tags.slice(0, 5)) {
+    topicCounts.set(tag, (topicCounts.get(tag) ?? 0) + 1);
+  }
+}
+
+const topicFilters = [...topicCounts.entries()]
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], locale === 'ja' ? 'ja' : 'zh-Hans'))
+  .slice(0, 8)
+  .map(([tag, count]) => ({ tag, count }));
+const galleryItems = entries.map((item) => {
+  const cadence = resolveRadarCadence(item);
+  const coverImage = resolveSiteUrl(item.entry.data.coverImage ?? '');
+
+  return {
+    cadence,
+    month: item.entry.data.date.toISOString().slice(0, 7),
+    href: articlePath(item.entry.data.category, item.slug, locale),
+    fullTitle: item.entry.data.title,
+    coverImage,
+    topicData: `|${item.entry.data.tags.join('|')}|`,
+  };
+});
 ---
 
 <div class="relative left-1/2 w-screen max-w-[1680px] -translate-x-1/2 px-5 sm:px-8" data-radar-gallery>
@@ -43,74 +70,123 @@ const filterTooltip = {
     </nav>
     <p class="theme-kicker text-xs uppercase tracking-[0.28em]">{text.eyebrow}</p>
     <div class="mt-2 flex flex-wrap items-end gap-3">
-      <h1 class="theme-heading text-3xl font-semibold md:text-4xl">{text.title}</h1>
+      <h1 class="theme-heading text-3xl font-semibold md:text-5xl">{text.title}</h1>
       <span
         class="theme-chip rounded-xl px-3 py-1.5 text-xs"
         data-gallery-count
         data-total-count={entries.length}
         data-count-suffix={locale === 'ja' ? 'images' : '张'}
-        title={text.countHint}
+        data-tooltip={text.countHint}
       >
         {text.visibleCount(entries.length, entries.length)}
       </span>
     </div>
-    <p class="theme-muted mt-2 max-w-2xl text-sm leading-6">{text.description}</p>
+    <p class="theme-muted mt-3 max-w-3xl text-sm leading-6 md:text-base md:leading-7">{text.description}</p>
   </div>
 </section>
 
 {entries.length > 0 ? (
   <>
-    <section class="theme-panel sticky top-28 z-10 mt-5 rounded-[1.25rem] p-2 backdrop-blur md:top-24" data-gallery-filters>
-      <div class="flex flex-wrap items-center justify-between gap-2">
-        <div class="flex flex-wrap items-center gap-2">
-          <p class="theme-muted px-2 text-xs uppercase tracking-[0.2em]">{text.filters}</p>
-          <div class="flex flex-wrap gap-1.5">
+    <section class="theme-panel sticky top-28 z-10 mt-5 rounded-[1.25rem] p-3 backdrop-blur md:top-24" data-gallery-filters>
+      <div class="flex flex-wrap items-center gap-3">
+        <p class="theme-muted px-1 text-xs uppercase tracking-[0.2em]">{text.filters}</p>
+
+        <div class="flex flex-wrap items-center gap-1.5" aria-label={text.cadenceFilter}>
+          <span class="theme-muted px-1 text-[11px] uppercase tracking-[0.16em]">{text.cadenceFilter}</span>
+          <button
+            type="button"
+            class="theme-chip theme-chip-link theme-segment-active ui-tooltip ui-tooltip-bottom rounded-xl px-3 py-1.5 text-xs"
+            data-cadence-filter="all"
+            data-tooltip={filterTooltip.all}
+            aria-pressed="true"
+          >
+            {text.allCadences}
+          </button>
+          {(['daily', 'weekly', 'monthly'] as const).map((cadence) => (
             <button
               type="button"
-              class="theme-chip theme-chip-link theme-segment-active ui-tooltip ui-tooltip-bottom rounded-xl px-3 py-1.5 text-xs"
-              data-cadence-filter="all"
-              data-tooltip={filterTooltip.all}
+              class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom rounded-xl px-3 py-1.5 text-xs"
+              data-cadence-filter={cadence}
+              data-tooltip={filterTooltip.cadence(cadenceLabels[cadence][locale])}
+              aria-pressed="false"
+            >
+              {cadenceLabels[cadence][locale]}
+            </button>
+          ))}
+        </div>
+
+        {topicFilters.length > 0 ? (
+          <div class="flex flex-wrap items-center gap-1.5" aria-label={text.topicFilter}>
+            <span class="theme-muted px-1 text-[11px] uppercase tracking-[0.16em]">{text.topicFilter}</span>
+            <button
+              type="button"
+              class="radar-topic-chip radar-topic-chip-active rounded-xl px-3 py-1.5 text-xs"
+              data-topic-filter="all"
               aria-pressed="true"
             >
-              {text.allCadences}
+              {text.allTopics}
             </button>
-            {(['daily', 'weekly', 'monthly'] as const).map((cadence) => (
+            {topicFilters.map((topic) => (
               <button
                 type="button"
-                class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom rounded-xl px-3 py-1.5 text-xs"
-                data-cadence-filter={cadence}
-                data-tooltip={filterTooltip.cadence(cadenceLabels[cadence][locale])}
+                class="radar-topic-chip rounded-xl px-3 py-1.5 text-xs"
+                data-topic-filter={topic.tag}
                 aria-pressed="false"
               >
-                {cadenceLabels[cadence][locale]}
+                {topic.tag}
               </button>
             ))}
           </div>
-          <label class="sr-only" for="radar-gallery-month">{text.monthFilter}</label>
-          <span
-            class="ui-tooltip ui-tooltip-bottom inline-flex"
-            data-month-filter-tooltip
-            data-tooltip={filterTooltip.month}
+        ) : null}
+
+        <label class="sr-only" for="radar-gallery-month">{text.monthFilter}</label>
+        <span
+          class="ui-tooltip ui-tooltip-bottom inline-flex"
+          data-month-filter-tooltip
+          data-tooltip={filterTooltip.month}
+        >
+          <select
+            id="radar-gallery-month"
+            class="theme-button-soft rounded-xl px-3 py-1.5 text-xs"
+            data-month-filter
+            aria-label={filterTooltip.month}
           >
-            <select
-              id="radar-gallery-month"
-              class="theme-button-soft rounded-xl px-3 py-1.5 text-xs"
-              data-month-filter
-              aria-label={filterTooltip.month}
-            >
-              <option value="all">{text.allMonths}</option>
-              {months.map(([value, label]) => (
-                <option value={value}>{label}</option>
-              ))}
-            </select>
-          </span>
-        </div>
+            <option value="all">{text.allMonths}</option>
+            {months.map(([value, label]) => (
+              <option value={value}>{label}</option>
+            ))}
+          </select>
+        </span>
       </div>
     </section>
 
-    <section class="mt-5 grid grid-cols-1 items-start gap-4 md:grid-cols-2" data-gallery-grid>
-      {entries.map((item, index) => (
-        <RadarVisualCard item={item} locale={locale} loading={index < 4 ? 'eager' : 'lazy'} preview />
+    <section class="radar-wall mt-5" data-gallery-grid>
+      {galleryItems.map((galleryItem, index) => (
+        <article
+          class="radar-wall-card"
+          data-gallery-card
+          data-cadence={galleryItem.cadence ?? 'radar'}
+          data-month={galleryItem.month}
+          data-topics={galleryItem.topicData}
+        >
+          <button
+            type="button"
+            class="group relative block w-full overflow-hidden rounded-[1rem] border border-[color:var(--theme-border)] bg-[#f5efe4] text-left shadow-glow"
+            data-preview-trigger
+            data-image-src={galleryItem.coverImage}
+            data-image-alt={text.coverAlt(galleryItem.fullTitle)}
+            data-href={galleryItem.href}
+            aria-label={text.previewImage}
+          >
+            <img
+              src={galleryItem.coverImage}
+              alt={text.coverAlt(galleryItem.fullTitle)}
+              loading={index < 6 ? 'eager' : 'lazy'}
+              decoding="async"
+              class="block h-auto w-full transition duration-300 group-hover:scale-[1.018]"
+            />
+          </button>
+        </article>
       ))}
     </section>
 
@@ -118,27 +194,20 @@ const filterTooltip = {
       {text.noMatches}
     </section>
 
-    <dialog class="max-h-[92vh] w-[min(1180px,calc(100vw-2rem))] rounded-[1.25rem] border-0 bg-transparent p-0 backdrop:bg-slate-950/70" data-gallery-dialog>
-      <div class="theme-panel-strong overflow-hidden rounded-[1.25rem] shadow-glow">
-        <div class="flex items-center justify-between gap-4 p-4 md:p-5">
-          <div class="min-w-0">
-            <p class="theme-muted text-xs uppercase tracking-[0.2em]" data-dialog-meta></p>
-            <h2 class="theme-heading mt-2 truncate text-lg font-semibold md:text-2xl" data-dialog-title></h2>
-          </div>
-          <button
-            type="button"
-            class="theme-button-soft ui-tooltip ui-tooltip-left shrink-0 rounded-xl px-3 py-2 text-sm"
-            data-dialog-close
-            data-tooltip={text.closePreview}
-            aria-label={text.closePreview}
-          >
-            x
-          </button>
+    <dialog class="radar-gallery-dialog border-0 bg-transparent p-0 backdrop:bg-slate-950/78" data-gallery-dialog>
+      <div class="radar-gallery-dialog-frame">
+        <button
+          type="button"
+          class="radar-gallery-dialog-close"
+          data-dialog-close
+          aria-label={text.closePreview}
+        >
+          x
+        </button>
+        <div class="radar-gallery-dialog-image-wrap">
+          <img src="" alt="" class="block max-h-full max-w-full rounded-[1rem] object-contain shadow-glow" data-dialog-image />
         </div>
-        <div class="max-h-[68vh] overflow-auto bg-black/20">
-          <img src="" alt="" class="h-auto w-full" data-dialog-image />
-        </div>
-        <div class="flex flex-wrap justify-end gap-3 p-4 md:p-5">
+        <div class="radar-gallery-dialog-actions">
           <a
             href=""
             class="theme-action-primary ui-tooltip rounded-xl px-4 py-2 text-sm font-semibold"
@@ -156,19 +225,19 @@ const filterTooltip = {
 
       if (galleryRoot) {
         const cadenceButtons = Array.from(galleryRoot.querySelectorAll('[data-cadence-filter]'));
+        const topicButtons = Array.from(galleryRoot.querySelectorAll('[data-topic-filter]'));
         const monthSelect = galleryRoot.querySelector('[data-month-filter]');
         const cards = Array.from(galleryRoot.querySelectorAll('[data-gallery-card]'));
         const countNode = galleryRoot.querySelector('[data-gallery-count]');
         const emptyNode = galleryRoot.querySelector('[data-gallery-empty]');
         const dialog = galleryRoot.querySelector('[data-gallery-dialog]');
         const dialogImage = galleryRoot.querySelector('[data-dialog-image]');
-        const dialogTitle = galleryRoot.querySelector('[data-dialog-title]');
-        const dialogMeta = galleryRoot.querySelector('[data-dialog-meta]');
         const dialogLink = galleryRoot.querySelector('[data-dialog-link]');
         const dialogClose = galleryRoot.querySelector('[data-dialog-close]');
         const totalCount = Number(countNode?.dataset.totalCount ?? cards.length);
         const countSuffix = countNode?.dataset.countSuffix ?? '';
         let activeCadence = 'all';
+        const activeTopics = new Set();
 
         const getVisibleCountLabel = (visible) => (
           document.documentElement.lang === 'ja'
@@ -176,24 +245,40 @@ const filterTooltip = {
             : `显示 ${visible} / 共 ${totalCount} ${countSuffix}`
         ).trim();
 
+        const updateButtonState = (buttons, dataKey, activeValue) => {
+          for (const button of buttons) {
+            const isActive = button.dataset[dataKey] === activeValue;
+            button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            button.classList.toggle('theme-segment-active', isActive);
+          }
+        };
+
+        const updateTopicButtonState = () => {
+          for (const button of topicButtons) {
+            const value = button.dataset.topicFilter ?? 'all';
+            const isActive = value === 'all' ? activeTopics.size === 0 : activeTopics.has(value);
+            button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            button.classList.toggle('radar-topic-chip-active', isActive);
+          }
+        };
+
         const updateFilters = () => {
           const activeMonth = monthSelect?.value ?? 'all';
           let visible = 0;
 
           for (const card of cards) {
             const matchesCadence = activeCadence === 'all' || card.dataset.cadence === activeCadence;
+            const cardTopics = card.dataset.topics ?? '';
+            const matchesTopic = activeTopics.size === 0 || [...activeTopics].some((topic) => cardTopics.includes(`|${topic}|`));
             const matchesMonth = activeMonth === 'all' || card.dataset.month === activeMonth;
-            const shouldShow = matchesCadence && matchesMonth;
+            const shouldShow = matchesCadence && matchesTopic && matchesMonth;
 
             card.hidden = !shouldShow;
             if (shouldShow) visible += 1;
           }
 
-          for (const button of cadenceButtons) {
-            const isActive = button.dataset.cadenceFilter === activeCadence;
-            button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-            button.classList.toggle('theme-segment-active', isActive);
-          }
+          updateButtonState(cadenceButtons, 'cadenceFilter', activeCadence);
+          updateTopicButtonState();
 
           if (countNode) countNode.textContent = getVisibleCountLabel(visible);
           emptyNode?.classList.toggle('hidden', visible > 0);
@@ -206,16 +291,39 @@ const filterTooltip = {
           });
         }
 
+        for (const button of topicButtons) {
+          button.addEventListener('click', () => {
+            const value = button.dataset.topicFilter ?? 'all';
+
+            if (value === 'all') {
+              activeTopics.clear();
+            } else if (activeTopics.has(value)) {
+              activeTopics.delete(value);
+            } else {
+              activeTopics.add(value);
+            }
+
+            updateFilters();
+          });
+        }
+
         monthSelect?.addEventListener('change', updateFilters);
+
+        const closeDialog = () => {
+          if (!dialog) return;
+          if (typeof dialog.close === 'function') {
+            dialog.close();
+          } else {
+            dialog.removeAttribute('open');
+          }
+        };
 
         for (const trigger of galleryRoot.querySelectorAll('[data-preview-trigger]')) {
           trigger.addEventListener('click', () => {
-            if (!dialog || !dialogImage || !dialogTitle || !dialogMeta || !dialogLink) return;
+            if (!dialog || !dialogImage || !dialogLink) return;
 
             dialogImage.src = trigger.dataset.imageSrc ?? '';
             dialogImage.alt = trigger.dataset.imageAlt ?? '';
-            dialogTitle.textContent = trigger.dataset.title ?? '';
-            dialogMeta.textContent = trigger.dataset.meta ?? '';
             dialogLink.href = trigger.dataset.href ?? '';
 
             if (typeof dialog.showModal === 'function') {
@@ -226,10 +334,12 @@ const filterTooltip = {
           });
         }
 
-        dialogClose?.addEventListener('click', () => dialog?.close());
+        dialogClose?.addEventListener('click', closeDialog);
         dialog?.addEventListener('click', (event) => {
-          if (event.target === dialog) dialog.close();
+          if (event.target === dialog) closeDialog();
         });
+
+        updateFilters();
       }
     </script>
   </>
@@ -237,3 +347,138 @@ const filterTooltip = {
   <section class="theme-panel mt-8 rounded-[1.25rem] p-6 theme-muted">{text.empty}</section>
 )}
 </div>
+
+<style>
+  .radar-wall {
+    column-count: 1;
+    column-gap: 1rem;
+  }
+
+  .radar-wall-card {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 1rem;
+    break-inside: avoid;
+  }
+
+  .radar-wall-card[hidden] {
+    display: none;
+  }
+
+  .radar-topic-chip {
+    border: 1px solid color-mix(in srgb, var(--theme-border) 78%, var(--theme-accent) 22%);
+    color: color-mix(in srgb, var(--theme-page-text) 76%, var(--theme-accent));
+    background: color-mix(in srgb, var(--theme-surface-strong) 82%, transparent);
+    transition:
+      border-color 160ms ease,
+      background 160ms ease,
+      color 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .radar-topic-chip:hover {
+    border-color: color-mix(in srgb, var(--theme-accent) 46%, var(--theme-border));
+    color: var(--theme-accent);
+  }
+
+  .radar-topic-chip-active {
+    border-color: color-mix(in srgb, var(--theme-accent) 64%, var(--theme-border));
+    color: var(--theme-accent);
+    background: color-mix(in srgb, var(--theme-accent) 22%, var(--theme-surface-strong));
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--theme-accent) 16%, transparent),
+      0 8px 18px color-mix(in srgb, var(--theme-accent) 14%, transparent);
+  }
+
+  html[data-theme='light'] .radar-topic-chip {
+    border-color: color-mix(in srgb, var(--theme-border) 72%, var(--theme-accent) 28%);
+    color: color-mix(in srgb, var(--theme-page-text) 72%, var(--theme-accent));
+    background: color-mix(in srgb, var(--theme-surface-strong) 84%, var(--theme-accent-soft));
+  }
+
+  html[data-theme='light'] .radar-topic-chip-active {
+    border-color: color-mix(in srgb, var(--theme-accent) 54%, var(--theme-border));
+    color: #68430f;
+    background:
+      linear-gradient(180deg, rgba(255, 250, 240, 0.98), rgba(247, 237, 216, 0.98)),
+      var(--theme-accent-soft);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      0 8px 18px rgba(138, 91, 33, 0.11);
+  }
+
+  @media (min-width: 720px) {
+    .radar-wall {
+      column-count: 2;
+    }
+  }
+
+  @media (min-width: 1120px) {
+    .radar-wall {
+      column-count: 3;
+    }
+  }
+
+  @media (min-width: 1480px) {
+    .radar-wall {
+      column-count: 3;
+      column-gap: 1.25rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .radar-wall {
+      column-gap: 0.85rem;
+    }
+  }
+
+  .radar-gallery-dialog {
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    max-height: none;
+    margin: 0;
+  }
+
+  .radar-gallery-dialog-frame {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    place-items: center;
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+
+  .radar-gallery-dialog-image-wrap {
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .radar-gallery-dialog-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.9rem;
+  }
+
+  .radar-gallery-dialog-close {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--theme-page-text) 18%, transparent);
+    border-radius: 999px;
+    color: var(--theme-page-text);
+    background: color-mix(in srgb, var(--theme-surface-strong) 82%, transparent);
+    line-height: 1;
+    backdrop-filter: blur(12px);
+  }
+</style>
