@@ -11,7 +11,7 @@ tags:
   - OpenClaw
   - Opus
 lang: ja
-coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-04-19.ja-infographic.webp
+coverImage: /images/radar/daily-ai-radar-2026-04-19.ja-infographic.webp
 draft: false
 ---
 ## 本日のトピック

@@ -10,6 +10,8 @@ const REQUIRED_R2_ENV = [
   'R2_BUCKET',
   'R2_PUBLIC_BASE',
 ];
+const R2_ENABLED = 'R2_ENABLED';
+const ALLOW_R2_DEV_PUBLIC_BASE = 'ALLOW_R2_DEV_PUBLIC_BASE';
 
 const CONTENT_TYPES = {
   '.aac': 'audio/aac',
@@ -59,12 +61,18 @@ export function loadDotEnv(filePath = path.join(process.cwd(), '.env')) {
 
 export function isR2Configured() {
   loadDotEnv();
-  return REQUIRED_R2_ENV.every((name) => Boolean(process.env[name]));
+  return isR2Enabled() && REQUIRED_R2_ENV.every((name) => Boolean(process.env[name]));
 }
 
 export function missingR2Env() {
   loadDotEnv();
-  return REQUIRED_R2_ENV.filter((name) => !process.env[name]);
+  const missing = REQUIRED_R2_ENV.filter((name) => !process.env[name]);
+  return isR2Enabled() ? missing : [R2_ENABLED, ...missing];
+}
+
+export function isR2Enabled() {
+  loadDotEnv();
+  return process.env[R2_ENABLED] === '1';
 }
 
 export function requireR2Env(name) {
@@ -76,6 +84,48 @@ export function requireR2Env(name) {
   }
 
   return value;
+}
+
+export function isR2DevPublicBase(value) {
+  if (!value) {
+    return false;
+  }
+
+  try {
+    const url = new URL(value);
+    return url.hostname === 'r2.dev' || url.hostname.endsWith('.r2.dev');
+  } catch {
+    return false;
+  }
+}
+
+export function assertSafeR2PublicBase(
+  value = requireR2Env('R2_PUBLIC_BASE'),
+  { allowR2Dev = process.env[ALLOW_R2_DEV_PUBLIC_BASE] === '1' } = {},
+) {
+  let url;
+
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error('R2_PUBLIC_BASE must be an absolute https:// URL.');
+  }
+
+  if (url.protocol !== 'https:') {
+    throw new Error('R2_PUBLIC_BASE must use https://.');
+  }
+
+  if (isR2DevPublicBase(value) && !allowR2Dev) {
+    throw new Error(
+      [
+        'R2_PUBLIC_BASE points to an r2.dev development URL.',
+        'Use an R2 custom domain behind Cloudflare Cache/WAF before publishing new media.',
+        `Set ${ALLOW_R2_DEV_PUBLIC_BASE}=1 only for a deliberate emergency migration run.`,
+      ].join(' '),
+    );
+  }
+
+  return value.replace(/\/$/, '');
 }
 
 export function createR2Client() {
@@ -146,7 +196,7 @@ export async function uploadToR2(client, { localPath, key, skipExisting = true }
 }
 
 export function getPublicUrl(key) {
-  const base = requireR2Env('R2_PUBLIC_BASE').replace(/\/$/, '');
+  const base = assertSafeR2PublicBase();
   return `${base}/${key.replace(/^\/+/, '')}`;
 }
 

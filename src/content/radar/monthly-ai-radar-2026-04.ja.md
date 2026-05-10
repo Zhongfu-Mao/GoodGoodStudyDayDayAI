@@ -11,8 +11,8 @@ tags:
   - AI Infrastructure
   - Coding Agents
 lang: ja
-coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-04.ja-infographic.webp
-audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-04.ja.mp3
+coverImage: /images/radar/monthly-ai-radar-2026-04.ja-infographic.webp
+audioUrl: /audio/radar/monthly-ai-radar-2026-04.ja.mp3
 audioDuration: 1111
 audioSize: 8891435
 deckUrl: /decks/radar/monthly-ai-radar-2026-04.ja.pdf
@@ -141,9 +141,9 @@ RAG の競争は「類似テキストの検索」から「推論可能なエビ�
 
 ## アセット索引
 
-- **Audio Overview**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-04.ja.mp3
-- **Slide Deck**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-04.ja.pdf
-- **Infographic**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-04.ja-infographic.webp
+- **Audio Overview**: /audio/radar/monthly-ai-radar-2026-04.ja.mp3
+- **Slide Deck**: /decks/radar/monthly-ai-radar-2026-04.ja.pdf
+- **Infographic**: /images/radar/monthly-ai-radar-2026-04.ja-infographic.webp
 
 ## 月内週報ナビゲーション
 

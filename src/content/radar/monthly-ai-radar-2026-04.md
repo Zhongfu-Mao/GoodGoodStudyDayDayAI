@@ -11,8 +11,8 @@ tags:
   - AI Infrastructure
   - Coding Agents
 lang: zh
-coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-04-infographic.webp
-audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-04.mp3
+coverImage: /images/radar/monthly-ai-radar-2026-04-infographic.webp
+audioUrl: /audio/radar/monthly-ai-radar-2026-04.mp3
 audioDuration: 1106
 audioSize: 8846296
 deckUrl: /decks/radar/monthly-ai-radar-2026-04.pdf
@@ -141,9 +141,9 @@ RAG 的竞争已演变为“可推理证据”的组织质量竞赛。数据建�
 
 ## 资产索引
 
-- **Audio Overview**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-04.mp3
-- **Slide Deck**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-04.pdf
-- **Infographic**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-04-infographic.webp
+- **Audio Overview**: /audio/radar/monthly-ai-radar-2026-04.mp3
+- **Slide Deck**: /decks/radar/monthly-ai-radar-2026-04.pdf
+- **Infographic**: /images/radar/monthly-ai-radar-2026-04-infographic.webp
 
 ## 月内周报导航
 

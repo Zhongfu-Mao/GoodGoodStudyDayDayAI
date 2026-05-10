@@ -816,6 +816,22 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
       deckNextButton.disabled = currentPage >= total;
     }
 
+    function reserveCanvasSpace() {
+      const availableWidth = Math.max(320, deckViewer.clientWidth - 32);
+      const displayWidth = Math.min(960, availableWidth);
+      const displayHeight = Math.round(displayWidth * 0.5625);
+      const deviceScale = window.devicePixelRatio || 1;
+
+      if (deckCanvas.width > 300 && deckCanvas.height > 150) {
+        return;
+      }
+
+      deckCanvas.width = Math.floor(displayWidth * deviceScale);
+      deckCanvas.height = Math.floor(displayHeight * deviceScale);
+      deckCanvas.style.width = `${Math.floor(displayWidth)}px`;
+      deckCanvas.style.height = `${displayHeight}px`;
+    }
+
     async function loadDocument() {
       if (!loadingPromise) {
         setBusy(loadingLabel);
@@ -862,6 +878,7 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
     trigger.addEventListener('click', async () => {
       showDeckDialog(dialog);
       await new Promise((resolve) => requestAnimationFrame(resolve));
+      reserveCanvasSpace();
       renderPage(currentPage);
     });
 

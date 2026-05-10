@@ -11,8 +11,8 @@ tags:
   - Evaluation
   - RAG
 lang: zh
-coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-10-infographic.webp
-audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-10.mp3
+coverImage: /images/radar/daily-ai-radar-2026-05-10-infographic.webp
+audioUrl: /audio/radar/daily-ai-radar-2026-05-10.mp3
 audioDuration: 624
 audioSize: 4993130
 draft: false

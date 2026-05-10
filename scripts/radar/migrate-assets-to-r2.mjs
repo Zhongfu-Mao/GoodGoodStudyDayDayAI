@@ -2,6 +2,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import {
+  assertSafeR2PublicBase,
   createR2Client,
   getPublicUrl,
   isR2Configured,
@@ -93,11 +94,10 @@ async function listAssets() {
 
 function buildReplacementMap(assets, publicBase) {
   const replacements = new Map();
+  const safePublicBase = publicBase ? assertSafeR2PublicBase(publicBase) : null;
 
   for (const asset of assets) {
-    const remoteUrl = publicBase
-      ? `${publicBase.replace(/\/$/, '')}/${asset.key}`
-      : getPublicUrl(asset.key);
+    const remoteUrl = safePublicBase ? `${safePublicBase}/${asset.key}` : getPublicUrl(asset.key);
 
     replacements.set(asset.localUrl, remoteUrl);
   }
