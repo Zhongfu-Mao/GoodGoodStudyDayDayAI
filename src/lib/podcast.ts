@@ -64,7 +64,8 @@ export async function buildPodcastFeed({
       const coverUrl = entry.data.coverImage
         ? resolveAbsoluteUrl(entry.data.coverImage, site)
         : artworkUrl;
-      const episodeArtworkUrl = isAppleArtworkUrl(coverUrl) ? coverUrl : artworkUrl;
+      const podcastArtworkUrl = await getPodcastArtworkUrl(entry.data.coverImage, site);
+      const episodeArtworkUrl = podcastArtworkUrl ?? (isAppleArtworkUrl(coverUrl) ? coverUrl : artworkUrl);
       const audioLength =
         entry.data.audioSize ?? (await getLocalPublicAssetSize(entry.data.audioUrl));
       const duration = entry.data.audioDuration;
@@ -133,6 +134,24 @@ function resolveAbsoluteUrl(url: string, site: URL) {
 
 function isAppleArtworkUrl(url: string) {
   return /\.(jpe?g|png)(?:[?#].*)?$/i.test(url);
+}
+
+async function getPodcastArtworkUrl(url: string | undefined, site: URL) {
+  if (!url?.startsWith('/')) {
+    return null;
+  }
+
+  const pathname = url.split(/[?#]/, 1)[0];
+  const parsed = path.parse(pathname);
+  const podcastArtwork = path.join(parsed.dir, `${parsed.name}-podcast.jpg`).replaceAll(path.sep, '/');
+  const filePath = path.join(process.cwd(), 'public', podcastArtwork.replace(/^\/+/, ''));
+
+  try {
+    await stat(filePath);
+    return new URL(resolveSiteUrl(podcastArtwork), site).toString();
+  } catch {
+    return null;
+  }
 }
 
 async function getLocalPublicAssetSize(url: string | undefined) {
