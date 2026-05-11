@@ -64,6 +64,7 @@ export async function buildPodcastFeed({
       const coverUrl = entry.data.coverImage
         ? resolveAbsoluteUrl(entry.data.coverImage, site)
         : artworkUrl;
+      const episodeArtworkUrl = isAppleArtworkUrl(coverUrl) ? coverUrl : artworkUrl;
       const audioLength =
         entry.data.audioSize ?? (await getLocalPublicAssetSize(entry.data.audioUrl));
       const duration = entry.data.audioDuration;
@@ -96,7 +97,7 @@ export async function buildPodcastFeed({
           `<itunes:summary>${escapeXmlText(episodeSummary)}</itunes:summary>`,
           `<itunes:explicit>${entry.data.audioExplicit ? 'true' : 'false'}</itunes:explicit>`,
           `<itunes:episodeType>full</itunes:episodeType>`,
-          `<itunes:image href="${escapeXmlAttribute(coverUrl)}" />`,
+          `<itunes:image href="${escapeXmlAttribute(episodeArtworkUrl)}" />`,
         ]
           .filter(Boolean)
           .join(''),
@@ -107,6 +108,7 @@ export async function buildPodcastFeed({
   return rss({
     xmlns: {
       itunes: 'http://www.itunes.com/dtds/podcast-1.0.dtd',
+      content: 'http://purl.org/rss/1.0/modules/content/',
     },
     title: show.title,
     description: show.description,
@@ -127,6 +129,10 @@ export async function buildPodcastFeed({
 
 function resolveAbsoluteUrl(url: string, site: URL) {
   return url.startsWith('http') ? url : new URL(resolveSiteUrl(url), site).toString();
+}
+
+function isAppleArtworkUrl(url: string) {
+  return /\.(jpe?g|png)(?:[?#].*)?$/i.test(url);
 }
 
 async function getLocalPublicAssetSize(url: string | undefined) {
