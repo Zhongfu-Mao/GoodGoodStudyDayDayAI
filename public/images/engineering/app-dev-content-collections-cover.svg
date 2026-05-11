@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Astro content collections cover</title>
+  <desc id="desc">Abstract Astro content collection pipeline with typed frontmatter, markdown pages, routing, and rendered output.</desc>
+  <defs>
+    <linearGradient id="bg" x1="90" y1="60" x2="1500" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111f"/>
+      <stop offset=".5" stop-color="#17334b"/>
+      <stop offset="1" stop-color="#081624"/>
+    </linearGradient>
+    <linearGradient id="flow" x1="214" y1="450" x2="1386" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67e8f9"/>
+      <stop offset=".55" stop-color="#a7f3d0"/>
+      <stop offset="1" stop-color="#f8fafc"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="48" fill="url(#bg)"/>
+  <rect x="116" y="112" width="1368" height="676" rx="48" fill="#f8fafc" fill-opacity=".055" stroke="#bfdbfe" stroke-opacity=".18"/>
+  <g opacity=".13" stroke="#dbeafe" stroke-width="2">
+    <path d="M188 202H1412M188 326H1412M188 450H1412M188 574H1412M188 698H1412"/>
+    <path d="M324 150V748M572 150V748M820 150V748M1068 150V748M1316 150V748"/>
+  </g>
+  <path d="M250 450H1350" stroke="url(#flow)" stroke-width="9" stroke-linecap="round"/>
+  <g transform="translate(190 250)">
+    <rect width="290" height="400" rx="34" fill="#0f2438" stroke="#67e8f9" stroke-opacity=".34"/>
+    <rect x="48" y="54" width="128" height="24" rx="12" fill="#67e8f9" fill-opacity=".48"/>
+    <rect x="48" y="122" width="190" height="18" rx="9" fill="#f8fafc" fill-opacity=".45"/>
+    <rect x="48" y="176" width="150" height="18" rx="9" fill="#f8fafc" fill-opacity=".35"/>
+    <rect x="48" y="230" width="208" height="18" rx="9" fill="#f8fafc" fill-opacity=".30"/>
+    <rect x="48" y="304" width="164" height="44" rx="16" fill="#a7f3d0" fill-opacity=".15" stroke="#a7f3d0" stroke-opacity=".30"/>
+  </g>
+  <g transform="translate(546 208)">
+    <rect width="320" height="484" rx="36" fill="#0f2438" stroke="#a7f3d0" stroke-opacity=".32"/>
+    <rect x="58" y="58" width="204" height="56" rx="20" fill="#a7f3d0" fill-opacity=".18" stroke="#a7f3d0" stroke-opacity=".32"/>
+    <path d="M82 170H238M82 226H200M82 282H252M82 338H176M82 394H224" stroke="#e0f2fe" stroke-opacity=".45" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(932 250)">
+    <rect width="290" height="400" rx="34" fill="#0f2438" stroke="#fde68a" stroke-opacity=".26"/>
+    <path d="M62 118H228M62 190H174M62 262H214" stroke="#f8fafc" stroke-opacity=".44" stroke-width="18" stroke-linecap="round"/>
+    <rect x="62" y="314" width="166" height="42" rx="16" fill="#fde68a" fill-opacity=".17" stroke="#fde68a" stroke-opacity=".28"/>
+  </g>
+  <g transform="translate(1278 300)">
+    <rect width="120" height="300" rx="34" fill="#0f2438" stroke="#67e8f9" stroke-opacity=".24"/>
+    <path d="M36 88L60 112L88 68" stroke="#a7f3d0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M34 166H86M34 214H74" stroke="#f8fafc" stroke-opacity=".40" stroke-width="16" stroke-linecap="round"/>
+  </g>
+  <g fill="#0b1220" stroke="url(#flow)" stroke-width="7">
+    <circle cx="480" cy="450" r="20"/>
+    <circle cx="866" cy="450" r="20"/>
+    <circle cx="1222" cy="450" r="20"/>
+  </g>
+</svg>

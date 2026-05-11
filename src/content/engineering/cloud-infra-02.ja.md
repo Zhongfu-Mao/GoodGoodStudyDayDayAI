@@ -5,6 +5,7 @@ category: engineering
 description: "GitHub Actions を活用して Astro サイトの自動ビルド、コード検査、自動デプロイを実現する手法を解説します。Push から公開までの完全なパイプラインを構築しましょう。"
 difficulty: intermediate
 plainSummary: "CI/CD は複雑なエンタープライズツールではなく、ビルド・検査・デプロイを自動化するシンプルな仕組みです。Push するだけで検証と公開が完了し、手動操作の不安から解放されます。"
+coverImage: "/images/engineering/cloud-infra-cicd-cover.svg"
 tags:
   - "CI/CD"
   - "GitHub Actions"

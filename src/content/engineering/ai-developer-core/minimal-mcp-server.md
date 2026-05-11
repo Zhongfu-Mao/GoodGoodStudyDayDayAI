@@ -5,6 +5,7 @@ category: engineering
 description: "从工具边界和协议心智模型出发，设计并实现一个只读的最小 MCP Server。"
 difficulty: intermediate
 plainSummary: "MCP 的核心价值并不在于为模型增加更多按钮，而在于通过统一协议将外部工具和数据规范化地暴露给 Agent，并明确界定权限范围、输入输出格式以及错误处理机制。"
+coverImage: "/images/engineering/ai-developer-core/minimal-mcp-server-cover.svg"
 tags:
   - "AI Developer Core"
   - "MCP"

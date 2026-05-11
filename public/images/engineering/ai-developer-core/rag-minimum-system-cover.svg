@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">RAG minimum system cover</title>
+  <desc id="desc">Retrieval augmented generation loop with chunks, index, search, citations, and evaluation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="1480" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07121f"/>
+      <stop offset=".5" stop-color="#163348"/>
+      <stop offset="1" stop-color="#07121f"/>
+    </linearGradient>
+    <linearGradient id="flow" x1="260" y1="190" x2="1340" y2="710" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38bdf8"/>
+      <stop offset=".45" stop-color="#a7f3d0"/>
+      <stop offset="1" stop-color="#fcd34d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="48" fill="url(#bg)"/>
+  <rect x="122" y="118" width="1356" height="664" rx="48" fill="#f8fafc" fill-opacity=".055" stroke="#bfdbfe" stroke-opacity=".18"/>
+  <path d="M382 454C382 310 498 194 642 194H958C1102 194 1218 310 1218 454C1218 598 1102 714 958 714H642C498 714 382 598 382 454Z" stroke="url(#flow)" stroke-width="10" stroke-linecap="round" stroke-dasharray="28 24"/>
+  <g>
+    <rect x="220" y="318" width="260" height="270" rx="32" fill="#0f2438" stroke="#67e8f9" stroke-opacity=".36"/>
+    <rect x="292" y="390" width="150" height="18" rx="9" fill="#f8fafc" fill-opacity=".55"/>
+    <rect x="292" y="444" width="110" height="18" rx="9" fill="#f8fafc" fill-opacity=".40"/>
+    <rect x="292" y="498" width="138" height="18" rx="9" fill="#f8fafc" fill-opacity=".34"/>
+    <path d="M256 388H272M256 442H272M256 496H272" stroke="#67e8f9" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="554" y="164" width="492" height="188" rx="32" fill="#0f2438" stroke="#a7f3d0" stroke-opacity=".34"/>
+    <rect x="616" y="220" width="128" height="74" rx="22" fill="#38bdf8" fill-opacity=".20" stroke="#67e8f9" stroke-opacity=".36"/>
+    <rect x="772" y="220" width="128" height="74" rx="22" fill="#a7f3d0" fill-opacity=".18" stroke="#a7f3d0" stroke-opacity=".36"/>
+    <rect x="928" y="220" width="60" height="74" rx="22" fill="#fcd34d" fill-opacity=".16" stroke="#fde68a" stroke-opacity=".30"/>
+  </g>
+  <g>
+    <rect x="1120" y="318" width="260" height="270" rx="32" fill="#0f2438" stroke="#fde68a" stroke-opacity=".30"/>
+    <circle cx="1220" cy="426" r="58" fill="#020617" fill-opacity=".35" stroke="#fde68a" stroke-opacity=".36"/>
+    <path d="M1262 468L1316 522" stroke="#fde68a" stroke-width="12" stroke-linecap="round"/>
+    <rect x="1166" y="538" width="154" height="18" rx="9" fill="#f8fafc" fill-opacity=".42"/>
+  </g>
+  <g>
+    <rect x="554" y="556" width="492" height="188" rx="32" fill="#0f2438" stroke="#f8fafc" stroke-opacity=".22"/>
+    <path d="M622 638H834M622 684H760M884 638H978M884 684H942" stroke="#f8fafc" stroke-opacity=".48" stroke-width="18" stroke-linecap="round"/>
+    <rect x="618" y="596" width="118" height="24" rx="12" fill="#67e8f9" fill-opacity=".40"/>
+    <rect x="884" y="596" width="96" height="24" rx="12" fill="#a7f3d0" fill-opacity=".40"/>
+  </g>
+  <g fill="#67e8f9">
+    <circle cx="382" cy="454" r="16"/>
+    <circle cx="800" cy="194" r="16"/>
+    <circle cx="1218" cy="454" r="16"/>
+    <circle cx="800" cy="714" r="16"/>
+  </g>
+</svg>

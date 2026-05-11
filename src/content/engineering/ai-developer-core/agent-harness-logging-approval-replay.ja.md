@@ -5,6 +5,7 @@ category: engineering
 description: "Agent 実行環境を、観測、承認、停止、リプレイが可能な Harness として設計する。"
 difficulty: advanced
 plainSummary: "Agent Harness は、モデルの外側に位置する実行環境です。ツールの公開方法、権限制御、ログ記録、失敗からの復旧、そしてリプレイと評価の仕組みを定義します。"
+coverImage: "/images/engineering/ai-developer-core/agent-harness-cover.svg"
 tags:
   - "AI Developer Core"
   - "Observability"

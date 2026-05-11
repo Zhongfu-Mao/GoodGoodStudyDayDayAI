@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Agent CLI workflow matrix</title>
+  <desc id="desc">A matrix for comparing agent CLI tools by workflow instead of ranking.</desc>
+  <rect width="1200" height="700" fill="#f7f4ee"/>
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="#253238">
+    <text x="80" y="78" font-size="34" font-weight="700">Agent CLI 不按聪明程度排名</text>
+    <text x="80" y="116" font-size="18" fill="#5b6868">按任务类型、权限边界和验证方式选择。</text>
+    <g transform="translate(110 170)">
+      <rect width="980" height="400" rx="16" fill="#ffffff" stroke="#d5d0c8" stroke-width="2"/>
+      <line x1="0" y1="100" x2="980" y2="100" stroke="#d5d0c8" stroke-width="2"/>
+      <line x1="0" y1="200" x2="980" y2="200" stroke="#d5d0c8" stroke-width="2"/>
+      <line x1="0" y1="300" x2="980" y2="300" stroke="#d5d0c8" stroke-width="2"/>
+      <line x1="245" y1="0" x2="245" y2="400" stroke="#d5d0c8" stroke-width="2"/>
+      <line x1="490" y1="0" x2="490" y2="400" stroke="#d5d0c8" stroke-width="2"/>
+      <line x1="735" y1="0" x2="735" y2="400" stroke="#d5d0c8" stroke-width="2"/>
+      <text x="35" y="58" font-size="21" font-weight="700">读代码</text>
+      <text x="280" y="58" font-size="21" font-weight="700">改代码</text>
+      <text x="525" y="58" font-size="21" font-weight="700">长任务</text>
+      <text x="770" y="58" font-size="21" font-weight="700">外部副作用</text>
+      <text x="35" y="158" font-size="18">地图 / 依赖 / 风险</text>
+      <text x="280" y="158" font-size="18">Patch / 测试 / Diff</text>
+      <text x="525" y="158" font-size="18">计划 / 状态 / 恢复</text>
+      <text x="770" y="158" font-size="18">审批 / 审计 / 回滚</text>
+      <text x="35" y="258" font-size="18">上下文足够即可</text>
+      <text x="280" y="258" font-size="18">必须验证构建</text>
+      <text x="525" y="258" font-size="18">必须可暂停</text>
+      <text x="770" y="258" font-size="18">默认人工确认</text>
+      <text x="35" y="358" font-size="18">适合快速探索</text>
+      <text x="280" y="358" font-size="18">适合小步提交</text>
+      <text x="525" y="358" font-size="18">适合工作流化</text>
+      <text x="770" y="358" font-size="18">适合 Harness</text>
+    </g>
+  </g>
+</svg>

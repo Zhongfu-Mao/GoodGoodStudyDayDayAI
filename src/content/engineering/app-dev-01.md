@@ -5,6 +5,7 @@ category: engineering
 description: "利用 Astro 的内容集合与动态路由搭建多语言内容站点：涵盖 Schema 验证、Slug 生成及页面渲染的核心流程。"
 difficulty: intermediate
 plainSummary: "Astro 的内容集合功能为 Markdown 文件提供了类型安全的 Frontmatter，动态路由则能将 Slug 自动映射至页面，无需手动配置每条路由。"
+coverImage: "/images/engineering/app-dev-content-collections-cover.svg"
 tags:
   - "Astro"
   - "Web Dev"

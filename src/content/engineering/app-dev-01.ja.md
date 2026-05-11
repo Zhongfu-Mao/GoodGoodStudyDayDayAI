@@ -5,6 +5,7 @@ category: engineering
 description: "Astro のコンテンツコレクション（Content Collections）と動的ルーティングを活用し、多言語対応の技術ブログ・ドキュメントサイトを構築する手法を解説します。"
 difficulty: intermediate
 plainSummary: "コンテンツコレクション機能により Markdown に型安全な Frontmatter を定義し、動的ルーティングで各記事（Slug）を自動的にページへマッピングする効率的なワークフローを紹介します。"
+coverImage: "/images/engineering/app-dev-content-collections-cover.svg"
 tags:
   - "Astro"
   - "Web Dev"

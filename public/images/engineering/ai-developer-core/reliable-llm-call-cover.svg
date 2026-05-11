@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Reliable LLM call cover</title>
+  <desc id="desc">A reliable LLM call pipeline showing contract, timeout, retry, tracing, and evaluation checkpoints.</desc>
+  <defs>
+    <linearGradient id="bg" x1="90" y1="60" x2="1510" y2="850" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111f"/>
+      <stop offset=".55" stop-color="#172d42"/>
+      <stop offset="1" stop-color="#081624"/>
+    </linearGradient>
+    <linearGradient id="ok" x1="244" y1="450" x2="1338" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67e8f9"/>
+      <stop offset=".55" stop-color="#a7f3d0"/>
+      <stop offset="1" stop-color="#f8fafc"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="48" fill="url(#bg)"/>
+  <rect x="122" y="120" width="1356" height="660" rx="46" fill="#f8fafc" fill-opacity=".055" stroke="#bfdbfe" stroke-opacity=".18"/>
+  <path d="M246 450H1354" stroke="url(#ok)" stroke-width="10" stroke-linecap="round"/>
+  <g>
+    <rect x="196" y="310" width="214" height="280" rx="34" fill="#0f2438" stroke="#67e8f9" stroke-opacity=".34"/>
+    <rect x="252" y="374" width="102" height="18" rx="9" fill="#67e8f9" fill-opacity=".58"/>
+    <rect x="252" y="430" width="128" height="18" rx="9" fill="#f8fafc" fill-opacity=".42"/>
+    <rect x="252" y="486" width="82" height="18" rx="9" fill="#f8fafc" fill-opacity=".32"/>
+  </g>
+  <g>
+    <rect x="480" y="260" width="214" height="380" rx="34" fill="#0f2438" stroke="#a7f3d0" stroke-opacity=".34"/>
+    <path d="M548 352H626M548 422H644M548 492H608M548 562H636" stroke="#d1fae5" stroke-opacity=".54" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="764" y="310" width="214" height="280" rx="34" fill="#0f2438" stroke="#fcd34d" stroke-opacity=".28"/>
+    <path d="M834 398C870 350 922 376 908 424C898 460 852 460 846 500" stroke="#fde68a" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="846" cy="538" r="12" fill="#fde68a"/>
+  </g>
+  <g>
+    <rect x="1048" y="260" width="214" height="380" rx="34" fill="#0f2438" stroke="#67e8f9" stroke-opacity=".28"/>
+    <path d="M1112 382H1210M1112 450H1180M1112 518H1222" stroke="#f8fafc" stroke-opacity=".48" stroke-width="18" stroke-linecap="round"/>
+    <path d="M1114 582L1150 616L1210 548" stroke="#a7f3d0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <rect x="1330" y="330" width="74" height="240" rx="30" fill="#0f2438" stroke="#f8fafc" stroke-opacity=".24"/>
+    <circle cx="1367" cy="386" r="14" fill="#67e8f9"/>
+    <circle cx="1367" cy="450" r="14" fill="#a7f3d0"/>
+    <circle cx="1367" cy="514" r="14" fill="#fde68a"/>
+  </g>
+  <g fill="#0b1220" stroke="url(#ok)" stroke-width="7">
+    <circle cx="410" cy="450" r="22"/>
+    <circle cx="694" cy="450" r="22"/>
+    <circle cx="978" cy="450" r="22"/>
+    <circle cx="1262" cy="450" r="22"/>
+  </g>
+</svg>

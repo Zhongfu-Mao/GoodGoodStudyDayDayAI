@@ -5,6 +5,7 @@ category: engineering
 description: "JSON/Schema 出力を核とした、厳密な解析、検証、再試行（Retry）、およびフォールバック（降格）経路を設計します。"
 difficulty: intermediate
 plainSummary: "構造化出力は単にモデルに JSON を依頼することではありません。Schema、バリデータ、修復戦略、および失敗時の分岐を含めた包括的な「出力契約」の設計です。"
+coverImage: "/images/engineering/ai-developer-core/structured-output-cover.svg"
 tags:
   - "AI Developer Core"
   - "Structured Output"

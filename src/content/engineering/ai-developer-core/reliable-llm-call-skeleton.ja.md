@@ -5,6 +5,7 @@ category: engineering
 description: "一回の LLM 呼び出しを、単なるプロンプト文字列から、観測、再試行、評価が可能な「エンジニアリング・ユニット」へとアップグレードします。"
 difficulty: beginner
 plainSummary: "信頼できる LLM 呼び出しには、入力・出力契約、タイムアウト、再試行（Retry）メカニズム、トレースログ、コスト記録、そして最小限の評価指標が必要です。"
+coverImage: "/images/engineering/ai-developer-core/reliable-llm-call-cover.svg"
 tags:
   - "AI Developer Core"
   - "LLM App"

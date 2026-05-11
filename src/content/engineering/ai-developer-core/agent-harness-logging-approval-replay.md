@@ -5,6 +5,7 @@ category: engineering
 description: "将 Agent 运行环境设计为可观察、可审批、可停止、可回放的 Harness。"
 difficulty: advanced
 plainSummary: "Agent Harness 是模型外层的执行环境。它决定了工具如何暴露、权限如何控制、日志如何记录、失败如何恢复以及结果如何回放和评测。"
+coverImage: "/images/engineering/ai-developer-core/agent-harness-cover.svg"
 tags:
   - "AI Developer Core"
   - "Observability"

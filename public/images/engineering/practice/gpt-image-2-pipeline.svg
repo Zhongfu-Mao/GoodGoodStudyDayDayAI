@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">GPT-image-2 production pipeline</title>
+  <desc id="desc">A production pipeline for GPT-image-2 from brief to cost and QA.</desc>
+  <rect width="1200" height="700" fill="#f7f4ee"/>
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" fill="#253238">
+    <text x="80" y="78" font-size="34" font-weight="700">GPT-image-2 不是按钮，是生产线</text>
+    <g transform="translate(75 185)">
+      <rect width="180" height="130" rx="16" fill="#e8f1ed" stroke="#4c8f7a" stroke-width="2"/>
+      <text x="34" y="58" font-size="22" font-weight="700">Brief</text>
+      <text x="28" y="92" font-size="17">用途 / 尺寸 / 风格</text>
+    </g>
+    <g transform="translate(290 185)">
+      <rect width="180" height="130" rx="16" fill="#fff8e7" stroke="#c9982e" stroke-width="2"/>
+      <text x="34" y="58" font-size="22" font-weight="700">Input</text>
+      <text x="28" y="92" font-size="17">提示词 / 参考图</text>
+    </g>
+    <g transform="translate(505 185)">
+      <rect width="180" height="130" rx="16" fill="#eef1f3" stroke="#69767b" stroke-width="2"/>
+      <text x="34" y="58" font-size="22" font-weight="700">Generate</text>
+      <text x="28" y="92" font-size="17">API / ChatGPT</text>
+    </g>
+    <g transform="translate(720 185)">
+      <rect width="180" height="130" rx="16" fill="#eaf0f7" stroke="#5b7896" stroke-width="2"/>
+      <text x="34" y="58" font-size="22" font-weight="700">Review</text>
+      <text x="28" y="92" font-size="17">事实 / 文字 / 构图</text>
+    </g>
+    <g transform="translate(935 185)">
+      <rect width="180" height="130" rx="16" fill="#f5ece8" stroke="#b56f4b" stroke-width="2"/>
+      <text x="34" y="58" font-size="22" font-weight="700">Publish</text>
+      <text x="28" y="92" font-size="17">压缩 / 版权 / 成本</text>
+    </g>
+    <path d="M255 250 H288 M470 250 H503 M685 250 H718 M900 250 H933" stroke="#52605f" stroke-width="4"/>
+    <g transform="translate(155 430)">
+      <rect width="890" height="115" rx="16" fill="#ffffff" stroke="#d5d0c8" stroke-width="2"/>
+      <text x="36" y="48" font-size="22" font-weight="700">每次生成都留下：prompt、输入图、质量档位、尺寸、成本估算、验收结论。</text>
+      <text x="36" y="86" font-size="18" fill="#52605f">这样图片工作流才可复盘、可预算、可交接。</text>
+    </g>
+  </g>
+</svg>

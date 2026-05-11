@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">AI search and browser verification pipeline</title>
+  <desc id="desc">A pipeline from search to browser inspection, evidence capture, synthesis, and QA.</desc>
+  <rect width="1200" height="620" rx="32" fill="#f7fbfa"/>
+  <rect x="56" y="58" width="1088" height="504" rx="28" fill="#ffffff" stroke="#d6e4e0" stroke-width="2"/>
+  <text x="96" y="116" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#14231f">AI 搜索与浏览器自动化证据链</text>
+  <text x="96" y="154" font-family="Arial, sans-serif" font-size="18" fill="#586762">搜索用于发现，浏览器用于确认，引用用于交付</text>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(160 330)">
+      <rect x="-82" y="-70" width="164" height="140" rx="18" fill="#e8f5ff" stroke="#5ba7d8" stroke-width="2"/>
+      <text y="-18" font-size="22" font-weight="700" fill="#16394f">发现</text>
+      <text y="16" font-size="16" fill="#53625d">查询和线索</text>
+      <text y="44" font-size="16" fill="#53625d">时间过滤</text>
+    </g>
+    <g transform="translate(380 330)">
+      <rect x="-82" y="-70" width="164" height="140" rx="18" fill="#e9f8ef" stroke="#58b47a" stroke-width="2"/>
+      <text y="-18" font-size="22" font-weight="700" fill="#173f29">打开</text>
+      <text y="16" font-size="16" fill="#53625d">官方页面</text>
+      <text y="44" font-size="16" fill="#53625d">真实渲染</text>
+    </g>
+    <g transform="translate(600 330)">
+      <rect x="-82" y="-70" width="164" height="140" rx="18" fill="#fff5dd" stroke="#d9ad3e" stroke-width="2"/>
+      <text y="-18" font-size="22" font-weight="700" fill="#573d0e">截取</text>
+      <text y="16" font-size="16" fill="#53625d">发布日期</text>
+      <text y="44" font-size="16" fill="#53625d">关键原文</text>
+    </g>
+    <g transform="translate(820 330)">
+      <rect x="-82" y="-70" width="164" height="140" rx="18" fill="#f1ebff" stroke="#8a72d8" stroke-width="2"/>
+      <text y="-18" font-size="22" font-weight="700" fill="#3e3174">综合</text>
+      <text y="16" font-size="16" fill="#53625d">多源比对</text>
+      <text y="44" font-size="16" fill="#53625d">写出边界</text>
+    </g>
+    <g transform="translate(1040 330)">
+      <rect x="-82" y="-70" width="164" height="140" rx="18" fill="#fdeaea" stroke="#d96b6b" stroke-width="2"/>
+      <text y="-18" font-size="22" font-weight="700" fill="#6d2c2c">质检</text>
+      <text y="16" font-size="16" fill="#53625d">链接可用</text>
+      <text y="44" font-size="16" fill="#53625d">截图可读</text>
+    </g>
+  </g>
+  <g stroke="#60706b" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M245 330 H295"/>
+    <path d="M465 330 H515"/>
+    <path d="M685 330 H735"/>
+    <path d="M905 330 H955"/>
+  </g>
+  <g fill="#60706b">
+    <path d="M292 318 L312 330 L292 342Z"/>
+    <path d="M512 318 L532 330 L512 342Z"/>
+    <path d="M732 318 L752 330 L732 342Z"/>
+    <path d="M952 318 L972 330 L952 342Z"/>
+  </g>
+  <rect x="180" y="456" width="840" height="50" rx="14" fill="#14231f"/>
+  <text x="600" y="488" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#ffffff">交付前必须能回答：事实来自哪里、何时核验、谁能复查、哪些结论容易过期。</text>
+</svg>

@@ -5,6 +5,7 @@ category: engineering
 description: "ツール境界とプロトコルのメンタルモデルに基づき、読み取り専用の最小 MCP Server を設計・実装します。"
 difficulty: intermediate
 plainSummary: "MCP の核心価値はモデルにボタンを増やすことではなく、外部ツールとデータを統一プロトコルで Agent に公開し、権限、入力、出力、失敗を明確に定義することにあります。"
+coverImage: "/images/engineering/ai-developer-core/minimal-mcp-server-cover.svg"
 tags:
   - "AI Developer Core"
   - "MCP"

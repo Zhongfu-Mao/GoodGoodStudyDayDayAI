@@ -5,6 +5,7 @@ category: engineering
 description: "利用 GitHub Actions 实现 Astro 站点的自动构建、代码检查和自动化部署：涵盖从代码 Push 到上线的完整流水线（Pipeline）。"
 difficulty: intermediate
 plainSummary: "CI/CD 并非复杂的大型企业专用工具，其核心是将构建、检查和部署流程自动化。推送代码后自动验证并上线，彻底告别繁琐的手动操作。"
+coverImage: "/images/engineering/cloud-infra-cicd-cover.svg"
 tags:
   - "CI/CD"
   - "GitHub Actions"

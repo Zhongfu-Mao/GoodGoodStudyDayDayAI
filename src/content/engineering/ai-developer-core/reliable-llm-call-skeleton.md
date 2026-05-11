@@ -5,6 +5,7 @@ category: engineering
 description: "将单次 LLM 调用从基础的 Prompt 字符串，升级为具备可观测性、可重试性和可评测性的工程单元。"
 difficulty: beginner
 plainSummary: "一个可靠的 LLM 调用方案应至少涵盖：输入输出契约、超时与重试机制、日志追踪、成本记录以及基础评测指标。"
+coverImage: "/images/engineering/ai-developer-core/reliable-llm-call-cover.svg"
 tags:
   - "AI Developer Core"
   - "LLM App"

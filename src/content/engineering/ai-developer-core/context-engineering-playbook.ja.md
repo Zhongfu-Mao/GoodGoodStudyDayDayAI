@@ -5,6 +5,7 @@ category: engineering
 description: "コンテキストエンジニアリング（Context Engineering）を、選択、圧縮、整理、キャッシュ、隔離、評価の6つの要素に分解して解説します。"
 difficulty: intermediate
 plainSummary: "コンテキストエンジニアリングは、単に長いプロンプトを書くことではありません。各ステップでモデルに何を見せ、どのような構造で提示し、いつ破棄するかを設計することです。"
+coverImage: "/images/engineering/ai-developer-core/context-engineering-cover.svg"
 tags:
   - AI Developer Core
   - Context Engineering

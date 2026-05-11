@@ -5,6 +5,7 @@ category: engineering
 description: "将上下文工程拆解为选择、压缩、组织、缓存、隔离和评测六个核心动作。"
 difficulty: intermediate
 plainSummary: "Context Engineering 的核心不在于编写更长的 Prompt，而在于设计模型在每一步执行中应当“看到”什么、以何种结构呈现，以及何时丢弃或压缩信息。"
+coverImage: "/images/engineering/ai-developer-core/context-engineering-cover.svg"
 tags:
   - AI Developer Core
   - Context Engineering

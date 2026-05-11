@@ -5,6 +5,7 @@ category: engineering
 description: "围绕 JSON/Schema 输出设计严谨的解析、校验、重试及降级路径。"
 difficulty: intermediate
 plainSummary: "结构化输出绝非仅仅让模型“尽量返回 JSON”，而是要为模型输出建立起完整的 Schema、校验器、修复策略和失败处理分支。"
+coverImage: "/images/engineering/ai-developer-core/structured-output-cover.svg"
 tags:
   - "AI Developer Core"
   - "Structured Output"

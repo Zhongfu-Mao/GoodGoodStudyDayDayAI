@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">High quality skill design checklist</title>
+  <desc id="desc">A checklist for designing reliable Agent Skills from trigger to verification.</desc>
+  <rect width="1200" height="620" rx="32" fill="#f8fbff"/>
+  <rect x="58" y="58" width="1084" height="504" rx="28" fill="#ffffff" stroke="#d8e1ea" stroke-width="2"/>
+  <text x="96" y="114" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#162335">高质量 Skill 的五个检查点</text>
+  <text x="96" y="152" font-family="Arial, sans-serif" font-size="18" fill="#566478">描述负责触发，步骤负责执行，验证负责收尾</text>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(96 220)">
+      <circle cx="36" cy="36" r="36" fill="#dff4e8" stroke="#4aa878" stroke-width="3"/>
+      <text x="25" y="46" font-size="28" font-weight="700" fill="#16452e">1</text>
+      <text x="92" y="30" font-size="24" font-weight="700" fill="#162335">触发描述</text>
+      <text x="92" y="62" font-size="17" fill="#566478">什么时候用，什么时候不用</text>
+    </g>
+    <g transform="translate(96 320)">
+      <circle cx="36" cy="36" r="36" fill="#e4f0ff" stroke="#4d8dd8" stroke-width="3"/>
+      <text x="25" y="46" font-size="28" font-weight="700" fill="#184778">2</text>
+      <text x="92" y="30" font-size="24" font-weight="700" fill="#162335">输入输出</text>
+      <text x="92" y="62" font-size="17" fill="#566478">明确文件、格式、验收物</text>
+    </g>
+    <g transform="translate(96 420)">
+      <circle cx="36" cy="36" r="36" fill="#fff3d7" stroke="#d9a72f" stroke-width="3"/>
+      <text x="25" y="46" font-size="28" font-weight="700" fill="#724d00">3</text>
+      <text x="92" y="30" font-size="24" font-weight="700" fill="#162335">确定性脚本</text>
+      <text x="92" y="62" font-size="17" fill="#566478">把机械动作交给工具</text>
+    </g>
+    <g transform="translate(626 260)">
+      <circle cx="36" cy="36" r="36" fill="#f0e8ff" stroke="#8b6fd6" stroke-width="3"/>
+      <text x="25" y="46" font-size="28" font-weight="700" fill="#4f3b88">4</text>
+      <text x="92" y="30" font-size="24" font-weight="700" fill="#162335">参考资料</text>
+      <text x="92" y="62" font-size="17" fill="#566478">按需加载，避免上下文膨胀</text>
+    </g>
+    <g transform="translate(626 380)">
+      <circle cx="36" cy="36" r="36" fill="#fde8e8" stroke="#d96b6b" stroke-width="3"/>
+      <text x="25" y="46" font-size="28" font-weight="700" fill="#823333">5</text>
+      <text x="92" y="30" font-size="24" font-weight="700" fill="#162335">验证和退出</text>
+      <text x="92" y="62" font-size="17" fill="#566478">跑什么检查，何时停止</text>
+    </g>
+  </g>
+</svg>

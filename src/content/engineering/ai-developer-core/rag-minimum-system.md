@@ -5,6 +5,7 @@ category: engineering
 description: "通过构建一个完整的闭环，实现高效的文档问答：涵盖切分、索引、检索、上下文组装、引用及评测。"
 difficulty: intermediate
 plainSummary: "RAG 最小系统远不止是一个向量数据库，它是由数据处理、检索逻辑、上下文组装、引用约束以及评测体系共同构成的工程闭环。"
+coverImage: "/images/engineering/ai-developer-core/rag-minimum-system-cover.svg"
 tags:
   - AI Developer Core
   - RAG

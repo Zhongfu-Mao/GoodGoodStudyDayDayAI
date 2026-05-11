@@ -5,6 +5,7 @@ category: engineering
 description: "ドキュメント QA の完全なループとして、分割、インデックス作成、検索、コンテキストの組み立て、引用、そして評価を実装します。"
 difficulty: intermediate
 plainSummary: "最小 RAG システムは単なるベクトルデータベースではありません。データ処理、検索ロジック、コンテキストの組み立て、引用制約、そして評価（Eval）が一体となったエンジニアリング・ループです。"
+coverImage: "/images/engineering/ai-developer-core/rag-minimum-system-cover.svg"
 tags:
   - AI Developer Core
   - RAG

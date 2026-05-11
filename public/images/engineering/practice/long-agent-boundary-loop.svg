@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Long-running agent boundary loop</title>
+  <desc id="desc">A loop for long-running agents with checkpointing, approvals, logs, verification, and stop conditions.</desc>
+  <rect width="1200" height="620" rx="32" fill="#f9fafb"/>
+  <rect x="58" y="58" width="1084" height="504" rx="28" fill="#ffffff" stroke="#d7dee7" stroke-width="2"/>
+  <text x="96" y="116" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#15202b">长任务 Agent 的边界循环</text>
+  <text x="96" y="154" font-family="Arial, sans-serif" font-size="18" fill="#586572">目标、权限、证据和停止条件让长任务可接管</text>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(190 320)">
+      <rect x="-78" y="-50" width="156" height="100" rx="16" fill="#e8f5ff" stroke="#55a4d8" stroke-width="2"/>
+      <text y="-8" font-size="22" font-weight="700" fill="#153750">目标</text>
+      <text y="24" font-size="16" fill="#536170">验收物</text>
+    </g>
+    <g transform="translate(390 220)">
+      <rect x="-78" y="-50" width="156" height="100" rx="16" fill="#eaf8ef" stroke="#5ab47a" stroke-width="2"/>
+      <text y="-8" font-size="22" font-weight="700" fill="#173d27">检查点</text>
+      <text y="24" font-size="16" fill="#536170">可恢复</text>
+    </g>
+    <g transform="translate(610 220)">
+      <rect x="-78" y="-50" width="156" height="100" rx="16" fill="#fff5dc" stroke="#dcae3c" stroke-width="2"/>
+      <text y="-8" font-size="22" font-weight="700" fill="#563d0c">审批</text>
+      <text y="24" font-size="16" fill="#536170">有副作用</text>
+    </g>
+    <g transform="translate(830 320)">
+      <rect x="-78" y="-50" width="156" height="100" rx="16" fill="#f0eaff" stroke="#8a72d8" stroke-width="2"/>
+      <text y="-8" font-size="22" font-weight="700" fill="#3e3174">日志</text>
+      <text y="24" font-size="16" fill="#536170">可回放</text>
+    </g>
+    <g transform="translate(610 440)">
+      <rect x="-78" y="-50" width="156" height="100" rx="16" fill="#fdeaea" stroke="#d96b6b" stroke-width="2"/>
+      <text y="-8" font-size="22" font-weight="700" fill="#6d2c2c">验证</text>
+      <text y="24" font-size="16" fill="#536170">完成证据</text>
+    </g>
+    <g transform="translate(390 440)">
+      <rect x="-78" y="-50" width="156" height="100" rx="16" fill="#edf1f5" stroke="#8a98a8" stroke-width="2"/>
+      <text y="-8" font-size="22" font-weight="700" fill="#2c3742">停止</text>
+      <text y="24" font-size="16" fill="#536170">交还人工</text>
+    </g>
+  </g>
+  <g fill="none" stroke="#5b6673" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M270 300 C310 240 325 230 310 226"/>
+    <path d="M468 220 H530"/>
+    <path d="M688 235 C745 250 780 275 807 300"/>
+    <path d="M825 375 C785 420 735 438 690 440"/>
+    <path d="M532 440 H468"/>
+    <path d="M312 420 C260 390 240 355 270 335"/>
+  </g>
+  <rect x="930" y="206" width="164" height="228" rx="18" fill="#15202b"/>
+  <text x="1012" y="254" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff">红线</text>
+  <text x="1012" y="296" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#dce5ee">无证据不完成</text>
+  <text x="1012" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#dce5ee">无授权不发布</text>
+  <text x="1012" y="364" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#dce5ee">无边界不并行</text>
+</svg>

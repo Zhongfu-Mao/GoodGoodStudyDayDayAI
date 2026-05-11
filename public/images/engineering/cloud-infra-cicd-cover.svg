@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">CI/CD static site deployment cover</title>
+  <desc id="desc">A CI/CD deployment pipeline from code commit through checks, build artifact, and static site release.</desc>
+  <defs>
+    <linearGradient id="bg" x1="80" y1="70" x2="1510" y2="830" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111f"/>
+      <stop offset=".52" stop-color="#14324b"/>
+      <stop offset="1" stop-color="#081624"/>
+    </linearGradient>
+    <linearGradient id="pipe" x1="208" y1="450" x2="1392" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38bdf8"/>
+      <stop offset=".48" stop-color="#a7f3d0"/>
+      <stop offset="1" stop-color="#fcd34d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="48" fill="url(#bg)"/>
+  <rect x="112" y="116" width="1376" height="668" rx="48" fill="#f8fafc" fill-opacity=".055" stroke="#bfdbfe" stroke-opacity=".18"/>
+  <g opacity=".12" stroke="#dbeafe" stroke-width="2">
+    <path d="M190 208H1410M190 330H1410M190 452H1410M190 574H1410M190 696H1410"/>
+    <path d="M312 152V746M556 152V746M800 152V746M1044 152V746M1288 152V746"/>
+  </g>
+  <path d="M230 450H1370" stroke="url(#pipe)" stroke-width="10" stroke-linecap="round"/>
+  <g transform="translate(178 286)">
+    <rect width="250" height="328" rx="34" fill="#0f2438" stroke="#67e8f9" stroke-opacity=".34"/>
+    <circle cx="76" cy="96" r="34" fill="#67e8f9" fill-opacity=".20" stroke="#67e8f9" stroke-opacity=".34"/>
+    <path d="M128 92H202M58 172H190M58 226H154" stroke="#f8fafc" stroke-opacity=".44" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(502 248)">
+    <rect width="250" height="404" rx="34" fill="#0f2438" stroke="#a7f3d0" stroke-opacity=".34"/>
+    <path d="M62 114L98 150L170 78" stroke="#a7f3d0" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M62 220H184M62 278H156M62 336H202" stroke="#f8fafc" stroke-opacity=".42" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(826 286)">
+    <rect width="250" height="328" rx="34" fill="#0f2438" stroke="#fde68a" stroke-opacity=".30"/>
+    <rect x="58" y="76" width="134" height="92" rx="24" fill="#fde68a" fill-opacity=".16" stroke="#fde68a" stroke-opacity=".32"/>
+    <path d="M80 222H178M80 270H150" stroke="#f8fafc" stroke-opacity=".42" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(1150 248)">
+    <rect width="250" height="404" rx="34" fill="#0f2438" stroke="#67e8f9" stroke-opacity=".28"/>
+    <path d="M72 122H178M72 182H152M72 242H194" stroke="#f8fafc" stroke-opacity=".42" stroke-width="18" stroke-linecap="round"/>
+    <rect x="64" y="300" width="122" height="50" rx="18" fill="#a7f3d0" fill-opacity=".17" stroke="#a7f3d0" stroke-opacity=".32"/>
+  </g>
+  <g fill="#0b1220" stroke="url(#pipe)" stroke-width="7">
+    <circle cx="428" cy="450" r="20"/>
+    <circle cx="752" cy="450" r="20"/>
+    <circle cx="1076" cy="450" r="20"/>
+  </g>
+  <path d="M1336 694C1426 618 1454 528 1392 444" stroke="#fcd34d" stroke-opacity=".54" stroke-width="8" stroke-linecap="round" stroke-dasharray="18 20"/>
+</svg>
