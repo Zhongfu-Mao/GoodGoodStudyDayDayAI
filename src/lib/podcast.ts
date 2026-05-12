@@ -61,11 +61,6 @@ export async function buildPodcastFeed({
   const items = await Promise.all(
     entries.map(async ({ entry, slug }) => {
       const audioUrl = resolveAbsoluteUrl(entry.data.audioUrl ?? '', site);
-      const coverUrl = entry.data.coverImage
-        ? resolveAbsoluteUrl(entry.data.coverImage, site)
-        : artworkUrl;
-      const podcastArtworkUrl = await getPodcastArtworkUrl(entry.data.coverImage, site);
-      const episodeArtworkUrl = podcastArtworkUrl ?? (isAppleArtworkUrl(coverUrl) ? coverUrl : artworkUrl);
       const audioLength =
         entry.data.audioSize ?? (await getLocalPublicAssetSize(entry.data.audioUrl));
       const duration = entry.data.audioDuration;
@@ -78,8 +73,6 @@ export async function buildPodcastFeed({
       const episodeDescription = buildEpisodeDescription({
         summary: entry.data.plainSummary ?? entry.data.description ?? entry.data.title,
         articleUrl,
-        coverUrl,
-        title: entry.data.title,
         locale,
       });
 
@@ -98,7 +91,7 @@ export async function buildPodcastFeed({
           `<itunes:summary>${escapeXmlText(episodeSummary)}</itunes:summary>`,
           `<itunes:explicit>${entry.data.audioExplicit ? 'true' : 'false'}</itunes:explicit>`,
           `<itunes:episodeType>full</itunes:episodeType>`,
-          `<itunes:image href="${escapeXmlAttribute(episodeArtworkUrl)}" />`,
+          `<itunes:image href="${escapeXmlAttribute(artworkUrl)}" />`,
         ]
           .filter(Boolean)
           .join(''),
@@ -132,28 +125,6 @@ function resolveAbsoluteUrl(url: string, site: URL) {
   return url.startsWith('http') ? url : new URL(resolveSiteUrl(url), site).toString();
 }
 
-function isAppleArtworkUrl(url: string) {
-  return /\.(jpe?g|png)(?:[?#].*)?$/i.test(url);
-}
-
-async function getPodcastArtworkUrl(url: string | undefined, site: URL) {
-  if (!url?.startsWith('/')) {
-    return null;
-  }
-
-  const pathname = url.split(/[?#]/, 1)[0];
-  const parsed = path.parse(pathname);
-  const podcastArtwork = path.join(parsed.dir, `${parsed.name}-podcast.jpg`).replaceAll(path.sep, '/');
-  const filePath = path.join(process.cwd(), 'public', podcastArtwork.replace(/^\/+/, ''));
-
-  try {
-    await stat(filePath);
-    return new URL(resolveSiteUrl(podcastArtwork), site).toString();
-  } catch {
-    return null;
-  }
-}
-
 async function getLocalPublicAssetSize(url: string | undefined) {
   if (!url?.startsWith('/')) {
     return 0;
@@ -173,22 +144,16 @@ async function getLocalPublicAssetSize(url: string | undefined) {
 function buildEpisodeDescription({
   summary,
   articleUrl,
-  coverUrl,
-  title,
   locale,
 }: {
   summary: string;
   articleUrl: string;
-  coverUrl: string;
-  title: string;
   locale: Locale;
 }) {
   const readMore = locale === 'ja' ? '全文を読む' : '阅读全文';
-  const imageAlt = locale === 'ja' ? `${title} のカバー画像` : `${title} 封面图`;
   const parts = [
     `<p>${escapeHtmlText(summary.trim())}</p>`,
     `<p><a href="${escapeHtmlAttribute(articleUrl)}">${escapeHtmlText(readMore)}</a></p>`,
-    `<p><img src="${escapeHtmlAttribute(coverUrl)}" alt="${escapeHtmlAttribute(imageAlt)}" /></p>`,
   ].filter(Boolean);
 
   return parts.join('');

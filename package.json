@@ -27,7 +27,6 @@
     "assets:migrate:r2": "node scripts/radar/migrate-assets-to-r2.mjs",
     "podcast:cover": "node scripts/radar/generate-podcast-cover.mjs",
     "podcast:cover:concepts": "node scripts/radar/generate-podcast-cover-concepts.mjs",
-    "podcast:artwork": "node scripts/radar/generate-podcast-artwork.mjs",
     "academy:covers:openai": "node scripts/academy/localize-openai-covers.mjs",
     "radar:images": "node scripts/radar/fill-images.mjs",
     "radar:audio": "node scripts/radar/generate-audio.mjs",
