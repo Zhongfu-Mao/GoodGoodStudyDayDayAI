@@ -7,7 +7,7 @@ coverImage: "/images/start/ai-basics-for-everyone/cards/context-memory-projects-
 difficulty: beginner
 plainSummary: "上下文窗口（Context Window）是 AI 当前能“看”到的信息范围，Memory 是长期的偏好或事实存储，而 Projects 则提供了一个将文件、指令和对话整合在一起的结构化工作空间。"
 tags:
-  - "Context"
+  - Context Window
 lang: zh
 academy:
   series: "AI Basics for Everyone"

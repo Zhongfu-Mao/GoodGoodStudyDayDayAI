@@ -7,7 +7,8 @@ plainSummary: "OpenAI Academy の「Research with ChatGPT」をベースに、�
 difficulty: beginner
 coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/tools/research-with-chatgpt.ja.svg"
 tags:
-  - "ChatGPT/Research"
+  - ChatGPT
+  - Research
 lang: ja
 academy:
   series: "OpenAI Academy"

@@ -7,7 +7,7 @@ coverImage: "/images/start/ai-basics-for-everyone/cards/context-memory-projects-
 difficulty: beginner
 plainSummary: "Context Window は AI が「今この瞬間」見えている範囲、Memory は長期的な好みや事実の記憶、Projects は関連するファイルや指示を一つの作業空間に集約する仕組みです。"
 tags:
-  - "Context"
+  - Context Window
 lang: ja
 academy:
   series: "AI Basics for Everyone"

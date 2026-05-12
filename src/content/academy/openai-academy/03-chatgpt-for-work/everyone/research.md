@@ -7,8 +7,9 @@ plainSummary: "本篇笔记将 OpenAI Academy 中关于调研研究的 ChatGPT �
 difficulty: beginner
 coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/everyone/research.svg"
 tags:
-  - "ChatGPT/Research"
-  - "AI/Workflow"
+  - ChatGPT
+  - Research
+  - AI/Workflow
 lang: zh
 academy:
   series: "OpenAI Academy"

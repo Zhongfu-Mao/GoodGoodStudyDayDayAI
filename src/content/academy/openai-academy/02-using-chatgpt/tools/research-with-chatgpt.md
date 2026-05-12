@@ -7,7 +7,8 @@ plainSummary: "本笔记提炼了 OpenAI Academy「02.5 Research with ChatGPT」
 difficulty: beginner
 coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/tools/research-with-chatgpt.svg"
 tags:
-  - "ChatGPT/Research"
+  - ChatGPT
+  - Research
 lang: zh
 academy:
   series: "OpenAI Academy"

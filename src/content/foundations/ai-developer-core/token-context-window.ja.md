@@ -6,9 +6,9 @@ description: "token、コンテキストウィンドウ、切り詰め、コス�
 difficulty: beginner
 plainSummary: "Token は文字数ではなく、モデルが実際に処理する離散的な記号です。コンテキストウィンドウは一度に見える情報量を決め、コスト、遅延、記憶設計にも直結します。"
 tags:
-  - "AI Developer Core"
-  - "LLM"
-  - "Context"
+  - AI Developer Core
+  - LLM
+  - Context Window
 lang: ja
 draft: false
 ---

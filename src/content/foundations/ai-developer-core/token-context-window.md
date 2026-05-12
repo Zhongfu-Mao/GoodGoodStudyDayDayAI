@@ -6,9 +6,9 @@ description: "从开发者视角理解 token、上下文窗口、截断、成本
 difficulty: beginner
 plainSummary: "Token 不是字数单位，而是模型真正处理文本的离散符号。上下文窗口决定模型一次能看到多少信息，也决定成本、延迟和记忆策略。"
 tags:
-  - "AI Developer Core"
-  - "LLM"
-  - "Context"
+  - AI Developer Core
+  - LLM
+  - Context Window
 lang: zh
 draft: false
 ---

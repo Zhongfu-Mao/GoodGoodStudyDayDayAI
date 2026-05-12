@@ -7,8 +7,9 @@ plainSummary: "OpenAI Academyの「ChatGPT for Research」のエッセンスを�
 difficulty: beginner
 coverImage: "/images/academy/openai-academy/covers/03-chatgpt-for-work/everyone/research.ja.svg"
 tags:
-  - "ChatGPT/Research"
-  - "AI/Workflow"
+  - ChatGPT
+  - Research
+  - AI/Workflow
 lang: ja
 academy:
   series: "OpenAI Academy"
