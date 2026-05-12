@@ -163,6 +163,8 @@
           this.audio = this.root ? this.root.querySelector('[data-global-audio]') : null;
           if (!this.root || !this.audio) return;
 
+          this.updateViewportInset();
+          this.bindViewport();
           this.bindPlayer();
           this.bindPageTriggers();
           this.applyLocale();
@@ -176,6 +178,30 @@
           }
 
           this.sync();
+        },
+
+        bindViewport: function () {
+          if (!this.root || this.root.dataset.audioViewportBound === 'true') return;
+          this.root.dataset.audioViewportBound = 'true';
+          var self = this;
+          var syncViewport = function () {
+            self.updateViewportInset();
+          };
+
+          window.addEventListener('resize', syncViewport, { passive: true });
+          if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', syncViewport, { passive: true });
+            window.visualViewport.addEventListener('scroll', syncViewport, { passive: true });
+          }
+        },
+
+        updateViewportInset: function () {
+          if (!this.root) return;
+          var inset = 0;
+          if (window.visualViewport) {
+            inset = Math.max(0, window.innerHeight - window.visualViewport.height);
+          }
+          this.root.style.setProperty('--audio-visual-bottom-offset', inset + 'px');
         },
 
         bindPlayer: function () {
@@ -574,9 +600,10 @@
 
   @media (max-width: 640px) {
     .global-audio-player {
-      right: max(0.75rem, env(safe-area-inset-right));
-      bottom: max(0.75rem, env(safe-area-inset-bottom));
-      width: min(calc(100vw - 1.5rem), 24rem);
+      left: max(0.75rem, env(safe-area-inset-left));
+      right: auto;
+      bottom: calc(0.75rem + env(safe-area-inset-bottom) + var(--audio-visual-bottom-offset, 0px));
+      width: min(calc(100dvw - 1.5rem), 24rem);
     }
 
     .global-audio-player__panel {
