@@ -1,0 +1,28 @@
+---
+import { topicPath, type Locale } from '../lib/site';
+import { getTopicIndex } from '../lib/content';
+import { topicCopy, topicsPage } from '../lib/i18n';
+
+const { locale } = Astro.props as { locale: Locale };
+const index = await getTopicIndex(locale);
+const text = topicsPage[locale];
+const copy = topicCopy[locale];
+---
+
+<section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
+  <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.eyebrow}</p>
+  <h1 class="theme-heading mt-3 text-3xl font-semibold md:text-4xl">{text.heroTitle}</h1>
+  <p class="theme-muted mt-4 max-w-3xl text-base leading-7">{text.heroDescription}</p>
+
+  <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    {index.map(({ topic, count }) => (
+      <a href={topicPath(topic, locale)} class="theme-panel theme-panel-link rounded-[1.25rem] p-5">
+        <div class="flex items-center justify-between gap-4">
+          <span class="theme-heading text-lg font-semibold">{copy[topic].label}</span>
+          <span class="theme-chip rounded-xl px-3 py-1 text-xs">{text.itemCount(count)}</span>
+        </div>
+        <p class="theme-muted mt-2 text-sm leading-6">{copy[topic].description}</p>
+      </a>
+    ))}
+  </div>
+</section>

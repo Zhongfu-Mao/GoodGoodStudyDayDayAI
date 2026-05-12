@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
-import { getAcademyCatalogAnchor, getAcademyCatalogGroupName, getEntriesForLocale, getPublicTagsForEntry } from '../lib/content';
+import { getAcademyCatalogAnchor, getAcademyCatalogGroupName, getEntriesForLocale, getPublicTagsForEntry, getTopicsForEntry } from '../lib/content';
 import {
   articlePath,
   categoryPath,
@@ -12,10 +12,11 @@ import {
   startPath,
   stripLocaleSuffix,
   tagPath,
+  topicPath,
   type CollectionName,
   type Locale,
 } from '../lib/site';
-import { formatDate, postDetailPage } from '../lib/i18n';
+import { formatDate, postDetailPage, topicCopy } from '../lib/i18n';
 import {
   difficultyLabels,
   estimateReadingMinutes,
@@ -121,6 +122,8 @@ const difficulty = getEntryDifficulty(entry);
 const readingMinutes = estimateReadingMinutes(entry.body, locale);
 const plainSummary = isRadar ? getPlainSummary(entry, locale) : '';
 const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
+const entryTopics = getTopicsForEntry(entry.data.tags);
+const topicCopyByLocale = topicCopy[locale];
 const updatedDate = entry.data.updatedDate;
 const showUpdatedDate = Boolean(updatedDate && updatedDate.getTime() !== entry.data.date.getTime());
 const dateLabels = locale === 'ja'
@@ -496,8 +499,22 @@ const showTimeline = !academyMeta;
       />
     ) : null}
 
+    {entryTopics.length > 0 ? (
+      <div class="mt-8 flex flex-wrap items-center gap-2">
+        <span class="theme-muted text-xs uppercase tracking-[0.24em]">{text.topicLabel}</span>
+        {entryTopics.map((topic) => (
+          <a
+            href={topicPath(topic, locale)}
+            class="theme-chip-strong theme-chip-link rounded-xl px-3 py-1 text-sm font-semibold"
+          >
+            {topicCopyByLocale[topic].label}
+          </a>
+        ))}
+      </div>
+    ) : null}
+
     {publicTags.length > 0 ? (
-      <div class="mt-8 flex flex-wrap gap-2">
+      <div class="mt-4 flex flex-wrap gap-2">
         {publicTags.map((tag) => (
           <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-sm">
             {tag}

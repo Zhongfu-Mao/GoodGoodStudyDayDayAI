@@ -11,6 +11,7 @@ import {
   categoryPath,
   locales,
 } from './site';
+import { resolveTopicsForTags, topics, type Topic } from './topics';
 
 type BlogEntryItem = Awaited<ReturnType<typeof getCollectionEntries>>[number];
 type TagIndexItem = { slug: string; label: string; count: number };
@@ -180,6 +181,33 @@ export async function getTagStaticPaths(locale: Locale) {
     params: { tag: tag.slug },
     props: { tagLabel: tag.label, tagCount: tag.count },
   }));
+}
+
+export async function getEntriesForTopic(locale: Locale, topic: Topic) {
+  const entries = await getEntriesForLocale(locale);
+  return entries.filter((item) => resolveTopicsForTags(item.entry.data.tags).includes(topic));
+}
+
+export async function getTopicIndex(locale: Locale): Promise<Array<{ topic: Topic; count: number }>> {
+  const entries = await getEntriesForLocale(locale);
+  const counts = new Map<Topic, number>();
+  for (const { entry } of entries) {
+    for (const topic of resolveTopicsForTags(entry.data.tags)) {
+      counts.set(topic, (counts.get(topic) ?? 0) + 1);
+    }
+  }
+  // Preserve canonical topic order so the index UI is stable.
+  return topics
+    .map((topic) => ({ topic, count: counts.get(topic) ?? 0 }))
+    .filter((entry) => entry.count > 0);
+}
+
+export function getTopicsForEntry(tags: readonly string[]): Topic[] {
+  return resolveTopicsForTags(tags);
+}
+
+export function getTopicStaticPaths() {
+  return topics.map((topic) => ({ params: { topic } }));
 }
 
 export async function getPostStaticPaths(locale: Locale) {

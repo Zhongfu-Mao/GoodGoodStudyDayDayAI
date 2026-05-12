@@ -1,0 +1,58 @@
+---
+import PostCard from './PostCard.astro';
+import { collectionLabels, topicIndexPath, type CollectionName, type Locale } from '../lib/site';
+import { getEntriesForTopic } from '../lib/content';
+import { topicCopy, topicsPage } from '../lib/i18n';
+import type { Topic } from '../lib/topics';
+
+const { locale, topic } = Astro.props as { locale: Locale; topic: Topic };
+const entries = await getEntriesForTopic(locale, topic);
+const text = topicsPage[locale];
+const copy = topicCopy[locale][topic];
+
+// Group by collection so a Topic page surfaces the cross-cut nature.
+const COLLECTION_ORDER: CollectionName[] = ['radar', 'academy', 'engineering', 'foundations', 'start'];
+const grouped = new Map<CollectionName, typeof entries>();
+for (const item of entries) {
+  const list = grouped.get(item.entry.data.category) ?? [];
+  list.push(item);
+  grouped.set(item.entry.data.category, list);
+}
+const orderedGroups = COLLECTION_ORDER.flatMap((collection) => {
+  const items = grouped.get(collection);
+  return items && items.length > 0 ? [{ collection, items }] : [];
+});
+---
+
+<section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
+  <div class="flex flex-wrap items-start justify-between gap-4">
+    <div>
+      <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{text.detailEyebrow}</p>
+      <h1 class="theme-heading mt-3 text-3xl font-semibold md:text-4xl">{copy.label}</h1>
+      <p class="theme-muted mt-3 max-w-3xl text-base leading-7">{copy.description}</p>
+    </div>
+    <a href={topicIndexPath(locale)} class="theme-panel theme-panel-link rounded-2xl px-4 py-2 text-sm">
+      {text.backToIndex}
+    </a>
+  </div>
+
+  {entries.length === 0 ? (
+    <p class="theme-muted mt-8">{text.emptyTopic}</p>
+  ) : (
+    <div class="mt-10 grid gap-10">
+      {orderedGroups.map(({ collection, items }) => (
+        <section>
+          <div class="flex flex-wrap items-end justify-between gap-3">
+            <h2 class="theme-heading text-xl font-semibold">
+              {text.detailFromCollection(collectionLabels[collection][locale])}
+            </h2>
+            <span class="theme-chip rounded-xl px-3 py-1 text-xs">{text.itemCount(items.length)}</span>
+          </div>
+          <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {items.map((item) => <PostCard item={item} locale={locale} />)}
+          </div>
+        </section>
+      ))}
+    </div>
+  )}
+</section>

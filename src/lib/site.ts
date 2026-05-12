@@ -85,6 +85,14 @@ export function tagIndexPath(locale: Locale) {
   return withBase(`${localePrefix(locale)}/tags/`);
 }
 
+export function topicIndexPath(locale: Locale) {
+  return withBase(`${localePrefix(locale)}/topics/`);
+}
+
+export function topicPath(topic: string, locale: Locale) {
+  return withBase(`${localePrefix(locale)}/topics/${topic}/`);
+}
+
 export function searchPath(locale: Locale) {
   return withBase(`${localePrefix(locale)}/search/`);
 }

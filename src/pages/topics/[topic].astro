@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import TopicDetailPage from '../../components/TopicDetailPage.astro';
+import { getTopicStaticPaths } from '../../lib/content';
+import { topicCopy, topicsPage } from '../../lib/i18n';
+import { topicPath } from '../../lib/site';
+import type { Topic } from '../../lib/topics';
+
+export async function getStaticPaths() {
+  return getTopicStaticPaths();
+}
+
+const topic = Astro.params.topic as Topic;
+const copy = topicCopy.zh[topic];
+const text = topicsPage.zh;
+---
+
+<BaseLayout
+  title={`${copy.label} · ${text.eyebrow} · Good Good Study, Day Day AI`}
+  description={copy.description}
+  locale="zh"
+  languagePaths={{ zh: topicPath(topic, 'zh'), ja: topicPath(topic, 'ja') }}
+>
+  <TopicDetailPage locale="zh" topic={topic} />
+</BaseLayout>

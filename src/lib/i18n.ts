@@ -9,3 +9,4 @@ export { radarGalleryPage } from './i18n/radar';
 export { postDetailPage } from './i18n/post';
 export { startPage, startSubPages } from './i18n/start';
 export { tagIndexPage, tagDetailPage } from './i18n/tags';
+export { topicsPage, topicCopy } from './i18n/topics';

@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import TopicIndexPage from '../../components/TopicIndexPage.astro';
+import { topicsPage } from '../../lib/i18n';
+import { topicIndexPath } from '../../lib/site';
+
+const text = topicsPage.zh;
+---
+
+<BaseLayout
+  title={`${text.title} · Good Good Study, Day Day AI`}
+  description={text.metaDescription}
+  locale="zh"
+  languagePaths={{ zh: topicIndexPath('zh'), ja: topicIndexPath('ja') }}
+>
+  <TopicIndexPage locale="zh" />
+</BaseLayout>
