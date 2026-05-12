@@ -2,6 +2,7 @@
 import PostCard from './PostCard.astro';
 import RadarVisualCard from './RadarVisualCard.astro';
 import {
+  articlePath,
   cadenceLabels,
   collectionLabels,
   radarCadences,
@@ -245,11 +246,28 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
               <h3 class="theme-heading mt-2 text-3xl font-semibold">{seriesGroup.series}</h3>
               <p class="theme-muted mt-3 max-w-3xl text-sm leading-6">{text.academySeriesDescription(seriesGroup.series)}</p>
             </div>
-            <p class="theme-muted text-sm">
-              {seriesGroup.groupKind === 'track' ? text.trackCount(seriesGroup.groups.length) : text.moduleCount(seriesGroup.groups.length)}
-              {' · '}
-              {text.itemCount(seriesGroup.itemCount)}
-            </p>
+            <div class="flex flex-col items-end gap-3 text-sm">
+              <p class="theme-muted">
+                {seriesGroup.groupKind === 'track' ? text.trackCount(seriesGroup.groups.length) : text.moduleCount(seriesGroup.groups.length)}
+                {' · '}
+                {text.itemCount(seriesGroup.itemCount)}
+              </p>
+              {seriesGroup.groups[0]?.items[0] ? (
+                <a
+                  href={articlePath(
+                    seriesGroup.groups[0].items[0].entry.data.category,
+                    seriesGroup.groups[0].items[0].slug,
+                    locale,
+                  )}
+                  class="theme-action-primary inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold"
+                  data-academy-start-reading
+                  aria-label={`${text.academyStartReading}: ${seriesGroup.series}`}
+                >
+                  <span>{text.academyStartReading}</span>
+                  <span aria-hidden="true">→</span>
+                </a>
+              ) : null}
+            </div>
           </div>
 
           <div class="mt-6 grid gap-5">

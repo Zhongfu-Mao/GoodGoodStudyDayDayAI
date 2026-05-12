@@ -30,6 +30,11 @@ interface Props {
 const { locale, previousLesson, nextLesson, currentLessonIndex, totalLessons, courseModuleHref, text } =
   Astro.props;
 
+const progressPercent =
+  totalLessons > 0
+    ? Math.min(100, Math.max(0, Math.round(((currentLessonIndex + 1) / totalLessons) * 100)))
+    : 0;
+
 function getLessonTitle(item: LessonItem) {
   const title = item.entry.data.title;
   const series = item.entry.data.academy?.series;
@@ -60,6 +65,20 @@ function getLessonTitle(item: LessonItem) {
     <span class="theme-chip rounded-xl px-3 py-1 text-xs">
       {currentLessonIndex + 1} / {totalLessons}
     </span>
+  </div>
+
+  <div
+    class="theme-panel-strong mt-5 h-2 overflow-hidden rounded-full"
+    role="progressbar"
+    aria-valuemin="0"
+    aria-valuemax={totalLessons}
+    aria-valuenow={currentLessonIndex + 1}
+    aria-label={`${text.lessonNavTitle}: ${currentLessonIndex + 1} / ${totalLessons}`}
+  >
+    <div
+      class="theme-action-primary h-full rounded-full transition-[width] duration-500"
+      style={`width: ${progressPercent}%;`}
+    ></div>
   </div>
 
   <div class="mt-5 grid gap-3 md:grid-cols-2">
