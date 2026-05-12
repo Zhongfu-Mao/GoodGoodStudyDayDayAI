@@ -1,0 +1,262 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  text: {
+    eyebrow: string;
+    close: string;
+    previous: string;
+    next: string;
+    loading: string;
+    error: string;
+    pageStatus: (page: number, total: number) => string;
+    deckTitle: string;
+  };
+}
+
+const { href, title, text } = Astro.props;
+---
+
+<dialog
+  class="h-[calc(100dvh-2rem)] max-h-none w-[calc(100vw-2rem)] max-w-none rounded-[1.25rem] border-0 bg-transparent p-0 backdrop:bg-slate-950/75"
+  data-deck-preview-dialog
+  data-deck-src={href}
+  data-deck-loading-label={text.loading}
+  data-deck-error-label={text.error}
+>
+  <div class="theme-panel-strong flex h-full flex-col overflow-hidden rounded-[1.25rem] shadow-glow">
+    <div class="flex items-center justify-between gap-4 border-b border-white/10 p-4 md:p-5">
+      <div class="min-w-0">
+        <p class="theme-muted text-xs uppercase tracking-[0.2em]">{text.eyebrow}</p>
+        <h2 class="theme-heading mt-2 truncate text-lg font-semibold md:text-2xl">{title}</h2>
+      </div>
+      <button
+        type="button"
+        class="theme-button-soft shrink-0 rounded-xl px-3 py-2 text-sm font-semibold"
+        data-deck-preview-close
+        aria-label={text.close}
+      >
+        {text.close}
+      </button>
+    </div>
+    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 p-3 md:px-5">
+      <button
+        type="button"
+        class="theme-button-soft rounded-xl px-3 py-2 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-45"
+        data-deck-prev
+        aria-label={text.previous}
+        disabled
+      >
+        {text.previous}
+      </button>
+      <span class="theme-chip rounded-xl px-3 py-1 text-sm" data-deck-page-status>
+        {text.pageStatus(1, 1)}
+      </span>
+      <button
+        type="button"
+        class="theme-button-soft rounded-xl px-3 py-2 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-45"
+        data-deck-next
+        aria-label={text.next}
+        disabled
+      >
+        {text.next}
+      </button>
+    </div>
+    <div class="relative min-h-0 flex-1 overflow-auto bg-slate-950/45 p-3 md:p-5" data-deck-viewer>
+      <p class="theme-muted absolute inset-x-0 top-8 text-center text-sm" data-deck-preview-status>
+        {text.loading}
+      </p>
+      <canvas
+        class="mx-auto block max-w-full rounded-[0.75rem] bg-white shadow-2xl"
+        data-deck-preview-canvas
+        aria-label={text.deckTitle}
+      ></canvas>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  let pdfJsPromise: Promise<typeof import('pdfjs-dist')> | null = null;
+
+  function loadPdfJs() {
+    if (!pdfJsPromise) {
+      pdfJsPromise = Promise.all([
+        import('pdfjs-dist'),
+        import('pdfjs-dist/build/pdf.worker.mjs?url'),
+      ]).then(([pdfjsLib, worker]) => {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = worker.default;
+        return pdfjsLib;
+      });
+    }
+
+    return pdfJsPromise;
+  }
+
+  function showDeckDialog(dialog: HTMLDialogElement | null) {
+    if (!dialog) return;
+    if (typeof dialog.showModal === 'function') {
+      dialog.showModal();
+    } else {
+      dialog.setAttribute('open', '');
+    }
+  }
+
+  function closeDeckDialog(dialog: HTMLDialogElement | null) {
+    if (!dialog) return;
+    if (typeof dialog.close === 'function') {
+      dialog.close();
+    } else {
+      dialog.removeAttribute('open');
+    }
+  }
+
+  function initDeckPreview() {
+    const trigger = document.querySelector('[data-deck-preview-trigger]');
+    const dialog = document.querySelector('[data-deck-preview-dialog]');
+    if (!(trigger instanceof HTMLButtonElement) || !(dialog instanceof HTMLDialogElement)) return;
+    if (trigger.dataset.previewBound === 'true') return;
+    trigger.dataset.previewBound = 'true';
+
+    const closeButton = dialog.querySelector<HTMLButtonElement>('[data-deck-preview-close]');
+    const canvas = dialog.querySelector<HTMLCanvasElement>('[data-deck-preview-canvas]');
+    const viewer = dialog.querySelector<HTMLElement>('[data-deck-viewer]');
+    const status = dialog.querySelector<HTMLElement>('[data-deck-preview-status]');
+    const pageStatus = dialog.querySelector<HTMLElement>('[data-deck-page-status]');
+    const previousButton = dialog.querySelector<HTMLButtonElement>('[data-deck-prev]');
+    const nextButton = dialog.querySelector<HTMLButtonElement>('[data-deck-next]');
+
+    if (
+      !(canvas instanceof HTMLCanvasElement) ||
+      !(viewer instanceof HTMLElement) ||
+      !(status instanceof HTMLElement) ||
+      !(pageStatus instanceof HTMLElement) ||
+      !(previousButton instanceof HTMLButtonElement) ||
+      !(nextButton instanceof HTMLButtonElement)
+    ) {
+      return;
+    }
+
+    const context = canvas.getContext('2d');
+    if (!context) return;
+    const deckCanvas = canvas;
+    const deckViewer = viewer;
+    const deckStatus = status;
+    const deckPageStatus = pageStatus;
+    const deckPreviousButton = previousButton;
+    const deckNextButton = nextButton;
+    const deckContext = context;
+
+    const deckSrc = dialog.dataset.deckSrc || '';
+    const loadingLabel = dialog.dataset.deckLoadingLabel || '';
+    const errorLabel = dialog.dataset.deckErrorLabel || '';
+    let pdfDocument: any = null;
+    let loadingPromise: Promise<any> | null = null;
+    let currentPage = 1;
+    let activeRenderTask: any = null;
+
+    function setBusy(message: string) {
+      deckStatus.textContent = message;
+      deckStatus.hidden = false;
+    }
+
+    function setReady() {
+      deckStatus.hidden = true;
+    }
+
+    function updateControls() {
+      const total = pdfDocument?.numPages || 1;
+      deckPageStatus.textContent = `${currentPage} / ${total}`;
+      deckPreviousButton.disabled = currentPage <= 1;
+      deckNextButton.disabled = currentPage >= total;
+    }
+
+    function reserveCanvasSpace() {
+      const availableWidth = Math.max(320, deckViewer.clientWidth - 32);
+      const displayWidth = Math.min(960, availableWidth);
+      const displayHeight = Math.round(displayWidth * 0.5625);
+      const deviceScale = window.devicePixelRatio || 1;
+
+      if (deckCanvas.width > 300 && deckCanvas.height > 150) {
+        return;
+      }
+
+      deckCanvas.width = Math.floor(displayWidth * deviceScale);
+      deckCanvas.height = Math.floor(displayHeight * deviceScale);
+      deckCanvas.style.width = `${Math.floor(displayWidth)}px`;
+      deckCanvas.style.height = `${displayHeight}px`;
+    }
+
+    async function loadDocument() {
+      if (!loadingPromise) {
+        setBusy(loadingLabel);
+        const pdfjsLib = await loadPdfJs();
+        loadingPromise = pdfjsLib.getDocument(deckSrc).promise;
+      }
+
+      pdfDocument = await loadingPromise;
+      updateControls();
+      return pdfDocument;
+    }
+
+    async function renderPage(pageNumber: number) {
+      try {
+        const document = await loadDocument();
+        const page = await document.getPage(pageNumber);
+        const baseViewport = page.getViewport({ scale: 1 });
+        const deviceScale = window.devicePixelRatio || 1;
+        const availableWidth = Math.max(320, deckViewer.clientWidth - 32);
+        const displayScale = Math.min(1.35, availableWidth / baseViewport.width);
+        const viewport = page.getViewport({ scale: displayScale * deviceScale });
+
+        if (activeRenderTask) {
+          activeRenderTask.cancel();
+        }
+
+        deckCanvas.width = Math.floor(viewport.width);
+        deckCanvas.height = Math.floor(viewport.height);
+        deckCanvas.style.width = `${Math.floor(viewport.width / deviceScale)}px`;
+        deckCanvas.style.height = `${Math.floor(viewport.height / deviceScale)}px`;
+
+        activeRenderTask = page.render({ canvasContext: deckContext, viewport });
+        await activeRenderTask.promise;
+        activeRenderTask = null;
+        setReady();
+        updateControls();
+      } catch (error) {
+        if (error instanceof Error && error.name === 'RenderingCancelledException') return;
+        console.error('PDF preview failed', error);
+        setBusy(errorLabel);
+      }
+    }
+
+    trigger.addEventListener('click', async () => {
+      showDeckDialog(dialog);
+      await new Promise((resolve) => requestAnimationFrame(resolve));
+      reserveCanvasSpace();
+      renderPage(currentPage);
+    });
+
+    previousButton.addEventListener('click', () => {
+      if (currentPage <= 1) return;
+      currentPage -= 1;
+      updateControls();
+      renderPage(currentPage);
+    });
+
+    nextButton.addEventListener('click', () => {
+      const total = pdfDocument?.numPages || 1;
+      if (currentPage >= total) return;
+      currentPage += 1;
+      updateControls();
+      renderPage(currentPage);
+    });
+
+    closeButton?.addEventListener('click', () => closeDeckDialog(dialog));
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) closeDeckDialog(dialog);
+    });
+  }
+
+  initDeckPreview();
+  document.addEventListener('astro:page-load', initDeckPreview);
+</script>

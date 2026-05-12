@@ -24,6 +24,9 @@ import {
   readingTimeText,
 } from '../lib/entryMeta';
 import { formatMonthLabel, getMonthKey, resolveRadarCadence } from '../lib/radar';
+import CoverPreviewDialog from './post/CoverPreviewDialog.astro';
+import DeckPreviewDialog from './post/DeckPreviewDialog.astro';
+import LessonNavigation from './post/LessonNavigation.astro';
 
 type BlogEntry = CollectionEntry<CollectionName>;
 type MarkdownHeading = {
@@ -151,25 +154,6 @@ const sameSeriesLabel = academyMeta ? (currentAcademyGroupName ?? text.sameSerie
 const sameSeriesEyebrow = academyMeta ? text.learningTrack : sameSeriesLabel;
 const sameSeriesHint = academyMeta ? text.sameSeriesHintAcademy : text.sameSeriesHintMonth;
 const showTimeline = !academyMeta;
-
-function getLessonTitle(item: (typeof categoryEntries)[number]) {
-  const title = item.entry.data.title;
-  const series = item.entry.data.academy?.series;
-
-  if (!series) {
-    return title;
-  }
-
-  for (const separator of ['：', ':']) {
-    const prefix = `${series}${separator}`;
-
-    if (title.startsWith(prefix)) {
-      return title.slice(prefix.length).trim();
-    }
-  }
-
-  return title;
-}
 ---
 
 <section class="grid min-w-0 gap-8 sm:grid-cols-[13rem_minmax(0,1fr)] md:grid-cols-[14rem_minmax(0,1fr)] lg:grid-cols-[15rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)]">
@@ -492,91 +476,24 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
     ) : null}
 
     {coverImageSrc ? (
-      <dialog
-        class="h-[calc(100dvh-2rem)] max-h-none w-[calc(100vw-2rem)] max-w-none rounded-[1.25rem] border-0 bg-transparent p-0 backdrop:bg-slate-950/75"
-        data-cover-preview-dialog
-      >
-        <div class="relative grid h-full place-items-center overflow-hidden rounded-[1.25rem] bg-slate-950/35 p-4 shadow-glow md:p-8">
-          <img
-            src={coverImageSrc}
-            alt={entry.data.title}
-            class="max-h-full max-w-full rounded-[1rem] object-contain shadow-2xl"
-            data-cover-preview-image
-          />
-          <button
-            type="button"
-            class="absolute right-4 top-4 inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-xl border border-white/20 bg-slate-950/85 px-3 text-sm font-semibold text-white shadow-2xl backdrop-blur transition hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-white/70 md:right-6 md:top-6 md:px-4"
-            data-cover-preview-close
-            aria-label={text.coverPreviewClose}
-          >
-            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-              <path d="m6 6 12 12" />
-              <path d="m18 6-12 12" />
-            </svg>
-            <span class="hidden sm:inline">{text.coverPreviewClose}</span>
-          </button>
-        </div>
-      </dialog>
+      <CoverPreviewDialog src={coverImageSrc} alt={entry.data.title} closeLabel={text.coverPreviewClose} />
     ) : null}
 
     {deckHref ? (
-      <dialog
-        class="h-[calc(100dvh-2rem)] max-h-none w-[calc(100vw-2rem)] max-w-none rounded-[1.25rem] border-0 bg-transparent p-0 backdrop:bg-slate-950/75"
-        data-deck-preview-dialog
-        data-deck-src={deckHref}
-        data-deck-loading-label={text.slideDeckLoading}
-        data-deck-error-label={text.slideDeckError}
-      >
-        <div class="theme-panel-strong flex h-full flex-col overflow-hidden rounded-[1.25rem] shadow-glow">
-          <div class="flex items-center justify-between gap-4 border-b border-white/10 p-4 md:p-5">
-            <div class="min-w-0">
-              <p class="theme-muted text-xs uppercase tracking-[0.2em]">{text.slideDeckEyebrow}</p>
-              <h2 class="theme-heading mt-2 truncate text-lg font-semibold md:text-2xl">{entry.data.title}</h2>
-            </div>
-            <button
-              type="button"
-              class="theme-button-soft shrink-0 rounded-xl px-3 py-2 text-sm font-semibold"
-              data-deck-preview-close
-              aria-label={text.slideDeckClose}
-            >
-              {text.slideDeckClose}
-            </button>
-          </div>
-          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 p-3 md:px-5">
-            <button
-              type="button"
-              class="theme-button-soft rounded-xl px-3 py-2 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-45"
-              data-deck-prev
-              aria-label={text.slideDeckPrevious}
-              disabled
-            >
-              {text.slideDeckPrevious}
-            </button>
-            <span class="theme-chip rounded-xl px-3 py-1 text-sm" data-deck-page-status>
-              {text.slideDeckPageStatus(1, 1)}
-            </span>
-            <button
-              type="button"
-              class="theme-button-soft rounded-xl px-3 py-2 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-45"
-              data-deck-next
-              aria-label={text.slideDeckNext}
-              disabled
-            >
-              {text.slideDeckNext}
-            </button>
-          </div>
-          <div class="relative min-h-0 flex-1 overflow-auto bg-slate-950/45 p-3 md:p-5" data-deck-viewer>
-            <p class="theme-muted absolute inset-x-0 top-8 text-center text-sm" data-deck-preview-status>
-              {text.slideDeckLoading}
-            </p>
-            <canvas
-              class="mx-auto block max-w-full rounded-[0.75rem] bg-white shadow-2xl"
-              data-deck-preview-canvas
-              aria-label={text.slideDeckTitle}
-            ></canvas>
-          </div>
-        </div>
-      </dialog>
+      <DeckPreviewDialog
+        href={deckHref}
+        title={entry.data.title}
+        text={{
+          eyebrow: text.slideDeckEyebrow,
+          close: text.slideDeckClose,
+          previous: text.slideDeckPrevious,
+          next: text.slideDeckNext,
+          loading: text.slideDeckLoading,
+          error: text.slideDeckError,
+          pageStatus: text.slideDeckPageStatus,
+          deckTitle: text.slideDeckTitle,
+        }}
+      />
     ) : null}
 
     {publicTags.length > 0 ? (
@@ -608,301 +525,25 @@ function getLessonTitle(item: (typeof categoryEntries)[number]) {
     </div>
 
     {showLessonNavigation ? (
-      <section class="theme-panel mt-10 rounded-[1.25rem] p-5" data-course-navigation>
-        <div class="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p class="theme-muted text-xs uppercase tracking-[0.24em]">{text.lessonNavEyebrow}</p>
-            <h2 class="theme-heading mt-2 text-2xl font-semibold">{text.lessonNavTitle}</h2>
-            <p class="theme-muted mt-2 max-w-2xl text-sm leading-6">{text.lessonNavHint}</p>
-          </div>
-          <span class="theme-chip rounded-xl px-3 py-1 text-xs">
-            {currentLessonIndex + 1} / {academyLessonEntries.length}
-          </span>
-        </div>
-
-        <div class="mt-5 grid gap-3 md:grid-cols-2">
-          {previousLesson ? (
-            <a
-              href={articlePath(previousLesson.entry.data.category, previousLesson.slug, locale)}
-              class="theme-button-soft group flex min-h-36 flex-col justify-between rounded-[1.1rem] p-4"
-              aria-label={`${text.previousLesson}: ${getLessonTitle(previousLesson)}`}
-            >
-              <span class="theme-muted text-xs uppercase tracking-[0.22em]">{text.previousLesson}</span>
-              <span class="theme-heading mt-3 line-clamp-3 text-lg font-semibold leading-7">
-                {getLessonTitle(previousLesson)}
-              </span>
-              <span class="theme-muted mt-4 inline-flex items-center gap-2 text-sm">
-                <span aria-hidden="true">←</span>
-                <span>{text.openLesson}</span>
-              </span>
-            </a>
-          ) : (
-            <a
-              href={courseModuleHref}
-              class="theme-button-soft flex min-h-36 flex-col justify-between rounded-[1.1rem] p-4"
-            >
-              <span class="theme-muted text-xs uppercase tracking-[0.22em]">{text.previousLesson}</span>
-              <span class="theme-heading mt-3 text-lg font-semibold leading-7">{text.firstLesson}</span>
-              <span class="theme-muted mt-4 inline-flex items-center gap-2 text-sm">
-                <span aria-hidden="true">↑</span>
-                <span>{text.backToModule}</span>
-              </span>
-            </a>
-          )}
-
-          {nextLesson ? (
-            <a
-              href={articlePath(nextLesson.entry.data.category, nextLesson.slug, locale)}
-              class="theme-action-primary group flex min-h-36 flex-col justify-between rounded-[1.1rem] p-4"
-              aria-label={`${text.nextLesson}: ${getLessonTitle(nextLesson)}`}
-            >
-              <span class="text-xs uppercase tracking-[0.22em] opacity-80">{text.nextLesson}</span>
-              <span class="mt-3 line-clamp-3 text-lg font-semibold leading-7">{getLessonTitle(nextLesson)}</span>
-              <span class="mt-4 inline-flex items-center gap-2 text-sm opacity-90">
-                <span>{text.openLesson}</span>
-                <span aria-hidden="true">→</span>
-              </span>
-            </a>
-          ) : (
-            <a
-              href={courseModuleHref}
-              class="theme-button-soft flex min-h-36 flex-col justify-between rounded-[1.1rem] p-4"
-            >
-              <span class="theme-muted text-xs uppercase tracking-[0.22em]">{text.nextLesson}</span>
-              <span class="theme-heading mt-3 text-lg font-semibold leading-7">{text.lastLesson}</span>
-              <span class="theme-muted mt-4 inline-flex items-center gap-2 text-sm">
-                <span>{text.backToModule}</span>
-                <span aria-hidden="true">↑</span>
-              </span>
-            </a>
-          )}
-        </div>
-      </section>
+      <LessonNavigation
+        locale={locale}
+        previousLesson={previousLesson}
+        nextLesson={nextLesson}
+        currentLessonIndex={currentLessonIndex}
+        totalLessons={academyLessonEntries.length}
+        courseModuleHref={courseModuleHref}
+        text={{
+          lessonNavEyebrow: text.lessonNavEyebrow,
+          lessonNavTitle: text.lessonNavTitle,
+          lessonNavHint: text.lessonNavHint,
+          previousLesson: text.previousLesson,
+          nextLesson: text.nextLesson,
+          openLesson: text.openLesson,
+          firstLesson: text.firstLesson,
+          lastLesson: text.lastLesson,
+          backToModule: text.backToModule,
+        }}
+      />
     ) : null}
   </article>
 </section>
-
-<script is:inline data-astro-rerun>
-  (function () {
-    function showDialog(dialog) {
-      if (!dialog) return;
-      if (typeof dialog.showModal === 'function') {
-        dialog.showModal();
-      } else {
-        dialog.setAttribute('open', '');
-      }
-    }
-
-    function closeDialog(dialog) {
-      if (!dialog) return;
-      if (typeof dialog.close === 'function') {
-        dialog.close();
-      } else {
-        dialog.removeAttribute('open');
-      }
-    }
-
-    var coverTrigger = document.querySelector('[data-cover-preview-trigger]');
-    var coverDialog = document.querySelector('[data-cover-preview-dialog]');
-    var coverClose = document.querySelector('[data-cover-preview-close]');
-
-    if (coverTrigger && coverDialog && coverTrigger.dataset.previewBound !== 'true') {
-      coverTrigger.dataset.previewBound = 'true';
-      coverTrigger.addEventListener('click', function () {
-        showDialog(coverDialog);
-      });
-      coverClose?.addEventListener('click', function () {
-        closeDialog(coverDialog);
-      });
-      coverDialog.addEventListener('click', function (event) {
-        if (event.target === coverDialog) closeDialog(coverDialog);
-      });
-    }
-  })();
-</script>
-
-<script>
-  let pdfJsPromise: Promise<typeof import('pdfjs-dist')> | null = null;
-
-  function loadPdfJs() {
-    if (!pdfJsPromise) {
-      pdfJsPromise = Promise.all([
-        import('pdfjs-dist'),
-        import('pdfjs-dist/build/pdf.worker.mjs?url'),
-      ]).then(([pdfjsLib, worker]) => {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = worker.default;
-        return pdfjsLib;
-      });
-    }
-
-    return pdfJsPromise;
-  }
-
-  function showDeckDialog(dialog: HTMLDialogElement | null) {
-    if (!dialog) return;
-    if (typeof dialog.showModal === 'function') {
-      dialog.showModal();
-    } else {
-      dialog.setAttribute('open', '');
-    }
-  }
-
-  function closeDeckDialog(dialog: HTMLDialogElement | null) {
-    if (!dialog) return;
-    if (typeof dialog.close === 'function') {
-      dialog.close();
-    } else {
-      dialog.removeAttribute('open');
-    }
-  }
-
-  function initDeckPreview() {
-    const trigger = document.querySelector('[data-deck-preview-trigger]');
-    const dialog = document.querySelector('[data-deck-preview-dialog]');
-    if (!(trigger instanceof HTMLButtonElement) || !(dialog instanceof HTMLDialogElement)) return;
-    if (trigger.dataset.previewBound === 'true') return;
-    trigger.dataset.previewBound = 'true';
-
-    const closeButton = dialog.querySelector<HTMLButtonElement>('[data-deck-preview-close]');
-    const canvas = dialog.querySelector<HTMLCanvasElement>('[data-deck-preview-canvas]');
-    const viewer = dialog.querySelector<HTMLElement>('[data-deck-viewer]');
-    const status = dialog.querySelector<HTMLElement>('[data-deck-preview-status]');
-    const pageStatus = dialog.querySelector<HTMLElement>('[data-deck-page-status]');
-    const previousButton = dialog.querySelector<HTMLButtonElement>('[data-deck-prev]');
-    const nextButton = dialog.querySelector<HTMLButtonElement>('[data-deck-next]');
-
-    if (
-      !(canvas instanceof HTMLCanvasElement) ||
-      !(viewer instanceof HTMLElement) ||
-      !(status instanceof HTMLElement) ||
-      !(pageStatus instanceof HTMLElement) ||
-      !(previousButton instanceof HTMLButtonElement) ||
-      !(nextButton instanceof HTMLButtonElement)
-    ) {
-      return;
-    }
-
-    const context = canvas.getContext('2d');
-    if (!context) return;
-    const deckCanvas = canvas;
-    const deckViewer = viewer;
-    const deckStatus = status;
-    const deckPageStatus = pageStatus;
-    const deckPreviousButton = previousButton;
-    const deckNextButton = nextButton;
-    const deckContext = context;
-
-    const deckSrc = dialog.dataset.deckSrc || '';
-    const loadingLabel = dialog.dataset.deckLoadingLabel || '';
-    const errorLabel = dialog.dataset.deckErrorLabel || '';
-    let pdfDocument: any = null;
-    let loadingPromise: Promise<any> | null = null;
-    let currentPage = 1;
-    let activeRenderTask: any = null;
-
-    function setBusy(message: string) {
-      deckStatus.textContent = message;
-      deckStatus.hidden = false;
-    }
-
-    function setReady() {
-      deckStatus.hidden = true;
-    }
-
-    function updateControls() {
-      const total = pdfDocument?.numPages || 1;
-      deckPageStatus.textContent = `${currentPage} / ${total}`;
-      deckPreviousButton.disabled = currentPage <= 1;
-      deckNextButton.disabled = currentPage >= total;
-    }
-
-    function reserveCanvasSpace() {
-      const availableWidth = Math.max(320, deckViewer.clientWidth - 32);
-      const displayWidth = Math.min(960, availableWidth);
-      const displayHeight = Math.round(displayWidth * 0.5625);
-      const deviceScale = window.devicePixelRatio || 1;
-
-      if (deckCanvas.width > 300 && deckCanvas.height > 150) {
-        return;
-      }
-
-      deckCanvas.width = Math.floor(displayWidth * deviceScale);
-      deckCanvas.height = Math.floor(displayHeight * deviceScale);
-      deckCanvas.style.width = `${Math.floor(displayWidth)}px`;
-      deckCanvas.style.height = `${displayHeight}px`;
-    }
-
-    async function loadDocument() {
-      if (!loadingPromise) {
-        setBusy(loadingLabel);
-        const pdfjsLib = await loadPdfJs();
-        loadingPromise = pdfjsLib.getDocument(deckSrc).promise;
-      }
-
-      pdfDocument = await loadingPromise;
-      updateControls();
-      return pdfDocument;
-    }
-
-    async function renderPage(pageNumber: number) {
-      try {
-        const document = await loadDocument();
-        const page = await document.getPage(pageNumber);
-        const baseViewport = page.getViewport({ scale: 1 });
-        const deviceScale = window.devicePixelRatio || 1;
-        const availableWidth = Math.max(320, deckViewer.clientWidth - 32);
-        const displayScale = Math.min(1.35, availableWidth / baseViewport.width);
-        const viewport = page.getViewport({ scale: displayScale * deviceScale });
-
-        if (activeRenderTask) {
-          activeRenderTask.cancel();
-        }
-
-        deckCanvas.width = Math.floor(viewport.width);
-        deckCanvas.height = Math.floor(viewport.height);
-        deckCanvas.style.width = `${Math.floor(viewport.width / deviceScale)}px`;
-        deckCanvas.style.height = `${Math.floor(viewport.height / deviceScale)}px`;
-
-        activeRenderTask = page.render({ canvasContext: deckContext, viewport });
-        await activeRenderTask.promise;
-        activeRenderTask = null;
-        setReady();
-        updateControls();
-      } catch (error) {
-        if (error instanceof Error && error.name === 'RenderingCancelledException') return;
-        console.error('PDF preview failed', error);
-        setBusy(errorLabel);
-      }
-    }
-
-    trigger.addEventListener('click', async () => {
-      showDeckDialog(dialog);
-      await new Promise((resolve) => requestAnimationFrame(resolve));
-      reserveCanvasSpace();
-      renderPage(currentPage);
-    });
-
-    previousButton.addEventListener('click', () => {
-      if (currentPage <= 1) return;
-      currentPage -= 1;
-      updateControls();
-      renderPage(currentPage);
-    });
-
-    nextButton.addEventListener('click', () => {
-      const total = pdfDocument?.numPages || 1;
-      if (currentPage >= total) return;
-      currentPage += 1;
-      updateControls();
-      renderPage(currentPage);
-    });
-
-    closeButton?.addEventListener('click', () => closeDeckDialog(dialog));
-    dialog.addEventListener('click', (event) => {
-      if (event.target === dialog) closeDeckDialog(dialog);
-    });
-  }
-
-  initDeckPreview();
-  document.addEventListener('astro:page-load', initDeckPreview);
-</script>
