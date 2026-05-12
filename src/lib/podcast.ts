@@ -15,6 +15,7 @@ const showMeta: Record<
     email: string;
     language: string;
     category: string;
+    subcategory: string;
     artwork: string;
   }
 > = {
@@ -26,6 +27,7 @@ const showMeta: Record<
     email: 'maozhongfu0827@gmail.com',
     language: 'zh-cn',
     category: 'Technology',
+    subcategory: 'Tech News',
     artwork: '/images/podcast-cover-ai-radar-20260510.jpg',
   },
   ja: {
@@ -36,6 +38,7 @@ const showMeta: Record<
     email: 'maozhongfu0827@gmail.com',
     language: 'ja-jp',
     category: 'Technology',
+    subcategory: 'Tech News',
     artwork: '/images/podcast-cover-ai-radar-20260510.jpg',
   },
 };
@@ -58,6 +61,10 @@ export async function buildPodcastFeed({
   const artworkUrl = new URL(resolveSiteUrl(show.artwork), site).toString();
   const feedSite = new URL(homePath(locale), site);
   const feedLink = feedSite.toString();
+  const feedSelfUrl = new URL(
+    resolveSiteUrl(locale === 'ja' ? '/ja/feed.xml' : '/feed.xml'),
+    site,
+  ).toString();
   const items = await Promise.all(
     entries.map(async ({ entry, slug }) => {
       const audioUrl = resolveAbsoluteUrl(entry.data.audioUrl ?? '', site);
@@ -87,8 +94,14 @@ export async function buildPodcastFeed({
           type: 'audio/mpeg',
         },
         customData: [
+          // Stable opaque GUID: decouples Apple Podcasts identity from article slug.
+          // If we ever rename a slug, the episode keeps the same GUID and subscribers
+          // don't see a phantom "new" episode. `@astrojs/rss` autogenerates a
+          // permalink-style guid from `link`; this <guid> overrides it.
+          `<guid isPermaLink="false">radar:${escapeXmlText(slug)}</guid>`,
           duration ? `<itunes:duration>${duration}</itunes:duration>` : '',
           `<itunes:summary>${escapeXmlText(episodeSummary)}</itunes:summary>`,
+          `<itunes:author>${escapeXmlText(show.author)}</itunes:author>`,
           `<itunes:explicit>${entry.data.audioExplicit ? 'true' : 'false'}</itunes:explicit>`,
           `<itunes:episodeType>full</itunes:episodeType>`,
           `<itunes:image href="${escapeXmlAttribute(artworkUrl)}" />`,
@@ -103,16 +116,20 @@ export async function buildPodcastFeed({
     xmlns: {
       itunes: 'http://www.itunes.com/dtds/podcast-1.0.dtd',
       content: 'http://purl.org/rss/1.0/modules/content/',
+      atom: 'http://www.w3.org/2005/Atom',
     },
     title: show.title,
     description: show.description,
     site: feedSite,
     items,
     customData: [
+      `<atom:link href="${escapeXmlAttribute(feedSelfUrl)}" rel="self" type="application/rss+xml"/>`,
       `<language>${show.language}</language>`,
       `<itunes:author>${escapeXmlText(show.author)}</itunes:author>`,
       `<itunes:owner><itunes:name>${escapeXmlText(show.author)}</itunes:name><itunes:email>${escapeXmlText(show.email)}</itunes:email></itunes:owner>`,
-      `<itunes:category text="${escapeXmlAttribute(show.category)}" />`,
+      // Nested category enables Apple Podcasts subcategory search routing.
+      // Parent / child text must match Apple's official taxonomy verbatim.
+      `<itunes:category text="${escapeXmlAttribute(show.category)}"><itunes:category text="${escapeXmlAttribute(show.subcategory)}"/></itunes:category>`,
       `<itunes:explicit>false</itunes:explicit>`,
       `<itunes:type>episodic</itunes:type>`,
       `<itunes:image href="${escapeXmlAttribute(artworkUrl)}" />`,
