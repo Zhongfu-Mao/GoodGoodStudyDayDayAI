@@ -10,6 +10,9 @@ const entries = await getEntriesForTopic(locale, topic);
 const text = topicsPage[locale];
 const copy = topicCopy[locale][topic];
 
+// How many cards to surface per collection before the "show all" toggle.
+const PREVIEW_PER_COLLECTION = 6;
+
 // Group by collection so a Topic page surfaces the cross-cut nature.
 const COLLECTION_ORDER: CollectionName[] = ['radar', 'academy', 'engineering', 'foundations', 'start'];
 const grouped = new Map<CollectionName, typeof entries>();
@@ -20,7 +23,10 @@ for (const item of entries) {
 }
 const orderedGroups = COLLECTION_ORDER.flatMap((collection) => {
   const items = grouped.get(collection);
-  return items && items.length > 0 ? [{ collection, items }] : [];
+  if (!items || items.length === 0) return [];
+  const preview = items.slice(0, PREVIEW_PER_COLLECTION);
+  const overflow = items.slice(PREVIEW_PER_COLLECTION);
+  return [{ collection, items, preview, overflow }];
 });
 ---
 
@@ -40,7 +46,7 @@ const orderedGroups = COLLECTION_ORDER.flatMap((collection) => {
     <p class="theme-muted mt-8">{text.emptyTopic}</p>
   ) : (
     <div class="mt-10 grid gap-10">
-      {orderedGroups.map(({ collection, items }) => (
+      {orderedGroups.map(({ collection, items, preview, overflow }) => (
         <section>
           <div class="flex flex-wrap items-end justify-between gap-3">
             <h2 class="theme-heading text-xl font-semibold">
@@ -49,10 +55,53 @@ const orderedGroups = COLLECTION_ORDER.flatMap((collection) => {
             <span class="theme-chip rounded-xl px-3 py-1 text-xs">{text.itemCount(items.length)}</span>
           </div>
           <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {items.map((item) => <PostCard item={item} locale={locale} />)}
+            {preview.map((item) => <PostCard item={item} locale={locale} />)}
+            {overflow.length > 0 ? (
+              <details class="topic-show-more col-span-full">
+                <summary class="topic-show-more__summary theme-button-soft flex cursor-pointer items-center justify-center gap-2 rounded-[1rem] px-4 py-3 text-sm font-medium">
+                  <span class="topic-show-more__chevron" aria-hidden="true">▾</span>
+                  <span class="topic-show-more__label-collapsed">
+                    {text.showAll(items.length)}
+                  </span>
+                  <span class="topic-show-more__label-expanded">
+                    {text.collapse}
+                  </span>
+                </summary>
+                <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                  {overflow.map((item) => <PostCard item={item} locale={locale} />)}
+                </div>
+              </details>
+            ) : null}
           </div>
         </section>
       ))}
     </div>
   )}
 </section>
+
+<style>
+  .topic-show-more__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .topic-show-more__chevron {
+    display: inline-block;
+    transition: transform 0.18s ease;
+  }
+
+  details[open] > .topic-show-more__summary .topic-show-more__chevron {
+    transform: rotate(180deg);
+  }
+
+  .topic-show-more__label-expanded {
+    display: none;
+  }
+
+  details[open] > .topic-show-more__summary .topic-show-more__label-collapsed {
+    display: none;
+  }
+
+  details[open] > .topic-show-more__summary .topic-show-more__label-expanded {
+    display: inline;
+  }
+</style>
