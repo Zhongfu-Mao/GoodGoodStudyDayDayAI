@@ -527,6 +527,37 @@ test.describe('published site UI', () => {
     await expectSectionHasLocaleInfographic(japaneseMonthlySection, 'ja');
   });
 
+  test('radar podcast guide is linked from the radar navigation', async ({ page }) => {
+    await gotoApp(page, '/radar/#daily');
+
+    const podcastGuideLink = page.locator('[data-podcast-guide-link]:visible');
+    await expect(podcastGuideLink).toHaveAttribute('href', appPath('/radar/podcast/'));
+    await expect(podcastGuideLink).toHaveText(/RSS/);
+
+    await podcastGuideLink.click();
+    await expect(page).toHaveURL(appUrlPattern('/radar/podcast/'));
+    await expect(
+      page.getByRole('heading', { level: 1, name: '在 Apple Podcasts 订阅 AI 雷达' }),
+    ).toBeVisible();
+    await expect(page.locator('[data-feed-url="zh"]')).toContainText(
+      'https://zhongfu-mao.github.io/GoodGoodStudyDayDayAI/feed.xml',
+    );
+    await expect(page.getByRole('heading', { level: 2, name: 'iPhone 上的添加路径' })).toBeVisible();
+
+    await gotoApp(page, '/ja/radar/#daily');
+    const japanesePodcastGuideLink = page.locator('[data-podcast-guide-link]:visible');
+    await expect(japanesePodcastGuideLink).toHaveAttribute('href', appPath('/ja/radar/podcast/'));
+
+    await japanesePodcastGuideLink.click();
+    await expect(page).toHaveURL(appUrlPattern('/ja/radar/podcast/'));
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'Apple Podcasts で AI レーダーを購読する' }),
+    ).toBeVisible();
+    await expect(page.locator('[data-feed-url="ja"]')).toContainText(
+      'https://zhongfu-mao.github.io/GoodGoodStudyDayDayAI/ja/feed.xml',
+    );
+  });
+
   test('mobile radar header leaves room for content', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'mobile header layout only');
 

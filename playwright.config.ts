@@ -9,6 +9,7 @@ const host = process.env.PLAYWRIGHT_HOST ?? configuredBaseUrl?.hostname ?? '127.
 const serverOrigin = configuredBaseUrl?.origin ?? `http://${host}:${port}`;
 const appBasePath = resolveAppBasePath();
 const readyUrl = new URL(appBasePath, `${serverOrigin}/`).toString();
+const skipWebServer = process.env.PLAYWRIGHT_SKIP_WEBSERVER === '1';
 
 export default defineConfig({
   testDir: './tests/ui',
@@ -28,12 +29,14 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
-  webServer: {
-    command: `npm run preview -- --host ${host} --port ${port}`,
-    url: readyUrl,
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
-  },
+  webServer: skipWebServer
+    ? undefined
+    : {
+        command: `npm run preview -- --host ${host} --port ${port}`,
+        url: readyUrl,
+        reuseExistingServer: !process.env.CI,
+        timeout: 120_000,
+      },
   projects: [
     {
       name: 'chromium',

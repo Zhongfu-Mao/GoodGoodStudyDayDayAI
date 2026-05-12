@@ -9,6 +9,7 @@ import ThemeToggle from './ThemeToggle.astro';
 import ThemeScript from './ThemeScript.astro';
 import {
   homePath,
+  podcastGuidePath,
   resolveSiteUrl,
   searchPath,
   withBase,
@@ -64,6 +65,18 @@ const showAcademySubnav = activeCategory === 'academy';
 const radarSubnavItems = getRadarSubnavItems(locale);
 const academySubnavItems = getAcademySubnavItems(locale);
 const startSubnavItems = getStartSubnavItems(locale);
+const podcastGuideText = {
+  zh: {
+    label: 'RSS',
+    tooltip: '查看 Apple Podcasts 订阅图文教程',
+    ariaLabel: 'RSS 订阅教程',
+  },
+  ja: {
+    label: 'RSS',
+    tooltip: 'Apple Podcasts で購読する手順を見る',
+    ariaLabel: 'RSS 購読ガイド',
+  },
+} as const;
 ---
 
 <!doctype html>
@@ -179,6 +192,31 @@ const startSubnavItems = getStartSubnavItems(locale);
                 {item.label}
               </a>
             ))}
+            <a
+              href={podcastGuidePath(locale)}
+              data-podcast-guide-link
+              data-astro-reload
+              data-tooltip={podcastGuideText[locale].tooltip}
+              aria-label={podcastGuideText[locale].ariaLabel}
+              class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom inline-flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-sm font-semibold"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-3.5 w-3.5"
+                aria-hidden="true"
+              >
+                <path d="M4 11a9 9 0 0 1 9 9" />
+                <path d="M4 4a16 16 0 0 1 16 16" />
+                <circle cx="5" cy="19" r="1" />
+              </svg>
+              {podcastGuideText[locale].label}
+            </a>
           </nav>
         </div>
       ) : null}

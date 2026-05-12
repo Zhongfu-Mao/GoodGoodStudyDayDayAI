@@ -103,6 +103,10 @@ export function radarGalleryPath(locale: Locale) {
   return withBase(`${localePrefix(locale)}/radar/gallery/`);
 }
 
+export function podcastGuidePath(locale: Locale) {
+  return withBase(`${localePrefix(locale)}/radar/podcast/`);
+}
+
 export function tagPath(tag: string, locale: Locale) {
   return withBase(`${localePrefix(locale)}/tags/${slugifyTag(tag)}/`);
 }

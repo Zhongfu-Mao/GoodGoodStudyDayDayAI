@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import PodcastSubscribeGuide from '../../components/PodcastSubscribeGuide.astro';
+import { podcastGuidePath } from '../../lib/site';
+
+const title = '在 Apple Podcasts 订阅 AI 雷达';
+const description = '图文说明如何用 RSS 地址在 Apple Podcasts 里订阅 AI 雷达音频简报。';
+---
+
+<BaseLayout
+  title={`${title} · Good Good Study, Day Day AI`}
+  description={description}
+  locale="zh"
+  languagePaths={{ zh: podcastGuidePath('zh'), ja: podcastGuidePath('ja') }}
+  activeCategory="radar"
+>
+  <PodcastSubscribeGuide locale="zh" />
+</BaseLayout>

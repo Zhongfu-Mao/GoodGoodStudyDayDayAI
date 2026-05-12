@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../../components/BaseLayout.astro';
+import PodcastSubscribeGuide from '../../../components/PodcastSubscribeGuide.astro';
+import { podcastGuidePath } from '../../../lib/site';
+
+const title = 'Apple Podcasts で AI レーダーを購読する';
+const description = 'RSS URL を使って Apple Podcasts に AI レーダーの音声ブリーフィングを追加する手順を説明します。';
+---
+
+<BaseLayout
+  title={`${title} · Good Good Study, Day Day AI`}
+  description={description}
+  locale="ja"
+  languagePaths={{ zh: podcastGuidePath('zh'), ja: podcastGuidePath('ja') }}
+  activeCategory="radar"
+>
+  <PodcastSubscribeGuide locale="ja" />
+</BaseLayout>

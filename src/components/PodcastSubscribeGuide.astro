@@ -1,0 +1,250 @@
+---
+import { podcastGuidePath, resolveSiteUrl, type Locale } from '../lib/site';
+
+const { locale } = Astro.props as { locale: Locale };
+
+const productionBaseUrl = 'https://zhongfu-mao.github.io/GoodGoodStudyDayDayAI';
+const feedUrl = locale === 'ja' ? `${productionBaseUrl}/ja/feed.xml` : `${productionBaseUrl}/feed.xml`;
+const alternateFeedUrl = locale === 'ja' ? `${productionBaseUrl}/feed.xml` : `${productionBaseUrl}/ja/feed.xml`;
+
+const copyLabel = locale === 'ja' ? 'コピー' : '复制';
+const copiedLabel = locale === 'ja' ? 'コピーしました' : '已复制';
+const text = {
+  zh: {
+    eyebrow: 'RSS Guide',
+    title: '在 Apple Podcasts 订阅 AI 雷达',
+    description:
+      'AI 雷达还没有进入 Apple Podcasts 搜索目录时，可以直接用 RSS 地址订阅。订阅后，新音频会进入你的资料库，并跟随 RSS 自动更新。',
+    primaryCta: '去复制 RSS 地址',
+    secondaryCta: '查看日文订阅地址',
+    phoneTitle: 'iPhone 上的添加路径',
+    phoneIntro: '按下面 4 张图操作：先复制 RSS 地址，再到 Podcasts 的资料库里通过 URL 添加节目。',
+    phoneSteps: [
+      {
+        title: '复制 RSS 地址',
+        body: '先滑到本页 RSS 区域，点中文订阅地址旁边的“复制”按钮。',
+      },
+      {
+        title: '打开 Podcasts 的资料库',
+        body: '进入 Podcasts App，点底部“资料库”，再点右上角“更多”按钮。',
+      },
+      {
+        title: '按 URL 添加节目',
+        body: '在弹出的菜单里，选择“按 URL 关注节目”。这是手动添加 RSS 播客的入口。',
+      },
+      {
+        title: '粘贴地址并关注',
+        body: '把 RSS 地址粘贴进去，确认是 AI 雷达的订阅地址，然后点“关注”。',
+      },
+    ],
+    noteTitle: '为什么搜索不到？',
+    noteBody:
+      '这是 RSS 私有订阅，不等于提交到 Apple Podcasts 公开目录。朋友需要用 URL 添加；等之后正式提交目录审核，通过后才可以直接搜索到。',
+    feedLabel: '中文订阅地址',
+    alternateFeedLabel: '日文订阅地址',
+  },
+  ja: {
+    eyebrow: 'RSS Guide',
+    title: 'Apple Podcasts で AI レーダーを購読する',
+    description:
+      'AI レーダーが Apple Podcasts の検索カタログに載る前でも、RSS URL を直接追加すれば購読できます。新しい音声はライブラリに入り、RSS に合わせて更新されます。',
+    primaryCta: 'RSS URL をコピーする',
+    secondaryCta: '中国語の購読 URL を見る',
+    phoneTitle: 'iPhone での追加手順',
+    phoneIntro: '下の 4 枚の画像に沿って進めてください。まず RSS URL をコピーし、Podcasts のライブラリから URL で番組を追加します。',
+    phoneSteps: [
+      {
+        title: 'RSS URL をコピー',
+        body: 'このページの RSS 欄まで移動し、購読 URL の横にある「コピー」ボタンをタップします。',
+      },
+      {
+        title: 'Podcasts のライブラリを開く',
+        body: 'Podcasts App を開き、下部の「ライブラリ」をタップして、右上の「その他」ボタンを開きます。',
+      },
+      {
+        title: 'URL で番組をフォロー',
+        body: '表示されたメニューから「URL で番組をフォロー」を選びます。RSS ポッドキャストを手動で追加する入口です。',
+      },
+      {
+        title: 'URL を貼り付けてフォロー',
+        body: 'RSS URL を貼り付け、AI レーダーの購読 URL であることを確認してから「フォロー」をタップします。',
+      },
+    ],
+    noteTitle: '検索で見つからない理由',
+    noteBody:
+      'これは RSS の直接購読で、Apple Podcasts の公開カタログ掲載とは別です。友人には URL を共有してください。公開カタログに申請して通過すると、検索から見つけられるようになります。',
+    feedLabel: '日本語の購読 URL',
+    alternateFeedLabel: '中国語の購読 URL',
+  },
+} as const;
+
+const pageText = text[locale];
+const alternateHref = podcastGuidePath(locale === 'ja' ? 'zh' : 'ja');
+const phoneVisuals = (locale === 'ja'
+  ? [
+      '/images/podcast/ios-rss-manual-step-01-ja.jpg',
+      '/images/podcast/ios-rss-manual-step-02-ja.jpg',
+      '/images/podcast/ios-rss-manual-step-03-ja.jpg',
+      '/images/podcast/ios-rss-manual-step-04-ja.jpg',
+    ]
+  : [
+      '/images/podcast/ios-rss-manual-step-01.jpg',
+      '/images/podcast/ios-rss-manual-step-02.jpg',
+      '/images/podcast/ios-rss-manual-step-03.jpg',
+      '/images/podcast/ios-rss-manual-step-04.jpg',
+    ]
+).map(resolveSiteUrl);
+---
+
+<section class="podcast-guide" data-podcast-guide>
+  <div class="podcast-guide-hero theme-panel-strong rounded-[1.5rem] p-6 shadow-glow md:p-8">
+    <div class="max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-[0.32em] theme-accent">{pageText.eyebrow}</p>
+      <h1 class="mt-4 text-3xl font-semibold tracking-normal theme-text md:text-5xl">
+        {pageText.title}
+      </h1>
+      <p class="theme-muted mt-5 text-base leading-7 md:text-lg md:leading-8">
+        {pageText.description}
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="#rss-address" class="theme-action-primary rounded-[1rem] px-4 py-3 text-sm font-semibold">
+          {pageText.primaryCta}
+        </a>
+        <a href={alternateHref} class="theme-action-secondary rounded-[1rem] px-4 py-3 text-sm font-semibold">
+          {pageText.secondaryCta}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <section id="rss-address" class="theme-panel mt-6 scroll-mt-36 rounded-[1.25rem] p-5 md:p-6">
+    <div class="max-w-3xl">
+      <h2 class="text-xl font-semibold theme-text">{pageText.phoneTitle}</h2>
+      <p class="theme-muted mt-3 text-sm leading-6">{pageText.phoneIntro}</p>
+    </div>
+
+    <ol class="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {pageText.phoneSteps.map((step, index) => (
+          <li class="podcast-step-card overflow-hidden rounded-[1rem] border">
+            <img
+              src={phoneVisuals[index]}
+              alt={`${index + 1}. ${step.title}`}
+              class="aspect-[4/5] w-full object-cover"
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+            <div class="p-4">
+              <div class="flex items-center gap-3">
+                <span class="theme-chip grid h-8 w-8 shrink-0 place-items-center rounded-xl text-sm font-semibold">
+                  {index + 1}
+                </span>
+                <h3 class="text-base font-semibold theme-text">{step.title}</h3>
+              </div>
+              <p class="theme-muted mt-3 text-sm leading-6">{step.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+  </section>
+
+  <section class="theme-panel mt-6 rounded-[1.25rem] p-5 md:p-6">
+    <h2 class="text-xl font-semibold theme-text">{pageText.noteTitle}</h2>
+    <p class="theme-muted mt-3 text-sm leading-6">{pageText.noteBody}</p>
+  </section>
+
+  <section class="theme-panel mt-6 rounded-[1.25rem] p-5 md:p-6">
+    <h2 class="text-xl font-semibold theme-text">RSS</h2>
+    <div class="mt-4 grid gap-4 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold theme-text">{pageText.feedLabel}</p>
+        <div class="mt-2 flex flex-col gap-2 sm:flex-row">
+          <code class="theme-panel min-w-0 flex-1 overflow-x-auto rounded-xl px-3 py-2 text-xs theme-muted" data-feed-url={locale}>
+            {feedUrl}
+          </code>
+          <button
+            type="button"
+            class="theme-chip theme-chip-link rounded-xl px-3 py-2 text-sm font-semibold"
+            data-copy-feed
+            data-copy-value={feedUrl}
+            data-copy-label={copyLabel}
+            data-copied-label={copiedLabel}
+          >
+            {copyLabel}
+          </button>
+        </div>
+      </div>
+      <div>
+        <p class="text-sm font-semibold theme-text">{pageText.alternateFeedLabel}</p>
+        <code class="theme-panel mt-2 block overflow-x-auto rounded-xl px-3 py-2 text-xs theme-muted">
+          {alternateFeedUrl}
+        </code>
+      </div>
+    </div>
+  </section>
+</section>
+
+<style>
+  .podcast-guide {
+    --phone-glow: rgba(34, 211, 238, 0.22);
+  }
+
+  .podcast-step-card {
+    border: 1px solid var(--theme-border);
+    background:
+      radial-gradient(circle at 50% 0%, var(--phone-glow), transparent 45%),
+      rgba(3, 7, 18, 0.42);
+  }
+
+  html[data-theme='light'] .podcast-step-card {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.18), transparent 45%),
+      rgba(255, 255, 255, 0.82);
+  }
+
+  .podcast-step-card img {
+    border-bottom: 1px solid var(--theme-border);
+    background: rgba(3, 7, 18, 0.65);
+  }
+
+  .podcast-step-card:hover {
+    border-color: color-mix(in srgb, var(--theme-accent) 38%, var(--theme-border));
+  }
+
+  .podcast-step-card {
+    transition:
+      border-color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .podcast-step-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .podcast-step-card .theme-chip {
+    border: 1px solid var(--theme-border);
+  }
+</style>
+
+<script is:inline data-astro-rerun>
+  (() => {
+    const buttons = Array.from(document.querySelectorAll('[data-copy-feed]'));
+    if (buttons.length === 0) return;
+
+    for (const button of buttons) {
+      button.addEventListener('click', async () => {
+        const value = button.getAttribute('data-copy-value') ?? '';
+        const label = button.getAttribute('data-copy-label') ?? button.textContent ?? '';
+        const copiedLabel = button.getAttribute('data-copied-label') ?? label;
+
+        try {
+          await navigator.clipboard.writeText(value);
+          button.textContent = copiedLabel;
+          window.setTimeout(() => {
+            button.textContent = label;
+          }, 1800);
+        } catch {
+          button.textContent = value;
+        }
+      });
+    }
+  })();
+</script>
