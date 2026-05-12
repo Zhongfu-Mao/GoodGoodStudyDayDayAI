@@ -7,8 +7,8 @@ plainSummary: "本笔记将 OpenAI Academy 中关于 Evals 的核心内容提炼
 difficulty: intermediate
 coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/evals.svg"
 tags:
-  - "Evals"
-  - "AI Engineering"
+  - Evaluation
+  - AI Engineering
 lang: zh
 academy:
   series: "OpenAI Academy"

@@ -7,7 +7,7 @@ plainSummary: "OpenAI Academy の「Workspace Agents」をベースに、AI を�
 difficulty: intermediate
 coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/workflows/workspace-agents.ja.svg"
 tags:
-  - "AI/Agents"
+  - Agent
 lang: ja
 academy:
   series: "OpenAI Academy"

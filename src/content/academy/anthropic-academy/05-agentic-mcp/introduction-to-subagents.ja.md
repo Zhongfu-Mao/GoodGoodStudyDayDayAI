@@ -7,8 +7,8 @@ plainSummary: "Subagents を専門的な役割を持つ協働ユニットとし�
 difficulty: "advanced"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-subagents.svg"
 tags:
-  - "MCP"
-  - "Agents"
+  - MCP
+  - Agent
 lang: ja
 academy:
   series: "Anthropic Academy"

@@ -7,8 +7,8 @@ plainSummary: "OpenAI Academy の Evals セッションの要点を、実務で�
 difficulty: intermediate
 coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/evals.ja.svg"
 tags:
-  - "Evals"
-  - "AI Engineering"
+  - Evaluation
+  - AI Engineering
 lang: ja
 academy:
   series: "OpenAI Academy"

@@ -7,7 +7,7 @@ plainSummary: "这篇笔记把 Introduction to Model Context Protocol 的核心�
 difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-model-context-protocol.svg"
 tags:
-  - "代理"
+  - Agent
 lang: zh
 academy:
   series: "Anthropic Academy"

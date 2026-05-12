@@ -7,8 +7,8 @@ coverImage: "/images/start/ai-basics-for-everyone/cards/eval-concept-card.ja.svg
 difficulty: beginner
 plainSummary: "Eval は AI の出力品質を繰り返し検証する手法です。「なんとなく良さそう」という主観的な評価を、具体的なテストセット、基準、指標に基づく客観的なプロセスに変えます。"
 tags:
-  - "Evals"
-  - "Quality"
+  - Evaluation
+  - Quality
 lang: ja
 academy:
   series: "AI Basics for Everyone"

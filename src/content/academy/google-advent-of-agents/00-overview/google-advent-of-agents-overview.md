@@ -7,8 +7,8 @@ plainSummary: "本页不是 Advent of Agents 的逐日搬运，而是把两季�
 difficulty: intermediate
 coverImage: "/images/academy/google-advent-of-agents/covers/00-overview/google-advent-of-agents-overview.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: zh
 academy:
   series: "Google Advent of Agents"

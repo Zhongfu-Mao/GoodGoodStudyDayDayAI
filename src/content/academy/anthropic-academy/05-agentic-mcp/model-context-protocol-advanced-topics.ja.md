@@ -7,7 +7,7 @@ plainSummary: "MCP の Sampling、Resources、Prompts、動的ツール、権限
 difficulty: "advanced"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/model-context-protocol-advanced-topics.svg"
 tags:
-  - "Agents"
+  - Agent
 lang: ja
 academy:
   series: "Anthropic Academy"

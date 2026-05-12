@@ -7,8 +7,8 @@ plainSummary: "Season 2 Day 31 を、設計境界、実践タスク、本番リ�
 difficulty: advanced
 coverImage: "/images/academy/google-advent-of-agents/season-2/day-31-a2ui-a2a-interactive-microapps/cover.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: ja
 academy:
   series: "Google Advent of Agents"

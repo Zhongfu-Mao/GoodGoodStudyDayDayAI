@@ -7,7 +7,7 @@ plainSummary: "这篇笔记把 OpenAI Academy 笔记：ChatGPT for Education 的
 difficulty: beginner
 coverImage: "/images/academy/openai-academy/covers/06-chatgpt-for-education/chatgpt-for-education.svg"
 tags:
-  - "AI/Fluency"
+  - AI Fluency
 lang: zh
 academy:
   series: "OpenAI Academy"

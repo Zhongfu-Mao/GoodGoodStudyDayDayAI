@@ -7,8 +7,8 @@ plainSummary: "この図解ノートでは、ツール接続、企業 API、他�
 difficulty: advanced
 coverImage: "/images/academy/google-advent-of-agents/covers/03-tools-protocols.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: ja
 academy:
   series: "Google Advent of Agents"

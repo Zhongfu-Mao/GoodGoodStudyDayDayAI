@@ -7,8 +7,8 @@ plainSummary: "这篇图文笔记解释 Agent 接工具、接企业 API、接其
 difficulty: advanced
 coverImage: "/images/academy/google-advent-of-agents/covers/03-tools-protocols.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: zh
 academy:
   series: "Google Advent of Agents"

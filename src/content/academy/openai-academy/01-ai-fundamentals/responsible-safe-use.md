@@ -7,7 +7,7 @@ plainSummary: "将安全性、隐私性、事实准确性、潜在偏见、版�
 difficulty: beginner
 coverImage: "/images/academy/openai-academy/covers/01-ai-fundamentals/responsible-safe-use.svg"
 tags:
-  - "AI/Fluency"
+  - AI Fluency
 lang: zh
 academy:
   series: "OpenAI Academy"

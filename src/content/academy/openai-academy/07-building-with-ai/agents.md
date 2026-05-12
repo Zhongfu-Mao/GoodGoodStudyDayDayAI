@@ -7,8 +7,8 @@ plainSummary: "本笔记将 OpenAI Academy 中关于 Building Agents 的核心�
 difficulty: intermediate
 coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/agents.svg"
 tags:
-  - "AI/Agents"
-  - "Building with AI"
+  - Agent
+  - Building with AI
 lang: zh
 academy:
   series: "OpenAI Academy"

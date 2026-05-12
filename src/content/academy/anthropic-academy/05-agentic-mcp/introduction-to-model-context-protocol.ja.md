@@ -7,7 +7,7 @@ plainSummary: "MCP をクライアント、サーバー、ツール、リソー�
 difficulty: "advanced"
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-model-context-protocol.svg"
 tags:
-  - "Agents"
+  - Agent
 lang: ja
 academy:
   series: "Anthropic Academy"

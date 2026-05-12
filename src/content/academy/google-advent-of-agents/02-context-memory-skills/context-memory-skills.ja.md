@@ -7,8 +7,8 @@ plainSummary: "この図解ノートでは、「大きなコンテキスト」�
 difficulty: advanced
 coverImage: "/images/academy/google-advent-of-agents/covers/02-context-memory-skills.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: ja
 academy:
   series: "Google Advent of Agents"

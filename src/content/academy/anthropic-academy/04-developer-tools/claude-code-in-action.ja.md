@@ -7,8 +7,8 @@ plainSummary: "Claude Code を CLI 上の開発相棒として使いこなすた
 difficulty: "advanced"
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-code-in-action.svg"
 tags:
-  - "Claude/Code"
-  - "開発者"
+  - Claude Code
+  - 開発者
 lang: ja
 academy:
   series: "Anthropic Academy"

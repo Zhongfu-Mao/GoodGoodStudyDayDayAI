@@ -7,8 +7,8 @@ plainSummary: "本笔记解析了如何将 AI Fluency 的 4D 框架转化为可�
 difficulty: beginner
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/teaching-ai-fluency.svg"
 tags:
-  - "教育"
-  - "AI-Fluency"
+  - 教育
+  - AI Fluency
 lang: zh
 academy:
   series: "Anthropic Academy"

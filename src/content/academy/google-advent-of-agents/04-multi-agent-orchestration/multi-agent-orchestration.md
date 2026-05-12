@@ -7,8 +7,8 @@ plainSummary: "这篇图文笔记解释为什么不要一开始就做复杂多 A
 difficulty: advanced
 coverImage: "/images/academy/google-advent-of-agents/covers/04-multi-agent-orchestration.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: zh
 academy:
   series: "Google Advent of Agents"

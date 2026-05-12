@@ -6,9 +6,9 @@ description: "データ品質は単なる「前処理」ではなく、プロン
 difficulty: beginner
 plainSummary: "Garbage In, Garbage Out はデータエンジニアリングだけの格言ではありません。プロンプト、知識ベース、モデル評価にもそのまま当てはまります。データ品質思考は、AI 時代にもっとも転用しやすい能力の一つです。"
 tags:
-  - "Data Science"
-  - "Quality"
-  - "Eval"
+  - Data Science
+  - Quality
+  - Evaluation
 lang: ja
 draft: false
 ---

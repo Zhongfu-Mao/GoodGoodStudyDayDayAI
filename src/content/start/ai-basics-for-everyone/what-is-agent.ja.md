@@ -7,7 +7,7 @@ coverImage: "/images/start/ai-basics-for-everyone/cards/agent-concept-card.ja.sv
 difficulty: beginner
 plainSummary: "Agent は単に会話するだけのボットではなく、目標達成に向けてツールを使いこなし、手順を進め、自ら結果を確認・修正する AI ワークフローです。"
 tags:
-  - "AI/Agents"
+  - Agent
 lang: ja
 academy:
   series: "AI Basics for Everyone"

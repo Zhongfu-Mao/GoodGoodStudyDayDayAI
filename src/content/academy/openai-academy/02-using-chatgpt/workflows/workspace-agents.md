@@ -7,7 +7,7 @@ plainSummary: "本笔记将 OpenAI Academy 关于 Workspace Agents 的内容提�
 difficulty: intermediate
 coverImage: "/images/academy/openai-academy/covers/02-using-chatgpt/workflows/workspace-agents.svg"
 tags:
-  - "AI/Agents"
+  - Agent
 lang: zh
 academy:
   series: "OpenAI Academy"

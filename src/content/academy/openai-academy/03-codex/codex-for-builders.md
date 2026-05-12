@@ -7,8 +7,8 @@ plainSummary: "本笔记将 OpenAI Academy 中关于 Codex 的核心内容，提
 difficulty: intermediate
 coverImage: "/images/academy/openai-academy/covers/03-codex/codex-for-builders.svg"
 tags:
-  - "Codex"
-  - "AI/Agents"
+  - Codex
+  - Agent
 lang: zh
 academy:
   series: "OpenAI Academy"

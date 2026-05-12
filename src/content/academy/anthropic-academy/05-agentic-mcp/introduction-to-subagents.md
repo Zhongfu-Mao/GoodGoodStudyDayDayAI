@@ -7,8 +7,8 @@ plainSummary: "本笔记深入解析了 Subagents 的核心机制，探讨如何
 difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-subagents.svg"
 tags:
-  - "MCP"
-  - "Agents"
+  - MCP
+  - Agent
 lang: zh
 academy:
   series: "Anthropic Academy"

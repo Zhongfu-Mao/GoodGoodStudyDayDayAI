@@ -7,7 +7,7 @@ plainSummary: "安全性、プライバシー、正確性、バイアス、著�
 difficulty: beginner
 coverImage: "/images/academy/openai-academy/covers/01-ai-fundamentals/responsible-safe-use.ja.svg"
 tags:
-  - "AI/Fluency"
+  - AI Fluency
 lang: ja
 academy:
   series: "OpenAI Academy"

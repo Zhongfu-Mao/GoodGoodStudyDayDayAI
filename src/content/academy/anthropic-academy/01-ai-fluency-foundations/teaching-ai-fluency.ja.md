@@ -7,8 +7,8 @@ plainSummary: "AI Fluency を授業や研修に組み込むため、4D フレー
 difficulty: "beginner"
 coverImage: "/images/academy/anthropic-academy/covers/01-ai-fluency-foundations/teaching-ai-fluency.svg"
 tags:
-  - "Education"
-  - "AI-Fluency"
+  - Education
+  - AI Fluency
 lang: ja
 academy:
   series: "Anthropic Academy"

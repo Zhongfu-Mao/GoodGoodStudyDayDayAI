@@ -7,8 +7,8 @@ plainSummary: "この図解ノートでは、複雑なマルチエージェン�
 difficulty: advanced
 coverImage: "/images/academy/google-advent-of-agents/covers/04-multi-agent-orchestration.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: ja
 academy:
   series: "Google Advent of Agents"

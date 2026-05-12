@@ -7,8 +7,8 @@ plainSummary: "OpenAI Academy の「Codex Use Cases」の要点を、実務で�
 difficulty: intermediate
 coverImage: "/images/academy/openai-academy/covers/05-codex/use-cases.ja.svg"
 tags:
-  - "Codex"
-  - "AI/Agents"
+  - Codex
+  - Agent
 lang: ja
 academy:
   series: "OpenAI Academy"

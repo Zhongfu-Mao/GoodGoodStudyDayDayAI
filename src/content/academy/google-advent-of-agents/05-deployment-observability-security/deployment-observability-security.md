@@ -7,8 +7,8 @@ plainSummary: "这篇图文笔记把 Agent 上线前必须回答的问题整理�
 difficulty: advanced
 coverImage: "/images/academy/google-advent-of-agents/covers/05-deployment-observability-security.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: zh
 academy:
   series: "Google Advent of Agents"

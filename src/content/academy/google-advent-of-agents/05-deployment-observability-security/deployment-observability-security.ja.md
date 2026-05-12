@@ -7,8 +7,8 @@ plainSummary: "この図解ノートでは、エージェントを本番に出�
 difficulty: advanced
 coverImage: "/images/academy/google-advent-of-agents/covers/05-deployment-observability-security.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: ja
 academy:
   series: "Google Advent of Agents"

@@ -7,8 +7,8 @@ plainSummary: "この図解ノートは Advent of Agents の Hello World、Gemin
 difficulty: intermediate
 coverImage: "/images/academy/google-advent-of-agents/covers/01-adk-agent-project-anatomy.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: ja
 academy:
   series: "Google Advent of Agents"

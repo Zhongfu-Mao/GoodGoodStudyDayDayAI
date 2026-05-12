@@ -7,7 +7,7 @@ coverImage: "/images/start/ai-basics-for-everyone/cards/agent-concept-card.zh.sv
 difficulty: beginner
 plainSummary: "智能体（Agent）不仅是一个会聊天的机器人，更是一种能够自主调用工具、拆解步骤、观察反馈并自我迭代的 AI 工作流。它代表了 AI 从“生成内容”向“完成任务”的进化。"
 tags:
-  - "AI/Agents"
+  - Agent
 lang: zh
 academy:
   series: "AI Basics for Everyone"

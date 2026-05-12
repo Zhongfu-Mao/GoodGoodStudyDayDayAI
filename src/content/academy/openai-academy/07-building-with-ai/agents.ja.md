@@ -7,8 +7,8 @@ plainSummary: "OpenAI Academy の Building Agents セッションの要点を、
 difficulty: intermediate
 coverImage: "/images/academy/openai-academy/covers/07-building-with-ai/agents.ja.svg"
 tags:
-  - "AI/Agents"
-  - "Building with AI"
+  - Agent
+  - Building with AI
 lang: ja
 academy:
   series: "OpenAI Academy"

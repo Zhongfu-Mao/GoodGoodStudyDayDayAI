@@ -7,8 +7,8 @@ coverImage: "/images/start/ai-basics-for-everyone/cards/eval-concept-card.zh.svg
 difficulty: beginner
 plainSummary: "Eval 是对 AI 输出质量进行可重复检查的方法论。它将主观的“感觉不错”转化为客观的测试集、评分标准和性能指标。"
 tags:
-  - "Evals"
-  - "Quality"
+  - Evaluation
+  - Quality
 lang: zh
 academy:
   series: "AI Basics for Everyone"

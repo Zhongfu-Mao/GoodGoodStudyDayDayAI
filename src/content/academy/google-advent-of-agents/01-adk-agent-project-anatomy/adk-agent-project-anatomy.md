@@ -7,8 +7,8 @@ plainSummary: "这篇图文笔记把 Advent of Agents 中 Hello World、Gemini +
 difficulty: intermediate
 coverImage: "/images/academy/google-advent-of-agents/covers/01-adk-agent-project-anatomy.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: zh
 academy:
   series: "Google Advent of Agents"

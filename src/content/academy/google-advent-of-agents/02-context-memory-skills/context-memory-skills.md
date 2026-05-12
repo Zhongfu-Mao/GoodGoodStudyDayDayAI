@@ -7,8 +7,8 @@ plainSummary: "这篇图文笔记说明为什么“大上下文不等于好记�
 difficulty: advanced
 coverImage: "/images/academy/google-advent-of-agents/covers/02-context-memory-skills.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: zh
 academy:
   series: "Google Advent of Agents"

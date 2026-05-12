@@ -7,7 +7,7 @@ plainSummary: "OpenAI Academyノート：ChatGPT for Education の要点を、06
 difficulty: beginner
 coverImage: "/images/academy/openai-academy/covers/06-chatgpt-for-education/chatgpt-for-education.ja.svg"
 tags:
-  - "AI/Fluency"
+  - AI Fluency
 lang: ja
 academy:
   series: "OpenAI Academy"

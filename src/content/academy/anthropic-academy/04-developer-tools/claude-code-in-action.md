@@ -7,8 +7,8 @@ plainSummary: "这篇笔记把 Claude Code in Action 的核心内容整理成可
 difficulty: advanced
 coverImage: "/images/academy/anthropic-academy/covers/04-developer-tools/claude-code-in-action.svg"
 tags:
-  - "Claude/Code"
-  - "开发者"
+  - Claude Code
+  - 开发者
 lang: zh
 academy:
   series: "Anthropic Academy"

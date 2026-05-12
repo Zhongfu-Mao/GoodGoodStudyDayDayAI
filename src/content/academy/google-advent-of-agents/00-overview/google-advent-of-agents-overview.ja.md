@@ -7,8 +7,8 @@ plainSummary: "本ページは Advent of Agents の日別翻訳ではなく、�
 difficulty: intermediate
 coverImage: "/images/academy/google-advent-of-agents/covers/00-overview/google-advent-of-agents-overview.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: ja
 academy:
   series: "Google Advent of Agents"

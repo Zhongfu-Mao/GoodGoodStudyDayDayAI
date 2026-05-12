@@ -6,9 +6,9 @@ description: "数据质量不是'预处理步骤'，而是贯穿 Prompt 设计�
 difficulty: beginner
 plainSummary: "Garbage In, Garbage Out 不只是数据工程的格言——它同样适用于 Prompt 写作、知识库管理和模型评测。数据质量思维是 AI 时代最可迁移的能力之一。"
 tags:
-  - "Data Science"
-  - "Quality"
-  - "Eval"
+  - Data Science
+  - Quality
+  - Evaluation
 lang: zh
 draft: false
 ---

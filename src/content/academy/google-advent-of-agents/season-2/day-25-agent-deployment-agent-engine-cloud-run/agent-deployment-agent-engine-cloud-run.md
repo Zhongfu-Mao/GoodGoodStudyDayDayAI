@@ -7,8 +7,8 @@ plainSummary: "Season 2 Day 25 的原创工程讲义：从当天主题提炼设�
 difficulty: advanced
 coverImage: "/images/academy/google-advent-of-agents/season-2/day-25-agent-deployment-agent-engine-cloud-run/cover.svg"
 tags:
-  - "AI/Agents"
-  - "AI/Engineering"
+  - Agent
+  - AI Engineering
 lang: zh
 academy:
   series: "Google Advent of Agents"

@@ -7,8 +7,8 @@ plainSummary: "OpenAI Academyノート：Codex の要点を、03 Codex の学習
 difficulty: intermediate
 coverImage: "/images/academy/openai-academy/covers/03-codex/codex-for-builders.ja.svg"
 tags:
-  - "Codex"
-  - "AI/Agents"
+  - Codex
+  - Agent
 lang: ja
 academy:
   series: "OpenAI Academy"
