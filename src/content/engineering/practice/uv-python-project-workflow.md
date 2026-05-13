@@ -24,11 +24,7 @@ draft: false
 
 uv 的价值在于：它不只是“更快的 pip”，而是把 Python 版本、项目、依赖、虚拟环境、lockfile、命令执行和一次性工具收束成一个统一入口。
 
-![uv Python 工具链地图](/images/engineering/practice/uv-python-toolchain.svg)
-
 ![uv 工作流模块可视化](/images/engineering/practice/uv-workflow-modules-visual.png)
-
-![uv 可复现流水线可视化](/images/engineering/practice/uv-reproducible-pipeline-visual.png)
 
 ## Python 项目管理为什么长期很痛
 
@@ -88,6 +84,8 @@ uv sync --locked
 
 这套命令的好处是，开发者不需要先理解很多历史工具。项目里有 `pyproject.toml` 和 `uv.lock`，本地执行 `uv sync`，再用 `uv run` 跑命令，就能进入同一个工作流。
 
+![uv 可复现流水线可视化](/images/engineering/practice/uv-reproducible-pipeline-visual.png)
+
 ## 团队协作规则
 
 团队采用 uv 后，建议把规则写得非常明确。
@@ -111,6 +109,19 @@ uv run ruff check .
 ```
 
 这样 CI 不会在没有意识到的情况下重新解析出一套不同依赖。
+
+还要理解一个容易被忽略的细节：`uv run` 会在执行命令前自动 lock 和 sync，保证环境跟项目元数据一致。这对本地开发很方便，但在 CI 或发布镜像里，通常希望锁文件不被隐式更新。
+
+因此可以把几种模式区分开：
+
+| 模式 | 命令 | 适合场景 |
+| --- | --- | --- |
+| 自动更新环境 | `uv run pytest` | 本地开发，允许 uv 自动同步环境 |
+| 锁文件过期时报错 | `uv run --locked pytest` | CI、pre-push、发布检查 |
+| 不检查 lockfile 是否过期 | `uv run --frozen pytest` | 已确认 lockfile 的可重复执行环境 |
+| 不同步环境 | `uv run --no-sync pytest` | 已提前 sync，且想避免重复环境检查的高级场景 |
+
+团队文档里不要只写“用 uv 跑测试”。更好的写法是说明不同入口的严格程度：开发者可以用默认 `uv run`，CI 和发布检查应该使用 `--locked` 或先执行 `uv sync --locked`。
 
 ## FastAPI 服务模板
 
@@ -366,6 +377,8 @@ dev:
 
 uv 的 dependency groups 很适合表达“服务运行时”和“工程工作流”的边界。
 
+![uv 依赖分组与运行面可视化](/images/engineering/practice/uv-dependency-groups-runtime-visual.png)
+
 建议从这几个组开始：
 
 | 组 | 放什么 | 不放什么 |
@@ -389,6 +402,10 @@ uv 的 dependency groups 很适合表达“服务运行时”和“工程工作�
 文档构建 job 需要 default + docs，甚至可能只需要 docs。
 
 Notebook 探索环境可能需要 pandas、polars、matplotlib、duckdb，但这些不应该进入线上 API 容器。
+
+uv 默认会把 `dev` dependency group 包进 `uv run` 和 `uv sync` 的环境里。生产构建如果不需要开发依赖，要显式使用 `--no-dev`、`--no-group dev` 或更精确的 group 选择。
+
+另一个重要约束是：uv 在创建 lockfile 时会一起解析所有 dependency groups，并要求它们彼此兼容。如果某两个运行面天然冲突，不要假装它们能共存；要么拆项目，要么明确声明冲突关系，要么把它们放到独立服务边界。
 
 ## lockfile 的工程含义
 
@@ -560,17 +577,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v8
+        with:
+          enable-cache: true
       - name: Install Python
         run: uv python install
       - name: Sync dependencies
         run: uv sync --locked
       - name: Lint
-        run: uv run ruff check .
+        run: uv run --locked ruff check .
       - name: Test
-        run: uv run pytest
+        run: uv run --locked pytest
 ```
 
 这个模板的重点是三点。
@@ -579,9 +598,9 @@ jobs:
 
 第二，使用 `--locked`，让 lockfile 失配立即暴露。
 
-第三，所有工具都通过 `uv run` 进入项目环境。
+第三，所有工具都通过 `uv run --locked` 进入项目环境，避免 CI 在执行过程中悄悄改写 lockfile。
 
-如果需要缓存，可以围绕 uv cache 和 lockfile 做优化。
+如果需要缓存，可以使用 `setup-uv` 的 cache 能力，或围绕 uv cache 和 lockfile 做优化。
 
 但缓存是性能优化，不应该改变安装语义。
 
@@ -592,21 +611,26 @@ jobs:
 不同项目的 Dockerfile 会有差异，但可以从这个结构开始：
 
 ```dockerfile
-FROM python:3.12-slim
+FROM python:3.12-slim-trixie
 
 WORKDIR /app
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 COPY pyproject.toml uv.lock ./
-RUN uv sync --locked --no-dev
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-dev --no-install-project
 
 COPY app ./app
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-dev --no-editable
 
 ENV PATH="/app/.venv/bin:$PATH"
 
 CMD ["fastapi", "run", "app/main.py"]
 ```
+
+第一段 sync 只安装依赖，不安装当前项目本身；这样依赖层能被 Docker cache 复用。复制业务代码后再做第二段 sync，把项目以非 editable 方式装进环境。
 
 这里把 `.venv/bin` 放进 `PATH`，生产命令可以直接运行环境内的可执行文件。
 
@@ -721,6 +745,9 @@ uv 的优势很明显，但工程迁移的目标是降低摩擦，不是制造�
 
 - [uv documentation](https://docs.astral.sh/uv/)
 - [uv guides — Projects](https://docs.astral.sh/uv/guides/projects/)
+- [uv concepts — Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/)
+- [uv concepts — Managing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/)
 - [uv guides — Tools](https://docs.astral.sh/uv/guides/tools/)
+- [uv Docker integration](https://docs.astral.sh/uv/guides/integration/docker/)
 - [PEP 723 — Inline script metadata](https://peps.python.org/pep-0723/)
 - [astral-sh/setup-uv](https://github.com/astral-sh/setup-uv)

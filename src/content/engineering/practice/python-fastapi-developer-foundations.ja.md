@@ -49,11 +49,9 @@ OpenAPI schema は入力と出力を同時に記述し、ドキュメント、�
 
 **FastAPI は HTTP リクエストを Python 関数に対応させ、型ヒント、Pydantic model、OpenAPI schema で API 契約を明確にするフレームワークです。**
 
-![REST、HTTP、JSON と FastAPI 関数の関係](/images/engineering/practice/rest-http-json-loop.svg)
+![HTTP request が FastAPI function に届く流れの図](/images/engineering/practice/fastapi-foundations-flow-visual.png)
 
-![HTTP request to FastAPI function flow visual](/images/engineering/practice/fastapi-foundations-flow-visual.png)
-
-![HTTP request, JSON, and validation visual](/images/engineering/practice/fastapi-http-validation-visual.png)
+![HTTP request、JSON、validation の関係を示す図](/images/engineering/practice/fastapi-http-validation-visual.png)
 
 この記事は FastAPI の全機能を扱うものではありません。
 
@@ -843,8 +841,6 @@ async def create_task(body: TaskCreate):
 
 Response、documentation、client の理解に影響します。
 
-![デコレータ、型ヒント、async 関数の早見表](/images/engineering/practice/decorator-type-async-cheatsheet.svg)
-
 ## Type hints：FastAPI が読む Python syntax
 
 FastAPI は Python type hints を多用します。
@@ -984,7 +980,7 @@ Boundary が明確になるほど、business logic は読みやすくなりま�
 
 ## async/await：FastAPI の非同期感覚
 
-![FastAPI async event loop visual](/images/engineering/practice/fastapi-async-event-loop-visual.png)
+![FastAPI async と event loop の関係を示す図](/images/engineering/practice/fastapi-async-event-loop-visual.png)
 
 FastAPI endpoint は `async def` で書けます。
 

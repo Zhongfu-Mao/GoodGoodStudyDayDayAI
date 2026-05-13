@@ -32,11 +32,9 @@ Express の中心には、request object と middleware chain があります。
 
 この記事では、Node.js / Express 経験者が実際にサービスを移行し、コードレビューし、本番で問題を調べられるように、移行の考え方、routing、request / response、dependency と middleware、error handling、validation、async の落とし穴、testing、project layout、security、deployment、migration checklist、code review checklist、anti-pattern、FAQ までをまとめます。
 
-![Express から FastAPI への移行マップ](/images/engineering/practice/express-to-fastapi-concept-map.svg)
+![FastAPI のリクエストライフサイクル図](/images/engineering/practice/fastapi-request-lifecycle-visual.png)
 
-![FastAPI request lifecycle visual](/images/engineering/practice/fastapi-request-lifecycle-visual.png)
-
-![Express to FastAPI migration bridge visual](/images/engineering/practice/express-fastapi-migration-bridge-visual.png)
+![Express から FastAPI への移行ブリッジ図](/images/engineering/practice/express-fastapi-migration-bridge-visual.png)
 
 ## まず対応表で座標を作る
 
@@ -597,9 +595,7 @@ const [user, profile] = await Promise.all([userPromise, profilePromise])
 
 Python の `async def` を呼ぶと coroutine object が返ります。coroutine は、作っただけでは I/O まで進みません。`await` するか、task として schedule する必要があります。
 
-![Promise と asyncio の流れ](/images/engineering/practice/promise-asyncio-flow.svg)
-
-![Promise and asyncio runtime visual](/images/engineering/practice/promise-asyncio-runtime-visual.png)
+![Promise と asyncio の実行モデルを比較する図](/images/engineering/practice/promise-asyncio-runtime-visual.png)
 
 ```python
 import asyncio

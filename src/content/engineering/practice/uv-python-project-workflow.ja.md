@@ -24,11 +24,7 @@ Python で困りやすいのは、言語そのものより環境管理です。`
 
 uv の価値は、単に `pip install` を速くすることではありません。Python version、project、dependency、virtual environment、lockfile、command execution、one-shot tool を一つの入口にまとめるところにあります。
 
-![uv Python toolchain map](/images/engineering/practice/uv-python-toolchain.svg)
-
-![uv workflow modules visual](/images/engineering/practice/uv-workflow-modules-visual.png)
-
-![uv reproducible pipeline visual](/images/engineering/practice/uv-reproducible-pipeline-visual.png)
+![uv ワークフローを一つの入口にまとめる図](/images/engineering/practice/uv-workflow-modules-visual.png)
 
 ## Python プロジェクト管理はなぜつらかったのか
 
@@ -88,6 +84,8 @@ uv sync --locked
 
 重要なのは、入口が一つになることです。`pyproject.toml` と `uv.lock` があり、`uv sync` で環境を作り、`uv run` で command を実行する。この形なら、ローカルと CI を揃えやすくなります。
 
+![uv lockfile と実行環境をそろえる図](/images/engineering/practice/uv-reproducible-pipeline-visual.png)
+
 ## チーム運用ルール
 
 uv を採用するなら、最初にルールを書いておくと安全です。
@@ -111,6 +109,19 @@ uv run ruff check .
 ```
 
 これにより、CI が意図せず別の dependency set を解決することを防ぎます。
+
+ここで重要なのは、`uv run` は command 実行前に自動で lock と sync を行うという点です。ローカル開発では便利ですが、CI や release check では lockfile が暗黙に更新されるのを避けたい場面があります。
+
+そのため、次のように入口を分けておくと安全です。
+
+| モード | コマンド | 向いている場面 |
+| --- | --- | --- |
+| 自動で環境を更新する | `uv run pytest` | ローカル開発 |
+| lockfile が古ければ失敗させる | `uv run --locked pytest` | CI、pre-push、release check |
+| lockfile の鮮度チェックをしない | `uv run --frozen pytest` | すでに lockfile を確認済みの再実行 |
+| 環境同期を行わない | `uv run --no-sync pytest` | 事前に sync 済みの高度な workflow |
+
+チーム向けの README では、単に「uv で test を実行する」と書くより、ローカルは `uv run`、CI は `uv sync --locked` または `uv run --locked` と明記した方が運用しやすくなります。
 
 ## FastAPI サービステンプレート
 
@@ -176,7 +187,7 @@ uv run --with httpx python scripts/smoke_test.py
 
 Python には単一ファイル script の文化もあります。PEP 723 は、Python script の中に inline metadata を書くための形式を定義しています。uv はこのワークフローにも対応しています。
 
-小さな調査 script、smoke test、データ修復、社内運用ツールでは、script 自体が必要な依存関係を説明できることに価値があります。
+小さな調査 script、smoke test、データ修復、組織内の運用ツールでは、script 自体が必要な依存関係を説明できることに価値があります。
 
 ただし、長期的に運用する service code は project dependency に入れるべきです。一時的な script と本体 application の境界は分けます。
 
@@ -195,7 +206,7 @@ CMD ["uv", "run", "fastapi", "run", "app/main.py"]
 
 ## 旧フローからの移行
 
-![uv migration and workflow consolidation visual](/images/engineering/practice/uv-migration-consolidation-visual.png)
+![uv migration と workflow consolidation の図](/images/engineering/practice/uv-migration-consolidation-visual.png)
 
 全 Python project を一気に uv 化する必要はありません。安全な移行は三段階です。
 
@@ -213,14 +224,14 @@ uv は強力ですが、すべての Python 環境問題を自動で解決する
 
 | 場面 | 注意点 |
 | --- | --- |
-| 社内ネットワーク | package index、proxy、credential、cache の設定 |
+| 企業ネットワーク | package index、proxy、credential、cache の設定 |
 | 科学計算 / GPU | conda、system library、CUDA 依存が必要な場合 |
 | 複数 OS のチーム | macOS / Linux / Windows の wheel 差異 |
 | library project | lockfile 方針を application と分ける |
 | 旧 project 移行 | CI、Docker、deploy script を一気に変えない |
 | tool の進化 | command の詳細は公式 docs で確認する |
 
-現時点では、uv は Python 工程の有力な標準解になりつつあります。特に Web API、AI application、Agent tool、data script、CI workflow では、最初に検討する価値が高いです。一方で、GPU や社内 mirror など特殊条件は現場に合わせて設計します。
+現時点では、uv は Python 工程の有力な標準解になりつつあります。特に Web API、AI application、Agent tool、data script、CI workflow では、最初に検討する価値が高いです。一方で、GPU や private mirror など特殊条件は現場に合わせて設計します。
 
 ## uv をチームの標準入口にする
 
@@ -358,6 +369,8 @@ wrapper command は uv を隠すためではありません。
 
 uv の dependency groups は、runtime と engineering workflow の境界を表現するのに向いています。
 
+![uv dependency group と実行面を分ける図](/images/engineering/practice/uv-dependency-groups-runtime-visual.png)
+
 最初は次の程度で十分です。
 
 | group | 入れるもの | 入れないもの |
@@ -381,6 +394,10 @@ local development は default + dev が必要。
 docs build job は docs が必要。
 
 notebook environment は pandas、polars、matplotlib、duckdb などを持つかもしれませんが、それらを production API container に入れる必要はありません。
+
+uv は通常、`dev` dependency group を `uv run` や `uv sync` の対象に含めます。本番 build で開発依存を入れたくない場合は、`--no-dev`、`--no-group dev`、または必要な group だけを選ぶ設計が必要です。
+
+もう一つ重要なのは、uv は lockfile 作成時に dependency groups をまとめて解決し、互換性を確認する点です。自然に衝突する二つの実行面を一つの project に押し込むべきではありません。project を分ける、明示的に conflict を設計する、または service / worker 境界に出す判断が必要です。
 
 ## lockfile の意味
 
@@ -552,17 +569,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v8
+        with:
+          enable-cache: true
       - name: Install Python
         run: uv python install
       - name: Sync dependencies
         run: uv sync --locked
       - name: Lint
-        run: uv run ruff check .
+        run: uv run --locked ruff check .
       - name: Test
-        run: uv run pytest
+        run: uv run --locked pytest
 ```
 
 ポイントは三つです。
@@ -571,9 +590,9 @@ CI で install step を作り直さないこと。
 
 `--locked` を使い、lockfile mismatch を早く検出すること。
 
-すべての tool を `uv run` 経由で project environment の中で実行すること。
+すべての tool を `uv run --locked` 経由で project environment の中で実行し、CI の途中で lockfile が暗黙に変わらないようにすること。
 
-cache は uv cache と lockfile を軸に後から最適化します。
+cache は `setup-uv` の cache 機能、または uv cache と lockfile を軸に後から最適化します。
 
 cache は performance optimization であり、install semantics を変えるものではありません。
 
@@ -582,21 +601,26 @@ cache は performance optimization であり、install semantics を変えるも
 Dockerfile は project によって違いますが、基本形は次のように考えられます。
 
 ```dockerfile
-FROM python:3.12-slim
+FROM python:3.12-slim-trixie
 
 WORKDIR /app
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 COPY pyproject.toml uv.lock ./
-RUN uv sync --locked --no-dev
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-dev --no-install-project
 
 COPY app ./app
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-dev --no-editable
 
 ENV PATH="/app/.venv/bin:$PATH"
 
 CMD ["fastapi", "run", "app/main.py"]
 ```
+
+最初の sync は dependency だけを入れ、current project 自体は install しません。これにより dependency layer を Docker cache に乗せやすくなります。source code を copy した後で、もう一度 sync して project を non-editable として environment に入れます。
 
 `.venv/bin` を `PATH` に入れると、production command は environment 内の executable を直接使えます。
 
@@ -713,6 +737,9 @@ uv の利点は大きいですが、migration の目的は摩擦を下げるこ�
 
 - [uv documentation](https://docs.astral.sh/uv/)
 - [uv guides — Projects](https://docs.astral.sh/uv/guides/projects/)
+- [uv concepts — Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/)
+- [uv concepts — Managing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/)
 - [uv guides — Tools](https://docs.astral.sh/uv/guides/tools/)
+- [uv Docker integration](https://docs.astral.sh/uv/guides/integration/docker/)
 - [PEP 723 — Inline script metadata](https://peps.python.org/pep-0723/)
 - [astral-sh/setup-uv](https://github.com/astral-sh/setup-uv)

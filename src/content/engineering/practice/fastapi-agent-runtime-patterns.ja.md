@@ -40,11 +40,9 @@ AI Agent サービスにおける FastAPI の価値は、単に `/chat` エン�
 
 この境界が曖昧なまま Agent を作ると、よく動くけれど運用できないブラックボックスになります。
 
-![FastAPI as Agent Runtime shell](/images/engineering/practice/fastapi-agent-request-context.svg)
+![FastAPI Agent の context flow 図](/images/engineering/practice/fastapi-agent-context-visual.png)
 
-![FastAPI Agent context flow visual](/images/engineering/practice/fastapi-agent-context-visual.png)
-
-![FastAPI Agent Runtime layers visual](/images/engineering/practice/fastapi-agent-runtime-layers-visual.png)
+![FastAPI Agent Runtime のレイヤー構造図](/images/engineering/practice/fastapi-agent-runtime-layers-visual.png)
 
 ## この記事の前提
 
@@ -303,8 +301,6 @@ Authorization header
   -> approval policy
   -> AgentContext
 ```
-
-![Dependency chain and Agent chain](/images/engineering/practice/dependency-chain-agent-context.svg)
 
 簡略化した `AgentContext` は次のようになります。
 
@@ -1121,9 +1117,7 @@ FastAPI の auto instrumentation は HTTP layer を観測できます。
 
 Agent service では business span を手動で追加します。
 
-![OpenTelemetry trace flow](/images/engineering/practice/otel-fastapi-trace-flow.svg)
-
-![Agent trace and recovery visual](/images/engineering/practice/agent-trace-recovery-visual.png)
+![Agent trace と recovery の流れを示す図](/images/engineering/practice/agent-trace-recovery-visual.png)
 
 最低限、trace は三層で考えるとよいです。
 

@@ -49,8 +49,6 @@ OpenAPI schema 同步描述这些输入和输出，让文档、客户端和测�
 
 **FastAPI 服务就是把 HTTP 请求映射到 Python 函数，并用类型提示、Pydantic model 和 OpenAPI schema 把 API 合同写清楚。**
 
-![REST、HTTP、JSON 与 FastAPI 函数的关系](/images/engineering/practice/rest-http-json-loop.svg)
-
 ![HTTP 请求到 FastAPI 函数的流程可视化](/images/engineering/practice/fastapi-foundations-flow-visual.png)
 
 ![HTTP 请求、JSON 与校验流程可视化](/images/engineering/practice/fastapi-http-validation-visual.png)
@@ -838,8 +836,6 @@ async def create_task(body: TaskCreate):
 这些不是装饰性配置。
 
 它们会影响响应、文档和客户端理解。
-
-![装饰器、类型提示与 async 函数速查](/images/engineering/practice/decorator-type-async-cheatsheet.svg)
 
 ## Type hints：FastAPI 读得懂的 Python 语法
 

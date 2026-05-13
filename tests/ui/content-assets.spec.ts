@@ -75,6 +75,35 @@ test.describe('content and asset QA', () => {
     expect(problems).toEqual([]);
   });
 
+  test('FastAPI practice articles stay public-facing and avoid inline SVG diagrams', () => {
+    const targetSlugs = new Set([
+      'practice/express-to-fastapi-migration-map',
+      'practice/fastapi-agent-runtime-patterns',
+      'practice/fastapi-architecture-observability-for-tls',
+      'practice/python-fastapi-developer-foundations',
+      'practice/uv-python-project-workflow',
+    ]);
+    const internalContextPattern =
+      /学习会|讲法|听众|勉強会|聴衆|社内|workshop notes|speaker notes/i;
+    const problems: string[] = [];
+
+    for (const entry of collectContentEntries()) {
+      if (entry.collection !== 'engineering' || !targetSlugs.has(entry.baseSlug)) {
+        continue;
+      }
+
+      const markdown = fs.readFileSync(entry.filePath, 'utf8');
+      if (/\]\([^)]*\.svg(?:[?#][^)]*)?\)/.test(markdown)) {
+        problems.push(`${entry.relativePath} references an inline SVG body image`);
+      }
+      if (internalContextPattern.test(markdown)) {
+        problems.push(`${entry.relativePath} contains internal workshop context wording`);
+      }
+    }
+
+    expect(problems).toEqual([]);
+  });
+
   test('built HTML references existing local assets', () => {
     const missing = new Set<string>();
     const htmlPages = listDistHtmlPages();

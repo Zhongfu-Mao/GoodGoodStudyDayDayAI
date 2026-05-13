@@ -22,11 +22,9 @@ FastAPI は高速な Python Web framework として語られがちですが、�
 Python に散らばっている model SDK、data tool、vector database client、background job、automation script を、型、契約、観測、デプロイ境界を持つ HTTP service にまとめられるかが本質です。
 単なる `@app.get` の書き方として見ると過小評価になりますし、あらゆる問題に効く万能薬として扱うと判断を誤ります。
 
-![FastAPI cloud-native service architecture](/images/engineering/practice/fastapi-service-split-observability.svg)
+![FastAPI の observability architecture 図](/images/engineering/practice/fastapi-observability-architecture-visual.png)
 
-![FastAPI observability architecture visual](/images/engineering/practice/fastapi-observability-architecture-visual.png)
-
-![FastAPI service boundary and split signals visual](/images/engineering/practice/fastapi-service-boundaries-visual.png)
+![FastAPI service boundary と分割シグナルを示す図](/images/engineering/practice/fastapi-service-boundaries-visual.png)
 
 ## 0. この記事の位置づけ
 
@@ -247,7 +245,7 @@ FastAPI dependency は user、tenant、scope、policy の解決に向きます�
 
 ## 16. OpenTelemetry の導入戦略
 
-![FastAPI OpenTelemetry signals visual](/images/engineering/practice/fastapi-otel-signals-visual.png)
+![FastAPI と OpenTelemetry signals の関係を示す図](/images/engineering/practice/fastapi-otel-signals-visual.png)
 
 OpenTelemetry は初日から入れることを推奨します。
 

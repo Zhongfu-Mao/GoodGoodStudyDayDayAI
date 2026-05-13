@@ -42,8 +42,6 @@ FastAPI 对 AI Agent 服务的价值，不是“可以很快写一个 `/chat` �
 
 它可能能完成任务，却很难被团队信任。
 
-![FastAPI 作为 Agent Runtime 外壳](/images/engineering/practice/fastapi-agent-request-context.svg)
-
 ![FastAPI Agent 上下文流转可视化](/images/engineering/practice/fastapi-agent-context-visual.png)
 
 ![FastAPI Agent Runtime 分层可视化](/images/engineering/practice/fastapi-agent-runtime-layers-visual.png)
@@ -303,8 +301,6 @@ Authorization header
   -> approval policy
   -> AgentContext
 ```
-
-![Dependency chain 与 Agent chain 的分工](/images/engineering/practice/dependency-chain-agent-context.svg)
 
 一个简化的 `AgentContext` 可以这样定义：
 
@@ -1118,8 +1114,6 @@ FastAPI 的自动 instrumentation 能覆盖 HTTP 层。
 但它不会自动理解你的 Agent runtime。
 
 Agent 服务需要手动补业务 span。
-
-![OpenTelemetry trace flow](/images/engineering/practice/otel-fastapi-trace-flow.svg)
 
 ![Agent trace 与故障恢复可视化](/images/engineering/practice/agent-trace-recovery-visual.png)
 

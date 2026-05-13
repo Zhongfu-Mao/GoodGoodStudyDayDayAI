@@ -32,8 +32,6 @@ Express 的中心通常是请求对象和中间件链：请求进入应用，依
 
 本文的目标，是给 Node.js / Express 开发者一张可以真正拿来迁移服务、评审代码和排查生产问题的地图。它不会只停在语法对照，而会覆盖迁移心智、路由、请求与响应、dependency 与 middleware、错误处理、验证、异步陷阱、测试、项目结构、安全、部署、迁移清单、代码评审清单、反模式和 FAQ。
 
-![Express 到 FastAPI 的迁移地图](/images/engineering/practice/express-to-fastapi-concept-map.svg)
-
 ![FastAPI 请求生命周期可视化](/images/engineering/practice/fastapi-request-lifecycle-visual.png)
 
 ![Express 到 FastAPI 的迁移桥接可视化](/images/engineering/practice/express-fastapi-migration-bridge-visual.png)
@@ -596,8 +594,6 @@ const [user, profile] = await Promise.all([userPromise, profilePromise])
 ```
 
 Python 的 `async def` 调用后返回 coroutine object。coroutine 不会因为被创建就自动执行到 I/O 点。你必须 `await` 它，或者把它调度成 task。
-
-![Promise 与 asyncio 的执行差异](/images/engineering/practice/promise-asyncio-flow.svg)
 
 ![Promise 与 asyncio 运行时差异可视化](/images/engineering/practice/promise-asyncio-runtime-visual.png)
 

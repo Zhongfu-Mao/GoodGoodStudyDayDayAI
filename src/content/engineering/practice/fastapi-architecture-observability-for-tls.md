@@ -22,8 +22,6 @@ FastAPI 经常被介绍为一个高性能 Python Web 框架，但在技术负责
 它能把 Python 生态里分散的模型 SDK、数据处理工具、向量数据库客户端、后台任务和自动化脚本，收束到一个有类型、有契约、有观测、有部署边界的 HTTP 服务。
 如果团队只把它当作 `@app.get` 的语法糖，就会低估它；如果把它包装成适合所有问题的银弹，也会误导架构决策。
 
-![FastAPI 云原生服务架构](/images/engineering/practice/fastapi-service-split-observability.svg)
-
 ![FastAPI 可观测性架构可视化](/images/engineering/practice/fastapi-observability-architecture-visual.png)
 
 ![FastAPI 服务边界与拆分信号可视化](/images/engineering/practice/fastapi-service-boundaries-visual.png)
