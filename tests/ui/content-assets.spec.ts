@@ -104,6 +104,49 @@ test.describe('content and asset QA', () => {
     expect(problems).toEqual([]);
   });
 
+  test('LLM app benchmark article keeps cover, raster visuals, and public-facing copy', () => {
+    const targetBaseSlug = 'llm-apps-notes-01';
+    const internalContextPattern =
+      /学习会|讲法|听众|勉強会|聴衆|社内|站内未公开|站内来源清单|内部資料|サイト非公開|workshop notes|speaker notes/i;
+    const entries = collectContentEntries().filter(
+      (entry) => entry.collection === 'academy' && entry.baseSlug === targetBaseSlug,
+    );
+    const problems: string[] = [];
+
+    expect(entries.map((entry) => entry.locale).sort()).toEqual(['ja', 'zh']);
+
+    for (const entry of entries) {
+      const markdown = fs.readFileSync(entry.filePath, 'utf8');
+      const coverImage = entry.frontmatter.coverImage;
+      if (!coverImage || !coverImage.startsWith('/images/academy/llm-apps-notes-01/')) {
+        problems.push(`${entry.relativePath} is missing the benchmark cover image`);
+      } else if (!fileExistsWithContent(resolvePublicAsset(coverImage))) {
+        problems.push(`${entry.relativePath} coverImage does not exist: ${coverImage}`);
+      }
+
+      if (/\]\([^)]*\.svg(?:[?#][^)]*)?\)/.test(markdown)) {
+        problems.push(`${entry.relativePath} references an inline SVG body image`);
+      }
+      if (internalContextPattern.test(markdown)) {
+        problems.push(`${entry.relativePath} contains internal context wording`);
+      }
+
+      const localImageRefs = Array.from(markdown.matchAll(/!\[[^\]]*]\((\/images\/[^)]+)\)/g)).map(
+        (match) => match[1],
+      );
+      if (localImageRefs.length < 4) {
+        problems.push(`${entry.relativePath} should include at least four local body visuals`);
+      }
+      for (const imageRef of localImageRefs) {
+        if (!fileExistsWithContent(resolvePublicAsset(imageRef))) {
+          problems.push(`${entry.relativePath} references a missing image ${imageRef}`);
+        }
+      }
+    }
+
+    expect(problems).toEqual([]);
+  });
+
   test('built HTML references existing local assets', () => {
     const missing = new Set<string>();
     const htmlPages = listDistHtmlPages();
