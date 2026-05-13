@@ -84,7 +84,7 @@ test.describe('content and asset QA', () => {
       'practice/uv-python-project-workflow',
     ]);
     const internalContextPattern =
-      /学习会|讲法|听众|勉強会|聴衆|社内|workshop notes|speaker notes/i;
+      /学习会|讲法|听众|勉強会|聴衆|社内|站内未公开|站内来源清单|内部資料|サイト非公開|workshop notes|speaker notes/i;
     const problems: string[] = [];
 
     for (const entry of collectContentEntries()) {

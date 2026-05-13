@@ -293,6 +293,8 @@ async def create_run(request: AgentRunRequest):
         return await agent_service.create_run(request)
 ```
 
+这个片段只展示 FastAPI 自动 instrumentation 与业务 span 的边界。生产接入还需要配置 tracer provider、exporter、sampler、resource 属性、trace 采样策略和敏感字段过滤。
+
 ## 17. traces
 
 trace 用来回答一次请求经历了什么。
@@ -367,7 +369,14 @@ AI 后端的成本不只来自 CPU 和内存，还来自 token、向量检索、
 
 ## 25. ADR / RFC 模板
 
-完整模板见站内来源清单([ADR/RFC 模板备忘](../_sources/adr-template/),站内未公开)。
+一个轻量 ADR / RFC 至少应包含这些字段：
+
+- 背景：为什么现在需要决策。
+- 目标：要优化的用户体验、工程约束或运营指标。
+- 选项：FastAPI、Django、Node.js、serverless、worker 等候选方案。
+- 决策：选择什么，不选择什么。
+- 后果：性能、成本、团队技能、迁移、观测和安全影响。
+- 验证：上线前用哪些测试、仪表盘、SLO 或回滚条件确认决策成立。
 
 ## 26. 生产就绪检查清单
 

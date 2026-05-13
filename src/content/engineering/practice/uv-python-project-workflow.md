@@ -20,6 +20,8 @@ draft: false
 
 如果说 FastAPI 解决的是“如何用 Python 写现代 API 服务”，那 uv 解决的是更底层的问题：团队如何把 Python 项目跑起来、锁住、同步、测试、上 CI，并让本地开发者和构建机得到同一套环境。
 
+本文面向三类读者：正在维护 Python / FastAPI 服务的开发者、从 Node.js 工作流迁移过来的团队，以及需要把 Python 项目接入 CI、容器和自动化平台的工程负责人。
+
 过去 Python 工程最让前端和 Node.js 开发者困惑的地方，不是语言本身，而是环境管理。到底用 `pip`、`venv`、`pip-tools`、Poetry、Pipenv、conda，还是系统 Python？依赖写在 `requirements.txt`、`setup.py`、`pyproject.toml` 还是 notebook 里？命令用全局工具、本地虚拟环境，还是 CI 里重新装一遍？
 
 uv 的价值在于：它不只是“更快的 pip”，而是把 Python 版本、项目、依赖、虚拟环境、lockfile、命令执行和一次性工具收束成一个统一入口。
@@ -603,6 +605,8 @@ jobs:
 如果需要缓存，可以使用 `setup-uv` 的 cache 能力，或围绕 uv cache 和 lockfile 做优化。
 
 但缓存是性能优化，不应该改变安装语义。
+
+GitHub Action 的 major version 会继续演进，示例中的 `actions/checkout` 和 `astral-sh/setup-uv` 版本需要在落地时以官方 README 的当前建议为准。
 
 先保证行为稳定，再优化速度。
 

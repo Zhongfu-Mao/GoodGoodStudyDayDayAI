@@ -849,9 +849,9 @@ FastAPI 大量利用 Python 类型提示。
 name: str
 limit: int = 20
 active: bool = True
-tags: list[str] = []
+tags: list[str] | None = None
 age: int | None = None
-metadata: dict[str, str] = {}
+metadata: dict[str, str] | None = None
 ```
 
 读法：
@@ -866,6 +866,8 @@ metadata: dict[str, str] = {}
 | `dict[str, str]` | key 和 value 都是字符串的字典 |
 
 在函数参数里，有默认值通常意味着 query 参数可选。
+
+如果要在 Pydantic model 里给 list 或 dict 设置默认值，优先使用 `Field(default_factory=...)`，不要让读者复制可变默认值。
 
 没有默认值的 path 参数来自 path 模板。
 

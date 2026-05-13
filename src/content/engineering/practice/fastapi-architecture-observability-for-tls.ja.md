@@ -269,6 +269,8 @@ async def create_run(request: AgentRunRequest):
         return await agent_service.create_run(request)
 ```
 
+この snippet は、FastAPI の automatic instrumentation と business span の境界を示すための最小例です。production では tracer provider、exporter、sampler、resource 属性、sampling policy、sensitive field filtering も設計します。
+
 ## 17. traces
 
 trace は、一つの request が何を通ったかを答えるためのものです。
@@ -331,7 +333,14 @@ Flask、Django、Node.js、script service から FastAPI に移すなら、stran
 
 ## 25. ADR / RFC テンプレート
 
-完全なテンプレートは内部資料を参照([ADR/RFC テンプレートメモ](../_sources/adr-template/)、サイト非公開)。
+軽量な ADR / RFC でも、最低限次の項目を持たせます。
+
+- 背景：なぜ今この decision が必要なのか。
+- 目標：改善したい user experience、engineering constraint、operational metric。
+- 選択肢：FastAPI、Django、Node.js、serverless、worker などの候補。
+- 決定：何を選び、何を選ばないのか。
+- 結果：performance、cost、team skill、migration、observability、security への影響。
+- 検証：release 前にどの test、dashboard、SLO、rollback condition で確認するか。
 
 ## 26. production readiness checklist
 

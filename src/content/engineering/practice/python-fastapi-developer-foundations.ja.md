@@ -855,9 +855,9 @@ Framework が parameter parsing、validation、documentation generation に利�
 name: str
 limit: int = 20
 active: bool = True
-tags: list[str] = []
+tags: list[str] | None = None
 age: int | None = None
-metadata: dict[str, str] = {}
+metadata: dict[str, str] | None = None
 ```
 
 読み方です。
@@ -872,6 +872,8 @@ metadata: dict[str, str] = {}
 | `dict[str, str]` | key も value も string の dict |
 
 関数 parameter に default value がある場合、多くは optional query parameter です。
+
+Pydantic model で list や dict に default value を持たせる場合は、`Field(default_factory=...)` を優先します。mutable default value をそのまま copy できる例として出さないことが大切です。
 
 Default がない path parameter は path template から来ます。
 

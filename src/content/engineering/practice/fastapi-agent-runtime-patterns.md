@@ -2297,4 +2297,4 @@ FastAPI 边界负责“这次任务是否可以运行、在什么范围内运行
 - [OpenTelemetry Python Instrumentation](https://opentelemetry.io/docs/languages/python/instrumentation/)
 - [OpenTelemetry FastAPI Instrumentation](https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/fastapi/fastapi.html)
 - [Model Context Protocol Transports](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports)
-- [Model Context Protocol Authorization](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization)
+- [Model Context Protocol Authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)

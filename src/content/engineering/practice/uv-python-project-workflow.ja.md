@@ -20,6 +20,8 @@ draft: false
 
 FastAPI が「Python で現代的な API サービスを書く」ための道具だとすると、uv はその一段下の土台です。チームで Python プロジェクトをどう作り、依存関係をどう固定し、どう実行し、どう CI で再現するかを扱います。
 
+この記事は、Python / FastAPI service を保守する開発者、Node.js 的な workflow から Python に移る team、そして Python project を CI、container、automation platform に載せる engineering lead を想定しています。
+
 Python で困りやすいのは、言語そのものより環境管理です。`pip`、`venv`、`pip-tools`、Poetry、Pipenv、conda、system Python が混ざり、どれが正しい入口なのか分からなくなります。依存関係が `requirements.txt` にあるのか、`pyproject.toml` にあるのか、CI とローカルで同じなのかも曖昧になりがちです。
 
 uv の価値は、単に `pip install` を速くすることではありません。Python version、project、dependency、virtual environment、lockfile、command execution、one-shot tool を一つの入口にまとめるところにあります。
@@ -595,6 +597,8 @@ CI で install step を作り直さないこと。
 cache は `setup-uv` の cache 機能、または uv cache と lockfile を軸に後から最適化します。
 
 cache は performance optimization であり、install semantics を変えるものではありません。
+
+GitHub Action の major version は今後も変わります。例に出した `actions/checkout` と `astral-sh/setup-uv` の version は、実際に導入するときに公式 README の現在の推奨に合わせてください。
 
 ## Dockerfile template
 
