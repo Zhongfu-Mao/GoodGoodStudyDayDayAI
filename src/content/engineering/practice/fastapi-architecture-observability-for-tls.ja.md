@@ -26,6 +26,8 @@ Python に散らばっている model SDK、data tool、vector database client�
 
 ![FastAPI observability architecture visual](/images/engineering/practice/fastapi-observability-architecture-visual.png)
 
+![FastAPI service boundary and split signals visual](/images/engineering/practice/fastapi-service-boundaries-visual.png)
+
 ## 0. この記事の位置づけ
 
 この記事は、テックリード、アーキテクト、platform engineer 向けの公開リファレンスです。
@@ -244,6 +246,8 @@ authentication は誰かを確認し、authorization は何ができるかを判
 FastAPI dependency は user、tenant、scope、policy の解決に向きますが、複雑な business flow を dependency に隠さないようにします。
 
 ## 16. OpenTelemetry の導入戦略
+
+![FastAPI OpenTelemetry signals visual](/images/engineering/practice/fastapi-otel-signals-visual.png)
 
 OpenTelemetry は初日から入れることを推奨します。
 

@@ -46,6 +46,8 @@ FastAPI 对 AI Agent 服务的价值，不是“可以很快写一个 `/chat` �
 
 ![FastAPI Agent 上下文流转可视化](/images/engineering/practice/fastapi-agent-context-visual.png)
 
+![FastAPI Agent Runtime 分层可视化](/images/engineering/practice/fastapi-agent-runtime-layers-visual.png)
+
 ## 读者定位
 
 这篇文章面向已经能写 FastAPI 服务、也已经接触过 LLM/Agent 开发的工程师。
@@ -1118,6 +1120,8 @@ FastAPI 的自动 instrumentation 能覆盖 HTTP 层。
 Agent 服务需要手动补业务 span。
 
 ![OpenTelemetry trace flow](/images/engineering/practice/otel-fastapi-trace-flow.svg)
+
+![Agent trace 与故障恢复可视化](/images/engineering/practice/agent-trace-recovery-visual.png)
 
 建议 trace 至少有三层：
 

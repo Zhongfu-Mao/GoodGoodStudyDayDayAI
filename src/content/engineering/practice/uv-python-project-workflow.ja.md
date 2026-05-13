@@ -28,6 +28,8 @@ uv の価値は、単に `pip install` を速くすることではありませ�
 
 ![uv workflow modules visual](/images/engineering/practice/uv-workflow-modules-visual.png)
 
+![uv reproducible pipeline visual](/images/engineering/practice/uv-reproducible-pipeline-visual.png)
+
 ## Python プロジェクト管理はなぜつらかったのか
 
 Node.js では、プロジェクトに入ると `package.json` と lockfile を見れば、依存関係、script、実行方法がだいたい分かります。Python では長い間、そこが統一されていませんでした。
@@ -192,6 +194,8 @@ CMD ["uv", "run", "fastapi", "run", "app/main.py"]
 実際の Dockerfile は base image、user permission、uv の install 方法、native dependency の有無で変わります。重要なのは、`pyproject.toml` と `uv.lock` が build cache と再現性の中心になるという考え方です。
 
 ## 旧フローからの移行
+
+![uv migration and workflow consolidation visual](/images/engineering/practice/uv-migration-consolidation-visual.png)
 
 全 Python project を一気に uv 化する必要はありません。安全な移行は三段階です。
 

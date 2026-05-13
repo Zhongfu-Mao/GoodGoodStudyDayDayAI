@@ -44,6 +44,8 @@ AI Agent サービスにおける FastAPI の価値は、単に `/chat` エン�
 
 ![FastAPI Agent context flow visual](/images/engineering/practice/fastapi-agent-context-visual.png)
 
+![FastAPI Agent Runtime layers visual](/images/engineering/practice/fastapi-agent-runtime-layers-visual.png)
+
 ## この記事の前提
 
 この記事は、FastAPI の基本的な path operation や Pydantic model をすでに使ったことがあるエンジニアを想定しています。
@@ -1120,6 +1122,8 @@ FastAPI の auto instrumentation は HTTP layer を観測できます。
 Agent service では business span を手動で追加します。
 
 ![OpenTelemetry trace flow](/images/engineering/practice/otel-fastapi-trace-flow.svg)
+
+![Agent trace and recovery visual](/images/engineering/practice/agent-trace-recovery-visual.png)
 
 最低限、trace は三層で考えるとよいです。
 

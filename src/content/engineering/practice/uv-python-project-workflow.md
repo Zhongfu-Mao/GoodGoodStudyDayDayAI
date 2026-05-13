@@ -28,6 +28,8 @@ uv 的价值在于：它不只是“更快的 pip”，而是把 Python 版本�
 
 ![uv 工作流模块可视化](/images/engineering/practice/uv-workflow-modules-visual.png)
 
+![uv 可复现流水线可视化](/images/engineering/practice/uv-reproducible-pipeline-visual.png)
+
 ## Python 项目管理为什么长期很痛
 
 Node.js 开发者习惯了一个基本事实：进入项目后看 `package.json` 和 lockfile，大概就知道怎么安装、怎么运行、怎么测试。Python 以前没有这么统一。
@@ -194,6 +196,8 @@ CMD ["uv", "run", "fastapi", "run", "app/main.py"]
 真实 Dockerfile 需要根据镜像、用户权限、是否安装 uv、是否需要编译依赖来调整。重点不是背这一段，而是记住：`pyproject.toml` + `uv.lock` 是构建缓存和环境一致性的核心输入。
 
 ## 从旧流程迁移到 uv
+
+![uv 迁移与工具链收敛可视化](/images/engineering/practice/uv-migration-consolidation-visual.png)
 
 不要一口气把所有 Python 项目都改成 uv。稳妥迁移可以分三步。
 

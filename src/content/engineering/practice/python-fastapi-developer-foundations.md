@@ -53,6 +53,8 @@ OpenAPI schema 同步描述这些输入和输出，让文档、客户端和测�
 
 ![HTTP 请求到 FastAPI 函数的流程可视化](/images/engineering/practice/fastapi-foundations-flow-visual.png)
 
+![HTTP 请求、JSON 与校验流程可视化](/images/engineering/practice/fastapi-http-validation-visual.png)
+
 这篇文章不追求覆盖 FastAPI 的全部能力。
 
 它聚焦一个实际目标：
@@ -975,6 +977,8 @@ class TaskCreate(BaseModel):
 边界校验越清楚，业务逻辑越干净。
 
 ## async/await：FastAPI 里的异步心智
+
+![FastAPI async 事件循环可视化](/images/engineering/practice/fastapi-async-event-loop-visual.png)
 
 FastAPI endpoint 可以写成 `async def`。
 

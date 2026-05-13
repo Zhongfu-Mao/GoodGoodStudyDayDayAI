@@ -36,6 +36,8 @@ Express 的中心通常是请求对象和中间件链：请求进入应用，依
 
 ![FastAPI 请求生命周期可视化](/images/engineering/practice/fastapi-request-lifecycle-visual.png)
 
+![Express 到 FastAPI 的迁移桥接可视化](/images/engineering/practice/express-fastapi-migration-bridge-visual.png)
+
 ## 先用一张表建立坐标系
 
 | Express / Node.js | FastAPI / Python | 迁移时真正要改的心智 |
@@ -596,6 +598,8 @@ const [user, profile] = await Promise.all([userPromise, profilePromise])
 Python 的 `async def` 调用后返回 coroutine object。coroutine 不会因为被创建就自动执行到 I/O 点。你必须 `await` 它，或者把它调度成 task。
 
 ![Promise 与 asyncio 的执行差异](/images/engineering/practice/promise-asyncio-flow.svg)
+
+![Promise 与 asyncio 运行时差异可视化](/images/engineering/practice/promise-asyncio-runtime-visual.png)
 
 ```python
 import asyncio

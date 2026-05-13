@@ -53,6 +53,8 @@ OpenAPI schema は入力と出力を同時に記述し、ドキュメント、�
 
 ![HTTP request to FastAPI function flow visual](/images/engineering/practice/fastapi-foundations-flow-visual.png)
 
+![HTTP request, JSON, and validation visual](/images/engineering/practice/fastapi-http-validation-visual.png)
+
 この記事は FastAPI の全機能を扱うものではありません。
 
 目的は実務上の読み方です。
@@ -981,6 +983,8 @@ class TaskCreate(BaseModel):
 Boundary が明確になるほど、business logic は読みやすくなります。
 
 ## async/await：FastAPI の非同期感覚
+
+![FastAPI async event loop visual](/images/engineering/practice/fastapi-async-event-loop-visual.png)
 
 FastAPI endpoint は `async def` で書けます。
 

@@ -26,6 +26,8 @@ FastAPI 经常被介绍为一个高性能 Python Web 框架，但在技术负责
 
 ![FastAPI 可观测性架构可视化](/images/engineering/practice/fastapi-observability-architecture-visual.png)
 
+![FastAPI 服务边界与拆分信号可视化](/images/engineering/practice/fastapi-service-boundaries-visual.png)
+
 ## 0. 阅读定位
 
 这是一篇面向技术负责人、架构师和平台工程师的公开参考文章。
@@ -266,6 +268,8 @@ FastAPI dependency 很适合解析用户、租户、scope、policy，但不要�
 授权应在 domain 层也能被测试，而不只依赖路由装饰器。
 
 ## 16. OpenTelemetry 接入策略
+
+![FastAPI OpenTelemetry 信号流可视化](/images/engineering/practice/fastapi-otel-signals-visual.png)
 
 建议从第一天接入 OpenTelemetry。
 

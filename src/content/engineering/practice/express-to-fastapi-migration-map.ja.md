@@ -36,6 +36,8 @@ Express の中心には、request object と middleware chain があります。
 
 ![FastAPI request lifecycle visual](/images/engineering/practice/fastapi-request-lifecycle-visual.png)
 
+![Express to FastAPI migration bridge visual](/images/engineering/practice/express-fastapi-migration-bridge-visual.png)
+
 ## まず対応表で座標を作る
 
 | Express / Node.js | FastAPI / Python | 移行で変えるべき考え方 |
@@ -596,6 +598,8 @@ const [user, profile] = await Promise.all([userPromise, profilePromise])
 Python の `async def` を呼ぶと coroutine object が返ります。coroutine は、作っただけでは I/O まで進みません。`await` するか、task として schedule する必要があります。
 
 ![Promise と asyncio の流れ](/images/engineering/practice/promise-asyncio-flow.svg)
+
+![Promise and asyncio runtime visual](/images/engineering/practice/promise-asyncio-runtime-visual.png)
 
 ```python
 import asyncio
