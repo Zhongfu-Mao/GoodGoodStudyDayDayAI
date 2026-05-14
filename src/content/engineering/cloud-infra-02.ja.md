@@ -238,13 +238,13 @@ batch が大きいほど、ロールバックがつらくなります。コン�
 ## テンプレート：静的サイト公開ゲート
 
 ```md
-## Release Scope
+### Release Scope
 
 今回の公開に含むもの：
 
 含まないもの：
 
-## Required Checks
+### Required Checks
 
 - [ ] 依存関係は lockfile で install
 - [ ] content schema チェック通過
@@ -254,7 +254,7 @@ batch が大きいほど、ロールバックがつらくなります。コン�
 - [ ] 重点ページ UI smoke test 通過
 - [ ] 生成 HTML のアセットスキャン通過
 
-## Deployment
+### Deployment
 
 プラットフォーム：
 トリガー branch：
@@ -262,13 +262,13 @@ build command：
 output directory：
 production base：
 
-## Rollback
+### Rollback
 
 ロールバック方法：
 直近の利用可能 commit：
 直近の利用可能 deploy：
 
-## Evidence
+### Evidence
 
 チェックコマンド：
 チェック結果：

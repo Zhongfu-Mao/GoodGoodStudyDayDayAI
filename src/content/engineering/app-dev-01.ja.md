@@ -260,26 +260,26 @@ GitHub Pages のサブパスへデプロイする場合は、フレームワー�
 ## テンプレート：Content Collection 設計メモ
 
 ```md
-## Collection
+### Collection
 
 名前：
 読者：
 URL プレフィックス：
 
-## Frontmatter Contract
+### Frontmatter Contract
 
 必須フィールド：
 任意フィールド：
 列挙フィールド：
 デフォルト値：
 
-## Language Policy
+### Language Policy
 
 対応言語：
 sibling ルール：
 単一言語公開を許すか：
 
-## Asset Policy
+### Asset Policy
 
 画像ディレクトリ：
 カバー命名：
@@ -287,14 +287,14 @@ sibling ルール：
 SVG を許すか：
 リモート画像を許すか：
 
-## Validation
+### Validation
 
 ローカルチェックコマンド：
 CI チェックコマンド：
 ビルド後アセット検査：
 人間 review 項目：
 
-## Migration Notes
+### Migration Notes
 
 旧フィールド：
 旧パス：

@@ -214,13 +214,13 @@ Agent 系统里，结构化数据不是洁癖，而是恢复能力。没有结�
 ## 落地模板：AI 数据质量审查
 
 ```md
-## Task
+### Task
 
 目标：
 用户场景：
 失败后影响：
 
-## Input Data
+### Input Data
 
 来源：
 格式：
@@ -229,21 +229,21 @@ Agent 系统里，结构化数据不是洁癖，而是恢复能力。没有结�
 是否有冲突：
 是否过期：
 
-## Context Data
+### Context Data
 
 RAG 文档：
 聊天历史：
 工具返回：
 需要丢弃的无关信息：
 
-## Expected Output
+### Expected Output
 
 格式：
 质量标准：
 不允许出现的内容：
 可验证证据：
 
-## Failure Log
+### Failure Log
 
 原始输入：
 期望输出：

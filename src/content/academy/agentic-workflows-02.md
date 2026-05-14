@@ -227,13 +227,13 @@ Agent 必须有最大重试次数、预算上限、时间上限和升级路径�
 ## 落地模板：Agentic Workflow 设计卡
 
 ```md
-## Workflow Goal
+### Workflow Goal
 
 这个工作流要完成什么：
 
 不负责什么：
 
-## States
+### States
 
 | State | Input | Output | Verification | Next |
 | --- | --- | --- | --- | --- |
@@ -245,26 +245,26 @@ Agent 必须有最大重试次数、预算上限、时间上限和升级路径�
 | escalate | | | | |
 | done | | | | |
 
-## Tools
+### Tools
 
 | Tool | Permission | Risk | Logging |
 | --- | --- | --- | --- |
 | | read/write/external | low/medium/high | yes/no |
 
-## Checkpoints
+### Checkpoints
 
 - 需要人工确认的操作：
 - 需要成本确认的操作：
 - 需要权限确认的操作：
 
-## Failure Policy
+### Failure Policy
 
 - 单节点最大重试次数：
 - 总预算上限：
 - 何时升级人工：
 - 何时直接停止：
 
-## Observability
+### Observability
 
 - 每次状态转换记录什么：
 - 每次工具调用记录什么：

@@ -238,13 +238,13 @@ CI 是发布前最后一道低成本防线。失败信息具体，就能减少�
 ## 落地模板：静态站发布门禁
 
 ```md
-## Release Scope
+### Release Scope
 
 本次发布包含：
 
 不包含：
 
-## Required Checks
+### Required Checks
 
 - [ ] 依赖安装使用锁文件
 - [ ] 内容 schema 检查通过
@@ -254,7 +254,7 @@ CI 是发布前最后一道低成本防线。失败信息具体，就能减少�
 - [ ] 重点页面 UI smoke test 通过
 - [ ] 构建产物 HTML 资源扫描通过
 
-## Deployment
+### Deployment
 
 平台：
 触发分支：
@@ -262,13 +262,13 @@ CI 是发布前最后一道低成本防线。失败信息具体，就能减少�
 输出目录：
 生产 base：
 
-## Rollback
+### Rollback
 
 回滚方式：
 最近可用 commit：
 最近可用 deploy：
 
-## Evidence
+### Evidence
 
 检查命令：
 检查结果：

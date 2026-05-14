@@ -215,17 +215,17 @@ chunk 太小会丢失上下文。一个函数名或标题本身可能很相似�
 你可以把下面的模板放进工程日志或评测表里。
 
 ```md
-## Query
+### Query
 
 原始问题：
 
 改写后的检索查询：
 
-## Expected Evidence
+### Expected Evidence
 
 人工认为应该命中的文档或段落：
 
-## Retrieval Result
+### Retrieval Result
 
 Top 1:
 - 文档：
@@ -242,7 +242,7 @@ Top 3:
 - 相似度：
 - 是否相关：
 
-## Diagnosis
+### Diagnosis
 
 - 是查询太泛吗？
 - 是 chunk 策略有问题吗？
@@ -250,7 +250,7 @@ Top 3:
 - 是知识库缺内容吗？
 - 是旧文档污染了吗？
 
-## Action
+### Action
 
 - 查询改写：
 - chunk 调整：

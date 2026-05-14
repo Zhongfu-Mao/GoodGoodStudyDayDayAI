@@ -227,13 +227,13 @@ Agent には最大リトライ回数、予算上限、時間上限、エスカ�
 ## テンプレート：Agentic Workflow 設計カード
 
 ```md
-## Workflow Goal
+### Workflow Goal
 
 このワークフローが完了すること：
 
 責任を持たないこと：
 
-## States
+### States
 
 | State | Input | Output | Verification | Next |
 | --- | --- | --- | --- | --- |
@@ -245,26 +245,26 @@ Agent には最大リトライ回数、予算上限、時間上限、エスカ�
 | escalate | | | | |
 | done | | | | |
 
-## Tools
+### Tools
 
 | Tool | Permission | Risk | Logging |
 | --- | --- | --- | --- |
 | | read/write/external | low/medium/high | yes/no |
 
-## Checkpoints
+### Checkpoints
 
 - 人間確認が必要な操作：
 - コスト確認が必要な操作：
 - 権限確認が必要な操作：
 
-## Failure Policy
+### Failure Policy
 
 - 単一ノードの最大リトライ回数：
 - 総予算上限：
 - 人間へエスカレーションする条件：
 - 直接停止する条件：
 
-## Observability
+### Observability
 
 - 状態遷移ごとに記録するもの：
 - ツール呼び出しごとに記録するもの：

@@ -215,17 +215,17 @@ top-1 が外れても、検索全体が失敗とは限りません。top-k に�
 工程ログや評価表にそのまま使える形式です。
 
 ```md
-## Query
+### Query
 
 元の質問：
 
 検索用に改写したクエリ：
 
-## Expected Evidence
+### Expected Evidence
 
 人間が正しいと考える文書または段落：
 
-## Retrieval Result
+### Retrieval Result
 
 Top 1:
 - 文書：
@@ -242,7 +242,7 @@ Top 3:
 - 類似度：
 - 関連あり：
 
-## Diagnosis
+### Diagnosis
 
 - クエリが広すぎるか？
 - chunk 戦略に問題があるか？
@@ -250,7 +250,7 @@ Top 3:
 - ナレッジベースに内容が足りないか？
 - 古い文書が混ざっているか？
 
-## Action
+### Action
 
 - クエリ改写：
 - chunk 調整：

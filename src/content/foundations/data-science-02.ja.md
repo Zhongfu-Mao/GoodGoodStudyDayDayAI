@@ -214,13 +214,13 @@ Prompt 制約を積み増すより、ずっと安定しました。これは典�
 ## テンプレート：AI データ品質レビュー
 
 ```md
-## Task
+### Task
 
 目標：
 ユーザー場面：
 失敗時の影響：
 
-## Input Data
+### Input Data
 
 入力元：
 形式：
@@ -229,21 +229,21 @@ Prompt 制約を積み増すより、ずっと安定しました。これは典�
 矛盾はあるか：
 古いか：
 
-## Context Data
+### Context Data
 
 RAG 文書：
 会話履歴：
 ツール戻り値：
 捨てるべき無関係情報：
 
-## Expected Output
+### Expected Output
 
 形式：
 品質基準：
 許可しない内容：
 検証可能な証拠：
 
-## Failure Log
+### Failure Log
 
 元入力：
 期待出力：

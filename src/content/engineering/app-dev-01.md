@@ -260,26 +260,26 @@ export async function getStaticPaths() {
 ## 落地模板：内容集合设计记录
 
 ```md
-## Collection
+### Collection
 
 名称：
 读者：
 URL 前缀：
 
-## Frontmatter Contract
+### Frontmatter Contract
 
 必填字段：
 可选字段：
 枚举字段：
 默认值：
 
-## Language Policy
+### Language Policy
 
 支持语言：
 sibling 规则：
 是否允许单语言发布：
 
-## Asset Policy
+### Asset Policy
 
 图片目录：
 封面命名：
@@ -287,14 +287,14 @@ sibling 规则：
 是否允许 SVG：
 是否允许远程图：
 
-## Validation
+### Validation
 
 本地检查命令：
 CI 检查命令：
 构建后资产检查：
 人工 review 项：
 
-## Migration Notes
+### Migration Notes
 
 旧字段：
 旧路径：
