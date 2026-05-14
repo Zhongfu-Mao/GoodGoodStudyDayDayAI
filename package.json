@@ -33,7 +33,8 @@
     "radar:infographic": "node scripts/radar/generate-infographic.mjs",
     "radar:infographic:openai": "node scripts/radar/generate-infographic.mjs --backend openai",
     "radar:weekly-assets": "node scripts/radar/generate-weekly-assets.mjs",
-    "radar:monthly-assets": "node scripts/radar/generate-monthly-assets.mjs"
+    "radar:monthly-assets": "node scripts/radar/generate-monthly-assets.mjs",
+    "radar:notebook-cleanup": "node scripts/radar/cleanup-notebooks.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
