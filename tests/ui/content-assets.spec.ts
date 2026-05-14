@@ -181,6 +181,18 @@ test.describe('content and asset QA', () => {
           '/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/',
         minBodyImages: 3,
       },
+      {
+        collection: 'engineering',
+        baseSlug: 'practice/fastapi-project-structure-dependency-boundaries',
+        imagePrefix: '/images/engineering/practice/fastapi-project-structure/',
+        minBodyImages: 3,
+      },
+      {
+        collection: 'engineering',
+        baseSlug: 'practice/fastapi-background-jobs-idempotency',
+        imagePrefix: '/images/engineering/practice/fastapi-background-jobs/',
+        minBodyImages: 3,
+      },
     ];
     const internalContextPattern =
       /学习会|讲法|听众|勉強会|聴衆|社内|站内未公开|站内来源清单|内部資料|サイト非公開|workshop notes|speaker notes/i;
