@@ -77,6 +77,8 @@ async def cancel_run(run_id: str, background_tasks: BackgroundTasks):
 
 この code は、task が失われても system として許容できる場合にだけ安全です。
 
+許容できないなら、ここで止めるべきではありません。
+
 ## queue が必要な条件
 
 次のどれかが当てはまるなら、queue worker の設計へ進みます。
@@ -180,6 +182,11 @@ production では、DB write は成功したが enqueue に失敗した場合を
 
 よくある選択肢は outbox pattern です。同じ transaction で job と outbox event を保存し、別 process が outbox を queue に投げます。
 
+- outbox pattern を使う。
+- 同じ transaction で job と outbox event を書く。
+- relay process が outbox event を queue に配送する。
+- 配送成功後に sent として mark する。
+
 小さな system では、まずは「DB write 後に enqueue、失敗時は alert と手動修復」を選ぶこともあります。ただし、それは明示的な trade-off です。
 
 ## Worker 側：job store を信じる
@@ -217,9 +224,13 @@ class ReportWorker:
 
 queue system では、少なくとも「message は重複する可能性がある」と考えます。
 
+そのため task を「一度実行されれば effect も一度だけ」と書いてはいけません。
+
 つまり task は「一度だけ実行される」前提ではなく、「複数回呼ばれても business effect は一度だけ」になるよう設計します。
 
 ![Idempotency key retry and dead-letter flow](/images/engineering/practice/fastapi-background-jobs/idempotency-retry-loop.png)
+
+よくある strategy です。
 
 | 場面 | 冪等 strategy |
 | --- | --- |

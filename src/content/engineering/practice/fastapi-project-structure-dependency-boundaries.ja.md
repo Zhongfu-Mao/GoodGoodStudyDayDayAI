@@ -121,6 +121,7 @@ from collections.abc import AsyncIterator
 from fastapi import FastAPI
 
 from app.api.routes import health, runs, users
+from app.core.config import Settings
 from app.core.config import get_settings
 from app.integrations.llm_client import LLMClient
 
@@ -176,9 +177,18 @@ async def create_run(
 
 handler が薄いと、`RequestContext` に tenant、user、trace id、permission を集約でき、`RunService` はテストで差し替えやすくなります。
 
+- handler が薄い。
+- `RequestContext` に tenant、user、trace id、permission を集約できる。
+- `RunService` をテストで差し替えられる。
+- OpenAPI schema は明確なまま保てる。
+
 ## Dependency は composition root
 
 FastAPI dependency は便利な helper ではなく、request-level composition root として扱うと安定します。
+
+多くの team は FastAPI dependency を「呼び出しに便利な関数」として書きがちです。これは簡単に制御不能になります。
+
+より安定するのは、dependency を request-level composition root として扱うことです。
 
 ```python
 from dataclasses import dataclass
@@ -236,6 +246,11 @@ dependency は object を組み立てます。業務分岐を書き始めたら�
 
 おすすめは、settings を app 起動時または明示的な dependency で作り、業務層には constructor argument として渡すことです。
 
+- settings は app 起動時、または明示的な dependency の中だけで作る。
+- 業務層は constructor argument で設定を受け取る。
+- テストでは dependency override または app factory で test settings を渡す。
+- secret を通常 log に入れない。
+
 ```python
 from functools import lru_cache
 from pydantic_settings import BaseSettings
@@ -260,6 +275,10 @@ def load_settings() -> Settings:
 Service は HTTP header や response code を知りすぎないようにします。
 
 ```python
+from app.domain.runs import RunCreate, RunRead
+from app.repositories.run_repository import RunRepository
+
+
 class RunService:
     def __init__(self, repository: RunRepository, max_steps: int) -> None:
         self.repository = repository
@@ -279,6 +298,17 @@ class RunService:
 ```
 
 この形なら、ASGI app を起動しなくても中核の業務 rule を test できます。
+
+```python
+async def test_create_run_rejects_too_many_steps(fake_repository):
+    service = RunService(repository=fake_repository, max_steps=3)
+
+    with pytest.raises(RunLimitExceeded):
+        await service.create_run(
+            payload=RunCreate(task="summarize", max_steps=10),
+            context=RequestContext("tenant-1", "user-1", "trace-1"),
+        )
+```
 
 ## Repository と integration
 
@@ -323,11 +353,36 @@ error も層で分けます。
 | Integration | timeout、rate limit、upstream error | service が判断 |
 | Router | request schema error | FastAPI / Pydantic |
 
+app に exception handler を登録できます。
+
+```python
+from fastapi import Request
+from fastapi.responses import JSONResponse
+
+
+async def run_limit_handler(request: Request, exc: RunLimitExceeded) -> JSONResponse:
+    return JSONResponse(
+        status_code=422,
+        content={
+            "code": "run_limit_exceeded",
+            "message": f"max_steps must be <= {exc.limit}",
+        },
+    )
+```
+
 HTTP response への変換は app boundary に寄せると、service は業務語彙を保てます。
 
 ## テストで差し替える
 
 FastAPI の `app.dependency_overrides` は、テストで dependency を差し替えるための強力な仕組みです。
+
+これは次の差し替えに向いています。
+
+- current user。
+- settings。
+- database session。
+- service。
+- external API client。
 
 ```python
 from fastapi.testclient import TestClient
@@ -361,6 +416,8 @@ def test_create_run_api():
 最後の `clear()` は地味ですが重要です。テスト汚染は、大きな FastAPI project で見つけにくい失敗になります。
 
 ## 構造 review の観点
+
+service が大きくなるたびに、この図で構造 review をすると判断しやすくなります。
 
 ![FastAPI project structure quality gates](/images/engineering/practice/fastapi-project-structure/project-structure-review-gates.png)
 
