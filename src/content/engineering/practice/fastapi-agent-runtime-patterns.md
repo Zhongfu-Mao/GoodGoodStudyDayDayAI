@@ -58,6 +58,8 @@ FastAPI 对 AI Agent 服务的价值，不是“可以很快写一个 `/chat` �
 
 它讨论的是：当 Agent 开始接触真实用户、真实数据、真实工具、真实审批、真实故障时，FastAPI 应该承担哪些边界职责。
 
+> 已经熟悉 FastAPI 的读者可以直接跳到「Middleware：只处理横切治理」节。
+
 ## 核心结论
 
 一个可运营的 Agent 后端，通常不应该只有一个同步 `/chat` handler。

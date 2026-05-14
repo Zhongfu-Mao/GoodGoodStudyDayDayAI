@@ -254,6 +254,16 @@ RAG 文档：
 是否加入评测集：
 ```
 
+> **示例填法（Eval dataset construction）**
+>
+> 目标：构建客服回复质量 eval dataset
+> 用户场景：用户询问退款、延期、账号限制和账单异常
+> 失败后影响：错误承诺会触发人工升级和赔付风险
+> Input Data：来源=脱敏 ticket；格式=JSONL；完整=yes；噪声=yes；冲突=少量旧政策；过期=2025 规则需剔除
+> Context Data：RAG 文档=当前政策库；聊天历史=最近 8 轮；工具返回=订单状态 API；需要丢弃的无关信息=用户闲聊和签名
+> Expected Output：格式=policy-grounded reply JSON；质量标准=准确、可执行、语气克制；不允许出现=未授权赔付；可验证证据=policy_id 和 order_status
+> Failure Log：原始输入=ticket_1842；期望输出=拒绝退款但提供延期选项；实际输出=承诺全额退款；失败分类=policy violation；根因判断=旧样本冲突；修复动作=删除旧样本并补反例；是否加入评测集=yes
+
 ## 检查清单
 
 - 输入是否包含完成任务所需的关键事实？

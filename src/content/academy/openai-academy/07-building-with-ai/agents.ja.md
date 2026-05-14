@@ -264,6 +264,18 @@ Agent には予算、時間、リトライ上限が必要です。無限ルー�
 回帰サンプルの出所：
 ```
 
+> **記入例（Customer support agent）**
+>
+> 目標：ticket、order status、policy docs から review 可能な返信 draft を作ります
+> 責任範囲外：自動返金、account 変更、最終 email 送信です
+> ユーザー：一次 support 担当者と escalation 担当者です
+> 入力：ticket_id、ユーザーメッセージ、order status、policy snippets
+> 出力：返信 draft、証拠引用、risk label、next step 提案です
+> Tools：ticket_read=read/no side effect/no approval；order_lookup=read/no side effect/no approval；refund_request=write/side effect/approval required
+> State：保存するもの=ticket_id、draft_version、evidence_ids；捨ててよいもの=中間 reasoning；復旧方法=ticket_id で context を再構築します
+> Policy：自動実行条件=read-only query と draft generation；必ず質問する条件=compensation、refund、account restriction；停止条件=policy conflict または evidence 不足です
+> Evaluation：成功基準=事実が正確で tone が compliant；経路チェック=evidence は policy/order tools 由来にします；失敗分類=hallucination、policy_violation、tone_issue；回帰サンプルの出所=人間 escalation ticket です
+
 ## チェックリスト
 
 - そのタスクが本当に Agent を必要とすることを確認したか？

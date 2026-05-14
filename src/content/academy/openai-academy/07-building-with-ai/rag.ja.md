@@ -238,6 +238,16 @@ rerank：
 回帰サンプル：
 ```
 
+> **記入例（Internal wiki RAG）**
+>
+> ユーザー場面：社員が内部 process、権限申請、release rule を質問します
+> 回答境界：現在の wiki と runbook に基づく回答だけにします
+> 拒否条件：個人評価、給与、未公開 security incident です
+> Corpus：出典=wiki/runbook/ADR；登録ルール=owner review 後に入れます；更新日時=毎日 incremental；権限ルール=workspace と role で filter します；矛盾処理=最新 approved document を優先します
+> Retrieval：クエリ書き換え=department と system name を補います；ベクトル検索=top 20；キーワード検索=BM25 top 20；metadata filter=workspace/role/status；rerank=cross-encoder top 5
+> Generation：出力形式=answer + citations + uncertain items；引用形式=doc title#section；不確実性の表現=証拠不足を説明し owner 確認を促します
+> Evaluation：検索指標=recall@5、MRR；生成指標=groundedness、citation accuracy；失敗分類=missing_doc、wrong_permission、stale_doc；回帰サンプル=高頻度 internal Q&A
+
 ## チェックリスト
 
 - 知識ベースに登録基準と期限切れルールがあるか？

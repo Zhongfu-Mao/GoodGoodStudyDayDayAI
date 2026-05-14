@@ -242,6 +242,19 @@ Real samples：
 谁负责更新：
 ```
 
+> **示例填法（Customer reply quality eval）**
+>
+> 用户：客服回复生成器
+> 输入：ticket、order_status、policy snippets、conversation history
+> 输出：JSON 回复草稿和 evidence_ids
+> 成功标准：不承诺未授权补偿，引用正确政策，语气克制
+> 失败成本：错误赔付、用户投诉、人工返工
+> Dataset：Happy path=常规退款问询；Edge cases=缺订单号/跨地区政策；Known failures=旧政策诱导；Adversarial=用户要求绕过规则；Real samples=脱敏升级 ticket
+> Rubric：Accuracy=政策和订单状态一致/critical；Grounding=每个结论有 evidence_id/critical；Tone=不责备用户/non-critical
+> Grading：自动检查=JSON schema 和 forbidden phrases；模型评分=rubric judge；人工复核=每周抽样 50 条
+> Release Gate：必须通过=critical pass rate ≥ 98%；可接受波动=overall ±1%；阻断发布=任何未授权补偿
+> Feedback Loop：失败如何分类=policy/tone/format/grounding；如何进入回归集=标注后加入 JSONL；谁负责更新=support-quality-owner
+
 ## 检查清单
 
 - 任务是否有明确成功标准？

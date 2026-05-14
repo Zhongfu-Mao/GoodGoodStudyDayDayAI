@@ -190,6 +190,17 @@ rate limit：
 rollback：
 ```
 
+> **記入例（Document search MCP server）**
+>
+> 名前：internal-doc-search
+> owner：platform-knowledge
+> 実行場所：private worker network
+> transport：HTTP streaming
+> 認証方式：workspace-scoped OAuth token
+> Capabilities：Tools=search_docs/get_doc；Resources=doc://{id}/metadata；Prompts=answer_with_citations
+> Permissions：デフォルト権限=read-only；確認が必要な tool=none；禁止 action=delete/export raw corpus；機密フィールド処理=email、token、customer_id を mask します
+> Operations：ログ項目=request_id/user_id/query_hash/doc_ids；version 方針=semver tool schema；error code=DOC_NOT_FOUND/PERMISSION_DENIED；rate limit=60 rpm/user；rollback=previous index alias に戻します
+
 ## チェックリスト
 
 - tool、resource、prompt を明確に分けているか？

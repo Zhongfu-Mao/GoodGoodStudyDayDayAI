@@ -244,6 +244,17 @@ Good:
 Bad:
 ```
 
+> **記入例（Incident review skill）**
+>
+> name：incident-review
+> description：Use when a production incident needs a structured timeline, root cause, action items, and verification evidence.
+> When to Use：incident notes、logs、alerts、chat transcripts を review doc にします；issue がまだ active burning のときは使いません
+> Inputs：Required files=incident log, alert screenshot, deploy diff；Required commands=git show, log query；Required context=service owner and severity
+> Workflow：1. timeline を作ります；2. facts と hypotheses を分けます；3. root cause と contributing factors を抽出します；4. owner 付き action items を書きます；5. evidence links を確認します
+> Output：Format=Markdown incident review；Must include=timeline, impact, root cause, follow-ups；Must not include=personal blame や検証不能な主張です
+> Verification：すべての timestamp に source があることを確認します；各 action item に owner と due date があることを確認します
+> Examples：Good=各結論を log/deploy evidence にリンクします；Bad="human error" だけで system fix がありません
+
 ## チェックリスト
 
 - description は十分具体的で、誤 trigger を避けられるか？

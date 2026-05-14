@@ -242,6 +242,19 @@ Real samples：
 更新責任者：
 ```
 
+> **記入例（Customer reply quality eval）**
+>
+> ユーザー：customer support reply generator
+> 入力：ticket、order_status、policy snippets、conversation history
+> 出力：JSON reply draft と evidence_ids
+> 成功基準：未承認 compensation を約束せず、正しい policy を引用し、落ち着いた tone にします
+> 失敗コスト：誤補償、user complaint、人間の手戻りです
+> Dataset：Happy path=通常の refund inquiry；Edge cases=order id 不足/地域別 policy；Known failures=古い policy 誘導；Adversarial=rule 回避要求；Real samples=匿名化 escalation ticket
+> Rubric：Accuracy=policy と order status が一致/critical；Grounding=各結論に evidence_id があります/critical；Tone=user を責めません/non-critical
+> Grading：自動チェック=JSON schema と forbidden phrases；モデル採点=rubric judge；人間レビュー=毎週 50 件を抽出します
+> Release Gate：必須通過=critical pass rate ≥ 98%；許容する変動=overall ±1%；公開阻止条件=未承認 compensation が 1 件でも出ることです
+> Feedback Loop：失敗分類=policy/tone/format/grounding；回帰集への追加=annotate 後 JSONL に入れます；更新責任者=support-quality-owner
+
 ## チェックリスト
 
 - タスクに明確な成功基準があるか？

@@ -36,6 +36,8 @@ FastAPI の文法入門ではなく、実運用に入る service としてどう
 
 一回限りの script を作るだけなら、ここまでの統制は必要ありません。
 
+> FastAPI の基本アーキテクチャにすでに慣れている読者は「7. service 分割のシグナル」節から読んで構いません。
+
 ## 1. 結論
 
 FastAPI の価値は、単体の性能ではなく、Python ecosystem、type contract、OpenAPI、async I/O、dependency injection、observability を一つの届けられる service boundary にまとめる点にあります。

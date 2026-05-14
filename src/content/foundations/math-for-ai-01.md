@@ -259,6 +259,17 @@ Top 3:
 - 需要新增或清理的文档：
 ```
 
+> **示例填法（RAG diagnosis case）**
+>
+> 原始问题：我们是否支持按项目空间限制文档搜索？
+> 改写后的检索查询：项目空间 权限 过滤 metadata RAG
+> 人工认为应该命中的文档或段落：docs/rag-permissions.md#workspace-filter
+> Top 1：文档=docs/vector-store-setup.md；相似度=0.82；是否相关=部分相关
+> Top 2：文档=docs/rag-permissions.md；相似度=0.78；是否相关=相关
+> Top 3：文档=docs/old-auth-notes.md；相似度=0.74；是否相关=不相关
+> Diagnosis：查询太泛=no；chunk 策略有问题=yes，权限规则被切到下一段；关键词召回=no；知识库缺内容=no；旧文档污染=yes
+> Action：查询改写=加入 workspace_id filter；chunk 调整=按权限小节重切；metadata / filter 调整=新增 product_area=search；hybrid search 调整=提升 exact keyword；需要新增或清理的文档=归档 old-auth-notes
+
 ## 检查清单
 
 - 查询是否包含明确对象、动作、约束和上下文？

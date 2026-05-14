@@ -275,6 +275,15 @@ CI 是发布前最后一道低成本防线。失败信息具体，就能减少�
 剩余风险：
 ```
 
+> **示例填法（Static site release）**
+>
+> 本次发布包含：12 篇 engineering 内容、对应 ja siblings、3 张本地图
+> 不包含：导航 IA 改版、旧 URL 删除、图片格式转换
+> Required Checks：锁文件安装=yes；content schema=yes；production base path build=yes；本地资源=yes；多语言 sibling=yes；UI smoke test=重点列表页；HTML 资源扫描=yes
+> Deployment：平台=GitHub Pages；触发分支=main；构建命令=npm ci && npm run build；输出目录=dist；生产 base=/GoodGoodStudyDayDayAI/
+> Rollback：回滚方式=revert release commit；最近可用 commit=a1b2c3d；最近可用 deploy=pages-run-1842
+> Evidence：检查命令=npm run check + targeted Playwright；检查结果=0 errors；剩余风险=新图片首屏加载时间待监控
+
 ## 检查清单
 
 - CI 是否先 check 后 build？

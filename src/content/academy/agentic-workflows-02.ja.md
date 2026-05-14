@@ -271,6 +271,16 @@ Agent には最大リトライ回数、予算上限、時間上限、エスカ�
 - 最終提出に添える証拠：
 ```
 
+> **記入例（Customer ticket triage workflow）**
+>
+> このワークフローが完了すること：新規 ticket を分類し、context を補い、返信 draft を提案します
+> 責任を持たないこと：自動返金、account 状態変更、返信の直接送信はしません
+> States：init=ticket を読みます；plan=必要な証拠を決めます；act=order/profile/policy tools を呼びます；review=分類と証拠を検証します；retry=不足 field を再取得します；escalate=高 risk を人間へ渡します；done=triage card を出します
+> Tools：ticket_read=read/low/log yes；order_lookup=read/medium/log yes；refund_action=禁止します；draft_reply=write/low/log yes
+> Checkpoints：人間確認が必要な操作=返金、account 停止、compliance complaint；コスト確認が必要な操作=上位 model review；権限確認が必要な操作=workspace 横断検索です
+> Failure Policy：単一ノードの最大リトライ回数=2；総予算上限=90 秒または 0.20 USD；人間へエスカレーションする条件=証拠矛盾または VIP user；直接停止する条件=権限不足です
+> Observability：状態遷移ごとに ticket_id/state/reason を記録します；ツール呼び出しごとに tool/input_hash/result_status を記録します；最終提出に分類、証拠リンク、返信案、confidence を添えます
+
 ## チェックリスト
 
 - 各状態に明確な入力と出力があるか？

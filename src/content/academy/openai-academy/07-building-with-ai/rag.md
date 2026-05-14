@@ -238,6 +238,16 @@ rerank：
 回归样本：
 ```
 
+> **示例填法（Internal wiki RAG）**
+>
+> 用户场景：员工询问内部流程、权限申请和发布规范
+> 回答边界：只能基于当前 wiki 与 runbook 回答
+> 拒答条件：涉及个人绩效、薪资、未公开安全事件
+> Corpus：来源=wiki/runbook/ADR；准入规则=owner 审核后入库；更新时间=每日增量；权限规则=按 workspace 和 role 过滤；冲突处理=优先最新 approved 文档
+> Retrieval：查询改写=补部门和系统名；向量检索=top 20；关键词检索=BM25 top 20；metadata filter=workspace/role/status；rerank=cross-encoder top 5
+> Generation：输出格式=答案+引用+不确定项；引用格式=doc title#section；不确定性表达=说明缺少证据并建议 owner
+> Evaluation：检索指标=recall@5、MRR；生成指标=groundedness、citation accuracy；失败分类=missing_doc、wrong_permission、stale_doc；回归样本=高频内部问答
+
 ## 检查清单
 
 - 知识库是否有准入和过期规则？

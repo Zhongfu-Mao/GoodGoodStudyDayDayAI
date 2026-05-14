@@ -271,6 +271,16 @@ Agent 必须有最大重试次数、预算上限、时间上限和升级路径�
 - 最终交付需要附带什么证据：
 ```
 
+> **示例填法（Customer ticket triage workflow）**
+>
+> 这个工作流要完成什么：把新 ticket 分类、补齐上下文、给出建议回复草稿
+> 不负责什么：不自动退款、不修改账号状态、不直接发送回复
+> States：init=读取 ticket；plan=判断所需证据；act=调用 order/profile/policy tools；review=校验分类和证据；retry=缺字段重查；escalate=高风险转人工；done=输出 triage card
+> Tools：ticket_read=read/low/log yes；order_lookup=read/medium/log yes；refund_action=禁止；draft_reply=write/low/log yes
+> Checkpoints：需要人工确认的操作=退款、封号、合规投诉；需要成本确认的操作=高级模型复核；需要权限确认的操作=跨 workspace 查询
+> Failure Policy：单节点最大重试次数=2；总预算上限=90 秒或 0.20 USD；何时升级人工=证据冲突或 VIP 用户；何时直接停止=权限不足
+> Observability：每次状态转换记录 ticket_id/state/reason；每次工具调用记录 tool/input_hash/result_status；最终交付需要附带分类、证据链接、建议回复和置信度
+
 ## 检查清单
 
 - 每个状态是否有明确输入和输出？

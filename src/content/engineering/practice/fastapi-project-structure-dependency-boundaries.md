@@ -493,6 +493,17 @@ HTTP 层：
 - error mapping：
 ```
 
+> **示例填法（AI Agent run service）**
+>
+> 服务名称：agent-run-service
+> 主要用例：接收用户请求，创建 Agent run，返回 run_id 并暴露事件流
+> HTTP 层：router 文件=api/routes/runs.py；request schema=RunCreateRequest；response schema=RunCreatedResponse
+> 依赖层：request context=CurrentUser+Workspace；settings=AgentRuntimeSettings；database session=AsyncSession；external clients=ModelClient/MCPClient
+> 业务层：service=RunService；关键业务规则=先持久化 run 再调 runner；业务异常=RunLimitExceeded、ToolNotAllowed
+> 外部系统：repository=RunRepository；integrations=ModelGateway、VectorStore；timeout / retry=模型 60s、工具 20s、retry 2
+> 测试：service unit tests=权限和状态转换；API tests=201/403/429；dependency overrides=fake user/session；contract / integration tests=MCP tool schema
+> 可观测性：request id / trace id=每个 run 继承；structured logs=run_id/tool/status；metrics=run_started_total/run_failed_total；error mapping=domain error → HTTP status
+
 ## 检查清单
 
 - `main.py` 是否只负责 app composition？

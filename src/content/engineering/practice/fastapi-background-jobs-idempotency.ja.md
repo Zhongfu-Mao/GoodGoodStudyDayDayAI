@@ -389,6 +389,17 @@ recovery：
 - data repair runbook：
 ```
 
+> **記入例（PDF/Excel レポート export task）**
+>
+> task 名：monthly-export-report
+> trigger API：POST /reports/exports
+> task type：Queue worker
+> reliability requirement：必ず実行します；同じ idempotency key の重複 request は許容します；最大 8 分；retry 3 回；queued/running は cancel できます
+> 冪等性：idempotency key=workspace_id+report_month；unique constraint=(workspace_id, report_month, format)；external storage は上書きします；duplicate request は existing job_id を返します
+> status：queued=パラメータ保存済み；running=worker heartbeat；succeeded=file URL を保存します；failed=retry 可能 error；cancelled=user cancel；dead-letter=retry 超過です
+> 可観測性：metrics=export_job_duration/status_total；logs=job_id/workspace_id/format；trace=api→worker→storage；alert=dead-letter > 0 で通知します
+> recovery：manual replay=job_id で再 enqueue します；dead-letter owner=platform-oncall；data repair runbook=一時 file を削除して再実行します
+
 ## チェックリスト
 
 - task failure は business result に影響するか？

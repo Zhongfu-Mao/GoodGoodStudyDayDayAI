@@ -190,6 +190,17 @@ Prompts：
 回滚方式：
 ```
 
+> **示例填法（Document search MCP server）**
+>
+> 名称：internal-doc-search
+> owner：platform-knowledge
+> 运行位置：private worker network
+> transport：HTTP streaming
+> 认证方式：workspace-scoped OAuth token
+> Capabilities：Tools=search_docs/get_doc；Resources=doc://{id}/metadata；Prompts=answer_with_citations
+> Permissions：默认权限=read-only；需要确认的 tool=none；禁止的 action=delete/export raw corpus；敏感字段处理=mask email、token、customer_id
+> Operations：日志字段=request_id/user_id/query_hash/doc_ids；版本策略=semver tool schema；错误码=DOC_NOT_FOUND/PERMISSION_DENIED；限流=60 rpm/user；回滚方式=切回 previous index alias
+
 ## 检查清单
 
 - 是否明确区分 tool、resource、prompt？

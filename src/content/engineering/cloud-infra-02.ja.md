@@ -275,6 +275,15 @@ production base：
 残リスク：
 ```
 
+> **記入例（Static site release）**
+>
+> 今回の公開に含むもの：12 本の engineering content、対応する ja siblings、local image 3 枚です
+> 含まないもの：navigation IA 改修、旧 URL 削除、画像 format 変換です
+> Required Checks：lockfile install=yes；content schema=yes；production base path build=yes；local asset=yes；多言語 sibling=yes；UI smoke test=重要 list page；HTML asset scan=yes
+> Deployment：プラットフォーム=GitHub Pages；トリガー branch=main；build command=npm ci && npm run build；output directory=dist；production base=/GoodGoodStudyDayDayAI/
+> Rollback：ロールバック方法=release commit を revert します；直近の利用可能 commit=a1b2c3d；直近の利用可能 deploy=pages-run-1842
+> Evidence：チェックコマンド=npm run check + targeted Playwright；チェック結果=0 errors；残リスク=新規画像の first-view load time を監視します
+
 ## チェックリスト
 
 - CI は check の後に build しているか？

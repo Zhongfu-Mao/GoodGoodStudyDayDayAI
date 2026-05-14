@@ -302,6 +302,17 @@ CI チェックコマンド：
 削除時期：
 ```
 
+> **記入例（Astro content migration）**
+>
+> 名前：engineering-practice
+> 読者：AI engineering 記事を保守する開発者です
+> URL プレフィックス：/engineering/practice/
+> Frontmatter Contract：必須フィールド=title/date/category/description/lang；任意フィールド=coverImage/tags；列挙フィールド=difficulty；デフォルト値=draft=false
+> Language Policy：対応言語=zh/ja；sibling ルール=同じ slug + .ja.md；単一言語公開を許すか=no
+> Asset Policy：画像ディレクトリ=/public/images/engineering/practice；カバー命名=slug-cover.png；本文画像要件=local path と alt；SVG を許すか=no；リモート画像を許すか=no
+> Validation：ローカルチェックコマンド=npm run check；CI チェックコマンド=npm run check + npm run test:ui；ビルド後アセット検査=dist の画像参照を scan します；人間 review 項=title、summary、ja parity です
+> Migration Notes：旧フィールド=topic；旧パス=/posts/ai-dev/；互換戦略=redirect map；削除時期=2 回の release 後です
+
 ## チェックリスト
 
 - collection は明確なコンテンツ領域を表しているか？

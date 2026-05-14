@@ -264,6 +264,18 @@ Agent 必须有预算、时间和重试上限。无限循环不是智能，是�
 回归样本来源：
 ```
 
+> **示例填法（Customer support agent）**
+>
+> 目标：根据 ticket、订单状态和政策文档生成可审核回复草稿
+> 不负责：自动退款、修改账号、发送最终邮件
+> 用户：一线客服和升级专员
+> 输入：ticket_id、用户消息、订单状态、policy snippets
+> 输出：回复草稿、证据引用、风险标签、建议下一步
+> Tools：ticket_read=read/no side effect/no approval；order_lookup=read/no side effect/no approval；refund_request=write/side effect/approval required
+> State：需要保存=ticket_id、draft_version、evidence_ids；可以丢弃=中间推理；恢复方式=按 ticket_id 重建上下文
+> Policy：自动执行条件=只读查询和草稿生成；必须询问条件=补偿、退款、账号限制；停止条件=政策冲突或证据不足
+> Evaluation：成功标准=事实准确且语气合规；路径检查=证据必须来自 policy/order tools；失败分类=hallucination、policy_violation、tone_issue；回归样本来源=人工升级 ticket
+
 ## 检查清单
 
 - 是否先证明任务真的需要 Agent？

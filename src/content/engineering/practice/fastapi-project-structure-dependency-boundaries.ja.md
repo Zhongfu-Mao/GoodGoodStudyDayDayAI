@@ -494,6 +494,17 @@ Dependency 層：
 - error mapping：
 ```
 
+> **記入例（AI Agent run service）**
+>
+> サービス名：agent-run-service
+> 主要 use case：ユーザー request を受け、Agent run を作成し、run_id と event stream を返します
+> HTTP 層：router file=api/routes/runs.py；request schema=RunCreateRequest；response schema=RunCreatedResponse
+> Dependency 層：request context=CurrentUser+Workspace；settings=AgentRuntimeSettings；database session=AsyncSession；external clients=ModelClient/MCPClient
+> 業務層：service=RunService；重要な業務 rule=run を保存してから runner を呼びます；業務例外=RunLimitExceeded、ToolNotAllowed
+> 外部 system：repository=RunRepository；integrations=ModelGateway、VectorStore；timeout / retry=model 60s、tool 20s、retry 2
+> テスト：service unit tests=権限と状態遷移；API tests=201/403/429；dependency overrides=fake user/session；contract / integration tests=MCP tool schema
+> 可観測性：request id / trace id=各 run に引き継ぎます；structured logs=run_id/tool/status；metrics=run_started_total/run_failed_total；error mapping=domain error → HTTP status
+
 ## チェックリスト
 
 - `main.py` は app composition に集中しているか？

@@ -244,6 +244,17 @@ Good:
 Bad:
 ```
 
+> **示例填法（Incident review skill）**
+>
+> name：incident-review
+> description：Use when a production incident needs a structured timeline, root cause, action items, and verification evidence.
+> When to Use：Use this when incident notes, logs, alerts, or chat transcripts need to become a review doc；Do not use this when the issue is still actively burning.
+> Inputs：Required files=incident log, alert screenshot, deploy diff；Required commands=git show, log query；Required context=service owner and severity
+> Workflow：1. Build timeline；2. Separate facts from hypotheses；3. Extract root cause and contributing factors；4. Draft action items with owners；5. Verify evidence links.
+> Output：Format=Markdown incident review；Must include=timeline, impact, root cause, follow-ups；Must not include=personal blame or unverifiable claims
+> Verification：check all timestamps have source；check each action item has owner and due date
+> Examples：Good=links every conclusion to log/deploy evidence；Bad=only says "human error" without system fix
+
 ## 检查清单
 
 - description 是否足够具体，能避免误触发？

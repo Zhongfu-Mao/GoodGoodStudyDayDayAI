@@ -389,6 +389,17 @@ schema 错、权限错、业务规则错，重试只会制造噪音。
 - 数据修复 runbook：
 ```
 
+> **示例填法（PDF/Excel 报告导出 task）**
+>
+> 任务名称：monthly-export-report
+> 触发 API：POST /reports/exports
+> 任务类型：Queue worker
+> 可靠性要求：必须执行；允许同一 idempotency key 重复请求；最大 8 分钟；重试 3 次；支持取消 queued/running
+> 幂等：idempotency key=workspace_id+report_month；unique constraint=(workspace_id, report_month, format)；外部存储覆盖写；重复请求返回 existing job_id
+> 状态：queued=参数已保存；running=worker heartbeat；succeeded=文件 URL 写回；failed=可重试错误；cancelled=用户取消；dead-letter=超过重试
+> 可观测性：metrics=export_job_duration/status_total；logs=job_id/workspace_id/format；trace=api→worker→storage；alert=dead-letter > 0
+> 恢复：手动重放方式=按 job_id 重新入队；dead-letter 处理 owner=platform-oncall；数据修复 runbook=删除临时文件后重跑
+
 ## 检查清单
 
 - 任务失败是否会影响业务结果？

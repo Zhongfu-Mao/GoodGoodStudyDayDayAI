@@ -254,6 +254,16 @@ RAG 文書：
 評価セットへ追加したか：
 ```
 
+> **記入例（Eval dataset construction）**
+>
+> 目標：customer support reply quality の eval dataset を作ります
+> ユーザー場面：返金、延長、account 制限、請求異常の問い合わせです
+> 失敗時の影響：誤った約束が人間 escalation と補償 risk につながります
+> Input Data：入力元=匿名化 ticket；形式=JSONL；完全か=yes；ノイズはあるか=yes；矛盾はあるか=古い policy が少量あります；古いか=2025 rule は除外します
+> Context Data：RAG 文書=最新 policy base；会話履歴=直近 8 turn；ツール戻り値=order status API；捨てるべき無関係情報=雑談と署名です
+> Expected Output：形式=policy-grounded reply JSON；品質基準=正確、実行可能、落ち着いた tone；許可しない内容=未承認の補償約束；検証可能な証拠=policy_id と order_status
+> Failure Log：元入力=ticket_1842；期待出力=返金を断り延長 option を案内します；実際の出力=全額返金を約束しました；失敗分類=policy violation；根本原因判断=古い sample の矛盾；修正アクション=古い sample を削除して反例を追加します；評価セットへ追加したか=yes
+
 ## チェックリスト
 
 - 入力に、タスクに必要な重要事実が含まれているか？

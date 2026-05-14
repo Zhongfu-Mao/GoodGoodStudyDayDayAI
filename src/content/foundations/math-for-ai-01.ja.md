@@ -259,6 +259,17 @@ Top 3:
 - 追加または整理すべき文書：
 ```
 
+> **記入例（RAG diagnosis case）**
+>
+> 元の質問：project space ごとに document search を制限できますか？
+> 検索用に改写したクエリ：project space permission filter metadata RAG
+> 人間が正しいと考える文書または段落：docs/rag-permissions.md#workspace-filter
+> Top 1：文書=docs/vector-store-setup.md；類似度=0.82；関連あり=部分的に関連します
+> Top 2：文書=docs/rag-permissions.md；類似度=0.78；関連あり=関連します
+> Top 3：文書=docs/old-auth-notes.md；類似度=0.74；関連あり=関連しません
+> Diagnosis：クエリが広すぎるか=no；chunk 戦略に問題があるか=yes、権限 rule が次の段落に分かれています；キーワード検索の問題=no；内容不足=no；古い文書混入=yes
+> Action：クエリ改写=workspace_id filter を入れます；chunk 調整=権限小節単位で切り直します；metadata / filter 調整=product_area=search を追加します；hybrid search 調整=exact keyword を強めます；追加または整理すべき文書=old-auth-notes を archive します
+
 ## チェックリスト
 
 - クエリに対象、操作、制約、文脈が入っているか？

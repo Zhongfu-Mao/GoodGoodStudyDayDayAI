@@ -302,6 +302,17 @@ CI 检查命令：
 删除时间：
 ```
 
+> **示例填法（Astro content migration）**
+>
+> 名称：engineering-practice
+> 读者：需要维护 AI engineering 文章的开发者
+> URL 前缀：/engineering/practice/
+> Frontmatter Contract：必填字段=title/date/category/description/lang；可选字段=coverImage/tags；枚举字段=difficulty；默认值=draft=false
+> Language Policy：支持语言=zh/ja；sibling 规则=同 slug + .ja.md；是否允许单语言发布=no
+> Asset Policy：图片目录=/public/images/engineering/practice；封面命名=slug-cover.png；正文图片要求=本地路径和 alt；是否允许 SVG=no；是否允许远程图=no
+> Validation：本地检查命令=npm run check；CI 检查命令=npm run check + npm run test:ui；构建后资产检查=扫描 dist 图片引用；人工 review 项=标题、摘要、ja parity
+> Migration Notes：旧字段=topic；旧路径=/posts/ai-dev/；兼容策略=redirect map；删除时间=两次发布后
+
 ## 检查清单
 
 - collection 是否表达了清晰的内容域，而不是随意目录？
