@@ -65,6 +65,9 @@ export async function buildPodcastFeed({
     resolveSiteUrl(locale === 'ja' ? '/ja/feed.xml' : '/feed.xml'),
     site,
   ).toString();
+  const latestEpisodeDate = entries[0]?.entry.data.date;
+  const channelPubDate = latestEpisodeDate ? new Date(latestEpisodeDate).toUTCString() : undefined;
+  const channelLastBuildDate = new Date().toUTCString();
   const items = await Promise.all(
     entries.map(async ({ entry, slug }) => {
       const audioUrl = resolveAbsoluteUrl(entry.data.audioUrl ?? '', site);
@@ -125,6 +128,9 @@ export async function buildPodcastFeed({
     customData: [
       `<atom:link href="${escapeXmlAttribute(feedSelfUrl)}" rel="self" type="application/rss+xml"/>`,
       `<language>${show.language}</language>`,
+      channelPubDate ? `<pubDate>${escapeXmlText(channelPubDate)}</pubDate>` : '',
+      `<lastBuildDate>${escapeXmlText(channelLastBuildDate)}</lastBuildDate>`,
+      `<ttl>30</ttl>`,
       `<itunes:author>${escapeXmlText(show.author)}</itunes:author>`,
       `<itunes:owner><itunes:name>${escapeXmlText(show.author)}</itunes:name><itunes:email>${escapeXmlText(show.email)}</itunes:email></itunes:owner>`,
       // Nested category enables Apple Podcasts subcategory search routing.
@@ -134,7 +140,9 @@ export async function buildPodcastFeed({
       `<itunes:type>episodic</itunes:type>`,
       `<itunes:image href="${escapeXmlAttribute(artworkUrl)}" />`,
       `<image><url>${escapeXmlText(artworkUrl)}</url><title>${escapeXmlText(show.title)}</title><link>${escapeXmlText(feedLink)}</link></image>`,
-    ].join(''),
+    ]
+      .filter(Boolean)
+      .join(''),
   });
 }
 
