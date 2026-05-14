@@ -393,43 +393,43 @@ LLM 应用失败时，症状通常不是单一错误，而是一串连锁反应�
 ```md
 # LLM App Design Brief
 
-## 1. 用户任务
+### 1. 用户任务
 - 用户是谁？
 - 他们要完成什么具体工作？
 - 完成标准是什么？
 
-## 2. 模型职责
+### 2. 模型职责
 - 模型负责理解、生成、判断、规划中的哪几项？
 - 哪些决定不能交给模型自动完成？
 
-## 3. 上下文来源
+### 3. 上下文来源
 - 用户输入：
 - 检索资料：
 - 会话状态：
 - 业务数据：
 - 不允许进入模型的敏感信息：
 
-## 4. 输出契约
+### 4. 输出契约
 - 最终输出是自然语言、JSON、UI 状态还是动作计划？
 - 必填字段：
 - 枚举值：
 - 校验规则：
 - 失败降级：
 
-## 5. 工具列表
+### 5. 工具列表
 - 只读工具：
 - 可逆写工具：
 - 高风险写工具：
 - 每个工具的参数 schema：
 - 每个工具的权限边界：
 
-## 6. 状态策略
+### 6. 状态策略
 - 会话如何延续？
 - 哪些历史进入模型？
 - 哪些记录只进日志？
 - 如何避免重复执行？
 
-## 7. 观测与评估
+### 7. 观测与评估
 - trace id 如何贯穿一次请求？
 - 记录哪些指标？
 - 哪些样本进入人工评审？
@@ -479,7 +479,7 @@ LLM 应用失败时，症状通常不是单一错误，而是一串连锁反应�
 
 如果这份清单里有一半以上答不上来，说明应用还处在 Demo 阶段。Demo 可以展示能力，但不要把它误认为生产系统。
 
-## 这篇文章和后续内容的关系
+## 继续阅读
 
 这篇文章只是入口。
 
@@ -491,14 +491,14 @@ LLM 应用失败时，症状通常不是单一错误，而是一串连锁反应�
 
 如果你正在做 Python/FastAPI 后端，可以把本文的运行时循环和 [FastAPI 工程实践专题](../../engineering/practice/python-fastapi-developer-foundations/) 接起来：FastAPI 负责 HTTP、依赖注入、验证和观测；LLM 运行时负责上下文、模型、工具和状态。
 
-## 外部参考
+## 参考
 
 - [OpenAI Function Calling guide](https://developers.openai.com/api/docs/guides/function-calling)：工具调用的基本术语、函数 schema、工具输出回传方式。
 - [OpenAI Structured Outputs guide](https://developers.openai.com/api/docs/guides/structured-outputs)：结构化输出和函数调用的适用边界。
 - [OpenAI Migrate to Responses API guide](https://developers.openai.com/api/docs/guides/migrate-to-responses)：Responses API、工具循环、状态和 hosted tools 的当前方向。
 - [OpenAI Agents guide: Running agents](https://developers.openai.com/api/docs/guides/agents/running-agents)：会话延续、`previousResponseId`、session 和 conversation 策略。
 
-## 最后一句
+## 小结
 
 LLM 应用的工程化，本质是把“不稳定的语言生成”放进“稳定的软件边界”里。
 

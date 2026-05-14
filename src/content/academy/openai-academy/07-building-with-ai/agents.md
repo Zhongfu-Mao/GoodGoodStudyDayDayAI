@@ -231,7 +231,7 @@ Agent 必须有预算、时间和重试上限。无限循环不是智能，是�
 ## 设计模板
 
 ```md
-## Agent Card
+### Agent Card
 
 目标：
 不负责：
@@ -239,24 +239,24 @@ Agent 必须有预算、时间和重试上限。无限循环不是智能，是�
 输入：
 输出：
 
-## Tools
+### Tools
 
 | Tool | Permission | Side Effect | Approval |
 | --- | --- | --- | --- |
 
-## State
+### State
 
 需要保存：
 可以丢弃：
 恢复方式：
 
-## Policy
+### Policy
 
 自动执行条件：
 必须询问条件：
 停止条件：
 
-## Evaluation
+### Evaluation
 
 成功标准：
 路径检查：

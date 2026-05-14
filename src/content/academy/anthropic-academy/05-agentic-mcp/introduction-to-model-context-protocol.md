@@ -160,7 +160,7 @@ Agent 调用外部系统后，必须能追溯谁、何时、为什么调用了�
 ## MCP Server 设计模板
 
 ```md
-## Server
+### Server
 
 名称：
 owner：
@@ -168,20 +168,20 @@ owner：
 transport：
 认证方式：
 
-## Capabilities
+### Capabilities
 
 Tools：
 Resources：
 Prompts：
 
-## Permissions
+### Permissions
 
 默认权限：
 需要确认的 tool：
 禁止的 action：
 敏感字段处理：
 
-## Operations
+### Operations
 
 日志字段：
 版本策略：

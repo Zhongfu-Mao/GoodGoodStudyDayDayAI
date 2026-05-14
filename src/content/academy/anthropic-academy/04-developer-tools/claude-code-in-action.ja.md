@@ -186,7 +186,7 @@ Agent は失敗を説明できますが、失敗を成功に変えることは�
 ## タスクテンプレート
 
 ```md
-## Coding Agent Task
+### Coding Agent Task
 
 目標：
 背景：
@@ -194,14 +194,14 @@ Agent は失敗を説明できますが、失敗を成功に変えることは�
 変更禁止：
 検証コマンド：
 
-## Guardrails
+### Guardrails
 
 依存追加を許可するか：
 外部コマンドを許可するか：
 commit を許可するか：
 push または公開を許可するか：
 
-## Done Means
+### Done Means
 
 - diff を review できる
 - 検証コマンドが通る

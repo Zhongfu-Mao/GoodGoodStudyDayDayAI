@@ -202,7 +202,7 @@ rubric：
 ## Eval 设计模板
 
 ```md
-## Task
+### Task
 
 用户：
 输入：
@@ -210,7 +210,7 @@ rubric：
 成功标准：
 失败成本：
 
-## Dataset
+### Dataset
 
 Happy path：
 Edge cases：
@@ -218,24 +218,24 @@ Known failures：
 Adversarial：
 Real samples：
 
-## Rubric
+### Rubric
 
 | Dimension | Pass Criteria | Critical |
 | --- | --- | --- |
 
-## Grading
+### Grading
 
 自动检查：
 模型评分：
 人工复核：
 
-## Release Gate
+### Release Gate
 
 必须通过：
 可接受波动：
 阻断发布：
 
-## Feedback Loop
+### Feedback Loop
 
 失败如何分类：
 如何进入回归集：

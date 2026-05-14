@@ -202,7 +202,7 @@ rubric：
 ## Eval 設計テンプレート
 
 ```md
-## Task
+### Task
 
 ユーザー：
 入力：
@@ -210,7 +210,7 @@ rubric：
 成功基準：
 失敗コスト：
 
-## Dataset
+### Dataset
 
 Happy path：
 Edge cases：
@@ -218,24 +218,24 @@ Known failures：
 Adversarial：
 Real samples：
 
-## Rubric
+### Rubric
 
 | Dimension | Pass Criteria | Critical |
 | --- | --- | --- |
 
-## Grading
+### Grading
 
 自動チェック：
 モデル採点：
 人間レビュー：
 
-## Release Gate
+### Release Gate
 
 必須通過：
 許容する変動：
 公開阻止条件：
 
-## Feedback Loop
+### Feedback Loop
 
 失敗分類：
 回帰集への追加：

@@ -186,7 +186,7 @@ Agent 可以解释失败，但不能把失败解释成成功。
 ## 任务模板
 
 ```md
-## Coding Agent Task
+### Coding Agent Task
 
 目标：
 业务背景：
@@ -194,14 +194,14 @@ Agent 可以解释失败，但不能把失败解释成成功。
 禁止修改：
 验证命令：
 
-## Guardrails
+### Guardrails
 
 是否允许安装依赖：
 是否允许运行外部命令：
 是否允许提交：
 是否允许推送或发布：
 
-## Done Means
+### Done Means
 
 - diff 可 review
 - 验证命令通过

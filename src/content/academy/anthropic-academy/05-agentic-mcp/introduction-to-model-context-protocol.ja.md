@@ -160,7 +160,7 @@ Agent が外部システムを呼んだら、誰が、いつ、なぜ、何を�
 ## MCP Server 設計テンプレート
 
 ```md
-## Server
+### Server
 
 名前：
 owner：
@@ -168,20 +168,20 @@ owner：
 transport：
 認証方式：
 
-## Capabilities
+### Capabilities
 
 Tools：
 Resources：
 Prompts：
 
-## Permissions
+### Permissions
 
 デフォルト権限：
 確認が必要な tool：
 禁止 action：
 機密フィールド処理：
 
-## Operations
+### Operations
 
 ログ項目：
 version 方針：

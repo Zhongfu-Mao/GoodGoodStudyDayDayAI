@@ -202,13 +202,13 @@ chunk size は重要ですが、metadata、見出し保持、parent context、re
 ## RAG 設計テンプレート
 
 ```md
-## RAG System Card
+### RAG System Card
 
 ユーザー場面：
 回答境界：
 拒否条件：
 
-## Corpus
+### Corpus
 
 出典：
 登録ルール：
@@ -216,7 +216,7 @@ chunk size は重要ですが、metadata、見出し保持、parent context、re
 権限ルール：
 矛盾処理：
 
-## Retrieval
+### Retrieval
 
 クエリ書き換え：
 ベクトル検索：
@@ -224,13 +224,13 @@ chunk size は重要ですが、metadata、見出し保持、parent context、re
 metadata filter：
 rerank：
 
-## Generation
+### Generation
 
 出力形式：
 引用形式：
 不確実性の表現：
 
-## Evaluation
+### Evaluation
 
 検索指標：
 生成指標：

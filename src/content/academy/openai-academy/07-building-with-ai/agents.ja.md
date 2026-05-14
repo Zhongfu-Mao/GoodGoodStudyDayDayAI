@@ -231,7 +231,7 @@ Agent には予算、時間、リトライ上限が必要です。無限ルー�
 ## 設計テンプレート
 
 ```md
-## Agent Card
+### Agent Card
 
 目標：
 責任範囲外：
@@ -239,24 +239,24 @@ Agent には予算、時間、リトライ上限が必要です。無限ルー�
 入力：
 出力：
 
-## Tools
+### Tools
 
 | Tool | Permission | Side Effect | Approval |
 | --- | --- | --- | --- |
 
-## State
+### State
 
 保存するもの：
 捨ててよいもの：
 復旧方法：
 
-## Policy
+### Policy
 
 自動実行条件：
 必ず質問する条件：
 停止条件：
 
-## Evaluation
+### Evaluation
 
 成功基準：
 経路チェック：

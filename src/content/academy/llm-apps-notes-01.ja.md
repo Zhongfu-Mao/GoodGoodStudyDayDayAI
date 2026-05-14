@@ -392,43 +392,43 @@ LLM アプリの失敗は、単発のエラーではなく連鎖として現れ�
 ```md
 # LLM App Design Brief
 
-## 1. ユーザータスク
+### 1. ユーザータスク
 - ユーザーは誰か？
 - どの作業を完了したいのか？
 - 完了条件は何か？
 
-## 2. モデルの責務
+### 2. モデルの責務
 - 理解、生成、判断、計画のうち、モデルに任せる範囲はどこか？
 - モデルに自動決定させてはいけないことは何か？
 
-## 3. コンテキストソース
+### 3. コンテキストソース
 - ユーザー入力：
 - 検索結果：
 - 会話状態：
 - 業務データ：
 - モデルへ渡してはいけない機密情報：
 
-## 4. 出力契約
+### 4. 出力契約
 - 最終出力は自然文、JSON、UI 状態、アクション計画のどれか？
 - 必須フィールド：
 - 列挙値：
 - 検証ルール：
 - 失敗時のフォールバック：
 
-## 5. Tool 一覧
+### 5. Tool 一覧
 - 読み取り専用 tool：
 - 取り消し可能な書き込み tool：
 - 高リスク書き込み tool：
 - 各 tool の引数 schema：
 - 各 tool の権限境界：
 
-## 6. 状態戦略
+### 6. 状態戦略
 - 会話をどう継続するか？
 - どの履歴をモデルへ渡すか？
 - どの記録はログにだけ残すか？
 - 重複実行をどう防ぐか？
 
-## 7. 観測と評価
+### 7. 観測と評価
 - trace id をどう貫通させるか？
 - どの指標を記録するか？
 - どのサンプルを人間レビューへ回すか？
@@ -478,7 +478,7 @@ LLM アプリの失敗は、単発のエラーではなく連鎖として現れ�
 
 このチェックリストの半分以上に答えられない場合、そのアプリはまだ Demo 段階かもしれません。Demo は能力を見せるには十分ですが、そのまま本番システムとは呼べません。
 
-## このページと次に読む内容
+## 続けて読む
 
 このページは入口です。
 
@@ -490,14 +490,14 @@ tool calling が標準化された tool protocol とどうつながるかを知�
 
 Python / FastAPI でバックエンドを作る場合は、このページの実行時ループを [FastAPI 実践トピック](../../engineering/practice/python-fastapi-developer-foundations/) と接続できます。FastAPI は HTTP、依存性注入、検証、観測性を担当し、LLM runtime はコンテキスト、モデル、tool、状態を担当します。
 
-## 外部参考
+## 参考
 
 - [OpenAI Function Calling guide](https://developers.openai.com/api/docs/guides/function-calling)：tool calling の基本語彙、function schema、tool output の返し方。
 - [OpenAI Structured Outputs guide](https://developers.openai.com/api/docs/guides/structured-outputs)：構造化出力と function calling の使い分け。
 - [OpenAI Migrate to Responses API guide](https://developers.openai.com/api/docs/guides/migrate-to-responses)：Responses API、tool loop、state、hosted tools の現在の方向性。
 - [OpenAI Agents guide: Running agents](https://developers.openai.com/api/docs/guides/agents/running-agents)：会話継続、`previousResponseId`、session、conversation 戦略。
 
-## 最後に
+## 小結
 
 LLM アプリのエンジニアリングとは、不安定になりうる言語生成を、安定したソフトウェア境界の中に置くことです。
 

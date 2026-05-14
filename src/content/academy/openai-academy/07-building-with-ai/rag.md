@@ -202,13 +202,13 @@ chunk size 重要，但 metadata、标题保留、父子上下文、rerank 同�
 ## RAG 设计模板
 
 ```md
-## RAG System Card
+### RAG System Card
 
 用户场景：
 回答边界：
 拒答条件：
 
-## Corpus
+### Corpus
 
 来源：
 准入规则：
@@ -216,7 +216,7 @@ chunk size 重要，但 metadata、标题保留、父子上下文、rerank 同�
 权限规则：
 冲突处理：
 
-## Retrieval
+### Retrieval
 
 查询改写：
 向量检索：
@@ -224,13 +224,13 @@ chunk size 重要，但 metadata、标题保留、父子上下文、rerank 同�
 metadata filter：
 rerank：
 
-## Generation
+### Generation
 
 输出格式：
 引用格式：
 不确定性表达：
 
-## Evaluation
+### Evaluation
 
 检索指标：
 生成指标：

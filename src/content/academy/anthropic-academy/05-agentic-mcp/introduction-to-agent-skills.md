@@ -133,12 +133,12 @@ Skill 越像“操作手册 + 可执行资产”，越有价值。只写一段�
 高质量 Skill 更像这样：
 
 ```md
-## When to Use
+### When to Use
 
 Use this when the user asks for a PR description after code changes exist.
 Do not use this for release notes or changelog generation.
 
-## Steps
+### Steps
 
 1. Inspect branch diff.
 2. Identify user-visible changes.
@@ -146,7 +146,7 @@ Do not use this for release notes or changelog generation.
 4. Write PR description in the required format.
 5. Include risks and rollout notes.
 
-## Verification
+### Verification
 
 - Description mentions tests.
 - No unrelated files are summarized as intentional changes.
@@ -208,36 +208,36 @@ name: skill-name
 description: Use when...
 ---
 
-## When to Use
+### When to Use
 
 Use this when:
 
 Do not use this when:
 
-## Inputs
+### Inputs
 
 - Required files:
 - Required commands:
 - Required context:
 
-## Workflow
+### Workflow
 
 1.
 2.
 3.
 
-## Output
+### Output
 
 Format:
 Must include:
 Must not include:
 
-## Verification
+### Verification
 
 - [ ]
 - [ ]
 
-## Examples
+### Examples
 
 Good:
 
