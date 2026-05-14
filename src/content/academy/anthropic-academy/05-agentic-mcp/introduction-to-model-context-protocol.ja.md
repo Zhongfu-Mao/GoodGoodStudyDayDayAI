@@ -1,95 +1,213 @@
 ---
-title: "Model Context Protocol 入門"
+title: "Model Context Protocol 入門：ツール接続をプロトコル問題にする"
 date: 2026-03-31
 category: academy
-description: "MCP の基本発想、モデルとツールを接続する枠組み、実務上のメリットを把握するための入門ノートです。"
-plainSummary: "MCP をクライアント、サーバー、ツール、リソース、権限の関係として理解し、AI と外部システムを接続する基本を整理します。"
-difficulty: "advanced"
-coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-model-context-protocol.svg"
+description: "client、server、tools、resources、prompts、transport、権限、ガバナンスから MCP を理解し、個別ツール統合を使い捨てコードにしない。"
+plainSummary: "MCP は Agent と外部ツール、リソース、prompt の接続を標準化する。魔法の層ではなく、権限、version、監査、ガバナンスが必要な工程 interface である。"
+difficulty: advanced
+coverImage: "/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/mcp-protocol-hub-cover.png"
 tags:
   - Agent
+  - MCP
 lang: ja
 academy:
   series: "Anthropic Academy"
-  module: "Agents と MCP"
+  module: "Agent と MCP"
   moduleOrder: 5
   source: "Anthropic Academy"
   sourceUrl: "https://anthropic.skilljar.com/introduction-to-model-context-protocol"
-  prerequisites: []
+  prerequisites:
+    - "Python プログラミング基礎"
+    - "JSON と HTTP request / response 基礎"
 draft: false
 ---
-Model Context Protocol（MCP）は、AI アプリケーションが外部ツールやデータソースに接続するための標準化されたプロトコルです。USB-C のように、クライアントとサーバーが共通の方式で能力をやり取りできるようにします。
 
-## このノートで押さえること
+# Model Context Protocol 入門：ツール接続をプロトコル問題にする
 
-- MCP は AI と外部ツールの M × N 統合を、クライアント + サーバーの組み合わせに変える。
-- MCP client は AI 側、MCP server はツールやデータを提供する側として考える。
-- Tools、Resources、Prompts はそれぞれ「実行」「参照」「定型文脈」を担う。
-- 便利さと同時に、権限、監査、ユーザー承認、失敗時の扱いを設計する必要がある。
+![MCP protocol hub が model、tool、data source を接続する](/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/mcp-protocol-hub-cover.png)
 
-## MCP が解く問題
+Agent を作り始めると、すぐに同じ問題に当たります。モデルは外部世界へアクセスする必要があります。
 
-AI アプリがファイル、カレンダー、データベース、GitHub、社内 API に接続するたびに個別実装を作ると、組み合わせが爆発します。MCP はこの統合を標準化し、AI 側とツール側が共通の形式でやり取りできるようにします。
+必要になるものです。
 
-MCP を使うと、新しいツールは MCP server として実装し、対応する AI クライアントから利用できます。AI アプリごとに同じ統合を作り直す必要が減ります。
+- GitHub issue を読む。
+- データベースを問い合わせる。
+- 文書を検索する。
+- 内部 API を呼ぶ。
+- デザインを読む。
+- ログを読む。
+- 既存業務システムを使う。
 
-ただし、標準化は安全性を自動で保証するわけではありません。何を読めるか、何を実行できるか、誰が承認するかを設計します。
+各アプリが各ツールに対して schema、認証、呼び出し、エラー処理を手書きすると、統合コストはすぐに膨らみます。Model Context Protocol（MCP）の価値はここにあります。モデルアプリと外部ツールの接続を標準化します。
 
-## Client / Server / Tool
+一言でいうと：
 
-**MCP client** は Claude Desktop、IDE、エージェント実行環境など、AI 側でツールを使いたいアプリケーションです。
+**MCP は tools、resources、prompts を統一プロトコルで AI client に公開する。**
 
-**MCP server** はファイルシステム、データベース、SaaS、社内 API などの能力を MCP 形式で提供します。
+## MCP が解くのは「呼べるか」ではなく N 対 M 統合
 
-**Tool** は実行可能な操作です。ファイルを読む、Issue を作る、SQL を実行する、検索するなど、外部世界に作用するものです。
+プロトコルがない場合、N 個の AI client と M 個の tool があると、N × M の adapter が生まれがちです。
 
-**Resource** は参照可能な情報、**Prompt** は再利用可能な文脈やテンプレートとして考えると分かりやすくなります。
+プロトコルがあると、client は MCP を理解し、tool 側は MCP Server を実装します。接続複雑度が下がります。
 
-## 安全に使うための設計
-
-MCP server は便利なほど強い権限を持ちがちです。ファイルシステム server なら読み書き範囲、データベース server なら実行可能なクエリ、GitHub server ならリポジトリ権限を制限します。
-
-ユーザー承認も重要です。AI が提案したツール呼び出しを自動実行するのか、実行前に確認するのかでリスクが変わります。
-
-ログには、いつ、どのツールが、どの引数で、どんな結果になったかを残します。後から説明できることが、Agentic workflow の信頼性を支えます。
-
-## 読者向け補足：MCP 設計は権限設計から始める
-
-MCP を理解するときは、最初に tool の便利さではなく権限境界を見ると実務に接続しやすくなります。AI が何を読めるのか、何を書けるのか、どの操作はユーザー承認が必要なのかを決めることで、server の設計が具体化します。
-
-最初の MCP server は、読み取り専用から始めるのが安全です。検索、一覧、詳細取得のような操作でログと承認の流れを確認し、問題がなければ作成や更新の tool を足していきます。
-
-| 能力 | 最初の設計例 |
+| 役割 | 責任 |
 | --- | --- |
-| Read | 公開記事、Issue、ドキュメントだけ読む |
-| Search | query と category を受け取り、件数上限を置く |
-| Write | 下書き作成に限定し、実行前に承認する |
-| Audit | tool 名、引数、結果、承認者を記録する |
+| MCP Client | AI アプリや Agent 環境内で server 能力を発見し呼び出す |
+| MCP Server | tools、resources、prompts を公開し、実外部システムへ接続する |
+| Tool | issue 検索、ファイル操作、検索などの実行 action |
+| Resource | 文書、ファイル、DB record などの読み取り対象 |
+| Prompt | 再利用可能な prompt template や task entry |
+| Transport | client と server の通信方式。stdio、HTTP など |
 
-### ミニ演習
+MCP の焦点は単一ツールではありません。ツールがどう発見され、説明され、呼び出され、結果を返すかです。
 
-身近なシステムを一つ選び、MCP server として公開するなら read/search/write をどう分けるかを書きます。書き込み tool は、必ず承認条件と rollback 方法も一緒に書きます。
+## tools、resources、prompts を分ける
 
-## 実務で試すワークフロー
+![MCP server 境界、tools、resources、permission layer](/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/mcp-server-boundaries.png)
 
-1. 接続したい外部システムを一つ選び、読み取り・書き込み・実行の権限を分ける。
-2. 最小 MCP server では、まず読み取り専用 tool から始める。
-3. ツール呼び出しログとユーザー承認のルールを先に決める。
+多くの統合は、すべてを tool と呼ぶことで混乱します。
 
-## Prompt pack
+MCP 的な考え方では次のように分けます。
 
-- この外部 API を MCP server として公開する場合、tools、resources、prompts をどう分けるべきか設計してください。
-- 次の MCP tool に必要な権限、入力検証、監査ログ、ユーザー承認を整理してください。
-- MCP と通常の API integration の違いを、開発者と非開発者向けに説明してください。
+| 種類 | 向くもの | リスク |
+| --- | --- | --- |
+| Tool | action や計算を実行する | 副作用があり、権限が必要 |
+| Resource | 既存内容を読む | access control と脱敏が必要 |
+| Prompt | 再利用 task template を提供する | version 管理と適用範囲が必要 |
 
-## 自分で確認する
+例です。
 
-- MCP client と server の役割を説明できる。
-- Tool と Resource の違いを説明できる。
-- 権限とログを設計してから server を公開している。
+- `list_pull_requests` は tool。
+- `repo://owner/name/README.md` は resource。
+- `review_pr_prompt` は prompt。
 
-## 関連して読む
+種類を分けると、権限と監査も明確になります。
 
-- [MCP とは何か](/start/ai-basics-for-everyone/what-is-mcp/)
-- [Minimal MCP Server](../../../../engineering/ai-developer-core/minimal-mcp-server/)
-- [MCP Advanced Topics](../model-context-protocol-advanced-topics/)
+## Transport はデプロイ方式を決める
+
+MCP は複数の transport で動けます。現在の標準的な transport は主に次の二つです。
+
+| Transport | 向く場面 |
+| --- | --- |
+| stdio | ローカルツール、CLI 統合、開発環境 |
+| Streamable HTTP | remote server、チーム共有、クラウドデプロイ |
+
+ローカル stdio は始めやすいですが、Streamable HTTP はチーム共有サービスに近いです。古い HTTP with SSE は legacy transport であり、WebSocket は custom transport として設計できますが、標準 transport として扱うべきではありません。transport を選ぶときは次を考えます。
+
+- server はどこで動くか。
+- 認証は誰が担当するか。
+- ログはどこに残るか。
+- version をどう上げるか。
+- 接続元をどう制限するか。
+
+プロトコルが統一されても、デプロイ複雑度は消えません。より明確な場所に移るだけです。
+
+## 権限とガバナンスは後付けしない
+
+MCP server が実システムにつながった瞬間、それは開発ツールではなく Agent の能力境界になります。
+
+設計すべき項目です。
+
+- どの client が接続できるか。
+- どのユーザーがどの tool を呼べるか。
+- tool 引数を検証するか。
+- 書き込み tool に確認を入れるか。
+- 出力に機密情報がないか。
+- 各呼び出しに audit log があるか。
+- server version の変更は互換か。
+
+MCP server を「モデルの裏口」にしないことです。内部 API と同じように統制します。
+
+## ケース：GitHub MCP Server
+
+目標：Agent が GitHub プロジェクトを支援できるようにする。
+
+能力分解：
+
+- Resource：repository README、issue 本文、PR diff。
+- Tool：issue 一覧、コメント作成、CI 状態読み取り。
+- Prompt：PR review template、release note template。
+
+権限方針：
+
+- デフォルトは read-only。
+- コメント、label 変更、issue close は確認が必要。
+- merge、branch 削除はデフォルト無効。
+- すべての tool call は repo、対象、user、time、result を記録する。
+
+これなら Agent は効率よく協働できますが、無制限に repository を操作しません。
+
+![MCP governance risk map：permission、version、audit、data boundary](/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/mcp-governance-risks.png)
+
+## よくあるアンチパターン
+
+**アンチパターン 1：MCP を万能 plugin system と考える。**
+
+MCP は接続標準を解きます。権限、安全、データ品質、製品 workflow は自動では解けません。
+
+**アンチパターン 2：すべてを書き込み tool にする。**
+
+まず resource と read-only tool を分けます。書き込み能力は遅く開くほど安全です。
+
+**アンチパターン 3：server に version と owner がない。**
+
+複数 Agent が依存し始めると、version 変更は本番リスクになります。
+
+**アンチパターン 4：audit log がない。**
+
+Agent が外部システムを呼んだら、誰が、いつ、なぜ、何を呼んだか追跡できる必要があります。
+
+## MCP Server 設計テンプレート
+
+```md
+## Server
+
+名前：
+owner：
+実行場所：
+transport：
+認証方式：
+
+## Capabilities
+
+Tools：
+Resources：
+Prompts：
+
+## Permissions
+
+デフォルト権限：
+確認が必要な tool：
+禁止 action：
+機密フィールド処理：
+
+## Operations
+
+ログ項目：
+version 方針：
+error code：
+rate limit：
+rollback：
+```
+
+## チェックリスト
+
+- tool、resource、prompt を明確に分けているか？
+- server に owner と version 方針があるか？
+- 書き込み tool はデフォルトで確認を必要にしているか？
+- tool の入出力は構造化されているか？
+- 各呼び出しの audit 情報を記録しているか？
+- remote server に認証と access control があるか？
+- 失敗と timeout の扱いがあるか？
+
+## さらに読む
+
+- [Agent Skills 入門](./introduction-to-agent-skills/)：再利用 workflow を Agent が発見できる能力にする。
+- [MCP Advanced Topics](./model-context-protocol-advanced-topics/)：より複雑なデプロイ、認証、ガバナンスを理解する。
+- [OpenAI Academy：信頼できる AI Agents を構築する](../../openai-academy/07-building-with-ai/agents/)：MCP を Agent システムアーキテクチャへ戻して考える。
+
+## 参考
+
+- [Model Context Protocol Introduction](https://modelcontextprotocol.io/introduction)
+- [Anthropic MCP documentation](https://docs.anthropic.com/en/docs/mcp)
+- [MCP specification](https://spec.modelcontextprotocol.io/)

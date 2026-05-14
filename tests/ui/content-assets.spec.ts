@@ -93,7 +93,7 @@ test.describe('content and asset QA', () => {
       }
 
       const markdown = fs.readFileSync(entry.filePath, 'utf8');
-      if (/\]\([^)]*\.svg(?:[?#][^)]*)?\)/.test(markdown)) {
+      if (containsSvgReference(markdown)) {
         problems.push(`${entry.relativePath} references an inline SVG body image`);
       }
       if (internalContextPattern.test(markdown)) {
@@ -104,7 +104,7 @@ test.describe('content and asset QA', () => {
     expect(problems).toEqual([]);
   });
 
-  test('Phase A benchmark articles keep covers, raster visuals, and public-facing copy', () => {
+  test('benchmark articles keep covers, raster visuals, and public-facing copy', () => {
     const targetArticles = [
       {
         collection: 'academy',
@@ -142,6 +142,45 @@ test.describe('content and asset QA', () => {
         imagePrefix: '/images/foundations/data-science-02/',
         minBodyImages: 3,
       },
+      {
+        collection: 'academy',
+        baseSlug: 'openai-academy/07-building-with-ai/agents',
+        imagePrefix: '/images/academy/openai-academy/07-building-with-ai/agents/',
+        minBodyImages: 3,
+      },
+      {
+        collection: 'academy',
+        baseSlug: 'openai-academy/07-building-with-ai/rag',
+        imagePrefix: '/images/academy/openai-academy/07-building-with-ai/rag/',
+        minBodyImages: 3,
+      },
+      {
+        collection: 'academy',
+        baseSlug: 'openai-academy/07-building-with-ai/evals',
+        imagePrefix: '/images/academy/openai-academy/07-building-with-ai/evals/',
+        minBodyImages: 3,
+      },
+      {
+        collection: 'academy',
+        baseSlug: 'anthropic-academy/04-developer-tools/claude-code-in-action',
+        imagePrefix:
+          '/images/academy/anthropic-academy/04-developer-tools/claude-code-in-action/',
+        minBodyImages: 3,
+      },
+      {
+        collection: 'academy',
+        baseSlug: 'anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol',
+        imagePrefix:
+          '/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/',
+        minBodyImages: 3,
+      },
+      {
+        collection: 'academy',
+        baseSlug: 'anthropic-academy/05-agentic-mcp/introduction-to-agent-skills',
+        imagePrefix:
+          '/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/',
+        minBodyImages: 3,
+      },
     ];
     const internalContextPattern =
       /学习会|讲法|听众|勉強会|聴衆|社内|站内未公开|站内来源清单|内部資料|サイト非公開|workshop notes|speaker notes/i;
@@ -160,14 +199,14 @@ test.describe('content and asset QA', () => {
         const markdownWithoutCodeBlocks = stripFencedCodeBlocks(markdown);
         const coverImage = entry.frontmatter.coverImage;
         if (!coverImage || !coverImage.startsWith(target.imagePrefix)) {
-          problems.push(`${entry.relativePath} is missing the Phase A benchmark cover image`);
+          problems.push(`${entry.relativePath} is missing the benchmark cover image`);
         } else if (!fileExistsWithContent(resolvePublicAsset(coverImage))) {
           problems.push(`${entry.relativePath} coverImage does not exist: ${coverImage}`);
         } else if (!stripUrlDecorations(coverImage).endsWith('.png')) {
           problems.push(`${entry.relativePath} coverImage should be a PNG asset: ${coverImage}`);
         }
 
-        if (/\]\([^)]*\.svg(?:[?#][^)]*)?\)/.test(markdownWithoutCodeBlocks)) {
+        if (containsSvgReference(markdownWithoutCodeBlocks)) {
           problems.push(`${entry.relativePath} references an inline SVG body image`);
         }
         if (internalContextPattern.test(markdown)) {
@@ -304,4 +343,12 @@ function pushReference(references: Array<{ original: string; pathname: string }>
 
 function stripFencedCodeBlocks(markdown: string) {
   return markdown.replace(/(^|\n)```[\s\S]*?```(?=\n|$)/g, '$1');
+}
+
+function containsSvgReference(markdown: string) {
+  return (
+    /\]\([^)]*\.svg(?:[?#][^)]*)?\)/i.test(markdown) ||
+    /<svg(?:\s|>)/i.test(markdown) ||
+    /<img\b[^>]*\bsrc=["'][^"']*\.svg(?:[?#][^"']*)?["']/i.test(markdown)
+  );
 }

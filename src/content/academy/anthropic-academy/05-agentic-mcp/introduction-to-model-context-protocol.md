@@ -1,13 +1,14 @@
 ---
-title: "Introduction to Model Context Protocol"
+title: "Model Context Protocol 入门：把工具接入变成协议问题"
 date: 2026-03-31
 category: academy
-description: "模型上下文协议（MCP）入门，MCP服务器、客户端和工具的基本概念"
-plainSummary: "这篇笔记把 Introduction to Model Context Protocol 的核心内容整理成可复习、可实践的 代理与 MCP 学习路径。"
+description: "从 client、server、tools、resources、prompts、transport、权限与治理理解 MCP，避免把每个工具集成做成一次性代码。"
+plainSummary: "MCP 的价值在于把 Agent 与外部工具、资源和提示词之间的连接标准化。它不是魔法层，而是一套需要权限、版本、审计和治理的工程接口。"
 difficulty: advanced
-coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-model-context-protocol.svg"
+coverImage: "/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/mcp-protocol-hub-cover.png"
 tags:
   - Agent
+  - MCP
 lang: zh
 academy:
   series: "Anthropic Academy"
@@ -20,315 +21,193 @@ academy:
     - "JSON 与 HTTP 请求响应基础"
 draft: false
 ---
-**先决条件：** Python 编程基础、JSON 与 HTTP 请求响应基础
 
-## 第一章：简介
+# Model Context Protocol 入门：把工具接入变成协议问题
 
-### 1. 课程欢迎（Welcome to the course）
+![MCP 协议中心连接模型、工具与数据源](/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/mcp-protocol-hub-cover.png)
 
-本课程聚焦于使用 Python SDK 从零构建 MCP 服务器和客户端。
+当你开始构建 Agent，很快会遇到同一个问题：模型需要访问外部世界。
 
-**参考链接：**
-- UV 安装指南：https://docs.astral.sh/uv/
-- MCP 官方介绍：https://modelcontextprotocol.io/introduction
+它可能需要：
 
-### 2. 什么是 MCP（Introducing MCP）
+- 读取 GitHub issue。
+- 查询数据库。
+- 搜索文档。
+- 调用内部 API。
+- 获取设计稿。
+- 读取日志。
+- 使用已有业务系统。
 
-#### MCP 解决了什么问题
+如果每个应用都为每个工具手写一套 schema、认证、调用和错误处理，集成成本会迅速失控。Model Context Protocol（MCP）的价值就在这里：把模型应用与外部工具之间的连接标准化。
 
-假设你在构建一个让用户向 Claude 询问 GitHub 数据的聊天应用。Claude 需要访问 GitHub API 的工具才能回答问题。
+一句话理解：
 
-**没有 MCP 的情况：**
-- 你需要为每个 GitHub 功能（仓库、PR、Issue 等）手写工具定义
-- 需要维护复杂的 JSON schema
-- 集成代码全部由你负责
+**MCP 让工具、资源和提示词以统一协议暴露给 AI 客户端。**
 
-**有了 MCP：**
-- MCP 将工具定义和执行的负担从你的服务器转移给专门的 MCP 服务器
-- 你的服务器只需连接到现有的 GitHub MCP 服务器即可
+## MCP 解决的不是“能不能调用工具”，而是“N 对 M 集成”
 
-#### MCP 基础架构
+没有协议时，N 个 AI 客户端连接 M 个工具，常常会产生 N × M 的适配。
 
-```
-你的应用（MCP Client）
-    ↕
-MCP Server A（GitHub 工具）
-MCP Server B（数据库工具）
-MCP Server C（自定义工具）
-```
+有协议后，客户端只需要理解 MCP，工具侧只需要实现 MCP Server。这样连接复杂度会下降。
 
-每个 MCP Server 作为某个外部服务的接口，包含工具（Tools）、提示词（Prompts）和资源（Resources）。
+| 角色 | 责任 |
+| --- | --- |
+| MCP Client | 运行在 AI 应用或 Agent 环境里，发现并调用 server 能力 |
+| MCP Server | 暴露工具、资源、提示词，连接真实外部系统 |
+| Tool | 可执行动作，比如查询 issue、写文件、跑搜索 |
+| Resource | 可读取内容，比如文档、文件、数据库记录 |
+| Prompt | 可复用提示模板或任务入口 |
+| Transport | client 与 server 通信方式，如 stdio 或 HTTP |
 
-### 3. MCP 客户端（MCP clients）
+MCP 的重点不是某个具体工具，而是“工具如何被发现、描述、调用、返回结果”这一层。
 
-#### 传输无关性（Transport Agnostic）
+## 工具、资源、提示词要分清
 
-MCP 的关键优势之一是**传输无关性**——客户端和服务器可以通过不同协议通信，取决于你的部署方式：
+![MCP server 边界、工具、资源与权限层](/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/mcp-server-boundaries.png)
 
-| 场景 | 传输方式 |
-|------|----------|
-| 客户端和服务器在同一台机器 | 标准输入/输出（stdio）— 最常见 |
-| 远程部署 | HTTP、WebSocket 等网络协议 |
+很多集成混乱，是因为把所有能力都叫 tool。
 
-#### MCP 消息类型
+在 MCP 思维里，可以这样区分：
 
-连接后，客户端和服务器交换 MCP 规范定义的消息类型：
+| 类型 | 适合做什么 | 风险 |
+| --- | --- | --- |
+| Tool | 执行动作或计算 | 可能有副作用，需要权限 |
+| Resource | 读取已有内容 | 需要访问控制和脱敏 |
+| Prompt | 提供可复用任务模板 | 需要版本管理和适用范围 |
 
-| 消息类型 | 用途 |
-|----------|------|
-| `ListToolsRequest` | 列出服务器提供的所有工具 |
-| `CallToolRequest` | 调用某个具体工具 |
-| `ListResourcesRequest` | 列出可用资源 |
-| `ReadResourceRequest` | 读取某个资源 |
-| `ListPromptsRequest` | 列出可用提示词 |
-| `GetPromptRequest` | 获取某个提示词（含变量填充） |
+例如：
 
-## 第二章：动手构建 MCP 服务器
+- `list_pull_requests` 是 tool。
+- `repo://owner/name/README.md` 是 resource。
+- `review_pr_prompt` 是 prompt。
 
-### 4. 项目设置（Project setup）
+分清类型后，权限和审计也会更清楚。
 
-课程提供了两个 Python 项目包：
-- `cli_project.zip`：起始代码
-- `cli_project_COMPLETE.zip`：完整参考实现
+## Transport 选择影响部署方式
 
-**环境建议：** 使用 UV 管理 Python 环境（https://docs.astral.sh/uv/）
+MCP 可以通过不同 transport 工作。当前标准 transport 主要是：
 
-### 5. 用 MCP 定义工具（Defining tools with MCP）
+| Transport | 适合场景 |
+| --- | --- |
+| stdio | 本地工具、CLI 集成、开发环境 |
+| Streamable HTTP | 远程 server、团队共享、云端部署 |
 
-#### 使用 Python SDK 创建服务器
+本地 stdio 上手最快，但 Streamable HTTP 更接近团队共享服务。历史上的 HTTP with SSE 属于旧方案；WebSocket 可以作为自定义 transport 设计，但不应该被当成默认标准。选择 transport 时要考虑：
 
-Python MCP SDK 使服务器创建变得简单，只需一行代码初始化：
+- server 在哪里运行。
+- 谁负责认证。
+- 日志在哪里记录。
+- 如何升级版本。
+- 如何限制访问来源。
 
-```python
-from mcp.server.fastmcp import FastMCP
+协议统一不代表部署复杂度消失。它只是把复杂度放到了更清晰的位置。
 
-mcp = FastMCP("DocumentMCP", log_level="ERROR")
-```
+## 权限和治理不能后补
 
-#### 使用装饰器定义工具
+MCP server 一旦连接真实系统，就不只是开发工具，而是 Agent 的能力边界。
 
-用 `@mcp.tool()` 装饰器定义工具，无需手写 JSON schema：
+必须设计：
 
-```python
-# 文档存储在内存字典中
-docs = {
-    "deposition.md": "文档内容...",
-    "report.pdf": "另一份文档内容..."
-}
+- 哪些 client 可以连接。
+- 哪些用户可以调用哪些 tool。
+- tool 参数是否需要校验。
+- 写入类 tool 是否需要确认。
+- 输出是否包含敏感信息。
+- 每次调用是否有审计日志。
+- server 版本升级是否兼容。
 
-@mcp.tool()
-def read_document(doc_id: str) -> str:
-    """读取指定 ID 的文档内容"""
-    return docs.get(doc_id, "文档未找到")
+不要把 MCP server 当成“给模型开的后门”。它应该像任何内部 API 一样被治理。
 
-@mcp.tool()
-def update_document(doc_id: str, content: str) -> str:
-    """更新指定 ID 的文档内容"""
-    docs[doc_id] = content
-    return f"文档 {doc_id} 已更新"
-```
+## 案例：GitHub MCP Server
 
-SDK 会自动从函数签名和 docstring 生成工具定义，省去了手动维护 JSON schema 的麻烦。
+目标：让 Agent 能辅助处理 GitHub 项目。
 
-### 6. 服务器调试工具（The server inspector）
+能力拆分：
 
-#### 启动 MCP Inspector
+- Resource：仓库 README、issue 正文、PR diff。
+- Tool：列 issue、创建评论、读取 CI 状态。
+- Prompt：PR review 模板、release note 模板。
 
-在构建服务器时，可以使用 Python SDK 内置的浏览器调试工具，无需连接完整应用即可测试：
+权限策略：
 
-```bash
-# 先激活 Python 环境，再运行
-mcp dev mcp_server.py
-```
+- 默认只读。
+- 评论、改 label、关闭 issue 需要确认。
+- merge、删除 branch 默认禁用。
+- 所有 tool 调用记录 repo、目标对象、用户、时间、结果。
 
-这会启动一个开发服务器，本地地址通常为 `http://127.0.0.1:6274`。在浏览器中打开即可使用 MCP Inspector。
+这样 Agent 可以高效协作，但不会无边界地操作仓库。
 
-#### Inspector 的功能
+![MCP 治理风险地图：权限、版本、审计与数据边界](/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-model-context-protocol/mcp-governance-risks.png)
 
-- **Connect 按钮**：连接到你的 MCP 服务器
-- **工具列表**：查看所有已定义的工具
-- **工具调用面板**：填入参数直接测试工具
-- **实时响应**：查看工具返回结果
+## 常见反模式
 
-> **注意：** Inspector 界面持续迭代更新，实际界面可能与课程截图有所不同，但核心功能保持一致。
+**反模式一：把 MCP 当成万能插件系统。**
 
-## 第三章：连接 MCP 客户端
+MCP 解决连接标准，不自动解决权限、安全、数据质量和产品流程。
 
-### 7. 实现客户端（Implementing a client）
+**反模式二：所有能力都做成写入 tool。**
 
-#### 客户端架构
+先区分 resource 和 read-only tool。写入能力越晚开放越安全。
 
-MCP 客户端由两个核心组件构成：
+**反模式三：server 没有版本和 owner。**
 
-| 组件 | 说明 |
-|------|------|
-| **MCP Client 类** | 自定义封装类，简化 session 的使用 |
-| **Client Session** | 与服务器的实际连接（MCP Python SDK 提供） |
+一旦多个 Agent 依赖 server，版本变化就会变成生产风险。
 
-> **实际开发中**，你通常只实现其中一方（客户端 **或** 服务器），不会同时实现两者。本课程同时构建两者是为了演示完整的工作流程。
+**反模式四：没有审计日志。**
 
-#### 客户端连接（stdio 方式）
+Agent 调用外部系统后，必须能追溯谁、何时、为什么调用了什么。
 
-```python
-from mcp import ClientSession, StdioServerParameters
-from mcp.client.stdio import stdio_client
+## MCP Server 设计模板
 
-class MCPClient:
-    async def connect(self, server_script: str):
-        server_params = StdioServerParameters(
-            command="python",
-            args=[server_script]
-        )
-        # 使用 async context manager 确保正确清理连接
-        async with stdio_client(server_params) as (read, write):
-            async with ClientSession(read, write) as session:
-                await session.initialize()
-                self._session = session
-                # ... 使用 session
-```
+```md
+## Server
 
-Client Session 需要谨慎的资源管理，连接完成后必须正确清理，因此用自定义类封装自动处理清理逻辑。
+名称：
+owner：
+运行位置：
+transport：
+认证方式：
 
-### 8. 定义资源（Defining resources）
+## Capabilities
 
-#### 什么是资源
+Tools：
+Resources：
+Prompts：
 
-资源（Resources）类似于 HTTP GET 请求处理器，适用于**获取信息**而非**执行操作**的场景。
+## Permissions
 
-**典型用例：** 文档提及功能（`@document_name`）
+默认权限：
+需要确认的 tool：
+禁止的 action：
+敏感字段处理：
 
-当用户在对话中提及 `@report.pdf`，系统自动将该文档内容注入到发送给 Claude 的提示词中，无需 Claude 再调用工具去获取内容。
+## Operations
 
-#### 两种资源类型
-
-| 类型 | 说明 | 示例 URI |
-|------|------|----------|
-| **直接资源（Direct）** | 静态 URI，固定内容 | `docs://documents/list` |
-| **模板资源（Templated）** | URI 含参数，动态内容 | `docs://documents/{doc_id}` |
-
-#### 在服务器端定义资源
-
-```python
-@mcp.resource("docs://documents/list")
-def list_documents() -> str:
-    """列出所有可用文档（用于自动补全）"""
-    return json.dumps(list(docs.keys()))
-
-@mcp.resource("docs://documents/{doc_id}")
-def get_document(doc_id: str) -> str:
-    """获取指定文档的内容"""
-    return docs.get(doc_id, "")
+日志字段：
+版本策略：
+错误码：
+限流：
+回滚方式：
 ```
 
-### 9. 读取资源（Accessing resources）
+## 检查清单
 
-#### 在客户端读取资源
+- 是否明确区分 tool、resource、prompt？
+- server 是否有 owner 和版本策略？
+- 写入工具是否默认需要确认？
+- tool 输入输出是否结构化？
+- 是否记录每次调用的审计信息？
+- 远程 server 是否有认证和访问控制？
+- 是否有失败和超时处理？
 
-```python
-import json
-from pydantic import AnyUrl
+## 继续阅读
 
-async def read_resource(self, uri: str) -> Any:
-    result = await self.session().read_resource(AnyUrl(uri))
-    resource = result.contents[0]
+- [Agent Skills 入门](./introduction-to-agent-skills/)：把可复用工作流包装成 Agent 可发现的能力。
+- [MCP Advanced Topics](./model-context-protocol-advanced-topics/)：继续理解更复杂的部署、认证和治理问题。
+- [OpenAI Academy：构建可靠 AI Agents](../../openai-academy/07-building-with-ai/agents/)：把 MCP 放回 Agent 系统架构中。
 
-    # 根据 MIME 类型处理不同格式
-    if resource.mimeType == "application/json":
-        return json.loads(resource.text)
-    else:
-        return resource.text  # 纯文本
-```
+## 参考
 
-资源响应包含 MIME 类型信息，客户端需要根据类型（JSON 或纯文本）分别处理。
-
-### 10. 定义提示词（Defining prompts）
-
-#### 为什么使用 Prompts
-
-用户可以直接让 Claude 完成大多数任务，但由 MCP 服务器作者**精心设计、反复测试**的提示词能带来更一致、更高质量的结果。
-
-Prompts 让用户无需成为提示词工程专家，就能获得专家级的效果。
-
-#### 在服务器端定义提示词
-
-```python
-@mcp.prompt()
-def format_document(doc_id: str) -> list[types.Message]:
-    """将文档格式化为 Markdown"""
-    doc_content = docs.get(doc_id, "")
-    return [
-        types.UserMessage(
-            content=f"""请将以下文档重新格式化为结构清晰的 Markdown 格式：
-
-文档 ID: {doc_id}
-内容:
-{doc_content}
-
-要求：
-- 使用适当的标题层级
-- 保留所有原始信息
-- 确保格式清晰易读"""
-        )
-    ]
-```
-
-提示词函数接受参数，返回消息列表，参数会在调用时以关键字参数形式传入。
-
-### 11. 在客户端使用提示词（Prompts in the client）
-
-#### 列出可用提示词
-
-```python
-async def list_prompts(self) -> list[types.Prompt]:
-    result = await self.session().list_prompts()
-    return result.prompts
-```
-
-#### 获取并使用提示词
-
-```python
-async def get_prompt(self, prompt_name: str, args: dict[str, str]):
-    result = await self.session().get_prompt(prompt_name, args)
-    return result.messages
-```
-
-**调用示例：**
-
-```python
-# 获取 format_document 提示词，传入文档 ID
-messages = await client.get_prompt(
-    "format_document",
-    {"doc_id": "report.pdf"}
-)
-# 将返回的 messages 发送给 Claude
-response = await anthropic_client.messages.create(
-    model="claude-opus-4-5",
-    messages=messages
-)
-```
-
-## 第四章：总结与评估
-
-### 12. MCP 三大原语总结（MCP review）
-
-这是 MCP 最核心的概念：**三种原语由不同部分控制**。
-
-| 原语 | 控制方 | 典型用途 |
-|------|--------|----------|
-| **Tools（工具）** | 模型控制（Claude 决定） | 给 Claude 赋予新能力，让它自主决定何时调用 |
-| **Resources（资源）** | 应用程序控制 | UI 元素展示、主动注入上下文到对话中 |
-| **Prompts（提示词）** | 用户控制 | 用户主动触发的高质量预置工作流 |
-
-**选择指南：**
-- 需要 Claude 自主决策？→ **Tools**
-- 需要展示数据或在后台注入上下文？→ **Resources**
-- 需要用户点击触发的工作流？→ **Prompts**
-
-## 相关笔记
-
-> **延伸阅读**
-> - [MCP 是什么](/start/ai-basics-for-everyone/what-is-mcp/) — 面向所有读者的 MCP 概念入口
-> - [Minimal MCP Server](/engineering/ai-developer-core/minimal-mcp-server/) — 用最小只读服务理解实现边界
-> - [Model Context Protocol: Advanced Topics](/academy/anthropic-academy/05-agentic-mcp/model-context-protocol-advanced-topics/) — MCP 进阶
-> - [Introduction to Agent Skills](/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/) — Skills 生态
-> - [Introduction to subagents](/academy/anthropic-academy/05-agentic-mcp/introduction-to-subagents/) — 子代理与 MCP 的关系
+- [Model Context Protocol Introduction](https://modelcontextprotocol.io/introduction)
+- [Anthropic MCP documentation](https://docs.anthropic.com/en/docs/mcp)
+- [MCP specification](https://spec.modelcontextprotocol.io/)

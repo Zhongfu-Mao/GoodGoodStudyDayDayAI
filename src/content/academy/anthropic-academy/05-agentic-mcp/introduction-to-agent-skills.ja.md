@@ -1,90 +1,267 @@
 ---
-title: "Agent Skills 入門"
+title: "Agent Skills 入門：繰り返す workflow を再利用可能な能力にする"
 date: 2026-03-31
 category: academy
-description: "Skills の役割、エージェントに知識や手順を与える考え方、設計の基本を整理したノートです。"
-plainSummary: "Claude Code の Skills を、再利用可能な作業手順、判断基準、ツール呼び出しのパッケージとして設計する方法を整理します。"
-difficulty: "advanced"
-coverImage: "/images/academy/anthropic-academy/covers/05-agentic-mcp/introduction-to-agent-skills.svg"
+description: "Skills の位置づけ、trigger、directory structure、progressive disclosure、適用場面、品質基準を理解し、チーム経験を Agent が読み込める作業資産にする。"
+plainSummary: "Skills は長い prompt ではない。trigger、手順、例、scripts、verification を持つ再利用可能な workflow package であり、反復タスクとチーム規約を沈めるのに向く。"
+difficulty: advanced
+coverImage: "/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/skill-library-cover.png"
+tags:
+  - Agent
+  - Skills
 lang: ja
 academy:
   series: "Anthropic Academy"
-  module: "Agents と MCP"
+  module: "Agent と MCP"
   moduleOrder: 5
   source: "Anthropic Academy"
   sourceUrl: "https://anthropic.skilljar.com/introduction-to-agent-skills"
   prerequisites: []
 draft: false
 ---
-Agent Skills は、Claude に「この種類の仕事では、こういう手順で、こういう基準で進めてほしい」と教えるための再利用可能な作業単位です。単なるプロンプト集ではなく、文脈、手順、制約、検証をまとめた小さな運用パッケージとして考えると使いやすくなります。
 
-## このノートで押さえること
+# Agent Skills 入門：繰り返す workflow を再利用可能な能力にする
 
-- Skill は、特定タスクの手順、判断基準、ファイル、スクリプトをまとめて Claude に提供する仕組みである。
-- 良い Skill は、いつ使うか、何を読むか、どの順序で進めるか、どう検証するかが明確である。
-- CLAUDE.md、Slash Commands、普通のプロンプトとは役割が違う。
-- 作りっぱなしではなく、失敗した作業から Skill を更新することで価値が増える。
+![Agent Skills は再利用可能な workflow asset](/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/skill-library-cover.png)
 
-## Skill の本質
+コーディング Agent や workflow Agent をよく使うと、同じことを何度も説明していると気づきます。
 
-Skill は、Claude の能力を新しく作るというより、特定の仕事で迷わないための作業文脈を渡すものです。たとえば PR レビュー、ドキュメント生成、音声処理、データ分析など、繰り返し発生する作業に向いています。
+- PR description をどう書くか。
+- code review で最初に見るリスク。
+- 特定 framework project でどう test を走らせるか。
+- 文書をどの構造で書くか。
+- design から code へ落とすときの制約。
+- 公開前に必ず走らせる check。
 
-中身には、説明文、手順、注意点、参照ファイル、補助スクリプト、テンプレートを含められます。Claude はタスクに合う Skill を見つけると、その中の指示を使って進めます。
+この反復説明を永遠に chat に残す必要はありません。再利用可能な資産にできます。Agent Skills の意味はここにあります。ある種類のタスクの説明、例、template、script、verification をまとめ、Agent が必要な場面で読み込めるようにします。
 
-良い Skill は短く始め、実際の失敗や手戻りを見ながら育てます。最初から巨大なルールブックにすると、使われにくくなります。
+一言でいうと：
 
-## どんな作業を Skill 化するか
+**Skill は Agent が発見し、読み込み、実行できる専門 workflow knowledge package です。**
 
-Skill に向いているのは、毎回似た判断が必要で、手順がある程度決まっており、品質基準を明文化できる作業です。
+## Skill は普通の Prompt ではない
 
-逆に、一回限りの探索、まだ形が決まっていない企画、会話しながら方向を探る作業は、すぐ Skill 化しない方がよい場合があります。
+Skill と通常 Prompt の違いは lifecycle です。
 
-判断基準は「何をしてはいけないか」も含めます。秘密情報を出さない、破壊的コマンドを使わない、引用元を残すなど、事故防止のルールを入れます。
+| 方法 | 特徴 | 向くもの |
+| --- | --- | --- |
+| 一時 Prompt | 現在の対話だけで有効 | 一回限りのタスク |
+| Project note | 毎回読み込まれる | 全体ルール、project background |
+| Slash command | 手動 trigger | 明確な command flow |
+| Skill | 意味で match し、必要時に読み込む | 繰り返し出る専門タスク |
 
-## Skill の構成
+Skill の価値は prompt を長くすることではありません。「いつ使うか、どう使うか、何を使うか、どう検証するか」を package にすることです。
 
-最小構成は、Skill の目的、使うべき場面、入力として必要な情報、実行手順、検証方法です。スクリプトやテンプレートは必要になってから足します。
+## Progressive disclosure：必要なときだけ詳細を読む
 
-名前と説明は特に重要です。Claude がいつ使うべきか判断できるよう、対象タスクを具体的に書きます。
+![Skills の progressive disclosure](/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/progressive-disclosure.png)
 
-運用では、Skill を使った結果を見て、足りなかった手順や曖昧だった制約を更新します。
+良い Skill は、Agent に毎回全文を読ませません。まず軽量 metadata を見せ、タスクと match したときだけ詳細を読みます。
 
-## 読者向け補足：Skill は小さな運用知識のパッケージ
+よくある構造です。
 
-Agent Skill は、単なる prompt 集ではありません。手順、判断基準、入力例、禁止事項、よくある失敗、関連ファイルをまとめ、agent が必要なときだけ取り出せる運用知識にする考え方です。
+```txt
+my-skill/
+  SKILL.md
+  examples/
+  scripts/
+  templates/
+  assets/
+```
 
-良い Skill は、汎用的すぎず、特定の作業に十分近い粒度を持ちます。「文章を書く」では広すぎますが、「週次 AI レーダーのソース整理」「PR レビューの観点統一」「NotebookLM から音声を取得して公開資産にする」なら再利用しやすくなります。
+`SKILL.md` の frontmatter は、いつ使うかを説明します。
 
-| Skill に入れるもの | 理由 |
+```yaml
+---
+name: pr-description
+description: Use when writing a pull request description from git diff and project context.
+---
+```
+
+description は重要です。人間向けのタイトルではなく、Agent が読み込むか判断する trigger です。
+
+## 良い Skill に含めたいもの
+
+| 構成 | 役割 |
 | --- | --- |
-| 発動条件 | いつ使うべきか迷わない |
-| 入力と出力 | 作業の形を固定できる |
-| 手順 | 毎回の抜け漏れを減らす |
-| 失敗時の対処 | 人間に戻す判断がしやすい |
+| Trigger | いつ使うか、いつ使わないか |
+| Workflow | タスク手順と順序 |
+| Inputs | 必要なファイル、command、context |
+| Outputs | 提出形式 |
+| Examples | 良い結果と悪い結果 |
+| Scripts | 手書き反復を減らす再利用ツール |
+| Verification | 完了後の確認方法 |
+| Boundaries | 禁止事項と権限境界 |
 
-### ミニ演習
+Skill は「操作手順書 + 実行資産」に近いほど価値があります。一般論だけでは弱いです。
 
-自分がよく繰り返す作業を一つ選び、Skill 化するなら何を書くかを 8 行で整理します。最後に「この Skill を使わない方がよい場面」も一つ書きます。
+## Skill に向く場面
 
-## 実務で試すワークフロー
+向くものです。
 
-1. 繰り返し発生している作業を一つ選び、失敗しやすい点を 5 つ書く。
-2. 目的、トリガー、手順、検証、禁止事項だけで最小 Skill を作る。
-3. 次回その作業で使い、手戻りがあった箇所を Skill に反映する。
+- PR description、release note、変更要約。
+- code review checklist。
+- 特定 framework の debug flow。
+- 文書生成 template。
+- データ整理や report 生成。
+- design system component 実装規則。
+- ローカル project 固有の検証 flow。
 
-## Prompt pack
+向かないものです。
 
-- この繰り返し作業を Skill 化したいです。Skill に入れるべき目的、トリガー、手順、検証、禁止事項を整理してください。
-- 次の Skill.md をレビューしてください。曖昧なトリガー、過剰な手順、足りない安全ルールを指摘してください。
-- この作業ログから、Skill に追加すべき再発防止ルールを抽出してください。
+- 一回限りの質問。
+- まだ探索中で安定 workflow がないタスク。
+- 再利用構造がなく、リアルタイム判断ばかりのタスク。
+- 高リスク外部 action を含むが承認設計がないタスク。
 
-## 自分で確認する
+判断基準は簡単です。Agent に同じ流れを三回説明したなら、Skill 化を検討します。
 
-- Skill を使うべき場面が一文で説明できる。
-- 検証方法が Skill 内に含まれている。
-- 失敗から Skill を更新する運用がある。
+## Skill 品質：具体的なほど信頼できる
 
-## 関連して読む
+![Skill 品質 review と verification gate](/images/academy/anthropic-academy/05-agentic-mcp/introduction-to-agent-skills/skill-quality-review.png)
 
-- [Claude Code in Action](../../04-developer-tools/claude-code-in-action/)
-- [Agent Harness](../../../../engineering/ai-developer-core/agent-harness-logging-approval-replay/)
+低品質 Skill のよくある問題です。
+
+- description が広すぎて誤 trigger する。
+- 原則だけで steps がない。
+- input / output format がない。
+- examples がない。
+- verification がない。
+- project secret や個人の好みを共有 Skill に混ぜる。
+- 一つの Skill で多すぎる場面を網羅しようとする。
+
+高品質 Skill は次のように書きます。
+
+```md
+## When to Use
+
+Use this when the user asks for a PR description after code changes exist.
+Do not use this for release notes or changelog generation.
+
+## Steps
+
+1. Inspect branch diff.
+2. Identify user-visible changes.
+3. Identify tests run.
+4. Write PR description in the required format.
+5. Include risks and rollout notes.
+
+## Verification
+
+- Description mentions tests.
+- No unrelated files are summarized as intentional changes.
+- Risk section is present when behavior changes.
+```
+
+境界は内容と同じくらい重要です。Skill は何をしないかも説明します。
+
+## Project Skill と Personal Skill
+
+Personal Skill は個人の好みや横断的な作業方法に向きます。Project Skill はチーム共有 flow に向きます。
+
+| 種類 | 向く内容 | リスク |
+| --- | --- | --- |
+| Personal | 自分の文章の好み、review 習慣 | チーム全員の前提にしない |
+| Project | project command、architecture rule、提出 template | 保守が必要。古くなる |
+| Organization | brand、安全、compliance、共通 process | version governance と approval が必要 |
+
+共有 Skill が repository に入ると、利用者全員に影響します。コードと同じように review します。
+
+## ケース：Incident Review Skill
+
+目標：本番 incident を、振り返り可能で、改善可能で、追跡可能な incident review に整理する。
+
+Skill に含められるものです。
+
+- alert、log、trace、ticket、timeline を読む。
+- fact、assumption、decision、open question を分ける。
+- impact、root-cause hypothesis、recovery action、follow-up action を生成する。
+- 各 action item に owner、due date、validation method を要求する。
+- 未確認の推測を結論として書かない。
+- 統一された incident review template を出力する。
+
+このタスクは繰り返し発生し、入力 source が比較的安定しており、形式と境界が重要です。Skill に向いています。
+
+## よくあるアンチパターン
+
+**アンチパターン 1：Skill が価値観宣言になる。**
+
+「高品質で構造的に書く」だけでは足りません。steps、inputs、outputs、checks が必要です。
+
+**アンチパターン 2：一つの Skill が広すぎる。**
+
+Skill は小さく専門的なほうがよいです。大きすぎると trigger も実行も弱くなります。
+
+**アンチパターン 3：examples がない。**
+
+Agent は、何を良い結果とするかを見る必要があります。例は説明コストを下げます。
+
+**アンチパターン 4：更新仕組みがない。**
+
+project command、framework version、team format は変わります。Skill も保守が必要です。
+
+## Skill 設計テンプレート
+
+```md
+---
+name: skill-name
+description: Use when...
+---
+
+## When to Use
+
+Use this when:
+
+Do not use this when:
+
+## Inputs
+
+- Required files:
+- Required commands:
+- Required context:
+
+## Workflow
+
+1.
+2.
+3.
+
+## Output
+
+Format:
+Must include:
+Must not include:
+
+## Verification
+
+- [ ]
+- [ ]
+
+## Examples
+
+Good:
+
+Bad:
+```
+
+## チェックリスト
+
+- description は十分具体的で、誤 trigger を避けられるか？
+- 不適用場面を書いているか？
+- 入力と出力が明確か？
+- 実行 steps があるか？
+- examples または templates があるか？
+- verification があるか？
+- 機密情報を含めていないか？
+- owner がいて保守されるか？
+
+## さらに読む
+
+- [Model Context Protocol 入門](./introduction-to-model-context-protocol/)：tool connection をどう標準化するかを理解する。
+- [Claude Code in Action](../04-developer-tools/claude-code-in-action/)：Skill を実開発 workflow で使う。
+- [Agentic Workflows：状態機械で AI タスクを分解する](../../agentic-workflows-02/)：Skill を大きな実行 flow に組み込む。
+
+## 参考
+
+- [Claude Code Skills documentation](https://docs.anthropic.com/en/docs/claude-code/skills)
+- [Anthropic Academy: Introduction to Agent Skills](https://anthropic.skilljar.com/introduction-to-agent-skills)
