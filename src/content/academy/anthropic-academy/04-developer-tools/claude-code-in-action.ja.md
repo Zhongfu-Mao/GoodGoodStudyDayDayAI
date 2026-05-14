@@ -209,6 +209,26 @@ push または公開を許可するか：
 - 残リスクが列挙されている
 ```
 
+> **記入例（フロントエンドのリスト仮想スクロール化）**
+>
+> **Coding Agent Task**
+> - 目標：`src/components/RadarGalleryPage` のカード grid を仮想スクロールへ置き換え、初期描画は ≤ 6 カードに抑える
+> - 背景：現状は 50+ カードを一括描画していて初期 LCP > 2.5s。Radar コンテンツが増えるとさらに悪化する
+> - 変更を許可：`RadarGalleryPage.astro` / `global.css` の `.radar-gallery` 範囲 / 関連 client script
+> - 変更禁止：コンテンツファイル / 他の Page コンポーネント / `site.ts` / `content.ts`
+> - 検証コマンド：`npm run check && npx playwright test -g "radar image wall"`
+>
+> **Guardrails**
+> - 依存追加を許可するか：可。ただし gzip 後 < 5 KB の仮想スクロール helper のみ
+> - 外部コマンドを許可するか：`npm run check` と `playwright test` のみ
+> - commit を許可するか：local commit は可
+> - push または公開を許可するか：禁止
+>
+> **Done Means**
+> - 初期表示のカード ≤ 6、スクロールで残りを段階的にロード
+> - playwright の視覚回帰 / a11y テストが通る
+> - diff が個別に review でき、想定外のファイル変更がない
+
 ## チェックリスト
 
 - Agent に実エラーと関連ファイルを先に読ませたか？

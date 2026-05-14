@@ -209,6 +209,26 @@ Agent 可以解释失败，但不能把失败解释成成功。
 - 剩余风险已列出
 ```
 
+> **示例填法（前端列表虚拟滚动重构）**
+>
+> **Coding Agent Task**
+> - 目标：把 `src/components/RadarGalleryPage` 的卡片网格替换为虚拟滚动，首屏渲染 ≤ 6 张卡
+> - 业务背景：当前一次性渲染 50+ 张卡，首屏 LCP > 2.5s，雷达存量继续增长会更糟
+> - 允许修改：`RadarGalleryPage.astro` / `global.css` 中的 `.radar-gallery` 段 / 相关 client script
+> - 禁止修改：内容文件 / 其他 Page 组件 / `site.ts` / `content.ts`
+> - 验证命令：`npm run check && npx playwright test -g "radar image wall"`
+>
+> **Guardrails**
+> - 是否允许安装依赖：是，但仅限 gzip 后 < 5 KB 的虚拟滚动 helper
+> - 是否允许运行外部命令：仅限 `npm run check` 与 `playwright test`
+> - 是否允许提交：可以创建本地 commit
+> - 是否允许推送或发布：禁止
+>
+> **Done Means**
+> - 首屏卡片 ≤ 6 张，滚动到底逐步加载
+> - playwright 视觉回归 / a11y 测试通过
+> - diff 范围清晰，无意外文件改动
+
 ## 检查清单
 
 - 是否先让 Agent 读取真实错误和相关文件？
