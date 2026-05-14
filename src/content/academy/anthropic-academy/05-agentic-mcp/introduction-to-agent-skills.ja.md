@@ -89,7 +89,7 @@ description は重要です。人間向けのタイトルではなく、Agent �
 | Inputs | 必要なファイル、command、context |
 | Outputs | 提出形式 |
 | Examples | 良い結果と悪い結果 |
-| Scripts | 手書き反復を減らす再利用ツール |
+| Scripts | 手作業での繰り返しを減らす再利用ツール |
 | Verification | 完了後の確認方法 |
 | Boundaries | 禁止事項と権限境界 |
 

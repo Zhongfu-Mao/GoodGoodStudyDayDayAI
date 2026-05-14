@@ -521,7 +521,7 @@ FastAPI の default 422 validation error は詳細です。API gateway や front
 
 ## Validation：Pydantic は TypeScript type のコピーではない
 
-TypeScript の型は主に compile time の支援です。runtime validation には Zod、Yup、Joi、class-validator、手書き logic などが必要です。FastAPI の Pydantic model は runtime validation に参加します。この違いは大きいです。
+TypeScript の型は主に compile time の支援です。runtime validation には Zod、Yup、Joi、class-validator、独自実装 logic などが必要です。FastAPI の Pydantic model は runtime validation に参加します。この違いは大きいです。
 
 次の model は runtime validation であり、API document の一部でもあります。
 

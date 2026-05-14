@@ -142,7 +142,7 @@ build 後に確認できることです。
 
 小さなコンテンツサイトに複雑な環境は不要かもしれません。しかし preview と production は分けたいところです。
 
-| 環境 | 触発 | 用途 |
+| 環境 | トリガー | 用途 |
 | --- | --- | --- |
 | Preview | Pull Request または branch push | ページ確認、視覚 review、内容校正 |
 | Staging | 任意、統合 branch | 複数人作業、大改修前の確認 |
@@ -257,7 +257,7 @@ batch が大きいほど、ロールバックがつらくなります。コン�
 ## Deployment
 
 プラットフォーム：
-触発 branch：
+トリガー branch：
 build command：
 output directory：
 production base：
