@@ -36,18 +36,30 @@ const radarSubnavLabels = {
 const startSubnavItems = {
   zh: [
     { hash: '#start-route', label: '路线', tooltip: '先判断当前位置，安排 30/60/90 天学习节奏' },
+    { hash: '#first-step', label: '读站', tooltip: '从 0 到能看懂本站的最短路径' },
+    { hash: '#start-first-day', label: '30 分钟', tooltip: '今天就能跑通的最小 AI 使用闭环' },
+    { hash: '#start-plan', label: '节奏', tooltip: '按 30/60/90 天安排学习节奏' },
     { hash: '#ai-basics-for-everyone', label: '概念', tooltip: '用 12 篇短文打底高频概念' },
     { hash: '#start-layers', label: '能力层', tooltip: '看清从日常使用到 Agent 的能力层' },
+    { hash: '#start-landscape', label: '全景', tooltip: '看 2026 年主要模型与供应商位置' },
     { hash: '#start-safety', label: '安全', tooltip: '避开常见误区，建立安全使用边界' },
     { hash: '#start-faq', label: 'FAQ', tooltip: '快速回答新手最容易卡住的问题' },
   ],
   ja: [
     { hash: '#start-route', label: '道筋', tooltip: '現在地を確認し、30/60/90 日の進め方を決める' },
+    { hash: '#first-step', label: '読み方', tooltip: 'このサイトを読める状態までの最短経路' },
+    { hash: '#start-first-day', label: '30 分', tooltip: '今日すぐ試せる最小の AI 利用ループ' },
+    { hash: '#start-plan', label: 'リズム', tooltip: '30/60/90 日の学習リズムを決める' },
     { hash: '#ai-basics-for-everyone', label: '概念', tooltip: '12 本の短文で頻出概念を押さえる' },
     {
       hash: '#start-layers',
       label: 'レイヤー',
       tooltip: '日常利用から Agent までの能力層を整理する',
+    },
+    {
+      hash: '#start-landscape',
+      label: '全景',
+      tooltip: '2026 年時点の主要モデルとベンダーを俯瞰する',
     },
     {
       hash: '#start-safety',

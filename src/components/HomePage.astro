@@ -22,6 +22,7 @@ import TransparentAquarium from './TransparentAquarium.astro';
 const { locale } = Astro.props as { locale: Locale };
 const entries = await getEntriesForLocale(locale);
 const recentStories = entries.slice(0, 6);
+const recommendedStory = recentStories[0];
 const recentVisualStories = entries
   .filter((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage)
   .slice(0, 3);
@@ -41,6 +42,7 @@ const routeItems = primaryCategoryNames.map((category) => ({
   count: entries.filter((item) => item.entry.data.category === category).length,
 }));
 const radarPath = categoryPath('radar', locale);
+const rssHref = resolveSiteUrl(locale === 'ja' ? '/ja/rss.xml' : '/rss.xml');
 const intentItems = [
   {
     ...text.intentItems.beginner,
@@ -55,6 +57,15 @@ const intentItems = [
     href: categoryPath('academy', locale),
   },
 ];
+const quickLinks = text.useCases.map((item, index) => ({
+  ...item,
+  href: [
+    radarGalleryPath(locale),
+    startHref,
+    categoryPath('engineering', locale),
+    categoryPath('foundations', locale),
+  ][index],
+}));
 const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(slugifyTag(tag)));
 const radarImageWidth = 2752;
 const radarImageHeight = 1536;
@@ -197,21 +208,48 @@ const radarImageHeight = 1536;
   </section>
 ) : null}
 
-<section class="mt-12">
-  <div class="max-w-3xl">
-    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Use Cases</p>
-    <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.useTitle}</h2>
-    <p class="theme-muted mt-4 text-base leading-7">{text.useDescription}</p>
-  </div>
-  <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-    {text.useCases.map((item) => (
-      <article class="theme-panel rounded-[1.25rem] p-5">
-        <p class="theme-heading text-xl font-semibold">{item.label}</p>
-        <p class="theme-muted mt-3 text-sm leading-6">{item.description}</p>
-      </article>
-    ))}
-  </div>
-</section>
+{recommendedStory ? (
+  <section class="mt-12 grid gap-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.25fr)] lg:items-stretch">
+    <a
+      href={articlePath(recommendedStory.entry.data.category, recommendedStory.slug, locale)}
+      class="theme-panel theme-panel-link flex min-h-[17rem] flex-col rounded-[1.5rem] p-6 shadow-glow"
+      data-home-recommendation
+    >
+      <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.recommendEyebrow}</p>
+      <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.recommendTitle}</h2>
+      <p class="theme-muted mt-4 text-sm leading-6">{text.recommendDescription}</p>
+      <div class="mt-auto pt-6">
+        <p class="theme-muted text-xs uppercase tracking-[0.2em]">
+          {collectionLabels[recommendedStory.entry.data.category][locale]} · {formatDate(recommendedStory.entry.data.date, locale)}
+        </p>
+        <p class="theme-heading mt-2 text-xl font-semibold leading-snug">{recommendedStory.entry.data.title}</p>
+        <span class="theme-button-soft mt-5 inline-flex w-fit rounded-[1rem] px-3.5 py-2 text-sm font-medium">
+          {text.recommendCta}
+        </span>
+      </div>
+    </a>
+
+    <section class="theme-panel rounded-[1.5rem] p-6">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Quick Links</p>
+          <h2 class="theme-heading mt-3 text-2xl font-semibold leading-tight">{text.quickLinksTitle}</h2>
+        </div>
+        <a href={rssHref} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-sm font-semibold">
+          RSS
+        </a>
+      </div>
+      <div class="mt-5 grid gap-3 md:grid-cols-2">
+        {quickLinks.map((item) => (
+          <a href={item.href} class="theme-button-soft rounded-[1rem] px-4 py-3" data-home-quick-link>
+            <span class="theme-heading block text-base font-semibold">{item.label}</span>
+            <span class="theme-muted mt-2 block text-sm leading-6">{item.description}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </section>
+) : null}
 
 <section class="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,0.72fr)]">
   <section id="latest" class="theme-panel rounded-[1.5rem] p-5 scroll-mt-44 md:p-6">

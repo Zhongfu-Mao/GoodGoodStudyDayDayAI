@@ -3,7 +3,13 @@ import type { CollectionEntry } from 'astro:content';
 import { articlePath, collectionLabels, resolveSiteUrl, tagPath, type CollectionName, type Locale } from '../lib/site';
 import { getPublicTagsForEntry } from '../lib/content';
 import { formatDate } from '../lib/i18n';
-import { difficultyLabels, estimateReadingMinutes, getEntryDifficulty, readingTimeText } from '../lib/entryMeta';
+import {
+  difficultyLabels,
+  estimateReadingMinutes,
+  getEntryDifficulty,
+  getPostCardTitleMeta,
+  readingTimeText,
+} from '../lib/entryMeta';
 
 const { item, locale } = Astro.props as {
   item: {
@@ -29,6 +35,7 @@ const showUpdatedDate = Boolean(updatedDate && updatedDate.getTime() !== entry.d
 const dateLabels = locale === 'ja'
   ? { published: '公開', updated: '更新' }
   : { published: '发布', updated: '更新' };
+const titleMeta = getPostCardTitleMeta(entry.data.title, entry.data.category);
 ---
 
 <article class="theme-panel theme-panel-link group rounded-[1.25rem] p-6 shadow-glow">
@@ -58,11 +65,14 @@ const dateLabels = locale === 'ja'
     </div>
   </div>
   <div class="mb-4 flex flex-wrap gap-2">
+    {titleMeta.badge ? (
+      <span class="theme-chip rounded-xl px-3 py-1 text-xs">{titleMeta.badge}</span>
+    ) : null}
     <span class="theme-chip rounded-xl px-3 py-1 text-xs">{difficultyLabels[locale][difficulty]}</span>
     <span class="theme-chip rounded-xl px-3 py-1 text-xs">{readingTimeText[locale](readingMinutes)}</span>
   </div>
   <h3 class="theme-heading text-xl font-semibold transition group-hover:opacity-85" transition:name={titleTransitionName}>
-    <a href={href}>{entry.data.title}</a>
+    <a href={href}>{titleMeta.title}</a>
   </h3>
   {entry.data.description ? (
     <p class="theme-muted mt-3 line-clamp-3 text-sm leading-6">{entry.data.description}</p>

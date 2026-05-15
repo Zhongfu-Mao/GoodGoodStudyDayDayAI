@@ -28,6 +28,11 @@ const orderedGroups = COLLECTION_ORDER.flatMap((collection) => {
   const overflow = items.slice(PREVIEW_PER_COLLECTION);
   return [{ collection, items, preview, overflow }];
 });
+const distributionItems = COLLECTION_ORDER.map((collection) => ({
+  collection,
+  label: collectionLabels[collection][locale],
+  count: grouped.get(collection)?.length ?? 0,
+}));
 ---
 
 <section class="theme-panel-strong rounded-[1.5rem] p-8 shadow-glow">
@@ -46,6 +51,18 @@ const orderedGroups = COLLECTION_ORDER.flatMap((collection) => {
     <p class="theme-muted mt-8">{text.emptyTopic}</p>
   ) : (
     <div class="mt-10 grid gap-10">
+      <section class="theme-panel rounded-[1.25rem] p-5" data-topic-distribution>
+        <p class="theme-muted text-xs font-semibold uppercase tracking-[0.22em]">{text.distributionTitle}</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {distributionItems.map((item) => (
+            <div class="theme-panel rounded-[1rem] px-4 py-3" data-topic-distribution-item={item.collection}>
+              <span class="theme-muted block text-xs uppercase tracking-[0.16em]">{item.label}</span>
+              <span class="theme-heading mt-1 block text-lg font-semibold">{text.itemCount(item.count)}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {orderedGroups.map(({ collection, items, preview, overflow }) => (
         <section>
           <div class="flex flex-wrap items-end justify-between gap-3">

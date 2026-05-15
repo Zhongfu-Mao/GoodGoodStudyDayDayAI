@@ -182,16 +182,21 @@ const podcastGuideText = {
             <span class="theme-muted mr-1 text-xs font-semibold uppercase tracking-[0.18em]">
               {locale === 'ja' ? '周期で見る' : '按周期浏览'}
             </span>
-            {radarSubnavItems.map((item) => (
-              <a
-                href={item.href}
-                data-radar-subnav={item.hash}
-                data-tooltip={item.tooltip}
-                class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom rounded-xl px-3.5 py-1.5 text-sm"
-              >
-                {item.label}
-              </a>
-            ))}
+            <span class="inline-flex flex-wrap items-center justify-center gap-2" role="tablist">
+              {radarSubnavItems.map((item) => (
+                <a
+                  href={item.href}
+                  data-radar-subnav={item.hash}
+                  data-tooltip={item.tooltip}
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls={item.hash.slice(1)}
+                  class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom rounded-xl px-3.5 py-1.5 text-sm"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </span>
             <a
               href={podcastGuidePath(locale)}
               data-podcast-guide-link
@@ -222,12 +227,15 @@ const podcastGuideText = {
       ) : null}
       {showAcademySubnav ? (
         <div class="border-t border-[color:var(--theme-border)] px-6 pb-3 pt-2 xl:px-8">
-          <nav class="flex flex-wrap justify-center gap-2" aria-label={locale === 'ja' ? 'AI Academy sections' : 'AI Academy 二级导航'}>
+          <nav class="flex flex-wrap justify-center gap-2" aria-label={locale === 'ja' ? 'AI Academy sections' : 'AI Academy 二级导航'} role="tablist">
             {academySubnavItems.map((item) => (
               <a
                 href={item.href}
                 data-academy-subnav={item.hash}
                 data-tooltip={item.tooltip}
+                role="tab"
+                aria-selected="false"
+                aria-controls={item.hash.slice(1)}
                 class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom rounded-xl px-3.5 py-1.5 text-sm"
               >
                 {item.label}
@@ -238,12 +246,15 @@ const podcastGuideText = {
       ) : null}
       {showStartSubnav ? (
         <div class="border-t border-[color:var(--theme-border)] px-6 pb-3 pt-2 xl:px-8">
-          <nav class="flex flex-wrap justify-center gap-2" aria-label={locale === 'ja' ? 'Start guide sections' : '新手起步分段导航'}>
+          <nav class="flex flex-wrap justify-center gap-2" aria-label={locale === 'ja' ? 'Start guide sections' : '新手起步分段导航'} role="tablist">
             {startSubnavItems.map((item) => (
               <a
                 href={item.href}
                 data-start-subnav={item.hash}
                 data-tooltip={item.tooltip}
+                role="tab"
+                aria-selected="false"
+                aria-controls={item.hash.slice(1)}
                 class="theme-chip theme-chip-link ui-tooltip ui-tooltip-bottom rounded-xl px-3.5 py-1.5 text-sm"
               >
                 {item.label}

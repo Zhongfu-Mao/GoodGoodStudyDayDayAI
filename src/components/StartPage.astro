@@ -379,20 +379,21 @@ const radarImageHeight = 1536;
 
     function applyStartView(shouldScroll) {
       const activePanel = getActivePanel();
+      const activeHash = window.location.hash || panelToPrimaryHash.get(activePanel) || '#first-step';
 
       for (const panel of panels) {
         panel.hidden = panel.dataset.startPanel !== activePanel;
       }
 
       for (const link of subnavLinks) {
-        const linkPanel = hashToPanel.get(link.dataset.startSubnav ?? '') ?? 'route';
-        const isActive = linkPanel === activePanel;
+        const isActive = link.dataset.startSubnav === activeHash;
         link.classList.toggle('theme-segment-active', isActive);
-        link.setAttribute('aria-current', isActive ? 'page' : 'false');
+        link.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        link.removeAttribute('aria-current');
       }
 
       if (shouldScroll) {
-        const targetHash = window.location.hash || panelToPrimaryHash.get(activePanel) || '#first-step';
+        const targetHash = activeHash;
         const target = document.querySelector(targetHash);
         if (target) {
           const stickyHeader = document.querySelector('header');

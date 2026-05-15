@@ -12,7 +12,7 @@ import {
   type CollectionName,
   type Locale,
 } from '../lib/site';
-import { getAcademyCatalogGroups, getEntriesForLocale } from '../lib/content';
+import { getAcademyCatalogGroups, getEntriesForLocale, getTagIndex } from '../lib/content';
 import { resolveRadarCadence } from '../lib/radar';
 import { categoryPage } from '../lib/i18n';
 
@@ -35,6 +35,8 @@ const sortByAcademyOrder = (a: EntryListItem, b: EntryListItem) => {
 const categoryEntries = entries.filter((item) => item.entry.data.category === category);
 const isRadar = category === 'radar';
 const isAcademy = category === 'academy';
+const isFilterableCategory = category === 'engineering' || category === 'foundations';
+const publicTagSlugs = new Set((await getTagIndex(locale)).map((tag) => tag.slug));
 const academyCatalogGroups = isAcademy
   ? (await getAcademyCatalogGroups(locale)).filter((group) => group.series !== academyLearningRouteSeries)
   : [];
@@ -57,6 +59,25 @@ const radarSections = radarCadences.map((cadence) => {
 });
 
 const text = categoryPage[locale];
+const collectionLead = isFilterableCategory ? text.collectionLead[category] : undefined;
+const categoryFilterCounts = new Map<string, { label: string; count: number }>();
+if (isFilterableCategory) {
+  for (const item of categoryEntries) {
+    for (const tag of item.entry.data.tags) {
+      const slug = slugifyTag(tag);
+      if (!publicTagSlugs.has(slug)) continue;
+
+      const current = categoryFilterCounts.get(slug);
+      categoryFilterCounts.set(slug, { label: current?.label ?? tag, count: (current?.count ?? 0) + 1 });
+    }
+  }
+}
+const categoryFilters = [...categoryFilterCounts.entries()]
+  .map(([slug, value]) => ({ slug, ...value }))
+  .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, locale === 'ja' ? 'ja' : 'zh-Hans'))
+  .slice(0, 10);
+const getCategoryCardTagData = (item: EntryListItem) =>
+  `|${item.entry.data.tags.map((tag) => slugifyTag(tag)).filter((slug) => publicTagSlugs.has(slug)).join('|')}|`;
 const radarCardCounts = Object.fromEntries(
   radarSections.map((section) => [section.cadence, section.items.length]),
 ) as Record<(typeof radarSections)[number]['cadence'], number>;
@@ -120,7 +141,7 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       {academySummary?.title ?? collectionLabels[category][locale]}
     </h1>
     <p class="theme-muted mt-4 max-w-2xl" data-academy-summary-description>
-      {academySummary?.description ?? (isAcademy ? text.academyLead : text.lead)}
+      {academySummary?.description ?? (isAcademy ? text.academyLead : (collectionLead ?? text.lead))}
     </p>
 
     {isAcademy ? (
@@ -136,7 +157,7 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
     <div class="mb-5 flex items-end justify-between gap-4">
       <div>
         <p class="theme-muted text-sm uppercase tracking-[0.24em]">{collectionLabels[category][locale]}</p>
-        <h2 class="theme-heading mt-2 text-2xl font-semibold">{categoryEntries.length}</h2>
+        <h2 class="theme-heading mt-2 text-2xl font-semibold">{text.collectionBrowseTitle(collectionLabels[category][locale], categoryEntries.length)}</h2>
       </div>
       <p class="theme-muted max-w-md text-sm">{isAcademy ? text.academyBrowse : text.browse}</p>
     </div>
@@ -181,7 +202,7 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       </section>
 
       {radarSections.map((section) => (
-        <section id={section.cadence} class="scroll-mt-80 xl:scroll-mt-40" data-radar-section hidden>
+        <section id={section.cadence} class="scroll-mt-80 xl:scroll-mt-40" data-radar-section role="tabpanel" hidden>
           <div class="mb-3">
             <div>
               <p class="theme-kicker text-sm uppercase tracking-[0.24em]">{section.label}</p>
@@ -209,6 +230,7 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
           id="routes"
           class="theme-panel-strong rounded-[1.5rem] p-6 shadow-glow scroll-mt-80 xl:scroll-mt-40"
           data-academy-section
+          role="tabpanel"
           data-academy-eyebrow={text.academyRoutesEyebrow}
           data-academy-title={text.academyRoutesTitle}
           data-academy-description={text.academyRoutesDescription}
@@ -234,6 +256,7 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
           id={slugifyTag(seriesGroup.series)}
           class="theme-panel rounded-[1.5rem] p-6 scroll-mt-80 xl:scroll-mt-40"
           data-academy-section
+          role="tabpanel"
           data-academy-eyebrow={text.academySeries}
           data-academy-title={seriesGroup.series}
           data-academy-description={text.academySeriesDescription(seriesGroup.series)}
@@ -302,6 +325,7 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
           id="other-academy"
           class="theme-panel rounded-[1.5rem] p-6 scroll-mt-80 xl:scroll-mt-40"
           data-academy-section
+          role="tabpanel"
           data-academy-eyebrow={text.academyLegacy}
           data-academy-title={text.academyLegacy}
           data-academy-description={text.academyLegacyDescription}
@@ -328,15 +352,83 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
       ) : null}
     </div>
   ) : (
-    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+    <div>
+      {categoryFilters.length > 0 ? (
+        <div class="theme-panel mb-5 rounded-[1.25rem] p-4" data-category-filter-bar>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="theme-muted px-1 text-[11px] font-semibold uppercase tracking-[0.18em]">{text.filterEyebrow}</span>
+            <button
+              type="button"
+              class="theme-chip theme-chip-link theme-segment-active rounded-xl px-3 py-1.5 text-xs"
+              data-category-filter="all"
+              aria-pressed="true"
+            >
+              {text.filterAll}
+            </button>
+            {categoryFilters.map((filter) => (
+              <button
+                type="button"
+                class="theme-chip theme-chip-link rounded-xl px-3 py-1.5 text-xs"
+                data-category-filter={filter.slug}
+                aria-pressed="false"
+              >
+                {filter.label}
+                <span class="ml-1 opacity-70">{text.filterCount(filter.count)}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-category-grid>
       {categoryEntries.length > 0 ? (
-        categoryEntries.map((item) => <PostCard item={item} locale={locale} />)
+        categoryEntries.map((item) => (
+          <div data-category-card data-card-tags={getCategoryCardTagData(item)}>
+            <PostCard item={item} locale={locale} />
+          </div>
+        ))
       ) : (
         <div class="theme-panel rounded-2xl p-6 theme-muted">{text.empty}</div>
       )}
+      </div>
     </div>
   )}
 </section>
+
+{categoryFilters.length > 0 ? (
+  <script is:inline data-astro-rerun>
+    (() => {
+      const filterButtons = Array.from(document.querySelectorAll('[data-category-filter]'));
+      const cards = Array.from(document.querySelectorAll('[data-category-card]'));
+      if (filterButtons.length === 0 || cards.length === 0) return;
+
+      const abortController = new AbortController();
+
+      function applyFilter(activeFilter) {
+        for (const button of filterButtons) {
+          const isActive = button.dataset.categoryFilter === activeFilter;
+          button.classList.toggle('theme-segment-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        }
+
+        for (const card of cards) {
+          const cardTags = card.dataset.cardTags ?? '';
+          card.hidden = activeFilter !== 'all' && !cardTags.includes(`|${activeFilter}|`);
+        }
+      }
+
+      for (const button of filterButtons) {
+        button.addEventListener(
+          'click',
+          () => applyFilter(button.dataset.categoryFilter ?? 'all'),
+          { signal: abortController.signal },
+        );
+      }
+
+      document.addEventListener('astro:before-swap', () => abortController.abort(), { once: true });
+    })();
+  </script>
+) : null}
 
 {isRadar ? (
   <script is:inline data-astro-rerun>
@@ -373,7 +465,8 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
           const isActive = Boolean(visibleId) && target === visibleId;
           link.classList.toggle('theme-segment-active', isActive);
           if (target) {
-            link.setAttribute('aria-current', isActive ? 'page' : 'false');
+            link.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            link.removeAttribute('aria-current');
           }
         }
       }
@@ -536,7 +629,8 @@ const formatAcademyGroupOrder = (groupKind: 'track' | 'module', order: number) =
           link.hidden = target ? !validIds.has(target) : true;
           link.classList.toggle('theme-segment-active', isActive);
           if (target) {
-            link.setAttribute('aria-current', isActive ? 'page' : 'false');
+            link.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            link.removeAttribute('aria-current');
           }
         }
 

@@ -65,9 +65,12 @@ export const homePage = {
           '构建对 AI 的深层理解——不是补数学课，而是建立"为什么它这样工作"的心智模型，让你在选方案、做判断时有自己的依据。',
       },
     },
-    useTitle: '按你当下的状态进入',
-    useDescription:
-      '只是路过就先看今日图报；想认真补课就从新手路线开始；已经在做项目就去工程实践找可借鉴的方法。不用一次读完，也不用先成为专家。',
+    recommendEyebrow: 'Today Pick',
+    recommendTitle: '今日推荐',
+    recommendDescription:
+      '如果只想先读一篇，就从这里开始。下面的快速入口负责分流，这张卡负责给你一个明确的第一步。',
+    recommendCta: '阅读这一篇',
+    quickLinksTitle: '快速入口',
     useCases: [
       { label: '没时间', description: '看 AI 雷达图片墙，用三五分钟抓住最近的 AI 主线。' },
       {
@@ -157,9 +160,12 @@ export const homePage = {
           'AI を深く理解するための入口です。数学を補習するというより、「なぜそう動くのか」という心のモデルを作り、判断や選択に自分なりの軸を持てるようにします。',
       },
     },
-    useTitle: '今の状態に合わせて入る',
-    useDescription:
-      '少し見るだけなら今日の図解、腰を据えて学ぶなら Start、すでにプロジェクトがあるなら実践から入れます。全部を一度に読む必要も、最初から詳しい必要もありません。',
+    recommendEyebrow: 'Today Pick',
+    recommendTitle: '今日のおすすめ',
+    recommendDescription:
+      'まず 1 本だけ読むなら、ここから。下の quick links は分岐、このカードは最初の一歩です。',
+    recommendCta: 'この 1 本を読む',
+    quickLinksTitle: 'Quick links',
     useCases: [
       {
         label: '時間がない',

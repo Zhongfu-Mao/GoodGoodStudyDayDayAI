@@ -235,7 +235,7 @@ test.describe('published site UI', () => {
       'href',
       appPath('/radar/'),
     );
-    await expect(page.locator('a').filter({ hasText: '看 AI 雷达' })).toHaveAttribute(
+    await expect(page.locator('a').filter({ hasText: '看 AI 雷达' }).first()).toHaveAttribute(
       'href',
       appPath('/radar/'),
     );
@@ -366,15 +366,19 @@ test.describe('published site UI', () => {
     const routeSection = page.locator('[data-start-panel="route"]#first-step');
 
     const startSubnavItems = page.locator('[data-start-subnav]');
-    await expect(startSubnavItems).toHaveCount(5);
+    await expect(startSubnavItems).toHaveCount(9);
     await expect(
       startSubnavItems.evaluateAll((items) =>
         items.map((item) => item.getAttribute('data-start-subnav')),
       ),
     ).resolves.toEqual([
       '#start-route',
+      '#first-step',
+      '#start-first-day',
+      '#start-plan',
       '#ai-basics-for-everyone',
       '#start-layers',
+      '#start-landscape',
       '#start-safety',
       '#start-faq',
     ]);
@@ -383,6 +387,11 @@ test.describe('published site UI', () => {
       '先判断当前位置，安排 30/60/90 天学习节奏',
     );
     await expect(page.locator('[data-start-subnav="#start-safety"]')).toHaveText('安全');
+    await expect(page.locator('[data-start-subnav="#start-first-day"]')).toHaveAttribute(
+      'role',
+      'tab',
+    );
+    await expect(page.locator('[data-start-panel="route"]#start-first-day')).toBeVisible();
     await expect(page.locator('[data-start-panel="route"]#start-plan')).toBeVisible();
     await expect(basicsLink).toHaveAttribute('href', '#ai-basics-for-everyone');
     await expect(routeLink).toHaveAttribute('href', '#first-step');
@@ -401,6 +410,10 @@ test.describe('published site UI', () => {
     await page.locator('[data-start-subnav="#start-layers"]').click();
     await expect(page).toHaveURL(appUrlPattern('/start/#start-layers'));
     await expect(page.locator('[data-start-panel="map"]#start-layers')).toBeVisible();
+    await expect(page.locator('[data-start-subnav="#start-layers"]')).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
     await expect(page.getByRole('link', { name: '阅读完整指南 →' }).first()).toHaveAttribute(
       'href',
       appPath('/start/layers/'),
@@ -424,6 +437,21 @@ test.describe('published site UI', () => {
     await expect(page.getByRole('link', { name: '← スタートガイドに戻る' })).toHaveAttribute(
       'href',
       appPath('/ja/start/'),
+    );
+  });
+
+  test('home page gives one recommendation and compact quick links instead of duplicate use cases', async ({
+    page,
+  }) => {
+    await gotoApp(page, '/ja/');
+
+    await expect(page.getByRole('heading', { level: 2, name: '今日のおすすめ' })).toBeVisible();
+    await expect(page.locator('[data-home-recommendation]')).toHaveCount(1);
+    await expect(page.locator('[data-home-quick-link]')).toHaveCount(4);
+    await expect(page.getByText('USE CASES', { exact: true })).toHaveCount(0);
+    await expect(page.getByRole('link', { name: /RSS/ }).first()).toHaveAttribute(
+      'href',
+      appPath('/ja/rss.xml'),
     );
   });
 
@@ -499,7 +527,9 @@ test.describe('published site UI', () => {
     await expect(page.locator('[data-radar-hub]')).toBeHidden();
     await expect(dailySection).toBeHidden();
     await expect(weeklySection).toBeVisible();
-    await expect(weeklyNav).toHaveAttribute('aria-current', 'page');
+    await expect(weeklyNav).toHaveAttribute('role', 'tab');
+    await expect(weeklyNav).toHaveAttribute('aria-selected', 'true');
+    await expect(weeklyNav).not.toHaveAttribute('aria-current', /./);
     await expectSectionHasContentCount(weeklySection, /\d+ 篇内容/);
     await expectSectionCardsMatchCadence(weeklySection, 'weekly');
 
@@ -525,6 +555,47 @@ test.describe('published site UI', () => {
     await expectSectionHasContentCount(japaneseMonthlySection, /\d+ 記事/);
     await expectSectionCardsMatchCadence(japaneseMonthlySection, 'monthly');
     await expectSectionHasLocaleInfographic(japaneseMonthlySection, 'ja');
+  });
+
+  test('topic and category pages expose cross-cut distribution and lightweight filters', async ({
+    page,
+  }) => {
+    await gotoApp(page, '/ja/topics/agents/');
+
+    const distribution = page.locator('[data-topic-distribution]');
+    await expect(distribution).toBeVisible();
+    await expect(distribution.locator('[data-topic-distribution-item]')).toHaveCount(5);
+    await expect(distribution).toContainText(/AI レーダー\s+\d+ 件/);
+    await expect(distribution).toContainText(/AI Academy\s+\d+ 件/);
+    await expect(distribution).toContainText(/実践\s+\d+ 件/);
+    await expect(distribution).toContainText(/基礎\s+\d+ 件/);
+
+    await gotoApp(page, '/ja/engineering/');
+
+    await expect(page.getByRole('heading', { level: 2, name: /実践 \(\d+ 記事\)/ })).toBeVisible();
+    const filters = page.locator('[data-category-filter]');
+    await expect(filters.first()).toBeVisible();
+    await expect(filters.first()).toHaveAttribute('aria-pressed', 'true');
+
+    const filteredCards = page.locator('[data-category-card]:not([hidden])');
+    const totalCards = await filteredCards.count();
+    expect(totalCards).toBeGreaterThan(1);
+
+    const specificFilter = filters.nth(1);
+    const filterTag = await specificFilter.getAttribute('data-category-filter');
+    expect(filterTag).toBeTruthy();
+    await specificFilter.click();
+    await expect(specificFilter).toHaveAttribute('aria-pressed', 'true');
+    await expect.poll(() => filteredCards.count()).toBeGreaterThan(0);
+    expect(await filteredCards.count()).toBeLessThanOrEqual(totalCards);
+    await expect(
+      page.locator(`[data-category-card]:not([hidden])[data-card-tags*="|${filterTag}|"]`).first(),
+    ).toBeVisible();
+
+    await gotoApp(page, '/ja/foundations/');
+    expect(await page.locator('[data-category-filter]').count()).toBeGreaterThan(1);
+    await expect(page.getByRole('heading', { level: 3, name: /^Transformer/ }).first()).toBeVisible();
+    await expect(page.getByRole('heading', { level: 3, name: /AI Developer Core：/ })).toHaveCount(0);
   });
 
   test('radar podcast guide is linked from the radar navigation', async ({ page }) => {

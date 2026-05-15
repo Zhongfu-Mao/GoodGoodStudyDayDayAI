@@ -23,6 +23,29 @@ export const readingTimeText = {
   ja: (minutes: number) => `約 ${minutes} 分`,
 } as const;
 
+const cardTitlePrefixPatterns: Array<{ pattern: RegExp; badge: string }> = [
+  { pattern: /^OpenAI Academy\s*(?:学習)?ノート[:：]\s*/u, badge: 'OpenAI Academy' },
+  { pattern: /^OpenAI Academy\s*(?:学习)?笔记[:：]\s*/u, badge: 'OpenAI Academy' },
+  { pattern: /^AI Developer Core[:：]\s*/u, badge: 'AI Developer Core' },
+];
+
+export function getPostCardTitleMeta(title: string, category: CollectionName) {
+  if (category !== 'academy' && category !== 'foundations' && category !== 'engineering') {
+    return { title, badge: undefined };
+  }
+
+  for (const prefix of cardTitlePrefixPatterns) {
+    if (prefix.pattern.test(title)) {
+      return {
+        badge: prefix.badge,
+        title: title.replace(prefix.pattern, '').trim(),
+      };
+    }
+  }
+
+  return { title, badge: undefined };
+}
+
 export function getEntryDifficulty(entry: BlogEntry): Difficulty {
   if (entry.data.difficulty) {
     return entry.data.difficulty;

@@ -2,6 +2,16 @@ export const categoryPage = {
   zh: {
     lead: '按主题浏览文章。',
     browse: '本分区文章列表。',
+    collectionLead: {
+      engineering:
+        '把工具链、脚本、Agent 边界和上线细节拆开看。这里不是灵感清单，而是能带回真实项目里的实践笔记。',
+      foundations:
+        '不逃避原理，也不把原理讲成纯数学课。这里用开发者能用的语言解释 AI 为什么这样工作。',
+    },
+    collectionBrowseTitle: (label: string, count: number) => `${label}（${count} 篇内容）`,
+    filterEyebrow: '筛选',
+    filterAll: '全部',
+    filterCount: (count: number) => `${count} 篇`,
     empty: '本分区暂无内容。',
     radarHubTitle: 'AI 雷达入口',
     radarHubDescription:
@@ -65,6 +75,16 @@ export const categoryPage = {
   ja: {
     lead: 'テーマごとに記事を一覧できます。',
     browse: 'この区分の一覧です。',
+    collectionLead: {
+      engineering:
+        'ツールチェーン、スクリプト、Agent の境界、運用の細部を分けて読む実践ノートです。抽象論ではなく、手元の project に持ち帰れる形を重視します。',
+      foundations:
+        '数学から逃げず、しかし数学だけにも閉じない。AI がなぜそう動くのかを、開発者が判断に使える言葉で整理します。',
+    },
+    collectionBrowseTitle: (label: string, count: number) => `${label} (${count} 記事)`,
+    filterEyebrow: 'Filter',
+    filterAll: 'すべて',
+    filterCount: (count: number) => `${count} 件`,
     empty: 'この区分にはまだ記事がありません。',
     radarHubTitle: 'AI レーダー入口',
     radarHubDescription:
