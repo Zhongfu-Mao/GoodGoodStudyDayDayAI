@@ -114,7 +114,7 @@ function buildImageBlock({ title, image, url, locale }) {
 
 function insertAfterScope(content, imageBlock, locale) {
   const normalized = normalizeNewlines(content);
-  const scopeHeading = locale === 'ja' ? '対象期間' : '本期范围';
+  const scopeHeading = locale === 'ja' ? '(?:本期范围|対象範囲|対象期間)' : '本期范围';
   const match = normalized.match(new RegExp(`(## ${scopeHeading}[\\s\\S]*?)(\\n## )`));
   if (match) {
     return normalized.replace(match[0], `${match[1].trimEnd()}\n\n${imageBlock}${match[2]}`);

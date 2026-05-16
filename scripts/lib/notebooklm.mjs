@@ -152,7 +152,7 @@ export async function maybeDeleteNotebook(notebookId, keepNotebook) {
     return;
   }
 
-  await runNotebooklm(['delete', notebookId]);
+  await runNotebooklm(['delete', '--notebook', notebookId, '--yes']);
 }
 
 export function languageArg(lang) {
