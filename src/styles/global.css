@@ -427,13 +427,6 @@ html[data-theme='light'] .theme-prose.prose {
       0 14px 34px rgba(24, 24, 27, 0.12);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .ui-tooltip::before,
-    .ui-tooltip::after {
-      transition: none;
-    }
-  }
-
   .theme-accent {
     color: var(--theme-accent);
   }
@@ -651,5 +644,32 @@ html[data-theme='light'] .theme-prose.prose {
     box-shadow:
       0 18px 32px rgba(24, 24, 27, 0.18),
       0 4px 12px rgba(24, 24, 27, 0.12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html,
+    *,
+    ::before,
+    ::after {
+      scroll-behavior: auto !important;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-delay: 0s !important;
+      animation-duration: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-delay: 0s !important;
+      transition-duration: 0s !important;
+    }
+
+    .theme-panel-link:hover,
+    .theme-chip-link:hover,
+    .theme-button-soft:hover,
+    .theme-action-primary:hover,
+    .theme-action-secondary:hover {
+      transform: none !important;
+    }
   }
 }

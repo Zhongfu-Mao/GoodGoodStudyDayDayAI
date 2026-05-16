@@ -215,7 +215,7 @@ test.describe('published site UI', () => {
     await expect(
       page.getByRole('heading', {
         level: 1,
-        name: /^(学 AI 不迷路，用 AI 有方法|看懂 AI 变化，把 AI 用起来)$/,
+        name: /^(学 AI 不迷路，用 AI 有方法|看懂 AI 变化，把 AI 用起来|AI 变化，读懂就能用)$/,
       }),
     ).toBeVisible();
 
@@ -260,7 +260,7 @@ test.describe('published site UI', () => {
     await expect(
       page.getByRole('heading', {
         level: 1,
-        name: /^(迷わず学び、使える形へ|AI の変化を読み解き、日常で使える形にする)$/,
+        name: /^(迷わず学び、使える形へ|AI の変化を読み解き、日常で使える形にする|AI の変化を、使える形へ)$/,
       }),
     ).toBeVisible();
     await expect(page.locator('[data-aquarium-toggle]')).toHaveAttribute(
@@ -453,6 +453,41 @@ test.describe('published site UI', () => {
       'href',
       appPath('/ja/rss.xml'),
     );
+  });
+
+  test('mobile home hero keeps the first screen compact', async ({ page, isMobile }) => {
+    test.skip(!isMobile, 'mobile density check only runs on the mobile project');
+
+    await gotoApp(page, '/ja/');
+
+    const hero = page.locator('.home-hero');
+    const heroBox = await hero.boundingBox();
+    expect(heroBox?.height ?? 0).toBeLessThanOrEqual(500);
+    await expect(
+      page.getByRole('heading', {
+        level: 2,
+        name: '3 つの入口から、今の状態に合わせて入る',
+      }),
+    ).toBeInViewport({ ratio: 0.2 });
+  });
+
+  test('post cards collapse dense tag lists into one primary tag', async ({ page }) => {
+    await gotoApp(page, '/ja/engineering/');
+
+    const firstCard = page.locator('[data-post-card]').first();
+    await expect(firstCard).toBeVisible();
+    await expect(firstCard.locator('[data-card-primary-tag]')).toHaveCount(1);
+    await expect(firstCard.locator('[data-card-tag-overflow]')).toHaveText('+2');
+  });
+
+  test('reduced motion removes shared UI transitions', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await gotoApp(page, '/ja/');
+
+    const transitionDuration = await page.locator('.theme-panel-link').first().evaluate((element) =>
+      getComputedStyle(element).transitionDuration,
+    );
+    expect(transitionDuration).toMatch(/^(0s,\s*)*0s$/);
   });
 
   test('Japanese radar header stays compact and localized on desktop', async ({

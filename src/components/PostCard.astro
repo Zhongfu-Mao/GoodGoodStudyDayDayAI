@@ -30,15 +30,20 @@ const titleTransitionName = `title-${transitionKey}`;
 const difficulty = getEntryDifficulty(entry);
 const readingMinutes = estimateReadingMinutes(entry.body, locale);
 const publicTags = await getPublicTagsForEntry(locale, entry.data.tags);
+const primaryTag = publicTags[0];
+const remainingTagCount = Math.max(0, publicTags.length - 1);
 const updatedDate = entry.data.updatedDate;
 const showUpdatedDate = Boolean(updatedDate && updatedDate.getTime() !== entry.data.date.getTime());
 const dateLabels = locale === 'ja'
   ? { published: '公開', updated: '更新' }
   : { published: '发布', updated: '更新' };
 const titleMeta = getPostCardTitleMeta(entry.data.title, entry.data.category);
+const tagOverflowLabel = locale === 'ja'
+  ? `ほか ${remainingTagCount} 個のタグ`
+  : `还有 ${remainingTagCount} 个标签`;
 ---
 
-<article class="theme-panel theme-panel-link group rounded-[1.25rem] p-6 shadow-glow">
+<article class="theme-panel theme-panel-link group rounded-[1.25rem] p-6 shadow-glow" data-post-card>
   {coverImageSrc ? (
     <a
       href={href}
@@ -77,13 +82,24 @@ const titleMeta = getPostCardTitleMeta(entry.data.title, entry.data.category);
   {entry.data.description ? (
     <p class="theme-muted mt-3 line-clamp-3 text-sm leading-6">{entry.data.description}</p>
   ) : null}
-  {publicTags.length > 0 ? (
+  {primaryTag ? (
     <div class="mt-4 flex flex-wrap gap-2">
-      {publicTags.map((tag) => (
-        <a href={tagPath(tag, locale)} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs">
-          {tag}
-        </a>
-      ))}
+      <a
+        href={tagPath(primaryTag, locale)}
+        class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-xs"
+        data-card-primary-tag
+      >
+        {primaryTag}
+      </a>
+      {remainingTagCount > 0 ? (
+        <span
+          class="theme-chip rounded-xl px-3 py-1 text-xs"
+          data-card-tag-overflow
+          aria-label={tagOverflowLabel}
+        >
+          +{remainingTagCount}
+        </span>
+      ) : null}
     </div>
   ) : null}
 </article>

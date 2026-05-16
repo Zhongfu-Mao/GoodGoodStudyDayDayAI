@@ -67,6 +67,13 @@ const quickLinks = text.useCases.map((item, index) => ({
   ][index],
 }));
 const visibleTags = (tags: string[]) => tags.filter((tag) => publicTagSlugs.has(slugifyTag(tag)));
+const compactTags = (tags: string[]) => {
+  const visible = visibleTags(tags);
+  return {
+    primary: visible[0],
+    remaining: Math.max(0, visible.length - 1),
+  };
+};
 const radarImageWidth = 2752;
 const radarImageHeight = 1536;
 ---
@@ -88,14 +95,18 @@ const radarImageHeight = 1536;
     ))}
   </div>
   <div class="home-hero-scrim absolute inset-0" aria-hidden="true"></div>
-  <div class="relative z-10 mx-auto flex min-h-[34rem] max-w-6xl flex-col justify-end px-6 py-14 md:min-h-[38rem] md:py-20">
+  <div class="relative z-10 mx-auto flex min-h-[22rem] max-w-6xl flex-col justify-end px-6 py-10 md:min-h-[38rem] md:py-20">
     <p class="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-100/85">{text.eyebrow}</p>
-    <h1 class="mt-5 max-w-[11ch] text-balance text-5xl font-semibold leading-[0.95] text-white md:text-6xl xl:text-7xl">
-      {text.title}
+    <h1 class="mt-4 max-w-[11ch] text-balance text-4xl font-semibold leading-[0.98] text-white md:mt-5 md:text-6xl xl:text-7xl">
+      <span class="md:hidden">{text.mobileTitle}</span>
+      <span class="hidden md:inline">{text.title}</span>
     </h1>
-    <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-100 md:text-xl">{text.description}</p>
+    <p class="mt-4 max-w-3xl text-base leading-7 text-slate-100 md:mt-6 md:text-xl md:leading-8">
+      <span class="md:hidden">{text.mobileDescription}</span>
+      <span class="hidden md:inline">{text.description}</span>
+    </p>
 
-    <div class="mt-8 flex flex-wrap gap-3">
+    <div class="mt-6 flex flex-wrap gap-3 md:mt-8">
       <a href={startHref} class="home-hero-action rounded-2xl px-5 py-3 text-sm font-semibold">
         {text.heroCta}
       </a>
@@ -104,7 +115,7 @@ const radarImageHeight = 1536;
       </a>
     </div>
 
-    <dl class="home-hero-metrics mt-8 text-white">
+    <dl class="home-hero-metrics mt-6 text-white md:mt-8">
       <div class="home-hero-metric">
         <dt class="sr-only">{text.contentUnit}</dt>
         <dd>
@@ -272,9 +283,16 @@ const radarImageHeight = 1536;
           </div>
           <p class="theme-heading mt-3 line-clamp-2 text-lg font-semibold leading-snug">{item.entry.data.title}</p>
           <div class="mt-auto flex flex-wrap gap-2 pt-4">
-            {visibleTags(item.entry.data.tags).slice(0, 3).map((tag) => (
-              <span class="theme-chip rounded-xl px-2.5 py-1 text-xs">{tag}</span>
-            ))}
+            {compactTags(item.entry.data.tags).primary ? (
+              <span class="theme-chip rounded-xl px-2.5 py-1 text-xs" data-card-primary-tag>
+                {compactTags(item.entry.data.tags).primary}
+              </span>
+            ) : null}
+            {compactTags(item.entry.data.tags).remaining > 0 ? (
+              <span class="theme-chip rounded-xl px-2.5 py-1 text-xs" data-card-tag-overflow>
+                +{compactTags(item.entry.data.tags).remaining}
+              </span>
+            ) : null}
           </div>
         </a>
       ))}

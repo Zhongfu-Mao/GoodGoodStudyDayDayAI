@@ -2,8 +2,10 @@ export const homePage = {
   zh: {
     eyebrow: 'Good Good Study, Day Day AI',
     title: '看懂 AI 变化，把 AI 用起来',
+    mobileTitle: 'AI 变化，读懂就能用',
     description:
       '每日 AI 雷达帮你三分钟了解今天发生了什么；新手路线、系统课程和工程实践带你一步步把 AI 变成日常工具。不用先成为专家，从你最顺手的入口开始就行。',
+    mobileDescription: '每天三分钟抓重点。先选入口，再决定今天读哪一篇。',
     featured: '精选文章',
     latest: '最新文章',
     tags: '标签',
@@ -95,8 +97,10 @@ export const homePage = {
   ja: {
     eyebrow: 'Good Good Study, Day Day AI',
     title: 'AI の変化を読み解き、日常で使える形にする',
+    mobileTitle: 'AI の変化を、使える形へ',
     description:
       'Daily AI Radar で今日の動きを 3 分でつかみ、Start、体系的な講座ノート、実践記録から少しずつ AI を日常の道具にしていけます。専門家になってから読む必要はありません。いちばん入りやすい入口から始めてください。',
+    mobileDescription: '今日の動きを 3 分でつかむ。まず入口を選び、読む 1 本を決めます。',
     featured: '注目記事',
     latest: '最新記事',
     tags: 'タグ',
