@@ -54,8 +54,6 @@ const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toStri
 const resolvedOgImage = ogImage
   ? (ogImage.startsWith('http') ? ogImage : (Astro.site ? new URL(resolveSiteUrl(ogImage), Astro.site).toString() : resolveSiteUrl(ogImage)))
   : undefined;
-const rssHref = withBase(locale === 'ja' ? '/ja/rss.xml' : '/rss.xml');
-const rssTitle = locale === 'ja' ? 'Good Good Study, Day Day AI – RSS' : 'Good Good Study, Day Day AI · RSS';
 const podcastHref = withBase(locale === 'ja' ? '/ja/feed.xml' : '/feed.xml');
 const podcastTitle = locale === 'ja' ? 'AI レーダー' : 'AI 雷达';
 const skipLinkLabel = locale === 'ja' ? '本文へ移動' : '跳到正文';
@@ -88,7 +86,6 @@ const podcastGuideText = {
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
-    <link rel="alternate" type="application/rss+xml" title={rssTitle} href={rssHref} />
     <link rel="alternate" type="application/rss+xml" title={podcastTitle} href={podcastHref} />
 
     <meta property="og:type" content={ogType} />

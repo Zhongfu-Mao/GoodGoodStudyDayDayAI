@@ -449,10 +449,6 @@ test.describe('published site UI', () => {
     await expect(page.locator('[data-home-recommendation]')).toHaveCount(1);
     await expect(page.locator('[data-home-quick-link]')).toHaveCount(4);
     await expect(page.getByText('USE CASES', { exact: true })).toHaveCount(0);
-    await expect(page.getByRole('link', { name: /RSS/ }).first()).toHaveAttribute(
-      'href',
-      appPath('/ja/rss.xml'),
-    );
   });
 
   test('mobile home hero keeps the first screen compact', async ({ page, isMobile }) => {

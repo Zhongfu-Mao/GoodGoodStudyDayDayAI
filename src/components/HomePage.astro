@@ -42,7 +42,6 @@ const routeItems = primaryCategoryNames.map((category) => ({
   count: entries.filter((item) => item.entry.data.category === category).length,
 }));
 const radarPath = categoryPath('radar', locale);
-const rssHref = resolveSiteUrl(locale === 'ja' ? '/ja/rss.xml' : '/rss.xml');
 const intentItems = [
   {
     ...text.intentItems.beginner,
@@ -241,14 +240,9 @@ const radarImageHeight = 1536;
     </a>
 
     <section class="theme-panel rounded-[1.5rem] p-6">
-      <div class="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Quick Links</p>
-          <h2 class="theme-heading mt-3 text-2xl font-semibold leading-tight">{text.quickLinksTitle}</h2>
-        </div>
-        <a href={rssHref} class="theme-chip theme-chip-link rounded-xl px-3 py-1 text-sm font-semibold">
-          RSS
-        </a>
+      <div>
+        <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Quick Links</p>
+        <h2 class="theme-heading mt-3 text-2xl font-semibold leading-tight">{text.quickLinksTitle}</h2>
       </div>
       <div class="mt-5 grid gap-3 md:grid-cols-2">
         {quickLinks.map((item) => (
