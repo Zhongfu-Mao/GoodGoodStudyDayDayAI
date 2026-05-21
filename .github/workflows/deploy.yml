@@ -66,8 +66,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Install, build, and upload site
-        uses: withastro/action@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh Astro content layer
+        run: ./node_modules/.bin/astro sync --force
+
+      - name: Build site
+        run: npm run build
+        env:
+          GITHUB_REPOSITORY: Zhongfu-Mao/GoodGoodStudyDayDayAI
+
+      - name: Verify latest radar output
+        run: npm run check:radar-build
+
+      - name: Report Pages artifact size
+        run: du -sh dist public public/audio/radar public/images/radar
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
   deploy:
     needs: build
