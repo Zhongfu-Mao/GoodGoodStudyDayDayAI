@@ -2,6 +2,7 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { parseFrontmatter, stripFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
+import { formatImageCompressionResult, optimizeWebpImage } from '../lib/image-compression.mjs';
 import { assetUrlMatchesPublicAsset, publishRadarAsset } from '../lib/radar-assets.mjs';
 import {
   extractSectionBlock,
@@ -515,6 +516,11 @@ async function processFile(targetFile, options) {
     await generateWithNotebooklm(meta, targetFile, imagePath, options);
   } else {
     throw new Error(`Unsupported backend: ${options.backend}`);
+  }
+
+  if (imageExtension === 'webp') {
+    const compressionResult = await optimizeWebpImage(imagePath);
+    console.log(`Optimized infographic image: ${formatImageCompressionResult(compressionResult)}`);
   }
 
   const publishedImageUrl = await publishRadarAsset({

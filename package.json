@@ -25,6 +25,7 @@
     "test:ui:headed": "GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI npm run build && GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI playwright test --headed",
     "test:ui:update-snapshots": "GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI npm run build && GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI playwright test tests/ui/visual-regression.spec.ts --update-snapshots",
     "audio:compress": "node scripts/radar/compress-audio.mjs",
+    "images:compress": "node scripts/radar/compress-images.mjs",
     "assets:migrate:r2": "node scripts/radar/migrate-assets-to-r2.mjs",
     "podcast:cover": "node scripts/radar/generate-podcast-cover.mjs",
     "podcast:cover:concepts": "node scripts/radar/generate-podcast-cover-concepts.mjs",
