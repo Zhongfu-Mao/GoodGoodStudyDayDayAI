@@ -89,38 +89,25 @@ draft: false
 - 链接：https://www.comet.com/docs/opik/v1/agent_optimization/overview
 - 摘要：Daily Dose of DS 推荐的 Opik agent optimization workflow 指向一个更普遍的方向：把 agent 的 prompt、workflow step、trace、dataset 和 evaluation results 放到同一个优化系统里。Opik 文档强调它支持 tracing、LLM-as-judge、heuristic eval metrics、prompt versioning、experiments 和 automated optimization algorithms。对团队来说，这类工具的价值不是单次“调好 prompt”，而是让失败样本进入数据集，让新 prompt 与旧版本可比较，让 agent 改进变成可回放的工程过程。
 
-### RL function approximation 的基础课提醒，后训练和 agent 控制仍依赖价值泛化能力
+## 📬 Newsletter 精选
+
+### Daily Dose of DS：function approximation 是 agent 长链路控制的基础直觉
 
 - 来源：Daily Dose of Data Science
 - 日期：2026-05-24
 - 链接：https://www.dailydoseofds.com/rl-course-part-5
-- 摘要：Daily Dose of DS 的强化学习课程新章讲 function approximation：从表格型 value function 走向参数化函数、MSVE、linear function approximation、gradient Monte Carlo、semi-gradient TD 和 Mountain Car tile coding。它不是当天的产品发布，但对 AI 工程有现实意义。RLHF、GRPO、tool-use policy、agent reward shaping 和自动优化都需要理解“状态太多时如何泛化价值”和“函数逼近、bootstrapping、off-policy 学习为什么会形成 deadly triad”。Agent 越多进入长链路控制，基础 RL 直觉越重要。
+- 摘要：强化学习课程新章从 tabular value function 走向参数化函数、MSVE、linear function approximation、semi-gradient TD 和 Mountain Car tile coding。它对 agent 工程的意义在于：状态太多时如何泛化价值，以及 function approximation、bootstrapping、off-policy learning 为什么会形成 deadly triad。
 
-## 4. 组织、职业与多 Agent 工厂
-
-### Every 的 Cheap Competence 讨论认为，廉价能力会扩大人类给模型设定框架的工作
+### Every：Cheap Competence 会扩大人类给模型设定 frame 的工作
 
 - 来源：Every
 - 日期：2026-05-24
 - 链接：https://every.to/context-window/cheap-competence-new-frontier
-- 摘要：Every 在周日通讯中把 Dan Shipper 的 “After Automation” 作为主线：当 agent 已经能写代码、起草邮件、整理通讯后，人类工作并没有消失，而是转向给模型设定新的 frame。文章把这个观点和 Stainless、公开内部 Slack agent workflow、Google I/O 以及职业入门变化放在一起看。对组织采用 AI 来说，真正稀缺的不是“能否完成任务”的最低能力，而是判断什么问题值得交给模型、怎样定义边界、怎样让输出进入组织流程。
+- 摘要：Every 将 Dan Shipper 的 “After Automation” 放到 Stainless、Slack agent workflow、Google I/O、职业入门变化和医疗场景中讨论。结论是：当模型能完成更多低成本任务，稀缺能力会转向判断什么问题值得交给模型、怎样定义边界、怎样让输出进入组织流程，以及在具体处境里下一步该做什么。
 
-### Gas City 的 100-agent 软件工厂把多 agent 协作的好想法和成本问题同时暴露出来
+### Every：Gas City 暴露 100-agent 软件工厂的潜力和成本
 
 - 来源：Every
 - 日期：2026-05-19
 - 链接：https://every.to/context-window/inside-the-100-agent-software-factory
-- 摘要：Every 评测 Gas City，这是一套继承 Gas Town 思路的多 coding agent orchestration toolkit。它用一个持续存在的 “mayor” agent 协调大量一次性 worker，让它们并行处理任务、互相审查并交付 pull request。文章提到该系统用约 100 个 agent、每天合并约 50 个 PR、消耗约 10 亿 token。值得吸收的思想包括 light factory / dark factory、一个可对话 supervisor 配多个 disposable workers，以及多模型 code review。但它也暴露成本、上下文重复读取、任务追踪界面和工具复杂度问题。
-
-### Every 的医疗观察指出，模型让知识更便宜后，医生的处境判断更值钱
-
-- 来源：Every
-- 日期：2026-05-24
-- 链接：https://every.to/context-window/cheap-competence-new-frontier
-- 摘要：Every 的 “Alignment” 栏目从 GLP-1 与 AI 同时进入医疗场景谈起：越来越多患者会把可穿戴数据、血检、病史和症状交给 ChatGPT 或 Claude，带着更具体的问题见医生。文章判断，部分低信息量就诊会被自助 triage、实验室检测和远程医疗替代，但真正优秀医生的价值会提升，因为稀缺能力变成“在这个人的具体处境里下一步该做什么”。这个观察可以迁移到很多专业服务：当知识分发成本下降，情境判断、责任和行动选择反而更重要。
-
-## 📬 Newsletter 精选
-
-- Daily Dose of Data Science：本期采用 2 条，覆盖 agent harness 工程与强化学习 function approximation。
-- Every：本期采用 3 条，覆盖 cheap competence、100-agent 软件工厂与 AI 医疗判断。
-- Comet Opik：通过公开文档补充 agent optimization workflow，作为 Daily Dose 文章里的实践入口。
+- 摘要：Gas City 用一个持续存在的 mayor agent 协调大量一次性 worker，并行处理任务、互相审查并交付 pull request。它展示了 supervisor + disposable workers、多模型 code review 等好想法，也暴露成本、上下文重复读取、任务追踪界面和工具复杂度问题。

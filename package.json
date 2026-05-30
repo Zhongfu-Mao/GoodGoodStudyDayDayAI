@@ -12,6 +12,7 @@
     "check": "astro check",
     "check:tags": "node scripts/check/bilingual-tags.mjs",
     "check:radar-build": "node scripts/check/radar-build-smoke.mjs",
+    "check:radar-newsletter": "node scripts/check/radar-newsletter-sections.mjs",
     "check:r2-public-base": "node scripts/check/r2-guardrails.mjs --env-only",
     "audit:r2-public-urls": "node scripts/check/r2-guardrails.mjs --scan-content",
     "lint": "biome check",

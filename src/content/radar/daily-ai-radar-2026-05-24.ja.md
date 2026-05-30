@@ -132,7 +132,3 @@ draft: false
 - 日付：2026-05-18
 - リンク：https://huggingface.co/blog/ibm-research/open-agent-leaderboard
 - 要約：IBM Research は Hugging Face で Open Agent Leaderboard を公開しました。これは inner model だけではなく full agent systems を比較する leaderboard です。Exgentic framework を使い、SWE-Bench Verified、BrowseComp+、AppWorld、tau2-Bench Airline & Retail、tau2-Bench Telecom などを task、context、actions という protocol に統一し、success rate と average cost per task の両方を報告します。初期 results は、同じ model でも agent wrapper が違えば quality と cost が変わること、failed runs は successful runs より 20% から 54% 高くなり得ること、tool shortlisting が複数 model で performance を改善することを示しています。Agent evaluation は model leaderboard から planning、memory、tool use、context management、failure recovery の system comparison へ移っています。
-
-## 📬 Newsletter 精選
-
-- Latent.Space AINews：本期は 3 つの theme signals を提供しました。model labs becoming agent labs、DeepSeek inference price curve、MCP / sandbox / memory などの agent runtime infrastructure です。

@@ -110,7 +110,7 @@ draft: false
 - リンク：https://huggingface.co/blog/local-reachy-mini-conversation
 - 要約：Hugging Face は Reachy Mini conversation app を fully local にしました。Audio を cloud に送る必要がなくなります。Solution は speech-to-speech library を使い、VAD、STT、LLM、TTS を cascade し、Realtime API compatible な /v1/realtime WebSocket を公開します。Recommended stack は llama.cpp + Gemma 4、Silero VAD、Parakeet-TDT 0.6B v3、Qwen3-TTS です。MLX、Transformers、vLLM、Hugging Face Inference Endpoints、OpenAI-compatible provider などにも差し替えられます。Signal は、realtime voice agent が composable pipeline になりつつあることです。Privacy、cost、latency、model choice は single cloud service に固定される必要がありません。
 
-## 4. Newsletter と course picks
+## 4. Course picks と enterprise adoption reflection
 
 ### Daily Dose of Data Science の RL series は function approximation を agent learning foundation に戻す
 
@@ -128,6 +128,16 @@ draft: false
 
 ## 📬 Newsletter 精選
 
-- Daily Dose of Data Science：本期は 1 item を採用し、function approximation を RL agent が tabular methods から continuous states と generalization に進む基礎として扱いました。
-- Every：本期は 1 item を採用し、enterprise agent adoption の反例として、personalized assistant より role-defined shared team agent が優先される可能性を扱いました。
-- The Rundown AI：本期は homepage update を確認しましたが、具体 item は採用していません。本期の主線は主に OpenAI、AWS、Hugging Face の public technical releases から構成しています。
+### Daily Dose of DS：RAG vs. Graph RAG vs. Agentic RAG
+
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-28
+- リンク：https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
+- 要約：このメールは、通常の RAG、Graph RAG、Agentic RAG の違いを視覚的に整理した。vector retrieval、entity relationship graph、tool choice / planning / multi-step query を agent loop に入れる設計の違いが分かりやすく、本日の enterprise agent signals を支える retrieval 視点になる。
+
+### Every：After ‘After Automation’
+
+- 出典：Every
+- 日付：2026-05-27
+- リンク：https://every.to/context-window/after-after-automation
+- 要約：Every は Dan Shipper の “After Automation” を受け、AI が仕事を消すかどうかではなく、problem framing、taste、judgment、responsibility の重要性が高まる点を掘り下げた。Codex playbook も knowledge work の文脈に置かれており、agent adoption の難所が誰が frame を決め、誰が結果に責任を持つかにあることを示す。

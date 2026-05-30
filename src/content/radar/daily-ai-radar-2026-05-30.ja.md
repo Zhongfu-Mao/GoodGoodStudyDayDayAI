@@ -112,7 +112,7 @@ draft: false
 - リンク：https://blog.google/innovation-and-ai/technology/ai/university-waterloo-labs/
 - 要約：Google が資金提供する University of Waterloo Futures Lab は、8 週間の AI/UX prototyping workshop で教育と仕事の場面を探索しています。prototype には Kanji Garden、SignFluent、MuscleMemory があり、それぞれ漢字学習、手話練習、技能訓練を対象にしています。大規模モデル発表に比べ、この種の prototype は user experience の実問題に近いものです。AI を一回限りの Q&A tool ではなく、学習経路、feedback loop、練習素材にどう埋め込むかを問っています。
 
-## 5. Newsletter：評価 harness と open model stack
+## 5. 評価 harness と open model stack
 
 ### Multi-turn RL の Token-In, Token-Out 問題は agent training pipeline の細部リスクを示す
 
@@ -128,6 +128,18 @@ draft: false
 - リンク：https://www.latent.space/p/ainews-founders-and-forward-deployed
 - 要約：同じ Newsletter は open weights と local model の勢いも強調しています。AI engineering team による open-weight model 利用は増え続け、Hugging Face 上の private model と dataset も増加しています。記事は StepFun 3.7 Flash のような MoE model にも触れ、少ない active parameter、高 throughput、local deployment のバランスを狙う動きとして紹介しています。Anthropic の超大規模資本の物語と対照的に、この線は別の engineering choice を表します。企業は常に最強の closed model だけを求めるわけではなく、制御可能で、deploy しやすく、cost boundary が明確な model stack も必要とします。
 
-## 📬 Newsletter 精选
+## 📬 Newsletter 精選
 
-- Latent.Space：本期は 2 件を採用し、multi-turn RL / harness の細部リスクと、open weights、local model、制御可能な deployment route を補足しました。
+### Daily Dose of DS：agent crash は database crash とは違う
+
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-29
+- リンク：https://fandf.co/4nW0rev
+- 要約：このメールは、database crash が deterministic な write-ahead log で復旧できるのに対し、agent crash では判断の drift が起きると説明した。長時間動く agent には checkpoint、復元可能な context、persistent memory、event-driven execution が必要であり、state management は application hack ではなく platform capability になる。
+
+### Every：Compound Engineering Gets an Upgrade
+
+- 出典：Every
+- 日付：2026-05-29
+- リンク：https://every.to/context-window/compound-engineering-gets-an-upgrade
+- 要約：Every は compound engineering を、model、tools、context、evaluation、organization workflow、reusable assets を組み合わせる方法論として更新した。今日の Codex、Braintrust、GitHub adoption metrics と同じく、AI-native engineering の中心が single autocomplete ではなく systematized workflow へ移っていることを示す。

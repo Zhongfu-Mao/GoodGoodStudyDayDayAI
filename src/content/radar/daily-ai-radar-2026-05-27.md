@@ -96,24 +96,18 @@ draft: false
 - 链接：https://github.com/CopilotKit/CopilotKit
 - 摘要：CopilotKit 的公开仓库把自己定位为 agents、generative UI 和 in-app chat 的前端栈，并强调 AG-UI protocol 已被多个 agent 框架采纳。它支持 chat UI、backend tool rendering、generative UI、shared state 和 human-in-the-loop；在界面生成方式上，它区分静态 AG-UI、declarative A2UI，以及 open-ended MCP Apps / Open JSON。对开发者来说，这意味着“agent UI”正在变成协议问题：后端 agent 不应只吐 Markdown，而要能传递可渲染组件、状态变更、人类确认点和工具结果。谁能把这些交互结构标准化，谁就更接近 agent-native 应用层。
 
-### InsForge 的案例显示，后端上下文质量会直接决定 coding agent 的 token 成本和修复轮次
+## 📬 Newsletter 精选
+
+### Daily Dose of Data Science / InsForge：后端上下文质量直接影响 coding agent 成本
 
 - 来源：Daily Dose of Data Science / InsForge
 - 日期：2026-05-26
 - 链接：https://www.dailydoseofds.com/p/how-we-cut-our-claude-code-token-usage-2-8x/
-- 摘要：Daily Dose of Data Science 介绍 InsForge 团队的 MCPMark V2 对比：在 21 个数据库相关任务中，通用后端 MCP 往往返回过量文档、缺少整体后端状态，并给出含糊错误；InsForge 则用 skills、CLI 直连操作和结构化 metadata 让 agent 一次拿到 auth、tables、storage、AI models 等后端上下文。案例中的 DocuRAG 任务里，传统链路消耗约 1040 万 tokens、9.21 美元、12 轮用户消息和 135 次工具调用；InsForge 链路约 370 万 tokens、2.81 美元、1 轮用户消息和 77 次工具调用。这里的重点不是某个 MCP server 更省钱，而是 context engineering 已经进入后端产品设计：给 agent 的不是更多文档，而是更接近真实系统状态的结构化、可执行上下文。
+- 摘要：InsForge 的 MCPMark V2 对比显示，通用后端 MCP 往往返回过量文档、缺少整体状态并产生含糊错误；InsForge 通过 skills、CLI 直连操作和结构化 metadata 给 agent 更接近真实系统状态的上下文。案例中 token、费用、用户消息轮次和工具调用数都明显下降。
 
-## 4. Codex 与知识工作
-
-### Every 把 Codex 描述成知识工作者的持久 agent workspace，而不只是开发者工具
+### Every：Codex 正从开发工具扩展成知识工作者的持久 agent workspace
 
 - 来源：Every
 - 日期：2026-05-26
 - 链接：https://every.to/guides/codex-for-knowledge-work
-- 摘要：Every 发布 Codex for Knowledge Work 指南，公开部分把 Codex 描述为一个能读写文件、调用外部服务、执行多步骤任务、保留 workspace 状态并支持重复流程的 agentic workspace。文章把它放在 Slack、email、forms、research 和移动端审阅等知识工作场景中，而不是只讨论代码生成。虽然完整指南需要订阅，但公开部分已经提示一个产品方向：当 agent 有文件系统、工具、插件和可重复任务入口后，它会从“问答助手”转向“个人或团队工作流执行层”。对 AI 产品设计来说，问题也随之改变：不是用户能不能问出好提示词，而是哪些工作应该被做成可审计、可恢复、可复用的 agent run。
-
-## 📬 Newsletter 精选
-
-- Daily Dose of Data Science：本期采用 1 条，重点是 InsForge 如何通过后端上下文工程降低 coding agent 的 token 成本与人工修复轮次。
-- Every：本期采用 1 条，作为 Codex 从开发工具扩展到知识工作 agent workspace 的产品信号。
-- 其他入选条目主要来自 AWS、DeepLearning.AI 与 CopilotKit 的公开发布。
+- 摘要：Every 将 Codex 描述为能读写文件、调用外部服务、执行多步骤任务、保留 workspace 状态并支持重复流程的 agentic workspace。这个方向把问题从“用户会不会写 prompt”推向“哪些工作应被做成可审计、可恢复、可复用的 agent run”。

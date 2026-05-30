@@ -121,5 +121,16 @@ draft: false
 
 ## 📬 Newsletter 精選
 
-- Latent.Space AINews：本期は 5 件の主題シグナルを提供し、Exa / Modal / turbopuffer、developer infra、Gemini agents、multimodal toolchain、research updates をカバーしました。
-- Latent.Space Daytona interview：agent compute market の founder-side view を補い、stateful sandboxes、bare-metal scheduling、RL/eval workloads、agent cloud infrastructure に焦点を当てました。
+### Daily Dose of DS：Agent Memory Is Only as Good as Its Schema
+
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-22
+- リンク：https://github.com/getzep/graphiti
+- 要約：このメールは agent memory の問題を、単なる retrieval ではなく「記憶構造が query 可能か」という観点に移した。Zep / Graphiti を例に、Pydantic schema、entity / edge type、source-target constraints がない knowledge graph は、汎用的な Topic / RELATES_TO の集まりに退化し、多段 reasoning を支えにくくなることを示している。
+
+### Every：Notes From the Foothills of the Singularity
+
+- 出典：Every
+- 日付：2026-05-22
+- リンク：https://every.to/playtesting/notes-from-the-foothills-of-the-singularity
+- 要約：Every は Google I/O を、Gemini 3.5 Flash、Search がその場で作る小さな tool、閉じた laptop でも走り続ける Gemini assistant、Gemini Omni をつなぐ product narrative として読んだ。発表一覧ではなく、Google が agent capability を実際の製品入口へ埋め込もうとしている理由を説明する補助線になっている。

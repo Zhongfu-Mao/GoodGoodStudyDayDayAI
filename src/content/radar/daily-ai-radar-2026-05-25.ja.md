@@ -89,38 +89,25 @@ draft: false
 - リンク：https://www.comet.com/docs/opik/v1/agent_optimization/overview
 - 要約：Daily Dose of DS が紹介した Opik agent optimization workflow は、より一般的な方向を示しています。Agent の prompt、workflow step、trace、dataset、evaluation results を同じ optimization system に入れる考え方です。Opik documentation は tracing、LLM-as-judge、heuristic eval metrics、prompt versioning、experiments、automated optimization algorithms を強調しています。Teams にとって価値があるのは一度だけ prompt を良くすることではなく、failed samples を dataset に戻し、新旧 prompts を比較可能にし、agent improvement を replayable engineering process にすることです。
 
-### RL function approximation の基礎講座は、post-training と agent control が value generalization に依存することを思い出させる
+## 📬 Newsletter 精選
+
+### Daily Dose of Data Science：function approximation は RL agent を tabular world から連続状態へ進める
 
 - 出典：Daily Dose of Data Science
 - 日付：2026-05-24
 - リンク：https://www.dailydoseofds.com/rl-course-part-5
-- 要約：Daily Dose of DS の reinforcement learning course 新章は function approximation を扱います。Tabular value function から parameterized functions、MSVE、linear function approximation、gradient Monte Carlo、semi-gradient TD、Mountain Car tile coding へ進みます。これは product release ではありませんが AI engineering には重要です。RLHF、GRPO、tool-use policy、agent reward shaping、automated optimization では、「states が多すぎるとき value をどう generalize するか」と「function approximation、bootstrapping、off-policy learning がなぜ deadly triad になるか」を理解する必要があります。Agent が long-horizon control に近づくほど、基礎 RL の直感は重要になります。
+- 要約：RL course part 5 は、tabular methods が state space の爆発に弱い理由と、function approximation が generalization を可能にする理由を説明した。Newsletter 枠では、agentic systems の評価と policy learning を理解する基礎として扱った。
 
-## 4. Organizations、careers、multi-agent factories
-
-### Every の Cheap Competence 論は、cheap capability が human framing work を増やすと見る
+### Every：cheap competence は AI product の frontier を「難問」から大量の小仕事へ動かす
 
 - 出典：Every
 - 日付：2026-05-24
 - リンク：https://every.to/context-window/cheap-competence-new-frontier
-- 要約：Every の Sunday newsletter は Dan Shipper の “After Automation” を主線に置きました。Agents が code を書き、emails を draft し、newsletter を compile できるようになっても、人間の仕事は消えず、models に新しい frame を渡す仕事へ移ります。Article はこの視点を Stainless、public internal Slack agent workflows、Google I/O、entry-level career changes と接続しています。Organizations が AI を導入するとき、scarce skill は最低限の task completion ではなく、どの問題を model に渡すべきか、boundary をどう定義するか、output をどう organization workflow に入れるかです。
+- 要約：Every は、AI の価値が elite performance だけでなく、安価で十分に有能な competence を大量に配ることへ移っていると論じた。本文では、software factory、医療判断、agent deployment といった読み筋を支える経済的背景として扱い、具体的な状況で次に何をすべきかを決める human framing の重要性も示した。
 
-### Gas City の 100-agent software factory は multi-agent collaboration の良い ideas と cost issue を同時に見せた
+### Every：100-agent software factory は人間の組織設計を agent orchestration の問題へ変える
 
 - 出典：Every
 - 日付：2026-05-19
 - リンク：https://every.to/context-window/inside-the-100-agent-software-factory
-- 要約：Every は Gas Town の流れを引く multi coding agent orchestration toolkit、Gas City を reviewed しました。Persistent “mayor” agent が多くの disposable workers を coordinate し、parallel tasks、mutual review、pull request delivery を回します。Article は system が約 100 agents、daily 50 merged PRs、roughly 1 billion tokens per day で動くと紹介しています。吸収すべき ideas は light factory / dark factory、one conversational supervisor plus many disposable workers、multi-model code review です。一方で、cost、context rereading、task tracking UI、tool complexity もはっきり見えています。
-
-### Every の medical observation は、models が knowledge を cheaper にすると physician judgment が more valuable になると指摘する
-
-- 出典：Every
-- 日付：2026-05-24
-- リンク：https://every.to/context-window/cheap-competence-new-frontier
-- 要約：Every の “Alignment” section は、GLP-1s と AI が同時に healthcare に入る状況から始まります。Patients は wearable data、bloodwork、medical history、symptoms を ChatGPT や Claude に入れ、より具体的な questions を持って doctors に会うようになります。Article は、一部の low-information visits は self-triage、labs、telehealth に置き換わる可能性がある一方、本当に優れた physicians の価値は上がると見ます。Scarce skill は “what to do next for this particular person” になるからです。この観察は多くの professional services にも移せます。Knowledge distribution が安くなるほど、situated judgment、responsibility、action choice が重要になります。
-
-## 📬 Newsletter 精選
-
-- Daily Dose of Data Science：本期は 2 items を採用し、agent harness engineering と reinforcement learning function approximation を扱いました。
-- Every：本期は 3 items を採用し、cheap competence、100-agent software factory、AI medical judgment を扱いました。
-- Comet Opik：公開 documentation で agent optimization workflow を補足し、Daily Dose article の practical entry point として扱いました。
+- 要約：Every は Gas City の 100-agent software factory を紹介し、多数の specialized agents を組み合わせた software development の形を描いた。重要なのは agent count ではなく、task decomposition、review、handoff、human oversight をどう設計するかだ。

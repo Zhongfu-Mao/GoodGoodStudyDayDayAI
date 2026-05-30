@@ -110,7 +110,7 @@ draft: false
 - 链接：https://huggingface.co/blog/local-reachy-mini-conversation
 - 摘要：Hugging Face 让 Reachy Mini 的对话应用支持完全本地运行，不再需要把音频发到云端。方案基于 speech-to-speech 库，串起 VAD、STT、LLM 和 TTS，并暴露兼容 Realtime API 的 /v1/realtime WebSocket。推荐组合是 llama.cpp + Gemma 4、Silero VAD、Parakeet-TDT 0.6B v3 和 Qwen3-TTS；也可以换成 MLX、Transformers、vLLM、Hugging Face Inference Endpoints 或 OpenAI-compatible provider。这里的信号是：实时语音 agent 正在变成可组合 pipeline，隐私、成本、延迟和模型选择不一定要绑定到单一云端服务。
 
-## 4. Newsletter 与课程精选
+## 4. 课程与企业采用反思
 
 ### Daily Dose of Data Science 的 RL 系列把函数近似放回 agent 学习基础
 
@@ -128,6 +128,16 @@ draft: false
 
 ## 📬 Newsletter 精选
 
-- Daily Dose of Data Science：本期采用 1 条，补充 function approximation 作为 RL agent 从表格方法走向连续状态与泛化的基础。
-- Every：本期采用 1 条，作为企业 agent 组织落地的反例：个人化 assistant 不一定优先于职责清晰的共享 team agent。
-- The Rundown AI：本期检索到主页更新，但未采用具体条目；本期主线主要来自 OpenAI、AWS 与 Hugging Face 的公开技术发布。
+### Daily Dose of DS：RAG vs. Graph RAG vs. Agentic RAG
+
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-28
+- 链接：https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
+- 摘要：这封邮件用可视化方式区分传统 RAG、Graph RAG 与 Agentic RAG：普通 RAG 依赖向量检索，Graph RAG 让实体关系进入检索路径，Agentic RAG 则把检索、工具选择、计划和多步查询放进 agent loop。它补充了本期关于企业 agent 落地的基础检索视角。
+
+### Every：After ‘After Automation’
+
+- 来源：Every
+- 日期：2026-05-27
+- 链接：https://every.to/context-window/after-after-automation
+- 摘要：Every 后续讨论 Dan Shipper 的 “After Automation”，重点不是 AI 会不会让工作消失，而是自动化会抬高问题定义、品味、判断和责任的门槛。邮件还把 Codex playbook 放进知识工作流语境，说明 agent adoption 的难点在于谁来设定 frame、谁来承担结果。

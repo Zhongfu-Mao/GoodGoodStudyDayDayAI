@@ -36,20 +36,6 @@ draft: false
 - リンク：https://huggingface.co/blog/agent-glossary
 - 要約：Hugging Face は、agent 分野の vocabulary が急速に増え、harness、scaffold、context engineering、policy、skills、sub-agents、rollout、reward が混同されていると指摘しました。Article は実用的な切り分けを示します。model は 1 回の input/output を行う LLM、scaffold は system prompt、tool descriptions、parsing format、context management、harness は execution loop、tool calls、stop condition を扱う層、agent は model とこれらの external execution structures を合わせたものです。Training 側の environment、trainer、rollout、reward と、deployment 側の tools、memory、sub-agents も同じ conceptual map に置かれています。Engineering teams にとって、この語彙整理は architecture review、evaluation design、role communication に直結します。
 
-### Onyx の Deep Research architecture は search access のない orchestrator を research quality control として使う
-
-- 出典：Daily Dose of Data Science / Onyx
-- 日付：2026-05-25
-- リンク：https://github.com/onyx-dot-app/onyx
-- 要約：Daily Dose of DS は Onyx deep research の counterintuitive design を紹介しました。Research strategy を作る orchestrator agent は web search や URL open の権限を持たず、self-contained な research tasks を分解して research agents に渡すだけです。Onyx の public repository は、RAG、web search、code execution、deep research、50+ connectors、MCP を持つ open-source LLM application layer であることを示しています。この設計の価値は、coordinator が自分で早すぎる検索を始め、最初に見つけた資料から shallow report を作るのを防ぐ点です。Enterprise deep research で重要なのは「検索できること」だけでなく、strategy、retrieval、reading、citation consolidation、permission control を verifiable stages に分けることです。
-
-### AlphaProof Nexus は Lean formal proof search で 9 件の Erdős open problems と 44 件の OEIS conjectures を解いた
-
-- 出典：arXiv
-- 日付：2026-05-21
-- リンク：https://arxiv.org/abs/2605.22763
-- 要約：Google DeepMind、MIT CSAIL などの著者による論文は、AI-driven formal proof search が real mathematical open problems に進み始めたことを示しました。最も強い agent は formalized Erdős problems 353 件中 9 件を自律的に解き、OEIS conjectures 492 件中 44 件を証明しました。Paper は per-problem inference cost が数百ドル規模だったと述べています。System は LLM に Lean proof を生成させ、formal verifier が各 step を検査する構成です。Basic agent も Erdős successes を再現しましたが、hardest problems では cost が高くなりました。この結果の意味は mathematicians を置き換えることではなく、reasoning を compilable、checkable、scalable search process に変えることです。
-
 ## 2. Long context、tenant isolation、MCP runtime
 
 ### AWS は Recursive Language Models で超長文書を context window ではなく programmable environment として扱う
@@ -128,6 +114,16 @@ draft: false
 
 ## 📬 Newsletter 精選
 
-- Daily Dose of Data Science：本期は 2 items を採用し、Onyx deep research の orchestrator constraint design と ONNX / ONNX Runtime の model portability を扱いました。
-- AI Valley と The Rundown AI：AlphaProof Nexus の mathematics progress を同時に提示しました。本期は arXiv paper を primary link として確認し採用しました。
-- その他の items は主に OpenAI、Hugging Face、AWS official releases から採用しています。
+### Daily Dose of Data Science：Onyx deep research は agent orchestrator に constraints と citations を埋め込む
+
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-25
+- リンク：https://github.com/onyx-dot-app/onyx
+- 要約：Daily Dose は Onyx deep research agent を取り上げ、research workflow に citation、source grounding、orchestrator constraints を組み込む重要性を示した。本文では open-source enterprise search / research agent の実装例として扱った。
+
+### AlphaProof Nexus：formal math agent は olympiad-style reasoning と proof verification を近づける
+
+- 出典：arXiv
+- 日付：2026-05-21
+- リンク：https://arxiv.org/abs/2605.22763
+- 要約：AI Valley と The Rundown AI が同時に取り上げた話題で、一次情報は arXiv paper に置いた。数学 agent の progress は、単なる natural language reasoning ではなく、formal proof、verification、search を組み合わせる方向を示している。

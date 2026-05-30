@@ -132,7 +132,3 @@ draft: false
 - 日期：2026-05-18
 - 链接：https://huggingface.co/blog/ibm-research/open-agent-leaderboard
 - 摘要：IBM Research 在 Hugging Face 发布 Open Agent Leaderboard，用于比较完整 agent systems，而不是只比较内部模型。Leaderboard 通过 Exgentic framework 把 SWE-Bench Verified、BrowseComp+、AppWorld、tau2-Bench Airline & Retail、tau2-Bench Telecom 等任务统一到 task、context、actions 的协议里，并同时报告 success rate 和 average cost per task。初步结果显示，同一个模型配上不同 agent wrapper 会产生不同质量和成本；失败运行往往比成功运行贵 20% 到 54%；tool shortlisting 能在多个模型上改善效果。这个方向把 agent 评测从“模型榜单”推进到 planning、memory、tool use、context management 和 failure recovery 的系统比较。
-
-## 📬 Newsletter 精选
-
-- Latent.Space AINews：本期贡献 3 条主题信号，覆盖模型实验室上移为 Agent 实验室、DeepSeek 推理价格曲线、MCP / sandbox / memory 等 agent runtime 基础设施。

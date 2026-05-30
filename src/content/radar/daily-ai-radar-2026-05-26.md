@@ -36,20 +36,6 @@ draft: false
 - 链接：https://huggingface.co/blog/agent-glossary
 - 摘要：Hugging Face 认为 agent 领域的术语正在快速膨胀，很多团队把 harness、scaffold、context engineering、policy、skills、sub-agents、rollout 和 reward 混用。文章给出一个实用切分：model 是一次输入输出的 LLM；scaffold 是系统提示词、工具描述、解析格式和上下文管理；harness 是真正执行循环、处理工具调用和决定停止条件的层；agent 则是 model 加上这些外部执行结构。它还把训练侧的 environment、trainer、rollout、reward 与部署侧的工具、记忆和子 agent 放在同一张概念地图里。对工程团队来说，这类词汇统一会直接影响架构评审、评测设计和岗位沟通。
 
-### Onyx 的 Deep Research 架构把“无搜索权限的 orchestrator”作为研究质量控制手段
-
-- 来源：Daily Dose of Data Science / Onyx
-- 日期：2026-05-25
-- 链接：https://github.com/onyx-dot-app/onyx
-- 摘要：Daily Dose of DS 介绍了 Onyx deep research 的一个反直觉设计：负责制定研究策略的 orchestrator agent 没有 web search 或 URL 打开权限，只能把问题拆成自洽的研究任务并分派给研究 agent。Onyx 的公开仓库显示它是一个开源 LLM 应用层，支持 RAG、web search、code execution、deep research、50 多个连接器和 MCP。这个设计的价值在于防止协调者自己抢先搜索、用最先找到的材料写浅层报告，而是迫使它先做任务分解。对企业 deep research 来说，关键不只是“能搜索”，而是把策略、检索、阅读、引用归并和权限控制拆成可验证的阶段。
-
-### AlphaProof Nexus 用 Lean 形式化证明搜索解决 9 个 Erdős 开放问题和 44 个 OEIS 猜想
-
-- 来源：arXiv
-- 日期：2026-05-21
-- 链接：https://arxiv.org/abs/2605.22763
-- 摘要：Google DeepMind、MIT CSAIL 等作者提交的论文展示了 AI-driven formal proof search 在真实数学开放问题上的进展。最强 agent 自主解决 353 个已形式化 Erdős 问题中的 9 个，并证明 492 个 OEIS 猜想中的 44 个；论文称每个问题的推理成本为数百美元量级。系统思路是让 LLM 生成 Lean 证明，由形式化验证器检查每一步，基础 agent 也能复现这些 Erdős 成果但在最难问题上成本更高。这个结果的意义不在于替代数学家，而在于把“会推理”变成可编译、可复核、可规模化搜索的证明流程。
-
 ## 2. 长上下文、租户隔离与 MCP 运行时
 
 ### AWS 用 Recursive Language Models 把超长文档变成可编程环境，而不是塞进上下文窗口
@@ -128,6 +114,16 @@ draft: false
 
 ## 📬 Newsletter 精选
 
-- Daily Dose of Data Science：本期采用 2 条，覆盖 Onyx deep research 的 orchestrator 约束设计，以及 ONNX / ONNX Runtime 的模型可移植性。
-- AI Valley 与 The Rundown AI：共同提示了 AlphaProof Nexus 的数学进展，本期以 arXiv 论文作为主链接复核并入选。
-- 其他入选条目主要来自 OpenAI、Hugging Face 与 AWS 官方发布。
+### Daily Dose of DS / Onyx：无搜索权限的 orchestrator 可以提升 deep research 质量控制
+
+- 来源：Daily Dose of Data Science / Onyx
+- 日期：2026-05-25
+- 链接：https://github.com/onyx-dot-app/onyx
+- 摘要：Onyx 的 deep research 架构让制定策略的 orchestrator agent 没有 web search 或 URL 打开权限，只负责拆解自洽任务并分派给研究 agent。这个设计防止协调者用最先找到的材料写浅层报告，把策略、检索、阅读、引用归并和权限控制拆成可验证阶段。
+
+### AlphaProof Nexus：形式化证明搜索开始触及真实开放数学问题
+
+- 来源：arXiv
+- 日期：2026-05-21
+- 链接：https://arxiv.org/abs/2605.22763
+- 摘要：论文展示 AI-driven formal proof search 在 Erdős 问题和 OEIS 猜想上的进展。其意义不在于替代数学家，而在于把“会推理”变成可编译、可复核、可规模化搜索的证明流程。

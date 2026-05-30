@@ -121,5 +121,16 @@ draft: false
 
 ## 📬 Newsletter 精选
 
-- Latent.Space AINews：本期贡献 5 条主题信号，覆盖 Exa / Modal / turbopuffer、developer infra、Gemini agents、多模态工具链和研究动态。
-- Latent.Space Daytona 访谈：补充了 agent compute 市场的一手创业者视角，重点是 stateful sandboxes、bare-metal scheduling、RL/eval workloads 和 agent cloud 的基础设施形态。
+### Daily Dose of DS：Agent Memory Is Only as Good as Its Schema
+
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-22
+- 链接：https://github.com/getzep/graphiti
+- 摘要：这封邮件把 agent memory 的关键问题从“能不能检索”推进到“记忆结构是否可查询”。它用 Zep / Graphiti 说明，如果知识图谱抽取缺少 Pydantic schema、entity / edge type 和 source-target constraints，记忆会退化成一堆泛化的 Topic / RELATES_TO，难以支持多跳推理。
+
+### Every：Notes From the Foothills of the Singularity
+
+- 来源：Every
+- 日期：2026-05-22
+- 链接：https://every.to/playtesting/notes-from-the-foothills-of-the-singularity
+- 摘要：Every 从 Google I/O 复盘出发，把 Gemini 3.5 Flash、Search 生成工具、后台运行的 Gemini assistant 和 Gemini Omni 放进同一条“补齐产品断点”的叙事里。它不是发布清单，而是解释为什么 Google 这轮 AI 更新的价值在于把 agent 能力推进到真实产品入口。

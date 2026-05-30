@@ -96,24 +96,18 @@ draft: false
 - リンク：https://github.com/CopilotKit/CopilotKit
 - 要約：CopilotKit の public repository は、itself を agents、generative UI、in-app chat の frontend stack と位置づけ、AG-UI protocol が複数の agent frameworks に採用されていると説明しています。Chat UI、backend tool rendering、generative UI、shared state、human-in-the-loop を支えます。Interface generation approach では static AG-UI、declarative A2UI、open-ended MCP Apps / Open JSON を区別しています。Developers にとって、これは「agent UI」が protocol problem になっていることを意味します。Backend agent は Markdown を返すだけでなく、renderable components、state changes、human confirmation points、tool results を渡せる必要があります。これらの interaction structures を標準化できる layer は agent-native application layer に近づきます。
 
-### InsForge の case は backend context quality が coding agent の token cost と repair rounds を直接左右することを示す
+## 📬 Newsletter 精選
 
-- 出典：Daily Dose of Data Science / InsForge
+### Daily Dose of Data Science：InsForge は backend context engineering で coding agent の修復回数を減らす
+
+- 出典：Daily Dose of Data Science
 - 日付：2026-05-26
 - リンク：https://www.dailydoseofds.com/p/how-we-cut-our-claude-code-token-usage-2-8x/
-- 要約：Daily Dose of Data Science は InsForge team の MCPMark V2 comparison を紹介しました。21 database-related tasks では、generic backend MCP は過剰な documentation を返し、holistic backend state が不足し、ambiguous errors を出しがちです。InsForge は skills、direct CLI operations、structured metadata により、agent が auth、tables、storage、AI models などの backend context を一度に得られるようにします。DocuRAG task では、traditional path が約 10.4M tokens、$9.21、12 user messages、135 tool calls を使ったのに対し、InsForge path は約 3.7M tokens、$2.81、1 user message、77 tool calls でした。重要なのは特定 MCP server の節約ではありません。Context engineering が backend product design に入ったことです。Agent に渡すべきなのは more documents ではなく、real system state に近い structured、executable context です。
+- 要約：InsForge の case は、coding agent の品質が model selection だけでなく、backend schema、tool output、prompt context、error surface をどう整えるかに強く依存することを示した。context engineering の実務例として読める。
 
-## 4. Codex と knowledge work
-
-### Every は Codex を developer tool ではなく knowledge workers の persistent agent workspace として描いた
+### Every：Codex for knowledge work は developer tool から agent workspace への広がりを示す
 
 - 出典：Every
 - 日付：2026-05-26
 - リンク：https://every.to/guides/codex-for-knowledge-work
-- 要約：Every は Codex for Knowledge Work guide を公開しました。Public section は Codex を、files を読み書きし、external services を呼び、multi-step tasks を実行し、workspace state を保持し、repeatable workflows を扱える agentic workspace として説明しています。Article はこれを Slack、email、forms、research、mobile review などの knowledge-work situations に置いており、code generation だけを扱っていません。Full guide は subscription が必要ですが、public section だけでも product direction は明確です。Agent が filesystem、tools、plugins、repeatable task entrypoints を持つと、question-answer assistant から personal / team workflow execution layer へ移ります。AI product design の問いも変わります。User が良い prompt を書けるかではなく、どの work を auditable、recoverable、reusable agent run にすべきかです。
-
-## 📬 Newsletter 精選
-
-- Daily Dose of Data Science：本期は 1 item を採用し、InsForge が backend context engineering によって coding agent の token cost と human repair rounds を下げた case を扱いました。
-- Every：本期は 1 item を採用し、Codex が developer tool から knowledge-work agent workspace へ広がる product signal として扱いました。
-- その他の items は主に AWS、DeepLearning.AI、CopilotKit の public releases から採用しています。
+- 要約：Every は Codex を coding assistant ではなく、調査、文書化、知識作業、artifact creation を扱う agent workspace として読んだ。本文では、developer tool が organization workflow に広がる product signal として扱った。

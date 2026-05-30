@@ -112,7 +112,7 @@ draft: false
 - 链接：https://blog.google/innovation-and-ai/technology/ai/university-waterloo-labs/
 - 摘要：Google 资助 University of Waterloo Futures Lab，以 8 周 AI/UX prototyping workshop 探索教育和工作场景。原型包括 Kanji Garden、SignFluent 和 MuscleMemory，分别面向汉字学习、手语练习和技能训练。相比大模型发布，这类原型更接近用户体验层的真实问题：AI 如何嵌入学习路径、反馈循环和练习材料，而不是只作为一次性问答工具。
 
-## 5. Newsletter：评测 harness 与开放模型栈
+## 5. 评测 harness 与开放模型栈
 
 ### 多轮 RL 的“Token-In, Token-Out”问题暴露 agent 训练管线细节风险
 
@@ -130,4 +130,16 @@ draft: false
 
 ## 📬 Newsletter 精选
 
-- Latent.Space：本期采用 2 条，分别补充多轮 RL / harness 细节风险，以及开放权重、本地模型与可控部署路线。
+### Daily Dose of DS：agent crash 不是 database crash
+
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-29
+- 链接：https://fandf.co/4nW0rev
+- 摘要：邮件强调，database crash 可以依靠确定性的 write-ahead log 恢复，而 agent crash 会遇到非确定性判断漂移。长程 agent 需要 checkpoint、可恢复上下文、持久 memory 和事件驱动执行，把状态管理作为平台能力，而不是应用层临时 Redis 拼装。
+
+### Every：Compound Engineering Gets an Upgrade
+
+- 来源：Every
+- 日期：2026-05-29
+- 链接：https://every.to/context-window/compound-engineering-gets-an-upgrade
+- 摘要：Every 将 compound engineering 从早期四步扩展到更完整的方法论，强调软件团队需要把模型、工具、上下文、评测、组织流程和复用资产组合起来。它与今天的 Codex、Braintrust 和 GitHub 采用指标信号一致：AI-native engineering 的核心是系统化工作流，而不是单点自动补全。

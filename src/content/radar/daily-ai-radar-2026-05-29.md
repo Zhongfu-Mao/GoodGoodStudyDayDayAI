@@ -103,7 +103,7 @@ draft: false
 - 链接：https://aws.amazon.com/blogs/machine-learning/training-azerbaijani-language-models-on-amazon-sagemaker-ai/
 - 摘要：Azercell 与 AWS Generative AI Innovation Center 在六周内为阿塞拜疆语 LLM 建立 SageMaker AI 训练框架，面向电信用例和客服 chatbot。方案分三步：自定义 tokenizer、Llama 3.2 1B continued pre-training、LoRA 监督微调。自定义 tokenizer 将平均每词 token 从 3.22 降到 1.59，使同样 128k context 可容纳约两倍阿塞拜疆语文本；FSDP 与 Liger Kernel 在 ml.p5.48xlarge 上带来 23% 更高训练吞吐和 58% 更低 peak GPU memory。这个案例提醒我们，低资源语言能力并不只靠更大模型，tokenizer、分布式训练、kernel 优化和小规模高质量微调同样关键。
 
-## 4. Newsletter 与异步 agent 生态
+## 4. 异步 agent 生态
 
 ### Latent.Space 讨论异步 agent：从 IDE 内助手转向“spec-to-PR 工厂”
 
@@ -114,4 +114,16 @@ draft: false
 
 ## 📬 Newsletter 精选
 
-- Latent.Space：本期采用 1 条，补充异步背景 agent、spec-to-PR、VM/runtime、review loop 与组织接入的产业视角。
+### Daily Dose of DS：RAG vs. Graph RAG vs. Agentic RAG
+
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-28
+- 链接：https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
+- 摘要：邮件用一组可视化对比说明，Graph RAG 并不是普通 RAG 的营销名，而是把实体和关系作为检索路径；Agentic RAG 则进一步让 agent 决定查什么、何时调用工具、如何分解查询。它和今天 AWS / LangChain 的 agent 评测主题相互呼应。
+
+### Daily Dose of DS：agent crash 不是 database crash
+
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-29
+- 链接：https://fandf.co/4nW0rev
+- 摘要：这封邮件用数据库 WAL 和 agent checkpoint 对比说明，agent 崩溃后的难题不是重启，而是恢复同一组中间判断、工具状态、人类审批点和上下文。Google Cloud Agent Platform 的 Memory Bank、Resume Agents 和 Ambient Agents 被作为平台级状态管理例子。

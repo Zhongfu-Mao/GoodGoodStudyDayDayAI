@@ -103,7 +103,7 @@ draft: false
 - リンク：https://aws.amazon.com/blogs/machine-learning/training-azerbaijani-language-models-on-amazon-sagemaker-ai/
 - 要約：Azercell と AWS Generative AI Innovation Center は、通信ユースケースと顧客向け chatbot のために、6 週間でアゼルバイジャン語 LLM の SageMaker AI 訓練フレームワークを構築した。流れは custom tokenizer、Llama 3.2 1B の continued pre-training、LoRA supervised fine-tuning の 3 段階だ。custom tokenizer は平均 token per word を 3.22 から 1.59 に下げ、同じ 128k context に入るアゼルバイジャン語テキスト量をほぼ 2 倍にした。FSDP と Liger Kernel は ml.p5.48xlarge で 23% 高い training throughput と 58% 低い peak GPU memory を実現した。低リソース言語の能力は大きなモデルだけでなく、tokenizer、分散訓練、kernel 最適化、小規模で質の高い fine-tuning にも大きく依存する。
 
-## 4. Newsletter と async agent エコシステム
+## 4. Async agent エコシステム
 
 ### Latent.Space は async agent を、IDE 補助から「spec-to-PR factory」への移行として読む
 
@@ -112,6 +112,18 @@ draft: false
 - リンク：https://www.latent.space/p/cognition
 - 要約：Latent.Space は Cognition の Walden Yan と OpenInspect の Cole Murray に、async background agent の製品とインフラについて聞いた。記事は AI coding tools を 3 波に分ける。IDE 内補完、local agents、そして cloud/background agents だ。後者の要点は補完の賢さではなく、agent に repo、machine、shell、browser、tests、memory、permissions、review loop を与え、background で spec-to-PR を完走させることにある。議論は full VM、snapshot、scoped secrets、GitHub bot、Slack integration、video testing、agent memory、MCP の限界、SRE auto-triage、PM が Slack から PR を起こす流れ、そして自動 merge 的な vibe coding が codebase を劣化させるリスクまで広がる。今日の AWS と OpenAI のシグナルと同じく、競争軸は runtime、検証 loop、組織接続へ移っている。
 
-## 📬 Newsletter 精选
+## 📬 Newsletter 精選
 
-- Latent.Space：本期は 1 件を採用。async background agent、spec-to-PR、VM/runtime、review loop、組織導入の産業視点を補足した。
+### Daily Dose of DS：RAG vs. Graph RAG vs. Agentic RAG
+
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-28
+- リンク：https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
+- 要約：このメールは Graph RAG を通常の RAG の別名ではなく、entities と relationships を retrieval path に入れる設計として説明した。Agentic RAG はさらに、何を調べるか、どの tool を呼ぶか、query をどう分解するかを agent loop に入れる。今日の AWS / LangChain の agent evaluation signals とつながる。
+
+### Daily Dose of DS：agent crash は database crash とは違う
+
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-29
+- リンク：https://fandf.co/4nW0rev
+- 要約：このメールは database WAL と agent checkpoint を対比し、agent が crash した時の難しさは restart ではなく、途中の判断、tool state、人間の approval point、context を同じ形で復元することだと説明した。Google Cloud Agent Platform の Memory Bank、Resume Agents、Ambient Agents が platform-level state management の例として扱われている。
