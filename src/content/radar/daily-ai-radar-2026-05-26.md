@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-05-26"
 date: 2026-05-26
 category: radar
 cadence: daily
-plainSummary: "今天的主线是 agent 工程继续从单点演示走向可审计、可隔离、可运营的生产系统：术语层开始澄清 harness、scaffold、policy 与 memory，长上下文处理转向代码执行和子模型递归，SaaS、BI、医疗和浏览器自动化场景则把多租户、合规、观测和人类监督放到架构中心。"
+plainSummary: "今天的主线是 agent 与 AI 应用基础设施回到更具体的工程约束：恶意多租户构建需要 microVM，向量索引要和事务、多租户、地域合规一起设计，知识工作 agent 需要持久上下文和审查循环，RL 与 harness engineering 则继续成为后训练和 agent 系统的底层语言。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -20,110 +20,128 @@ draft: false
 
 ## 本期范围
 
-- 覆盖时间：2026-05-25 至 2026-05-26，并补充 2026-05-21 未入选的高信号 AgentCore 与企业 agent 案例。
+- 覆盖时间：2026-05-25 至 2026-05-26。
 
----
-![Agent harness, scaffold and model diagram](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/agent-glossary/agent-diagram.png)
+## 1. AI Engineering & 架构
 
-*代表图来自 [Hugging Face Agent Glossary](https://huggingface.co/blog/agent-glossary)。它对应本期最核心的信号：agent 的差异越来越来自模型外部的 harness、scaffold、工具、记忆、运行时和验证闭环。*
+### ByteByteGo 拆解 Vercel Hive：构建平台的速度来自更强隔离，而不是更薄封装
 
-## 1. Agent 术语、深度研究与形式化证明
+- 来源：ByteByteGo
+- 日期：2026-05-26
+- 链接：https://blog.bytebytego.com/p/how-vercel-cut-build-wait-times-from
+- 摘要：ByteByteGo 复盘 Vercel 如何把 build provisioning 从 90 秒压到 5 秒。关键不是简单换容器，而是承认用户提交的 build script 属于 hostile multi-tenancy：代码可能是恶意的，不能只靠共享内核的容器隔离。Vercel 用 Firecracker microVM 做每个 build 的 cell 边界，再叠加本地镜像缓存、block device snapshot 和 warm pool，把安全边界与启动速度同时推进。对 coding agent 和自动化执行平台来说，这个案例很重要：一旦你允许模型运行第三方代码，真正的架构问题就会变成隔离、冷启动、成本、销毁策略和故障域。
 
-### Hugging Face 用一篇 Agent Glossary 澄清 model、scaffold、harness、policy 与 reward 的边界
+### ByteByteGo 复盘 CockroachDB C-SPANN：向量索引要继承数据库的分布式语义
 
-- 来源：Hugging Face
+- 来源：ByteByteGo
 - 日期：2026-05-25
-- 链接：https://huggingface.co/blog/agent-glossary
-- 摘要：Hugging Face 认为 agent 领域的术语正在快速膨胀，很多团队把 harness、scaffold、context engineering、policy、skills、sub-agents、rollout 和 reward 混用。文章给出一个实用切分：model 是一次输入输出的 LLM；scaffold 是系统提示词、工具描述、解析格式和上下文管理；harness 是真正执行循环、处理工具调用和决定停止条件的层；agent 则是 model 加上这些外部执行结构。它还把训练侧的 environment、trainer、rollout、reward 与部署侧的工具、记忆和子 agent 放在同一张概念地图里。对工程团队来说，这类词汇统一会直接影响架构评审、评测设计和岗位沟通。
+- 链接：https://blog.bytebytego.com/p/how-cockroachdb-built-vector-indexing
+- 摘要：CockroachDB 的 C-SPANN 不是把一个单机向量库外挂到 SQL 旁边，而是把向量索引作为普通表数据放进 CockroachDB 的 range、replication、sharding 和 rebalancing 机制里。文章强调六个约束：不要中心协调器、不要大型内存缓存、网络跳数要少、数据布局要能分片、不能制造 hot spot、插入删除要实时更新。它还用 RaBitQ 把 1536 维 embedding 压到约 200 bytes，再用 full-precision rerank 修正近似误差。这个设计提醒我们，agent memory 与企业检索不是“加一个向量库”那么简单，而是要把事务一致性、多租户前缀、地域驻留和查询路径一起纳入系统设计。
 
-## 2. 长上下文、租户隔离与 MCP 运行时
+### Every 把 Codex 写成知识工作操作系统，而不只是代码生成器
 
-### AWS 用 Recursive Language Models 把超长文档变成可编程环境，而不是塞进上下文窗口
+- 来源：Every
+- 日期：2026-05-26
+- 链接：https://every.to/guides/codex-for-knowledge-work
+- 摘要：Every 的指南把 Codex 定义为 tool-using agentic workspace：它可以读取本地文件、调用插件、跨多步任务保持上下文、在长会话里持续推进目标，并把重复流程做成自动化。公开部分重点不是某个 prompt 技巧，而是工作空间形态：连接资料源、保留规则文件、让 agent 自检并修订、并把一次性任务升级成可复用流程。对任何自动化知识产品来说，这个信号也很贴近：没有可审计规则、来源记录和审查循环，自动化越顺手，偏移越难发现。
 
-- 来源：AWS
-- 日期：2026-05-21
-- 链接：https://aws.amazon.com/blogs/machine-learning/break-the-context-window-barrier-with-amazon-bedrock-agentcore/
-- 摘要：AWS 展示如何用 Bedrock AgentCore Code Interpreter 和 Strands Agents SDK 实现 Recursive Language Models。根模型不再接收完整文档，而是在沙箱里写 Python 代码搜索、切片和分析文档；需要语义判断时，沙箱内部调用 sub-LLM，把结果留在 Python 变量里作为工作记忆。评测中，RLM 在 LongBench v2 金融多文档 QA 与代码仓库理解任务上达到 100% success rate，并显著提升多个模型的准确率。它代表一个重要架构方向：面对百万级字符输入，agent 不应只依赖更长上下文，而应把上下文作为可查询、可执行、可累积状态的环境。
+## 2. 模型前沿 & 算法探索
 
-### AWS 把多租户 agent 架构拆成 runtime、模型、workflow、RAG、identity、memory、policy 与 observability 十个控制面
+### Daily Dose of Data Science 用函数逼近重新解释强化学习为什么回到主舞台
 
-- 来源：AWS
-- 日期：2026-05-21
-- 链接：https://aws.amazon.com/blogs/machine-learning/building-multi-tenant-agents-with-amazon-bedrock-agentcore/
-- 摘要：AWS 讨论 SaaS 场景下的多租户 agent，不再只谈模型效果，而是系统性处理 tenant isolation、identity、data isolation、cost attribution、noisy neighbor mitigation、memory namespace、tool access control 和 guardrails。文章把设计模式分成 silo、pool、bridge：高合规客户可用独立 runtime、gateway、memory 和数据层；中小租户可共享资源但用 JWT、命名空间和 ABAC 做隔离；混合模式则按租户等级选择隔离层级。这个框架说明，生产 agent 的核心风险已经从“回答错”扩展到“跨租户越权、成本不可归因、记忆串线和工具权限失控”。
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-24
+- 链接：https://blog.dailydoseofds.com/p/function-approximation-in-rl
+- 摘要：Daily Dose 的 RL 系列第五部分讨论 lookup table 在真实问题中为何失效，以及如何用参数化函数在相似状态之间泛化。文章覆盖 gradient Monte Carlo、semi-gradient TD、bootstrapping 与 off-policy learning，还用 Mountain Car 做连续状态控制实现。它的现实意义在于，RL 已经从机器人和游戏领域回到大模型后训练核心：RLHF、constitutional AI、GRPO、policy optimization 和 reward design 都在塑造 frontier model 行为。对工程读者来说，理解 function approximation 不只是补课，而是理解模型如何从 reward signal 中学习可部署行为。
 
-### AWS API MCP Server 接入 Amazon Quick，把云运维查询变成受 IAM 和 Cognito 约束的自然语言接口
+### The Rundown AI 关注开源模型去防护化，说明能力发布后的治理边界仍然脆弱
 
-- 来源：AWS
-- 日期：2026-05-21
-- 链接：https://aws.amazon.com/blogs/machine-learning/integrating-aws-api-mcp-server-with-amazon-quick-suite-using-amazon-bedrock-agentcore-runtime/
-- 摘要：AWS 展示如何通过 Bedrock AgentCore Runtime 的 MCP 支持，把 Amazon Quick 连接到 AWS API MCP Server。用户可以在 Quick 里问“列出 us-east-1 正在运行的 EC2 实例”，custom agent 通过 Cognito 获取 JWT，AgentCore Runtime 验证令牌并调用容器化 MCP server，再按 IAM execution role 执行 AWS CLI/API 操作。文章还强调 CloudWatch audit trail、least privilege、生产环境不要裸用 no-auth MCP server、以及 origin/host 白名单收紧。这个模式把 MCP 从本地开发协议推进到企业运维接口：自然语言只是入口，真正关键是认证、授权、审计和权限边界。
+- 来源：The Rundown AI
+- 日期：2026-05-26
+- 链接：暂无公开直链
+- 摘要：The Rundown AI 追踪了开源模型 guardrail 被快速移除的问题：围绕 Llama、Gemma 等模型的修改工具可以在很短时间内去掉安全限制，并产生大量可下载的“decensored”变体。这个条目不适合把工具本身当作推荐对象，但值得放进模型前沿栏目，因为它暴露了一个持续矛盾：开放权重带来研究、部署和本地控制的收益，同时也把模型发布后的安全边界交给了下游生态。未来模型发布策略会越来越需要同时讨论许可证、权重访问、评测透明度和滥用响应。
 
-## 3. 企业与行业 Agent：BI、仪表盘、医疗、招聘
+## 3. 实战代码 & 工具库
 
-### AWS 的 dashboard automation agent 把 Quick 仪表盘修改从工单流程压缩到自然语言多 agent 编排
+### Daily Dose 的 agent harness 文章把 prompt、context 与 harness engineering 分清楚
 
-- 来源：AWS
-- 日期：2026-05-21
-- 链接：https://aws.amazon.com/blogs/machine-learning/build-ai-powered-dashboard-automation-agents-with-nlp-on-amazon-bedrock-agentcore/
-- 摘要：AWS 构建了一个 Quick dashboard self-service 方案，由 Find Dashboard Agent、Modify Dashboard Agent 和 Orchestrator Agent 组成。用户用自然语言要求添加或删除列时，系统先搜索 dashboard 与 dataset schema，再验证字段是否存在、是否已在可视化里，最后创建新 dashboard 版本而不是覆盖原件。架构使用 Bedrock AgentCore、Strands、Amazon Nova、AgentCore Memory 与 Observability。它的信号不只是 BI 自动化，而是“业务用户自助修改生产对象”需要验证优先、可回滚、可审计和明确的 agent-as-tool 分工。
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-24
+- 链接：https://blog.dailydoseofds.com/p/the-anatomy-of-an-agent-harness
+- 摘要：Daily Dose 在邮件中重新推荐了 agent harness 深度文，文章把 prompt engineering、context engineering 和 harness engineering 分成三层：prompt 管理模型一次看到的指令，context 管理什么时候加载什么信息，harness 则包括 orchestration loop、tool execution、memory、state persistence、error handling、guardrails、verification 和 subagent orchestration。它的价值在于把“agent 为什么失败”从模型能力问题转回系统问题：工具太多、上下文腐烂、错误不可恢复、验证缺位，都会让同一个模型表现完全不同。
 
-### OPLOG 用三个 AgentCore BI agent 改善销售周期、CRM 完整度和销售研究时间
+### Comet Opik 把 agent 优化做成可迭代的评测和提示词搜索流程
 
-- 来源：AWS
-- 日期：2026-05-21
-- 链接：https://aws.amazon.com/blogs/machine-learning/build-ai-agents-for-business-intelligence-with-amazon-bedrock-agentcore/
-- 摘要：AWS 介绍 OPLOG 的生产级 BI agent 系统：Deal Analyzer Agent 定时检查 HubSpot deal 是否符合销售方法论；Sales Coach Agent 在 deal stage 变化时实时验证字段并创建任务；Lead Insight Agent 在新增 lead 后并行研究社交与网页信号，生成 ICP fit 和外联建议。系统基于 Strands、AgentCore、Bedrock Knowledge Bases、Claude Sonnet、Lambda、EventBridge 和 Teams webhook。文章报告销售周期降低 35%、CRM 数据完整度提升 91%、人工研究时间降低 98%。它说明企业 agent 的高价值入口往往不是聊天，而是把“每天重复但依赖上下文判断”的业务检查嵌入事件流。
+- 来源：Daily Dose of Data Science / Comet Opik
+- 日期：2026-05-24
+- 链接：https://www.comet.com/docs/opik/v1/agent_optimization/overview
+- 摘要：Daily Dose 邮件提到的 Opik Agent Optimizer，把 agent prompt 或工作流调优做成“初始提示词 + 评测数据集 + 优化器迭代”的流程。公开文档目前更像入口页，但它指向的方向明确：agent 质量不能只靠人工感觉，而要把任务样本、评分函数、运行轨迹和版本记录纳入实验系统。对团队落地来说，prompt 不是一次写完的文案，而是可以被观测、比较、回滚和持续优化的工程资产。
 
-### AWS 的放射科 worklist agent 把病例分配从规则队列升级为多 agent 临床编排
+## 4. 行业与商业快讯
 
-- 来源：AWS
-- 日期：2026-05-21
-- 链接：https://aws.amazon.com/blogs/machine-learning/intelligent-radiology-workflow-optimization-with-ai-agents-2/
-- 摘要：AWS 展示了一个智能放射科 worklist 优化方案，用 orchestrator agent 协调 exam metadata、patient history、radiologist assignment、availability、dynamic rules 和 exam prioritization 等子 agent。系统考虑放射科医生专长、当前负载、疲劳、病例复杂度、SLA 和紧急程度，并用 AgentCore Memory 记录短期会话与长期经验；Guardrails 在输入输出两端拦截 PII 和越界主题；MCP Gateway 连接临床数据、日程和 PACS/Imaging API。它的现实意义是，医疗 agent 的可靠性不只来自模型能力，还来自分工、记忆、合规、优先级和人类可接受的解释。
-
-### Amazon Nova Act 获得 HIPAA eligible，浏览器自动化 agent 开始进入受监管医疗工作流
-
-- 来源：AWS
-- 日期：2026-05-21
-- 链接：https://aws.amazon.com/blogs/machine-learning/amazon-nova-act-is-now-hipaa-eligible/
-- 摘要：AWS 宣布 Amazon Nova Act 成为 HIPAA eligible service，可在签署 AWS BAA 的账户中用于涉及 ePHI 的 agentic workflow。Nova Act 面向浏览器里的生产 UI 工作流，可以导航网站、填写表单、提取信息、执行多步骤任务，并在必要时升级给人类 supervisor；它还可通过 API、remote MCP 或 Strands Agents 集成外部工具。面向医疗场景，AWS 提到预约、保险核验、prior authorization、claims status、appeals、referrals 和 compliance reporting。这个信号说明，浏览器 agent 真正进入企业流程时，合规资格、IAM、KMS、CloudTrail 和人工监督会和模型能力同等重要。
-
-### AWS 的招聘助手参考架构把简历筛选做成有证据引用、PII 匿名化和 prompt attack 防护的高风险 AI 流程
-
-- 来源：AWS
-- 日期：2026-05-21
-- 链接：https://aws.amazon.com/blogs/machine-learning/build-an-ai-powered-recruitment-assistant-using-amazon-bedrock/
-- 摘要：AWS 发布一个基于 Bedrock 的招聘助手参考架构，覆盖简历解析、候选人匹配、技能评估和个性化面试问题生成。系统使用 Amplify、Cognito、API Gateway、Lambda、DynamoDB、S3、Bedrock Converse API、Nova Pro 和 Bedrock Guardrails；提示词要求所有判断引用简历证据，并避免基于姓名、联系方式、人口属性或个人特征做推断。Guardrails 负责 PII 匿名化、简历中的 prompt injection 检测和偏见相关内容过滤。文章明确提醒这属于高风险 AI 应用，最终招聘决定必须由人类负责。它是一个有价值的模式：越接近人事、金融、医疗，AI 输出越需要证据链、审计和强制人工检查点。
-
-## 4. 内容生态、部署基础与模型可移植性
-
-### OpenAI 与 Grupo Folha、Grupo UOL 达成巴西内容合作，ChatGPT 的新闻接入继续走向本地可信来源
+### OpenAI 与 Grupo Folha、Grupo UOL 合作，把 ChatGPT 新闻接入推进到巴西本地媒体
 
 - 来源：OpenAI
 - 日期：2026-05-25
 - 链接：https://openai.com/index/grupo-folha-grupo-uol-partnership
-- 摘要：OpenAI 宣布与 Grupo Folha 和 Grupo UOL 建立战略内容合作，这是 OpenAI 在巴西的首个媒体合作。OpenAI 表示，超过 9 亿周活 ChatGPT 用户将能访问基于 Folha de S.Paulo 和 UOL 报道的摘要，并通过 attribution、transparency 和 original source links 回到新闻源。OpenAI 还披露巴西是 ChatGPT 最大市场之一，月活超过 5000 万，每日约 1.4 亿条消息。对 AI 产品生态来说，这类合作体现了一个持续趋势：AI answer layer 要处理的不只是生成能力，还包括授权内容、来源归因、本地语言市场和新闻机构的分发关系。
+- 摘要：OpenAI 宣布与 Grupo Folha 和 Grupo UOL 建立战略内容合作，这是其在巴西的首个媒体合作。OpenAI 称，ChatGPT 用户将能看到基于 Folha de S.Paulo 和 UOL 报道的摘要，并通过 attribution、transparency 与 original source links 回到新闻源。文章还披露巴西是 ChatGPT 最大市场之一，月活超过 5000 万，每日约 1.4 亿条消息。这个动作延续了 answer layer 与新闻机构的再协商：AI 产品不只要生成答案，还要处理授权内容、本地语言、可信来源和流量回流。
 
-### Daily Dose of DS 的 ONNX 章节提醒，模型上线的瓶颈常在格式、运行时和硬件后端
+### 老范讲故事拆解 DeepSeek 融资传闻：真正焦点是控制权与技术路线
 
-- 来源：Daily Dose of Data Science
+- 来源：老范讲故事
+- 日期：2026-05-26
+- 链接：https://lukefan.com/2026/05/26/deepseek-funding-rumors-valuation-control/
+- 摘要：老范围绕 DeepSeek 融资传闻梳理估值、投资方、梁文锋出资、国家大基金和潜在 A 股退出路径。文章的重点不是确认某个数字，而是解释为什么融资会变成控制权争夺：创始人要保持合同框架与路线主导权，战略投资人可能要求协同，财务投资人关注估值和退出，国资进入则带来上市想象和监管约束。最后他把问题落到 DeepSeek 是否能继续做 AGI 与 agent harness 方向，并在资本压力下保持团队独立。
+
+### The Rundown AI 把 AI 成本纪律放回商业讨论中心
+
+- 来源：The Rundown AI
+- 日期：2026-05-26
+- 链接：暂无公开直链
+- 摘要：The Rundown AI 提到 Uber COO 对 AI 成本回报的谨慎态度，并把它放在更广的企业 AI 采用语境中：token 与工具开支增长很快，但并不总能转化为稳定产品收益。这个观察与近期“tokenmaxxing”讨论互相呼应。对企业来说，AI 采用已经过了只看使用率的阶段，下一步会更强调单位任务成本、可观测收益、失败重试成本和哪些流程真的应该自动化。
+
+### The Rundown AI 追踪教宗关于 AI 伦理与武器化的公开立场
+
+- 来源：The Rundown AI
+- 日期：2026-05-26
+- 链接：暂无公开直链
+- 摘要：The Rundown AI 报道了教宗 Leo XIV 关于 AI 伦理、权力集中和自动化武器决策的表态，并提到 Anthropic 的 Christopher Olah 在梵蒂冈相关场合讨论 frontier lab 激励问题。这个条目不是技术突破，但它显示 AI 治理议题正在进入宗教、国际法和公共道德框架：谁能控制强 AI、哪些决策不能交给机器、商业激励是否会偏离社会利益，都会持续影响监管和产品边界。
+
+## 5. GitHub 热门 repo & 趋势追踪
+
+### comet-ml / opik：把 agent 评测、观测和优化纳入同一个开源工作台
+
+- 来源：GitHub / Comet Opik
+- 日期：2026-05-24
+- 链接：https://github.com/comet-ml/opik
+- 摘要：Opik 是 Comet 维护的开源 LLM evaluation 与 observability 工具，Daily Dose 邮件把它与 agent optimization workflow 联系在一起。它值得追踪的原因不只是作为评测 UI，而是把 prompt、trace、dataset、评分和优化过程放到同一个工作台里。随着 agent 应用变复杂，团队会越来越需要这种“可回放、可比较、可优化”的质量系统，而不是靠一次性人工读结果。
+
+### cockroachdb / cockroach：向量搜索进入分布式事务数据库主干
+
+- 来源：GitHub / CockroachDB
 - 日期：2026-05-25
-- 链接：https://www.dailydoseofds.com/mlops-crash-course-part-10/
-- 摘要：Daily Dose of DS 在 MLOps 课程中继续讨论模型压缩与可移植性，覆盖 knowledge distillation、low-rank factorization、quantization，以及 ONNX / ONNX Runtime 在训练框架和生产运行时之间的桥接作用。文章强调，PyTorch 或 TensorFlow 训练出的模型最终可能要跑在 C++ 服务、移动端、GPU 优化 runtime 或 CPU-only 环境里；没有共同格式时，每次 framework-to-runtime 迁移都会变成定制工程。ONNX 把计算图、标准算子、tensor shape、metadata 和权重打包成中间表示，ONNX Runtime 再做图优化和硬件后端分派。对 agent 产品来说，这仍是基础设施问题：模型越多进入边缘、实时和高吞吐链路，可移植运行时越重要。
+- 链接：https://github.com/cockroachdb/cockroach
+- 摘要：CockroachDB 的 C-SPANN 让主数据库也能承载多租户、实时更新、地域感知的向量索引。这个 repo 值得放进趋势追踪，不是因为它突然变成“向量数据库”，而是因为它代表一个更长线的方向：AI 检索能力会被吸收到既有数据系统里，和事务、权限、部署区域、schema 以及业务查询一起演进。
+
+### firecracker-microvm / firecracker：agent sandbox 与 serverless 隔离继续复用 microVM 基础设施
+
+- 来源：GitHub / Firecracker
+- 日期：2026-05-26
+- 链接：https://github.com/firecracker-microvm/firecracker
+- 摘要：ByteByteGo 的 Vercel Hive 复盘再次把 Firecracker microVM 推到 agent 与构建基础设施讨论中心。它不是新的 AI repo，但它是许多“安全运行不可信代码”系统的底层形态。随着 coding agent、browser agent、sandboxed tool execution 增多，microVM、快照、warm pool、ephemeral runtime 和宿主机资源隔离会越来越像 agent 平台的基础模块。
 
 ## 📬 Newsletter 精选
 
-### Daily Dose of DS / Onyx：无搜索权限的 orchestrator 可以提升 deep research 质量控制
+### Daily Dose of Data Science：主动学习提醒团队不要忽略数据标注闭环
 
-- 来源：Daily Dose of Data Science / Onyx
-- 日期：2026-05-25
-- 链接：https://github.com/onyx-dot-app/onyx
-- 摘要：Onyx 的 deep research 架构让制定策略的 orchestrator agent 没有 web search 或 URL 打开权限，只负责拆解自洽任务并分派给研究 agent。这个设计防止协调者用最先找到的材料写浅层报告，把策略、检索、阅读、引用归并和权限控制拆成可验证阶段。
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-26
+- 链接：暂无公开直链
+- 摘要：同一期 Daily Dose 还用简明流程解释 active learning：先人工标注少量样本，训练初始模型，再把低置信预测交给人类补标，并反复加入训练集。它对当前 AI 产品仍然有现实意义：不是所有提升都来自更大模型，很多监督任务的瓶颈仍是如何选择最值得标注的数据、如何校准置信度、以及如何把人工反馈变成持续改进的训练循环。
 
-### AlphaProof Nexus：形式化证明搜索开始触及真实开放数学问题
+### The Rundown AI：本日快讯继续覆盖 Manus、Codex、Higgsfield 与 Grok 相关动态
 
-- 来源：arXiv
-- 日期：2026-05-21
-- 链接：https://arxiv.org/abs/2605.22763
-- 摘要：论文展示 AI-driven formal proof search 在 Erdős 问题和 OEIS 猜想上的进展。其意义不在于替代数学家，而在于把“会推理”变成可编译、可复核、可规模化搜索的证明流程。
+- 来源：The Rundown AI
+- 日期：2026-05-26
+- 链接：暂无公开直链
+- 摘要：The Rundown AI 的快讯部分还集中提到 Manus Projects、Codex Locked Use mode、Higgsfield Supercomputer、xAI Grok Build、Grok V9-Medium 和 Anthropic Mythos 线索。这些条目各自信号较短，暂不单独展开，但作为产品雷达可以继续观察：agent 项目管理、受控代码执行、视频生成工作流和模型版本泄漏，都是后续几天可能发展成主线的方向。

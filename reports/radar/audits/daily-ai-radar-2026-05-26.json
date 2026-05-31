@@ -1,0 +1,85 @@
+{
+  "date": "2026-05-26",
+  "cadence": "daily",
+  "status": "text-backfilled-assets-pending",
+  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source AWS/AgentCore coverage and used a shifted section taxonomy. This pass rewrites the text from source-pool, public-page, RSS and Gmail-original evidence; infographic/audio remain intentionally pending for a later asset batch.",
+  "publicFiles": {
+    "zh": "src/content/radar/daily-ai-radar-2026-05-26.md",
+    "ja": "src/content/radar/daily-ai-radar-2026-05-26.ja.md"
+  },
+  "sourceEvidence": [
+    {
+      "source": "ByteByteGo RSS and public pages",
+      "path": "node scripts/radar/fetch-url.mjs https://blog.bytebytego.com/feed --mode rss; public article fetches for how-vercel-cut-build-wait-times-from and how-cockroachdb-built-vector-indexing",
+      "confirmedItems": [
+        "How Vercel Cut Build Wait Times From 90 Seconds To 5",
+        "How CockroachDB Built Vector Indexing at Scale"
+      ]
+    },
+    {
+      "source": "Every public page and Gmail original",
+      "path": "node scripts/radar/fetch-url.mjs https://every.to/guides/codex-for-knowledge-work; Gmail read-only search for 2026-05-26 Every original",
+      "confirmedItems": [
+        "Codex for Knowledge Work"
+      ]
+    },
+    {
+      "source": "Daily Dose of Data Science RSS, public pages and Gmail originals",
+      "path": "node scripts/radar/fetch-url.mjs https://blog.dailydoseofds.com/feed --mode rss; public article fetches; Gmail read-only search for 2026-05-24 and 2026-05-26 Daily Dose originals",
+      "confirmedItems": [
+        "Function Approximation in RL",
+        "The Anatomy of an Agent Harness",
+        "Comet Opik Agent Optimization",
+        "Active learning in ML"
+      ]
+    },
+    {
+      "source": "OpenAI RSS and public page",
+      "path": "node scripts/radar/fetch-url.mjs https://openai.com/news/rss.xml --mode rss; node scripts/radar/fetch-url.mjs https://openai.com/index/grupo-folha-grupo-uol-partnership",
+      "confirmedItems": [
+        "OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership"
+      ]
+    },
+    {
+      "source": "The Rundown AI Gmail original",
+      "path": "Gmail read-only search after:2026/5/24 before:2026/5/27 from:(therundown.ai)",
+      "confirmedItems": [
+        "The Pope wants AI disarmed",
+        "Open-source model guardrail removal coverage",
+        "Uber COO AI cost-discipline signal",
+        "Quick hits: Manus Projects, Codex Locked Use mode, Higgsfield, Grok and Anthropic Mythos"
+      ]
+    },
+    {
+      "source": "老范讲故事 RSS and public page",
+      "path": "node scripts/radar/fetch-url.mjs https://lukefan.com/feed --mode rss; node scripts/radar/fetch-url.mjs https://lukefan.com/2026/05/26/deepseek-funding-rumors-valuation-control/",
+      "confirmedItems": [
+        "DeepSeek融资背后的控制权之争"
+      ]
+    },
+    {
+      "source": "GitHub repository pages surfaced by core sources",
+      "path": "Canonical repository links from Daily Dose and ByteByteGo coverage",
+      "confirmedItems": [
+        "comet-ml/opik",
+        "cockroachdb/cockroach",
+        "firecracker-microvm/firecracker"
+      ]
+    }
+  ],
+  "checksExpected": [
+    "zh/ja same title count",
+    "zh/ja same link order",
+    "fixed daily schema present",
+    "Newsletter section uses item format, not source-count summary",
+    "no public Gmail links, message ids, Chrome/HTTP/fallback logs, or backstage terms",
+    "no active AWS/Meta/Microsoft/NVIDIA source labels",
+    "old AWS/AgentCore body coverage removed"
+  ],
+  "assetStatus": {
+    "infographic": "pending-regeneration-after-text-batch",
+    "audio": "pending-regeneration-after-text-batch",
+    "existingFrontmatterKept": true,
+    "publicRepresentativeImage": "old AWS/Hugging Face body image removed from Markdown body"
+  }
+}
