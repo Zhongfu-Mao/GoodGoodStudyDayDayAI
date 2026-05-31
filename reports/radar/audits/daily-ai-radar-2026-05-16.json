@@ -1,8 +1,8 @@
 {
   "date": "2026-05-16",
   "cadence": "daily",
-  "status": "text-backfilled-assets-pending",
-  "reason": "P0 triage item: previous public Markdown used excluded active-source items as first-class coverage, lacked the fixed five-quadrant schema, had zh/ja heading and link-order drift, and used Newsletter as a source-count summary instead of reader-facing curated items. This pass rewrites the text from versioned source-pool rules, Gmail-original newsletter evidence, RSS evidence, public pages and canonical repository pages; infographic/audio remain intentionally pending for a later asset batch.",
+  "status": "text-and-assets-backfilled",
+  "reason": "P0 triage item: previous public Markdown used excluded active-source items as first-class coverage, lacked the fixed five-quadrant schema, had zh/ja heading and link-order drift, and used Newsletter as a source-count summary instead of reader-facing curated items. This pass rewrites the text from versioned source-pool rules, Gmail-original newsletter evidence, RSS evidence, public pages and canonical repository pages. Infographic/audio were regenerated on 2026-06-01 after the text backfill stabilized; existing public URLs were preserved while underlying files and audio metadata were refreshed.",
   "publicFiles": {
     "zh": "src/content/radar/daily-ai-radar-2026-05-16.md",
     "ja": "src/content/radar/daily-ai-radar-2026-05-16.ja.md"
@@ -104,8 +104,33 @@
     "build": "passed"
   },
   "assets": {
-    "infographic": "pending",
-    "audio": "pending",
-    "note": "Existing frontmatter asset URLs are preserved to avoid NotebookLM reruns during text backfill."
+    "infographic": "regenerated",
+    "audio": "regenerated",
+    "note": "Regenerated zh/ja infographic and audio with --no-keep-notebook; existing public URLs were preserved while files and frontmatter metadata were refreshed. The first zh infographic attempt hit a transient NotebookLM ADD_SOURCE_FILE RPC failure, left no 2026-05-16 temporary notebook, and succeeded on retry."
+  },
+  "validation": {
+    "assetRegeneration": "passed: zh/ja infographic and audio regenerated with --no-keep-notebook, compressed, and frontmatter metadata refreshed",
+    "notebookCleanup": "passed: post-generation NotebookLM list did not contain the 2026-05-16 daily infographic/audio temporary notebooks",
+    "imageQa": "passed: zh infographic readable; ja infographic readable with no severe text corruption",
+    "assetFiles": {
+      "zhInfographic": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-16-infographic.webp",
+        "sizeBytes": 437882
+      },
+      "jaInfographic": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-16.ja-infographic.webp",
+        "sizeBytes": 430832
+      },
+      "zhAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-16.mp3",
+        "sizeBytes": 9014315,
+        "durationSeconds": 1127
+      },
+      "jaAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-16.ja.mp3",
+        "sizeBytes": 9156421,
+        "durationSeconds": 1144
+      }
+    }
   }
 }
