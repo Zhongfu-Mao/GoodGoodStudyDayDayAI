@@ -1,0 +1,98 @@
+{
+  "date": "2026-05-29",
+  "cadence": "daily",
+  "status": "text-backfilled-assets-pending",
+  "reason": "P0 triage item: previous public Markdown was AWS-heavy, used non-fixed sections, and contained Newsletter drift. This pass rewrites the text from source-pool and Gmail-original evidence; infographic/audio remain intentionally pending for a later asset batch.",
+  "publicFiles": {
+    "zh": "src/content/radar/daily-ai-radar-2026-05-29.md",
+    "ja": "src/content/radar/daily-ai-radar-2026-05-29.ja.md"
+  },
+  "sourceEvidence": [
+    {
+      "source": "ByteByteGo RSS",
+      "path": "node scripts/radar/fetch-url.mjs https://blog.bytebytego.com/feed --mode rss",
+      "confirmedItems": [
+        "Must-Know Failure Modes in Distributed Systems"
+      ]
+    },
+    {
+      "source": "Daily Dose of Data Science RSS",
+      "path": "node scripts/radar/fetch-url.mjs https://blog.dailydoseofds.com/feed --mode rss",
+      "confirmedItems": [
+        "Why Agent Crashes Are Nothing Like Database Crashes",
+        "RAG vs. Graph RAG vs. Agentic RAG"
+      ]
+    },
+    {
+      "source": "Gmail originals",
+      "path": "Gmail read-only search after:2026/5/28 before:2026/5/30 for Every, Daily Dose, AI Valley, The Batch, Programmer Weekly",
+      "confirmedItems": [
+        "Every: Compound Engineering Gets an Upgrade",
+        "Daily Dose of DS: Why Agent Crashes Are Nothing Like Database Crashes",
+        "Daily Dose of DS: RAG vs. Graph RAG vs. Agentic RAG",
+        "Programmer Weekly Issue 302 was reviewed but not selected as a public item"
+      ]
+    },
+    {
+      "source": "Latent.Space RSS",
+      "path": "node scripts/radar/fetch-url.mjs https://www.latent.space/feed --mode rss",
+      "confirmedItems": [
+        "[AINews] Anthropic raises $965B Series H, releases Opus 4.8 and Dynamic Workflows/ultracode"
+      ]
+    },
+    {
+      "source": "OpenAI RSS",
+      "path": "node scripts/radar/fetch-url.mjs https://openai.com/news/rss.xml --mode rss",
+      "confirmedItems": [
+        "How Braintrust turns customer requests into code with Codex",
+        "A shared playbook for trustworthy third party evaluations",
+        "How Endava builds an agentic organization with Codex",
+        "Boston Children’s uses AI to unlock new diagnoses"
+      ]
+    },
+    {
+      "source": "Google AI RSS",
+      "path": "node scripts/radar/fetch-url.mjs https://blog.google/technology/ai/rss/ --mode rss",
+      "confirmedItems": [
+        "9 demos of Gemini Omni and Gemini 3.5 in action",
+        "Take our I/O 2026 quiz, vibe coded in Google AI Studio"
+      ]
+    },
+    {
+      "source": "老范讲故事 RSS",
+      "path": "node scripts/radar/fetch-url.mjs https://lukefan.com/feed --mode rss",
+      "confirmedItems": [
+        "教皇发布AI通谕——为什么只有Anthropic可以出现在梵蒂冈？"
+      ]
+    },
+    {
+      "source": "GitHub Trending",
+      "path": "node scripts/radar/fetch-url.mjs 'https://github.com/trending?since=daily' --mode readability",
+      "confirmedItems": [
+        "revfactory/harness",
+        "EveryInc/compound-engineering-plugin",
+        "run-llama/liteparse"
+      ]
+    },
+    {
+      "source": "DeepLearning.AI public page",
+      "path": "node scripts/radar/fetch-url.mjs https://www.deeplearning.ai/the-batch/ --mode readability",
+      "confirmedItems": [
+        "Issue 355: Founders and Forward Deployed Engineers"
+      ]
+    }
+  ],
+  "checksExpected": [
+    "zh/ja same title count",
+    "zh/ja same link order",
+    "fixed daily schema present",
+    "Newsletter section uses item format, not source-count summary",
+    "no public Gmail links, message ids, Chrome/HTTP/fallback logs, or backstage terms",
+    "no active AWS/Meta/Microsoft/NVIDIA source labels"
+  ],
+  "assetStatus": {
+    "infographic": "pending-regeneration-after-text-batch",
+    "audio": "pending-regeneration-after-text-batch",
+    "existingFrontmatterKept": true
+  }
+}

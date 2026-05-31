@@ -29,6 +29,7 @@ for (const [date, current] of byDate.entries()) {
   const seen = new Map();
 
   for (const [otherDate, other] of byDate.entries()) {
+    if (otherDate < enforceFromDate) continue;
     const delta = daysBetween(parseDate(otherDate), currentDate);
     if (delta <= 0 || delta > lookbackDays) continue;
     for (const link of other.links) {

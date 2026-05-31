@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-29"
 date: 2026-05-29
 category: radar
 cadence: daily
-plainSummary: "今日の主線は、agent が「動く」段階から「統制でき、評価でき、納品できる」段階へ移り始めたことだ。OpenAI はフロンティアガバナンスフレームワークを公開し、Endava は Codex をコーディングから要件、設計、顧客コミュニケーションへ広げた。AWS は deep agent 評価、AgentCore データセット、AML ワークフロー、MLflow アクセス、低リソース言語トレーニングの実例を連続して示し、Google は I/O 2026 の agent、生成 UI、コンテンツ来歴をひとつの製品ロードマップとして再整理した。"
+plainSummary: "今日の主線は、agent engineering が「demo が動く」段階から、評価でき、復旧でき、統治でき、納品できる production system へ移っていることです。ByteByteGo、The Batch、OpenAI、Google、Latent.Space、老范讲故事、GitHub Trending、Newsletter は、状態管理、評価 loop、組織方法、再利用可能な tool が AI システムの価値を左右し始めたことを示しています。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -20,110 +20,134 @@ draft: false
 
 ## 対象範囲
 
-- 対象期間：2026-05-28 から 2026-05-29。関連テーマの高シグナルな Newsletter も一部補足する。
+- 対象期間：2026-05-28 から 2026-05-29。
+- 本期は公開記事、trend repo、確認済み Newsletter 原文を整理し、agent engineering が model call から production system へ移る流れに注目します。
 
 ---
 ![Catch up on 12 major I/O 2026 moments](https://storage.googleapis.com/gweb-uniblog-publish-prod/images/KW_KNH_SS.width-1300.png)
 
-*代表画像は [Catch up on 12 major I/O 2026 moments](https://blog.google/innovation-and-ai/technology/ai/io-2026-keynote-moment-videos/) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
+*代表画像は [Catch up on 12 major I/O 2026 moments](https://blog.google/innovation-and-ai/technology/ai/io-2026-keynote-moment-videos/) から。本期の重要な背景、つまり Google が Gemini、agentic search、生成 UI、content provenance を同じ製品路線にまとめていることを表します。*
 
-## 1. Agent の組織実装とガバナンス
+## 1. AI Engineering & アーキテクチャ
 
-### Endava は Codex をコーディング補助から「agentic organization」へ広げる
+### ByteByteGo は分散システムの failure mode から agent infra の基本を思い出させる
+
+- 出典：ByteByteGo
+- 日付：2026-05-28
+- リンク：https://blog.bytebytego.com/p/must-know-failure-modes-in-distributed
+- 要約：ByteByteGo は分散システムの代表的な failure mode を整理した。LLM そのものの記事ではないが、agent infrastructure には直接効く。長時間動く agent が service、queue、storage、tool をまたいで実行されると、partial failure、retry storm、timeout、cascade failure、split brain、backpressure が再び問題になる。agent engineering は model に tool を増やすだけではなく、reliability、isolation、idempotency、timeout、recovery path を system design に入れる仕事である。
+
+### The Batch は Forward Deployed Engineer を AI engineering の過渡的役割として見る
+
+- 出典：The Batch / DeepLearning.AI
+- 日付：2026-05-29
+- リンク：https://www.deeplearning.ai/the-batch/issue-355
+- 要約：Andrew Ng は AI Forward Deployed Engineer の再浮上を論じた。この役割は顧客組織に入り、LLM、agent workflow、evaluation、business constraints を custom system に落とす。記事の見立てでは FDE は残るが、長期的な主体はより広い AI Engineer になる。企業は最終的に、AI application を継続して保守し、改善し、統治できる内部チームを必要とするからだ。本期の他の条目と同じく、価値は一回の demo ではなく、customer feedback、testing、deployment、organizational learning の loop にある。
+
+### Endava は Codex を coding assistant から組織的な delivery method へ広げる
 
 - 出典：OpenAI
 - 日付：2026-05-28
 - リンク：https://openai.com/index/endava
-- 要約：Endava は Codex を顧客納品の全工程、つまり要件分析、設計、仕様化、開発、運用、顧客コミュニケーションに使っている。この記事で重要なのは「コードが速く書ける」ことだけではない。シニアの専門判断を再利用可能な agent の振る舞いとして符号化し、若手エンジニアがアーキテクチャ判断やベストプラクティスを実行中に学べるようにしている点だ。法律チームとの 2 時間の聞き取りを実行可能な要件仕様に変換し、本来 1-2 週間かかる調整を 2 回の 1 時間会議に圧縮した例も紹介された。企業 agent の境界は IDE から、組織知の伝達、顧客共創、納品方法論へ広がっている。
+- 要約：Endava は Codex を要件分析、設計、仕様化、開発、運用、顧客コミュニケーションまで使っている。重要なのは「コードが速く書ける」ことだけではない。senior expertise を再利用できる agent behavior として符号化し、architecture decision、best practice、customer context を workflow に蓄積している点だ。enterprise agent の境界は IDE から、組織知の伝達、顧客との共創、納品方法論へ広がっている。
 
-### OpenAI が Frontier Governance Framework を公開し、EU とカリフォルニアの前線 AI 規則に対応
+## 2. モデル最前線 & アルゴリズム探索
 
-- 出典：OpenAI
-- 日付：2026-05-28
-- リンク：https://openai.com/index/openai-frontier-governance-framework
-- 要約：OpenAI は Frontier Governance Framework を公開し、安全性、セキュリティ、リスク管理の実践を California Transparency in Frontier AI Act と EU AI Act の General Purpose AI Code of Practice にどう対応させるかを説明した。対象は cyber offense、CBRN リスク、有害な操作、制御喪失リスク、モデル報告、セキュリティリスク管理、インシデント対応、外部専門家の入力、フレームワーク更新などだ。Preparedness Framework を置き換えるものではなく、規制義務に関わる部分を公開ガバナンス文書に落とし込む位置づけである。フロンティアモデル企業は、内部リスクプロセスを規制側にも読める、更新可能で監査しやすい制度言語へ変換し始めている。
-
-### Google は I/O 2026 の 12 トピックで agent、生成 UI、来歴確認の方向性を再提示
+### Google は Gemini Omni と Gemini 3.5 の動画で multimodal action model を見せる
 
 - 出典：Google
-- 日付：2026-05-28
-- リンク：https://blog.google/innovation-and-ai/technology/ai/io-2026-keynote-moment-videos/
-- 要約：Google は I/O 2026 の発表を 12 の重要場面として整理した。Gemini Omni は動画から始まるマルチモーダル入力と高品質動画生成を打ち出し、Gemini 3.5 Flash は agent と coding の長期タスクを狙う。Search information agents は Web、ニュース、ソーシャル、リアルタイムデータを横断してテーマを継続監視し、Antigravity は Search をその場でレイアウト、可視化、ツール、dashboard を生成するインターフェースへ近づける。もう一つの柱は SynthID だ。Google は 1000 億を超える画像と動画、6 万年分の音声資産に watermark を付与し、検証機能を Search と Chrome に広げるという。agentic search、生成 UI、コンテンツ provenance を同じ製品ロードマップに結び直した形だ。
+- 日付：2026-05-29
+- リンク：https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/
+- 要約：Google は Gemini Omni と Gemini 3.5 の 9 本の demo 動画を公開し、multimodal input、video understanding、generative interface、action capability を示した。ここで重要なのは model size ではなく、model が Search、AI Studio、workflow、device entry point にどう入るかだ。05-29 の model frontier として信頼できる公式確認源であり、Gemini が chat model から操作可能な multimodal product substrate へ向かっていることを示す。
 
-## 2. Agent 評価と本番回帰
+### Latent.Space は Anthropic の資本、model、dynamic workflow narrative の同日加速を記録した
 
-### AWS と LangChain は deep agent 評価をオフライン、オンライン、軌跡レベルに分解
+- 出典：Latent.Space / AINews
+- 日付：2026-05-29
+- リンク：https://www.latent.space/p/ainews-anthropic-raises-965b-series
+- 要約：Latent.Space の AINews は、Anthropic の funding、Opus 4.8、Dynamic Workflows / ultracode を同じ流れとして観測した。ここでの価値は、すべての数字を最終事実として扱うことではなく、当日の英語圏 AI 情報流の焦点を捉えることにある。Claude の競争 narrative は単一 model performance から、coding runtime、workflow product、capital expectation、enterprise adoption の組み合わせへ広がっている。
 
-- 出典：AWS
-- 日付：2026-05-28
-- リンク：https://aws.amazon.com/blogs/machine-learning/evaluating-deep-agents-using-langsmith-on-aws/
-- 要約：AWS と LangChain は、text-to-SQL agent と Amazon Bedrock を使って deep agent 評価の実践を示した。pytest、LangSmith のオフライン実験、本番オンラインモニタリングを組み合わせ、5 種類の評価パターンを扱う。agent 評価では最終回答だけでなく、tool trajectory、final response、書き込まれた状態を見る必要がある。コード grader は決定的な制約を検査し、LLM-as-judge は開放的な品質判断を扱い、人間のレビューは grader の校正に使う。本番では LangSmith の online evaluator が trace に対して SQL safety、回答品質、総合品質を継続的に採点できる。agent 品質は demo の一回限りの結果ではなく、再生可能な trace、比較可能な実験、継続監視へ移っている。
+## 3. 実践コード & ツールライブラリ
 
-### Bedrock AgentCore はバージョン付きデータセットで agent テストスイートを本番失敗から育てる
+### Braintrust は customer request を Codex が実行できる experiment と code change へ変える
 
-- 出典：AWS
-- 日付：2026-05-28
-- リンク：https://aws.amazon.com/blogs/machine-learning/build-a-test-suite-that-grows-with-your-agent-with-dataset-management-in-amazon-bedrock-agentcore/
-- 要約：AWS は Amazon Bedrock AgentCore dataset management を使い、agent 評価ベースラインを管理する方法を示した。金融市場インテリジェンス agent の例では、本番 trace から失敗を捕捉し、入力、期待出力、assertion、ツール順序を test case として保存し、不可変バージョンとして公開する。その同じ入力で修正後の改善を検証する。AgentCore は predefined scenarios と user simulation scenarios をサポートする。前者は回帰ゲートに向き、後者は LLM actor が persona に沿って多ターン会話を進め、人間が事前に書けない経路を探索する。重要な原則は、確認済みの本番失敗を恒久的な回帰ケースに変えることだ。
+- 出典：OpenAI
+- 日付：2026-05-29
+- リンク：https://openai.com/index/braintrust
+- 要約：Braintrust の事例では、Codex が evaluation platform team の日常開発に入っている。customer request、experiment、code change、regression verification が短い feedback loop でつながる。重要なのは「AI がコードを書く」ことではなく、product feedback と engineering experiment を接続することだ。AI tool builder にとって本当に有用なのは、user problem を traceable issue、runnable experiment、rollbackable diff に変換する仕組みである。
 
-### Claude Opus 4.8 が AWS に登場し、長期 agentic coding と本番推論を狙う
+### Google AI Studio の I/O quiz は軽量 vibe coding の product entry point を示す
 
-- 出典：AWS
-- 日付：2026-05-28
-- リンク：https://aws.amazon.com/blogs/machine-learning/claude-opus-4-8-is-now-available-on-aws/
-- 要約：AWS は Claude Opus 4.8 が Amazon Bedrock と Claude Platform on AWS で利用可能になったと発表した。対象リージョンには US East、Tokyo、Ireland、Stockholm などが含まれる。記事は Opus 4.8 を agentic coding、深い知識作業、数時間にわたる多段階自律タスクに向いたモデルとして位置づける。計画を維持し、完了済みと未完了の作業を追跡し、問題が起きたときに停止するだけでなく経路を修正することを強調している。開発者は Anthropic Messages API、Bedrock Invoke API、Converse API から呼び出せ、Python Boto3 の例も提示された。企業にとっては、新モデルを既存の AWS セキュリティ、地域データ滞留、推論スケーリングの仕組みに入れられることが大きい。
+- 出典：Google
+- 日付：2026-05-29
+- リンク：https://blog.google/innovation-and-ai/technology/ai/io-2026-vibe-coded-quiz/
+- 要約：Google は AI Studio で I/O 2026 発表を題材にした interactive quiz を作った。大きな研究成果ではないが、実践ツール欄に置く価値がある。AI Studio は「idea から共有可能な小さな app へ」の lightweight entry point として整備されている。content、education、internal enablement では、発表会、研修、文書セットを interactive experience に変える用途が増えていく。
 
-## 3. 企業ワークフローと ML プラットフォーム工程
+### OpenAI の third-party evaluation playbook は eval を運用規範に近づける
 
-### Amazon Quick と Snowflake Cortex は AML アラート調査を監査可能な workflow に圧縮
+- 出典：OpenAI
+- 日付：2026-05-29
+- リンク：https://openai.com/index/trustworthy-third-party-evaluations-foundations
+- 要約：OpenAI は third-party evaluation の信頼性に関する実践ガイドを公開した。model capability、safeguard、evaluation validity をどう扱うかが中心だ。実務チームにとって重要なのは、eval が単なる benchmark run ではないことだ。対象、sample design、scoring criteria、boundary condition、external review、result interpretation を明示する必要がある。この考え方は日報 production line にもそのまま当てはまる。source、taxonomy、dedupe、bilingual consistency を監査可能にする必要がある。
 
-- 出典：AWS
-- 日付：2026-05-28
-- リンク：https://aws.amazon.com/blogs/machine-learning/automate-aml-alert-triage-with-amazon-quick-and-snowflake-cortex-ai/
-- 要約：AWS は Amazon Quick Flows、Snowflake Cortex Agent、Snowflake-managed MCP server を組み合わせ、反マネーロンダリングアラートの triage を構築した。アナリストが alert ID を入力すると、Quick Flow は MCP 経由で Cortex Agent を呼び出し、取引の semantic view、顧客プロフィール、過去 SAR、コンプライアンス文書を横断して、構造化された investigation brief、risk score、disposition recommendation、draft narrative を生成する。テスト環境では調査時間が 30-90 分から 5 分未満に短縮された。記事は最小権限、OAuth role、Snowflake ACCESS_HISTORY、Quick 実行ログ、tipping-off 制約、人間によるコンプライアンス承認も強調する。これは自由な chat agent ではなく、チームに配布できる反復可能で監査可能な process agent である。
+## 4. 業界 & ビジネス速報
 
-### SageMaker AI MLflow Apps はカスタムポータルでチームアクセスと SSO 統合を解く
+### 老范讲故事 は教皇 AI 通諭と Anthropic の倫理 narrative を結びつけて読む
 
-- 出典：AWS
-- 日付：2026-05-28
-- リンク：https://aws.amazon.com/blogs/machine-learning/build-a-custom-portal-with-embedded-amazon-sagemaker-ai-mlflow-apps/
-- 要約：AWS は Amazon SageMaker AI MLflow Apps を企業のカスタムポータルに埋め込む方法を示した。React フロントエンドが iframe で MLflow UI を表示し、Flask reverse proxy が SigV4 署名、一時認証情報、URL 書き換え、X-Frame-Options 除去を担当し、ALB が統一入口になる。この構成は、presigned URL が大人数チームに向かない問題、AWS Console 権限を個別に付与する運用負荷、内部ツールとして単一の bookmarkable URL が必要という課題を解く。ML プラットフォームチームにとって、experiment tracking、model registry、REST API 接続を、個人の console 操作から SSO 保護された内部アプリへ移す設計である。
+- 出典：老范讲故事
+- 日付：2026-05-29
+- リンク：https://lukefan.com/2026/05/29/pope-leo-xiv-ai-encyclical-human-dignity/
+- 要約：老范は教皇の AI 通諭を、人間の尊厳、労働価値、model power concentration、自動兵器倫理という文脈で読んだ。その中で Anthropic がなぜ関連 narrative に現れるのかも説明している。この中国語 source の価値は、AI safety を model company news だけでなく、社会制度、宗教倫理、労働秩序の問題として捉え直す点にある。公式確認源ではないが、中国語読者に必要な産業・社会 context を補っている。
 
-### SageMaker MLflow REST API proxy は既存企業システムに HTTPS 接続を残す
+### Boston Children’s は OpenAI 技術で rare disease diagnosis と operational burden に取り組む
 
-- 出典：AWS
-- 日付：2026-05-28
-- リンク：https://aws.amazon.com/blogs/machine-learning/streamline-external-access-to-amazon-sagemaker-mlflow-using-a-rest-api-proxy/
-- 要約：別の AWS 記事は、より低レイヤーの MLflow REST API proxy に焦点を当てる。Flask サービスが標準 HTTPS request を認証済み SageMaker MLflow API call に変換し、Tracking Server と serverless MLflow App の両方を扱う。対象は、企業セキュリティ方針、ネットワーク制約、既存システムの事情により MLflow SDK を直接使えない組織だ。ALB、IAM 認証、URL presign、request transformation、API routing により、cloud-native MLflow を既存システムが消費しやすい形へ包み直す。2 本の MLflow 記事を合わせると、AI/ML プラットフォーム近代化はモデル訓練だけでなく、アクセス方式、ID、ポータル、API、ガバナンスを企業ワークフローへ接続する仕事だとわかる。
+- 出典：OpenAI
+- 日付：2026-05-29
+- リンク：https://openai.com/index/boston-childrens-hospital
+- 要約：OpenAI は Boston Children’s Hospital が AI を使って patient care を改善し、operational burden を下げ、40 件超の rare disease diagnosis を支援したと紹介した。医療領域での意味は明確だ。AI deployment は、model を end user に自由に渡すことではなく、controlled workflow、expert oversight、data governance、result explanation に依存する。高リスク業界での AI adoption は、evidence chain と responsibility boundary をますます重視する。
 
-### Azercell と AWS はアゼルバイジャン語 LLM のスケーラブルな訓練基盤を構築
+## 5. GitHub 人気 repo & トレンド追跡
 
-- 出典：AWS
-- 日付：2026-05-28
-- リンク：https://aws.amazon.com/blogs/machine-learning/training-azerbaijani-language-models-on-amazon-sagemaker-ai/
-- 要約：Azercell と AWS Generative AI Innovation Center は、通信ユースケースと顧客向け chatbot のために、6 週間でアゼルバイジャン語 LLM の SageMaker AI 訓練フレームワークを構築した。流れは custom tokenizer、Llama 3.2 1B の continued pre-training、LoRA supervised fine-tuning の 3 段階だ。custom tokenizer は平均 token per word を 3.22 から 1.59 に下げ、同じ 128k context に入るアゼルバイジャン語テキスト量をほぼ 2 倍にした。FSDP と Liger Kernel は ml.p5.48xlarge で 23% 高い training throughput と 58% 低い peak GPU memory を実現した。低リソース言語の能力は大きなモデルだけでなく、tokenizer、分散訓練、kernel 最適化、小規模で質の高い fine-tuning にも大きく依存する。
+### revfactory/harness は agent team design を composable skill layer へ押し出す
 
-## 4. Async agent エコシステム
+- 出典：GitHub Trending / revfactory
+- 日付：2026-05-29
+- リンク：https://github.com/revfactory/harness
+- 要約：`revfactory/harness` は meta-skill で domain-specific agent teams を設計し、specialized agents、skills、orchestration を生成する。単一の general agent にすべてを任せるのではない。agent reliability は harness に依存し始めており、harness 自体が reusable で auditable な software asset になっている。
 
-### Latent.Space は async agent を、IDE 補助から「spec-to-PR factory」への移行として読む
+### Every の compound-engineering-plugin は methodology を tool constraint に変える
 
-- 出典：Latent.Space
-- 日付：2026-05-28
-- リンク：https://www.latent.space/p/cognition
-- 要約：Latent.Space は Cognition の Walden Yan と OpenInspect の Cole Murray に、async background agent の製品とインフラについて聞いた。記事は AI coding tools を 3 波に分ける。IDE 内補完、local agents、そして cloud/background agents だ。後者の要点は補完の賢さではなく、agent に repo、machine、shell、browser、tests、memory、permissions、review loop を与え、background で spec-to-PR を完走させることにある。議論は full VM、snapshot、scoped secrets、GitHub bot、Slack integration、video testing、agent memory、MCP の限界、SRE auto-triage、PM が Slack から PR を起こす流れ、そして自動 merge 的な vibe coding が codebase を劣化させるリスクまで広がる。今日の AWS と OpenAI のシグナルと同じく、競争軸は runtime、検証 loop、組織接続へ移っている。
+- 出典：GitHub Trending / Every
+- 日付：2026-05-29
+- リンク：https://github.com/EveryInc/compound-engineering-plugin
+- 要約：Every の `compound-engineering-plugin` は GitHub Trending に現れ、同日の Every newsletter と同じ流れを示している。compound engineering は記事上の方法論から、Claude Code、Codex、Cursor などに入れられる workflow plugin へ移っている。plan、execution、review、polish、learning compounding を tool 側の制約として外部化する動きだ。
+
+### liteparse は document parsing が RAG と agent の基礎 bottleneck であり続けることを示す
+
+- 出典：GitHub Trending / run-llama
+- 日付：2026-05-29
+- リンク：https://github.com/run-llama/liteparse
+- 要約：`run-llama/liteparse` は LlamaIndex ecosystem の軽量 document parser だ。model release ほど目立たないが、RAG、agent tool calling、knowledge-base pipeline には重要である。parsing quality は、その後の retrieval、summary、citation、evaluation を直接左右する。この種の project を trend 欄に入れることで、headline だけを追い、production quality を決める基礎 tool を見落とすことを防げる。
 
 ## 📬 Newsletter 精選
 
-### Daily Dose of DS：RAG vs. Graph RAG vs. Agentic RAG
-
-- 出典：Daily Dose of Data Science
-- 日付：2026-05-28
-- リンク：https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
-- 要約：このメールは Graph RAG を通常の RAG の別名ではなく、entities と relationships を retrieval path に入れる設計として説明した。Agentic RAG はさらに、何を調べるか、どの tool を呼ぶか、query をどう分解するかを agent loop に入れる。今日の AWS / LangChain の agent evaluation signals とつながる。
-
-### Daily Dose of DS：agent crash は database crash とは違う
+### Daily Dose of Data Science：agent crash は database crash とは違う
 
 - 出典：Daily Dose of Data Science
 - 日付：2026-05-29
-- リンク：https://fandf.co/4nW0rev
-- 要約：このメールは database WAL と agent checkpoint を対比し、agent が crash した時の難しさは restart ではなく、途中の判断、tool state、人間の approval point、context を同じ形で復元することだと説明した。Google Cloud Agent Platform の Memory Bank、Resume Agents、Ambient Agents が platform-level state management の例として扱われている。
+- リンク：https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like
+- 要約：この Newsletter は、agent crash が database crash のように deterministic log replay で復旧できない理由を説明する。LLM は再実行時に判断を変える可能性があるため、長時間 agent には checkpoint、state serialization、context reconstruction、human pause point が必要になる。agent memory を retrieval problem から state consistency problem へ引き上げる高シグナルな内容だ。
+
+### Daily Dose of Data Science：RAG、Graph RAG、Agentic RAG は異なる query type を解く
+
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-28
+- リンク：https://blog.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
+- 要約：この原文メールは、3 種類の RAG の境界を明確に整理している。standard RAG は single-hop factual lookup、Graph RAG は document 間の relation と multi-hop reasoning、Agentic RAG は model が query time に tool、source、order を決める dynamic multi-source task に向く。新製品発表ではないが、architecture choice を校正する Newsletter signal として価値が高い。
+
+### Every：Compound Engineering は四步から八步へ拡張された
+
+- 出典：Every
+- 日付：2026-05-29
+- リンク：https://every.to/guides/compound-engineering-gets-an-upgrade
+- 要約：Every の公開記事は、compound engineering が `brainstorm → work → review → compound → repeat` から `ideate → brainstorm → plan → work → review → polish → compound → repeat` に拡張されたことを確認している。AI は中間の実行を多く担えるが、人間は最初に何を作る価値があるかを決め、最後に体験、品質、文脈が本当に成立しているかを判断する必要がある。
