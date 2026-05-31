@@ -1,0 +1,111 @@
+{
+  "date": "2026-05-16",
+  "cadence": "daily",
+  "status": "text-backfilled-assets-pending",
+  "reason": "P0 triage item: previous public Markdown used excluded active-source items as first-class coverage, lacked the fixed five-quadrant schema, had zh/ja heading and link-order drift, and used Newsletter as a source-count summary instead of reader-facing curated items. This pass rewrites the text from versioned source-pool rules, Gmail-original newsletter evidence, RSS evidence, public pages and canonical repository pages; infographic/audio remain intentionally pending for a later asset batch.",
+  "publicFiles": {
+    "zh": "src/content/radar/daily-ai-radar-2026-05-16.md",
+    "ja": "src/content/radar/daily-ai-radar-2026-05-16.ja.md"
+  },
+  "sourceEvidence": [
+    {
+      "source": "OpenAI public pages and RSS-discovered pages",
+      "path": "node scripts/radar/fetch-url.mjs https://openai.com/news/rss.xml --mode rss; public article fetches for /index/work-with-codex-from-anywhere, /index/databricks and /index/personal-finance-chatgpt",
+      "confirmedItems": [
+        "Work with Codex from anywhere",
+        "Databricks brings GPT-5.5 to enterprise agent workflows",
+        "A new personal finance experience in ChatGPT"
+      ]
+    },
+    {
+      "source": "ByteByteGo RSS and public page",
+      "path": "node scripts/radar/fetch-url.mjs https://blog.bytebytego.com/feed --mode rss; node scripts/radar/fetch-url.mjs https://blog.bytebytego.com/p/ep215-the-anatomy-of-an-ai-agent --mode readability",
+      "confirmedItems": [
+        "EP215: The Anatomy of an AI Agent"
+      ]
+    },
+    {
+      "source": "Daily Dose of Data Science RSS, public page and Gmail original",
+      "path": "node scripts/radar/fetch-url.mjs https://blog.dailydoseofds.com/feed --mode rss; node scripts/radar/fetch-url.mjs https://blog.dailydoseofds.com/p/hands-on-building-custom-tools-for --mode readability; Gmail read-only search for the 2026-05-15 original",
+      "confirmedItems": [
+        "[Hands-on] Building Custom Tools for AI Agents",
+        "Opik / Ollie agent harness signal"
+      ]
+    },
+    {
+      "source": "Every public page and Gmail original",
+      "path": "node scripts/radar/fetch-url.mjs https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now --mode readability; Gmail read-only search for the 2026-05-15 original",
+      "confirmedItems": [
+        "We Gave Every Employee an AI Agent. Here's What We're Doing Differently Now."
+      ]
+    },
+    {
+      "source": "Ahead of AI RSS and public page",
+      "path": "node scripts/radar/fetch-url.mjs https://magazine.sebastianraschka.com/feed --mode rss; node scripts/radar/fetch-url.mjs https://magazine.sebastianraschka.com/p/recent-developments-in-llm-architectures --mode readability",
+      "confirmedItems": [
+        "Recent Developments in LLM Architectures: KV Sharing, mHC, and Compressed Attention"
+      ]
+    },
+    {
+      "source": "The Batch / DeepLearning.AI public page",
+      "path": "node scripts/radar/fetch-url.mjs https://www.deeplearning.ai/the-batch/issue-353 --mode readability",
+      "confirmedItems": [
+        "U.S. to Evaluate Upcoming Models",
+        "OpenAI Challenges Speech-to-Speech Leaders",
+        "AI Mammogram Diagnosis Under Real-World Conditions"
+      ]
+    },
+    {
+      "source": "Latent.Space RSS and public pages",
+      "path": "node scripts/radar/fetch-url.mjs https://www.latent.space/feed --mode rss; public article fetches for /p/ainews-everything-is-conductor and /p/ainews-cerebras-60b-ipo-slowly-then",
+      "confirmedItems": [
+        "[AINews] Everything is Conductor",
+        "[AINews] Cerebras' $60B IPO: Slowly, then All at Once"
+      ]
+    },
+    {
+      "source": "The Rundown AI Gmail original",
+      "path": "Gmail read-only search in:anywhere after:2026/5/14 before:2026/5/17 from:(news@daily.therundown.ai)",
+      "confirmedItems": [
+        "OpenAI's Codex escapes the desktop",
+        "Anthropic angers devs with new agent credit split",
+        "OpenAI, Apple's deteriorating relationship"
+      ]
+    },
+    {
+      "source": "Programmer Weekly Gmail original and canonical project pages",
+      "path": "Gmail read-only search in:anywhere after:2026/5/14 before:2026/5/17 from:(rahul@programmerweekly.com); public fetches for GitHub repository pages",
+      "confirmedItems": [
+        "Programmer Weekly - Issue 300",
+        "rohitg00/agentmemory",
+        "InsForge/insforge"
+      ]
+    },
+    {
+      "source": "老范讲故事 RSS",
+      "path": "node scripts/radar/fetch-url.mjs https://lukefan.com/feed --mode rss",
+      "confirmedItems": [
+        "No qualifying 2026-05-15 to 2026-05-16 item in the feed during this backfill pass"
+      ]
+    }
+  ],
+  "languageParity": {
+    "topicOrder": "matched",
+    "linkOrder": "matched",
+    "notes": "Japanese file uses localized fixed headings and the same item order, source sequence and public links as the Chinese file."
+  },
+  "publicationChecks": {
+    "forbiddenPublicTerms": "passed",
+    "newsletterFormat": "passed",
+    "schema": "passed",
+    "sourceDiversity": "passed",
+    "dedupe": "passed",
+    "npmCheck": "passed",
+    "build": "passed"
+  },
+  "assets": {
+    "infographic": "pending",
+    "audio": "pending",
+    "note": "Existing frontmatter asset URLs are preserved to avoid NotebookLM reruns during text backfill."
+  }
+}
