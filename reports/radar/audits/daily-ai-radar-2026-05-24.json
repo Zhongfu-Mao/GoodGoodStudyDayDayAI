@@ -1,0 +1,142 @@
+{
+  "date": "2026-05-24",
+  "cadence": "daily",
+  "localeFiles": [
+    "src/content/radar/daily-ai-radar-2026-05-24.md",
+    "src/content/radar/daily-ai-radar-2026-05-24.ja.md"
+  ],
+  "backfill": {
+    "reason": "Restore fixed schema, remove active AWS platform sourcing, and add GitHub trend plus reader-facing Newsletter entries.",
+    "assetsRerun": false,
+    "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
+  },
+  "sourcePolicy": {
+    "activePlatformBlogsOmitted": [
+      "AWS",
+      "Meta",
+      "Microsoft",
+      "NVIDIA"
+    ],
+    "officialConfirmationScope": [
+      "OpenAI",
+      "Anthropic",
+      "Google / Gemini / DeepMind"
+    ],
+    "trendRule": "GitHub trend items require public repository evidence and source-pool or newsletter discovery."
+  },
+  "gmailEvidence": [
+    {
+      "sender": "Daily Dose of DS",
+      "receivedAt": "2026-05-24T20:48:42",
+      "subject": "Function Approximation in RL",
+      "usedAs": "Newsletter items and GitHub trend discovery for Opik",
+      "publicLink": "https://www.dailydoseofds.com/rl-course-part-5",
+      "publicLinks": [
+        "https://www.dailydoseofds.com/rl-course-part-5",
+        "https://www.dailydoseofds.com/p/the-anatomy-of-an-agent-harness/",
+        "https://www.comet.com/docs/opik/v1/agent_optimization/overview"
+      ],
+      "evidence": [
+        "The issue covered function approximation in RL and connected RL to LLM post-training and agentic systems.",
+        "It also explained prompt, context and harness engineering, and linked Comet Opik agent optimization docs."
+      ]
+    },
+    {
+      "sender": "Every",
+      "receivedAt": "2026-05-24T11:56:26",
+      "subject": "Cheap Competence, New Frontier",
+      "usedAs": "Newsletter item and organization-level agent context",
+      "publicLink": "https://every.to/context-window/cheap-competence-new-frontier",
+      "evidence": [
+        "The issue framed cheap competence as requiring humans to provide new frames to models.",
+        "It referenced After Automation, Google I/O, Stainless, agent factories and AI impact on entry-level work."
+      ]
+    }
+  ],
+  "publicSourceVisits": [
+    {
+      "url": "https://www.latent.space/p/ainews-all-model-labs-are-now-agent",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/rl-course-part-5",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/p/the-anatomy-of-an-agent-harness/",
+      "status": 200,
+      "usedFor": "Newsletter item"
+    },
+    {
+      "url": "https://www.comet.com/docs/opik/v1/agent_optimization/overview",
+      "status": 200,
+      "usedFor": "Newsletter item and Opik trend corroboration"
+    },
+    {
+      "url": "https://huggingface.co/blog/ettin-reranker",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://blog.google/products-and-platforms/products/workspace/workspace-updates/",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/running-guide-agent/",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://huggingface.co/blog/ibm-research/open-agent-leaderboard",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/",
+      "status": 200,
+      "usedFor": "industry item"
+    },
+    {
+      "url": "https://blog.google/products-and-platforms/products/search/ai-mode-us-insights/",
+      "status": 200,
+      "usedFor": "industry item"
+    },
+    {
+      "url": "https://github.com/comet-ml/opik",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://github.com/Exgentic/exgentic",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://every.to/context-window/cheap-competence-new-frontier",
+      "status": 200,
+      "usedFor": "Newsletter item and organization-level agent context"
+    }
+  ],
+  "publishedItems": {
+    "zh": 14,
+    "ja": 14,
+    "newsletter": 3,
+    "githubTrend": 2
+  },
+  "selfReview": {
+    "schema": "passed",
+    "zhJaTopicOrder": "passed",
+    "duplicateLinks": "passed",
+    "forbiddenPublicTerms": "passed",
+    "newsletterFormat": "passed",
+    "checks": "passed"
+  }
+}
