@@ -1,7 +1,7 @@
 {
   "date": "2026-05-15",
   "cadence": "daily",
-  "status": "text-backfilled-assets-pending",
+  "status": "text-and-assets-backfilled",
   "localeSlugs": {
     "zh": "daily-ai-radar-2026-05-15",
     "ja": "daily-ai-radar-2026-05-15"
@@ -9,7 +9,7 @@
   "scope": {
     "type": "source-level schema backfill",
     "reason": "The original 2026-05-15 daily radar used the early four-section schema, had zh/ja link-order drift, and lacked the fifth GitHub trend section.",
-    "assets": "Not regenerated in this pass; existing coverImage and audioUrl frontmatter values were preserved intentionally."
+    "assets": "Regenerated on 2026-06-01 after text backfill stabilized; existing public URLs were preserved while underlying image/audio files and audio metadata were refreshed."
   },
   "sourceVisits": [
     {
@@ -223,6 +223,29 @@
     "npmCheckRadarSchema": "passed",
     "npmCheckRadarSources": "passed",
     "npmCheckRadarDedupe": "passed",
-    "npmRunCheck": "passed"
+    "npmRunCheck": "passed",
+    "assetRegeneration": "passed: zh/ja infographic and audio regenerated with --no-keep-notebook, compressed, and frontmatter metadata refreshed",
+    "notebookCleanup": "passed: post-generation NotebookLM list did not contain the 2026-05-15 daily infographic/audio temporary notebooks",
+    "imageQa": "passed: zh infographic readable; ja infographic readable with no severe text corruption",
+    "assetFiles": {
+      "zhInfographic": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-15-infographic.webp",
+        "sizeBytes": 593936
+      },
+      "jaInfographic": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-15.ja-infographic.webp",
+        "sizeBytes": 440704
+      },
+      "zhAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-15.mp3",
+        "sizeBytes": 10602351,
+        "durationSeconds": 1325
+      },
+      "jaAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-15.ja.mp3",
+        "sizeBytes": 8826652,
+        "durationSeconds": 1103
+      }
+    }
   }
 }
