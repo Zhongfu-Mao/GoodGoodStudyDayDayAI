@@ -81,20 +81,35 @@ function buildBriefMemo(body, meta) {
       ? {
           scope: ['対象範囲'],
           engineering: [
+            '1. AI Engineering & アーキテクチャ',
             '1. 🛠️ AI Engineering & アーキテクチャ',
             '1. 🛠️ AI Engineering & Architecture',
           ],
-          models: ['2. 🧠 モデル最前線 & アルゴリズム探索', '2. 🧠 Model Frontier & Research'],
-          tools: ['3. 💻 実装コード & ツール', '3. 💻 Tools & Code'],
-          market: ['4. 📰 業界・ビジネス速報', '4. 📰 Industry & Business'],
+          models: [
+            '2. モデル最前線 & アルゴリズム探索',
+            '2. 🧠 モデル最前線 & アルゴリズム探索',
+            '2. 🧠 Model Frontier & Research',
+          ],
+          tools: [
+            '3. 実践コード & ツールライブラリ',
+            '3. 💻 実装コード & ツール',
+            '3. 💻 Tools & Code',
+          ],
+          market: [
+            '4. 業界 & ビジネス速報',
+            '4. 📰 業界・ビジネス速報',
+            '4. 📰 Industry & Business',
+          ],
+          trends: ['5. GitHub 人気 repo & トレンド追跡'],
           mail: ['📬 Newsletter 精选', '📬 メール補遺', '📬 補遺'],
         }
       : {
           scope: ['本期范围'],
-          engineering: ['1. 🛠️ AI Engineering & 架构'],
-          models: ['2. 🧠 模型前沿 & 算法探索'],
-          tools: ['3. 💻 实战代码 & 工具库'],
-          market: ['4. 📰 行业与商业快讯'],
+          engineering: ['1. AI Engineering & 架构', '1. 🛠️ AI Engineering & 架构'],
+          models: ['2. 模型前沿 & 算法探索', '2. 🧠 模型前沿 & 算法探索'],
+          tools: ['3. 实战代码 & 工具库', '3. 💻 实战代码 & 工具库'],
+          market: ['4. 行业与商业快讯', '4. 📰 行业与商业快讯'],
+          trends: ['5. GitHub 热门 repo & 趋势追踪'],
           mail: ['📬 Newsletter 精选', '📬 邮件补遗'],
         };
 
@@ -103,6 +118,7 @@ function buildBriefMemo(body, meta) {
   const modelsBlock = extractSectionBlock(body, headings.models);
   const toolsBlock = extractSectionBlock(body, headings.tools);
   const marketBlock = extractSectionBlock(body, headings.market);
+  const trendsBlock = extractSectionBlock(body, headings.trends ?? []);
   const mailBlock = extractSectionBlock(body, headings.mail);
   const signals = extractTopSignals(body, 4);
 
@@ -126,6 +142,9 @@ function buildBriefMemo(body, meta) {
       : '',
     marketBlock
       ? `${meta.lang === 'ja' ? '業界とビジネス' : '行业与商业'}：\n${extractShortParagraphs(marketBlock, 2).join('\n')}`
+      : '',
+    trendsBlock
+      ? `${meta.lang === 'ja' ? 'GitHub trends' : 'GitHub 趋势'}：\n${extractShortParagraphs(trendsBlock, 2).join('\n')}`
       : '',
     mailBlock
       ? `${meta.lang === 'ja' ? 'Newsletter 精选' : 'Newsletter 精选'}：\n${extractShortParagraphs(mailBlock, 2).join('\n')}`

@@ -3,82 +3,130 @@ title: "AI 雷达日报：2026-05-31"
 date: 2026-05-31
 category: radar
 cadence: daily
-plainSummary: "今天没有新的已确认 Newsletter 原文进入日报，主线转向一组高信号工程技术补录：企业 SRE agent 评测仍显著未饱和，异步 RL 的权重同步开始走向对象存储和稀疏 delta，agent 训练与推理都在更认真地处理 token、harness、profiling 和本地语音栈这些基础工程问题。"
+plainSummary: "今天重做后的主线很清楚：agent 工程正在从“模型更强”转向“可评测、可恢复、可交付、可沉淀”的生产系统；Claude/Anthropic 的市场叙事、Google Gemini 的体验扩展、OpenAI Codex 的客户反馈闭环、GitHub 上的 agent 工程插件和 harness，共同把这条线补完整。"
 difficulty: intermediate
 tags:
   - AI Engineering
   - Agent
   - Evaluation
-  - Open Source
+  - GitHub
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-05-31-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-05-31.mp3
-audioDuration: 1054
-audioSize: 8430635
+audioDuration: 1229
+audioSize: 9831216
 draft: false
 ---
 
 ## 本期范围
 
-- 覆盖时间：2026-05-30 至 2026-05-31。
-- 周末公开发布较少，本期补入过去一周内尚未进入日报、但对 AI 工程实践有持续价值的一手技术文章。
+- 覆盖时间：2026-05-29 至 2026-05-31。
+- 本期基于核心水源、官方三家确认源、GitHub 趋势和邮件原文重新整理；不再用单一平台补录替代日报主线。
 
 ---
-![ITBench-AA SRE benchmark overview](https://cdn-uploads.huggingface.co/production/uploads/64e8143f6de557454220921e/VLy6B6WYEMDqxEJL9KWNQ.png)
+![DoorDash LLM chatbot simulation and evaluation flywheel](https://substackcdn.com/image/fetch/$s_!L2Ta!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5832df44-5f71-4dcf-b4e9-6f38f771758d_2054x1852.png)
 
-*代表图来自 [ITBench-AA: Frontier Models Score Below 50% on the First Benchmark for Agentic Enterprise IT Tasks](https://huggingface.co/blog/ibm-research/itbench-aa)。它对应这期日报里最能概括当天主线的一条原始信号。*
+*代表图来自 [How DoorDash Built a Testing System to Evaluate LLMs](https://blog.bytebytego.com/p/how-doordash-built-a-testing-system)。它对应本期最核心的工程信号：AI 产品不是靠一次 prompt 变好，而是靠可重复的模拟、评测和回归闭环变好。*
 
-## 1. Agent 评测与训练基础设施
+## 1. AI Engineering & 架构
 
-### ITBench-AA 显示前沿模型在企业 SRE agent 任务上仍低于 50%
+### DoorDash 用模拟与评测飞轮压低客服 LLM 幻觉
 
-- 来源：Hugging Face / IBM Research / Artificial Analysis
-- 日期：2026-05-27
-- 链接：https://huggingface.co/blog/ibm-research/itbench-aa
-- 摘要：Artificial Analysis 与 IBM Software Innovation Lab 发布 ITBench-AA，首批聚焦 Kubernetes 事故响应等企业 SRE 任务。任务要求模型在包含 alerts、events、traces、metrics、logs 和 topology 的离线快照里定位最小根因实体，并以结构化结果提交。官方结果显示，Claude Opus 4.7 最高为 47%，GPT-5.5 为 46%，Qwen3.7 Max 为 42%，全部前沿模型仍低于 50%。这个 benchmark 的关键信号不是排名，而是企业级 agent 评测开始从“能否完成玩具任务”转向“能否在真实运维证据链中做精准、不过度归因的诊断”。
+- 来源：ByteByteGo
+- 日期：2026-05-30
+- 链接：https://blog.bytebytego.com/p/how-doordash-built-a-testing-system
+- 摘要：DoorDash 的客服 chatbot 问题不是缺少上下文，而是原始订单、配送、退款和工具调用信息太多，模型会误读字段并生成不存在的政策。工程团队把改进方式改成离线 flywheel：先用历史工单提取用户画像和场景，再让 LLM 扮演顾客完成多轮对话，最后用校准过的人类一致性 LLM judge 检查是否遵守政策。系统可在 5 分钟内跑 200 多段模拟会话，并覆盖 50 多个评测维度。最值得借鉴的是 case state：把原始工具历史蒸馏成结构化中间状态，减少上下文噪声。它说明 AI 客服的可靠性来自模拟、评测、状态抽象和人工校准的组合，而不是单纯换更强模型。
 
-### Delta Weight Sync 把异步 RL 的权重同步变成稀疏对象存储问题
+### Agent 崩溃恢复正在变成状态一致性问题
 
-- 来源：Hugging Face
-- 日期：2026-05-27
-- 链接：https://huggingface.co/blog/delta-weight-sync
-- 摘要：Hugging Face 展示 TRL 的 Delta Weight Sync：异步 RL 不再每步把完整模型从 trainer 传给 vLLM，而是记录 bf16 权重中真正变化的元素，写成稀疏 safetensors delta，上传到 Hugging Face Bucket，再由推理端按需拉取。文章称在 Qwen3-0.6B 上，单步 payload 从 1.2 GB 降到 20 至 35 MB；trainer、vLLM rollout server 和 Wordle environment 甚至可以分别跑在不同机器和 Spaces 上，只通过同一个 bucket 交换权重。它代表的方向很明确：RL 训练基础设施正在从同机房高带宽假设，转向可调试、可分发、对象存储友好的同步协议。
-
-### Token-In, Token-Out 把多轮 agent RL 的 token 边界问题讲透
-
-- 来源：Hugging Face
+- 来源：Daily Dose of Data Science
 - 日期：2026-05-29
-- 链接：https://huggingface.co/blog/huggingface/tito
-- 摘要：这篇文章把多轮 tool-use RL 中的一个常见坑形式化为 TITO：训练时只能对模型实际采样出的 token 反传，不能先 decode、解析 tool call、重建 message list，再重新 tokenize 整段对话。因为 decode 和 encode 并非可逆，重新编码后的 token 序列可能不是模型当时生成的序列，梯度就会落在错误目标上。TITO 的做法是维护一个 token buffer，只把工具响应的 template delta 追加进去，并检查 chat template 对 tool message 是否 prefix-preserving。它与近期第三方评测 playbook 指向同一层问题：agent 能力不只取决于模型，还取决于 harness 是否忠实记录和回放了模型真正经历过的轨迹。
+- 链接：https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like
+- 摘要：这篇文章把 agent crash 与数据库 crash 区分开来：数据库恢复可以依赖确定性 replay，而 agent 如果重新跑一遍，模型可能改变之前的判断、工具调用和分支。长任务 agent 因此需要 checkpoint/resume、可序列化的中间状态、精确的上下文重建，以及必要时的人类暂停点。文章还把 Google Cloud Agent Platform 的 Memory Bank、Resume Agents、Ambient Agents 放在这个语境下看：agent memory 不是“多放一点 RAG”，而是把任务状态当作一致性资产来管理。
 
-## 2. Profiling、推理和本地语音栈
+### AI Forward Deployed Engineer 是过渡角色，AI Engineer 才是长期主体
 
-### Hugging Face 用 PyTorch profiler 教程把 GPU trace 阅读门槛降下来
-
-- 来源：Hugging Face
+- 来源：The Batch / DeepLearning.AI
 - 日期：2026-05-29
-- 链接：https://huggingface.co/blog/torch-profiler
-- 摘要：Hugging Face 开始一组 PyTorch profiling 教程，第一篇从最简单的 `matmul + add` 入手，解释 profiler table、Perfetto trace、CPU lane、GPU lane、warmup、CUDA launch overhead、cuBLAS heuristic 和 `torch.compile` 的实际效果。文章刻意选择小矩阵和大矩阵对比，让读者看到 overhead-bound 与 compute-bound 的差别，也指出 `torch.compile` 在微小 op 上可能增加 CPU 开销。对 AI 工程团队而言，这类基础教程的价值在于把“模型慢”拆成可观测问题：到底是 GPU 算力、CPU dispatch、buffer request、隐藏 memcpy，还是编译栈开销。
+- 链接：https://www.deeplearning.ai/the-batch/issue-355
+- 摘要：Andrew Ng 在 The Batch 中讨论了 AI Forward Deployed Engineer 的回潮：这类角色嵌入客户组织，把通用 LLM、agent workflow、评测和业务约束落成定制系统。文章的判断是，FDE 会存在，但长期岗位主体会是更广泛的 AI Engineer，因为大多数公司更需要内部团队持续构建、维护和选择供应商中立的 AI 应用。这个信号与 DoorDash、Braintrust 的案例相互呼应：AI 工程的稀缺点不是会不会调用模型，而是能不能把模型放进客户反馈、测试、部署和业务沟通的闭环。
 
-### Reachy Mini 本地语音栈把机器人对话从云端 API 拉回本机
+## 2. 模型前沿 & 算法探索
 
-- 来源：Hugging Face
-- 日期：2026-05-27
-- 链接：https://huggingface.co/blog/local-reachy-mini-conversation
-- 摘要：Hugging Face 展示 Reachy Mini 的全本地对话栈：使用 `speech-to-speech` 串起 VAD、STT、LLM、TTS，并暴露 Realtime API 兼容的 `/v1/realtime` WebSocket。推荐组合包括 llama.cpp + Gemma 4、Silero VAD、Parakeet-TDT 0.6B v3 STT 和 Qwen3-TTS，也可以切到 vLLM、MLX、Transformers、Inference Endpoints 或 OpenAI-compatible provider。它的重点不是某个机器人应用，而是开源 voice agent 栈正在具备隐私、本地成本控制和组件可替换性；这会影响教育、陪伴、机器人和边缘设备的产品形态。
+### The Rundown 把 Claude Opus 4.8、融资和新 Mythos 预期放进同一条竞争线
 
-## 3. 模型生成范式与 agent 词汇表
+- 来源：The Rundown AI
+- 日期：2026-05-29
+- 链接：https://www.therundown.ai/p/anthropic-just-eclipsed-openai
+- 摘要：The Rundown 把 Anthropic 的 Opus 4.8、650 亿美元融资和 9650 亿美元估值放在一起，称其在模型 benchmark 与资本叙事上同时压过 OpenAI。这里需要冷静读：具体模型分数和估值判断仍要回到官方或一手来源确认，但它准确捕捉到当天英语信息流的焦点，Claude 的叙事已经从“更谨慎的模型公司”变成“模型、资本、Claude Code runtime 和上市预期一起推进”的竞争者。
 
-### Nemotron-Labs Diffusion 把自回归、扩散和自推测放进同一模型家族
+### Apple 新 Siri 可能借 Gemini 重建，说明模型前沿正在流向手机入口
 
-- 来源：Hugging Face / NVIDIA
-- 日期：2026-05-23
-- 链接：https://huggingface.co/blog/nvidia/nemotron-labs-diffusion
-- 摘要：NVIDIA 发布 Nemotron-Labs Diffusion 系列，覆盖 3B、8B、14B 文本模型和 8B 视觉语言模型，并提供 base 与 instruction-tuned 版本。文章的核心是把扩散语言模型做成可部署的开发者选项：同一个模型可用普通 autoregressive 模式、block-wise diffusion 模式，或 diffusion draft + autoregressive verify 的 self-speculation 模式。官方称 8B diffusion 模式在 tokens per forward pass 上可达到 AR 模型的 2.6 倍，自推测可进一步提高。它说明“更快生成”不只靠 speculative decoding 外挂，也可能来自模型训练目标和解码范式本身的重组。
+- 来源：The Rundown AI / Bloomberg
+- 日期：2026-05-29
+- 链接：https://www.bloomberg.com/news/features/2026-05-28/apple-ios-27-photos-screenshots-revamped-siri-pro-camera-app-new-ai-features
+- 摘要：The Rundown 摘要了 Bloomberg 关于 Apple 新 Siri 的报道：新版 Siri 可能用 Gemini 重建，包含类似 ChatGPT 的专用 app、Dynamic Island 入口、AI search、屏幕与本机数据理解，以及第三方 AI agent 支持。这个信号放在模型前沿栏目，是因为它说明多模态和 agent 能力的下一轮竞争不只发生在 API 控制台，也会流向手机 OS 的默认入口。
 
-### Agent glossary 试图把 model、scaffold、harness、policy 和 rollout 的边界讲清楚
+## 3. 实战代码 & 工具库
 
-- 来源：Hugging Face
-- 日期：2026-05-25
-- 链接：https://huggingface.co/blog/agent-glossary
-- 摘要：Hugging Face 发布 agent 术语表，解释 model、scaffolding、harness、agent、context engineering、policy、tool use、skills、sub-agents、RL environment、trainer、rollout 和 reward 等概念。文章强调 model 只是 LLM 本身，harness 才是调用模型、处理工具、决定何时停止的执行层；scaffold 则是系统提示、工具描述、响应解析和上下文管理等行为定义层。这个词汇表对实践者有用，因为最近的评测、训练和产品讨论已经频繁混用这些词。把边界讲清楚，才能讨论 agent 失败到底是模型能力、上下文设计、工具协议、训练轨迹还是执行循环的问题。
+### The Rundown 用 Codex /goal 演示“给 agent 一个终点”的产品化写法
+
+- 来源：The Rundown AI
+- 日期：2026-05-29
+- 链接：https://app.therundown.ai/guides/use-codex-goal-to-build-a-fully-functional-game-in-one-prompt
+- 摘要：The Rundown 的当日训练栏目用一个小浏览器游戏演示 Codex `/goal`：先把模糊想法压缩成可测试的短目标，再让 agent 生成计划、实现、测试和修复，后续反馈也作为新的 goal 输入。这个条目本身不是重大技术发布，但它代表了一个重要趋势：agent 产品正在把“持续盯着模型改代码”转成“给清楚验收线，让 agent 自己推进”。这也解释了为什么仓库规则需要 goal、审计和检查器，而不能只依赖一次性生成。
+
+### Cursor 开发者习惯报告把 AI 采用差距量化到团队行为层
+
+- 来源：The Rundown AI / Cursor
+- 日期：2026-05-29
+- 链接：https://cursor.com/insights
+- 摘要：The Rundown 当日摘出 Cursor 的 Developer Habits Report：开发者每周新增代码行数显著上升，agent tool calls 增加，更多 AI 生成变更可以进入 commit，但收益高度集中在少数 power users。这个条目适合放在实战工具栏，因为它把 AI coding 的讨论从“有没有用工具”推进到“谁真正建立了高杠杆 workflow、谁只是获得了补全”。对团队管理者来说，接下来要看的是 agent 使用 cohort、review 质量、成本和交付稳定性的组合指标。
+
+## 4. 行业与商业快讯
+
+### Anthropic 估值叙事进入准 IPO 阶段，但指标口径需要冷静拆开
+
+- 来源：老范讲故事
+- 日期：2026-05-31
+- 链接：https://lukefan.com/2026/05/31/anthropic-pre-ipo-funding-ai-bubble/
+- 摘要：老范把 Anthropic 近期动作串成一条资本市场主线：限制未授权股权转让、释放盈利信号、融资到 650 亿美元、投后估值接近 9650 亿美元、并发布 Claude Opus 4.8。文章的价值在于提醒读者不要把不同时间点、不同口径的 ARR 直接比较，也不要把“AI 真实有用”与“上市窗口估值合理”混为一谈。它把 Anthropic 放进更大的 IPO 与泡沫周期里看，是本期中文来源中最值得保留的一条。
+
+## 5. GitHub 热门 repo & 趋势追踪
+
+### Every 把 compound engineering 写成可安装的 agent 工作流插件
+
+- 来源：GitHub Trending / Every
+- 日期：2026-05-31
+- 链接：https://github.com/EveryInc/compound-engineering-plugin
+- 摘要：Every 的 `compound-engineering-plugin` 出现在 GitHub 趋势里，与同日 Every newsletter 的主题互相印证：compound engineering 从一篇方法论文章变成了可安装到 Claude Code、Codex、Cursor 等工具里的工作流插件。这个 repo 值得跟踪，因为它把“计划、执行、审查、沉淀经验”的流程外化成工程约束，而这正是本次 AI 雷达生产线修复要补上的能力。
+
+### revfactory/harness 把 agent 团队设计推向“可组合技能”层
+
+- 来源：GitHub Trending / revfactory
+- 日期：2026-05-31
+- 链接：https://github.com/revfactory/harness
+- 摘要：`revfactory/harness` 主打用 meta-skill 设计领域专用 agent teams：把任务拆成 specialized agents、skills 和 orchestration，而不是只让一个通用 agent 硬扛全部上下文。它的趋势价值在于命名很准确：agent 可靠性越来越依赖 harness，而 harness 本身正在变成可复用、可组合、可审计的软件资产。
+
+### liteparse 把文档解析继续推向轻量开源基础设施
+
+- 来源：GitHub Trending / run-llama
+- 日期：2026-05-31
+- 链接：https://github.com/run-llama/liteparse
+- 摘要：`run-llama/liteparse` 是 LlamaIndex 生态里一个轻量文档解析项目。它不是最吸睛的模型发布，但对实际 RAG、agent 工具调用和知识库流水线很关键：文档解析质量会直接影响后续检索、摘要、评测和引用。把这类项目纳入趋势栏目，可以避免日报只追逐模型 headline，而漏掉真正决定生产系统质量的底层工具。
+
+## 📬 Newsletter 精选
+
+### Every：Compound Engineering 从四步扩展到八步
+
+- 来源：Every
+- 日期：2026-05-29
+- 链接：https://every.to/guides/compound-engineering-gets-an-upgrade
+- 摘要：Every 原文把 compound engineering 从 “brainstorm → work → review → compound → repeat” 扩展为 “ideate → brainstorm → plan → work → review → polish → compound → repeat”。它强调 AI 做中间的执行层，人仍要在开头决定什么值得做、在结尾判断体验是否真正成立。这不是简单的方法论文章，而是对 agent 工程质量控制的补课：如果没有 ideation、polish 和 compound，自动化只会放大已有偏差。
+
+### AI Valley：Anthropic 估值和开发者生产力成为同日主叙事
+
+- 来源：AI Valley
+- 日期：2026-05-29
+- 链接：https://www.theaivalley.com/p/anthropic-is-bigger-than-openai-now
+- 摘要：AI Valley 当日邮件把 Anthropic 接近万亿美元估值、Claude 4.8、Apple Siri 与开发者生产力报告放在同一期。与老范的资本视角不同，AI Valley 更像一张英文信息流索引：它提示哪些话题正在跨来源传播，哪些需要回到官方或一手链接再确认。保留它的意义，是让 Newsletter 精选恢复原意：不是说正文已经吸收完毕，而是记录邮件原文里值得继续追踪的主题信号。

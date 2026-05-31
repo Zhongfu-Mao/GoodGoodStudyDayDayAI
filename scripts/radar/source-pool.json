@@ -1,0 +1,205 @@
+{
+  "publicationGate": {
+    "enforceDailyFrom": "2026-05-31",
+    "minimumEntries": 12,
+    "targetEntries": "12-16",
+    "minimumSourceFamilies": 5,
+    "minimumCoreEntries": 4,
+    "minimumNewsletterEntries": 2,
+    "maxSingleFamilyShare": 0.35
+  },
+  "activeCoreSources": [
+    {
+      "name": "The Rundown AI",
+      "aliases": ["The Rundown", "therundown"],
+      "access": {
+        "primary": { "kind": "chrome", "url": "https://www.therundown.ai/" },
+        "fallbacks": [{ "kind": "homepage", "url": "https://www.therundown.ai/" }],
+        "notes": "HTTP/RSS is only a probe. Chrome homepage plus article pages are the required route."
+      },
+      "role": "Product, industry and mainstream AI signal discovery.",
+      "strategy": "Daily required source. Read latest homepage/articles in Chrome, then follow official/project links when they carry the canonical facts."
+    },
+    {
+      "name": "Latent.Space / AINews",
+      "aliases": ["Latent Space", "Latent.Space", "AINews"],
+      "access": {
+        "primary": { "kind": "rss", "url": "https://www.latent.space/feed" },
+        "fallbacks": [{ "kind": "homepage", "url": "https://www.latent.space/" }]
+      },
+      "role": "AI engineering, agents, infra, startup and community signal.",
+      "strategy": "Daily required source. Use AINews and interviews for discovery; follow canonical links when needed."
+    },
+    {
+      "name": "Daily Dose of Data Science",
+      "aliases": ["Daily Dose"],
+      "access": {
+        "primary": { "kind": "rss", "url": "https://blog.dailydoseofds.com/feed" },
+        "fallbacks": [
+          { "kind": "homepage", "url": "https://blog.dailydoseofds.com/" },
+          { "kind": "gmail", "query": "from:(avi@dailydoseofds.com) newer_than:7d" }
+        ]
+      },
+      "role": "Data science, ML engineering, agent practice and applied learning.",
+      "strategy": "Daily required source. Gmail-confirmed items can enter Newsletter; public posts can enter regular sections."
+    },
+    {
+      "name": "Every",
+      "aliases": ["Every Newsletter", "every.to"],
+      "access": {
+        "primary": { "kind": "homepage", "url": "https://every.to/" },
+        "fallbacks": [{ "kind": "gmail", "query": "from:(hello@every.to) newer_than:7d" }]
+      },
+      "role": "AI product, organization, workflow and long-form industry analysis.",
+      "strategy": "Daily required source. Prefer public article links; use Gmail only to confirm newsletter originals."
+    },
+    {
+      "name": "ByteByteGo",
+      "aliases": ["ByteByteGo"],
+      "access": {
+        "primary": { "kind": "rss", "url": "https://blog.bytebytego.com/feed" },
+        "fallbacks": [{ "kind": "homepage", "url": "https://blog.bytebytego.com/" }]
+      },
+      "role": "Engineering architecture, system design, AI infra and production lessons.",
+      "strategy": "Daily required source. Select AI infra, RAG, agent, platform engineering and observability items."
+    },
+    {
+      "name": "老范讲故事",
+      "aliases": ["老范", "lukefan"],
+      "access": {
+        "primary": { "kind": "rss", "url": "https://lukefan.com/feed" },
+        "fallbacks": [{ "kind": "homepage", "url": "https://lukefan.com/" }]
+      },
+      "role": "Important Chinese industry, business, capital and local context source.",
+      "strategy": "Daily required source, but not a privileged/highest-weight source. Include only high-signal AI, robotics, platform, capital or policy-relevant items."
+    },
+    {
+      "name": "The Batch / DeepLearning.AI",
+      "aliases": ["The Batch", "DeepLearning.AI", "DeepLearning AI"],
+      "access": {
+        "primary": { "kind": "homepage", "url": "https://www.deeplearning.ai/the-batch/" },
+        "fallbacks": [{ "kind": "gmail", "query": "from:(news@deeplearning.ai) newer_than:7d" }]
+      },
+      "role": "Research, industry, course and Andrew Ng ecosystem signal.",
+      "strategy": "Daily required source. If RSS is unstable, use the public page or Gmail original."
+    },
+    {
+      "name": "Ahead of AI",
+      "aliases": ["Ahead of AI", "Sebastian Raschka"],
+      "access": {
+        "primary": { "kind": "rss", "url": "https://magazine.sebastianraschka.com/feed" },
+        "fallbacks": [{ "kind": "homepage", "url": "https://magazine.sebastianraschka.com/" }]
+      },
+      "role": "Model architecture, papers and lower-level technical explanation.",
+      "strategy": "Daily required source; if there is no new post, record the check in the audit log."
+    },
+    {
+      "name": "AI Valley",
+      "aliases": ["AI Valley", "The AI Valley"],
+      "access": {
+        "primary": { "kind": "homepage", "url": "https://www.theaivalley.com/" },
+        "fallbacks": [{ "kind": "gmail", "query": "from:(newsletter@aivalley.ai) newer_than:7d" }]
+      },
+      "role": "Newsletter discovery and product/industry roundup.",
+      "strategy": "Use Gmail or public page confirmation. Include only reader-facing entries, never source-count summaries."
+    },
+    {
+      "name": "Programmer Weekly",
+      "aliases": ["Programmer Weekly"],
+      "access": {
+        "primary": { "kind": "homepage", "url": "https://programmerweekly.com/" },
+        "fallbacks": [{ "kind": "gmail", "query": "from:(programmerweekly) newer_than:7d" }]
+      },
+      "role": "Developer tooling and engineering newsletter discovery.",
+      "strategy": "Use only when AI/agent/data tooling signal is concrete."
+    }
+  ],
+  "officialConfirmationSources": [
+    {
+      "name": "OpenAI",
+      "aliases": ["OpenAI"],
+      "access": {
+        "primary": { "kind": "rss", "url": "https://openai.com/news/rss.xml" },
+        "fallbacks": [{ "kind": "homepage", "url": "https://openai.com/news/" }]
+      },
+      "strategy": "May be checked proactively for major model, Codex, safety and platform updates; also used to confirm core-source discoveries."
+    },
+    {
+      "name": "Anthropic",
+      "aliases": ["Anthropic", "Claude"],
+      "access": {
+        "primary": { "kind": "homepage", "url": "https://www.anthropic.com/news" },
+        "fallbacks": [{ "kind": "homepage", "url": "https://docs.anthropic.com/" }]
+      },
+      "strategy": "May be checked proactively for Claude, Claude Code, model, safety and platform updates; also used to confirm core-source discoveries."
+    },
+    {
+      "name": "Google / Gemini / DeepMind",
+      "aliases": ["Google", "Gemini", "DeepMind"],
+      "access": {
+        "primary": { "kind": "rss", "url": "https://blog.google/technology/ai/rss/" },
+        "fallbacks": [
+          { "kind": "homepage", "url": "https://deepmind.google/discover/blog/" },
+          { "kind": "homepage", "url": "https://ai.google.dev/" }
+        ]
+      },
+      "strategy": "May be checked proactively for Gemini, DeepMind, AI Studio and Google AI platform updates; also used to confirm core-source discoveries."
+    }
+  ],
+  "trendSources": [
+    {
+      "name": "GitHub Trending",
+      "aliases": ["GitHub Trending", "GitHub repo", "GitHub"],
+      "access": {
+        "primary": { "kind": "homepage", "url": "https://github.com/trending?since=daily" },
+        "fallbacks": [
+          { "kind": "homepage", "url": "https://github.com/trending/python?since=daily" },
+          { "kind": "homepage", "url": "https://github.com/trending/typescript?since=daily" }
+        ]
+      },
+      "role": "Fifth quadrant source for high-velocity AI/agent/data-science repositories.",
+      "strategy": "Track daily but include only repos with concrete AI/agent/data relevance, credible maintainers, clear docs/demo, and non-trivial velocity."
+    }
+  ],
+  "canonicalConfirmationSources": [
+    {
+      "name": "Hugging Face",
+      "aliases": ["Hugging Face"],
+      "access": {
+        "primary": { "kind": "homepage", "url": "https://huggingface.co/blog" }
+      },
+      "strategy": "Not an active daily source. Use only when a core source or trend source points to a model, dataset, benchmark, library or Hub item."
+    },
+    {
+      "name": "arXiv / Paper / Project",
+      "aliases": ["arXiv", "paper", "论文", "project", "项目"],
+      "access": {
+        "primary": { "kind": "linked-canonical", "url": "from-core-or-trend-source" }
+      },
+      "strategy": "Not an active daily source. Use only as the canonical target after discovery elsewhere."
+    }
+  ],
+  "excludedActiveSources": [
+    {
+      "name": "AWS",
+      "reason": "Do not actively crawl. If there is a major AI story, it should surface through core sources or user direction."
+    },
+    {
+      "name": "Meta",
+      "reason": "Do not actively crawl. Confirm only when surfaced by core sources."
+    },
+    {
+      "name": "Microsoft",
+      "reason": "Do not actively crawl. Confirm only when surfaced by core sources."
+    },
+    {
+      "name": "NVIDIA",
+      "reason": "Do not actively crawl. Confirm only when surfaced by core sources."
+    }
+  ],
+  "publicMarkdownPolicy": {
+    "allowReaderFacingSourceOverview": false,
+    "forbidBackstageCollectionLog": true,
+    "note": "Public Markdown must not contain collection logs, failure logs, source-count summaries, Gmail internals, Chrome/HTTP notes, or dedupe process notes."
+  }
+}

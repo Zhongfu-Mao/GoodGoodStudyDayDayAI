@@ -1,0 +1,54 @@
+{
+  "date": "YYYY-MM-DD",
+  "cadence": "daily",
+  "langPair": ["zh", "ja"],
+  "sourceVisits": [
+    {
+      "source": "The Rundown AI",
+      "role": "activeCoreSources",
+      "route": "chrome",
+      "status": "checked|no-new-items|failed",
+      "notes": ""
+    }
+  ],
+  "candidateItems": [
+    {
+      "title": "",
+      "discoverySource": "",
+      "canonicalUrl": "",
+      "decision": "published|rejected",
+      "reason": ""
+    }
+  ],
+  "publishedItems": [
+    {
+      "order": 1,
+      "section": "1. AI Engineering & 架构",
+      "title": "",
+      "publicSourceLabel": "",
+      "discoverySource": "",
+      "canonicalUrl": ""
+    }
+  ],
+  "dedupe": {
+    "lookbackDays": 7,
+    "duplicates": [],
+    "allowedFollowUps": []
+  },
+  "newsletter": [
+    {
+      "title": "",
+      "source": "",
+      "confirmationRoute": "gmail|public-page",
+      "publicUrl": "",
+      "readStateAction": "marked-read|left-unread|not-applicable"
+    }
+  ],
+  "validation": {
+    "check:radar-newsletter": "",
+    "check:radar-sources": "",
+    "check:radar-schema": "",
+    "check:radar-dedupe": "",
+    "check": ""
+  }
+}

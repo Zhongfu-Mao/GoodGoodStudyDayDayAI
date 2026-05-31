@@ -98,6 +98,15 @@ jobs:
         env:
           GITHUB_REPOSITORY: Zhongfu-Mao/GoodGoodStudyDayDayAI
 
+      - name: Verify radar source diversity
+        run: npm run check:radar-sources
+
+      - name: Verify radar schema
+        run: npm run check:radar-schema
+
+      - name: Verify radar dedupe
+        run: npm run check:radar-dedupe
+
       - name: Verify latest radar output
         run: npm run check:radar-build
 

@@ -104,18 +104,32 @@ function headingsForLang(lang) {
   return lang === 'ja'
     ? {
         scope: ['対象範囲'],
-        engineering: ['1. 🛠️ AI Engineering & アーキテクチャ', '1. 🛠️ AI Engineering & Architecture'],
-        models: ['2. 🧠 モデル動向 & アルゴリズム', '2. 🧠 モデル最前線 & アルゴリズム探索'],
-        tools: ['3. 💻 実装コード & ツール', '3. 💻 Tools & Code'],
-        market: ['4. 📰 業界 & ビジネス', '4. 📰 業界・ビジネス速報'],
+        engineering: [
+          '1. AI Engineering & アーキテクチャ',
+          '1. 🛠️ AI Engineering & アーキテクチャ',
+          '1. 🛠️ AI Engineering & Architecture',
+        ],
+        models: [
+          '2. モデル最前線 & アルゴリズム探索',
+          '2. 🧠 モデル動向 & アルゴリズム',
+          '2. 🧠 モデル最前線 & アルゴリズム探索',
+        ],
+        tools: [
+          '3. 実践コード & ツールライブラリ',
+          '3. 💻 実装コード & ツール',
+          '3. 💻 Tools & Code',
+        ],
+        market: ['4. 業界 & ビジネス速報', '4. 📰 業界 & ビジネス', '4. 📰 業界・ビジネス速報'],
+        trends: ['5. GitHub 人気 repo & トレンド追跡'],
         mail: ['📬 Newsletter 精选', '📬 メール補遺', '📬 補遺'],
       }
     : {
         scope: ['本期范围'],
-        engineering: ['1. 🛠️ AI Engineering & 架构'],
-        models: ['2. 🧠 模型前沿 & 算法探索'],
-        tools: ['3. 💻 实战代码 & 工具库'],
-        market: ['4. 📰 行业与商业快讯'],
+        engineering: ['1. AI Engineering & 架构', '1. 🛠️ AI Engineering & 架构'],
+        models: ['2. 模型前沿 & 算法探索', '2. 🧠 模型前沿 & 算法探索'],
+        tools: ['3. 实战代码 & 工具库', '3. 💻 实战代码 & 工具库'],
+        market: ['4. 行业与商业快讯', '4. 📰 行业与商业快讯'],
+        trends: ['5. GitHub 热门 repo & 趋势追踪'],
         mail: ['📬 Newsletter 精选', '📬 邮件补遗'],
       };
 }
@@ -138,6 +152,7 @@ function buildHeuristicBrief(meta, body) {
   const modelsBlock = extractSectionBlock(body, headings.models);
   const toolsBlock = extractSectionBlock(body, headings.tools);
   const marketBlock = extractSectionBlock(body, headings.market);
+  const trendsBlock = extractSectionBlock(body, headings.trends ?? []);
   const mailBlock = extractSectionBlock(body, headings.mail);
   const topSignals = extractTopSignals(body, 5);
   const summaryCandidates = [
@@ -145,6 +160,7 @@ function buildHeuristicBrief(meta, body) {
     ...extractShortParagraphs(modelsBlock, 2),
     ...extractShortParagraphs(toolsBlock, 1),
     ...extractShortParagraphs(marketBlock, 1),
+    ...extractShortParagraphs(trendsBlock, 1),
     ...extractShortParagraphs(mailBlock, 1),
   ].filter(Boolean);
 

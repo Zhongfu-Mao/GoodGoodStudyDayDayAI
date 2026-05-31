@@ -1,0 +1,172 @@
+{
+  "date": "2026-05-31",
+  "cadence": "daily",
+  "localeSlugs": {
+    "zh": "daily-ai-radar-2026-05-31",
+    "ja": "daily-ai-radar-2026-05-31"
+  },
+  "sourceVisits": [
+    {
+      "name": "ByteByteGo",
+      "url": "https://blog.bytebytego.com/p/how-doordash-built-a-testing-system",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "Daily Dose of Data Science",
+      "url": "https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "The Batch / DeepLearning.AI",
+      "url": "https://www.deeplearning.ai/the-batch/issue-355",
+      "method": "gmail + homepage confirmation",
+      "status": "confirmed"
+    },
+    {
+      "name": "The Rundown AI",
+      "url": "https://www.therundown.ai/p/anthropic-just-eclipsed-openai",
+      "method": "gmail + fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "Bloomberg via The Rundown AI",
+      "url": "https://www.bloomberg.com/news/features/2026-05-28/apple-ios-27-photos-screenshots-revamped-siri-pro-camera-app-new-ai-features",
+      "method": "newsletter citation",
+      "status": "confirmed"
+    },
+    {
+      "name": "Cursor via The Rundown AI",
+      "url": "https://cursor.com/insights",
+      "method": "newsletter citation",
+      "status": "confirmed"
+    },
+    {
+      "name": "老范讲故事",
+      "url": "https://lukefan.com/2026/05/31/anthropic-pre-ipo-funding-ai-bubble/",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "Every",
+      "url": "https://every.to/guides/compound-engineering-gets-an-upgrade",
+      "method": "gmail + fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "AI Valley",
+      "url": "https://www.theaivalley.com/p/anthropic-is-bigger-than-openai-now",
+      "method": "gmail",
+      "status": "confirmed"
+    },
+    {
+      "name": "GitHub Trending",
+      "url": "https://github.com/trending?since=daily",
+      "method": "http",
+      "status": "confirmed"
+    }
+  ],
+  "publishedItems": [
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "DoorDash 用模拟与评测飞轮压低客服 LLM 幻觉",
+      "source": "ByteByteGo",
+      "url": "https://blog.bytebytego.com/p/how-doordash-built-a-testing-system"
+    },
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "Agent 崩溃恢复正在变成状态一致性问题",
+      "source": "Daily Dose of Data Science",
+      "url": "https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like"
+    },
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "AI Forward Deployed Engineer 是过渡角色，AI Engineer 才是长期主体",
+      "source": "The Batch / DeepLearning.AI",
+      "url": "https://www.deeplearning.ai/the-batch/issue-355"
+    },
+    {
+      "section": "2. 模型前沿 & 算法探索",
+      "title": "The Rundown 把 Claude Opus 4.8、融资和新 Mythos 预期放进同一条竞争线",
+      "source": "The Rundown AI",
+      "url": "https://www.therundown.ai/p/anthropic-just-eclipsed-openai"
+    },
+    {
+      "section": "2. 模型前沿 & 算法探索",
+      "title": "Apple 新 Siri 可能借 Gemini 重建，说明模型前沿正在流向手机入口",
+      "source": "The Rundown AI / Bloomberg",
+      "url": "https://www.bloomberg.com/news/features/2026-05-28/apple-ios-27-photos-screenshots-revamped-siri-pro-camera-app-new-ai-features"
+    },
+    {
+      "section": "3. 实战代码 & 工具库",
+      "title": "The Rundown 用 Codex /goal 演示“给 agent 一个终点”的产品化写法",
+      "source": "The Rundown AI",
+      "url": "https://app.therundown.ai/guides/use-codex-goal-to-build-a-fully-functional-game-in-one-prompt"
+    },
+    {
+      "section": "3. 实战代码 & 工具库",
+      "title": "Cursor 开发者习惯报告把 AI 采用差距量化到团队行为层",
+      "source": "The Rundown AI / Cursor",
+      "url": "https://cursor.com/insights"
+    },
+    {
+      "section": "4. 行业与商业快讯",
+      "title": "Anthropic 估值叙事进入准 IPO 阶段，但指标口径需要冷静拆开",
+      "source": "老范讲故事",
+      "url": "https://lukefan.com/2026/05/31/anthropic-pre-ipo-funding-ai-bubble/"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "Every 把 compound engineering 写成可安装的 agent 工作流插件",
+      "source": "GitHub Trending / Every",
+      "url": "https://github.com/EveryInc/compound-engineering-plugin"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "revfactory/harness 把 agent 团队设计推向“可组合技能”层",
+      "source": "GitHub Trending / revfactory",
+      "url": "https://github.com/revfactory/harness"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "liteparse 把文档解析继续推向轻量开源基础设施",
+      "source": "GitHub Trending / run-llama",
+      "url": "https://github.com/run-llama/liteparse"
+    },
+    {
+      "section": "📬 Newsletter 精选",
+      "title": "Every：Compound Engineering 从四步扩展到八步",
+      "source": "Every",
+      "url": "https://every.to/guides/compound-engineering-gets-an-upgrade"
+    },
+    {
+      "section": "📬 Newsletter 精选",
+      "title": "AI Valley：Anthropic 估值和开发者生产力成为同日主叙事",
+      "source": "AI Valley",
+      "url": "https://www.theaivalley.com/p/anthropic-is-bigger-than-openai-now"
+    }
+  ],
+  "newsletterEvidence": [
+    {
+      "source": "Every",
+      "gmailSubject": "Compound Engineering Gets an Upgrade",
+      "gmailTimestamp": "2026-05-29T20:47:57"
+    },
+    {
+      "source": "The Rundown AI",
+      "gmailSubject": "🚀 Anthropic just eclipsed OpenAI",
+      "gmailTimestamp": "2026-05-29T10:08:55"
+    },
+    {
+      "source": "AI Valley",
+      "gmailSubject": "Anthropic is bigger than OpenAI now",
+      "gmailTimestamp": "2026-05-29T14:52:03"
+    }
+  ],
+  "qualityNotes": [
+    "Rebuilt from core sources and newsletter originals after the previous draft used a single-source Hugging Face backfill.",
+    "No AWS, Meta, Microsoft, or NVIDIA official platform sources were used as active daily sources.",
+    "Chinese and Japanese markdown use the same topic order and the same URLs."
+  ]
+}

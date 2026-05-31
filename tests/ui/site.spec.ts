@@ -470,10 +470,22 @@ test.describe('published site UI', () => {
   test('post cards collapse dense tag lists into one primary tag', async ({ page }) => {
     await gotoApp(page, '/ja/engineering/');
 
-    const firstCard = page.locator('[data-post-card]').first();
+    const firstCardWrapper = page.locator('[data-category-card]').first();
+    const firstCard = firstCardWrapper.locator('[data-post-card]');
+    const rawTags = (await firstCardWrapper.getAttribute('data-card-tags')) ?? '';
+    const publicTagCount = rawTags.split('|').filter(Boolean).length;
+
     await expect(firstCard).toBeVisible();
-    await expect(firstCard.locator('[data-card-primary-tag]')).toHaveCount(1);
-    await expect(firstCard.locator('[data-card-tag-overflow]')).toHaveText('+2');
+    await expect(firstCard.locator('[data-card-primary-tag]')).toHaveCount(
+      publicTagCount > 0 ? 1 : 0,
+    );
+    if (publicTagCount > 1) {
+      await expect(firstCard.locator('[data-card-tag-overflow]')).toHaveText(
+        `+${publicTagCount - 1}`,
+      );
+    } else {
+      await expect(firstCard.locator('[data-card-tag-overflow]')).toHaveCount(0);
+    }
   });
 
   test('reduced motion removes shared UI transitions', async ({ page }) => {

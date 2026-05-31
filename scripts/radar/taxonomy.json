@@ -1,0 +1,23 @@
+{
+  "publicationGate": {
+    "enforceDailyFrom": "2026-05-31"
+  },
+  "daily": {
+    "zh": [
+      "1. AI Engineering & 架构",
+      "2. 模型前沿 & 算法探索",
+      "3. 实战代码 & 工具库",
+      "4. 行业与商业快讯",
+      "5. GitHub 热门 repo & 趋势追踪",
+      "📬 Newsletter 精选"
+    ],
+    "ja": [
+      "1. AI Engineering & アーキテクチャ",
+      "2. モデル最前線 & アルゴリズム探索",
+      "3. 実践コード & ツールライブラリ",
+      "4. 業界 & ビジネス速報",
+      "5. GitHub 人気 repo & トレンド追跡",
+      "📬 Newsletter 精選"
+    ]
+  }
+}
