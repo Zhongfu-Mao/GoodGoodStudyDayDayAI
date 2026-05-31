@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-23"
 date: 2026-05-23
 category: radar
 cadence: daily
-plainSummary: "今日は AI engineering が model capability expansion から production systems へ移る流れに注目します。OpenAI は Codex を enterprise governance と airline software delivery の文脈に置き、GitHub は npm publish chain に staged publishing を加えました。NVIDIA と Dharma-AI は diffusion-style generation と specialized small models で既存の inference assumption を揺さぶり、Latent Space は agent compute、retrieval infrastructure、AI infra financing の加速を示しています。"
+plainSummary: "今日は Codex の enterprise governance と実運用事例、npm publish chain の explicit approval gate、Google I/O 後の agent platform narrative、Latent.Space が記録した agent infra と research signals、そして Onyx / NanoClaw など GitHub projects の self-hosting と security orientation に注目します。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -22,102 +22,92 @@ draft: false
 
 - 対象期間：2026-05-22 〜 2026-05-23。
 
----
-![How Virgin Atlantic ships faster with Codex](https://images.ctfassets.net/kftzwdyauwt9/2gCDMlpfyFZVDZ9FjvBEVV/f54b0a2f700b297b86ba435388215932/virgin-atlantic-seo.png?w=1600&h=900&fit=fill)
+## 1. AI Engineering & アーキテクチャ
 
-*代表画像は [How Virgin Atlantic ships faster with Codex](https://openai.com/index/virgin-atlantic/) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
-
-## 1. Enterprise Coding Agent と software supply chain
-
-### OpenAI は Gartner で enterprise AI Coding Agent の Leader に選ばれ、Codex の焦点は governance、sandbox、enterprise deployment surface に移っている
+### OpenAI は Codex の enterprise value を governance、sandbox、auditable development environment に置いた
 
 - 出典：OpenAI
 - 日付：2026-05-22
 - リンク：https://openai.com/index/gartner-2026-agentic-coding-leader/
-- 要約：OpenAI は 2026 Gartner Magic Quadrant for Enterprise AI Coding Agents で Leader に選ばれたと発表し、Codex の enterprise value を agentic software development、enterprise governance、sandboxing、flexible deployment と整理しました。Article は Codex が weekly で 400 万人以上に使われ、Cisco、Datadog、Dell Technologies、NVIDIA などが enterprise customer だと述べています。Codex app、IDE extensions、CLI、SDK、cloud orchestration、approval gates、RBAC、custom policies、OS-level sandboxing、auditable workspace governance も強調されています。この signal は、coding agent competition が completion quality だけではなく、agent を controlled development environment、audit process、organization permission model に入れられるかへ移っていることを示します。
+- 要約：OpenAI は Codex が enterprise AI coding agent 評価で Leader quadrant に入ったと発表し、agentic software development、enterprise governance、sandboxing、flexible deployment を重点として整理しました。Article は、Codex が code completion だけでなく large codebase を理解し、tools を使い、code を変更し、tests を実行し、人間の review に渡す workflow へ広がっていると説明しています。Enterprise competition の焦点は、coding agent を approval gates、RBAC、custom policies、system-level sandbox、auditable workspace governance に入れられるかです。
 
-### Virgin Atlantic は Codex で mobile app の holiday release window に間に合わせ、test coverage、defects、refactoring speed を delivery metrics にした
+### Virgin Atlantic は Codex で mobile app release、test coverage、legacy refactoring を engineering delivery case にした
 
 - 出典：OpenAI
 - 日付：2026-05-22
 - リンク：https://openai.com/index/virgin-atlantic/
-- 要約：OpenAI は Virgin Atlantic の case study を公開し、同社が Codex を使って Christmas travel rush 前に revamped mobile app を出したと説明しました。Case は、固定された release window の中で near-complete unit test coverage を達成し、launch 時の P1 defects はゼロだったとしています。Legacy code refactoring では一部作業が weeks から hours に短縮され、codebase size が 78% から 80% 減った例もあります。Frontend team は Figma prototype から working application prototype を 1 週間で作りました。重要なのは、Codex が単なる code writing tool ではなく、mobile delivery、testing、legacy modernization、data warehouse migration、business team prototyping を含む software lifecycle 全体に置かれている点です。
+- 要約：OpenAI は Virgin Atlantic の case study を公開し、同社が Christmas travel rush 前に revamped mobile app を出すため Codex を使ったと説明しました。Case では、固定された release window 内で near-complete unit test coverage を達成し、launch 時の P1 defects はゼロだったとされています。一部 legacy code refactoring は weeks から hours に短縮され、codebase size が 78% から 80% 減った例もあります。Codex は isolated code generator ではなく、mobile delivery、testing、legacy modernization、data warehouse migration、business prototyping を含む lifecycle に置かれています。
 
-### GitHub は npm staged publishing と install-time source controls を導入し、package publish chain に explicit approval gate を加えた
+### GitHub は npm publish chain に staged publishing と install source controls を加えた
 
 - 出典：GitHub Changelog
 - 日付：2026-05-22
 - リンク：https://github.blog/changelog/2026-05-22-staged-publishing-and-new-install-time-controls-for-npm/
-- 要約：GitHub は npm staged publishing の一般提供と、npm CLI 11.15.0 以上で使える new install-time source controls を発表しました。staged publishing は package tarball を stage queue に置き、maintainer が 2FA 付きで明示的に approve してから registry に入り installable になります。Trusted publishing / OIDC と組み合わせ、trusted publishing だけが staging に入れる設定にもできます。Install side では `--allow-file`、`--allow-remote`、`--allow-directory` が追加され、既存の `--allow-git` と合わせて package installation source type を制御できます。AI 時代の software supply chain では、agent が dependencies や releases に触れる頻度が増えるため、publish 前の human approval、source constraints、default-deny policy が基本的な safety surface になります。
+- 要約：GitHub は npm staged publishing の一般提供と、npm CLI 11.15.0 以上で使える new install-time source controls を発表しました。staged publishing は package tarball を stage queue に置き、maintainer が 2FA 付きで明示的に approve してから registry に入り installable になります。Install side では `--allow-file`、`--allow-remote`、`--allow-directory` が追加され、既存の `--allow-git` と合わせて source type を制御できます。Agent が dependencies や releases に触れるほど、human approval、source constraints、default-deny policy は software supply chain の基本 safety surface になります。
 
-## 2. Model paradigms、specialization、scientific entry points
+## 2. モデル最前線 & アルゴリズム探索
 
-### NVIDIA は Hugging Face で Nemotron-Labs Diffusion を公開し、text generation を token-by-token inference から parallel drafting と self-verification に広げた
-
-- 出典：Hugging Face / NVIDIA
-- 日付：2026-05-23
-- リンク：https://huggingface.co/blog/nvidia/nemotron-labs-diffusion
-- 要約：NVIDIA は Nemotron-Labs Diffusion family を公開しました。3B、8B、14B の text models と 8B vision-language model を含み、base、instruction-tuned chat variants、Megatron Bridge training recipe も提供しています。Core idea は、同じ model が autoregressive、diffusion、self-speculation の 3 generation modes を持つことです。AR mode は既存 workflow と互換で、diffusion mode は block ごとに parallel generation と iterative refinement を行い、self-speculation は diffusion で candidate tokens を draft して AR decoding で verify します。NVIDIA は 8B version が Qwen3 8B より average accuracy で 1.2% 改善し、diffusion mode は AR models の 2.6 倍、self-speculation は最大 6.4 倍の token per forward pass を出したと報告しています。これは faster generation を serving optimization だけでなく、training objective と decoding form にまで押し込む動きです。
-
-### Dharma-AI は specialized small model が enterprise OCR で frontier API を低コストに上回ったとし、procurement default に distributional alignment を加える必要を示した
-
-- 出典：Hugging Face / Dharma-AI
-- 日付：2026-05-22
-- リンク：https://huggingface.co/blog/Dharma-AI/specialization-beats-scale
-- 要約：Dharma-AI は DharmaOCR paper と benchmark をもとに、enterprise AI procurement で見落とされがちな variable を論じています。Model training history が deployment task に十分近づくと、parameter count は決定的変数ではなくなるという主張です。Article によると、3B specialized model は Brazilian Portuguese OCR benchmark で 0.911 composite score を取り、Claude Opus 4.6、Gemini 3.1 Pro、GPT-5.4、Google Vision、Google Document AI、GPT-4o、Amazon Textract、Mistral OCR 3 を上回り、per-million-page cost は Claude Opus 4.6 より約 52 倍低いとされています。Article は frontier model が不要だとは言っていません。企業評価では general benchmark と scale だけでなく、training history、domain alignment、cost、production stability が実 workloads に合っているかを試す必要があるという signal です。
-
-### Google I/O Dialogues は AI Agents、quantum computing、science、robotics、creativity を同じ long-term technology narrative に置いた
+### Google I/O Dialogues は agents、science、quantum、robotics、creative tools を同じ long-term technology narrative に置いた
 
 - 出典：Google
 - 日付：2026-05-22
 - リンク：https://blog.google/innovation-and-ai/technology/ai/io-2026-dialogues-recap/
-- 要約：Google は I/O 2026 Dialogues stage を振り返り、Beyond the Keynote、AI Agents、Quantum & AI、Science、Robotics、Creativity を扱いました。Sundar Pichai は Future Forward の Matt Berman と I/O announcements の vision を話し、Josh Woodward、Koray Kavukcuoglu、Liz Reid、Jeff Dean らは proactive AI agents が productivity をどう変えるかを議論しました。Hartmut Neven と James Manyika は quantum computing と AI の intersection を、Demis Hassabis は complex scientific problems における AI の役割を、Google DeepMind と Boston Dynamics は embodied physical AI を扱っています。Google は agent、science、quantum、robotics、creative tools をばらばらの demo ではなく、同じ platform narrative に束ねようとしています。
+- 要約：Google は I/O 2026 Dialogues stage を振り返り、Beyond the Keynote、AI Agents、Quantum & AI、Science、Robotics、Creativity を扱いました。Sundar Pichai、Josh Woodward、Koray Kavukcuoglu、Liz Reid、Jeff Dean、Hartmut Neven、James Manyika、Demis Hassabis らが、I/O announcements の platform vision、proactive agents、quantum と AI、science、embodied robotics、cinematic creativity を議論しています。Google は agent capability、scientific discovery、robotics、creative tools を長期 platform narrative にまとめようとしています。
 
-## 3. Agent Compute、retrieval infrastructure、AI Infra market
-
-### Latent Space は Exa、Modal、turbopuffer の資金調達と成長を記録し、AI infra の価値が retrieval、cloud execution、context supply に集中していることを示した
+### Latent.Space は RAEv2、Gated DeltaNet-2、data filtering discussion を追い、research focus が representation と long context に動いていることを示した
 
 - 出典：Latent.Space
 - 日付：2026-05-22
-- リンク：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa
-- 要約：Latent Space の AINews は、今週の AI infra における 3 つの capital / revenue signals をまとめました。Exa は 2.5 億ドル Series C、22 億ドル valuation を発表し、Modal は 3.55 億ドル Series C、約 46.5 億ドル valuation を発表し、turbopuffer は 1 億ドル run-rate かつ profitable と報じられています。3 社はそれぞれ AI search / retrieval、AI cloud execution、vector / retrieval database infrastructure を代表します。この組み合わせは、「context はどこから来るか」「どこで実行するか」「どう高速に検索するか」が AI application の core economic layer になっていることを示します。Models は重要ですが、より多くの business value が model を data、tools、sandboxes、low-latency infrastructure に接続する systems に流れています。
+- リンク：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa#model-benchmark-and-research-updates-raev2-gated-deltanet-2-data-filtering-and-open-math
+- 要約：Latent.Space の AINews は、RAEv2、Gated DeltaNet-2、tokenization、data filtering、AI mathematics discussion などの research signals をまとめました。RAEv2 は Representation Autoencoders の follow-on として議論され、faster convergence、reconstruction、generation を強調しています。Gated DeltaNet-2 は linear attention の erase / write operations を channel-wise gates で分離し、long-context retrieval の改善を示しました。Data filtering と math tasks の discussion は、verifiable tasks と reliable data strategy への関心を強めています。
 
-### Daytona は agent sandboxes を composable computers と定義し、agent cloud competition は code execution box だけではなくなった
+### Gemini agent signals は、strong multimodal models が simple workflow の orchestration cost を下げていることを示す
+
+- 出典：Latent.Space
+- 日付：2026-05-22
+- リンク：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa#agent-capability-trendlines
+- 要約：AINews は Gemini agent / tool の複数 signals を記録しています。Gemini 3.5 Flash は APEX-Agents-AA で上位に入り、開発者は single Gemini API call で GitHub issue triage agent を作る例を示し、別の例では one multimodal API call が custom vision pipeline を置き換えました。Trend は「すべての agent が heavy framework を必要とする」ではありません。Strong model、built-in tools、product-level action surface が simple workflow の orchestration cost を下げています。
+
+## 3. 実践コード & ツールライブラリ
+
+### Daytona は agent sandbox を composable computers と定義し、agent cloud は code execution box だけではなくなった
 
 - 出典：Latent.Space
 - 日付：2026-05-21
 - リンク：https://www.latent.space/p/daytona
-- 要約：Latent Space は Daytona CEO Ivan Burazin に、AI agents がなぜ単なる short-lived code execution sandbox ではなく「computer」を必要とするのかを聞きました。Daytona は composable computers for AI agents と位置づけられ、stateful、fast startup、dynamic resizing、isolated、API-composable であることを重視しています。Interview では、Daytona が約 74% month-on-month growth、ある customer が daily 約 85 万 sandboxes、single sandbox startup 約 60ms、5 万 sandboxes startup 約 75 秒、RL/eval workloads が 0% から usage の約半分まで増えたことが語られています。この direction は coding agents、browser agents、RL evals と直結します。Agent が継続作業、test execution、browser operation、filesystem work、long workflow を行うなら、infrastructure は traditional localhost や generic VM wrapper ではなく、agent-designed cloud に近づきます。
+- 要約：Latent.Space は Daytona CEO Ivan Burazin に、AI agents がなぜ short-lived code execution sandbox ではなく API から使える「computer」を必要とするのかを聞きました。Daytona は stateful、fast startup、dynamic resizing、isolation、composable API を重視し、RL/eval workloads、browser agents、coding agents を同じ agent cloud demand として扱っています。この direction は、長く走り、tests を実行し、browser を開き、filesystem を扱う agents が、新しい cloud execution infrastructure を必要としていることを説明します。
 
-### AINews は developer infra が retrieval、typed streaming、sandbox auth、MoE elastic serving を中心に再編されていると見ている
+### Developer infra は retrieval、typed streaming、sandbox auth、elastic inference を中心に再編されている
+
+- 出典：Latent.Space
+- 日付：2026-05-22
+- リンク：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa#developer-infrastructure
+- 要約：AINews は developer infrastructure が agent runtime の boundary と presentation layer を中心に再編されていると見ています。Database built-in MCP server は coding agent に repo ingest と hybrid retrieval を可能にし、typed streaming protocol は tools、subagents、media、interrupts を first-class events として扱います。Elastic inference は MoE serving で full restart を避けようとしています。Agent runtime は prompt + tool calling から、retrieval、permission、streaming UI、sandbox、inference service を含む protocol stack へ広がっています。
+
+## 4. 業界 & ビジネス速報
+
+### Exa、Modal、turbopuffer の funding / revenue signals は、AI infra の economic layer が retrieval、execution、context supply に集中していることを示す
 
 - 出典：Latent.Space
 - 日付：2026-05-22
 - リンク：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa
-- 要約：Latent Space の AINews は、developer infrastructure が agent の boundary と presentation layer を中心に再編されていると整理しています。Weaviate は database 内に MCP server を built-in し、coding agent が repo を ingest して hybrid BM25 + vector retrieval を使えるようにしました。LangChain は sandbox Auth Proxy と typed streaming protocol を出し、tools、subagents、media、interrupts を token stream ではなく first-class events として扱います。vLLM の Elastic Expert Parallelism は MoE DP/EP topology の live resizing を可能にし、NVLink/RDMA による GPU-to-GPU transfer で full restart を避けます。共通する signal は、agent runtime が prompt + tool calling から、retrieval、permission、streaming UI、sandbox、elastic inference を含む composable protocol stack へ移っていることです。
+- 要約：Latent.Space は今週の AI infra capital / revenue signals をまとめました。Exa は 2.5 億ドル Series C、22 億ドル valuation、Modal は 3.55 億ドル Series C、約 46.5 億ドル valuation、turbopuffer は 1 億ドル run-rate かつ profitable と報じられています。3 社はそれぞれ AI search / retrieval、AI cloud execution、vector / retrieval database infrastructure に対応します。Models は重要ですが、business value は「context はどこから来るか」「どこで実行するか」「どう高速に検索するか」という system layer へ流れています。
 
-### AINews は Gemini agent/tool の進展をまとめ、single API call、consumer actions、benchmark leadership が orchestration cost を下げていると見ている
+## 5. GitHub 人気 repo & トレンド追跡
 
-- 出典：Latent.Space
+### Onyx：self-hosted AI chat platform が RAG、agents、deep research、MCP を同じ application layer に置いている
+
+- 出典：GitHub / Daily Dose of Data Science
 - 日付：2026-05-22
-- リンク：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa
-- 要約：AINews は Gemini 関連の agent / tool signals をまとめています。Gemini 3.5 Flash は APEX-Agents-AA で 1 位になり、開発者は single Gemini API call で GitHub issue triage agent を作り、orchestration framework を使わない例を示しました。別の例では Gemini 3.5 Flash が custom vision pipeline を置き換え、one multimodal API call で lane / car reasoning を行っています。Google は Daily Brief と、OpenTable、Canva、Instacart などの connected-app actions も広げています。Trend は「すべての agent が heavy framework を必要とする」ではありません。Strong multimodal model と built-in action surface が simple workflow の orchestration cost を下げ、より多くの capability を product entry layer に押し出しています。
+- リンク：https://github.com/onyx-dot-app/onyx
+- 要約：Daily Dose of Data Science は Onyx を open-source Claude alternative として紹介しました。Public repository では、Onyx は self-hostable AI chat / LLM application layer として、RAG、web search、code execution、file generation、deep research、MCP、actions、voice mode、50+ connectors を提供しています。Trend として重要なのは単機能ではなく、enterprise knowledge、external tools、LLM providers、agent capability を deployable application layer に統合している点です。
 
-## 4. Multimodal、open hardware、research signals
+### NanoClaw：OpenClaw alternative project は container isolation と auditable small codebase を重視している
 
-### AINews は Runway、Carbon、OlmoEarth、LeRobot を同時に追い、open toolchain が models から video、biology、earth observation、robotics に広がっていることを示した
-
-- 出典：Latent.Space
+- 出典：GitHub / The Rundown AI
 - 日付：2026-05-22
-- リンク：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa
-- 要約：AINews の multimodal / robotics section は、AI toolchains が横方向に広がっていることを示しています。Runway は Aleph 2.0 と Edit Studio を出し、single frame edit を video 全体へ propagate できるようにしました。Hugging Face Bio の Carbon DNA model family は sequence design、variant effect prediction、Trainium2 inference validation で追加 signal を得ています。OlmoEarth v1.1 は Sentinel-2 multi-resolution tokenization を変え、tokens を 3 分の 1 に減らして約 3 倍の cost / speed 改善を報告しています。Hugging Face LeRobot Humanoid は約 2500 ドル、3D printed、complete CAD、runtime、simulation、training pipeline により robot learning の entry barrier を下げます。共通点は、AI reproducibility が model weights から data、hardware、runtime、training workflow へ広がっていることです。
-
-### AINews は RAEv2、Gated DeltaNet-2、data filtering、AI mathematics discussion を記録し、research focus が representation、long context、verifiable tasks の間を移動していることを示した
-
-- 出典：Latent.Space
-- 日付：2026-05-22
-- リンク：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa
-- 要約：AINews の research section はいくつかの追跡対象を聚合しています。RAEv2 は Representation Autoencoders の follow-on として議論され、faster convergence、reconstruction、generation が強調されています。NVIDIA Gated DeltaNet-2 は linear attention の erase / write operations を channel-wise gates で分離し、long-context retrieval で改善を示しました。Tokenization と data filtering の discussion は、古典的な仮説もより大きな compute regime で再検証が必要だと示しています。OpenAI の Erdős unit-distance problem に関する結果も、AI-assisted research、verifiability、benchmark boundary をめぐる数学界の議論を呼びました。Research focus は「larger model」だけでなく、representation learning、attention alternatives、data strategy、verifiable scientific tasks の間を動いています。
+- リンク：https://github.com/nanocoai/nanoclaw
+- 要約：The Rundown AI は NanoClaw を当日の tool として取り上げました。Public repository では、NanoClaw は lightweight self-hosted agent assistant として、agents を independent Linux containers で走らせ、小さく理解しやすい codebase で audit cost を下げることを主張しています。これは OpenClaw 型 personal agent ecosystem の一分岐です。機能を増やすのではなく、isolation、minimalism、explainable configuration、local control を中心に safety boundary を設計し直しています。
 
 ## 📬 Newsletter 精選
 
@@ -133,4 +123,11 @@ draft: false
 - 出典：Every
 - 日付：2026-05-22
 - リンク：https://every.to/playtesting/notes-from-the-foothills-of-the-singularity
-- 要約：Every は Google I/O を、Gemini 3.5 Flash、Search がその場で作る小さな tool、閉じた laptop でも走り続ける Gemini assistant、Gemini Omni をつなぐ product narrative として読んだ。発表一覧ではなく、Google が agent capability を実際の製品入口へ埋め込もうとしている理由を説明する補助線になっている。
+- 要約：Every は Google I/O を、Gemini 3.5 Flash、Search がその場で作る小さな tool、閉じた laptop でも走り続ける Gemini assistant、Gemini Omni をつなぐ product narrative として読んだ。発表数ではなく、Google が agent capability を実際の製品入口へ埋め込もうとしている理由を説明する補助線になっている。
+
+### The Rundown AI：Exclusive insights from Sundar Pichai at I/O 2026
+
+- 出典：The Rundown AI
+- 日付：2026-05-22
+- リンク：公開版リンクなし
+- 要約：The Rundown AI のメールは、I/O 2026 での Sundar Pichai interview を中心に、Google が AI を one-off demo から creator、engineer、everyday user の product layer へ移そうとしている点を整理した。Codex upgrades、agent-native CLI、AI による労働市場変化への policy response も同じ日の context として扱っている。

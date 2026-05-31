@@ -1,0 +1,139 @@
+{
+  "date": "2026-05-23",
+  "cadence": "daily",
+  "localeFiles": [
+    "src/content/radar/daily-ai-radar-2026-05-23.md",
+    "src/content/radar/daily-ai-radar-2026-05-23.ja.md"
+  ],
+  "backfill": {
+    "reason": "Restore fixed six-section schema and remove drifted active platform-blog sourcing from the May 23 daily radar.",
+    "assetsRerun": false,
+    "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
+  },
+  "sourcePolicy": {
+    "activePlatformBlogsOmitted": [
+      "AWS",
+      "Meta",
+      "Microsoft",
+      "NVIDIA"
+    ],
+    "officialConfirmationScope": [
+      "OpenAI",
+      "Anthropic",
+      "Google / Gemini / DeepMind"
+    ],
+    "trendRule": "GitHub trend items require public repository evidence and source-pool or newsletter discovery."
+  },
+  "gmailEvidence": [
+    {
+      "sender": "Daily Dose of DS",
+      "receivedAt": "2026-05-22T20:34:41",
+      "subject": "Agent Memory Is Only as Good as Its Schema",
+      "usedAs": "Newsletter item and GitHub trend discovery for Onyx and Graphiti",
+      "publicLink": "https://github.com/getzep/graphiti",
+      "evidence": [
+        "The issue explained why flat retrieval misses multi-hop memory questions.",
+        "It linked Graphiti and described schema, typed entities, edge constraints, temporal validity and context templates."
+      ]
+    },
+    {
+      "sender": "Every",
+      "receivedAt": "2026-05-22T10:41:44",
+      "subject": "Notes From the Foothills of the Singularity",
+      "usedAs": "Newsletter item and Google I/O product narrative context",
+      "publicLink": "https://every.to/playtesting/notes-from-the-foothills-of-the-singularity",
+      "evidence": [
+        "The issue framed Google I/O as product-layer iteration around Gemini 3.5 Flash, Search tools, assistants and Gemini Omni.",
+        "The public article was fetched successfully and matched the email subject."
+      ]
+    },
+    {
+      "sender": "The Rundown AI",
+      "receivedAt": "2026-05-22T10:06:25",
+      "subject": "Exclusive interview: Sundar Pichai on AI's flip phone moment",
+      "usedAs": "Newsletter item and discovery for NanoClaw / Google I/O interview context",
+      "publicLink": null,
+      "evidence": [
+        "The issue centered on The Rundown's Sundar Pichai interview at I/O 2026.",
+        "It listed NanoClaw as a lightweight open-source alternative to OpenClaw; the public GitHub repository was then verified."
+      ]
+    },
+    {
+      "sender": "YouTube",
+      "receivedAt": "2026-05-22T12:01:34",
+      "subject": "老范讲故事频道直播：今年的Google I/O，拉了一坨大的",
+      "usedAs": "Chinese core-source presence check; not used as a standalone public item in this text-only backfill",
+      "publicLink": "https://www.youtube.com/watch?v=U6mvPKL5wV4",
+      "evidence": [
+        "The notification confirms the Chinese source pool had a Google I/O related signal on the same day.",
+        "The content overlapped with the stronger Google / Every / The Rundown I/O signals and was not duplicated as an extra item."
+      ]
+    }
+  ],
+  "publicSourceVisits": [
+    {
+      "url": "https://openai.com/index/gartner-2026-agentic-coding-leader/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://openai.com/index/virgin-atlantic/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-22-staged-publishing-and-new-install-time-controls-for-npm/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-dialogues-recap/",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa",
+      "status": 200,
+      "usedFor": "model, tooling and industry items"
+    },
+    {
+      "url": "https://www.latent.space/p/daytona",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://github.com/onyx-dot-app/onyx",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://github.com/nanocoai/nanoclaw",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://github.com/getzep/graphiti",
+      "status": 200,
+      "usedFor": "Newsletter item"
+    },
+    {
+      "url": "https://every.to/playtesting/notes-from-the-foothills-of-the-singularity",
+      "status": 200,
+      "usedFor": "Newsletter item"
+    }
+  ],
+  "publishedItems": {
+    "zh": 14,
+    "ja": 14,
+    "newsletter": 3,
+    "githubTrend": 2
+  },
+  "selfReview": {
+    "schema": "passed: fixed six public sections restored in zh/ja",
+    "zhJaTopicOrder": "passed: 14 matched H3 items in both locales",
+    "duplicateLinks": "passed: no repeated public URLs within either locale file",
+    "forbiddenPublicTerms": "passed: public Markdown scan clean",
+    "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
+    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check"
+  }
+}
