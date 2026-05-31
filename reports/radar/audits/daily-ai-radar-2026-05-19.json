@@ -1,0 +1,154 @@
+{
+  "date": "2026-05-19",
+  "cadence": "daily",
+  "localeFiles": [
+    "src/content/radar/daily-ai-radar-2026-05-19.md",
+    "src/content/radar/daily-ai-radar-2026-05-19.ja.md"
+  ],
+  "backfill": {
+    "reason": "Restore the fixed four-quadrant schema plus GitHub trends and reader-facing Newsletter items after the mid-May source and taxonomy drift.",
+    "assetsRerun": false,
+    "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
+  },
+  "sourcePolicy": {
+    "activePlatformBlogsOmitted": [
+      "AWS",
+      "Meta",
+      "Microsoft",
+      "NVIDIA"
+    ],
+    "officialConfirmationScope": [
+      "OpenAI",
+      "Anthropic",
+      "Google / Gemini / DeepMind"
+    ],
+    "trendRule": "Only include repo/project evidence in the GitHub trend section; repeated source links are allowed only when one entry covers the release signal and another covers the repository trend."
+  },
+  "gmailEvidence": [
+    {
+      "sender": "Daily Dose of DS",
+      "receivedAt": "2026-05-19T20:31:52",
+      "subject": "The top Hermes integrations",
+      "usedAs": "Newsletter item and GitHub trend discovery for simstudioai/sim",
+      "publicLink": null,
+      "evidence": [
+        "The email explicitly listed Sim as a drag-and-drop UI to build AI agent workflows.",
+        "The body described Hermes integrations including Obsidian, Reddit, InsForge, GitHub, Firecrawl, Graphiti and Google Workspace."
+      ]
+    },
+    {
+      "sender": "Daily Dose of DS",
+      "receivedAt": "2026-05-18T22:03:08",
+      "subject": "Implement Knowledge Distillation from Scratch",
+      "usedAs": "tooling / implementation item with public article link",
+      "publicLink": "https://www.dailydoseofds.com/model-compression-a-critical-step-towards-efficient-machine-learning/",
+      "evidence": [
+        "The email covered teacher/student distillation, KL divergence and model compression tradeoffs.",
+        "It was considered but the final Newsletter section prioritized the newer Daily Dose issue from May 19."
+      ]
+    },
+    {
+      "sender": "The Rundown AI",
+      "receivedAt": "2026-05-18T10:05:09",
+      "subject": "AI anger comes for Claude (Monet)",
+      "usedAs": "Context candidate; not included because the next Rundown issue was more relevant to the AI/legal news cycle",
+      "publicLink": null,
+      "evidence": [
+        "The email covered AI art perception bias, Manus crawler guidance and ChatGPT finance integration.",
+        "It was read as part of the original-mail confirmation pass."
+      ]
+    },
+    {
+      "sender": "The Rundown AI",
+      "receivedAt": "2026-05-18",
+      "subject": "Musk's OpenAI case runs out of time",
+      "usedAs": "Newsletter item",
+      "publicLink": null,
+      "evidence": [
+        "The email framed Musk's OpenAI case dismissal as the main item.",
+        "The same issue also listed Cursor Composer 2.5, Claude and Blender 3D workflow, Odyssey world models and AI tools."
+      ]
+    }
+  ],
+  "publicSourceVisits": [
+    {
+      "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-18-one-click-fixes-for-failing-actions-with-copilot-cloud-agent/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-18-remote-control-for-copilot-cli-sessions-now-generally-available-on-mobile-web-and-vs-code/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-18-audit-repository-copilot-cloud-agent-configuration-via-the-rest-api/",
+      "status": 200,
+      "usedFor": "confirmed but omitted to keep GitHub Blog share below the diversity threshold"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-18-copilot-cloud-agent-fast-cost-efficient-models-for-simple-tasks/",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-18-gpt-5-3-codex-is-now-the-base-model-for-copilot-business-and-enterprise/",
+      "status": 200,
+      "usedFor": "confirmed but omitted to keep GitHub Blog share below the diversity threshold"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-18-copilot-spaces-api-now-generally-available/",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/model-compression-a-critical-step-towards-efficient-machine-learning/",
+      "status": 200,
+      "usedFor": "tooling / implementation item"
+    },
+    {
+      "url": "https://github.com/PaddlePaddle/PaddleOCR",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://openai.com/index/dell-codex-enterprise-partnership/",
+      "status": 200,
+      "usedFor": "industry item"
+    },
+    {
+      "url": "https://github.com/simstudioai/sim",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://www.latent.space/p/the-fourth-law",
+      "status": 200,
+      "usedFor": "Newsletter item"
+    },
+    {
+      "url": "https://huggingface.co/blog/open-agent-leaderboard",
+      "status": 404,
+      "usedFor": "not used; previous draft source rejected during audit"
+    }
+  ],
+  "publishedItems": {
+    "zh": 12,
+    "ja": 12,
+    "newsletter": 3,
+    "githubTrend": 2
+  },
+  "selfReview": {
+    "schema": "passed: fixed six public sections restored in zh/ja",
+    "zhJaTopicOrder": "passed: 12 matched H3 items in both locales",
+    "duplicateLinks": "passed: no repeated public URLs within either locale file",
+    "forbiddenPublicTerms": "passed: public Markdown scan clean",
+    "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
+    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check"
+  }
+}
