@@ -5,10 +5,36 @@
     "src/content/radar/daily-ai-radar-2026-05-21.md",
     "src/content/radar/daily-ai-radar-2026-05-21.ja.md"
   ],
+  "status": "text-and-assets-backfilled",
   "backfill": {
     "reason": "Restore fixed sections and remove active non-core platform sources from the drifted May 21 daily radar.",
-    "assetsRerun": false,
-    "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
+    "assetsRerun": true,
+    "scope": "text and NotebookLM assets refreshed; existing public coverImage and audioUrl paths preserved"
+  },
+  "assetRegeneration": {
+    "date": "2026-06-01",
+    "noKeepNotebook": true,
+    "notebookCleanup": "passed: no 2026-05-21 daily temporary notebooks remained after regeneration",
+    "files": {
+      "zhImage": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-21-infographic.webp",
+        "size": 506918
+      },
+      "jaImage": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-21.ja-infographic.webp",
+        "size": 481156
+      },
+      "zhAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-21.mp3",
+        "size": 7716343,
+        "duration": 964
+      },
+      "jaAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-21.ja.mp3",
+        "size": 9459024,
+        "duration": 1182
+      }
+    }
   },
   "sourcePolicy": {
     "activePlatformBlogsOmitted": [
