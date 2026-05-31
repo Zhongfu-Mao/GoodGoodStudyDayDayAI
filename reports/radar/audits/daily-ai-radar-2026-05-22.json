@@ -1,0 +1,101 @@
+{
+  "date": "2026-05-22",
+  "cadence": "daily",
+  "status": "text-backfilled-assets-pending",
+  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source AWS coverage, had only 3 zh public sections and 4 ja sections, and over-concentrated one source family. This pass rewrites the text from versioned source-pool, Gmail-original newsletter evidence, RSS evidence and public/canonical pages; infographic/audio remain intentionally pending for a later asset batch.",
+  "publicFiles": {
+    "zh": "src/content/radar/daily-ai-radar-2026-05-22.md",
+    "ja": "src/content/radar/daily-ai-radar-2026-05-22.ja.md"
+  },
+  "sourceEvidence": [
+    {
+      "source": "Latent.Space RSS and public pages",
+      "path": "node scripts/radar/fetch-url.mjs https://www.latent.space/feed --mode rss; public article fetches for /p/daytona and /p/ainews-new-ai-infra-unicorns-exa",
+      "confirmedItems": [
+        "Giving Agents Computers — Ivan Burazin, Daytona",
+        "New AI Infra unicorns: Exa, Modal, TurboPuffer"
+      ]
+    },
+    {
+      "source": "Daily Dose of Data Science RSS, public pages and Gmail originals",
+      "path": "node scripts/radar/fetch-url.mjs https://blog.dailydoseofds.com/feed --mode rss; public article fetches for agent-memory-is-only-as-good-as-its and karpathys-prediction-about-rl-is; Gmail read-only search for 2026-05-21 and 2026-05-22 originals",
+      "confirmedItems": [
+        "Agent Memory Is Only as Good as Its Schema",
+        "Karpathy’s Prediction About RL is Coming True Now",
+        "Onyx",
+        "Graphiti",
+        "OpenPipe ART"
+      ]
+    },
+    {
+      "source": "Every public pages and Gmail originals",
+      "path": "node scripts/radar/fetch-url.mjs https://every.to/p/after-automation; node scripts/radar/fetch-url.mjs https://every.to/playtesting/notes-from-the-foothills-of-the-singularity; Gmail read-only search for 2026-05-21 and 2026-05-22 originals",
+      "confirmedItems": [
+        "After Automation",
+        "Notes From the Foothills of the Singularity"
+      ]
+    },
+    {
+      "source": "OpenAI RSS and public pages",
+      "path": "node scripts/radar/fetch-url.mjs https://openai.com/news/rss.xml --mode rss; public article fetches for AdventHealth and Virgin Atlantic",
+      "confirmedItems": [
+        "AdventHealth advances whole-person care with OpenAI",
+        "How Virgin Atlantic ships faster with Codex"
+      ]
+    },
+    {
+      "source": "The Batch / DeepLearning.AI public page",
+      "path": "node scripts/radar/fetch-url.mjs https://www.deeplearning.ai/the-batch/; node scripts/radar/fetch-url.mjs https://www.deeplearning.ai/the-batch/issue-354/",
+      "confirmedItems": [
+        "Toward Agent Benchmarks That Reflect Human Work"
+      ]
+    },
+    {
+      "source": "The Rundown AI Gmail originals",
+      "path": "Gmail read-only search in:anywhere after:2026/5/21 before:2026/5/23 from:(news@daily.therundown.ai)",
+      "confirmedItems": [
+        "Exclusive interview: Sundar Pichai on AI's flip phone moment",
+        "OpenAI’s latest wave of Codex upgrades",
+        "Generate an agent-native CLI from any website"
+      ]
+    },
+    {
+      "source": "Programmer Weekly Gmail original",
+      "path": "Gmail read-only search in:anywhere after:2026/5/21 before:2026/5/23 from:(rahul@programmerweekly.com)",
+      "confirmedItems": [
+        "Programmer Weekly - Issue 301"
+      ]
+    },
+    {
+      "source": "老范讲故事 RSS and public page",
+      "path": "node scripts/radar/fetch-url.mjs https://lukefan.com/feed --mode rss; node scripts/radar/fetch-url.mjs https://lukefan.com/2026/05/21/cxmt-ymtc-memory-ipo-cycle-peak/",
+      "confirmedItems": [
+        "国产存储双雄长鑫存储和长江存储冲刺上市，存储周期拐点将至？"
+      ]
+    },
+    {
+      "source": "GitHub repository pages surfaced by core sources",
+      "path": "Canonical repository links from Daily Dose and Programmer Weekly coverage",
+      "confirmedItems": [
+        "onyx-dot-app/onyx",
+        "getzep/graphiti",
+        "OpenPipe/ART"
+      ]
+    }
+  ],
+  "checksExpected": [
+    "zh/ja same title count",
+    "zh/ja same link order",
+    "fixed daily schema present",
+    "Newsletter section uses item format, not source-count summary",
+    "no public Gmail links, message ids, Chrome/HTTP/fallback logs, or backstage terms",
+    "no active AWS/Meta/Microsoft/NVIDIA source labels",
+    "old AWS/AgentCore body coverage removed"
+  ],
+  "assetStatus": {
+    "infographic": "pending-regeneration-after-text-batch",
+    "audio": "pending-regeneration-after-text-batch",
+    "existingFrontmatterKept": true,
+    "publicRepresentativeImage": "old AWS body image removed from Markdown body"
+  }
+}
