@@ -1,0 +1,154 @@
+{
+  "date": "2026-05-20",
+  "cadence": "daily",
+  "localeFiles": [
+    "src/content/radar/daily-ai-radar-2026-05-20.md",
+    "src/content/radar/daily-ai-radar-2026-05-20.ja.md"
+  ],
+  "backfill": {
+    "reason": "Restore the fixed four-quadrant schema plus GitHub trends and reader-facing Newsletter items after the mid-May source and taxonomy drift.",
+    "assetsRerun": false,
+    "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
+  },
+  "sourcePolicy": {
+    "activePlatformBlogsOmitted": [
+      "AWS",
+      "Meta",
+      "Microsoft",
+      "NVIDIA"
+    ],
+    "officialConfirmationScope": [
+      "OpenAI",
+      "Anthropic",
+      "Google / Gemini / DeepMind"
+    ],
+    "trendRule": "Only include repo/project evidence in the GitHub trend section; repeated source links are avoided within each locale file."
+  },
+  "gmailEvidence": [
+    {
+      "sender": "Daily Dose of DS",
+      "receivedAt": "2026-05-20T22:03:44",
+      "subject": "The Anatomy of ~/.hermes Folder",
+      "usedAs": "Newsletter item and GitHub trend discovery for getzep/graphiti",
+      "publicLink": null,
+      "evidence": [
+        "The email framed Hermes as a common memory layer for AI applications.",
+        "The body linked Graphiti and described Neo4j, self-hosted MCP server setup, and shared context for clients such as Cursor and Claude Desktop."
+      ]
+    },
+    {
+      "sender": "Every",
+      "receivedAt": "2026-05-20",
+      "subject": "Google I/O: Agents, Agents, Agents",
+      "usedAs": "Newsletter item and confirmation of the Google I/O agent framing",
+      "publicLink": "https://every.to/context-window/google-i-o-agents-agents-agents",
+      "evidence": [
+        "The issue summarized Google I/O as 'Agents are now the product'.",
+        "It split Google's releases into collaborative and delegated agent patterns and connected Anthropic's Stainless acquisition to agent-native tooling."
+      ]
+    },
+    {
+      "sender": "Every",
+      "receivedAt": "2026-05-19T17:20:30",
+      "subject": "Inside the 100-agent Software Factory",
+      "usedAs": "GitHub trend discovery for gastownhall/gascity",
+      "publicLink": "https://every.to/context-window/inside-the-100-agent-software-factory?metered_paywall=1",
+      "evidence": [
+        "The issue discussed Gas City as the continuation of Gas Town's multi-agent software factory experiment.",
+        "The public GitHub repository was used for the final reader-facing trend item."
+      ]
+    },
+    {
+      "sender": "The Rundown AI",
+      "receivedAt": "2026-05-20T10:05:07",
+      "subject": "The biggest reveals from Google I/O",
+      "usedAs": "Context candidate; not included because Google and Every provided cleaner public confirmation for the same theme",
+      "publicLink": null,
+      "evidence": [
+        "The issue centered on Google I/O reveals.",
+        "It was read as part of the original-mail confirmation pass but omitted to reduce duplicate Google I/O coverage."
+      ]
+    }
+  ],
+  "publicSourceVisits": [
+    {
+      "url": "https://blog.google/innovation-and-ai/sundar-pichai-io-2026/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://blog.google/products-and-platforms/products/workspace/workspace-updates/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://openai.com/index/advancing-content-provenance",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-19-gemini-3-5-flash-is-generally-available-for-github-copilot",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-19-easily-apply-copilot-code-review-feedback-with-copilot-cloud-agent",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-19-expanded-oidc-support-for-dependabot-and-code-scanning",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://blog.google/products-and-platforms/products/search/search-io-2026/",
+      "status": 200,
+      "usedFor": "industry item"
+    },
+    {
+      "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+      "status": 200,
+      "usedFor": "industry item"
+    },
+    {
+      "url": "https://github.com/getzep/graphiti",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://github.com/gastownhall/gascity",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://every.to/context-window/google-i-o-agents-agents-agents",
+      "status": 200,
+      "usedFor": "Newsletter item"
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-how-to-land-a-job-at-a-frontier",
+      "status": 200,
+      "usedFor": "Newsletter item"
+    }
+  ],
+  "publishedItems": {
+    "zh": 14,
+    "ja": 14,
+    "newsletter": 3,
+    "githubTrend": 2
+  },
+  "selfReview": {
+    "schema": "passed: fixed six public sections restored in zh/ja",
+    "zhJaTopicOrder": "passed: 14 matched H3 items in both locales",
+    "duplicateLinks": "passed: no repeated public URLs within either locale file",
+    "forbiddenPublicTerms": "passed: public Markdown scan clean",
+    "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
+    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check"
+  }
+}
