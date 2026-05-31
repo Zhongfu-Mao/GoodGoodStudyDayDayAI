@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-05-25"
 date: 2026-05-25
 category: radar
 cadence: daily
-plainSummary: "今天的信号集中在 agent 工程从演示走向生产的底层细节：工具调用开始被代码编排，语音 agent 需要会话切分和低延迟链路，记忆、评测、文档解析、遥感模型和 agent harness 都在补齐可运营系统的基础层。"
+plainSummary: "今天的信号集中在三个层面：Deep Research 和向量索引把 agent 与检索系统推向更工程化的架构；AlphaProof Nexus 与 Mythos 显示 AI 正进入可验证数学和安全漏洞发现；Bumblebee、Onyx 与公开仓库趋势说明开发者工具正在把 AI 风险、评测和研究流程落到可运行系统。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -20,94 +20,114 @@ draft: false
 
 ## 本期范围
 
-- 覆盖时间：2026-05-24 至 2026-05-25，并补充 2026-05-18 至 2026-05-23 未入选的高信号工程发布。
+- 覆盖时间：2026-05-24 至 2026-05-25，并补充本周仍有参考价值的公开工程与产业信号。
 
----
-![Agent harness workflow](https://substackcdn.com/image/fetch/$s_!jJ4Z!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2ac4f24e-259e-4837-a547-a696f9eed8a0_680x367.png)
+## 1. AI Engineering & 架构
 
-*代表图来自 [The Anatomy of an Agent Harness](https://www.dailydoseofds.com/p/the-anatomy-of-an-agent-harness/)。它对应本期日报里最能概括当天主线的一条原始信号：生产级 agent 的关键已经从提示词扩展到 harness、工具、记忆、状态和验证闭环。*
+### Onyx 的 Deep Research 经验显示，强 agent 架构不一定要给协调器更多工具
 
-## 1. Agent 执行、记忆与评测
+- 来源：Onyx / Daily Dose of Data Science
+- 日期：2026-05-25
+- 链接：https://onyx.app/blog/building-the-best-deep-research
+- 摘要：Daily Dose of DS 将 Onyx Deep Research 的架构作为当天主线：排名靠前的研究 agent 并不是让 orchestrator 自己搜索网页，而是限制它只做任务拆解，随后把自包含 brief 派给研究 agent。Onyx 官方复盘也强调，agent 的关键不是“多给工具”，而是让 prompt、上下文和任务边界足够清晰。这给 AI engineering 的启发很直接：长链路研究系统的核心设计点，是减少协调器抢答、限制层级传话损耗，并把引用整理、合并和最终汇总交给确定性步骤。
 
-### AWS 展示 Programmatic Tool Calling，用模型生成代码来编排工具调用
+### CockroachDB 的 C-SPANN 把向量索引做成分布式 SQL 里的普通表数据
 
-- 来源：AWS
-- 日期：2026-05-19
-- 链接：https://aws.amazon.com/blogs/machine-learning/implementing-programmatic-tool-calling-on-amazon-bedrock/
-- 摘要：AWS 把 programmatic tool calling 定义为让模型生成 Python 代码，在沙箱里编排多个工具调用，只把最终结果送回模型上下文。文章给出三种实现：自托管 Docker 沙箱、Bedrock AgentCore Code Interpreter，以及兼容 Anthropic SDK 的代理层。实验中，PTC 模式把 token 用量降低 87% 到 92%，并让测试中的八个模型全部给出正确答案，而非 PTC 模式只有 Claude 系列成功。这个方向的关键不是更换模型，而是把可确定的循环、过滤、聚合和错误处理移出上下文窗口。
+- 来源：Cockroach Labs / ByteByteGo
+- 日期：2026-05-25
+- 链接：https://www.cockroachlabs.com/blog/cspann-real-time-indexing-billions-vectors
+- 摘要：ByteByteGo 复盘了 CockroachDB 如何在分布式 SQL 中做实时向量索引；核心公开设计来自 Cockroach Labs 的 C-SPANN。它没有把向量索引作为单独内存服务，而是把 partition、centroid 和向量数据存成普通 key-value rows，继承数据库已有的 range split、rebalance、replication、multi-region 和事务一致性能力。对 RAG、agent memory 和多租户语义检索来说，这个案例说明索引算法本身只是开始，真正难点是更新、分片、热区、权限和数据本地性如何进入原有数据库系统。
 
-### Amazon Nova Sonic 的语音 agent 设计把工具、子 agent 和会话切分作为延迟控制面
+## 2. 模型前沿 & 算法探索
 
-- 来源：AWS
-- 日期：2026-05-19
-- 链接：https://aws.amazon.com/blogs/machine-learning/scalable-voice-agent-design-with-amazon-nova-sonic-multi-agent-tools-and-session-segmentation/
-- 摘要：AWS 讨论如何用 Amazon Nova Sonic、AgentCore Runtime、AgentCore Gateway、Strands BidiAgent 和 WebSocket streaming 构建可扩展语音 agent。文章把架构拆成三种模式：直接用 Gateway 工具追求低延迟，用 sub-agent 或 agent-as-tool 处理更深推理，用 session segmentation 缩小每一阶段的 prompt 和工具面。实践建议包括小模型 sub-agent、缓存、认证后预取、并行化独立调用、填充语句和减少工具数量。语音 agent 的生产难点不是能不能说话，而是每轮延迟、工具面大小、状态交接和错误恢复。
+### AlphaProof Nexus 用 Lean 反馈解开 9 个 Erdős 问题，把数学 agent 推向可验证证明搜索
 
-### Kiro CLI 接入 AgentCore Memory，把项目与用户偏好变成可检索长期记忆
+- 来源：Google / DeepMind / arXiv
+- 日期：2026-05-21
+- 链接：https://arxiv.org/abs/2605.22763
+- 摘要：The Rundown AI 将 Google DeepMind 的 AlphaProof Nexus 放在头条；公开论文显示，这套 agentic formal proof search 框架用 Gemini 生成 Lean 证明，再用编译器反馈迭代，解决了 9 个开放 Erdős 问题和 44 个 OEIS 猜想。值得关注的不是“模型会做数学题”这句泛化判断，而是 Lean 把结果变成可机器检查的证明对象。数学研究 agent 的评估标准因此更接近可验证产物，而不是自然语言推理看起来是否可信。
 
-- 来源：AWS
-- 日期：2026-05-19
-- 链接：https://aws.amazon.com/blogs/machine-learning/extending-conversational-memory-in-kiro-cli-using-amazon-bedrock-agentcore-memory/
-- 摘要：AWS 展示了一个自定义 MCP server，把 Kiro CLI 与 Amazon Bedrock AgentCore Memory 相连。它提供 conversation search、store、retrieve、list、stats、config、delete 等工具，并采用两阶段检索：先语义检索 memory records，必要时再直接扫描 event-level 内容。命名空间可以按 user、project 或 session 组织，CLI hooks 负责在会话前加载偏好、会话后写回记忆。对 coding agent 来说，这类记忆层的价值在于把偏好、项目约定和长期上下文从聊天记录里拆出来。
-
-### AgentCore 的自定义代码评测器让 agent 质量检查进入 Lambda 与 CloudWatch
-
-- 来源：AWS
-- 日期：2026-05-18
-- 链接：https://aws.amazon.com/blogs/machine-learning/build-custom-code-based-evaluators-in-amazon-bedrock-agentcore/
-- 摘要：AWS 为 Bedrock AgentCore 展示 custom code-based evaluators，用 Lambda 在 trace、tool call 或 session 级别做确定性检查。示例包括工具响应 schema、股票价格漂移、工作流合规和 PII 泄漏。评测既可在开发、回归和 CI 中按需运行，也可在生产流量中采样并输出 CloudWatch metrics。它代表的趋势是，agent evaluation 不应只依赖 LLM-as-judge，还需要可版本化、可报警、可嵌入部署流水线的代码评测器。
-
-## 2. 开放模型、文档解析与科学场景
-
-### PaddleOCR 3.5 支持 Transformers backend，降低文档 AI 接入 Hugging Face 生态的摩擦
-
-- 来源：Hugging Face / PaddlePaddle
-- 日期：2026-05-18
-- 链接：https://huggingface.co/blog/PaddlePaddle/paddleocr-transformers
-- 摘要：PaddleOCR 3.5 新增更灵活的 inference-engine interface，开发者可以通过 `engine="transformers"` 运行支持的 OCR 与文档解析模型，例如 PP-OCRv5 和 PaddleOCR-VL 1.5，并用 `engine_config` 配置 dtype、设备与 attention implementation。PaddleOCR 继续管理 OCR 和 document parsing pipeline，而 Transformers 作为后端进入模型加载、实验和部署链路。对 RAG、文档 agent、搜索和自动化来说，这一步把 PDF、扫描件、截图、表格和复杂版面解析更自然地接入 PyTorch / Transformers 工作栈。
-
-### OlmoEarth v1.1 用 token 设计把遥感模型计算成本降到原来的三分之一
-
-- 来源：Hugging Face / Ai2
-- 日期：2026-05-19
-- 链接：https://huggingface.co/blog/allenai/olmoearth-v1-1
-- 摘要：Ai2 发布 OlmoEarth v1.1，一组更高效的地球观测模型。核心改动是减少 Sentinel-2 遥感输入的 token 序列长度：原先按时间步和分辨率生成 token，新版本通过预训练方法调整，在维持任务表现的同时把 token 数量和计算需求显著压缩。文章称 v1.1 在每个规模上运行成本最高可比 v1 低 3 倍，并公开 Base、Tiny、Nano 等权重和训练代码。这个案例说明，AI for science 的进展不只是更大模型，也来自面向物理数据结构的 tokenization 与效率设计。
-
-## 3. Agent harness 与优化闭环
-
-### Daily Dose of DS 把 agent harness 定义为模型外的完整生产系统
+### Daily Dose of DS 用 ONNX 解释模型可移植性，训练框架和生产运行时正在进一步解耦
 
 - 来源：Daily Dose of Data Science
-- 日期：2026-05-24
-- 链接：https://www.dailydoseofds.com/p/the-anatomy-of-an-agent-harness/
-- 摘要：Daily Dose of DS 用 harness 解释为什么同一个模型在不同 agent 产品里表现差异很大。文章把 harness 拆成 orchestration loop、tools、memory、context management、prompt construction、output parsing、state management、error handling、guardrails、verification loops 和 subagent orchestration。它强调 prompt engineering 只是最内层，context engineering 管理模型看见什么，harness engineering 则覆盖工具、状态、权限、恢复、验证和生命周期。生产 agent 的难点越来越像操作系统工程，而不是单次提示词调参。
+- 日期：2026-05-25
+- 链接：https://www.dailydoseofds.com/mlops-crash-course-part-10/
+- 摘要：Daily Dose of DS 在当天邮件中把 ONNX 作为 production ML 的桥接层：训练可能发生在 PyTorch 或 TensorFlow，部署却可能在 C++ 服务、移动端、GPU runtime 或 CPU-only 环境里。ONNX 把模型保存成框架无关的计算图、标准算子、显式 tensor shape、metadata 和权重，再由 ONNX Runtime 做图优化和后端执行。它提醒我们，AI 系统进入生产后，模型文件格式、算子覆盖、数值漂移、custom ops 和硬件执行后端会和模型质量同样重要。
 
-### Comet Opik 把 agent optimization 做成 trace、dataset、prompt 与实验的自动闭环
+## 3. 实战代码 & 工具库
 
-- 来源：Comet Opik
-- 日期：2026-05-24
-- 链接：https://www.comet.com/docs/opik/v1/agent_optimization/overview
-- 摘要：Daily Dose of DS 推荐的 Opik agent optimization workflow 指向一个更普遍的方向：把 agent 的 prompt、workflow step、trace、dataset 和 evaluation results 放到同一个优化系统里。Opik 文档强调它支持 tracing、LLM-as-judge、heuristic eval metrics、prompt versioning、experiments 和 automated optimization algorithms。对团队来说，这类工具的价值不是单次“调好 prompt”，而是让失败样本进入数据集，让新 prompt 与旧版本可比较，让 agent 改进变成可回放的工程过程。
+### Project Glasswing 的初步结果把 AI 安全能力从发现漏洞推向验证、披露和修复流程
+
+- 来源：Anthropic / The Rundown AI
+- 日期：2026-05-22
+- 链接：https://www.anthropic.com/research/glasswing-initial-update
+- 摘要：The Rundown AI 关注 Claude Mythos 在 Project Glasswing 中发现大量高危或严重漏洞；Anthropic 的公开更新把重点放在新的瓶颈上：AI 已经能更快发现问题，但行业需要更快验证、披露和修复。文章还给出开放源码项目扫描、独立 triage 和伙伴防御实践。对工程团队来说，重点不是把安全发现完全交给模型，而是建立可审计的 triage、补丁优先级、误报处理和负责任披露流程。
+
+### Perplexity 开源 Bumblebee，用只读扫描处理开发者机器上的供应链暴露面
+
+- 来源：GitHub / Perplexity
+- 日期：2026-05-23
+- 链接：https://github.com/perplexityai/bumblebee
+- 摘要：Perplexity 开源 Bumblebee，一个面向 macOS 和 Linux 开发者端点的只读扫描器。它检查语言包管理器、AI agent 配置、编辑器扩展和浏览器扩展中的已知风险，但不运行安装脚本、package manager、源码或网络监控。这个设计非常贴近 AI 开发现实：供应链响应不只需要 SBOM，也需要知道开发者本机上的 lockfile、manifest、扩展和 agent 配置是否暴露在已知事件中。
+
+### ONNX Runtime 把模型部署变成图优化、后端切分与执行提供器选择问题
+
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-25
+- 链接：https://onnxruntime.ai/
+- 摘要：ONNX 本身是中间表示，真正落地时还需要运行时把图执行起来。ONNX Runtime 会加载 ONNX graph，做图级优化，并按硬件后端切分执行。邮件中特别提醒，ONNX 并不是魔法：部分框架算子无法完美映射，execution provider 覆盖随硬件变化，混合精度可能带来数值漂移，custom ops 需要额外工程。对 AI 产品来说，“可导出”不等于“可上线”，上线前仍要做性能、精度和兼容性验证。
+
+## 4. 行业与商业快讯
+
+### Starbucks 终止 AI 库存计数工具，说明视觉自动化必须先过门店执行可靠性这一关
+
+- 来源：Restaurant News / Reuters
+- 日期：2026-05-21
+- 链接：https://www.nrn.com/quick-service/starbucks-is-ending-its-use-of-ai-to-count-inventory
+- 摘要：Starbucks 停止使用一套用于北美门店库存计数的 AI 工具，公开报道指出问题集中在误计数、误标识和前线员工仍需手动复核。这个案例对 AI 落地很有警示意义：企业系统不能只看 demo accuracy，也要看真实 SKU 相似度、货架遮挡、流程异常、员工信任和错误修正成本。AI 自动化如果让一线流程更复杂，节省的时间很快会被复核和返工吃掉。
+
+### McKinsey 的收费结构调整显示，AI 正在压缩按小时计费的咨询逻辑
+
+- 来源：Times of India / Financial Times
+- 日期：2026-05-16
+- 链接：https://timesofindia.indiatimes.com/technology/tech-news/mckinsey-is-rethinking-its-pay-structure-because-clients-are-no-longer-paying-for-hours-but/articleshow/131131220.cms
+- 摘要：围绕 McKinsey 调整合伙人薪酬和客户收费结构的报道指出，咨询行业正在从按小时投入转向更强调结果和产出的定价。AI 提高分析、文档和运营交付效率后，客户更难接受单纯按人天计费。这个信号不只属于咨询业：所有知识服务都要回答同一个问题，即当模型降低执行成本后，组织如何定义成果、归因价值，并设计新的激励和商业模式。
+
+## 5. GitHub 热门 repo & 趋势追踪
+
+### onyx-dot-app/onyx：企业 Deep Research 和知识检索正在汇合到同一个开源系统
+
+- 来源：GitHub / Daily Dose of Data Science
+- 日期：2026-05-25
+- 链接：https://github.com/onyx-dot-app/onyx
+- 摘要：Daily Dose of DS 将 Onyx 作为开源 deep researcher 的代表案例；公开仓库显示，它面向企业搜索、连接器、知识库和 agentic research。它值得进入第五象限，是因为 Deep Research 不再只是消费者产品功能，而是和内部文档权限、连接器、研究任务拆解、引用汇总、权限边界和部署形态结合成企业级知识系统。
+
+### onnx/onnx：模型交换格式继续承担训练框架与运行时之间的契约层
+
+- 来源：GitHub / ONNX
+- 日期：2026-05-25
+- 链接：https://github.com/onnx/onnx
+- 摘要：Daily Dose of DS 当天把 ONNX 放回生产模型部署的中心。ONNX 仓库本身值得进入第五象限，是因为它定义的中间表示仍然是训练框架、模型交换、优化器和推理运行时之间的关键契约。随着模型部署端点变多，团队要追踪的不只是模型权重，还包括算子集、shape、metadata、版本兼容和执行后端能否稳定解释同一个 graph。
+
+### google-deepmind/alphaproof-nexus-results：形式证明 agent 需要公开、可检查的结果仓库
+
+- 来源：GitHub / arXiv
+- 日期：2026-05-21
+- 链接：https://github.com/google-deepmind/alphaproof-nexus-results
+- 摘要：AlphaProof Nexus 的结果仓库让论文里的 formal proof search 更容易被复查和复现。对 AI research 来说，这是一个重要工程信号：如果 agent 产出的是证明、代码、实验或安全报告，那么结果不应只存在于论文描述或新闻稿里，而应该有可以检查的 artifact、脚本、数据和版本记录。第五象限记录它，是为了追踪“AI 做研究”如何从演示走向可验证交付。
 
 ## 📬 Newsletter 精选
 
-### Daily Dose of DS：function approximation 是 agent 长链路控制的基础直觉
+### ByteByteGo：How CockroachDB Built Vector Indexing at Scale
 
-- 来源：Daily Dose of Data Science
-- 日期：2026-05-24
-- 链接：https://www.dailydoseofds.com/rl-course-part-5
-- 摘要：强化学习课程新章从 tabular value function 走向参数化函数、MSVE、linear function approximation、semi-gradient TD 和 Mountain Car tile coding。它对 agent 工程的意义在于：状态太多时如何泛化价值，以及 function approximation、bootstrapping、off-policy learning 为什么会形成 deadly triad。
+- 来源：ByteByteGo
+- 日期：2026-05-25
+- 链接：https://blog.bytebytego.com/p/how-cockroachdb-built-vector-indexing
+- 摘要：这封邮件以 CockroachDB 的向量索引为例，解释为什么向量搜索进入分布式事务数据库时，问题会从 ANN 算法扩展到 sharding、hot spots、incremental updates、quantization、multi-tenancy 和区域数据本地性。它补充了今天工程栏目的系统设计背景。
 
-### Every：Cheap Competence 会扩大人类给模型设定 frame 的工作
+### The Rundown AI：Google cracks decades-old math problems
 
-- 来源：Every
-- 日期：2026-05-24
-- 链接：https://every.to/context-window/cheap-competence-new-frontier
-- 摘要：Every 将 Dan Shipper 的 “After Automation” 放到 Stainless、Slack agent workflow、Google I/O、职业入门变化和医疗场景中讨论。结论是：当模型能完成更多低成本任务，稀缺能力会转向判断什么问题值得交给模型、怎样定义边界、怎样让输出进入组织流程，以及在具体处境里下一步该做什么。
-
-### Every：Gas City 暴露 100-agent 软件工厂的潜力和成本
-
-- 来源：Every
-- 日期：2026-05-19
-- 链接：https://every.to/context-window/inside-the-100-agent-software-factory
-- 摘要：Gas City 用一个持续存在的 mayor agent 协调大量一次性 worker，并行处理任务、互相审查并交付 pull request。它展示了 supervisor + disposable workers、多模型 code review 等好想法，也暴露成本、上下文重复读取、任务追踪界面和工具复杂度问题。
+- 来源：The Rundown AI
+- 日期：2026-05-25
+- 链接：https://www.therundown.ai/
+- 摘要：The Rundown AI 将 Google DeepMind 的 AlphaProof Nexus 放在当天头条，并把它和 OpenAI 近期数学突破放在一起比较。邮件里值得保留的信号是：数学 agent 的评价正在从“模型回答像不像证明”转向“能否生成可由 Lean 这类系统检查的证明”。

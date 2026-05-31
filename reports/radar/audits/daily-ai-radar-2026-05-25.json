@@ -1,0 +1,143 @@
+{
+  "date": "2026-05-25",
+  "cadence": "daily",
+  "localeFiles": [
+    "src/content/radar/daily-ai-radar-2026-05-25.md",
+    "src/content/radar/daily-ai-radar-2026-05-25.ja.md"
+  ],
+  "backfill": {
+    "reason": "Restore fixed daily schema, remove active platform-source drift, and ground the day in Gmail-confirmed core newsletters plus public canonical links.",
+    "assetsRerun": false,
+    "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
+  },
+  "gmailEvidence": [
+    {
+      "sender": "Daily Dose of DS",
+      "receivedAt": "2026-05-25T20:09:51",
+      "subject": "The No. 1 Deep Researcher Beats Claude and ChatGPT Using a Counterintuitive Trick",
+      "usedAs": "Onyx discovery and ONNX Newsletter/source context",
+      "publicLinks": [
+        "https://github.com/onyx-dot-app/onyx",
+        "https://www.dailydoseofds.com/mlops-crash-course-part-10/"
+      ],
+      "evidence": [
+        "The email explained that Onyx constrains the orchestrator by removing search access and keeping the architecture two levels deep.",
+        "It also covered ONNX as a framework-neutral model representation for production deployment."
+      ]
+    },
+    {
+      "sender": "The Rundown AI",
+      "receivedAt": "2026-05-25T10:04:58",
+      "subject": "Google cracks decades-old math problems",
+      "usedAs": "AlphaProof Nexus, Project Glasswing, Bumblebee and industry signal discovery",
+      "publicLinks": [
+        "https://arxiv.org/abs/2605.22763",
+        "https://www.anthropic.com/research/glasswing-initial-update",
+        "https://github.com/perplexityai/bumblebee"
+      ],
+      "evidence": [
+        "The issue led with AlphaProof Nexus and included Project Glasswing, Bumblebee, McKinsey pricing and Starbucks inventory automation signals.",
+        "The public Markdown follows canonical sources for regular sections and keeps The Rundown as Newsletter/discovery context."
+      ]
+    },
+    {
+      "sender": "ByteByteGo",
+      "receivedAt": "2026-05-25T15:30:38",
+      "subject": "How CockroachDB Built Vector Indexing at Scale",
+      "usedAs": "CockroachDB C-SPANN system-design confirmation",
+      "publicLinks": [
+        "https://blog.bytebytego.com/p/how-cockroachdb-built-vector-indexing",
+        "https://www.cockroachlabs.com/blog/cspann-real-time-indexing-billions-vectors"
+      ],
+      "evidence": [
+        "The email explained CockroachDB's architectural constraints for distributed vector indexing and why C-SPANN treats index partitions as table data."
+      ]
+    }
+  ],
+  "publicSourceVisits": [
+    {
+      "url": "https://onyx.app/blog/building-the-best-deep-research",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://www.cockroachlabs.com/blog/cspann-real-time-indexing-billions-vectors",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://arxiv.org/abs/2605.22763",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/mlops-crash-course-part-10/",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://www.anthropic.com/research/glasswing-initial-update",
+      "status": 200,
+      "usedFor": "tooling/security item"
+    },
+    {
+      "url": "https://github.com/perplexityai/bumblebee",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://onnxruntime.ai/",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://www.nrn.com/quick-service/starbucks-is-ending-its-use-of-ai-to-count-inventory",
+      "status": 200,
+      "usedFor": "industry item"
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/technology/tech-news/mckinsey-is-rethinking-its-pay-structure-because-clients-are-no-longer-paying-for-hours-but/articleshow/131131220.cms",
+      "status": 200,
+      "usedFor": "industry item"
+    },
+    {
+      "url": "https://github.com/onyx-dot-app/onyx",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://github.com/onnx/onnx",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://github.com/google-deepmind/alphaproof-nexus-results",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://blog.bytebytego.com/p/how-cockroachdb-built-vector-indexing",
+      "status": 200,
+      "usedFor": "Newsletter item"
+    },
+    {
+      "url": "https://www.therundown.ai/",
+      "status": 200,
+      "usedFor": "Newsletter item"
+    }
+  ],
+  "publishedItems": {
+    "zh": 14,
+    "ja": 14,
+    "newsletter": 2,
+    "githubTrend": 3
+  },
+  "selfReview": {
+    "schema": "passed",
+    "zhJaTopicOrder": "passed",
+    "duplicateLinks": "passed",
+    "forbiddenPublicTerms": "passed",
+    "newsletterFormat": "passed",
+    "checks": "passed"
+  }
+}

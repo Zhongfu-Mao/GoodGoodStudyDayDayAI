@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-25"
 date: 2026-05-25
 category: radar
 cadence: daily
-plainSummary: "今日の signal は、agent engineering が demo から production へ進むときの基盤に集中しています。Tool calling は code orchestration へ、voice agents は session segmentation と low-latency path へ、memory、evaluation、document parsing、earth observation models、agent harness は運用可能な system layer を補っています。"
+plainSummary: "今日の signal は 3 層に集まっています。Deep Research と vector indexing は agent / retrieval systems をより engineering-driven な architecture へ押し上げ、AlphaProof Nexus と Mythos は verifiable mathematics と vulnerability discovery を進め、Bumblebee、Onyx、public repos は AI risk、evaluation、research workflows を runnable systems に落としています。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -20,94 +20,114 @@ draft: false
 
 ## 対象範囲
 
-- 対象期間：2026-05-24 〜 2026-05-25。あわせて 2026-05-18 〜 2026-05-23 の未採用だが signal value が高い engineering releases も補足します。
+- 対象期間：2026-05-24 〜 2026-05-25。あわせて今週まだ参照価値のある public engineering / industry signals も補足します。
 
----
-![Agent harness workflow](https://substackcdn.com/image/fetch/$s_!jJ4Z!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2ac4f24e-259e-4837-a547-a696f9eed8a0_680x367.png)
+## 1. AI Engineering & アーキテクチャ
 
-*代表画像は [The Anatomy of an Agent Harness](https://www.dailydoseofds.com/p/the-anatomy-of-an-agent-harness/) から。本日の主線である production-grade agent が prompt だけでなく harness、tools、memory、state、verification loop に依存するという signal を表しています。*
+### Onyx の Deep Research lessons は、strong agent architecture が coordinator により多くの tools を渡すことではないと示す
 
-## 1. Agent execution、memory、evaluation
+- 出典：Onyx / Daily Dose of Data Science
+- 日付：2026-05-25
+- リンク：https://onyx.app/blog/building-the-best-deep-research
+- 要約：Daily Dose of DS は Onyx Deep Research architecture を当日の主線にしました。高く評価された research agent は、orchestrator に web search をさせず、task decomposition に集中させ、self-contained briefs を research agents に渡します。Onyx の公式 post も、agent の要点は tool を増やすことではなく、prompt、context、task boundary を明確にすることだと説明しています。長い research workflow では、coordinator が早く答え始めることを防ぎ、multi-hop summarization の歪みを減らし、citation cleanup や dedupe を deterministic steps に寄せることが設計上の鍵です。
 
-### AWS は Programmatic Tool Calling を紹介し、model-generated code で tool calls を orchestrate する
+### CockroachDB の C-SPANN は vector index を distributed SQL 内の ordinary table data として扱う
 
-- 出典：AWS
-- 日付：2026-05-19
-- リンク：https://aws.amazon.com/blogs/machine-learning/implementing-programmatic-tool-calling-on-amazon-bedrock/
-- 要約：AWS は programmatic tool calling を、model が Python code を生成し sandbox 内で複数 tool calls を orchestration し、final result だけを model context に戻す方式として説明しています。実装は self-hosted Docker sandbox、Bedrock AgentCore Code Interpreter、Anthropic SDK compatible proxy の 3 種類です。実験では PTC mode が token usage を 87% から 92% 削減し、test された 8 models すべてで正答した一方、non-PTC mode では Claude family のみが成功しました。重要なのは model replacement ではなく、deterministic loops、filtering、aggregation、error handling を context window の外へ移すことです。
+- 出典：Cockroach Labs / ByteByteGo
+- 日付：2026-05-25
+- リンク：https://www.cockroachlabs.com/blog/cspann-real-time-indexing-billions-vectors
+- 要約：ByteByteGo は CockroachDB が distributed SQL の中で real-time vector indexing をどう作ったかを解説しました。公開設計である C-SPANN は、vector index を独立した in-memory service にせず、partition、centroid、vector data を ordinary key-value rows として保存し、既存の range split、rebalance、replication、multi-region、transactional consistency を利用します。RAG、agent memory、multi-tenant semantic search では、ANN algorithm だけでなく updates、sharding、hot spots、permissions、data locality を database system にどう組み込むかが本当の難所です。
 
-### Amazon Nova Sonic の voice agent design は tools、sub-agents、session segmentation を latency control surface にした
+## 2. モデル最前線 & アルゴリズム探索
 
-- 出典：AWS
-- 日付：2026-05-19
-- リンク：https://aws.amazon.com/blogs/machine-learning/scalable-voice-agent-design-with-amazon-nova-sonic-multi-agent-tools-and-session-segmentation/
-- 要約：AWS は Amazon Nova Sonic、AgentCore Runtime、AgentCore Gateway、Strands BidiAgent、WebSocket streaming を使った scalable voice agent design を説明しました。Architecture は 3 patterns に分かれます。Gateway tools で low latency を狙う、sub-agent / agent-as-tool で deeper reasoning を扱う、session segmentation で各 phase の prompt と tool surface を小さくする、という整理です。Best practices は small sub-agent models、caching、post-auth prefetch、parallel independent calls、filler phrases、tool count reduction です。Voice agent の production issue は話せるかどうかではなく、per-turn latency、tool surface size、state handoff、error recovery です。
+### AlphaProof Nexus は Lean feedback で 9 つの Erdős problems を解き、mathematical agents を verifiable proof search へ進めた
 
-### Kiro CLI が AgentCore Memory に接続し、project と user preferences を retrievable long-term memory にした
+- 出典：Google / DeepMind / arXiv
+- 日付：2026-05-21
+- リンク：https://arxiv.org/abs/2605.22763
+- 要約：The Rundown AI は Google DeepMind の AlphaProof Nexus を headline として扱いました。公開論文によると、この agentic formal proof search framework は Gemini で Lean proofs を生成し、compiler feedback で反復し、9 つの open Erdős problems と 44 の OEIS conjectures を解きました。重要なのは「model が数学を解く」という曖昧な claim ではなく、Lean が result を machine-checkable proof object にすることです。Mathematical research agents の評価軸は、自然言語推論が説得的かどうかから、検証可能な artifact を出せるかへ移っています。
 
-- 出典：AWS
-- 日付：2026-05-19
-- リンク：https://aws.amazon.com/blogs/machine-learning/extending-conversational-memory-in-kiro-cli-using-amazon-bedrock-agentcore-memory/
-- 要約：AWS は custom MCP server で Kiro CLI と Amazon Bedrock AgentCore Memory を接続する方法を示しました。Tools は conversation search、store、retrieve、list、stats、config、delete を含みます。Retrieval は 2 stages で、まず memory records を semantic search し、必要なら event-level content を direct scan します。Namespace は user、project、session 単位で構成でき、CLI hooks が session 前に preferences を load し、session 後に memory を write back します。Coding agent にとって、この memory layer は preferences、project conventions、long-term context を chat transcript から切り出す点に価値があります。
-
-### AgentCore の custom code evaluators は agent quality checks を Lambda と CloudWatch に入れる
-
-- 出典：AWS
-- 日付：2026-05-18
-- リンク：https://aws.amazon.com/blogs/machine-learning/build-custom-code-based-evaluators-in-amazon-bedrock-agentcore/
-- 要約：AWS は Bedrock AgentCore の custom code-based evaluators を紹介しました。Lambda を使って trace、tool call、session level で deterministic checks を実行します。Examples は tool response schema、stock price drift、workflow compliance、PII leak です。Evaluations は development、regression、CI で on-demand に実行でき、production traffic を sampling して CloudWatch metrics にも出せます。この流れは、agent evaluation が LLM-as-judge だけでは足りず、versioned、alertable、deployment pipeline friendly な code evaluators を必要とすることを示しています。
-
-## 2. Open models、document parsing、scientific AI
-
-### PaddleOCR 3.5 は Transformers backend をサポートし、Document AI と Hugging Face stack の接続を軽くした
-
-- 出典：Hugging Face / PaddlePaddle
-- 日付：2026-05-18
-- リンク：https://huggingface.co/blog/PaddlePaddle/paddleocr-transformers
-- 要約：PaddleOCR 3.5 は more flexible inference-engine interface を追加しました。Developers は `engine="transformers"` で PP-OCRv5 や PaddleOCR-VL 1.5 などの supported OCR / document parsing models を実行し、`engine_config` で dtype、device、attention implementation を指定できます。PaddleOCR は OCR / document parsing pipeline を管理し続け、Transformers が model loading、experimentation、deployment の backend になります。RAG、document agents、search、automation では、PDF、scans、screenshots、tables、complex layouts の parsing を PyTorch / Transformers workflows に自然につなげられる点が重要です。
-
-### OlmoEarth v1.1 は token design により earth observation model の compute cost を one third に近づけた
-
-- 出典：Hugging Face / Ai2
-- 日付：2026-05-19
-- リンク：https://huggingface.co/blog/allenai/olmoearth-v1-1
-- 要約：Ai2 はより効率的な earth observation models family、OlmoEarth v1.1 を公開しました。中心は Sentinel-2 remote sensing input の token sequence length を減らす設計です。旧方式は timestep と resolution ごとに token を作っていましたが、新 version は pretraining approach を調整し、task performance を維持しながら token count と compute needs を減らします。Article は v1.1 が各 size で v1 より up to 3x cheaper に run できるとし、Base、Tiny、Nano weights と training code を公開しています。AI for science の進歩は larger models だけでなく、physical data structure に合わせた tokenization と efficiency design からも生まれます。
-
-## 3. Agent harness と optimization loop
-
-### Daily Dose of DS は agent harness を model 外側の complete production system と定義した
+### Daily Dose of DS は ONNX で model portability を説明し、training framework と production runtime の分離を示した
 
 - 出典：Daily Dose of Data Science
-- 日付：2026-05-24
-- リンク：https://www.dailydoseofds.com/p/the-anatomy-of-an-agent-harness/
-- 要約：Daily Dose of DS は、同じ model でも agent product によって performance が大きく変わる理由を harness で説明しています。Harness は orchestration loop、tools、memory、context management、prompt construction、output parsing、state management、error handling、guardrails、verification loops、subagent orchestration に分解されます。Prompt engineering は内側の一部で、context engineering は model が何を見るかを管理し、harness engineering は tools、state、permissions、recovery、verification、lifecycle を覆います。Production agent の難所は single prompt tuning ではなく、operating-system-like engineering に近づいています。
+- 日付：2026-05-25
+- リンク：https://www.dailydoseofds.com/mlops-crash-course-part-10/
+- 要約：Daily Dose of DS は ONNX を production ML の bridge として説明しました。Training は PyTorch や TensorFlow で行われても、deployment は C++ service、mobile device、GPU runtime、CPU-only environment になることがあります。ONNX は model を framework-agnostic computation graph、standard operators、explicit tensor shapes、metadata、weights として保存し、ONNX Runtime が graph optimization と backend execution を担当します。AI systems が production に入ると、model file format、operator coverage、numerical drift、custom ops、hardware execution backend は model quality と同じくらい重要になります。
 
-### Comet Opik は agent optimization を traces、datasets、prompts、experiments の automated loop にする
+## 3. 実践コード & ツールライブラリ
 
-- 出典：Comet Opik
-- 日付：2026-05-24
-- リンク：https://www.comet.com/docs/opik/v1/agent_optimization/overview
-- 要約：Daily Dose of DS が紹介した Opik agent optimization workflow は、より一般的な方向を示しています。Agent の prompt、workflow step、trace、dataset、evaluation results を同じ optimization system に入れる考え方です。Opik documentation は tracing、LLM-as-judge、heuristic eval metrics、prompt versioning、experiments、automated optimization algorithms を強調しています。Teams にとって価値があるのは一度だけ prompt を良くすることではなく、failed samples を dataset に戻し、新旧 prompts を比較可能にし、agent improvement を replayable engineering process にすることです。
+### Project Glasswing の初期結果は、AI security capability を vulnerability discovery から verification、disclosure、patching process へ広げた
+
+- 出典：Anthropic / The Rundown AI
+- 日付：2026-05-22
+- リンク：https://www.anthropic.com/research/glasswing-initial-update
+- 要約：The Rundown AI は Claude Mythos が Project Glasswing で多くの high / critical vulnerabilities を見つけたことを取り上げました。Anthropic の公開 update は、新しい bottleneck が discovery ではなく verification、disclosure、patching になりつつあると述べています。Open-source project scanning、independent triage、partner defense examples も示されています。Engineering teams にとっての論点は、security discovery を model に丸投げすることではなく、auditable triage、patch priority、false-positive handling、responsible disclosure を workflow として持つことです。
+
+### Perplexity は Bumblebee を open source 化し、developer machines の supply-chain exposure を read-only scan する
+
+- 出典：GitHub / Perplexity
+- 日付：2026-05-23
+- リンク：https://github.com/perplexityai/bumblebee
+- 要約：Perplexity は macOS / Linux developer endpoints 向けの read-only scanner である Bumblebee を公開しました。Language package managers、AI agent configs、editor extensions、browser extensions にある known risks を確認しますが、install scripts、package managers、source files、network monitoring は実行しません。この設計は AI development の現実に近いものです。Supply-chain response では SBOM だけでなく、developer local state の lockfiles、manifests、extensions、agent configs が既知の incident に exposed しているかを安全に確認する必要があります。
+
+### ONNX Runtime は model deployment を graph optimization、backend partitioning、execution provider selection の問題にする
+
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-25
+- リンク：https://onnxruntime.ai/
+- 要約：ONNX は intermediate representation であり、実際に production で使うには runtime が graph を実行する必要があります。ONNX Runtime は ONNX graph を読み込み、graph-level optimization を行い、hardware backend に応じて execution を partition します。Daily Dose の記事は、ONNX が万能ではないことも強調しています。Framework ops が完全に map できない場合、execution provider coverage は hardware に依存し、mixed precision は numerical drift を起こし、custom ops は追加 engineering を要求します。「export できる」は「deploy できる」と同義ではありません。
+
+## 4. 業界 & ビジネス速報
+
+### Starbucks は AI inventory counting tool を終了し、visual automation は store execution reliability を先に満たす必要があると示した
+
+- 出典：Restaurant News / Reuters
+- 日付：2026-05-21
+- リンク：https://www.nrn.com/quick-service/starbucks-is-ending-its-use-of-ai-to-count-inventory
+- 要約：Starbucks は North America stores の inventory counting に使っていた AI tool を終了しました。公開報道では、miscounts、mislabeling、front-line workers による manual rechecks が問題として挙げられています。この case は AI deployment の警告です。Enterprise automation は demo accuracy だけでなく、similar SKUs、shelf occlusion、workflow exceptions、worker trust、error-correction cost を通らなければなりません。AI automation が frontline workflow を複雑にするなら、節約された時間は review と rework に吸収されます。
+
+### McKinsey の fee structure adjustment は、AI が billable-hours consulting logic を圧縮していることを示す
+
+- 出典：Times of India / Financial Times
+- 日付：2026-05-16
+- リンク：https://timesofindia.indiatimes.com/technology/tech-news/mckinsey-is-rethinking-its-pay-structure-because-clients-are-no-longer-paying-for-hours-but/articleshow/131131220.cms
+- 要約：McKinsey の partner compensation と client fee structure の見直しに関する報道は、consulting industry が hours-based billing から outcomes-based pricing へ移っていることを示しています。AI が analysis、documents、operations delivery を効率化すると、clients は person-days だけで払うことを受け入れにくくなります。この signal は consulting に限りません。Knowledge services 全体が、models によって execution cost が下がった後、outcomes、value attribution、new incentives、business models をどう定義するかを迫られています。
+
+## 5. GitHub 人気 repo & トレンド追跡
+
+### onyx-dot-app/onyx：enterprise Deep Research と knowledge retrieval が同じ open-source system に近づいている
+
+- 出典：GitHub / Daily Dose of Data Science
+- 日付：2026-05-25
+- リンク：https://github.com/onyx-dot-app/onyx
+- 要約：Daily Dose of DS は Onyx を open-source deep researcher の代表例として取り上げました。Public repository は enterprise search、connectors、knowledge base、agentic research を対象にしています。第五象限で追う理由は、Deep Research が consumer product feature だけではなく、internal document permissions、connectors、research task decomposition、citation synthesis、permission boundaries、deployment shape と結びついた enterprise knowledge system になりつつあるからです。
+
+### onnx/onnx：model exchange format continues to serve as the contract layer between training frameworks and runtimes
+
+- 出典：GitHub / ONNX
+- 日付：2026-05-25
+- リンク：https://github.com/onnx/onnx
+- 要約：Daily Dose of DS は当日、ONNX を production model deployment の中心に戻しました。ONNX repository が fifth quadrant に値するのは、intermediate representation が training frameworks、model exchange、optimizers、inference runtimes の contract layer であり続けているためです。Deployment endpoints が増えるほど、teams は weights だけでなく operator set、shape、metadata、version compatibility、execution backends が同じ graph を安定して解釈できるかを追う必要があります。
+
+### google-deepmind/alphaproof-nexus-results：formal-proof agents need public, checkable result repositories
+
+- 出典：GitHub / arXiv
+- 日付：2026-05-21
+- リンク：https://github.com/google-deepmind/alphaproof-nexus-results
+- 要約：AlphaProof Nexus の results repository は、paper に書かれた formal proof search を review / reproduction しやすくします。AI research における重要な engineering signal は、agent output が proofs、code、experiments、security reports であるなら、result は paper narrative や press summary だけでなく、checkable artifacts、scripts、data、version records として残るべきだということです。
 
 ## 📬 Newsletter 精選
 
-### Daily Dose of Data Science：function approximation は RL agent を tabular world から連続状態へ進める
+### ByteByteGo：How CockroachDB Built Vector Indexing at Scale
 
-- 出典：Daily Dose of Data Science
-- 日付：2026-05-24
-- リンク：https://www.dailydoseofds.com/rl-course-part-5
-- 要約：RL course part 5 は、tabular methods が state space の爆発に弱い理由と、function approximation が generalization を可能にする理由を説明した。Newsletter 枠では、agentic systems の評価と policy learning を理解する基礎として扱った。
+- 出典：ByteByteGo
+- 日付：2026-05-25
+- リンク：https://blog.bytebytego.com/p/how-cockroachdb-built-vector-indexing
+- 要約：このメールは CockroachDB の vector indexing を例に、vector search が distributed transactional database に入ると、問題が ANN algorithm から sharding、hot spots、incremental updates、quantization、multi-tenancy、regional data locality へ広がることを説明しました。今日の engineering section の system-design background を補います。
 
-### Every：cheap competence は AI product の frontier を「難問」から大量の小仕事へ動かす
+### The Rundown AI：Google cracks decades-old math problems
 
-- 出典：Every
-- 日付：2026-05-24
-- リンク：https://every.to/context-window/cheap-competence-new-frontier
-- 要約：Every は、AI の価値が elite performance だけでなく、安価で十分に有能な competence を大量に配ることへ移っていると論じた。本文では、software factory、医療判断、agent deployment といった読み筋を支える経済的背景として扱い、具体的な状況で次に何をすべきかを決める human framing の重要性も示した。
-
-### Every：100-agent software factory は人間の組織設計を agent orchestration の問題へ変える
-
-- 出典：Every
-- 日付：2026-05-19
-- リンク：https://every.to/context-window/inside-the-100-agent-software-factory
-- 要約：Every は Gas City の 100-agent software factory を紹介し、多数の specialized agents を組み合わせた software development の形を描いた。重要なのは agent count ではなく、task decomposition、review、handoff、human oversight をどう設計するかだ。
+- 出典：The Rundown AI
+- 日付：2026-05-25
+- リンク：https://www.therundown.ai/
+- 要約：The Rundown AI は Google DeepMind の AlphaProof Nexus を当日の headline とし、OpenAI の recent math breakthrough と並べて扱いました。メールから残すべき signal は、mathematical agents の評価が「proof-like answer」から「Lean などで checkable な proof を生成できるか」へ移っていることです。
