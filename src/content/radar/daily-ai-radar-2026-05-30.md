@@ -3,143 +3,159 @@ title: "AI 雷达日报：2026-05-30"
 date: 2026-05-30
 category: radar
 cadence: daily
-plainSummary: "今天的主线是前沿 agent 进入可度量、可审计、可部署的工程层：Anthropic 推出 Claude Opus 4.8、动态工作流和大规模融资；OpenAI 把第三方评测、生物防御、医院落地和 Codex 企业开发放在同一天展开；AWS 与 GitHub 则把 LLM 质量观测和 Copilot 采用率指标推进到平台 API。"
+plainSummary: "今天的主线是 agent 工程进入可测试、可恢复、可复盘的生产阶段：DoorDash 用仿真与 LLM-as-judge 修复客服幻觉，Daily Dose 讨论 agent 崩溃后的 checkpoint/resume，OpenAI 与 Anthropic 继续把评测、医疗、安全与编码案例推向公开叙事，Every 则把 compound engineering 从四步扩展到八步。"
 difficulty: intermediate
 tags:
   - AI Engineering
   - Agent
   - Evaluation
-  - Observability
+  - Engineering Workflow
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-05-30-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-05-30.mp3
-audioDuration: 1303
-audioSize: 10423256
+audioDuration: 1254
+audioSize: 10036624
 draft: false
 ---
 
 ## 本期范围
 
-- 覆盖时间：2026-05-29 至 2026-05-30，并补充少量同一主题下的高信号 Newsletter。
+- 覆盖时间：2026-05-29 至 2026-05-30，并结合少量同一主题下的高信号 newsletter 与公开资料。
 
----
-![Introducing Claude Opus 4.8](https://cdn.sanity.io/images/4zrzovbb/website/0eaa0ed2dce9810169112e1c77de2585fcf1f5c2-2880x1620.jpg)
+## 1. AI Engineering & 架构
 
-*代表图来自 [Introducing Claude Opus 4.8](https://www.anthropic.com/news/claude-opus-4-8)。它对应这期日报里最能概括当天主线的一条原始信号。*
+### DoorDash 用仿真与 LLM-as-judge 建立客服 LLM 的评测飞轮
 
-## 1. 前沿模型、资本与运行时
+- 来源：ByteByteGo / DoorDash Engineering
+- 日期：2026-05-30
+- 链接：https://blog.bytebytego.com/p/how-doordash-built-a-testing-system
+- 摘要：ByteByteGo 复盘 DoorDash 如何为客服 LLM 建立 simulation and evaluation flywheel：离线 simulator 根据历史客服对话生成多轮用户行为，再由评测框架逐项判断 chatbot 是否遵守政策、是否幻觉、语气是否合适、分类是否正确。关键不是“再调一个 prompt”，而是把失败模式写成 evaluation，在 200 多个模拟会话里快速回归，再用人类标注校准 LLM judge。DoorDash 还发现，直接把所有订单事件塞进上下文会让模型误读字段，于是引入 case state，把原始工具历史压成结构化中间表示，最终让仿真中的幻觉下降 90%。这是生产 LLM 系统最值得保留的信号：上线前要有能捕捉回归的评测飞轮。
 
-### Claude Opus 4.8 把模型升级和 agent runtime 升级放在一起发布
+### Agent 崩溃不是数据库崩溃，恢复点必须保存决策链
+
+- 来源：Daily Dose of Data Science / Google Cloud
+- 日期：2026-05-29
+- 链接：https://cloud.google.com/products/gemini-enterprise-agent-platform
+- 摘要：Daily Dose 解释了为什么 agent crash 不能照搬数据库重启模型：数据库可以回放 WAL 重建同一状态，但 agent 重新跑一遍任务时，LLM 可能对同一个模糊日期、工具结果或中间判断做出不同选择，进而造成 decision drift。解决方向是 checkpoint-and-resume：周期性保存进度、累积决策、推理链、人类审批等待点和上下文窗口，让恢复时延续同一状态，而不是重新解释世界。邮件借 Google Cloud Gemini Enterprise Agent Platform 的 Memory Bank、Resume Agents 与 Ambient Agents 说明，agent memory 不只是检索问题，更是长任务一致性问题。
+
+### Compound Engineering 从四步扩展到八步，规划和构建开始合流
+
+- 来源：Every
+- 日期：2026-05-29
+- 链接：https://every.to/guides/compound-engineering-gets-an-upgrade
+- 摘要：Every 的 Kieran Klaassen 更新了 compound engineering 方法论：AI-native 工程不再只是让模型补代码，而是把问题 framing、计划、实现、验证、审查、复盘和规则更新串成一个持续循环。文章的重点在于“规划”和“构建”的边界正在坍缩，工程师把目标交给 AI 后，需要更强的任务拆解、上下文组织、验收标准和结果判断。它和 DoorDash / Daily Dose 的两条线互相补充：生产 agent 的价值不只在生成速度，也在是否能让人类更快看清问题、制定评价标准并修正流程。
+
+## 2. 模型前沿 & 算法探索
+
+### Anthropic 发布 Claude Opus 4.8，并把模型升级与 agent runtime 绑定叙事
 
 - 来源：Anthropic
 - 日期：2026-05-29
 - 链接：https://www.anthropic.com/news/claude-opus-4-8
-- 摘要：Anthropic 发布 Claude Opus 4.8，定价维持常规 Opus 档位，同时新增 effort control、Claude Code 动态工作流和更便宜的 fast mode。官方重点不只是模型分数，而是把长程编码、法律、浏览器/电脑使用、检索引用和多 agent 协作放进同一套运行时。动态工作流允许 Claude 在一次会话里规划任务并启动大量并行子 agent，面向大代码库迁移、跨模块修复和测试驱动验证。Messages API 也支持在 messages 数组中追加 system entry，让任务中途更新指令而不破坏 prompt cache 或用户轮次。信号很清楚：前沿模型竞争正在从单模型能力转向“模型 + harness + 缓存 + 子 agent 编排”的整体交付。
+- 摘要：Anthropic 推出 Claude Opus 4.8，公开叙事不只是“模型分数提升”，而是把 coding、长上下文、工具稳定性和 agent runtime 放在一起讲。结合 The Rundown AI 当天对 Anthropic 业务势能的报道，可以看到前沿模型厂商正在把竞争焦点从单次回答质量扩展到企业能否把 agent 放进真实工作流。对读者来说，值得跟踪的不是某个榜单小幅领先，而是模型、工具、记忆、恢复和评测能力是否一起成熟。
 
-### Anthropic 完成 650 亿美元 Series H，估值升至 9650 亿美元
-
-- 来源：Anthropic
-- 日期：2026-05-29
-- 链接：https://www.anthropic.com/news/series-h
-- 摘要：Anthropic 宣布完成 650 亿美元 Series H，投后估值 9650 亿美元，年化收入 run-rate 本月已超过 470 亿美元。融资由 Altimeter、Dragoneer、Greenoaks 和 Sequoia 领投，并纳入来自 hyperscaler 的既有 150 亿美元承诺，其中 Amazon 贡献 50 亿美元。基础设施侧，Anthropic 同时强调与 Micron、Samsung、SK hynix 的供应链合作，以及 Amazon、Google/Broadcom 和 SpaceX GPU/TPU 容量安排。这里的信号不是单纯融资数字，而是前沿模型公司正在把资本、云、芯片、内存和超大规模数据中心绑定成多云供给链。
-
-## 2. 评测、治理与生命科学安全
-
-### OpenAI 发布第三方评测 playbook，要求把 claim、harness 和预算讲清楚
+### OpenAI 的第三方评测 playbook 要求把 claim、harness 和预算讲清楚
 
 - 来源：OpenAI
 - 日期：2026-05-29
 - 链接：https://openai.com/index/trustworthy-third-party-evaluations-foundations
-- 摘要：OpenAI 提出前沿 AI 第三方评测的基础 playbook，核心是每次评测必须明确自己在证明什么：能力诱导、safeguard 表现，还是模型之间的比较。文章强调 harness 会显著影响结果，因此评测报告应公开工具、脚本、token/时间/成本预算、问题过滤、拒答处理、污染检查和 sandbagging 风险。OpenAI 还把 Codex CLI 作为 coding-agent 评测的开源 harness 起点，并指出 compaction 与预算设置会改变多轮任务表现。对读者最重要的结论是：AI 评测正在从“排行榜分数”转向可复现的实验声明和证据链。
+- 摘要：OpenAI 发布第三方评测基础 playbook，强调评测应明确 claim、任务边界、harness、预算、样本来源、失败标准和统计解释。这个方向和 DoorDash 的内部评测飞轮遥相呼应：无论是公开 benchmark 还是企业内部回归，都不能只给一个总分，而要说明具体要验证什么、如何复现、在什么成本和约束下比较。随着 agent 进入医疗、客服、编程和研究流程，评测会变成产品质量体系的一部分。
 
-### Rosalind Biodefense 把生命科学模型限定在可信开发者和公共卫生场景
+### Rosalind Biodefense 把生命科学模型限定在可信开发者与公共卫生场景
 
 - 来源：OpenAI
 - 日期：2026-05-29
 - 链接：https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense
-- 摘要：OpenAI 推出 Rosalind Biodefense，并扩大 GPT-Rosalind 对美国政府、盟友伙伴和可信研究机构的访问。这个项目面向流行病建模、早期检测、筛查、100 Days Mission、非药物干预和公共卫生能力建设，初始合作包括 Fourth Eon Biosecurity、LLNL、Johns Hopkins APL 和 CEPI。文章同时强调生物安全评测、专家红队、安全控制和受限访问。它释放的信号是：生命科学 AI 的产品化不会只按通用 API 路线推进，而会更依赖可信用户、用途边界和独立安全流程。
+- 摘要：OpenAI 介绍 Rosalind Biodefense，重点是把生命科学相关模型能力限制在可信开发者和公共卫生用途，而不是开放给所有人做无限制实验。这个条目和 Biohub / AlphaFold 一类科学 AI 新闻不同，核心不在模型能力，而在访问控制、使用审查和社会风险边界。它说明前沿模型的安全讨论正在从“发布前红队测试”扩展到“发布后谁可以用、在什么制度内用、如何证明用途合理”。
 
-### Boston Children’s Hospital 把 AI 作为医院级工作层，而不是单点试点
+## 3. 实战代码 & 工具库
 
-- 来源：OpenAI
+### Transformer Lab 把训练、评测、转换和集群任务放进同一套研究工作台
+
+- 来源：Daily Dose of Data Science
 - 日期：2026-05-29
-- 链接：https://openai.com/index/boston-childrens-hospital
-- 摘要：Boston Children’s Hospital 将 OpenAI 技术嵌入临床、研究和行政流程，超过三分之一员工每天使用 AI。医院已部署 50 多个自动化，节省约 6 万小时、重新分配超过 700 万美元劳动价值。最强的案例是“co-pilot geneticist”：系统整合遗传数据、表型和文献，已经帮助完成 40 多个罕见病诊断，并发现新的基因靶点和治疗路径。它说明医疗 AI 的落地不只是病历摘要，而是医院知识、研究流程和诊断推理的连续工作层。
+- 链接：https://lab.cloud/
+- 摘要：Daily Dose 推荐 Transformer Lab，称它是面向 AI research labs 的开源操作系统。公开仓库显示，它把 LoRA / QLoRA / DPO / ORPO / SIMPO、LLM-as-a-judge eval、EleutherAI harness、模型格式转换、本地运行、集群提交和 GUI / CLI / agent skill 放在同一平台里。它值得进入工具栏，是因为实验室级 AI 工程的痛点已经从“能不能跑一个训练脚本”变成“训练、评测、部署、资源调度和实验复盘是否能被同一套流程管理”。
 
-## 3. Agent 产品化与工程可观测性
+### Qwen 3 Agentic RAG 教程把 CrewAI、Firecrawl 与 LitServe 串成私有部署路径
+
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-29
+- 链接：https://www.dailydoseofds.com/ai-agents-crash-course-part-17-with-implementation/
+- 摘要：Daily Dose 的 hands-on 部分展示如何部署一个由 Qwen 3 驱动的 Agentic RAG：Retriever Agent 负责调用 web search 或 vector DB 工具，Writer Agent 负责生成最终回答，CrewAI 做 agent orchestration，Firecrawl 做网页搜索，LitServe 提供服务化接口。这个例子比单纯 RAG demo 更接近生产形态，因为它把工具选择、agent 分工、服务入口和本地模型部署放在一起。它也提醒我们：Agentic RAG 的门槛不在“把模型接上检索”，而在服务边界、工具可靠性和评测闭环。
 
 ### Braintrust 用 Codex 把客户需求转成可预览分支
 
 - 来源：OpenAI
 - 日期：2026-05-29
 - 链接：https://openai.com/index/braintrust
-- 摘要：Braintrust 是 eval 与 observability 平台，其团队在一个月内让约一半成员转向 Codex 工作流。文章描述的关键模式是：工程师先写出能复现客户问题的测试和 sandbox，再让 Codex 生成 preview branch，团队用真实测试和客户反馈判断是否继续。这里的价值不是让 agent 直接替代工程师，而是把“客户请求 → 可运行分支 → 评测与观察 → 合并决策”压缩成更短循环。对于 AI 工程团队，这也是 Codex 最适合落地的边界：围绕已有测试、可观测性和 review 机制扩大探索带宽。
+- 摘要：OpenAI 的 Braintrust 案例展示了另一个 coding agent 落地面：把客户需求转成 preview branch，让产品、工程和客户反馈在更短回路中对齐。它和 Every 的 compound engineering 形成互证：AI-native 工程不是让模型一次性生成最终答案，而是把需求、实现、验证、预览和反馈压缩到同一条循环里。对工程团队来说，真正的价值来自可检查的分支、可运行的预览和可回滚的 diff，而不是“agent 帮忙写了代码”这句宽泛描述。
 
-### SageMaker AI 为 LLM 推理端点补上数量与质量两类观测
+## 4. 行业与商业快讯
 
-- 来源：AWS
+### Boston Children’s Hospital 把 AI 作为医院级工作层，而不是单点试点
+
+- 来源：OpenAI
 - 日期：2026-05-29
-- 链接：https://aws.amazon.com/blogs/machine-learning/comprehensive-observability-for-amazon-sagemaker-ai-llm-inference-from-gpu-utilization-to-llm-quality/
-- 摘要：AWS 展示了面向 Amazon SageMaker AI 推理组件的 LLM observability 架构：一类指标追踪吞吐、GPU/CPU、延迟和成本，另一类指标追踪准确性、合规性、一致性和安全性。方案用 CloudWatch、Managed Grafana、自定义质量 namespace 和 LLM-as-judge，把 gpt-oss-20b 与 Qwen2.5-7B-Instruct 这类模型放到同一 dashboard 里比较。文章也提醒团队固定 evaluator 版本、确认服务条款和数据驻留。生产信号很直接：LLM endpoint 的健康度不再只看 GPU 利用率和 P99 延迟，还要把输出质量变成持续指标。
+- 链接：https://openai.com/index/boston-childrens-hospital
+- 摘要：OpenAI 介绍 Boston Children’s Hospital 的 AI 落地方式，重点不是单个 PoC，而是把 AI 放进医院级工作层：临床、运营、研究和行政流程都需要权限、审查、数据边界和安全责任。这个案例适合放在商业快讯，因为医疗场景最能说明 enterprise AI 的组织约束：模型能力只是入口，真正的上线条件是流程责任、合规边界、可解释输出和人与系统的职责划分。
 
-### GitHub Copilot usage metrics API 增加 AI 采用阶段分群
+### The Rundown AI 记录 Anthropic 势能与开发者生产力分化
 
-- 来源：GitHub Changelog
+- 来源：The Rundown AI
 - 日期：2026-05-29
-- 链接：https://github.blog/changelog/2026-05-29-copilot-usage-metrics-api-adds-cohorts-for-ai-adoption
-- 摘要：GitHub 在 Copilot usage metrics API 中新增 `ai_adoption_phase` 和 `totals_by_ai_adoption_phase`，把用户按 AI 采用方式分为无 cohort、code first、agent first 和 multi-agent。指标覆盖 engaged users、交互均值、代码生成与接受、增删行、PR 创建/合并/评审以及 median time-to-merge。这个更新对工程管理者有用，因为它把“团队有没有用 Copilot”升级为“团队处在代码补全、单 agent 还是多 agent 协作阶段”，也让采用率、产出和交付指标可以按行为 cohort 拆开分析。
+- 链接：https://www.therundown.ai/
+- 摘要：The Rundown AI 当天以 Anthropic 与开发者生产力为主线，提到开发者输出在一段时间内显著上升，但收益集中在少数 power users 身上。这个信号比单纯融资或估值更值得关注：agent 与 coding tools 可能把强工程师进一步放大，也可能让团队内部出现新的能力分层。企业采用 AI 时，如果只看平均生产力，很容易忽略成本、模型选择、流程成熟度和不同成员之间的收益差异。
 
-## 4. Google 的生成式界面与学习原型
+### GitHub Copilot metrics API 开始把采用率拆成阶段性 cohort
 
-### Gemini Omni、Gemini 3.5 和 Antigravity 把多模态生成、长程 agent 与 Search UI 串起来
-
-- 来源：Google
+- 来源：GitHub
 - 日期：2026-05-29
-- 链接：https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/
-- 摘要：Google 用 9 个演示重新梳理 Gemini Omni 与 Gemini 3.5：Omni 从视频输入开始做多模态生成和持续编辑，3.5 Flash 面向长程 agentic task 与 coding，并由 Antigravity 驱动。Search information agents 可以在后台持续跟踪主题，生成式 UI 会在今年夏天向免费用户开放；更复杂的自定义体验先给美国 AI Pro/Ultra 用户。这里延续了 I/O 2026 的主线：Search 不只是返回链接，而是逐步变成可生成、可编排、可持续更新的界面。
+- 链接：https://github.blog/changelog/2026-05-29-copilot-usage-metrics-api-adds-cohorts-for-ai-adoption/
+- 摘要：GitHub Copilot usage metrics API 增加了按 AI 采用阶段划分的 cohort，让组织不只看“用了多少”，还能看到不同团队、不同成熟度和不同使用深度的差异。它和 The Rundown 的开发者生产力分化放在一起看很有价值：AI 工具的组织影响不是均匀扩散，管理者需要知道谁在深度使用、谁只是浅尝、哪些工作流真的进入了提交、review 和交付。
 
-### Google AI Studio 的 I/O quiz 展示非工程用户的 prompt-to-app 路径
+## 5. GitHub 热门 repo & 趋势追踪
 
-- 来源：Google
-- 日期：2026-05-29
-- 链接：https://blog.google/innovation-and-ai/technology/ai/io-2026-vibe-coded-quiz/
-- 摘要：Google 编辑用 Gemini 生成 prompt，在 Google AI Studio 上传 I/O 2026 公告和设计灵感，再通过预览迭代做出交互式 quiz。这个案例的信号不是 quiz 本身，而是 AI Studio 与 Antigravity 正在把“非工程用户描述需求、上传素材、反复预览、生成可运行应用”做成常规产品路径。它适合放在企业工具雷达里观察：低代码工具的下一步不是更多表单字段，而是把 prompt、上下文素材、preview 和部署揉成一个工作台。
+### transformerlab/transformerlab-app：AI research workbench 越来越像实验操作系统
 
-### Waterloo Futures Lab 用 8 周工作坊探索 AI 与教育体验
-
-- 来源：Google
-- 日期：2026-05-29
-- 链接：https://blog.google/innovation-and-ai/technology/ai/university-waterloo-labs/
-- 摘要：Google 资助 University of Waterloo Futures Lab，以 8 周 AI/UX prototyping workshop 探索教育和工作场景。原型包括 Kanji Garden、SignFluent 和 MuscleMemory，分别面向汉字学习、手语练习和技能训练。相比大模型发布，这类原型更接近用户体验层的真实问题：AI 如何嵌入学习路径、反馈循环和练习材料，而不是只作为一次性问答工具。
-
-## 5. 评测 harness 与开放模型栈
-
-### 多轮 RL 的“Token-In, Token-Out”问题暴露 agent 训练管线细节风险
-
-- 来源：Latent.Space
+- 来源：GitHub
 - 日期：2026-05-30
-- 链接：https://www.latent.space/p/ainews-founders-and-forward-deployed
-- 摘要：Latent.Space 本期摘出一个多轮 RL 训练细节：如果系统先解码、解析 tool call，再把对话重新 tokenization，梯度可能落在并非模型原始采样出来的序列上。作者把这个原则概括为 Token-In, Token-Out。它与 OpenAI 今天的评测 playbook 指向同一件事：agent 结果越来越依赖 harness、token 边界、工具调用表示和回放逻辑；训练、评测和部署如果不记录这些细节，就很难解释性能变化。
+- 链接：https://github.com/transformerlab/transformerlab-app
+- 摘要：Transformer Lab 把本地模型、训练、评测、模型转换和集群任务调度放在同一套工作台里，契合“AI research lab OS”的趋势。它值得追踪，是因为开源 AI 工程的下一层竞争不只是模型权重，而是围绕实验、评测、资源和复现的工作流系统。一个团队能否稳定迭代模型，很大程度取决于这些繁琐但关键的操作是否被产品化。
 
-### 开放权重、本地模型和 StepFun 3.7 Flash 显示“足够强且可控”的路线仍在推进
+### patchy631/ai-engineering-hub：Agentic RAG 从教程变成可部署模板
 
-- 来源：Latent.Space
+- 来源：GitHub
 - 日期：2026-05-30
-- 链接：https://www.latent.space/p/ainews-founders-and-forward-deployed
-- 摘要：同一期 Newsletter 还强调开放权重和本地模型的持续动能：AI 工程团队使用 open-weight 模型的比例继续上升，Hugging Face 上私有模型与数据集也在增加。文中还提到 StepFun 3.7 Flash 这类 MoE 模型，尝试在较低 active 参数、较高吞吐和可本地部署之间取得平衡。和前面 Anthropic 的超大规模资本叙事相对，这条线代表另一种工程选择：企业未必总是追求最强闭源模型，也会追求可控、可部署、成本边界清晰的模型栈。
+- 链接：https://github.com/patchy631/ai-engineering-hub/tree/main/deploy-agentic-rag
+- 摘要：Daily Dose 的 Qwen 3 Agentic RAG 代码落在 ai-engineering-hub 仓库里，说明教程正在从文字说明变成可运行模板。这个趋势值得留意：AI 工程学习资料如果只停在概念层，很难进入生产；而把 agent orchestration、工具调用、服务部署和本地模型组织成可复现代码，才会真正降低团队试验成本。
+
+### openai/codex：Codex 案例继续推动代码 agent 从助手走向交付环节
+
+- 来源：GitHub
+- 日期：2026-05-30
+- 链接：https://github.com/openai/codex
+- 摘要：Braintrust、Cisco、Warp 等连续案例让 openai/codex 继续值得追踪。它代表的不是某个单点产品，而是代码 agent 正在进入需求澄清、分支创建、测试、预览和回滚这些交付环节。未来判断这类仓库的关键，不是 star 数本身，而是它能否稳定连接本地上下文、命令执行、测试结果、代码审查和团队规则。
 
 ## 📬 Newsletter 精选
 
-### Daily Dose of DS：agent crash 不是 database crash
+### ByteByteGo：How DoorDash Built a Testing System to Evaluate LLMs
+
+- 来源：ByteByteGo
+- 日期：2026-05-30
+- 链接：https://blog.bytebytego.com/
+- 摘要：这封邮件系统讲解 DoorDash 的 LLM simulation and evaluation flywheel，包括多轮模拟用户、LLM-as-judge、人类校准、case state 和 90% 幻觉下降。它是本期 AI Engineering 主线的核心来源。
+
+### Daily Dose of DS：Why Agent Crashes Are Nothing Like Database Crashes
 
 - 来源：Daily Dose of Data Science
 - 日期：2026-05-29
-- 链接：https://fandf.co/4nW0rev
-- 摘要：邮件强调，database crash 可以依靠确定性的 write-ahead log 恢复，而 agent crash 会遇到非确定性判断漂移。长程 agent 需要 checkpoint、可恢复上下文、持久 memory 和事件驱动执行，把状态管理作为平台能力，而不是应用层临时 Redis 拼装。
+- 链接：https://www.dailydoseofds.com/
+- 摘要：这封邮件把 agent crash 解释为 state consistency 问题，而不是普通服务重启问题，同时补充 Transformer Lab 与 Qwen 3 Agentic RAG。它为本期“可恢复 agent”与工具栏提供了主要证据。
 
 ### Every：Compound Engineering Gets an Upgrade
 
 - 来源：Every
 - 日期：2026-05-29
-- 链接：https://every.to/context-window/compound-engineering-gets-an-upgrade
-- 摘要：Every 将 compound engineering 从早期四步扩展到更完整的方法论，强调软件团队需要把模型、工具、上下文、评测、组织流程和复用资产组合起来。它与今天的 Codex、Braintrust 和 GitHub 采用指标信号一致：AI-native engineering 的核心是系统化工作流，而不是单点自动补全。
+- 链接：https://every.to/guides
+- 摘要：这封邮件把 compound engineering 从早期四步扩展到八步，强调计划、构建、验证、复盘和规则更新正在合并成一个 AI-native 工程循环。它补充了本期关于工程组织方式变化的视角。

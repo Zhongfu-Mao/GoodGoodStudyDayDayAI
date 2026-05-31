@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-28"
 date: 2026-05-28
 category: radar
 cadence: daily
-plainSummary: "今日の主線は、enterprise agent が capability demo から measurable production に移っていることです。Cisco、Warp、Tax AI、AWS Sales、AWS SMGS、Verizon Connect、WHI は、実ワークフローにおける orchestration、permissions、observability、memory、evaluation、cost を論じています。一方で ITBench-AA は、enterprise SRE diagnosis がまだ難しく、frontier models でも Kubernetes incident root-cause localization で 50% に届かないことを示しました。"
+plainSummary: "今日の主線は、agent engineering が demo から production loop に入っていることです。OpenAI の Cisco、Tax AI、Warp cases は code、tax workflow、developer environment における verifiable workflows を示し、Hugging Face / IBM の ITBench-AA は enterprise SRE diagnosis がまだ難しいことを示しました。Daily Dose と Every は RAG、tool calling、automation 後の responsibility boundary を補っています。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -20,14 +20,9 @@ draft: false
 
 ## 対象範囲
 
-- 対象期間：2026-05-27 〜 2026-05-28。あわせて同じ theme に関係する high-signal Newsletter と course article を少量補足します。
+- 対象期間：2026-05-27 〜 2026-05-28。少量の high-signal newsletters と public sources も補足します。
 
----
-![ITBench-AA benchmark leaderboard for agentic enterprise IT tasks](https://cdn-uploads.huggingface.co/production/uploads/64e8143f6de557454220921e/VLy6B6WYEMDqxEJL9KWNQ.png)
-
-*代表画像は [Hugging Face / IBM Research の ITBench-AA article](https://huggingface.co/blog/ibm-research/itbench-aa) から。本日の最重要 tension、enterprise が agents を real workflows に入れ始める一方で、complex IT diagnosis、root-cause localization、low-false-positive output では model capability がまだ不足している、という構図を表しています。*
-
-## 1. Enterprise coding と self-improving agents
+## 1. AI Engineering & アーキテクチャ
 
 ### Cisco と OpenAI は Codex を enterprise engineering lifecycle に組み込んだ
 
@@ -50,44 +45,7 @@ draft: false
 - リンク：https://openai.com/index/warp
 - 要約：Warp は terminal client の open source 化に続き、Open Agentic Development を提案しました。Humans が objectives を定義し outcomes を supervise し、agents が planning、coding、testing、pull request creation を担う形です。OpenAI article によると、GPT-5.5 は Warp の internal agentic coding tasks で GPT-5.4 より 30% fewer tokens を使いました。Warp は現在 almost 1 million developers を持ち、Fortune 500 の 56% 以上で使われ、社内では pull requests の約 90% が agents と共同作成されています。Oz control plane は local / cloud environments across agents の deployment、context preservation、long-running workflow observation、recurring workflows を担当し、memory、compaction、code-search subagents、evaluation pipelines で reliability を保ちます。Product shape は single chat から agent fleet management に移っています。
 
-## 2. AWS production agent cases
-
-### AWS Sales の Field Advisor は 20 以上の specialized agents から生まれる selection burden を解消する
-
-- 出典：AWS
-- 日付：2026-05-27
-- リンク：https://aws.amazon.com/blogs/machine-learning/powering-agentic-ai-sales-strategy-with-amazon-bedrock-agentcore/
-- 要約：AWS Sales には CRM、meeting scheduling、customer insights、product recommendations、compliance checks を扱う 20 以上の specialized agents がありました。しかし sales reps は、どの agent を呼ぶべきかを自分で判断し、複数 systems の context を手作業でつなぐ必要がありました。Field Advisor は Amazon Bedrock AgentCore を unified orchestration layer として使います。Supervisor agent が natural language request を local tools、remote MCP tools、specialized sub-agents に route し、AgentCore Identity、Gateway、Memory、Observability、Evaluations が identity propagation、tool access、memory、tracing、continuous quality monitoring を支えます。Launch 後、sales teams は 120K 以上の prompts を送信しました。Human-in-the-loop write workflow は large-scale sales reps に weekly up to 2 hours を節約し、AgentCore migration は latency を 41% 下げ、7 AWS accounts を single Runtime に consolidated しました。
-
-### AWS SMGS の NarrateAI は business intelligence を batch narratives と realtime conversation に分ける
-
-- 出典：AWS
-- 日付：2026-05-27
-- リンク：https://aws.amazon.com/blogs/machine-learning/how-aws-smgs-uses-an-ai-powered-conversational-assistant-to-transform-business-management-with-amazon-bedrock-agentcore/
-- 要約：AWS SMGS の NarrateAI は Sales、Marketing、Global Services organization 向けの conversational business intelligence です。Architecture は二層です。Batch layer は Redshift などから data を抽出し、Lambda で変換し、Jinja templates で user-specific persona narratives を作って S3 に保存します。Realtime layer は AgentCore が specialized tools を orchestrate し、question classification、persona identification、relevant narrative section retrieval、relevancy evaluation、answer generation、online numerical validation を行います。System は 4,000 active users 以上を持ち、business review preparation を hours から minutes に短縮しました。Key lesson は、business Q&A で全計算を model に渡さないことです。Numerical calculations、row-level permissions、data isolation、retrieval scope、online validation は architecture の中で明示する必要があります。
-
-### Verizon Connect は fleet telemetry を 100,000 users 向けの readable agentic insight に変えた
-
-- 出典：AWS
-- 日付：2026-05-27
-- リンク：https://aws.amazon.com/blogs/machine-learning/from-data-overload-to-actionable-insights-how-verizon-connect-scaled-agentic-ai-to-100000-users/
-- 要約：Verizon Connect の Reveal platform は 1.2 million active vehicle subscriptions を持ち、daily 500 million data points と 80,000 data indicators を生成します。Raw tables を直接 LLM に渡すのではなく、Step Functions と Lambda で statistical anomaly detection を行い、「what happened」を structured anomaly table に保存します。その後、Strands Agents と Bedrock models が「why it happened」と「how to address it」を調査します。System は two-stage agentic architecture を採用しています。まず anomalies を aggregate / rank し、次に candidate insight ごとに separate agent instance が evidence と context を取得して readable explanation を作ります。100,000 users に timely insights を届けるため、SQS が concurrency を制御し、Bedrock quotas が throughput を制約し、Nova 2 Lite は Claude 4.5 Haiku と比べて input token cost を 70% 下げました。
-
-### Works Human Intelligence は AgentCore と Strands で HR agents の cost を削減した
-
-- 出典：AWS
-- 日付：2026-05-27
-- リンク：https://aws.amazon.com/blogs/machine-learning/building-ai-agents-for-business-support-using-amazon-bedrock-agentcore/
-- 要約：AWS GenAIIC と Works Human Intelligence は、日本の大企業や public interest corporations 向け HR system COMPANY のために 2 つの business support agents を作りました。Commuting Allowance Agent と Browser Operation Agent です。前者は ECS/Fargate 上の LangGraph monolithic task を individually running AgentCore Runtime sub-agents に分解し、DynamoDB と Cognito で multi-tenancy を支えます。後者は Strands Agents で browser を操作し、operation template knowledge base、S3 short-term state、fixed-IP access、prompt caching を組み合わせます。Team は browser-use、Playwright、fast playwright を比較し、fast playwright が最も token efficient だと確認しました。Prompt caching、sub-agent prompt optimization、model switch により、cost per process を up to 97% 下げています。
-
-### Bedrock Data Automation は blueprint で financial document extraction を verifiable structured output にする
-
-- 出典：AWS
-- 日付：2026-05-27
-- リンク：https://aws.amazon.com/blogs/machine-learning/process-financial-documents-using-amazon-bedrock-data-automation/
-- 要約：AWS は Amazon Bedrock Data Automation が bank statements、W-2、1099-B、vendor contracts をどう処理するかを紹介しました。Focus は OCR ではなく blueprint です。Enterprises は document type、fields、validation rules、output structure を extraction template として定義し、JSON、CSV、raw data results を得られます。Example では、bank transactions を date、description、debit、credit に分け、W-2 の federal tax、state tax、Box 12 code-amount pairs、box 14 などを downstream-friendly structure に再編成し、1099-B では TSLA を security descriptor として一貫して認識しました。Financial workflows での価値は、PDF を text に変えることではなく、explainable、verifiable、rule-compatible な structured extraction にあります。
-
-## 3. Evaluation、training infrastructure、local voice agents
+## 2. モデル最前線 & アルゴリズム探索
 
 ### ITBench-AA は frontier models が enterprise SRE root-cause localization で 50% 未満であることを示す
 
@@ -110,7 +68,28 @@ draft: false
 - リンク：https://huggingface.co/blog/local-reachy-mini-conversation
 - 要約：Hugging Face は Reachy Mini conversation app を fully local にしました。Audio を cloud に送る必要がなくなります。Solution は speech-to-speech library を使い、VAD、STT、LLM、TTS を cascade し、Realtime API compatible な /v1/realtime WebSocket を公開します。Recommended stack は llama.cpp + Gemma 4、Silero VAD、Parakeet-TDT 0.6B v3、Qwen3-TTS です。MLX、Transformers、vLLM、Hugging Face Inference Endpoints、OpenAI-compatible provider などにも差し替えられます。Signal は、realtime voice agent が composable pipeline になりつつあることです。Privacy、cost、latency、model choice は single cloud service に固定される必要がありません。
 
-## 4. Course picks と enterprise adoption reflection
+## 3. 実践コード & ツールライブラリ
+
+### Daily Dose of DS は RAG、Graph RAG、Agentic RAG の使い分けを整理した
+
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-28
+- リンク：https://www.dailydoseofds.com/a-crash-course-on-building-rag-systems-part-4-with-implementation/
+- 要約：Daily Dose of DS は、standard RAG、Graph RAG、Agentic RAG を query type で分けました。Standard RAG は single-hop factual lookup、Graph RAG は entity relationships を使う multi-hop query、Agentic RAG は model が tools、sources、order を選ぶ dynamic multi-source task に向きます。この整理は enterprise agent に重要です。「agent を追加する」ことが常に高度化ではありません。安定した fact lookup なら standard RAG、関係探索なら Graph RAG、tool use と multi-step planning が必要なときだけ Agentic RAG が合います。
+
+### Tool calling example は LLM を generator から auditable coordinator に変える
+
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-28
+- リンク：https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
+- 要約：同じ email は stock price assistant を使って tool calling を説明しました。Model は外部支援が必要かを判断し、function name と arguments を生成し、external code の実行結果を受け取って answer に統合します。小さな例ですが、agent engineering の基礎境界を示しています。Model は realtime data を「知っているふり」をするのではなく、observable、testable、replaceable な tool に委譲するべきです。MCP、workflow orchestration、production agent はこの境界の上に乗ります。
+
+### OpenAI editing-style workflow は human revision を reusable rules に変える
+
+- 出典：The Rundown AI
+- 日付：2026-05-27
+- リンク：https://www.therundown.ai/
+- 要約：The Rundown AI の guide は、draft / final snapshot を使って Codex や Claude Code に editing style を学習させる流れを示しました。Writing rules を interview で作り、draft と immutable snapshot を保存し、人間が final に編集した後、agent が差分を比較して rules を更新します。価値は「AI が自分らしく書く」だけではありません。Audience、forbidden claims、CTA style、tone、examples を reusable asset に変えることです。Team writing と knowledge work では、implicit judgment を maintainable rules に変えることが重要になります。
 
 ### Daily Dose of Data Science の RL series は function approximation を agent learning foundation に戻す
 
@@ -119,6 +98,22 @@ draft: false
 - リンク：https://www.dailydoseofds.com/rl-course-part-5/
 - 要約：Daily Dose of Data Science は reinforcement learning course chapter 5、Function Approximation を公開しました。Article は tabular value functions が巨大または連続 state space でなぜ失敗するかを説明します。Memory が足りず、neighboring states から generalize できないからです。Parameterized value functions、MSVE、linear function approximation、Gradient Monte Carlo、semi-gradient TD、deadly triad、mountain car tile coding へ展開します。本日の enterprise agent theme への low-level supplement です。Agents が long-term interaction と policy learning に入ると、問題は prompt writing から representation、objective functions、generalization、stability、off-policy risk に戻ります。
 
+## 4. 業界 & ビジネス速報
+
+### OpenAI Foundation は AI の work and economy impact に 2.5 億ドルを投じる
+
+- 出典：The Rundown AI
+- 日付：2026-05-27
+- リンク：https://openai.com/foundation/
+- 要約：The Rundown AI は、OpenAI Foundation が first tranche として 250M dollars を commitment し、AI economic impact research、near-term worker disruption support、long-term economic security mechanisms に使うと報じました。これは technical section ではなく business signal です。Frontier AI companies は model capability だけでなく、value distribution、retraining、meaning of work、policy tools にも向き合う必要があります。Enterprise readers にとって agent adoption は efficiency project であると同時に、organization design と public responsibility の問題でもあります。
+
+### Trajectory は product corrections、retries、user edits を continual post-training data に変える
+
+- 出典：The Rundown AI
+- 日付：2026-05-27
+- リンク：https://www.therundown.ai/tags/ai-startups
+- 要約：The Rundown AI は、ex-DeepMind and Apple researchers による startup Trajectory を紹介しました。同社は real product feedback から models を continual learning させることを狙います。User corrections、retries、edits を production traces として捕捉し、regular post-training data に変換します。Early customers には Clay、Harvey、Decagon、Rogo が含まれます。この direction は Tax AI の production trace loop と響き合います。Enterprise agent に本当に効く learning material は抽象 prompt ではなく、実際に起きた failures、fixes、references、approvals です。
+
 ### Every は「every employee gets an agent」が良い starting point ではない理由を振り返る
 
 - 出典：Every
@@ -126,18 +121,48 @@ draft: false
 - リンク：https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now
 - 要約：Every は internal Plus One / OpenClaw experiment を振り返りました。Slack 内で each employee に personal AI assistant を与えたところ、一部 agents は writing や bug management に役立ったものの、全体としては efficiency より frustration が大きくなりました。Common failures は、app に接続済みなのに permission がないと言う、execution が terminate する、instructions を安定して守れない、そして user preference に合わせるために継続的な upkeep が必要になることです。Team はそのため、方向性を「personal assistant for every employee」から「defined jobs を持つ shared team resources」に変えています。Enterprise deployment への lesson は実用的です。Agent は personality が強いほど良いわけではなく、最初に scale しやすいのは clear boundaries、explicit permissions、stable inputs / outputs、shared maintenance を持つ role-based capability です。
 
+## 5. GitHub 人気 repo & トレンド追跡
+
+### openai/codex：enterprise coding cases は CLI agent を long-running workflow entry にする
+
+- 出典：GitHub
+- 日付：2026-05-28
+- リンク：https://github.com/openai/codex
+- 要約：Cisco、Tax AI、Warp の OpenAI cases は同じ方向を向いています。Developers は chat UI だけでなく、repositories、terminal、CI、tests、review process の中で動く coding agent を必要としています。openai/codex のような CLI entry は、task execution、file context、command loop、human review を同じ engineering path に置きます。本当の判断基準は demo の滑らかさではなく、reproducible diff、test result、rollback boundary を残せるかです。
+
+### huggingface/trl：RL training efficiency は agent post-training の基本 infrastructure になる
+
+- 出典：GitHub
+- 日付：2026-05-28
+- リンク：https://github.com/huggingface/trl
+- 要約：Delta Weight Sync は Hugging Face TRL ecosystem から出た signal です。RL post-training infrastructure は「algorithm が動くか」から、「weights、rollout server、environment、storage が低コストに協調できるか」へ移っています。Agent training では multi-turn tasks が synchronization、evaluation、sampling costs を増幅します。毎 step で full weights を運ぶと experiment frequency が infrastructure に制約されます。TRL の変化は research loop と engineering throughput をつなぐため、trend tracking に値します。
+
+### huggingface/speech-to-speech：realtime voice agent は composable local pipeline になる
+
+- 出典：GitHub
+- 日付：2026-05-28
+- リンク：https://github.com/huggingface/speech-to-speech
+- 要約：Reachy Mini の local conversation setup は speech-to-speech library に依存し、VAD、STT、LLM、TTS、Realtime-compatible WebSocket を replaceable components として接続します。この repository が示す trend は、voice agent が single cloud realtime API に必ずしも縛られないことです。Privacy-sensitive、cost-sensitive、local hardware loop が必要な use cases では、open components でより controllable な path を作れます。次に見るべきは latency、barge-in handling、edge model quality、deployment complexity です。
+
 ## 📬 Newsletter 精選
 
 ### Daily Dose of DS：RAG vs. Graph RAG vs. Agentic RAG
 
 - 出典：Daily Dose of Data Science
 - 日付：2026-05-28
-- リンク：https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
-- 要約：このメールは、通常の RAG、Graph RAG、Agentic RAG の違いを視覚的に整理した。vector retrieval、entity relationship graph、tool choice / planning / multi-step query を agent loop に入れる設計の違いが分かりやすく、本日の enterprise agent signals を支える retrieval 視点になる。
+- リンク：https://www.dailydoseofds.com/
+- 要約：この email は visual explanation で traditional RAG、Graph RAG、Agentic RAG を区別し、tool calling tutorial も含んでいました。本日の retrieval と tool-use foundation の主な source です。
+
+### The Rundown AI：Biohub、OpenAI Foundation、Trajectory の continual learning signals
+
+- 出典：The Rundown AI
+- 日付：2026-05-27
+- リンク：https://www.therundown.ai/subscribe
+- 要約：この issue は Biohub の protein biology world model、OpenAI Foundation の 250M dollar economic disruption fund、Trajectory の continual learning platform を扱いました。Research and industry signals を提供し、本文では agent production loop、economic responsibility、continual learning に直接関係する部分を中心に扱っています。
 
 ### Every：After ‘After Automation’
 
 - 出典：Every
 - 日付：2026-05-27
 - リンク：https://every.to/context-window/after-after-automation
-- 要約：Every は Dan Shipper の “After Automation” を受け、AI が仕事を消すかどうかではなく、problem framing、taste、judgment、responsibility の重要性が高まる点を掘り下げた。Codex playbook も knowledge work の文脈に置かれており、agent adoption の難所が誰が frame を決め、誰が結果に責任を持つかにあることを示す。
+- 要約：Every は Dan Shipper の “After Automation” の続きとして、AI が work を消すかどうかではなく、automation が problem definition、taste、judgment、responsibility の threshold を上げることを論じました。OpenAI Foundation と Every の agent retrospective と合わせると、agent adoption の難しさは、誰が frame を設定し、誰が rules を維持し、誰が result を引き受けるかにあります。

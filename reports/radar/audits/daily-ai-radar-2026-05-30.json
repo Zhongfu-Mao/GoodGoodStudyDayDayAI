@@ -1,0 +1,177 @@
+{
+  "date": "2026-05-30",
+  "cadence": "daily",
+  "localeFiles": [
+    "src/content/radar/daily-ai-radar-2026-05-30.md",
+    "src/content/radar/daily-ai-radar-2026-05-30.ja.md"
+  ],
+  "backfill": {
+    "reason": "Restore fixed daily schema, remove active platform-source drift, and rebuild the day from Gmail-confirmed newsletters plus public canonical links.",
+    "assetsRerun": false,
+    "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
+  },
+  "gmailEvidence": [
+    {
+      "sender": "ByteByteGo",
+      "receivedAt": "2026-05-30T15:30:52",
+      "subject": "How DoorDash Built a Testing System to Evaluate LLMs",
+      "usedAs": "DoorDash simulation/evaluation flywheel and hallucination-reduction evidence",
+      "publicLinks": [
+        "https://blog.bytebytego.com/p/how-doordash-built-a-testing-system"
+      ],
+      "evidence": [
+        "The email described DoorDash's multi-turn simulation framework, LLM-as-judge checks, human calibration, case state, and 90% hallucination reduction.",
+        "It was used as the core AI Engineering source for production LLM evaluation and regression testing."
+      ]
+    },
+    {
+      "sender": "Daily Dose of DS",
+      "receivedAt": "2026-05-29T18:28:27",
+      "subject": "Why Agent Crashes Are Nothing Like Database Crashes",
+      "usedAs": "Agent checkpoint/resume framing, Transformer Lab tooling, and Qwen 3 Agentic RAG code evidence",
+      "publicLinks": [
+        "https://www.dailydoseofds.com/",
+        "https://cloud.google.com/products/gemini-enterprise-agent-platform",
+        "https://www.dailydoseofds.com/ai-agents-crash-course-part-17-with-implementation/",
+        "https://github.com/transformerlab/transformerlab-app",
+        "https://github.com/patchy631/ai-engineering-hub/tree/main/deploy-agentic-rag"
+      ],
+      "evidence": [
+        "The email framed agent crash recovery as a state-consistency problem that requires checkpoint-and-resume rather than a simple restart.",
+        "It also linked Transformer Lab and a Qwen 3 Agentic RAG implementation using CrewAI, Firecrawl, and LitServe."
+      ]
+    },
+    {
+      "sender": "Every",
+      "receivedAt": "2026-05-29",
+      "subject": "Compound Engineering Gets an Upgrade",
+      "usedAs": "AI-native engineering workflow and planning/building convergence framing",
+      "publicLinks": [
+        "https://every.to/guides/compound-engineering-gets-an-upgrade"
+      ],
+      "evidence": [
+        "The newsletter expanded compound engineering from an earlier four-step framing into an eight-step engineering loop.",
+        "It was used to connect production evaluation, planning, implementation, validation, review, and rule updates."
+      ]
+    },
+    {
+      "sender": "The Rundown AI",
+      "receivedAt": "2026-05-29T10:08:55",
+      "subject": "Anthropic just eclipsed OpenAI",
+      "usedAs": "Anthropic business momentum and developer-productivity distribution signal",
+      "publicLinks": [
+        "https://www.therundown.ai/"
+      ],
+      "evidence": [
+        "The issue was used as discovery and context for the Anthropic momentum and developer productivity gap item.",
+        "The public article links in the main body use canonical OpenAI, Anthropic, GitHub, Every, ByteByteGo, Daily Dose, and GitHub URLs where available."
+      ]
+    }
+  ],
+  "publicSourceVisits": [
+    {
+      "url": "https://blog.bytebytego.com/p/how-doordash-built-a-testing-system",
+      "status": 200,
+      "usedFor": "AI Engineering item and Newsletter source item"
+    },
+    {
+      "url": "https://cloud.google.com/products/gemini-enterprise-agent-platform",
+      "status": 200,
+      "usedFor": "AI Engineering agent-crash supporting source; original item confirmed from Daily Dose email"
+    },
+    {
+      "url": "https://every.to/guides/compound-engineering-gets-an-upgrade",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://www.anthropic.com/news/claude-opus-4-8",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://openai.com/index/trustworthy-third-party-evaluations-foundations",
+      "status": 403,
+      "usedFor": "model-frontier/evaluation item"
+    },
+    {
+      "url": "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense",
+      "status": 403,
+      "usedFor": "model-frontier/safety item"
+    },
+    {
+      "url": "https://lab.cloud/",
+      "status": 200,
+      "usedFor": "tooling/Transformer Lab item"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/ai-agents-crash-course-part-17-with-implementation/",
+      "status": 200,
+      "usedFor": "tooling/Qwen 3 Agentic RAG item"
+    },
+    {
+      "url": "https://openai.com/index/braintrust",
+      "status": 403,
+      "usedFor": "tooling/Codex and Braintrust item"
+    },
+    {
+      "url": "https://openai.com/index/boston-childrens-hospital",
+      "status": 403,
+      "usedFor": "industry/healthcare item"
+    },
+    {
+      "url": "https://www.therundown.ai/",
+      "status": 403,
+      "usedFor": "industry/newsletter discovery context"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-29-copilot-usage-metrics-api-adds-cohorts-for-ai-adoption/",
+      "status": 200,
+      "usedFor": "industry/Copilot metrics item"
+    },
+    {
+      "url": "https://github.com/transformerlab/transformerlab-app",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://github.com/patchy631/ai-engineering-hub/tree/main/deploy-agentic-rag",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://github.com/openai/codex",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://blog.bytebytego.com/",
+      "status": 200,
+      "usedFor": "Newsletter source item"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/",
+      "status": 200,
+      "usedFor": "Newsletter source item"
+    },
+    {
+      "url": "https://every.to/guides",
+      "status": 200,
+      "usedFor": "Newsletter source item"
+    }
+  ],
+  "publishedItems": {
+    "zh": 18,
+    "ja": 18,
+    "newsletter": 3,
+    "githubTrend": 3
+  },
+  "selfReview": {
+    "schema": "passed",
+    "zhJaTopicOrder": "passed",
+    "duplicateLinks": "passed",
+    "forbiddenPublicTerms": "passed",
+    "newsletterFormat": "passed",
+    "checks": "passed"
+  }
+}

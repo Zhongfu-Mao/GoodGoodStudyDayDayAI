@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-05-28"
 date: 2026-05-28
 category: radar
 cadence: daily
-plainSummary: "今天的主线是企业 agent 从能力展示进入可衡量生产：Cisco、Warp、Tax AI、AWS Sales、AWS SMGS、Verizon Connect 和 WHI 都在讨论真实工作流里的代理编排、权限、观测、记忆、评测和成本。但 ITBench-AA 的结果也提醒我们，企业级 SRE 诊断仍然很难，前沿模型在 Kubernetes 事故根因定位上还没有达到 50%。"
+plainSummary: "今天的主线是 agent 工程从演示进入生产闭环：OpenAI 的 Cisco、Tax AI 与 Warp 案例强调代码、税务和开发环境里的可验证工作流；Hugging Face / IBM 的 ITBench-AA 提醒企业 SRE 诊断仍很难；Daily Dose 与 Every 则把 RAG、工具调用和自动化后的责任边界补成基础层。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -20,14 +20,9 @@ draft: false
 
 ## 本期范围
 
-- 覆盖时间：2026-05-27 至 2026-05-28，并补充少量同一主题下的高信号 Newsletter 与课程文章。
+- 覆盖时间：2026-05-27 至 2026-05-28，并结合少量高信号 newsletter 与公开资料。
 
----
-![ITBench-AA benchmark leaderboard for agentic enterprise IT tasks](https://cdn-uploads.huggingface.co/production/uploads/64e8143f6de557454220921e/VLy6B6WYEMDqxEJL9KWNQ.png)
-
-*代表图来自 [Hugging Face / IBM Research 的 ITBench-AA 文章](https://huggingface.co/blog/ibm-research/itbench-aa)。它对应本期最重要的张力：企业正在把 agent 放进真实工作流，但在复杂 IT 诊断、根因定位和低误报输出上，模型能力仍然明显不足。*
-
-## 1. 企业编码与自改进 agent
+## 1. AI Engineering & 架构
 
 ### Cisco 与 OpenAI 把 Codex 嵌入企业工程生命周期
 
@@ -50,44 +45,7 @@ draft: false
 - 链接：https://openai.com/index/warp
 - 摘要：Warp 在开源终端客户端后提出 Open Agentic Development：人类定义目标并监督结果，agent 负责计划、写代码、测试并发起 pull request。OpenAI 文章称，GPT-5.5 在 Warp 内部 agentic coding 任务中比 GPT-5.4 少用 30% token；Warp 现在接近 100 万开发者，覆盖 56% 以上 Fortune 500，公司内部约 90% pull request 由 agent 共同创建。Oz 控制平面负责跨本地与云端环境部署 agent、保留上下文、观察长任务、支持 recurring workflows，并用记忆、压缩、代码搜索子 agent 和评测管线维持长程可靠性。这里的产品形态已经从单次对话转向 agent fleet 管理。
 
-## 2. AWS 生产 agent 案例集中爆发
-
-### AWS Sales 的 Field Advisor 解决 20 多个专业 agent 带来的选择负担
-
-- 来源：AWS
-- 日期：2026-05-27
-- 链接：https://aws.amazon.com/blogs/machine-learning/powering-agentic-ai-sales-strategy-with-amazon-bedrock-agentcore/
-- 摘要：AWS Sales 曾有 20 多个面向 CRM、会议、客户洞察、产品推荐和合规检查的专业 agent，但销售人员需要自己判断调用哪个 agent，还要在多套系统之间拼接上下文。Field Advisor 用 Amazon Bedrock AgentCore 做统一编排层：一个 supervisor agent 根据自然语言请求路由到本地工具、远程 MCP 工具或专业子 agent，并通过 AgentCore Identity、Gateway、Memory、Observability 和 Evaluations 处理身份传播、工具接入、记忆、链路追踪和持续质量监控。发布后，销售团队提交超过 12 万次 prompt；human-in-the-loop 写入流程为大型销售代表每周最多节省 2 小时；迁移到 AgentCore 后延迟下降 41%，并把 7 个 AWS 账号合并到单一 Runtime。
-
-### AWS SMGS 的 NarrateAI 把商业智能拆成批处理叙事和实时对话两层
-
-- 来源：AWS
-- 日期：2026-05-27
-- 链接：https://aws.amazon.com/blogs/machine-learning/how-aws-smgs-uses-an-ai-powered-conversational-assistant-to-transform-business-management-with-amazon-bedrock-agentcore/
-- 摘要：AWS SMGS 的 NarrateAI 面向销售、营销和全球服务组织提供对话式商业智能。架构把系统分成两层：批处理层从 Redshift 等数据源抽取数据，经过 Lambda 转换和 Jinja 模板渲染，为每个用户生成角色化叙事文件并存入 S3；实时层由 AgentCore 编排专门工具，按问题分类、识别用户 persona、检索相关叙事片段、评估相关性、生成答案并在线校验数字。系统已有 4000 多名活跃用户，业务评审准备从数小时降到数分钟。关键经验是：业务问答不能把全部计算交给模型，数字计算、行级权限、数据隔离、检索范围和在线校验都要在架构层明确。
-
-### Verizon Connect 把车队遥测数据转成 10 万用户可读的 agentic insight
-
-- 来源：AWS
-- 日期：2026-05-27
-- 链接：https://aws.amazon.com/blogs/machine-learning/from-data-overload-to-actionable-insights-how-verizon-connect-scaled-agentic-ai-to-100000-users/
-- 摘要：Verizon Connect 的 Reveal 平台有 120 万活跃车辆订阅，每天产生超过 5 亿个数据点和 8 万种数据指标。它没有把原始表格直接交给 LLM，而是先用 Step Functions 与 Lambda 做统计异常检测，把“发生了什么”写入结构化异常表，再由 Strands Agents 和 Bedrock 模型调查“为什么发生、应如何处理”。系统采用两阶段 agentic architecture：先聚合并排序异常，再为每个候选 insight 启动单独 agent 实例拉取证据、查询上下文并生成可读解释。为 10 万用户按时生成洞察时，SQS 控制并发，Bedrock 配额约束吞吐，Nova 2 Lite 相比 Claude 4.5 Haiku 把输入 token 成本降 70%。
-
-### Works Human Intelligence 用 AgentCore 与 Strands 降低 HR agent 成本
-
-- 来源：AWS
-- 日期：2026-05-27
-- 链接：https://aws.amazon.com/blogs/machine-learning/building-ai-agents-for-business-support-using-amazon-bedrock-agentcore/
-- 摘要：AWS GenAIIC 与 Works Human Intelligence 为日本大型企业和公共机构的人力系统 COMPANY 构建两个业务支持 agent：通勤津贴审批 agent 和浏览器操作 agent。前者把原本跑在 ECS/Fargate 的 LangGraph 单体任务拆成可独立运行的 AgentCore Runtime 子 agent，并用 DynamoDB 与 Cognito 支持多租户；后者用 Strands Agents 操作浏览器，结合操作模板知识库、S3 短期状态、固定 IP 访问和 prompt caching。团队测试 browser-use、Playwright 和 fast playwright 后发现 fast playwright token 消耗最低，并通过 prompt caching、子 agent prompt 优化与模型切换，把单流程成本最高降 97%。
-
-### Bedrock Data Automation 用 blueprint 把金融文档抽取变成可验证结构化输出
-
-- 来源：AWS
-- 日期：2026-05-27
-- 链接：https://aws.amazon.com/blogs/machine-learning/process-financial-documents-using-amazon-bedrock-data-automation/
-- 摘要：AWS 展示 Amazon Bedrock Data Automation 如何处理银行流水、W-2、1099-B 和供应商合同。重点不是 OCR，而是 blueprint：企业可以为文档类型、字段、验证规则和输出结构定义抽取模板，得到 JSON、CSV 或原始数据结果。示例中，系统把银行交易拆成日期、描述、借方和贷方，把 W-2 的联邦税、州税、Box 12 code-amount pair 和 box 14 等复杂区域重新组织成下游可用结构，并在 1099-B 中持续识别 TSLA 作为证券描述。对于金融流程，价值来自“可解释、可验证、可进入后续规则”的结构化抽取，而不只是把 PDF 转成文本。
-
-## 3. 评测、训练基础设施与本地语音 agent
+## 2. 模型前沿 & 算法探索
 
 ### ITBench-AA 显示前沿模型在企业 SRE 根因定位上仍低于 50%
 
@@ -110,7 +68,28 @@ draft: false
 - 链接：https://huggingface.co/blog/local-reachy-mini-conversation
 - 摘要：Hugging Face 让 Reachy Mini 的对话应用支持完全本地运行，不再需要把音频发到云端。方案基于 speech-to-speech 库，串起 VAD、STT、LLM 和 TTS，并暴露兼容 Realtime API 的 /v1/realtime WebSocket。推荐组合是 llama.cpp + Gemma 4、Silero VAD、Parakeet-TDT 0.6B v3 和 Qwen3-TTS；也可以换成 MLX、Transformers、vLLM、Hugging Face Inference Endpoints 或 OpenAI-compatible provider。这里的信号是：实时语音 agent 正在变成可组合 pipeline，隐私、成本、延迟和模型选择不一定要绑定到单一云端服务。
 
-## 4. 课程与企业采用反思
+## 3. 实战代码 & 工具库
+
+### Daily Dose of DS 区分 RAG、Graph RAG 与 Agentic RAG 的适用边界
+
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-28
+- 链接：https://www.dailydoseofds.com/a-crash-course-on-building-rag-systems-part-4-with-implementation/
+- 摘要：Daily Dose of DS 在邮件中把三类 RAG 拆得很清楚：普通 RAG 面向单跳事实检索，Graph RAG 通过实体和关系支持多跳查询，Agentic RAG 则让模型在查询时决定工具、来源和顺序。这个区分对企业 agent 很实用，因为“加一个 agent”并不总是升级；如果问题只是稳定事实查询，标准 RAG 更容易控制；如果问题需要跨实体路径，Graph RAG 更直接；如果问题需要动态工具和多源推理，才需要 Agentic RAG。
+
+### Tool calling 示例把 LLM 从生成器改成可审计协调器
+
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-28
+- 链接：https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
+- 摘要：同一期邮件还用股票价格助手示例解释 tool calling：模型先识别任务是否需要外部工具，再生成函数名和参数，外部代码执行后把结果交回模型。这个例子虽然小，但它抓住了 agent 工程的基础接口：模型不应该直接“假装知道”实时数据，而应该把不可内生完成的步骤委托给可观察、可测试、可替换的工具。MCP、工作流编排和生产 agent 都建立在这层边界之上。
+
+### OpenAI 的编辑风格训练 workflow 把人工修订转成可复用规则
+
+- 来源：The Rundown AI
+- 日期：2026-05-27
+- 链接：https://www.therundown.ai/
+- 摘要：The Rundown AI 的实操指南建议用 draft / final 快照来训练 Codex 或 Claude Code 学习编辑风格：先访谈写作规则，生成草稿与不可变快照，再让人类把草稿改成最终稿，最后由 agent 比较差异并更新规则。这个流程的价值不是“让 AI 写得更像我”这么简单，而是把偏好、禁用 claim、CTA 风格、受众语气和迭代证据沉淀成可复用资产。对团队写作和知识工作来说，关键是把隐性判断转成可维护的规则。
 
 ### Daily Dose of Data Science 的 RL 系列把函数近似放回 agent 学习基础
 
@@ -119,6 +98,22 @@ draft: false
 - 链接：https://www.dailydoseofds.com/rl-course-part-5/
 - 摘要：Daily Dose of Data Science 发布强化学习课程第 5 章 Function Approximation，解释为什么表格型价值函数在巨大或连续状态空间中失效：内存无法承载，且无法从相邻状态中泛化。文章从参数化价值函数、MSVE、线性函数近似、Gradient Monte Carlo、semi-gradient TD、deadly triad 和 mountain car tile coding 展开。它和今天的企业 agent 主题形成一个底层补充：当 agent 真正进入长期交互和策略学习，问题会从“提示词如何写”回到表示、目标函数、泛化、稳定性和 off-policy 学习风险。
 
+## 4. 行业与商业快讯
+
+### OpenAI Foundation 拿出 2.5 亿美元应对 AI 带来的工作与经济冲击
+
+- 来源：The Rundown AI
+- 日期：2026-05-27
+- 链接：https://openai.com/foundation/
+- 摘要：The Rundown AI 报道 OpenAI Foundation 承诺首批 2.5 亿美元，用于研究 AI 经济影响、支持受短期冲击的劳动者、探索长期经济安全机制。这个信号适合放在商业快讯而不是技术栏：它说明大模型公司已经无法只讨论模型能力，还必须面对价值分配、再培训、工作意义和政策工具。对企业读者而言，agent adoption 不只是效率项目，也会变成组织设计和社会承诺问题。
+
+### Trajectory 把产品修正、重试与用户编辑变成持续后训练数据
+
+- 来源：The Rundown AI
+- 日期：2026-05-27
+- 链接：https://www.therundown.ai/tags/ai-startups
+- 摘要：The Rundown AI 介绍 Trajectory 这家由前 DeepMind 与 Apple 研究人员创办的公司，目标是让模型从真实产品反馈中持续学习。它捕捉用户修正、重试和编辑，把这些 production traces 变成定期后训练数据；早期客户包括 Clay、Harvey、Decagon 和 Rogo。这个方向和 Tax AI 的 production trace 闭环互相印证：企业 agent 真正有价值的学习材料，不是抽象 prompt，而是已经发生过的失败、修正、引用和审批证据。
+
 ### Every 反思“给每位员工一个 agent”为什么不是好的起点
 
 - 来源：Every
@@ -126,18 +121,48 @@ draft: false
 - 链接：https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now
 - 摘要：Every 复盘内部 Plus One / OpenClaw 实验：给每个员工一个 Slack 里的个人 AI assistant 后，部分 agent 能帮助写作或管理 bug，但整体带来的挫败多于效率。常见问题包括明明已连接应用却声称没有权限、执行中止、无法稳定遵循指令，以及需要持续维护才能符合个人偏好。团队因此把方向从“每人一个个人助理”改为“有明确职责的共享团队资源”。这个经验对企业部署很实用：agent 不是越人格化越好，最先规模化的往往是边界清晰、权限明确、输入输出稳定、团队共同维护的岗位型能力。
 
+## 5. GitHub 热门 repo & 趋势追踪
+
+### openai/codex：企业编码案例让 CLI 型 agent 成为长期工作流入口
+
+- 来源：GitHub
+- 日期：2026-05-28
+- 链接：https://github.com/openai/codex
+- 摘要：Cisco、Tax AI 与 Warp 的三条 OpenAI 案例都指向同一个趋势：开发者不再只需要 chat UI，而是需要能在仓库、终端、CI、测试和审查流程里工作的编码 agent。openai/codex 这类 CLI 型入口因此值得继续追踪，它把任务执行、文件上下文、命令回路和人工审查放进同一条工程路径。真正的判断标准不是 demo 是否顺滑，而是它能否留下可复现 diff、测试结果和回滚边界。
+
+### huggingface/trl：RL 训练效率开始进入 agent 后训练基本盘
+
+- 来源：GitHub
+- 日期：2026-05-28
+- 链接：https://github.com/huggingface/trl
+- 摘要：Delta Weight Sync 来自 Hugging Face TRL 生态，说明 RL 后训练基础设施正在从“算法能不能跑”进入“权重、rollout server、环境和存储如何低成本协同”的阶段。对 agent 训练来说，多轮任务会不断放大同步、评测和样本成本；如果每一步都搬运完整权重，实验频率会被基础设施拖住。TRL 的变化值得放进趋势栏，因为它把研究循环和工程吞吐连接了起来。
+
+### huggingface/speech-to-speech：实时语音 agent 变成可组合本地 pipeline
+
+- 来源：GitHub
+- 日期：2026-05-28
+- 链接：https://github.com/huggingface/speech-to-speech
+- 摘要：Reachy Mini 的本地对话方案依赖 speech-to-speech 库，把 VAD、STT、LLM、TTS 和 Realtime-compatible WebSocket 串成可替换组件。这个仓库代表的趋势是，语音 agent 不必总是绑定到单个云端实时 API；隐私敏感、成本敏感或需要本地硬件闭环的场景，可以用开源组件拼出更可控的链路。接下来要看的是延迟、打断处理、端侧模型质量和部署复杂度能否继续下降。
+
 ## 📬 Newsletter 精选
 
 ### Daily Dose of DS：RAG vs. Graph RAG vs. Agentic RAG
 
 - 来源：Daily Dose of Data Science
 - 日期：2026-05-28
-- 链接：https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
-- 摘要：这封邮件用可视化方式区分传统 RAG、Graph RAG 与 Agentic RAG：普通 RAG 依赖向量检索，Graph RAG 让实体关系进入检索路径，Agentic RAG 则把检索、工具选择、计划和多步查询放进 agent loop。它补充了本期关于企业 agent 落地的基础检索视角。
+- 链接：https://www.dailydoseofds.com/
+- 摘要：这封邮件用可视化方式区分传统 RAG、Graph RAG 与 Agentic RAG，同时包含 tool calling 教程。它是本期检索和工具调用基础层的主要来源。
+
+### The Rundown AI：Biohub、OpenAI Foundation 与 Trajectory 的连续学习信号
+
+- 来源：The Rundown AI
+- 日期：2026-05-27
+- 链接：https://www.therundown.ai/subscribe
+- 摘要：这期邮件覆盖 Biohub 的蛋白生物学世界模型、OpenAI Foundation 的 2.5 亿美元经济冲击资金、以及 Trajectory 的 continual learning 平台。它提供了产业与研究信号，正文中只吸收了与 agent 生产闭环、经济责任和持续学习直接相关的部分。
 
 ### Every：After ‘After Automation’
 
 - 来源：Every
 - 日期：2026-05-27
 - 链接：https://every.to/context-window/after-after-automation
-- 摘要：Every 后续讨论 Dan Shipper 的 “After Automation”，重点不是 AI 会不会让工作消失，而是自动化会抬高问题定义、品味、判断和责任的门槛。邮件还把 Codex playbook 放进知识工作流语境，说明 agent adoption 的难点在于谁来设定 frame、谁来承担结果。
+- 摘要：Every 后续讨论 Dan Shipper 的 “After Automation”，重点不是 AI 会不会让工作消失，而是自动化会抬高问题定义、品味、判断和责任的门槛。它和 OpenAI Foundation、Every agent 复盘共同说明：agent adoption 的难点在于谁设定 frame、谁维护规则、谁承担结果。

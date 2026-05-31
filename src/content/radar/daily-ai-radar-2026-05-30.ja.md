@@ -3,143 +3,159 @@ title: "AI レーダー日報：2026-05-30"
 date: 2026-05-30
 category: radar
 cadence: daily
-plainSummary: "今日の主線は、フロンティア agent が計測可能で監査可能、かつ本番投入できる工学レイヤーへ進んだことです。Anthropic は Claude Opus 4.8、動的ワークフロー、大型資金調達を発表し、OpenAI は第三者評価、生物防衛、病院導入、Codex の企業開発事例を同日に展開しました。AWS と GitHub は、LLM 品質観測と Copilot 採用指標をプラットフォーム API に近づけています。"
+plainSummary: "今日の主線は、agent engineering が testable、recoverable、reviewable な production stage に入っていることです。DoorDash は simulation と LLM-as-judge で support chatbot hallucination を減らし、Daily Dose は agent crash 後の checkpoint/resume を論じました。OpenAI と Anthropic は evaluation、healthcare、safety、coding cases を公開 narrative にし、Every は compound engineering を 4 steps から 8 steps に拡張しています。"
 difficulty: intermediate
 tags:
   - AI Engineering
   - Agent
   - Evaluation
-  - Observability
+  - Engineering Workflow
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-05-30.ja-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-05-30.ja.mp3
-audioDuration: 1074
-audioSize: 8594475
+audioDuration: 1143
+audioSize: 9142570
 draft: false
 ---
 
 ## 対象範囲
 
-- 対象期間：2026-05-29 から 2026-05-30 まで。同じテーマに関わる高シグナルの Newsletter も一部補足します。
+- 対象期間：2026-05-29 〜 2026-05-30。同じ theme に関わる high-signal newsletters と public sources も少量補足します。
 
----
-![Introducing Claude Opus 4.8](https://cdn.sanity.io/images/4zrzovbb/website/0eaa0ed2dce9810169112e1c77de2585fcf1f5c2-2880x1620.jpg)
+## 1. AI Engineering & アーキテクチャ
 
-*代表画像は [Introducing Claude Opus 4.8](https://www.anthropic.com/news/claude-opus-4-8) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*
+### DoorDash は simulation と LLM-as-judge で support LLM の evaluation flywheel を作った
 
-## 1. フロンティアモデル、資本、ランタイム
+- 出典：ByteByteGo / DoorDash Engineering
+- 日付：2026-05-30
+- リンク：https://blog.bytebytego.com/p/how-doordash-built-a-testing-system
+- 要約：ByteByteGo は、DoorDash が customer support LLM のために simulation and evaluation flywheel を作った流れを解説しました。Offline simulator は historical support transcripts から multi-turn customer behavior を生成し、evaluation framework は chatbot が policy に従ったか、hallucination したか、tone と classification が適切かを判定します。重要なのは「別の prompt を試す」ことではありません。Failure mode を evaluation に落とし、200 以上の simulated conversations で回帰し、human labels で LLM judge を calibrate することです。DoorDash は raw order events をそのまま context に入れると model が fields を誤読すると気づき、case state という structured intermediate representation を導入しました。結果として simulation 上の hallucination は 90% 減りました。
 
-### Claude Opus 4.8 はモデル更新と agent runtime 更新を同時に打ち出した
+### Agent crash は database crash と違い、recovery point に decision chain が必要になる
+
+- 出典：Daily Dose of Data Science / Google Cloud
+- 日付：2026-05-29
+- リンク：https://cloud.google.com/products/gemini-enterprise-agent-platform
+- 要約：Daily Dose は、agent crash が database restart と同じではない理由を説明しました。Database は WAL を replay して同じ state を再構築できますが、agent が task を最初から再実行すると、LLM が同じ ambiguous date、tool result、intermediate judgment を別に解釈し、decision drift が起こります。解決策は checkpoint-and-resume です。Progress、accumulated decisions、reasoning chain、human approval wait points、context window を保存し、restart ではなく同じ state から続行します。Email は Google Cloud Gemini Enterprise Agent Platform の Memory Bank、Resume Agents、Ambient Agents を参照し、agent memory が retrieval problem だけでなく long-running consistency problem でもあることを示しました。
+
+### Compound Engineering は 4 steps から 8 steps へ広がり、planning と building が合流する
+
+- 出典：Every
+- 日付：2026-05-29
+- リンク：https://every.to/guides/compound-engineering-gets-an-upgrade
+- 要約：Every の Kieran Klaassen は compound engineering methodology を更新しました。AI-native engineering は、model に code completion をさせるだけではなく、problem framing、planning、implementation、validation、review、reflection、rule update を continuous loop にします。Article の要点は、planning と building の境界が崩れていることです。Engineer が AI に goal を渡すほど、task decomposition、context organization、acceptance criteria、result judgment が重要になります。DoorDash と Daily Dose の signals と合わせると、production agent の価値は generation speed だけでなく、humans が問題を早く定義し、評価基準を作り、workflow を修正できることにあります。
+
+## 2. モデル最前線 & アルゴリズム探索
+
+### Anthropic は Claude Opus 4.8 を発表し、model upgrade と agent runtime を同じ narrative に置いた
 
 - 出典：Anthropic
 - 日付：2026-05-29
 - リンク：https://www.anthropic.com/news/claude-opus-4-8
-- 要約：Anthropic は Claude Opus 4.8 を公開しました。通常の Opus 価格帯を維持しつつ、effort control、Claude Code の動的ワークフロー、より安い fast mode を追加しています。公式メッセージの中心は単なるベンチマークではなく、長時間の coding、法務、ブラウザ/コンピュータ操作、検索引用、複数 agent 協調を同じ runtime に載せることです。動的ワークフローでは、Claude が一つのセッションで作業計画を立て、多数の並列 sub-agent を起動できます。大規模コードベース移行、複数モジュール修正、テスト駆動の検証が主な対象です。Messages API も messages 配列内の system entry を受け付けるようになり、prompt cache やユーザーターンを壊さずに途中で指示を更新できます。競争軸は「単体モデル」から「モデル、harness、cache、sub-agent orchestration」の統合提供へ移っています。
+- 要約：Anthropic は Claude Opus 4.8 を公開しました。Narrative は「model score が上がった」だけではなく、coding、long context、tool stability、agent runtime をまとめて語っています。The Rundown AI が同日に扱った Anthropic の business momentum と合わせると、frontier model competition は single-answer quality から、enterprise が agent を real workflow に置けるかへ広がっています。見るべきなのは ranking の小幅な差ではなく、model、tools、memory、recovery、evaluation が一緒に成熟しているかです。
 
-### Anthropic は 650 億ドルの Series H を完了し、評価額は 9650 億ドルへ
-
-- 出典：Anthropic
-- 日付：2026-05-29
-- リンク：https://www.anthropic.com/news/series-h
-- 要約：Anthropic は 650 億ドルの Series H を完了し、投資後評価額が 9650 億ドルになったと発表しました。年換算売上 run-rate は今月 470 億ドルを超えています。ラウンドは Altimeter、Dragoneer、Greenoaks、Sequoia が主導し、hyperscaler からの既存の 150 億ドルコミットメントも含みます。そのうち Amazon は 50 億ドルです。インフラ面では Micron、Samsung、SK hynix との供給網協力、Amazon、Google/Broadcom、SpaceX からの GPU/TPU 容量確保も強調しています。ここで重要なのは資金調達額そのものより、フロンティアモデル企業が資本、クラウド、チップ、メモリ、超大規模データセンターを一体の供給網として組み上げていることです。
-
-## 2. 評価、ガバナンス、生命科学安全
-
-### OpenAI は第三者評価 playbook で claim、harness、予算の明示を求めた
+### OpenAI の third-party evaluation playbook は claim、harness、budget の明示を求める
 
 - 出典：OpenAI
 - 日付：2026-05-29
 - リンク：https://openai.com/index/trustworthy-third-party-evaluations-foundations
-- 要約：OpenAI はフロンティア AI の第三者評価に関する基礎 playbook を公開しました。中心は、評価が何を証明しようとしているのかを明確にすることです。能力の引き出し、safeguard の性能、モデル間比較のどれなのかを分けます。記事は、harness が結果に大きく影響するため、評価報告では tool、script、token/時間/費用予算、問題フィルタ、拒否応答処理、汚染確認、sandbagging リスクを公開すべきだとしています。OpenAI は Codex CLI を coding-agent 評価のオープンソース harness の出発点として挙げ、compaction と予算設定が多段タスクの結果を変えることも指摘しています。AI 評価は「ランキングの点数」から、再現可能な実験 claim と証拠の連鎖へ移っています。
+- 要約：OpenAI は trustworthy third-party evaluations の playbook を出し、claim、task boundary、harness、budget、sample source、failure criteria、statistical explanation を明確にするよう求めました。これは DoorDash の internal evaluation flywheel と同じ方向です。Public benchmark でも internal regression でも、single score だけでは不十分です。何を検証し、どう再現し、どの cost / constraints のもとで比較したかを説明する必要があります。Agent が healthcare、support、coding、research workflows に入るほど、evaluation は product quality system の一部になります。
 
-### Rosalind Biodefense は生命科学モデルを信頼済み開発者と公衆衛生用途に限定する
+### Rosalind Biodefense は life-science models を trusted developers と public health use に限定する
 
 - 出典：OpenAI
 - 日付：2026-05-29
 - リンク：https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense
-- 要約：OpenAI は Rosalind Biodefense を発表し、GPT-Rosalind へのアクセスを米国政府、同盟国パートナー、信頼できる研究機関へ拡大します。対象は感染症モデリング、早期検知、スクリーニング、100 Days Mission、非医薬品介入、公衆衛生能力の強化です。初期協力先には Fourth Eon Biosecurity、LLNL、Johns Hopkins APL、CEPI が含まれます。記事は同時に、生物安全評価、専門家 red-team、安全制御、制限付きアクセスを重視しています。生命科学 AI の製品化は、一般 API の拡張だけではなく、信頼済みユーザー、用途境界、独立した安全プロセスに依存して進むという信号です。
+- 要約：OpenAI は Rosalind Biodefense を紹介しました。焦点は life-science model capabilities を誰に、どの用途で使わせるかです。Trusted developers と public health use に制限する点が重要で、scientific AI の能力そのものより、access control、use review、social-risk boundary が主題です。Frontier model safety は pre-release red teaming だけでなく、release 後に誰が使えるか、どの制度の中で使うか、用途をどう証明するかへ広がっています。
 
-### Boston Children’s Hospital は AI を単発 PoC ではなく病院レベルの作業層にした
+## 3. 実践コード & ツールライブラリ
 
-- 出典：OpenAI
+### Transformer Lab は training、evaluation、conversion、cluster jobs を研究 workbench にまとめる
+
+- 出典：Daily Dose of Data Science
 - 日付：2026-05-29
-- リンク：https://openai.com/index/boston-childrens-hospital
-- 要約：Boston Children’s Hospital は OpenAI 技術を臨床、研究、管理業務に組み込み、職員の三分の一以上が毎日 AI を使っています。すでに 50 以上の自動化を展開し、約 6 万時間を節約し、700 万ドル超の労働価値を再配分しました。最も強い例は「co-pilot geneticist」です。遺伝データ、表現型、文献を統合し、40 件以上の希少疾患診断を支援し、新しい遺伝子標的や治療経路も発見しています。医療 AI の導入は、診療記録要約だけでなく、病院知識、研究プロセス、診断推論をつなぐ連続した作業層へ広がっています。
+- リンク：https://lab.cloud/
+- 要約：Daily Dose は Transformer Lab を AI research labs 向けの open-source operating system として紹介しました。Public repository は LoRA / QLoRA / DPO / ORPO / SIMPO、LLM-as-a-judge eval、EleutherAI harness、model format conversion、local runtime、cluster job submission、GUI / CLI / agent skill を同じ platform に置いています。Tooling section に入れる理由は、AI engineering の pain point が「training script が動くか」から、「training、evaluation、deployment、resource scheduling、experiment review が一つの process で管理できるか」に移っているからです。
 
-## 3. Agent の製品化と工学的可観測性
+### Qwen 3 Agentic RAG tutorial は CrewAI、Firecrawl、LitServe を private deployment path に接続する
 
-### Braintrust は Codex で顧客要望を preview branch に変える
+- 出典：Daily Dose of Data Science
+- 日付：2026-05-29
+- リンク：https://www.dailydoseofds.com/ai-agents-crash-course-part-17-with-implementation/
+- 要約：Daily Dose の hands-on section は、Qwen 3 powered Agentic RAG を deploy する方法を示しました。Retriever Agent は web search / vector DB tools を呼び、Writer Agent は answer を生成し、CrewAI が orchestration、Firecrawl が web search、LitServe が serving layer を担います。この example は単なる RAG demo より production shape に近く、tool choice、agent roles、service boundary、local model deployment を同時に扱います。Agentic RAG の難所は model と retrieval をつなぐことだけでなく、service boundary、tool reliability、evaluation loop にあります。
+
+### Braintrust は Codex で customer request を preview branch に変える
 
 - 出典：OpenAI
 - 日付：2026-05-29
 - リンク：https://openai.com/index/braintrust
-- 要約：Braintrust は eval と observability のプラットフォーム企業です。同社では 1 か月でチームの約半分が Codex workflow に移行しました。記事の重要なパターンは、エンジニアがまず顧客課題を再現する test と sandbox を書き、Codex に preview branch を作らせ、実テストと顧客フィードバックで継続可否を判断する点です。agent がエンジニアを置き換えるのではなく、「顧客要望 → 実行可能 branch → 評価と観測 → merge 判断」のループを短くします。AI engineering team にとって、Codex の自然な導入境界は既存の test、observability、review mechanism の周辺で探索幅を広げることです。
+- 要約：OpenAI の Braintrust case は、customer request を preview branch に変え、product、engineering、customer feedback を短い loop に入れる例です。Every の compound engineering と同じく、AI-native engineering は model が final answer を一回で出すことではありません。Requirement、implementation、validation、preview、feedback を同じ cycle に圧縮することです。Engineering teams にとって価値があるのは、checkable branch、running preview、rollbackable diff であり、「agent が code を書いた」という広い説明だけでは足りません。
 
-### SageMaker AI は LLM 推論 endpoint に数量と品質の二種類の観測を追加する
+## 4. 業界 & ビジネス速報
 
-- 出典：AWS
+### Boston Children’s Hospital は AI を hospital-level work layer として扱う
+
+- 出典：OpenAI
 - 日付：2026-05-29
-- リンク：https://aws.amazon.com/blogs/machine-learning/comprehensive-observability-for-amazon-sagemaker-ai-llm-inference-from-gpu-utilization-to-llm-quality/
-- 要約：AWS は Amazon SageMaker AI inference component 向けの LLM observability architecture を示しました。一つ目の指標群は throughput、GPU/CPU、latency、cost を追跡し、二つ目の指標群は accuracy、compliance、consistency、safety を追跡します。CloudWatch、Managed Grafana、custom quality namespace、LLM-as-judge を使い、gpt-oss-20b と Qwen2.5-7B-Instruct のようなモデルを同じ dashboard で比較できます。記事は evaluator version の固定、利用規約、data residency の確認も求めています。本番信号は明確です。LLM endpoint の健全性は GPU utilization と P99 latency だけではなく、出力品質を継続指標にする段階へ進んでいます。
+- リンク：https://openai.com/index/boston-childrens-hospital
+- 要約：OpenAI は Boston Children’s Hospital の AI deployment を紹介しました。Focus は isolated PoC ではなく、clinical、operations、research、administrative workflows にまたがる hospital-level work layer です。Healthcare は enterprise AI の organization constraints を最もよく示します。Model capability は入口であり、実際の deployment condition は process accountability、compliance boundary、interpretable output、human/system responsibility separation です。
 
-### GitHub Copilot usage metrics API は AI 採用段階ごとの cohort を追加した
+### The Rundown AI は Anthropic momentum と developer productivity gap を記録した
 
-- 出典：GitHub Changelog
+- 出典：The Rundown AI
 - 日付：2026-05-29
-- リンク：https://github.blog/changelog/2026-05-29-copilot-usage-metrics-api-adds-cohorts-for-ai-adoption
-- 要約：GitHub は Copilot usage metrics API に `ai_adoption_phase` と `totals_by_ai_adoption_phase` を追加しました。ユーザーを cohort なし、code first、agent first、multi-agent に分類します。指標は engaged users、interaction average、code generation/acceptance、追加/削除行、PR 作成/merge/review、median time-to-merge を含みます。この更新は engineering manager に有用です。「チームが Copilot を使っているか」ではなく、「コード補完、単一 agent、複数 agent 協調のどの段階にいるか」を見られるため、採用率、産出、delivery metrics を行動 cohort ごとに分解できます。
+- リンク：https://www.therundown.ai/
+- 要約：The Rundown AI は Anthropic と developer productivity を主線にしました。Developer output が増えた一方で、gains are concentrated among power users という signal が重要です。これは funding や valuation よりも実務上の意味があります。Agent and coding tools は strong engineers をさらに増幅する一方、team 内に新しい skill gap を作る可能性があります。Enterprise adoption では average productivity だけを見ると、cost、model choice、workflow maturity、member-level differences を見落とします。
 
-## 4. Google の生成 UI と学習プロトタイプ
+### GitHub Copilot metrics API は adoption stage cohorts を追加した
 
-### Gemini Omni、Gemini 3.5、Antigravity は multimodal generation、長期 agent、Search UI を接続する
-
-- 出典：Google
+- 出典：GitHub
 - 日付：2026-05-29
-- リンク：https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/
-- 要約：Google は 9 つの demo で Gemini Omni と Gemini 3.5 を整理しました。Omni は video input から始まる multimodal generation と継続編集を担い、3.5 Flash は long-horizon agentic task と coding を対象にし、Antigravity がそれを支えます。Search information agents は background でトピックを継続追跡し、generative UI は今年夏に無料ユーザーへ開放される予定です。より高度な custom experience はまず米国の AI Pro/Ultra ユーザー向けです。I/O 2026 の主線は続いています。Search は link を返すだけではなく、生成可能で、編成可能で、継続更新される interface へ近づいています。
+- リンク：https://github.blog/changelog/2026-05-29-copilot-usage-metrics-api-adds-cohorts-for-ai-adoption/
+- 要約：GitHub Copilot usage metrics API は、AI adoption stage による cohorts を追加しました。Organizations は「どれだけ使ったか」だけでなく、team、maturity、depth of use の違いを見られます。The Rundown の developer productivity gap と一緒に読む価値があります。AI tooling の organization impact は均等に広がりません。Managers need to know who is deeply using it, who is only trying it, and which workflows have actually entered commits、reviews、delivery.
 
-### Google AI Studio の I/O quiz は非エンジニア向け prompt-to-app 経路を示した
+## 5. GitHub 人気 repo & トレンド追跡
 
-- 出典：Google
-- 日付：2026-05-29
-- リンク：https://blog.google/innovation-and-ai/technology/ai/io-2026-vibe-coded-quiz/
-- 要約：Google の編集者は Gemini で prompt を作り、Google AI Studio に I/O 2026 の発表内容と design inspiration をアップロードし、preview を反復して interactive quiz を作りました。この事例の信号は quiz 自体ではなく、AI Studio と Antigravity が「非エンジニアが要件を記述し、素材をアップロードし、preview を反復し、動く app を生成する」経路を通常の製品体験にしつつある点です。企業ツールの観測対象として重要です。low-code tool の次の段階はフォーム項目を増やすことではなく、prompt、context assets、preview、deployment を一つの workbench にまとめることです。
+### transformerlab/transformerlab-app：AI research workbench は experiment operating system に近づく
 
-### Waterloo Futures Lab は 8 週間の workshop で AI と教育体験を探索する
-
-- 出典：Google
-- 日付：2026-05-29
-- リンク：https://blog.google/innovation-and-ai/technology/ai/university-waterloo-labs/
-- 要約：Google が資金提供する University of Waterloo Futures Lab は、8 週間の AI/UX prototyping workshop で教育と仕事の場面を探索しています。prototype には Kanji Garden、SignFluent、MuscleMemory があり、それぞれ漢字学習、手話練習、技能訓練を対象にしています。大規模モデル発表に比べ、この種の prototype は user experience の実問題に近いものです。AI を一回限りの Q&A tool ではなく、学習経路、feedback loop、練習素材にどう埋め込むかを問っています。
-
-## 5. 評価 harness と open model stack
-
-### Multi-turn RL の Token-In, Token-Out 問題は agent training pipeline の細部リスクを示す
-
-- 出典：Latent.Space
+- 出典：GitHub
 - 日付：2026-05-30
-- リンク：https://www.latent.space/p/ainews-founders-and-forward-deployed
-- 要約：Latent.Space は今回、multi-turn RL training の細部を取り上げています。システムが tool call を decode、parse したあとに会話を再 tokenization すると、gradient がモデルの元の sample sequence ではない token 列へかかる可能性があります。著者はこの原則を Token-In, Token-Out と呼んでいます。これは OpenAI の評価 playbook と同じ方向を向いています。agent の結果は harness、token boundary、tool call representation、replay logic に強く依存し始めており、training、evaluation、deployment がその細部を記録しなければ、性能変化を説明しにくくなります。
+- リンク：https://github.com/transformerlab/transformerlab-app
+- 要約：Transformer Lab は local models、training、evaluation、model conversion、cluster job scheduling を同じ workbench に置きます。これは AI research lab OS という trend に合っています。Open-source AI engineering の次の competition layer は model weights だけではなく、experiment、evaluation、resources、reproducibility around them の workflow system です。Team が stable model iteration をできるかは、こうした地味だが重要な operations が productized されているかに左右されます。
 
-### Open weights、local model、StepFun 3.7 Flash は「十分強く制御可能」な路線を進めている
+### patchy631/ai-engineering-hub：Agentic RAG は tutorial から deployable template へ進む
 
-- 出典：Latent.Space
+- 出典：GitHub
 - 日付：2026-05-30
-- リンク：https://www.latent.space/p/ainews-founders-and-forward-deployed
-- 要約：同じ Newsletter は open weights と local model の勢いも強調しています。AI engineering team による open-weight model 利用は増え続け、Hugging Face 上の private model と dataset も増加しています。記事は StepFun 3.7 Flash のような MoE model にも触れ、少ない active parameter、高 throughput、local deployment のバランスを狙う動きとして紹介しています。Anthropic の超大規模資本の物語と対照的に、この線は別の engineering choice を表します。企業は常に最強の closed model だけを求めるわけではなく、制御可能で、deploy しやすく、cost boundary が明確な model stack も必要とします。
+- リンク：https://github.com/patchy631/ai-engineering-hub/tree/main/deploy-agentic-rag
+- 要約：Daily Dose の Qwen 3 Agentic RAG code は ai-engineering-hub repository にあります。Tutorial が text explanation から runnable template に近づいている signal です。AI engineering learning materials が concept level に留まると production に入りにくい一方、agent orchestration、tool calling、serving、local model setup を reproducible code にまとめると、team experimentation cost は下がります。
+
+### openai/codex：Codex cases push coding agents from assistant to delivery workflow
+
+- 出典：GitHub
+- 日付：2026-05-30
+- リンク：https://github.com/openai/codex
+- 要約：Braintrust、Cisco、Warp などの cases により、openai/codex は引き続き追跡対象です。It is not just a single product signal. It represents coding agents entering requirement clarification、branch creation、tests、preview、rollback. Future evaluation of this kind of repository should not focus only on stars. The key question is whether it can reliably connect local context、command execution、test results、code review、team rules.
 
 ## 📬 Newsletter 精選
 
-### Daily Dose of DS：agent crash は database crash とは違う
+### ByteByteGo：How DoorDash Built a Testing System to Evaluate LLMs
+
+- 出典：ByteByteGo
+- 日付：2026-05-30
+- リンク：https://blog.bytebytego.com/
+- 要約：この email は DoorDash の LLM simulation and evaluation flywheel を体系的に説明しました。Multi-turn simulated users、LLM-as-judge、human calibration、case state、90% hallucination reduction を含み、本日の AI Engineering thread の中心 source です。
+
+### Daily Dose of DS：Why Agent Crashes Are Nothing Like Database Crashes
 
 - 出典：Daily Dose of Data Science
 - 日付：2026-05-29
-- リンク：https://fandf.co/4nW0rev
-- 要約：このメールは、database crash が deterministic な write-ahead log で復旧できるのに対し、agent crash では判断の drift が起きると説明した。長時間動く agent には checkpoint、復元可能な context、persistent memory、event-driven execution が必要であり、state management は application hack ではなく platform capability になる。
+- リンク：https://www.dailydoseofds.com/
+- 要約：この email は agent crash を ordinary service restart ではなく state consistency problem として説明しました。Transformer Lab と Qwen 3 Agentic RAG も補足され、本日の recoverable agent と tooling section の主な evidence です。
 
 ### Every：Compound Engineering Gets an Upgrade
 
 - 出典：Every
 - 日付：2026-05-29
-- リンク：https://every.to/context-window/compound-engineering-gets-an-upgrade
-- 要約：Every は compound engineering を、model、tools、context、evaluation、organization workflow、reusable assets を組み合わせる方法論として更新した。今日の Codex、Braintrust、GitHub adoption metrics と同じく、AI-native engineering の中心が single autocomplete ではなく systematized workflow へ移っていることを示す。
+- リンク：https://every.to/guides
+- 要約：この email は compound engineering を early four-step method から eight-step AI-native engineering loop に広げました。Planning、building、validation、reflection、rule updates が一つの engineering cycle に合流していく視点を補います。

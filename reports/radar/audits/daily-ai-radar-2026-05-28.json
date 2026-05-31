@@ -1,0 +1,160 @@
+{
+  "date": "2026-05-28",
+  "cadence": "daily",
+  "localeFiles": [
+    "src/content/radar/daily-ai-radar-2026-05-28.md",
+    "src/content/radar/daily-ai-radar-2026-05-28.ja.md"
+  ],
+  "backfill": {
+    "reason": "Restore fixed daily schema, remove active platform-source drift, and rebuild the day from Gmail-confirmed newsletters plus public canonical links.",
+    "assetsRerun": false,
+    "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
+  },
+  "gmailEvidence": [
+    {
+      "sender": "Daily Dose of DS",
+      "receivedAt": "2026-05-28T22:36:27",
+      "subject": "RAG vs. Graph RAG vs. Agentic RAG",
+      "usedAs": "RAG taxonomy, tool-calling tutorial, and retrieval/tool-use Newsletter confirmation",
+      "publicLinks": [
+        "https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag"
+      ],
+      "evidence": [
+        "The email explained standard RAG, Graph RAG, and Agentic RAG as different query architectures rather than a single maturity ladder.",
+        "It also included a tool-calling walkthrough that framed the LLM as a coordinator delegating real-time work to external functions."
+      ]
+    },
+    {
+      "sender": "The Rundown AI",
+      "receivedAt": "2026-05-27T10:05:16",
+      "subject": "Exclusive: Demis Hassabis on when AGI arrives",
+      "usedAs": "Biohub, OpenAI Foundation, editing workflow, Trajectory, and quick-hit discovery context",
+      "publicLinks": [
+        "https://www.therundown.ai/"
+      ],
+      "evidence": [
+        "The issue covered Biohub's protein biology world model, OpenAI Foundation's $250M economic-disruption commitment, and Trajectory's continual-learning startup.",
+        "The practical guide described a draft/final snapshot loop for teaching Codex or Claude Code reusable editorial rules."
+      ]
+    },
+    {
+      "sender": "Every",
+      "receivedAt": "2026-05-27",
+      "subject": "After 'After Automation'",
+      "usedAs": "Automation-responsibility and agent adoption framing",
+      "publicLinks": [
+        "https://every.to/context-window/after-after-automation",
+        "https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now"
+      ],
+      "evidence": [
+        "The Every material was used to keep the industry section focused on problem framing, judgment, responsibility, and the limits of one-agent-per-employee rollouts."
+      ]
+    }
+  ],
+  "publicSourceVisits": [
+    {
+      "url": "https://openai.com/index/cisco",
+      "status": 403,
+      "usedFor": "AI Engineering item; OpenAI Cloudflare challenge on HEAD"
+    },
+    {
+      "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex",
+      "status": 403,
+      "usedFor": "AI Engineering item; OpenAI Cloudflare challenge on HEAD"
+    },
+    {
+      "url": "https://openai.com/index/warp",
+      "status": 403,
+      "usedFor": "AI Engineering item; OpenAI Cloudflare challenge on HEAD"
+    },
+    {
+      "url": "https://huggingface.co/blog/ibm-research/itbench-aa",
+      "status": 200,
+      "usedFor": "model-frontier/evaluation item"
+    },
+    {
+      "url": "https://huggingface.co/blog/delta-weight-sync",
+      "status": 200,
+      "usedFor": "model-frontier/RL infrastructure item"
+    },
+    {
+      "url": "https://huggingface.co/blog/local-reachy-mini-conversation",
+      "status": 200,
+      "usedFor": "model-frontier/local voice agent item"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag",
+      "status": 200,
+      "usedFor": "tooling/RAG taxonomy item"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/a-crash-course-on-building-rag-systems-part-4-with-implementation/",
+      "status": 200,
+      "usedFor": "tooling/tool-calling item"
+    },
+    {
+      "url": "https://www.therundown.ai/",
+      "status": 403,
+      "usedFor": "tooling/editorial workflow item; Cloudflare challenge on HEAD"
+    },
+    {
+      "url": "https://openai.com/foundation/",
+      "status": 403,
+      "usedFor": "industry/OpenAI Foundation item; OpenAI Cloudflare challenge on HEAD"
+    },
+    {
+      "url": "https://www.therundown.ai/tags/ai-startups",
+      "status": 403,
+      "usedFor": "industry/Trajectory discovery item; Cloudflare challenge on HEAD"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/rl-course-part-5/",
+      "status": 200,
+      "usedFor": "tooling/RL foundation item"
+    },
+    {
+      "url": "https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now",
+      "status": 200,
+      "usedFor": "industry/adoption item"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/",
+      "status": 200,
+      "usedFor": "Newsletter source item"
+    },
+    {
+      "url": "https://www.therundown.ai/subscribe",
+      "status": 403,
+      "usedFor": "Newsletter source item; Cloudflare challenge on HEAD"
+    },
+    {
+      "url": "https://github.com/openai/codex",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://github.com/huggingface/trl",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://github.com/huggingface/speech-to-speech",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    }
+  ],
+  "publishedItems": {
+    "zh": 19,
+    "ja": 19,
+    "newsletter": 3,
+    "githubTrend": 3
+  },
+  "selfReview": {
+    "schema": "passed",
+    "zhJaTopicOrder": "passed",
+    "duplicateLinks": "passed",
+    "forbiddenPublicTerms": "passed",
+    "newsletterFormat": "passed",
+    "checks": "passed"
+  }
+}
