@@ -1,0 +1,142 @@
+{
+  "date": "2026-05-18",
+  "cadence": "daily",
+  "localeFiles": [
+    "src/content/radar/daily-ai-radar-2026-05-18.md",
+    "src/content/radar/daily-ai-radar-2026-05-18.ja.md"
+  ],
+  "backfill": {
+    "reason": "Restore fixed four-quadrant schema plus GitHub trends and reader-facing Newsletter items after the mid-May source and taxonomy drift.",
+    "assetsRerun": false,
+    "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
+  },
+  "sourcePolicy": {
+    "activePlatformBlogsOmitted": [
+      "AWS",
+      "Meta",
+      "Microsoft",
+      "NVIDIA"
+    ],
+    "officialConfirmationScope": [
+      "OpenAI",
+      "Anthropic",
+      "Google / Gemini / DeepMind"
+    ],
+    "trendRule": "Only include repo/project evidence in the GitHub trend section; do not duplicate the same link in another section."
+  },
+  "gmailEvidence": [
+    {
+      "sender": "Daily Dose of DS",
+      "receivedAt": "2026-05-18T22:03:08",
+      "subject": "Implement Knowledge Distillation from Scratch",
+      "usedAs": "model-frontier item with public article link",
+      "publicLink": "https://www.dailydoseofds.com/model-compression-a-critical-step-towards-efficient-machine-learning/",
+      "evidence": [
+        "The email explicitly listed Implement Knowledge Distillation from scratch as the hands-on issue.",
+        "The body described teacher/student distillation, KL divergence, DistilBERT size and capability tradeoffs, and a PyTorch/MNIST implementation path."
+      ]
+    },
+    {
+      "sender": "The Rundown AI",
+      "receivedAt": "2026-05-18",
+      "subject": "AI anger comes for Claude (Monet)",
+      "usedAs": "Newsletter item without public direct link",
+      "publicLink": null,
+      "evidence": [
+        "The email framed SHL0MS presenting a real Monet as AI-generated as a signal about AI perception bias.",
+        "The same issue also listed Manus crawler, ChatGPT finance connection, AI tools, and community workflows."
+      ]
+    },
+    {
+      "sender": "Latent.Space / AINews",
+      "receivedAt": "public page confirmed",
+      "subject": "Everything is Conductor",
+      "usedAs": "Newsletter item from public newsletter page",
+      "publicLink": "https://www.latent.space/p/ainews-everything-is-conductor",
+      "evidence": [
+        "The public issue covers agent-first developer interfaces, Codex mobile, GitHub Copilot App, VS Code Agents, LangChain Engine/SmithDB/Sandboxes/Labs, and subscription-backed harness risk."
+      ]
+    }
+  ],
+  "publicSourceVisits": [
+    {
+      "url": "https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://openai.com/academy/codex-for-work/how-sales-teams-use-codex/",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://www.langchain.com/blog/interrupt-2026-overview",
+      "status": 200,
+      "usedFor": "AI Engineering item"
+    },
+    {
+      "url": "https://www.dailydoseofds.com/model-compression-a-critical-step-towards-efficient-machine-learning/",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://github.com/DataDog/toto",
+      "status": 200,
+      "usedFor": "model-frontier item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-15-grok-code-fast-1-deprecated/",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-14-copilot-cloud-agent-supports-auto-model-selection/",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-15-timestamp-fields-in-github-projects/",
+      "status": 200,
+      "usedFor": "tooling item"
+    },
+    {
+      "url": "https://github.blog/changelog/2026-05-14-github-actions-upcoming-image-migrations/",
+      "status": 200,
+      "usedFor": "industry item"
+    },
+    {
+      "url": "https://github.com/AtomicBot-ai/atomic-llama-cpp-turboquant",
+      "status": 200,
+      "usedFor": "GitHub trend item"
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-everything-is-conductor",
+      "status": 200,
+      "usedFor": "Newsletter item"
+    },
+    {
+      "url": "https://github.com/goodfire-ai/interpretability",
+      "status": 404,
+      "usedFor": "not used; repo candidate rejected"
+    }
+  ],
+  "publishedItems": {
+    "zh": 13,
+    "ja": 13,
+    "newsletter": 2,
+    "githubTrend": 1
+  },
+  "selfReview": {
+    "schema": "passed: fixed six public sections restored in zh/ja",
+    "zhJaTopicOrder": "passed: 13 matched H3 items in both locales",
+    "duplicateLinks": "passed: no repeated public URLs within either locale file",
+    "forbiddenPublicTerms": "passed: public Markdown scan clean",
+    "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
+    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check"
+  }
+}
