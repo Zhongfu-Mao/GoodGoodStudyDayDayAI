@@ -13,8 +13,8 @@ tags:
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-05-17-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-05-17.mp3
-audioDuration: 1371
-audioSize: 10972036
+audioDuration: 1024
+audioSize: 8190936
 draft: false
 ---
 

@@ -13,8 +13,8 @@ tags:
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-05-17.ja-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-05-17.ja.mp3
-audioDuration: 1056
-audioSize: 8452369
+audioDuration: 1052
+audioSize: 8419141
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 {
   "date": "2026-05-17",
-  "status": "text_backfilled",
-  "assetsRerun": false,
+  "status": "text-and-assets-backfilled",
+  "assetsRerun": true,
   "scope": {
     "coverageWindow": "2026-05-16 to 2026-05-17",
     "publicFiles": [
@@ -195,5 +195,32 @@
       "npm run check:radar-dedupe",
       "npm run check"
     ]
+  },
+  "assetRegeneration": {
+    "status": "passed",
+    "date": "2026-06-01",
+    "note": "Regenerated zh/ja infographic and audio with --no-keep-notebook after the text backfill stabilized; existing public URLs were preserved while files and frontmatter metadata were refreshed.",
+    "notebookCleanup": "passed: post-generation NotebookLM list did not contain the 2026-05-17 daily infographic/audio temporary notebooks",
+    "imageQa": "passed: zh infographic readable; ja infographic readable with no severe text corruption",
+    "files": {
+      "zhInfographic": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-17-infographic.webp",
+        "sizeBytes": 413490
+      },
+      "jaInfographic": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-17.ja-infographic.webp",
+        "sizeBytes": 481294
+      },
+      "zhAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-17.mp3",
+        "sizeBytes": 8190936,
+        "durationSeconds": 1024
+      },
+      "jaAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-17.ja.mp3",
+        "sizeBytes": 8419141,
+        "durationSeconds": 1052
+      }
+    }
   }
 }
