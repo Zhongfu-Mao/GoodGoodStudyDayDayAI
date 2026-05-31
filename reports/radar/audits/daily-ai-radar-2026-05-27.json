@@ -1,0 +1,97 @@
+{
+  "date": "2026-05-27",
+  "cadence": "daily",
+  "status": "text-backfilled-assets-pending",
+  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source coverage and used a shifted section taxonomy. This pass rewrites the text from source-pool, public-page, RSS and Gmail-original evidence; infographic/audio remain intentionally pending for a later asset batch.",
+  "publicFiles": {
+    "zh": "src/content/radar/daily-ai-radar-2026-05-27.md",
+    "ja": "src/content/radar/daily-ai-radar-2026-05-27.ja.md"
+  },
+  "sourceEvidence": [
+    {
+      "source": "ByteByteGo RSS and public page",
+      "path": "node scripts/radar/fetch-url.mjs https://blog.bytebytego.com/feed --mode rss; node scripts/radar/fetch-url.mjs https://blog.bytebytego.com/p/how-airtable-built-the-search-layer",
+      "confirmedItems": [
+        "How Airtable Built the Search Layer Behind Their AI Features"
+      ]
+    },
+    {
+      "source": "Latent.Space RSS and public pages",
+      "path": "node scripts/radar/fetch-url.mjs https://www.latent.space/feed --mode rss; public article fetches for esmfold2 and ainews-new-ai-infra-decacorns-fireworks",
+      "confirmedItems": [
+        "ESMFold2: The Bitter Lesson is Coming for Proteins",
+        "New AI Infra decacorns: Fireworks, Baseten (with OpenRouter on the way)"
+      ]
+    },
+    {
+      "source": "OpenAI RSS and public pages",
+      "path": "node scripts/radar/fetch-url.mjs https://openai.com/news/rss.xml --mode rss; public article fetches for Cisco, Warp, Tax AI and election safeguards",
+      "confirmedItems": [
+        "Cisco and OpenAI redefine enterprise engineering with Codex",
+        "Warp's big bet on building open source with GPT-5.5",
+        "Building self-improving tax agents with Codex",
+        "Election information and safeguards in 2026"
+      ]
+    },
+    {
+      "source": "The Batch / DeepLearning.AI public page",
+      "path": "node scripts/radar/fetch-url.mjs https://www.deeplearning.ai/courses/build-interactive-agents-with-generative-ui/",
+      "confirmedItems": [
+        "Build Interactive Agents with Generative UI"
+      ]
+    },
+    {
+      "source": "Daily Dose of Data Science RSS, public pages and Gmail original",
+      "path": "node scripts/radar/fetch-url.mjs https://blog.dailydoseofds.com/feed --mode rss; public article fetches; Gmail read-only search for 2026-05-27 Daily Dose original",
+      "confirmedItems": [
+        "Hermes Agent Masterclass",
+        "Claude Code used 3x fewer tokens with just one change",
+        "The No. 1 Deep Researcher Beats Claude and ChatGPT Using a Counterintuitive Trick"
+      ]
+    },
+    {
+      "source": "Every public page and Gmail original",
+      "path": "node scripts/radar/fetch-url.mjs https://every.to/context-window/after-after-automation; Gmail read-only search for 2026-05-27 Every original",
+      "confirmedItems": [
+        "After 'After Automation'"
+      ]
+    },
+    {
+      "source": "The Rundown AI Gmail original",
+      "path": "Gmail read-only search after:2026/5/26 before:2026/5/28 from:(therundown.ai)",
+      "confirmedItems": [
+        "Exclusive: Demis Hassabis on when AGI arrives"
+      ]
+    },
+    {
+      "source": "老范讲故事 RSS and public page",
+      "path": "node scripts/radar/fetch-url.mjs https://lukefan.com/feed --mode rss; node scripts/radar/fetch-url.mjs https://lukefan.com/2026/05/27/huawei-tau-law-semiconductor-ecosystem-strategy/",
+      "confirmedItems": [
+        "华为韬定律，洪秀全说上帝是我哥，这两件事，有什么关系？"
+      ]
+    },
+    {
+      "source": "GitHub repository pages surfaced by core sources",
+      "path": "Canonical repository links from Daily Dose and DeepLearning.AI coverage",
+      "confirmedItems": [
+        "CopilotKit/CopilotKit",
+        "InsForge/InsForge",
+        "onyx-dot-app/onyx"
+      ]
+    }
+  ],
+  "checksExpected": [
+    "zh/ja same title count",
+    "zh/ja same link order",
+    "fixed daily schema present",
+    "Newsletter section uses item format, not source-count summary",
+    "no public Gmail links, message ids, Chrome/HTTP/fallback logs, or backstage terms",
+    "no active AWS/Meta/Microsoft/NVIDIA source labels"
+  ],
+  "assetStatus": {
+    "infographic": "pending-regeneration-after-text-batch",
+    "audio": "pending-regeneration-after-text-batch",
+    "existingFrontmatterKept": true,
+    "publicRepresentativeImage": "old AWS body image removed from Markdown body"
+  }
+}
