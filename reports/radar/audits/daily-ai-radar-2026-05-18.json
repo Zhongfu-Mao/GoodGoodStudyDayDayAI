@@ -5,10 +5,11 @@
     "src/content/radar/daily-ai-radar-2026-05-18.md",
     "src/content/radar/daily-ai-radar-2026-05-18.ja.md"
   ],
+  "status": "text-and-assets-backfilled",
   "backfill": {
     "reason": "Restore fixed four-quadrant schema plus GitHub trends and reader-facing Newsletter items after the mid-May source and taxonomy drift.",
-    "assetsRerun": false,
-    "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
+    "assetsRerun": true,
+    "scope": "text and assets backfill; coverImage and audioUrl paths preserved while underlying files and audio metadata were refreshed"
   },
   "sourcePolicy": {
     "activePlatformBlogsOmitted": [
@@ -138,5 +139,32 @@
     "forbiddenPublicTerms": "passed: public Markdown scan clean",
     "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
     "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check"
+  },
+  "assetRegeneration": {
+    "status": "passed",
+    "date": "2026-06-01",
+    "note": "Regenerated zh/ja infographic and audio with --no-keep-notebook after the text backfill stabilized; existing public URLs were preserved while files and frontmatter metadata were refreshed.",
+    "notebookCleanup": "passed: no 2026-05-18 daily temporary NotebookLM notebooks remained after generation",
+    "imageQa": "passed: zh/ja infographic files rendered and were visually checked for readability, blank output, and obvious overlap",
+    "files": {
+      "zhInfographic": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-18-infographic.webp",
+        "sizeBytes": 443196
+      },
+      "jaInfographic": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-18.ja-infographic.webp",
+        "sizeBytes": 456450
+      },
+      "zhAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-18.mp3",
+        "sizeBytes": 6482736,
+        "durationSeconds": 810
+      },
+      "jaAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-18.ja.mp3",
+        "sizeBytes": 8359791,
+        "durationSeconds": 1045
+      }
+    }
   }
 }
