@@ -1,0 +1,228 @@
+{
+  "date": "2026-05-15",
+  "cadence": "daily",
+  "status": "text-backfilled-assets-pending",
+  "localeSlugs": {
+    "zh": "daily-ai-radar-2026-05-15",
+    "ja": "daily-ai-radar-2026-05-15"
+  },
+  "scope": {
+    "type": "source-level schema backfill",
+    "reason": "The original 2026-05-15 daily radar used the early four-section schema, had zh/ja link-order drift, and lacked the fifth GitHub trend section.",
+    "assets": "Not regenerated in this pass; existing coverImage and audioUrl frontmatter values were preserved intentionally."
+  },
+  "sourceVisits": [
+    {
+      "name": "Latent.Space / AINews",
+      "url": "https://www.latent.space/p/ainews-everything-is-conductor",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "Daily Dose of Data Science",
+      "url": "https://blog.dailydoseofds.com/p/claude-codes-goal-command",
+      "method": "gmail search + fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://openai.com/index/work-with-codex-from-anywhere/",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://openai.com/index/building-codex-windows-sandbox/",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.blog/changelog/2026-05-14-github-copilot-app-is-now-available-in-technical-preview/",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "LangChain",
+      "url": "https://www.langchain.com/blog/interrupt-2026-overview",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "CoreWeave",
+      "url": "https://www.coreweave.com/news/coreweave-sandboxes-launches-to-accelerate-reinforcement-learning-agent-tool-use-and-model-evaluation",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "Datadog",
+      "url": "https://www.datadoghq.com/blog/ai/toto-2/",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "Goodfire",
+      "url": "https://www.goodfire.ai/research/a-geometric-calculator",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "Zyphra",
+      "url": "https://www.zyphra.com/our-work/zaya1-8b",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "Abridge",
+      "url": "https://www.latent.space/p/abridge",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "Figure AI / Interesting Engineering",
+      "url": "https://interestingengineering.com/ai-robotics/figure-ai-humanoids-24-hour-autonomous-run",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "Prime Intellect",
+      "url": "https://www.primeintellect.ai/",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "NousResearch/hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    },
+    {
+      "name": "AtomicBot-ai/atomic-llama-cpp-turboquant",
+      "url": "https://github.com/AtomicBot-ai/atomic-llama-cpp-turboquant",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    }
+  ],
+  "newsletterEvidence": [
+    {
+      "source": "Latent.Space / AINews",
+      "subjectOrTitle": "[AINews] Everything is Conductor",
+      "confirmationRoute": "public newsletter page",
+      "publicLink": "https://www.latent.space/p/ainews-everything-is-conductor"
+    },
+    {
+      "source": "Daily Dose of Data Science",
+      "subjectOrTitle": "Claude Code's /goal Command",
+      "confirmationRoute": "Gmail read-only search plus public newsletter page",
+      "publicLink": "https://blog.dailydoseofds.com/p/claude-codes-goal-command"
+    }
+  ],
+  "publishedItems": [
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "OpenAI 把 Codex 带到 ChatGPT 移动端，远程 Agent 会话开始脱离单一开发机",
+      "source": "OpenAI",
+      "url": "https://openai.com/index/work-with-codex-from-anywhere/"
+    },
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "Codex Windows 沙箱说明 Agent 安全边界必须落到操作系统和网络层",
+      "source": "OpenAI",
+      "url": "https://openai.com/index/building-codex-windows-sandbox/"
+    },
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "LangSmith Engine 和 SmithDB 把 Agent 观测推进到闭环",
+      "source": "LangChain",
+      "url": "https://www.langchain.com/blog/interrupt-2026-overview"
+    },
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "CoreWeave Sandboxes 把隔离执行层产品化",
+      "source": "CoreWeave",
+      "url": "https://www.coreweave.com/news/coreweave-sandboxes-launches-to-accelerate-reinforcement-learning-agent-tool-use-and-model-evaluation"
+    },
+    {
+      "section": "2. 模型前沿 & 算法探索",
+      "title": "Datadog Toto 2.0 显示时间序列基础模型也开始进入 scaling era",
+      "source": "Datadog",
+      "url": "https://www.datadoghq.com/blog/ai/toto-2/"
+    },
+    {
+      "section": "2. 模型前沿 & 算法探索",
+      "title": "Goodfire 在 Llama 3.1 8B 中找到可操控的几何计算器",
+      "source": "Goodfire",
+      "url": "https://www.goodfire.ai/research/a-geometric-calculator"
+    },
+    {
+      "section": "2. 模型前沿 & 算法探索",
+      "title": "Zyphra ZAYA1-8B 继续押注小参数、高活跃效率和 AMD 训练栈",
+      "source": "Zyphra",
+      "url": "https://www.zyphra.com/our-work/zaya1-8b"
+    },
+    {
+      "section": "3. 实战代码 & 工具库",
+      "title": "GitHub Copilot App 把 Agent 开发做成桌面闭环",
+      "source": "GitHub",
+      "url": "https://github.blog/changelog/2026-05-14-github-copilot-app-is-now-available-in-technical-preview/"
+    },
+    {
+      "section": "3. 实战代码 & 工具库",
+      "title": "Prime Intellect 把自我改进 Agent 的训练流程做成端到端平台",
+      "source": "Prime Intellect",
+      "url": "https://www.primeintellect.ai/"
+    },
+    {
+      "section": "4. 行业与商业快讯",
+      "title": "Abridge 从 ambient scribe 走向临床智能层",
+      "source": "Latent.Space / Abridge",
+      "url": "https://www.latent.space/p/abridge"
+    },
+    {
+      "section": "4. 行业与商业快讯",
+      "title": "Figure 的 Helix-02 长时自主分拣演示，把机器人评测从短视频推向 uptime",
+      "source": "Interesting Engineering",
+      "url": "https://interestingengineering.com/ai-robotics/figure-ai-humanoids-24-hour-autonomous-run"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "NousResearch/hermes-agent",
+      "source": "GitHub",
+      "url": "https://github.com/NousResearch/hermes-agent"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "AtomicBot-ai/atomic-llama-cpp-turboquant",
+      "source": "GitHub",
+      "url": "https://github.com/AtomicBot-ai/atomic-llama-cpp-turboquant"
+    },
+    {
+      "section": "📬 Newsletter 精选",
+      "title": "Latent.Space：Everything is Conductor",
+      "source": "Latent.Space / AINews",
+      "url": "https://www.latent.space/p/ainews-everything-is-conductor"
+    },
+    {
+      "section": "📬 Newsletter 精选",
+      "title": "Daily Dose：Claude Code `/goal` 让长时间 Agent 会话有了可判定终点",
+      "source": "Daily Dose of Data Science",
+      "url": "https://blog.dailydoseofds.com/p/claude-codes-goal-command"
+    }
+  ],
+  "dedupe": {
+    "sameDay": "No duplicate public URLs inside the Newsletter section. Some sources appear in both discovery and canonical roles, but final item URLs are unique.",
+    "neighborWindow": "2026-05-16 also covers Codex mobile and Programmer Weekly items because the automation window overlaps 2026-05-15 to 2026-05-16; this 2026-05-15 backfill keeps the 2026-05-14 to 2026-05-15 window and restores schema alignment."
+  },
+  "validation": {
+    "manualLinkParity": "passed: zh/ja both contain 15 public links in identical order",
+    "manualSchema": "passed: both locales use the fixed six-section daily taxonomy",
+    "manualNewsletter": "passed: both locales contain two reader-facing Newsletter entries and no backend phrasing",
+    "manualSourceDiversity": "passed: 15 entries, 11 source families, 6 core/trend entries, largest source share 20%",
+    "forbiddenPublicTerms": "passed",
+    "npmCheckRadarNewsletter": "passed",
+    "npmCheckRadarSchema": "passed",
+    "npmCheckRadarSources": "passed",
+    "npmCheckRadarDedupe": "passed",
+    "npmRunCheck": "passed"
+  }
+}
