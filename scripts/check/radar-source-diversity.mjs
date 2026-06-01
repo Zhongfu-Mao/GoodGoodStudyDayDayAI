@@ -3,66 +3,73 @@
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 
-const root = process.cwd();
-const radarDir = path.join(root, 'src/content/radar');
-const sourcePoolPath = path.join(root, 'scripts/radar/source-pool.json');
-
-const sourcePool = JSON.parse(await readFile(sourcePoolPath, 'utf8'));
-const gate = sourcePool.publicationGate ?? {};
-const enforceFromDate = parseFromDateArg() ?? gate.enforceDailyFrom ?? '9999-99-99';
-const minimumEntries = gate.minimumEntries ?? 0;
-const minimumSourceFamilies = gate.minimumSourceFamilies ?? 0;
-const minimumCoreEntries = gate.minimumCoreEntries ?? 0;
-const minimumNewsletterEntries = gate.minimumNewsletterEntries ?? 0;
-const maxSingleFamilyShare = gate.maxSingleFamilyShare ?? 1;
-const failures = [];
-
-checkSourcePoolConfig(sourcePool, failures);
-
-const sourceAliases = buildSourceAliases(sourcePool);
-const excludedPatterns = (sourcePool.excludedActiveSources ?? []).map((source) => ({
-  name: source.name,
-  pattern: new RegExp(escapeRegExp(source.name), 'i'),
-}));
-
-const files = (await readdir(radarDir))
-  .filter((file) => /^daily-ai-radar-\d{4}-\d{2}-\d{2}(?:\.ja)?\.md$/.test(file))
-  .filter((file) => extractDate(file) >= enforceFromDate)
-  .sort();
-
-const byDate = new Map();
-
-for (const file of files) {
-  const fullPath = path.join(radarDir, file);
-  const body = await readFile(fullPath, 'utf8');
-  const labels = extractSourceLabels(body);
-  const groups = labels.map((label) => classifySource(label, sourceAliases));
-  const date = extractDate(file);
-  const isJa = file.endsWith('.ja.md');
-
-  checkFile(file, body, groups, failures);
-
-  const pair = byDate.get(date) ?? {};
-  pair[isJa ? 'ja' : 'zh'] = { file, groups };
-  byDate.set(date, pair);
+if (isCliEntry()) {
+  await main();
 }
 
-for (const [date, pair] of byDate.entries()) {
-  if (!pair.zh || !pair.ja) continue;
-  const zhSequence = pair.zh.groups.map((group) => group.name).join('|');
-  const jaSequence = pair.ja.groups.map((group) => group.name).join('|');
-  if (zhSequence !== jaSequence) {
-    failures.push(`${date}: zh/ja source order differs`);
+async function main() {
+  const root = process.cwd();
+  const radarDir = path.join(root, 'src/content/radar');
+  const sourcePoolPath = path.join(root, 'scripts/radar/source-pool.json');
+
+  const sourcePool = JSON.parse(await readFile(sourcePoolPath, 'utf8'));
+  const gate = sourcePool.publicationGate ?? {};
+  const enforceFromDate = parseFromDateArg() ?? gate.enforceDailyFrom ?? '9999-99-99';
+  const failures = [];
+
+  checkSourcePoolConfig(sourcePool, failures);
+
+  const files = (await readdir(radarDir))
+    .filter((file) => /^daily-ai-radar-\d{4}-\d{2}-\d{2}(?:\.ja)?\.md$/.test(file))
+    .filter((file) => extractDate(file) >= enforceFromDate)
+    .sort();
+
+  const byDate = new Map();
+
+  for (const file of files) {
+    const fullPath = path.join(radarDir, file);
+    const body = await readFile(fullPath, 'utf8');
+    const groups = extractSourceGroups(body, sourcePool);
+    const date = extractDate(file);
+    const isJa = file.endsWith('.ja.md');
+
+    failures.push(...evaluateRadarSourceDiversity({ file, body, sourcePool, groups }));
+
+    const pair = byDate.get(date) ?? {};
+    pair[isJa ? 'ja' : 'zh'] = { file, groups };
+    byDate.set(date, pair);
   }
+
+  for (const [date, pair] of byDate.entries()) {
+    if (!pair.zh || !pair.ja) continue;
+    const zhSequence = pair.zh.groups.map((group) => group.name).join('|');
+    const jaSequence = pair.ja.groups.map((group) => group.name).join('|');
+    if (zhSequence !== jaSequence) {
+      failures.push(`${date}: zh/ja source order differs`);
+    }
+  }
+
+  if (failures.length > 0) {
+    console.error(failures.join('\n'));
+    process.exit(1);
+  }
+
+  console.log(`Checked radar source diversity in ${files.length} daily radar files.`);
 }
 
-if (failures.length > 0) {
-  console.error(failures.join('\n'));
-  process.exit(1);
+export function evaluateRadarSourceDiversity({ file, body, sourcePool, groups = null }) {
+  const failures = [];
+  checkFile(file, body, groups ?? extractSourceGroups(body, sourcePool), sourcePool, failures);
+  return failures;
 }
 
-console.log(`Checked radar source diversity in ${files.length} daily radar files.`);
+export function extractSourceGroups(body, sourcePool) {
+  const sourceAliases = buildSourceAliases(sourcePool);
+  const labels = extractSourceLabels(body);
+  return labels.map((label) => classifySource(label, sourceAliases));
+}
 
 function buildSourceAliases(config) {
   const buckets = [
@@ -128,17 +135,37 @@ function normalizeLabel(label) {
     .trim();
 }
 
-function checkFile(file, body, groups, fileFailures) {
+function checkFile(file, body, groups, sourcePool, fileFailures) {
+  const gate = sourcePool.publicationGate ?? {};
+  const minimumEntries = gate.minimumEntries ?? 0;
+  const minimumSourceFamilies = gate.minimumSourceFamilies ?? 0;
+  const minimumCoreEntries = gate.minimumCoreEntries ?? 0;
+  const minimumActiveCoreEntries = gate.minimumActiveCoreEntries ?? 0;
+  const minimumNewsletterEntries = gate.minimumNewsletterEntries ?? 0;
+  const maxSingleFamilyShare = gate.maxSingleFamilyShare ?? 1;
+  const maxOfficialTriadShare = gate.maxOfficialTriadShare ?? 1;
+  const maxTrendShare = gate.maxTrendShare ?? 1;
+  const excludedPatterns = (sourcePool.excludedActiveSources ?? []).map((source) => ({
+    name: source.name,
+    pattern: new RegExp(escapeRegExp(source.name), 'i'),
+  }));
+
   if (groups.length < minimumEntries) {
     fileFailures.push(`${file}: has ${groups.length} entries, expected at least ${minimumEntries}`);
   }
 
   const counts = new Map();
   let coreEntries = 0;
+  let activeCoreEntries = 0;
+  let officialTriadEntries = 0;
+  let trendEntries = 0;
   let newsletterEntries = 0;
   for (const group of groups) {
     counts.set(group.name, (counts.get(group.name) ?? 0) + 1);
     if (['core', 'trend', 'official-triad'].includes(group.kind)) coreEntries += 1;
+    if (group.kind === 'core') activeCoreEntries += 1;
+    if (group.kind === 'official-triad') officialTriadEntries += 1;
+    if (group.kind === 'trend') trendEntries += 1;
   }
 
   const newsletterBlock = extractNewsletterBlock(body);
@@ -158,6 +185,12 @@ function checkFile(file, body, groups, fileFailures) {
     );
   }
 
+  if (activeCoreEntries < minimumActiveCoreEntries) {
+    fileFailures.push(
+      `${file}: has ${activeCoreEntries} active-core source entries, expected at least ${minimumActiveCoreEntries}`,
+    );
+  }
+
   if (newsletterEntries < minimumNewsletterEntries) {
     fileFailures.push(
       `${file}: has ${newsletterEntries} Newsletter entries, expected at least ${minimumNewsletterEntries}`,
@@ -170,6 +203,24 @@ function checkFile(file, body, groups, fileFailures) {
     fileFailures.push(
       `${file}: largest source group share ${(largestShare * 100).toFixed(1)}% exceeds ${(
         maxSingleFamilyShare * 100
+      ).toFixed(1)}%`,
+    );
+  }
+
+  const officialTriadShare = groups.length === 0 ? 0 : officialTriadEntries / groups.length;
+  if (officialTriadShare > maxOfficialTriadShare) {
+    fileFailures.push(
+      `${file}: official-triad source share ${(officialTriadShare * 100).toFixed(1)}% exceeds ${(
+        maxOfficialTriadShare * 100
+      ).toFixed(1)}%`,
+    );
+  }
+
+  const trendShare = groups.length === 0 ? 0 : trendEntries / groups.length;
+  if (trendShare > maxTrendShare) {
+    fileFailures.push(
+      `${file}: trend source share ${(trendShare * 100).toFixed(1)}% exceeds ${(
+        maxTrendShare * 100
       ).toFixed(1)}%`,
     );
   }
@@ -240,4 +291,8 @@ function hasUsableAccess(access) {
 
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function isCliEntry() {
+  return process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 }

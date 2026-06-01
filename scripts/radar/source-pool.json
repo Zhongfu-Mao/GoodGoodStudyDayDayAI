@@ -5,8 +5,11 @@
     "targetEntries": "12-16",
     "minimumSourceFamilies": 5,
     "minimumCoreEntries": 4,
+    "minimumActiveCoreEntries": 4,
     "minimumNewsletterEntries": 2,
-    "maxSingleFamilyShare": 0.35
+    "maxSingleFamilyShare": 0.35,
+    "maxOfficialTriadShare": 0.35,
+    "maxTrendShare": 0.35
   },
   "activeCoreSources": [
     {

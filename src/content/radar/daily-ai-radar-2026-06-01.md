@@ -3,12 +3,12 @@ title: "AI 雷达日报：2026-06-01"
 date: 2026-06-01
 category: radar
 cadence: daily
-plainSummary: "今天的主线不是单点模型发布，而是 AI 工程进入治理与生产化细节：Codex 客户反馈闭环、第三方评测规范、Gemini 3.5/Omni 的体验样例、AI Studio 的快速原型、医疗和教育场景，以及 GitHub 上语音、记忆、world model 与 harness 工具继续升温。"
+plainSummary: "今天的主线是 agent 工程继续向可训练、可测试、可部署的真实系统移动：多轮 RL 的 token 边界、Claude Code 驱动的全栈数据应用、video agents、开源 Flash 模型、local AI 工具链、agentic internet traffic，以及 GitHub 上语音、记忆、world model 与 harness 工具继续升温。"
 difficulty: intermediate
 tags:
   - AI Engineering
+  - Agents
   - Evaluation
-  - Gemini
   - GitHub
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-06-01-infographic.webp
@@ -21,76 +21,69 @@ draft: false
 ## 本期范围
 
 - 覆盖时间：2026-05-29 至 2026-06-01。
-- 本期选题按固定五象限加 Newsletter 精选整理，优先使用核心水源、OpenAI / Anthropic / Google 三家确认源、GitHub 趋势与邮件原文。
+- 本期选题按固定五象限加 Newsletter 精选整理，优先使用核心水源、三家官方确认源、GitHub 趋势与邮件原文；前几天已经覆盖过的公开链接不重复进入正文。
 
 ---
-![9 demos of Gemini Omni and Gemini 3.5 in action](https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemini_Omni_and_Gemini_3.5_herosocial.width-1300.png)
+![Claude Code builds a 3D Weather Globe](https://substackcdn.com/image/fetch/$s_!ncB9!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F525dc9d7-9514-4e68-8abf-2867611dd54d_1080x1080.png)
 
-*代表图来自 [9 demos of Gemini Omni and Gemini 3.5 in action](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/)。它对应这期日报里最能概括当天主线的一条原始信号。*
+*代表图来自 [Daily Dose of Data Science 的 Claude Code 全栈天气地球案例](https://blog.dailydoseofds.com/p/hands-on-build-a-3d-weather-globe)。它对应本期最清晰的工程主线：agent 不只是生成代码，还开始直接编排数据库、前端、3D 可视化和验证路径。*
 
 ## 1. AI Engineering & 架构
 
-### Braintrust 把客户请求直接接进 Codex 实验与代码闭环
+### Token-In, Token-Out 把多轮工具 RL 的“隐形坏梯度”问题钉住
 
-- 来源：OpenAI
+- 来源：Latent.Space / AINews + Hugging Face
 - 日期：2026-05-29
-- 链接：https://openai.com/index/braintrust
-- 摘要：Braintrust 的案例重点不在“用 Codex 写更多代码”，而在把客户反馈、实验、评测和代码改动连成短循环。工程师可以从客户请求出发，让 Codex 帮忙定位相关测试、补实验、提出实现方案，再把结果回到 Braintrust 自己的 eval 和 observability 体系里。这个信号很适合放在架构栏：agent coding 的价值不是孤立生成 patch，而是嵌入产品反馈和质量门禁。
+- 链接：https://huggingface.co/blog/huggingface/tito
+- 摘要：Hugging Face 的文章指出，多轮工具 RL 里一个很容易被忽略的错误是：模型先生成 token，系统为了识别工具调用把它 decode 成文本，再把更新后的 conversation 重新 tokenize。因为 tokenization 不是可逆操作，训练时反传的可能不是模型实际采样过的 token。Token-In, Token-Out 的原则是把模型采样 token 放进同一个 buffer，工具结果只追加必要 delta，绝不把 decode 后的文本重新 encode 回去。这个问题很底层，但它直接决定 agent RL 的梯度是否可信。
 
-### 第三方评测开始从榜单竞争转向可审计协议
+### Claude Code 全栈天气地球案例展示了“agent 编排基础设施”的现实形态
 
-- 来源：OpenAI
-- 日期：2026-05-29
-- 链接：https://openai.com/index/trustworthy-third-party-evaluations-foundations
-- 摘要：OpenAI 的第三方评测 playbook 把模型评估拆成能力、保护措施和有效性三层，强调评测方要说明测试边界、样本来源、攻击模型、统计置信度和复现方式。这里最值得关注的是范式变化：评测不再只是“谁在某个 benchmark 上高一点”，而是要能解释为什么这套测试能代表真实风险或真实能力。对企业 AI 工程来说，这会倒逼内部 eval 也写清楚假设和失效条件。
-
-### Rosalind Biodefense 把可信访问与高风险能力治理放到同一条线上
-
-- 来源：OpenAI
-- 日期：2026-05-29
-- 链接：https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense
-- 摘要：Rosalind Biodefense 扩展了 GPT-Rosalind 的可信访问范围，面向经过审核的开发者和美国政府伙伴，用于生物防御、公共卫生和疫情准备。它不是普通产品发布，而是一个治理样本：高风险领域的 AI 能力不能只靠公开 API 粗放释放，而要通过身份审核、用途边界、监控和合作伙伴责任来换取能力开放。这类模式可能会成为安全、网络、生物和关键基础设施 AI 的共同模板。
+- 来源：Daily Dose of Data Science
+- 日期：2026-06-01
+- 链接：https://blog.dailydoseofds.com/p/hands-on-build-a-3d-weather-globe
+- 摘要：Daily Dose 复盘了一个 Claude Code 单会话构建的 3D weather intelligence dashboard：前端用 Next.js 和 Three.js 做昼夜切换的地球，可通过时间滑杆查看 10 天数据；后端由 Claude Code 通过 Tiger CLI MCP server 创建 TimescaleDB 服务、建 schema、写 hypertable、生成连续聚合并灌入 25,000 多行天气数据。重点不是 demo 炫技，而是 agent 正在从“写一段代码”走向“理解任务、调用云服务、创建数据层、搭 UI、再解释性能取舍”的全栈编排。
 
 ## 2. 模型前沿 & 算法探索
 
-### Gemini Omni 与 Gemini 3.5 的九段 demo 把多模态能力拉回可观察体验
+### Latent.Space 判断下一阶段视频生成会变成 video agents
 
-- 来源：Google / Gemini / DeepMind
+- 来源：Latent.Space
+- 日期：2026-06-01
+- 链接：https://www.latent.space/p/video-agents
+- 摘要：Latent.Space 访谈了曾参与 NVIDIA Cosmos、后在 xAI 参与 Grok Imagine 的 Ethan He。核心判断是：视频模型的下一步不只是更强的一次性生成，而是能规划、生成、编辑、批评、迭代的 video agent。访谈把视频生成和 coding agent 的演进放在一起看：当底层生成质量与成本进入可用区间，真正的增量会来自 harness、工具调用、长程上下文、实时交互和语言模型驱动的任务分解。这个视角比单纯比较视频模型榜单更值得追踪。
+
+### Step 3.7 Flash 把开源 Flash 模型押向 agent 效率
+
+- 来源：Latent.Space / AINews + StepFun
 - 日期：2026-05-29
-- 链接：https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/
-- 摘要：Google 用九段视频展示 Gemini Omni 与 Gemini 3.5 的能力，覆盖实时理解、多模态输入、复杂任务执行和面向应用的交互方式。这个条目的价值不是新增一组抽象指标，而是把模型能力重新拉回用户能观察的体验：延迟、上下文保持、跨模态引用、工具接入和任务完成感。对日报来说，这比单独引用模型名更可靠，因为 demo 能暴露模型是否真的进入产品形态。
-
-### 医疗诊断案例显示模型前沿正在进入罕见病工作流
-
-- 来源：OpenAI
-- 日期：2026-05-29
-- 链接：https://openai.com/index/boston-childrens-hospital
-- 摘要：Boston Children's Hospital 的案例称，OpenAI 技术帮助医生改善患者护理、降低运营负担，并辅助诊断 40 多个罕见病病例。它提醒我们，医疗 AI 的关键不是“一次回答正确”，而是能不能把病历、症状、检验和医生判断放进可追踪的临床流程。这个方向的长期看点是：模型如何在不替代医生责任的前提下，提高疑难病例检索、假设生成和跨科室协作效率。
+- 链接：https://static.stepfun.com/blog/step-3.7-flash/
+- 摘要：StepFun 发布 Step 3.7 Flash，定位是面向真实 agent 的高效率 multimodal MoE：196B 总参数、11B active，并强调 multimodal understanding、web/visual search、可靠工具调用、GUI 操作和主流 harness 兼容。官方报告的指标包括 SWE-Bench Pro 56.3%、HLE with tools 47.2%、deepsearchQA F1 92.8%，并提供 BF16、FP8、NVFP4、GGUF 等部署路径。它的价值不在“又一个大模型发布”，而在开源/本地模型开始把 agentic coding、工具编排和 GUI 操作作为核心竞争维度。
 
 ## 3. 实战代码 & 工具库
 
-### Google AI Studio 的 I/O quiz 展示了“活动内容即刻产品化”的轻量路径
+### llama.app 给 llama.cpp 补上更像产品入口的本地 AI 门面
 
-- 来源：Google / Gemini / DeepMind
-- 日期：2026-05-29
-- 链接：https://blog.google/innovation-and-ai/technology/ai/io-2026-vibe-coded-quiz/
-- 摘要：Google 用 AI Studio 快速生成了一个围绕 I/O 2026 发布内容的 quiz。它不是大型工程案例，但非常适合观察新一代内部内容工具：活动发布、知识整理、交互小应用和分发页面之间的距离被压缩了。真正值得团队借鉴的是工作流，而不是 quiz 本身：把已有内容转成可互动页面，马上用来做培训、复盘或营销验证，再根据反馈决定是否工程化。
+- 来源：Latent.Space / AINews + llama.app
+- 日期：2026-05-30
+- 链接：https://llama.app/
+- 摘要：Latent.Space / AINews 把 llama.app 作为 local AI 工具链的一个节点记录下来。它是 llama.cpp 的官方入口，强调本地运行、无 API key、无遥测，并把 `llama serve` 与本地 coding agent Pi 的自动发现串起来。这个信号小但重要：开源推理基础设施正在从“懂的人自己编译”走向更顺手的安装、模型发现、agent 接入和隐私叙事。对本地 agent 工作流来说，这类入口会降低试用门槛。
 
-### 大学实验室原型显示 AI 教学工具正在从 demo 走向真实课堂问题
+### Waterloo 学生原型提醒教育 AI 的需求发现仍来自具体场景
 
 - 来源：Google / Gemini / DeepMind
 - 日期：2026-05-29
 - 链接：https://blog.google/innovation-and-ai/technology/ai/university-waterloo-labs/
-- 摘要：Google Futures Lab 展示了滑铁卢大学学生做出的 AI 原型，包括面向教育和工作的工具。这里的重要信号是，AI education tool 的重点正在从“生成课件”转向具体学习场景，比如辅助表达、个性化练习和无障碍沟通。对开发者来说，这类原型适合当作需求发现池：它们通常暴露真实用户问题，但还需要后续的数据隐私、课堂部署、可解释反馈和教师控制权设计。
+- 摘要：Google Futures Lab 展示了滑铁卢大学学生做出的 AI 原型，包括面向教育和工作的工具。这里值得保留的是需求发现方式：教育 AI 的重点正在从“生成课件”转向具体学习场景，比如辅助表达、个性化练习和无障碍沟通。对开发者来说，这类原型适合当作问题池，而不是最终产品样板；后续仍要补上数据隐私、课堂部署、可解释反馈和教师控制权。
 
 ## 4. 行业与商业快讯
 
-### Every 把“自动化之后”重新定义为更多人类判断，而不是更少工作
+### AI-driven traffic 接近“agentic internet”的基础设施问题
 
-- 来源：Every
-- 日期：2026-05-31
-- 链接：https://every.to/context-window/after-after-automation
-- 摘要：Every 的后续讨论延伸了 Dan Shipper 的 “After Automation” 观点：模型越强，人类不一定越闲，反而需要提出更多 frame、判断更多候选结果、管理更多可并行推进的工作。这个判断对 AI 组织转型很重要，因为它反驳了“工具上线即节省人力”的直觉。更现实的路径是：同一批人处理更大范围的问题，但必须配套优先级、审查和沉淀机制。
+- 来源：The Batch / DeepLearning.AI + HUMAN Security
+- 日期：2026-05-29
+- 链接：https://www.humansecurity.com/learn/resources/2026-state-of-ai-traffic-cyberthreat-benchmarks/
+- 摘要：HUMAN Security 的 2026 benchmark 基于 2025 年超过一千万亿次交互，称 AI-driven traffic 在一年内几乎翻三倍，agentic AI traffic 同比增长 7,851%。报告还指出，agentic traffic 已经开始出现在商品搜索、账号、认证和结账页面。这个信号的行业意义在于：agent 不再只是读取网页，正在接近交易动作；安全系统需要区分“用户授权的购物 agent”和“自动化欺诈/爬取”，而旧的 bot/not-bot 二分会越来越不够用。
 
 ## 5. GitHub 热门 repo & 趋势追踪
 
@@ -106,7 +99,7 @@ draft: false
 - 来源：GitHub Trending / supermemoryai
 - 日期：2026-06-01
 - 链接：https://github.com/supermemoryai/supermemory
-- 摘要：`supermemoryai/supermemory` 将自己定位为 AI era 的 memory engine 与 Memory API。这个 repo 的趋势价值在于，memory 正从应用内部功能变成独立基础设施：需要高速写入、检索、去重、权限和跨应用身份映射。结合近期 agent crash / resume 的讨论，memory 不应只理解为“长期上下文”，而是任务状态、用户偏好和可审计历史的共同底座。
+- 摘要：`supermemoryai/supermemory` 将自己定位为 AI era 的 memory engine 与 Memory API。这个 repo 的趋势价值在于，memory 正从应用内部功能变成独立基础设施：需要高速写入、检索、重复合并、权限和跨应用身份映射。结合近期 agent crash / resume 的讨论，memory 不应只理解为“长期上下文”，而是任务状态、用户偏好和可审计历史的共同底座。
 
 ### stable-worldmodel 给 world model 研究补上可复现实验平台
 

@@ -5,6 +5,7 @@
     "zh": "daily-ai-radar-2026-06-01",
     "ja": "daily-ai-radar-2026-06-01"
   },
+  "status": "text-repaired-assets-preserved",
   "sourceVisits": [
     {
       "name": "The Rundown AI",
@@ -15,26 +16,26 @@
     {
       "name": "Latent.Space / AINews",
       "url": "https://www.latent.space/feed",
-      "method": "fetch-url/rss",
-      "status": "checked-latest-2026-05-30-not-selected"
+      "method": "fetch-url/rss + fetch-url/readability",
+      "status": "confirmed-2026-06-01-video-agents-and-2026-05-30-ainows-summary"
     },
     {
       "name": "Daily Dose of Data Science",
       "url": "https://blog.dailydoseofds.com/feed",
-      "method": "fetch-url/rss + gmail original",
-      "status": "confirmed"
+      "method": "fetch-url/rss + fetch-url/readability + gmail original",
+      "status": "confirmed-2026-06-01-weather-globe-and-2026-05-31-newsletter"
     },
     {
       "name": "Every",
       "url": "https://every.to/",
       "method": "fetch-url/readability + gmail original",
-      "status": "confirmed"
+      "status": "confirmed-newsletter-only"
     },
     {
       "name": "ByteByteGo",
       "url": "https://blog.bytebytego.com/feed",
-      "method": "fetch-url/rss + gmail original",
-      "status": "checked-latest-already-covered-2026-05-31"
+      "method": "fetch-url/rss",
+      "status": "checked-latest-already-covered-2026-05-30-and-2026-05-31"
     },
     {
       "name": "老范讲故事",
@@ -44,9 +45,9 @@
     },
     {
       "name": "The Batch / DeepLearning.AI",
-      "url": "https://www.deeplearning.ai/the-batch/",
+      "url": "https://www.deeplearning.ai/the-batch/issue-355",
       "method": "fetch-url/readability",
-      "status": "checked-latest-already-covered-2026-05-31"
+      "status": "confirmed-but-issue-link-already-used-before-2026-06-01; only HUMAN canonical link retained"
     },
     {
       "name": "Ahead of AI",
@@ -70,75 +71,93 @@
       "name": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
       "method": "fetch-url/rss",
-      "status": "confirmed"
+      "status": "checked-2026-05-29-items-removed-from-2026-06-01-because-already-covered"
     },
     {
       "name": "Anthropic",
       "url": "https://www.anthropic.com/news",
       "method": "fetch-url/readability",
-      "status": "checked-no-new-public-news-after-2026-04-17"
+      "status": "checked-no-new-public-news-after-2026-05-29-items-already-covered"
     },
     {
       "name": "Google / Gemini / DeepMind",
       "url": "https://blog.google/technology/ai/rss/",
       "method": "fetch-url/rss",
-      "status": "confirmed"
+      "status": "confirmed-one-non-duplicate-waterloo-item-retained"
     },
     {
       "name": "GitHub Trending",
       "url": "https://github.com/trending?since=daily",
       "method": "fetch-url/readability",
-      "status": "confirmed"
+      "status": "confirmed-four-non-duplicate-ai-relevant-repositories"
+    },
+    {
+      "name": "Hugging Face",
+      "url": "https://huggingface.co/blog/huggingface/tito",
+      "method": "fetch-url/readability",
+      "status": "canonical-confirmation-from-latent-ainows"
+    },
+    {
+      "name": "StepFun",
+      "url": "https://static.stepfun.com/blog/step-3.7-flash/",
+      "method": "fetch-url/readability",
+      "status": "canonical-confirmation-from-latent-ainows"
+    },
+    {
+      "name": "llama.app",
+      "url": "https://llama.app/",
+      "method": "fetch-url/readability",
+      "status": "canonical-confirmation-from-latent-ainows"
+    },
+    {
+      "name": "HUMAN Security",
+      "url": "https://www.humansecurity.com/learn/resources/2026-state-of-ai-traffic-cyberthreat-benchmarks/",
+      "method": "fetch-url/readability",
+      "status": "canonical-confirmation-from-the-batch"
     }
   ],
   "publishedItems": [
     {
       "section": "1. AI Engineering & 架构",
-      "title": "Braintrust 把客户请求直接接进 Codex 实验与代码闭环",
-      "source": "OpenAI",
-      "url": "https://openai.com/index/braintrust"
+      "title": "Token-In, Token-Out 把多轮工具 RL 的“隐形坏梯度”问题钉住",
+      "source": "Latent.Space / AINews + Hugging Face",
+      "url": "https://huggingface.co/blog/huggingface/tito"
     },
     {
       "section": "1. AI Engineering & 架构",
-      "title": "第三方评测开始从榜单竞争转向可审计协议",
-      "source": "OpenAI",
-      "url": "https://openai.com/index/trustworthy-third-party-evaluations-foundations"
-    },
-    {
-      "section": "1. AI Engineering & 架构",
-      "title": "Rosalind Biodefense 把可信访问与高风险能力治理放到同一条线上",
-      "source": "OpenAI",
-      "url": "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense"
+      "title": "Claude Code 全栈天气地球案例展示了“agent 编排基础设施”的现实形态",
+      "source": "Daily Dose of Data Science",
+      "url": "https://blog.dailydoseofds.com/p/hands-on-build-a-3d-weather-globe"
     },
     {
       "section": "2. 模型前沿 & 算法探索",
-      "title": "Gemini Omni 与 Gemini 3.5 的九段 demo 把多模态能力拉回可观察体验",
-      "source": "Google / Gemini / DeepMind",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/"
+      "title": "Latent.Space 判断下一阶段视频生成会变成 video agents",
+      "source": "Latent.Space",
+      "url": "https://www.latent.space/p/video-agents"
     },
     {
       "section": "2. 模型前沿 & 算法探索",
-      "title": "医疗诊断案例显示模型前沿正在进入罕见病工作流",
-      "source": "OpenAI",
-      "url": "https://openai.com/index/boston-childrens-hospital"
+      "title": "Step 3.7 Flash 把开源 Flash 模型押向 agent 效率",
+      "source": "Latent.Space / AINews + StepFun",
+      "url": "https://static.stepfun.com/blog/step-3.7-flash/"
     },
     {
       "section": "3. 实战代码 & 工具库",
-      "title": "Google AI Studio 的 I/O quiz 展示了“活动内容即刻产品化”的轻量路径",
-      "source": "Google / Gemini / DeepMind",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-vibe-coded-quiz/"
+      "title": "llama.app 给 llama.cpp 补上更像产品入口的本地 AI 门面",
+      "source": "Latent.Space / AINews + llama.app",
+      "url": "https://llama.app/"
     },
     {
       "section": "3. 实战代码 & 工具库",
-      "title": "大学实验室原型显示 AI 教学工具正在从 demo 走向真实课堂问题",
+      "title": "Waterloo 学生原型提醒教育 AI 的需求发现仍来自具体场景",
       "source": "Google / Gemini / DeepMind",
       "url": "https://blog.google/innovation-and-ai/technology/ai/university-waterloo-labs/"
     },
     {
       "section": "4. 行业与商业快讯",
-      "title": "Every 把“自动化之后”重新定义为更多人类判断，而不是更少工作",
-      "source": "Every",
-      "url": "https://every.to/context-window/after-after-automation"
+      "title": "AI-driven traffic 接近“agentic internet”的基础设施问题",
+      "source": "The Batch / DeepLearning.AI + HUMAN Security",
+      "url": "https://www.humansecurity.com/learn/resources/2026-state-of-ai-traffic-cyberthreat-benchmarks/"
     },
     {
       "section": "5. GitHub 热门 repo & 趋势追踪",
@@ -190,9 +209,10 @@
     }
   ],
   "qualityNotes": [
-    "The public markdown excludes backend collection logs, Gmail links, message ids, and no-new-source notes.",
-    "The Rundown AI, AI Valley, The Batch, ByteByteGo, 老范讲故事, Ahead of AI, and Programmer Weekly were checked; only high-signal or new relevant items were selected.",
-    "AWS email was seen in Gmail but excluded because AWS is not an active daily source under the current source pool.",
-    "Chinese and Japanese markdown use the same topic order and the same URLs."
+    "The 2026-06-01 text was repaired after the source gate showed insufficient active-core entries and excessive official-triad share.",
+    "Previously covered OpenAI, Google, Every, ByteByteGo, The Batch and AI Valley links were removed or not reused in public markdown.",
+    "The final public markdown has 13 entries: 8 active-core or core-surfaced entries, 1 official-triad entry, 4 GitHub trend entries and 2 Newsletter entries.",
+    "Chinese and Japanese markdown use the same topic order and the same URLs.",
+    "Infographic and audio frontmatter were preserved; no NotebookLM asset regeneration was performed during this text repair."
   ]
 }
