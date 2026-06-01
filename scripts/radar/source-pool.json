@@ -149,7 +149,7 @@
   "trendSources": [
     {
       "name": "GitHub Trending",
-      "aliases": ["GitHub Trending", "GitHub repo", "GitHub"],
+      "aliases": ["GitHub Trending", "GitHub repo"],
       "access": {
         "primary": { "kind": "homepage", "url": "https://github.com/trending?since=daily" },
         "fallbacks": [
@@ -158,7 +158,7 @@
         ]
       },
       "role": "Fifth quadrant source for high-velocity AI/agent/data-science repositories.",
-      "strategy": "Track daily but include only repos with concrete AI/agent/data relevance, credible maintainers, clear docs/demo, and non-trivial velocity."
+      "strategy": "Track daily but include only repos with concrete AI/agent/data relevance, credible maintainers, clear docs/demo, and non-trivial velocity. Do not classify GitHub Blog or GitHub Changelog as this trend source unless the item is specifically a repository surfaced from Trending."
     }
   ],
   "canonicalConfirmationSources": [

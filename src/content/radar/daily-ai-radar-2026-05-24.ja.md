@@ -86,13 +86,6 @@ draft: false
 - リンク：https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/
 - 要約：Google は Universal Cart、Agent Payments Protocol、Universal Commerce Protocol の update を紹介しました。Universal Cart は Search、Gemini などをまたいで動き、UCP は Google Pay による Google 内 checkout、または merchant site への cart transfer を支えます。今後は YouTube Shopping ads、Direct Offers、hotel booking、local food delivery にも広げる計画です。Agentic commerce の難所は「商品を探す」だけではなく、payments、merchant of record、promotions、brand visibility、cross-platform checkout protocols にあります。
 
-### Google AI Mode は monthly active users が 10 億を超え、search behavior は keywords から long questions、planning、decision support へ移っている
-
-- 出典：Google
-- 日付：2026-05-19
-- リンク：https://blog.google/products-and-platforms/products/search/ai-mode-us-insights/
-- 要約：Google によると AI Mode は globally で monthly active users が 10 億を超え、launch 以来 queries は quarter ごとに doubled しています。U.S. usage では、6 分の 1 以上の searches が voice または images を使い、AI Mode の average query は traditional Search の 3 倍の長さです。Planning related queries は past 6 months で overall より速く伸びています。AI Search は results summary replacement ではなく、multimodal input、long questions、planning tasks、decision support へ search entry point を広げています。
-
 ## 5. GitHub 人気 repo & トレンド追跡
 
 ### Opik：agent optimization workflow が prompt search、eval dataset、automatic iteration を接続する

@@ -8,7 +8,7 @@ const root = process.cwd();
 const radarDir = path.join(root, 'src/content/radar');
 const sourcePoolPath = path.join(root, 'scripts/radar/source-pool.json');
 const sourcePool = JSON.parse(await readFile(sourcePoolPath, 'utf8'));
-const enforceFromDate = sourcePool.publicationGate?.enforceDailyFrom ?? '9999-99-99';
+const enforceFromDate = parseFromDateArg() ?? sourcePool.publicationGate?.enforceDailyFrom ?? '9999-99-99';
 const lookbackDays = 7;
 const failures = [];
 
@@ -57,6 +57,17 @@ console.log(`Checked radar dedupe for ${zhFiles.length} daily radar files.`);
 
 function extractDate(file) {
   return file.match(/^daily-ai-radar-(\d{4}-\d{2}-\d{2})/)?.[1] ?? '';
+}
+
+function parseFromDateArg() {
+  const index = process.argv.indexOf('--from');
+  const value = index === -1 ? '' : process.argv[index + 1];
+  if (!value) return null;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    console.error(`Invalid --from date: ${value}`);
+    process.exit(1);
+  }
+  return value;
 }
 
 function extractLinks(body) {

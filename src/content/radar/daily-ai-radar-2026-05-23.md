@@ -77,13 +77,6 @@ draft: false
 - 链接：https://www.latent.space/p/daytona
 - 摘要：Latent.Space 采访 Daytona CEO Ivan Burazin，讨论 AI agents 为什么需要可通过 API 使用的“电脑”，而不只是短生命周期代码执行 sandbox。Daytona 强调 stateful、快速启动、动态扩缩容、隔离和可组合 API，并把 RL/eval workloads、browser agents、coding agents 都放进同一类 agent cloud 需求里。这个方向解释了为什么长期运行、能跑测试、能开浏览器、能操作文件系统的 agent，会推动新的云执行基础设施。
 
-### Developer infra 正围绕 retrieval、typed streaming、sandbox auth 和弹性推理重新组合
-
-- 来源：Latent.Space
-- 日期：2026-05-22
-- 链接：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa#developer-infrastructure
-- 摘要：AINews 观察到开发者基础设施正在围绕 agent runtime 的边界和呈现层重组：数据库内置 MCP server 让 coding agent 可以直接 ingest repo 并做 hybrid retrieval，typed streaming protocol 把 tools、subagents、media 和 interrupts 作为一等事件呈现，弹性推理则尝试在 MoE 服务中减少完整重启。共同点是 agent runtime 正从 prompt + tool calling 扩展成检索、权限、流式 UI、沙箱和推理服务的组合协议栈。
-
 ## 4. 行业与商业快讯
 
 ### Exa、Modal 和 turbopuffer 的融资与收入信号显示，AI infra 的经济层正在集中到检索、执行和上下文供应

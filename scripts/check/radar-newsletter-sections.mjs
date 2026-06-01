@@ -4,7 +4,7 @@ import process from 'node:process';
 
 const root = process.cwd();
 const radarDir = path.join(root, 'src/content/radar');
-const enforceFromDate = '2026-05-23';
+const enforceFromDate = parseFromDateArg() ?? '2026-05-23';
 const sectionPattern = /^## 📬 Newsletter 精(?:选|選)\s*$/m;
 const headingPattern = /^## /m;
 const entryPattern = /^### /gm;
@@ -30,6 +30,17 @@ function extractNewsletterSection(body) {
 
 function normalize(value) {
   return value.trim().replace(/\/$/, '').toLowerCase();
+}
+
+function parseFromDateArg() {
+  const index = process.argv.indexOf('--from');
+  const value = index === -1 ? '' : process.argv[index + 1];
+  if (!value) return null;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    console.error(`Invalid --from date: ${value}`);
+    process.exit(1);
+  }
+  return value;
 }
 
 function checkEntry(file, entry, index, failures) {

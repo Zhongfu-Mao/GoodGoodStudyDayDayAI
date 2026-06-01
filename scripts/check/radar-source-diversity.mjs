@@ -10,7 +10,7 @@ const sourcePoolPath = path.join(root, 'scripts/radar/source-pool.json');
 
 const sourcePool = JSON.parse(await readFile(sourcePoolPath, 'utf8'));
 const gate = sourcePool.publicationGate ?? {};
-const enforceFromDate = gate.enforceDailyFrom ?? '9999-99-99';
+const enforceFromDate = parseFromDateArg() ?? gate.enforceDailyFrom ?? '9999-99-99';
 const minimumEntries = gate.minimumEntries ?? 0;
 const minimumSourceFamilies = gate.minimumSourceFamilies ?? 0;
 const minimumCoreEntries = gate.minimumCoreEntries ?? 0;
@@ -93,6 +93,17 @@ function extractDate(file) {
   return file.match(/^daily-ai-radar-(\d{4}-\d{2}-\d{2})/)?.[1] ?? '';
 }
 
+function parseFromDateArg() {
+  const index = process.argv.indexOf('--from');
+  const value = index === -1 ? '' : process.argv[index + 1];
+  if (!value) return null;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    console.error(`Invalid --from date: ${value}`);
+    process.exit(1);
+  }
+  return value;
+}
+
 function extractSourceLabels(body) {
   const labels = [];
   const pattern = /^-\s+(?:来源|出典)：\s*(.+)$/gm;
@@ -127,7 +138,7 @@ function checkFile(file, body, groups, fileFailures) {
   let newsletterEntries = 0;
   for (const group of groups) {
     counts.set(group.name, (counts.get(group.name) ?? 0) + 1);
-    if (group.kind === 'core' || group.kind === 'trend') coreEntries += 1;
+    if (['core', 'trend', 'official-triad'].includes(group.kind)) coreEntries += 1;
   }
 
   const newsletterBlock = extractNewsletterBlock(body);
@@ -143,7 +154,7 @@ function checkFile(file, body, groups, fileFailures) {
 
   if (coreEntries < minimumCoreEntries) {
     fileFailures.push(
-      `${file}: has ${coreEntries} core/trend-source entries, expected at least ${minimumCoreEntries}`,
+      `${file}: has ${coreEntries} core/trend/official-triad source entries, expected at least ${minimumCoreEntries}`,
     );
   }
 

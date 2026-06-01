@@ -1,6 +1,7 @@
 {
   "date": "2026-05-23",
   "cadence": "daily",
+  "status": "text-backfilled-source-balanced",
   "localeFiles": [
     "src/content/radar/daily-ai-radar-2026-05-23.md",
     "src/content/radar/daily-ai-radar-2026-05-23.ja.md"
@@ -123,17 +124,17 @@
     }
   ],
   "publishedItems": {
-    "zh": 14,
-    "ja": 14,
+    "zh": 13,
+    "ja": 13,
     "newsletter": 3,
     "githubTrend": 2
   },
   "selfReview": {
     "schema": "passed: fixed six public sections restored in zh/ja",
-    "zhJaTopicOrder": "passed: 14 matched H3 items in both locales",
-    "duplicateLinks": "passed: no repeated public URLs within either locale file",
+    "zhJaTopicOrder": "passed: 13 matched H3 items in both locales",
+    "duplicateLinks": "single-file duplicate scan passed; cross-day 7-day dedupe remains a follow-up cleanup item",
     "forbiddenPublicTerms": "passed: public Markdown scan clean",
     "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
-    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check"
+    "checks": "passed: check:radar-newsletter -- --from 2026-05-15, check:radar-schema -- --from 2026-05-15, and check:radar-sources -- --from 2026-05-15 after source balancing"
   }
 }

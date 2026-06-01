@@ -86,13 +86,6 @@ draft: false
 - 链接：https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/
 - 摘要：Google 介绍 Universal Cart、Agent Payments Protocol 和 Universal Commerce Protocol 的最新进展。Universal Cart 会跨 Search、Gemini 等入口工作，UCP 支持通过 Google Pay 在 Google 内完成结账，或把商品转回商户网站购买，并计划扩展到 YouTube Shopping ads、Direct Offers、酒店预订和本地外卖。agentic commerce 的难点不只是“帮我找商品”，而是支付、责任归属、商户记录、促销、品牌可见性和跨平台结账协议。
 
-### Google AI Mode 超过 10 亿月活，搜索行为正在从关键词检索转向长问题、规划和决策
-
-- 来源：Google
-- 日期：2026-05-19
-- 链接：https://blog.google/products-and-platforms/products/search/ai-mode-us-insights/
-- 摘要：Google 称 AI Mode 全球月活已超过 10 亿，查询量自上线以来每季度翻倍；美国使用数据中，超过六分之一搜索使用语音或图像，AI Mode 平均查询长度是传统 Search 的三倍，planning 相关查询在过去 6 个月增速比整体更快。这组数据说明 AI Search 不是把搜索结果页换成摘要，而是把搜索入口扩展到多模态输入、长问题、规划任务和决策支持。
-
 ## 5. GitHub 热门 repo & 趋势追踪
 
 ### Opik：agent optimization workflow 把 prompt 搜索、eval dataset 和自动迭代接到一起

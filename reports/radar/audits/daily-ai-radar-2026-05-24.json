@@ -1,6 +1,7 @@
 {
   "date": "2026-05-24",
   "cadence": "daily",
+  "status": "text-backfilled-source-balanced",
   "localeFiles": [
     "src/content/radar/daily-ai-radar-2026-05-24.md",
     "src/content/radar/daily-ai-radar-2026-05-24.ja.md"
@@ -126,17 +127,17 @@
     }
   ],
   "publishedItems": {
-    "zh": 14,
-    "ja": 14,
+    "zh": 13,
+    "ja": 13,
     "newsletter": 3,
     "githubTrend": 2
   },
   "selfReview": {
     "schema": "passed",
     "zhJaTopicOrder": "passed",
-    "duplicateLinks": "passed",
+    "duplicateLinks": "single-file duplicate scan passed; cross-day 7-day dedupe remains a follow-up cleanup item",
     "forbiddenPublicTerms": "passed",
     "newsletterFormat": "passed",
-    "checks": "passed"
+    "checks": "passed: check:radar-newsletter -- --from 2026-05-15, check:radar-schema -- --from 2026-05-15, and check:radar-sources -- --from 2026-05-15 after source balancing"
   }
 }

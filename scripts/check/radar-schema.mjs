@@ -8,7 +8,7 @@ const root = process.cwd();
 const radarDir = path.join(root, 'src/content/radar');
 const taxonomyPath = path.join(root, 'scripts/radar/taxonomy.json');
 const taxonomy = JSON.parse(await readFile(taxonomyPath, 'utf8'));
-const enforceFromDate = taxonomy.publicationGate?.enforceDailyFrom ?? '9999-99-99';
+const enforceFromDate = parseFromDateArg() ?? taxonomy.publicationGate?.enforceDailyFrom ?? '9999-99-99';
 const failures = [];
 
 const files = (await readdir(radarDir))
@@ -47,6 +47,17 @@ console.log(`Checked radar schema in ${files.length} daily radar files.`);
 
 function extractDate(file) {
   return file.match(/^daily-ai-radar-(\d{4}-\d{2}-\d{2})/)?.[1] ?? '';
+}
+
+function parseFromDateArg() {
+  const index = process.argv.indexOf('--from');
+  const value = index === -1 ? '' : process.argv[index + 1];
+  if (!value) return null;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    console.error(`Invalid --from date: ${value}`);
+    process.exit(1);
+  }
+  return value;
 }
 
 function extractPublicSectionHeadings(body) {

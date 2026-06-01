@@ -77,13 +77,6 @@ draft: false
 - リンク：https://www.latent.space/p/daytona
 - 要約：Latent.Space は Daytona CEO Ivan Burazin に、AI agents がなぜ short-lived code execution sandbox ではなく API から使える「computer」を必要とするのかを聞きました。Daytona は stateful、fast startup、dynamic resizing、isolation、composable API を重視し、RL/eval workloads、browser agents、coding agents を同じ agent cloud demand として扱っています。この direction は、長く走り、tests を実行し、browser を開き、filesystem を扱う agents が、新しい cloud execution infrastructure を必要としていることを説明します。
 
-### Developer infra は retrieval、typed streaming、sandbox auth、elastic inference を中心に再編されている
-
-- 出典：Latent.Space
-- 日付：2026-05-22
-- リンク：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa#developer-infrastructure
-- 要約：AINews は developer infrastructure が agent runtime の boundary と presentation layer を中心に再編されていると見ています。Database built-in MCP server は coding agent に repo ingest と hybrid retrieval を可能にし、typed streaming protocol は tools、subagents、media、interrupts を first-class events として扱います。Elastic inference は MoE serving で full restart を避けようとしています。Agent runtime は prompt + tool calling から、retrieval、permission、streaming UI、sandbox、inference service を含む protocol stack へ広がっています。
-
 ## 4. 業界 & ビジネス速報
 
 ### Exa、Modal、turbopuffer の funding / revenue signals は、AI infra の economic layer が retrieval、execution、context supply に集中していることを示す
