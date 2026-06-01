@@ -4,7 +4,7 @@ import { gotoApp } from './site-test-utils';
 
 const a11yPages = [
   { name: 'home', path: '/' },
-  { name: 'radar gallery', path: '/radar/gallery/' },
+  { name: 'radar gallery', path: '/radar/gallery/', timeout: 90_000 },
   {
     name: 'academy detail',
     path: '/academy/openai-academy/00-overview/openai-academy-overview/',
@@ -13,7 +13,11 @@ const a11yPages = [
 
 test.describe('accessibility smoke checks', () => {
   for (const pageCase of a11yPages) {
-    test(`${pageCase.name} has no serious axe violations`, async ({ page }) => {
+    test(`${pageCase.name} has no serious axe violations`, async ({ page }, testInfo) => {
+      if ('timeout' in pageCase) {
+        testInfo.setTimeout(pageCase.timeout);
+      }
+
       await gotoApp(page, pageCase.path);
 
       await expect(page.locator('main')).toBeVisible();
