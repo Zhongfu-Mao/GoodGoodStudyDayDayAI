@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-05-16"
 date: 2026-05-16
 category: radar
 cadence: daily
-plainSummary: "今天关注 Codex 移动端、企业文档 Agent、Agent harness、长上下文模型架构、AI 监管评测、个人金融入口、医疗影像落地，以及 Opik、agentmemory、InsForge 等 GitHub 工具趋势。"
+plainSummary: "今天关注企业文档 Agent、Agent harness、长上下文模型架构、AI 监管评测、个人金融入口、医疗影像落地，以及 Opik、agentmemory、InsForge 等 GitHub 工具趋势。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -23,13 +23,6 @@ draft: false
 - 覆盖时间：2026-05-15 至 2026-05-16。
 
 ## 1. AI Engineering & 架构
-
-### Codex 进入 ChatGPT 移动端，让长任务从桌面延伸到随身协作
-
-- 来源：OpenAI
-- 日期：2026-05-15
-- 链接：https://openai.com/index/work-with-codex-from-anywhere/
-- 摘要：OpenAI 将 Codex 带入 ChatGPT iOS 和 Android 应用，用户可以在手机上查看线程、审查输出、批准命令、切换模型或启动新任务，而代码、凭据和本地权限仍留在运行 Codex 的机器或远程环境中。文章同时提到 Codex 周活跃用户已超过 400 万，Remote SSH 和 Hooks 已面向所有计划开放，企业还可使用 programmatic access tokens。这说明 coding agent 的产品边界正在从“桌面工具”转向跨设备、跨远程环境的持续协作层。
 
 ### ByteByteGo 把 AI Agent 拆成 while-loop、规划、工具、记忆和护栏
 

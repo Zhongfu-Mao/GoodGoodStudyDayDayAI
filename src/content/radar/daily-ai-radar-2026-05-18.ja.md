@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-18"
 date: 2026-05-18
 category: radar
 cadence: daily
-plainSummary: "今日は Codex for Work が operations、data science、sales workflow に広がり、LangChain が Agent 実行 stack を managed runtime へ進め、GitHub が Copilot model routing と engineering operations を更新し、Toto 2.0 と local inference repo が model efficiency の加速を示した点に注目します。"
+plainSummary: "今日は Codex for Work が operations、data science、sales workflow に広がり、ByteByteGo が Grab の multi-agent data engineering case を振り返り、GitHub が Copilot model routing と engineering operations を更新し、Toto 2.0 が model efficiency の流れを示した点に注目します。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -47,12 +47,12 @@ draft: false
 - リンク：https://openai.com/academy/codex-for-work/how-sales-teams-use-codex/
 - 要約：OpenAI の sales teams guide は、Codex を CRM fields、call notes、team discussions、deck、customer docs、account signals の間に置き、prioritized account brief、meeting prep packet、forecast risk review、account strategy pack、stalled-deal diagnosis を作る workflow として説明します。Seller と manager は引き続き relationship strategy を持ちますが、Codex は account history、risk、stakeholder map、next action、CRM-ready update を先に整理できます。企業 Agent の価値は、chat window で質問に答えるだけでなく、実際の業務入力から review 可能な business artifact を生成することに移っています。
 
-### LangChain Interrupt は Agent product stack を framework から managed execution system へ進めた
+### ByteByteGo は Grab の multi-agent data engineering system を、demo ではなく production hardening の問題として見る
 
-- 出典：LangChain
-- 日付：2026-05-14
-- リンク：https://www.langchain.com/blog/interrupt-2026-overview
-- 要約：LangChain は Interrupt 2026 で LangSmith Engine、SmithDB、Managed Deep Agents、LangSmith Sandboxes、Context Hub、Fleet、Deep Agents 0.6、LangGraph Platform などをまとめて発表しました。これらは、Agent platform が SDK や graph orchestration だけでなく、trace data layer、failure diagnosis、eval generation、isolated execution、context management、managed threads、checkpoint、human-in-the-loop、deployment pattern を含む実行 system になっていることを示します。チームにとって、Agent を動かすことは出発点であり、差は observe、repair、replay、govern、improve できるかに出ます。
+- 出典：ByteByteGo
+- 日付：2026-05-18
+- リンク：https://blog.bytebytego.com/p/how-grab-is-using-ai-agents-to-boost
+- 要約：ByteByteGo は Grab Analytics Data Warehouse team の multi-agent system を紹介しました。Data table question、lineage tracing、SQL validation、log investigation、code search を classifier、data agent、code search agent、on-call agent、summarizer に分け、read-only investigation と write operation で autonomy level を変えています。Production で重要だったのは、token compression、tool description の簡素化、PII / SQL / timeout guardrail、人間の review、annotation から test case を作る feedback loop でした。Agent engineering の大部分は、最初の demo ではなく production hardening にあります。
 
 ## 2. モデル最前線 & アルゴリズム探索
 
@@ -62,13 +62,6 @@ draft: false
 - 日付：2026-05-18
 - リンク：https://www.dailydoseofds.com/model-compression-a-critical-step-towards-efficient-machine-learning/
 - 要約：Daily Dose の 05-18 メールは、deployment 前の model compression として knowledge distillation を解説しました。大きな teacher model を先に訓練し、小さな student model に teacher の出力分布を模倣させる方法で、典型的には KL divergence で student の soft predictions を teacher に近づけます。記事は DistilBERT を例に、model size を大きく下げても能力を大部分保てることを示し、PyTorch / MNIST の例では軽い性能低下と引き換えに推論速度を改善できると説明します。ただし caveat も明確です。distillation は deployment efficiency を改善しますが、強い teacher model を作る training cost 自体は残ります。
-
-### Toto 2.0 は observability time-series foundation model を 4M から 2.5B parameters の family に進めた
-
-- 出典：GitHub / Datadog
-- 日付：2026-05-18
-- リンク：https://github.com/DataDog/toto
-- 要約：Datadog の Toto 2.0 repo は、observability metrics 向けの time-series foundation model family を示しています。Parameter size は 4M から 2.5B まであり、u-μP-scaled transformer、alternating time / variate attention、quantile-based probabilistic forecasting を採用します。Zero-shot forecasting、多変量入力、確率予測、長い forecast horizon を扱い、BOOM と GIFT-Eval の評価入口も提供します。AI data science workflow にとっての意味は、time-series foundation model が単一 checkpoint から scalable model family へ進み、評価もきれいな一般 benchmark だけでなく実運用 metrics に寄り始めていることです。
 
 ## 3. 実践コード & ツールライブラリ
 
@@ -104,21 +97,21 @@ draft: false
 
 ## 5. GitHub 人気 repo & トレンド追跡
 
-### AtomicBot-ai/atomic-llama-cpp-turboquant は MTP、NextN、low-bit KV compression を local inference fork にまとめる
+### Toto 2.0 は observability time-series foundation model を 4M から 2.5B parameters の family に進めた
 
-- 出典：GitHub
+- 出典：GitHub Trending / Datadog
 - 日付：2026-05-18
-- リンク：https://github.com/AtomicBot-ai/atomic-llama-cpp-turboquant
-- 要約：AtomicBot-ai の `atomic-llama-cpp-turboquant` は local inference efficiency を実験する llama.cpp fork です。README は Gemma 4 MTP speculative decoding、Qwen 3.6 NextN speculative decoding、TurboQuant KV cache / weight compression、backend-native kernels を中心にしています。Gemma 4 MTP は short prompt で約 30–50% throughput improvement、Qwen 3.6 35B-A3B MoE の NextN path は約 24–36% tps improvement を主張しています。Accept rate、context reuse、draft context、KV compression を主要 engineering variable として扱う点は追跡価値がありますが、現時点では stable upstream capability というより experimental fork であり、quality eval と mainline integration を見続ける必要があります。
+- リンク：https://github.com/DataDog/toto
+- 要約：Datadog の Toto 2.0 repo は、observability metrics 向けの time-series foundation model family を示しています。Parameter size は 4M から 2.5B まであり、u-μP-scaled transformer、alternating time / variate attention、quantile-based probabilistic forecasting を採用します。Zero-shot forecasting、多変量入力、確率予測、長い forecast horizon を扱い、BOOM と GIFT-Eval の評価入口も提供します。AI data science workflow にとっての意味は、time-series foundation model が単一 checkpoint から scalable model family へ進み、評価もきれいな一般 benchmark だけでなく実運用 metrics に寄り始めていることです。
 
 ## 📬 Newsletter 精選
 
-### Latent.Space AINews：Everything is Conductor
+### Every：How to Start a Career When AI Is Doing Your Entry-level Job
 
-- 出典：Latent.Space / AINews
-- 日付：2026-05-15
-- リンク：https://www.latent.space/p/ainews-everything-is-conductor
-- 要約：この AINews は GitHub Copilot App、Codex mobile、VS Code Agents、Hermes / Codex interop、Kimi Web Bridge、LangChain Engine / SmithDB / Sandboxes / Labs を同じ線上に置き、agent-first developer interface が multi-workstream、repo / PR lifecycle management、model routing、remote execution へ収束していると見ています。Claude Code ecosystem controversy と subscription-backed harness の platform risk も記録し、今後の tooling には provider / model abstraction、BYOK path、より明示的な API economics が必要だと整理しています。
+- 出典：Every
+- 日付：2026-05-18
+- リンク：https://every.to/working-overtime/how-to-start-a-career-when-ai-is-doing-your-entry-level-job
+- 要約：Every は、AI が entry-level task を置き換えつつある状況から career entry point の変化を論じました。若手が反復作業から judgment を学んでいた場面が圧縮される一方、employer が求める AI skills は単なる prompting ではなく、tool evaluation、output review、result improvement、problem understanding に広がっています。これは employment anxiety だけでなく、AI 時代の人材育成設計の問題です。低階層の作業が自動化されるほど、組織は新人が judgment と context をどう獲得するかを再設計する必要があります。
 
 ### The Rundown AI：AI anger comes for Claude (Monet)
 

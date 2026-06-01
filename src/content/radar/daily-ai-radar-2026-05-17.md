@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-05-17"
 date: 2026-05-17
 category: radar
 cadence: daily
-plainSummary: "今天关注 Agent 持续学习、运行时治理、专用可观测数据层、GitHub 令牌与 Copilot 记忆、SODA 优化器、团队 Agent 的组织经验，以及 Cerebras 上市信号和 GitHub 热门项目。"
+plainSummary: "今天关注 Agent 持续学习、运行时治理、专用可观测数据层、GitHub 令牌与 Copilot 记忆、SODA 优化器、OpenAI 马耳他合作，以及 Agent Skills、OpenHuman、Hugging Face kernels 等趋势。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -70,21 +70,7 @@ draft: false
 - 链接：https://github.blog/changelog/2026-05-15-copilot-memory-supports-user-preferences-for-pro-pro-users/
 - 摘要：GitHub Copilot Memory 对 Pro 和 Pro+ 用户进入 early access，可以保存用户明示或推断出的个人偏好，并在不同仓库和 Copilot 体验中使用。偏好可以包括 commit 风格、PR 结构、沟通语气或代码组织方式，用户也可以查看和删除。这个变化说明编码助手正在从“每次对话重新理解你”转向“跨任务携带个人工作习惯”，但也要求产品把记忆边界、可解释性和删除能力做得足够清楚。
 
-### Every 的 Plus One 复盘强调团队共享 Agent 比个人 Agent 更可维护
-
-- 来源：Every
-- 日期：2026-05-15
-- 链接：https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now
-- 摘要：Every 复盘了给每位员工配置个人 AI Agent 的内部实验。文章认为，单人专属 Agent 在可靠性、维护、权限和职责边界上会迅速变复杂；下一版更应该把 Agent 设计成团队共享资源，围绕明确 job、工具权限、上下文和执行循环来维护。这个经验比“全员 Agent”本身更重要：组织采用 Agent 时，真正的难点往往是治理和工作设计，而不是把模型接到聊天入口。
-
 ## 4. 行业与商业快讯
-
-### Cerebras 上市叙事把推理基础设施重新推到聚光灯下
-
-- 来源：Latent.Space / AINews
-- 日期：2026-05-16
-- 链接：https://www.latent.space/p/ainews-cerebras-60b-ipo-slowly-then
-- 摘要：Latent.Space AINews 围绕 Cerebras 的上市预期讨论了推理基础设施的再定价：当模型调用量、低延迟体验和大规模服务成本同时上升，市场开始重新评估专用推理架构、吞吐、延迟、利用率和单位经济性。文章也提醒，基础设施故事需要独立的成本、延迟、吞吐和客户数据支撑，不能只看高层叙事。这个信号适合放在行业层面观察：AI 竞争正在从模型参数扩展到推理供给链。
 
 ### OpenAI 与马耳他合作，把 ChatGPT Plus 与全民 AI 素养课程绑定
 
@@ -95,16 +81,23 @@ draft: false
 
 ## 5. GitHub 热门 repo & 趋势追踪
 
-### NousResearch/hermes-agent 展示“会积累技能”的开源 Agent 方向
+### anthropics/skills 把 Agent Skills 的结构和样例公开成可复用仓库
 
-- 来源：GitHub
-- 日期：2026-05-16
-- 链接：https://github.com/NousResearch/hermes-agent
-- 摘要：NousResearch/hermes-agent 把自我改进、技能记忆、会话搜索、多通信入口、定时任务、子 Agent 和多种执行后端放在同一个开源项目里。它的重点不是单个工具调用，而是让 Agent 在长期使用中积累可复用能力，并能在本地、容器、远程环境或云端执行任务。这个项目代表了开源 Agent 栈正在从 demo 走向“长期工作体”的趋势。
+- 来源：GitHub Trending / Anthropic
+- 日期：2026-05-17
+- 链接：https://github.com/anthropics/skills
+- 摘要：anthropics/skills 是 Anthropic 面向 Claude Skills 的公开实现仓库，包含示例 skills、规范、模板，以及文档、表格、演示文稿等复杂任务的参考实现。它值得放进趋势追踪，是因为“技能”正在成为 Agent 能力封装的轻量单位：一个目录里的说明、脚本和资源可以被动态加载，帮助 Agent 在特定工作流中稳定复用方法，而不是每次重新写提示词。
+
+### tinyhumansai/openhuman 把个人 Agent 的记忆、集成和本地知识库打包成桌面 harness
+
+- 来源：GitHub Trending
+- 日期：2026-05-17
+- 链接：https://github.com/tinyhumansai/openhuman
+- 摘要：OpenHuman 把个人 Agent 做成偏 local-first 的桌面 harness：本地 Memory Tree、Obsidian 风格 Markdown vault、自动同步连接器、模型路由、搜索、抓取、代码工具和语音入口组合在一起。项目 README 也明确说明默认托管体验仍会使用账号登录、模型路由、搜索代理和 OAuth 集成后端，因此它的信号不只是“个人 AI 助手”，更是本地记忆与托管集成边界如何组合的问题。
 
 ### huggingface/kernels 把可加载 compute kernel 做成 Hub 资产
 
-- 来源：GitHub
+- 来源：GitHub Trending / Hugging Face
 - 日期：2026-05-17
 - 链接：https://github.com/huggingface/kernels
 - 摘要：huggingface/kernels 提供 Kernel Hub 相关工具，让 Python 库和应用可以从 Hub 动态加载 compute kernels。项目强调 portable、unique、compatible：kernel 可以从 `PYTHONPATH` 外加载，同一进程可加载同一 kernel 的多个版本，并兼容不同 Python、PyTorch 与加速构建配置。这个方向值得跟踪，因为模型生态的可复用资产正在从权重、数据集、Space 扩展到更底层的性能组件。

@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-16"
 date: 2026-05-16
 category: radar
 cadence: daily
-plainSummary: "今日は Codex モバイル版、企業文書 Agent、Agent harness、長文脈モデル設計、AI 規制評価、個人金融入口、医療画像導入、そして Opik、agentmemory、InsForge などの GitHub ツール動向を追います。"
+plainSummary: "今日は企業文書 Agent、Agent harness、長文脈モデル設計、AI 規制評価、個人金融入口、医療画像導入、そして Opik、agentmemory、InsForge などの GitHub ツール動向を追います。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -23,13 +23,6 @@ draft: false
 - 対象期間：2026-05-15 から 2026-05-16 まで。
 
 ## 1. AI Engineering & アーキテクチャ
-
-### Codex が ChatGPT モバイルに入り、長時間タスクがデスクトップ外へ広がる
-
-- 出典：OpenAI
-- 日付：2026-05-15
-- リンク：https://openai.com/index/work-with-codex-from-anywhere/
-- 要約：OpenAI は Codex を ChatGPT の iOS / Android アプリに組み込み、ユーザーがスマートフォンからスレッド確認、出力レビュー、コマンド承認、モデル変更、新規タスク開始を行えるようにした。コード、認証情報、ローカル権限は Codex が動作するマシンまたはリモート環境に残る。記事では Codex の週間アクティブユーザーが 400 万人を超え、Remote SSH と Hooks が全プランで利用可能になり、企業向けには programmatic access tokens も用意されたと説明している。coding agent は「デスクトップアプリ」から、複数デバイスとリモート環境をまたぐ継続協作層へ広がっている。
 
 ### ByteByteGo は AI Agent を while-loop、計画、ツール、記憶、ガードレールに分解した
 

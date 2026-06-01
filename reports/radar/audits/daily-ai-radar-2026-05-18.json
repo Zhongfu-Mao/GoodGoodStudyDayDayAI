@@ -5,7 +5,7 @@
     "src/content/radar/daily-ai-radar-2026-05-18.md",
     "src/content/radar/daily-ai-radar-2026-05-18.ja.md"
   ],
-  "status": "text-and-assets-backfilled",
+  "status": "text-backfilled-assets-preserved-after-dedupe",
   "backfill": {
     "reason": "Restore fixed four-quadrant schema plus GitHub trends and reader-facing Newsletter items after the mid-May source and taxonomy drift.",
     "assetsRerun": true,
@@ -49,13 +49,13 @@
       ]
     },
     {
-      "sender": "Latent.Space / AINews",
+      "sender": "Every",
       "receivedAt": "public page confirmed",
-      "subject": "Everything is Conductor",
-      "usedAs": "Newsletter item from public newsletter page",
-      "publicLink": "https://www.latent.space/p/ainews-everything-is-conductor",
+      "subject": "How to Start a Career When AI Is Doing Your Entry-level Job",
+      "usedAs": "Newsletter item from public article page",
+      "publicLink": "https://every.to/working-overtime/how-to-start-a-career-when-ai-is-doing-your-entry-level-job",
       "evidence": [
-        "The public issue covers agent-first developer interfaces, Codex mobile, GitHub Copilot App, VS Code Agents, LangChain Engine/SmithDB/Sandboxes/Labs, and subscription-backed harness risk."
+        "The public article discusses how AI changes entry-level career paths and shifts the premium toward tool evaluation, output review, and judgment-building."
       ]
     }
   ],
@@ -76,7 +76,7 @@
       "usedFor": "AI Engineering item"
     },
     {
-      "url": "https://www.langchain.com/blog/interrupt-2026-overview",
+      "url": "https://blog.bytebytego.com/p/how-grab-is-using-ai-agents-to-boost",
       "status": 200,
       "usedFor": "AI Engineering item"
     },
@@ -88,7 +88,7 @@
     {
       "url": "https://github.com/DataDog/toto",
       "status": 200,
-      "usedFor": "model-frontier item"
+      "usedFor": "GitHub trend item"
     },
     {
       "url": "https://github.blog/changelog/2026-05-15-grok-code-fast-1-deprecated/",
@@ -111,12 +111,7 @@
       "usedFor": "industry item"
     },
     {
-      "url": "https://github.com/AtomicBot-ai/atomic-llama-cpp-turboquant",
-      "status": 200,
-      "usedFor": "GitHub trend item"
-    },
-    {
-      "url": "https://www.latent.space/p/ainews-everything-is-conductor",
+      "url": "https://every.to/working-overtime/how-to-start-a-career-when-ai-is-doing-your-entry-level-job",
       "status": 200,
       "usedFor": "Newsletter item"
     },
@@ -127,23 +122,23 @@
     }
   ],
   "publishedItems": {
-    "zh": 13,
-    "ja": 13,
+    "zh": 12,
+    "ja": 12,
     "newsletter": 2,
     "githubTrend": 1
   },
   "selfReview": {
     "schema": "passed: fixed six public sections restored in zh/ja",
-    "zhJaTopicOrder": "passed: 13 matched H3 items in both locales",
+    "zhJaTopicOrder": "passed: 12 matched H3 items in both locales",
     "duplicateLinks": "passed: no repeated public URLs within either locale file",
     "forbiddenPublicTerms": "passed: public Markdown scan clean",
     "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
-    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check"
+    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, and check:radar-dedupe through 2026-05-18 after 2026-06-02 text-only cleanup"
   },
   "assetRegeneration": {
     "status": "passed",
     "date": "2026-06-01",
-    "note": "Regenerated zh/ja infographic and audio with --no-keep-notebook after the text backfill stabilized; existing public URLs were preserved while files and frontmatter metadata were refreshed.",
+    "note": "Regenerated zh/ja infographic and audio with --no-keep-notebook after the initial text backfill stabilized; on 2026-06-02 a text-only dedupe cleanup removed repeated LangChain, AtomicBot, and Latent links, added ByteByteGo / Every replacements, and preserved existing asset URLs.",
     "notebookCleanup": "passed: no 2026-05-18 daily temporary NotebookLM notebooks remained after generation",
     "imageQa": "passed: zh/ja infographic files rendered and were visually checked for readability, blank output, and obvious overlap",
     "files": {

@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-17"
 date: 2026-05-17
 category: radar
 cadence: daily
-plainSummary: "今日は Agent の継続学習、runtime governance、専用 observability data layer、GitHub token と Copilot Memory、SODA optimizer、team agent の組織経験、Cerebras IPO のシグナル、GitHub の注目 repo を見ます。"
+plainSummary: "今日は Agent の継続学習、runtime governance、専用 observability data layer、GitHub token と Copilot Memory、SODA optimizer、OpenAI とマルタの提携、Agent Skills、OpenHuman、Hugging Face kernels などの動向を見ます。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -70,21 +70,7 @@ draft: false
 - リンク：https://github.blog/changelog/2026-05-15-copilot-memory-supports-user-preferences-for-pro-pro-users/
 - 要約：GitHub Copilot Memory は Pro / Pro+ users 向け early access として、ユーザーが明示または推定された personal preference を保存し、複数 repository や Copilot 体験で利用できるようにしました。Preference には commit style、PR structure、communication tone、code organization などが含まれ、user は review / delete できます。Coding assistant は「毎回ゼロから user を理解する」段階から、作業習慣を継続的に持つ段階へ進みつつあります。
 
-### Every の Plus One 復盤は、個人 Agent より team-shared Agent の方が保守しやすいと示す
-
-- 出典：Every
-- 日付：2026-05-15
-- リンク：https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now
-- 要約：Every は、全社員に個人 AI Agent を与えた内部実験を振り返りました。記事は、個人専用 Agent は reliability、maintenance、permission、責任範囲がすぐ複雑になるため、次の設計では team-shared resource として、明確な job、tool permission、context、execution loop を持たせるべきだと整理しています。この経験は「全員に Agent を配る」ことより重要です。組織で Agent を採用する本当の難所は、model 接続ではなく governance と work design にあります。
-
 ## 4. 業界 & ビジネス速報
-
-### Cerebras の上場ストーリーは推論インフラを再び中心議題にした
-
-- 出典：Latent.Space / AINews
-- 日付：2026-05-16
-- リンク：https://www.latent.space/p/ainews-cerebras-60b-ipo-slowly-then
-- 要約：Latent.Space AINews は、Cerebras の上場期待をめぐり、推論インフラの再評価を取り上げました。Model call volume、low-latency experience、大規模 serving cost が同時に上がるなか、市場は dedicated inference architecture、throughput、latency、utilization、unit economics を再び見ています。同時に記事は、インフラ story には独立した cost、latency、throughput、customer data が必要だとも指摘します。AI competition は model parameter だけでなく、inference supply chain に広がっています。
 
 ### OpenAI とマルタは ChatGPT Plus を国民向け AI literacy course と結びつける
 
@@ -95,16 +81,23 @@ draft: false
 
 ## 5. GitHub 人気 repo & トレンド追跡
 
-### NousResearch/hermes-agent は「技能を蓄積する」open-source Agent の方向を示す
+### anthropics/skills は Agent Skills の構造と例を再利用可能な repository として公開する
 
-- 出典：GitHub
-- 日付：2026-05-16
-- リンク：https://github.com/NousResearch/hermes-agent
-- 要約：NousResearch/hermes-agent は self-improvement、skill memory、conversation search、複数 communication entrypoint、scheduled task、subagent、多様な execution backend を一つの open-source project にまとめています。焦点は単発 tool call ではなく、長期利用のなかで reusable skill を蓄積し、local、container、remote、cloud environment で作業できる Agent です。Open-source Agent stack が demo から long-running worker へ進む流れを示しています。
+- 出典：GitHub Trending / Anthropic
+- 日付：2026-05-17
+- リンク：https://github.com/anthropics/skills
+- 要約：anthropics/skills は、Claude Skills の公開実装 repository であり、example skills、spec、template、さらに document / spreadsheet / presentation など複雑な作業向けの参考実装を含みます。Trend として重要なのは、「skill」が Agent capability を包む軽量単位になりつつある点です。フォルダ単位の instructions、scripts、resources を動的に読み込み、特定 workflow で同じ方法を繰り返し使えるようにします。
+
+### tinyhumansai/openhuman は personal Agent の memory、integration、local knowledge base を desktop harness にまとめる
+
+- 出典：GitHub Trending
+- 日付：2026-05-17
+- リンク：https://github.com/tinyhumansai/openhuman
+- 要約：OpenHuman は personal Agent を local-first 寄りの desktop harness としてまとめています。Local Memory Tree、Obsidian-style Markdown vault、connector の自動同期、model routing、search、scraper、coding toolset、voice entrypoint を一つに組み合わせます。README は、default managed experience では sign-in、model routing、web search proxy、OAuth integration backend も使うと明記しており、local memory と managed integration の境界設計を見る材料になります。
 
 ### huggingface/kernels は loadable compute kernel を Hub asset にする
 
-- 出典：GitHub
+- 出典：GitHub Trending / Hugging Face
 - 日付：2026-05-17
 - リンク：https://github.com/huggingface/kernels
 - 要約：huggingface/kernels は Kernel Hub 関連の tool を提供し、Python library や application が Hub から compute kernels を動的に load できるようにします。Project は portable、unique、compatible を重視し、kernel を `PYTHONPATH` の外から load でき、同じ process に同一 kernel の複数 version を置け、異なる Python / PyTorch / accelerator build configuration に対応します。Model ecosystem の reusable asset が、weights や datasets から低レベル performance component へ広がっている点が注目です。

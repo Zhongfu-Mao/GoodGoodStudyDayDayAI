@@ -1,6 +1,6 @@
 {
   "date": "2026-05-17",
-  "status": "text-and-assets-backfilled",
+  "status": "text-backfilled-assets-preserved-after-dedupe",
   "assetsRerun": true,
   "scope": {
     "coverageWindow": "2026-05-16 to 2026-05-17",
@@ -35,12 +35,6 @@
       "subject": "The new Rundown University is here",
       "receivedAt": "2026-05-17T10:07:28+00:00",
       "evidenceSummary": "Email describes the redesigned Rundown University with daily 10-minute workflow guides, weekly workshops, office hours, and workflow exchange."
-    },
-    {
-      "source": "Every",
-      "subject": "We Gave Every Employee an AI Agent. Here's What We're Doing Differently Now.",
-      "receivedAt": "2026-05-15T17:43:39+00:00",
-      "evidenceSummary": "Email and public article support the Plus One / OpenClaw organizational lesson about shifting from personal agents to team-shared agents."
     }
   ],
   "sourceVisits": [
@@ -75,24 +69,19 @@
       "evidence": "Copilot Memory user preferences for Pro and Pro+ early access."
     },
     {
-      "url": "https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now",
-      "status": 200,
-      "evidence": "Every Plus One / OpenClaw retrospective."
-    },
-    {
-      "url": "https://www.latent.space/p/ainews-cerebras-60b-ipo-slowly-then",
-      "status": 200,
-      "evidence": "AINews issue on Cerebras IPO, inference infrastructure, and adjacent AI engineering signals."
-    },
-    {
       "url": "https://openai.com/index/malta-chatgpt-plus-partnership/",
       "status": 200,
       "evidence": "OpenAI and Malta ChatGPT Plus / AI literacy partnership."
     },
     {
-      "url": "https://github.com/NousResearch/hermes-agent",
+      "url": "https://github.com/anthropics/skills",
       "status": 200,
-      "evidence": "Open-source self-improving agent project."
+      "evidence": "Anthropic public repository for Claude Skills examples, specification and templates."
+    },
+    {
+      "url": "https://github.com/tinyhumansai/openhuman",
+      "status": 200,
+      "evidence": "OpenHuman personal agent harness with local Memory Tree, Obsidian-style vault, connectors, routing and native tools."
     },
     {
       "url": "https://github.com/huggingface/kernels",
@@ -143,18 +132,6 @@
       "link": "https://github.blog/changelog/2026-05-15-copilot-memory-supports-user-preferences-for-pro-pro-users/"
     },
     {
-      "section": "Practical Code & Tools",
-      "title": "Every Plus One retrospective",
-      "source": "Every",
-      "link": "https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now"
-    },
-    {
-      "section": "Industry & Business",
-      "title": "Cerebras IPO and inference infrastructure",
-      "source": "Latent.Space / AINews",
-      "link": "https://www.latent.space/p/ainews-cerebras-60b-ipo-slowly-then"
-    },
-    {
       "section": "Industry & Business",
       "title": "OpenAI Malta partnership",
       "source": "OpenAI",
@@ -162,14 +139,20 @@
     },
     {
       "section": "GitHub Trends",
-      "title": "NousResearch/hermes-agent",
-      "source": "GitHub",
-      "link": "https://github.com/NousResearch/hermes-agent"
+      "title": "anthropics/skills",
+      "source": "GitHub Trending / Anthropic",
+      "link": "https://github.com/anthropics/skills"
+    },
+    {
+      "section": "GitHub Trends",
+      "title": "tinyhumansai/openhuman",
+      "source": "GitHub Trending",
+      "link": "https://github.com/tinyhumansai/openhuman"
     },
     {
       "section": "GitHub Trends",
       "title": "huggingface/kernels",
-      "source": "GitHub",
+      "source": "GitHub Trending / Hugging Face",
       "link": "https://github.com/huggingface/kernels"
     },
     {
@@ -199,7 +182,7 @@
   "assetRegeneration": {
     "status": "passed",
     "date": "2026-06-01",
-    "note": "Regenerated zh/ja infographic and audio with --no-keep-notebook after the text backfill stabilized; existing public URLs were preserved while files and frontmatter metadata were refreshed.",
+    "note": "Regenerated zh/ja infographic and audio with --no-keep-notebook after the text backfill stabilized; existing public URLs were preserved while files and frontmatter metadata were refreshed. A 2026-06-02 text-only duplicate-link cleanup removed Every, Cerebras and Hermes public body items that were already covered in the previous 7-day window.",
     "notebookCleanup": "passed: post-generation NotebookLM list did not contain the 2026-05-17 daily infographic/audio temporary notebooks",
     "imageQa": "passed: zh infographic readable; ja infographic readable with no severe text corruption",
     "files": {
