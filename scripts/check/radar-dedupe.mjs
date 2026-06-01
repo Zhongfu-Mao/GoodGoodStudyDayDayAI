@@ -9,6 +9,7 @@ const radarDir = path.join(root, 'src/content/radar');
 const sourcePoolPath = path.join(root, 'scripts/radar/source-pool.json');
 const sourcePool = JSON.parse(await readFile(sourcePoolPath, 'utf8'));
 const enforceFromDate = parseFromDateArg() ?? sourcePool.publicationGate?.enforceDailyFrom ?? '9999-99-99';
+const enforceToDate = parseToDateArg() ?? '9999-99-99';
 const lookbackDays = 7;
 const failures = [];
 
@@ -25,11 +26,13 @@ for (const file of zhFiles) {
 
 for (const [date, current] of byDate.entries()) {
   if (date < enforceFromDate) continue;
+  if (date > enforceToDate) continue;
   const currentDate = parseDate(date);
   const seen = new Map();
 
   for (const [otherDate, other] of byDate.entries()) {
     if (otherDate < enforceFromDate) continue;
+    if (otherDate > enforceToDate) continue;
     const delta = daysBetween(parseDate(otherDate), currentDate);
     if (delta <= 0 || delta > lookbackDays) continue;
     for (const link of other.links) {
@@ -65,6 +68,17 @@ function parseFromDateArg() {
   if (!value) return null;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
     console.error(`Invalid --from date: ${value}`);
+    process.exit(1);
+  }
+  return value;
+}
+
+function parseToDateArg() {
+  const index = process.argv.indexOf('--to');
+  const value = index === -1 ? '' : process.argv[index + 1];
+  if (!value) return null;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    console.error(`Invalid --to date: ${value}`);
     process.exit(1);
   }
   return value;

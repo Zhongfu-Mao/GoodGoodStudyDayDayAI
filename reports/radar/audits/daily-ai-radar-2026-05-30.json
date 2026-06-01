@@ -45,26 +45,36 @@
       "sender": "Every",
       "receivedAt": "2026-05-29",
       "subject": "Compound Engineering Gets an Upgrade",
-      "usedAs": "AI-native engineering workflow and planning/building convergence framing",
+      "usedAs": "read-only Gmail confirmation; removed from 2026-05-30 public Markdown because the same public article had already appeared on 2026-05-29",
       "publicLinks": [
         "https://every.to/guides/compound-engineering-gets-an-upgrade"
       ],
       "evidence": [
         "The newsletter expanded compound engineering from an earlier four-step framing into an eight-step engineering loop.",
-        "It was used to connect production evaluation, planning, implementation, validation, review, and rule updates."
+        "It was not kept as a 2026-05-30 item after the cross-day dedupe pass."
       ]
     },
     {
       "sender": "The Rundown AI",
       "receivedAt": "2026-05-29T10:08:55",
       "subject": "Anthropic just eclipsed OpenAI",
-      "usedAs": "Anthropic business momentum and developer-productivity distribution signal",
+      "usedAs": "Newsletter item plus industry/tooling context for Anthropic momentum, developer-productivity distribution, and Perplexity Computer",
       "publicLinks": [
-        "https://www.therundown.ai/"
       ],
       "evidence": [
-        "The issue was used as discovery and context for the Anthropic momentum and developer productivity gap item.",
-        "The public article links in the main body use canonical OpenAI, Anthropic, GitHub, Every, ByteByteGo, Daily Dose, and GitHub URLs where available."
+        "The issue described Anthropic momentum, developer output concentration among power users, model cost variance, and Perplexity Computer inside Excel, Word, and PowerPoint.",
+        "No stable public direct link was used in public Markdown; the entries use the no-public-link wording."
+      ]
+    },
+    {
+      "sender": "AI Valley",
+      "receivedAt": "2026-05-29T10:08:55",
+      "subject": "Anthropic is bigger than OpenAI now",
+      "usedAs": "Newsletter item and second-source context for the Anthropic / developer-productivity media signal",
+      "publicLinks": [],
+      "evidence": [
+        "The issue headline paired Anthropic business momentum with Apple Siri and AI tooling updates.",
+        "It corroborated that English AI newsletters were foregrounding Anthropic, agent productivity, and consumer AI updates on 2026-05-29."
       ]
     }
   ],
@@ -72,27 +82,17 @@
     {
       "url": "https://blog.bytebytego.com/p/how-doordash-built-a-testing-system",
       "status": 200,
-      "usedFor": "AI Engineering item and Newsletter source item"
+      "usedFor": "AI Engineering item"
     },
     {
       "url": "https://cloud.google.com/products/gemini-enterprise-agent-platform",
       "status": 200,
-      "usedFor": "AI Engineering agent-crash supporting source; original item confirmed from Daily Dose email"
-    },
-    {
-      "url": "https://every.to/guides/compound-engineering-gets-an-upgrade",
-      "status": 200,
-      "usedFor": "AI Engineering item"
+      "usedFor": "read-only confirmation during audit; removed from public Markdown to avoid repeating the 2026-05-29 agent-crash item"
     },
     {
       "url": "https://www.anthropic.com/news/claude-opus-4-8",
       "status": 200,
       "usedFor": "model-frontier item"
-    },
-    {
-      "url": "https://openai.com/index/trustworthy-third-party-evaluations-foundations",
-      "status": 403,
-      "usedFor": "model-frontier/evaluation item"
     },
     {
       "url": "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense",
@@ -110,24 +110,9 @@
       "usedFor": "tooling/Qwen 3 Agentic RAG item"
     },
     {
-      "url": "https://openai.com/index/braintrust",
-      "status": 403,
-      "usedFor": "tooling/Codex and Braintrust item"
-    },
-    {
-      "url": "https://openai.com/index/boston-childrens-hospital",
-      "status": 403,
-      "usedFor": "industry/healthcare item"
-    },
-    {
-      "url": "https://www.therundown.ai/",
-      "status": 403,
-      "usedFor": "industry/newsletter discovery context"
-    },
-    {
       "url": "https://github.blog/changelog/2026-05-29-copilot-usage-metrics-api-adds-cohorts-for-ai-adoption/",
       "status": 200,
-      "usedFor": "industry/Copilot metrics item"
+      "usedFor": "AI Engineering/Copilot metrics item"
     },
     {
       "url": "https://github.com/transformerlab/transformerlab-app",
@@ -138,40 +123,21 @@
       "url": "https://github.com/patchy631/ai-engineering-hub/tree/main/deploy-agentic-rag",
       "status": 200,
       "usedFor": "GitHub trend item"
-    },
-    {
-      "url": "https://github.com/openai/codex",
-      "status": 200,
-      "usedFor": "GitHub trend item"
-    },
-    {
-      "url": "https://blog.bytebytego.com/",
-      "status": 200,
-      "usedFor": "Newsletter source item"
-    },
-    {
-      "url": "https://www.dailydoseofds.com/",
-      "status": 200,
-      "usedFor": "Newsletter source item"
-    },
-    {
-      "url": "https://every.to/guides",
-      "status": 200,
-      "usedFor": "Newsletter source item"
     }
   ],
   "publishedItems": {
-    "zh": 18,
-    "ja": 18,
-    "newsletter": 3,
-    "githubTrend": 3
+    "zh": 12,
+    "ja": 12,
+    "newsletter": 2,
+    "githubTrend": 2
   },
   "selfReview": {
-    "schema": "passed",
+    "schema": "passed: npm run check:radar-schema -- --from 2026-05-30",
     "zhJaTopicOrder": "passed",
-    "duplicateLinks": "passed",
+    "duplicateLinks": "passed for 2026-05-30: npm run check:radar-dedupe -- --from 2026-05-15 --to 2026-05-30 no longer reports daily-ai-radar-2026-05-30.md",
     "forbiddenPublicTerms": "passed",
-    "newsletterFormat": "passed",
-    "checks": "passed"
+    "newsletterFormat": "passed: npm run check:radar-newsletter -- --from 2026-05-30",
+    "sourceDiversity": "passed: npm run check:radar-sources -- --from 2026-05-30",
+    "checks": "passed for 2026-05-30 scoped checks; broader 2026-05-15..2026-05-30 cross-day dedupe still has earlier-date failures"
   }
 }
