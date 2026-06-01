@@ -6,7 +6,7 @@
     "src/content/radar/daily-ai-radar-2026-05-28.ja.md"
   ],
   "backfill": {
-    "reason": "Restore fixed daily schema, remove active platform-source drift, and rebuild the day from Gmail-confirmed newsletters plus public canonical links.",
+    "reason": "Text-only repair after cross-day duplicate review: remove 2026-05-27 OpenAI carryover items, reject wrong/404 Daily Dose links, and rebuild the day from Gmail-confirmed newsletters plus public canonical links.",
     "assetsRerun": false,
     "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
   },
@@ -17,55 +17,55 @@
       "subject": "RAG vs. Graph RAG vs. Agentic RAG",
       "usedAs": "RAG taxonomy, tool-calling tutorial, and retrieval/tool-use Newsletter confirmation",
       "publicLinks": [
-        "https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag"
+        "https://www.dailydoseofds.com/"
       ],
       "evidence": [
         "The email explained standard RAG, Graph RAG, and Agentic RAG as different query architectures rather than a single maturity ladder.",
-        "It also included a tool-calling walkthrough that framed the LLM as a coordinator delegating real-time work to external functions."
+        "It also included a tool-calling walkthrough that framed the LLM as a coordinator delegating real-time work to external functions.",
+        "The previously used public slug https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag returned 404, and the older crash-course URL pointed to a 2024 multimodal RAG article, so the public Markdown uses no-direct-link wording for the two body items."
       ]
     },
     {
       "sender": "The Rundown AI",
       "receivedAt": "2026-05-27T10:05:16",
       "subject": "Exclusive: Demis Hassabis on when AGI arrives",
-      "usedAs": "Biohub, OpenAI Foundation, editing workflow, Trajectory, and quick-hit discovery context",
+      "usedAs": "Perplexity Computer, Claude Code security-guidance plugin, Extend Parse 2.0, OpenRouter funding, and Newsletter confirmation",
       "publicLinks": [
-        "https://www.therundown.ai/"
+        "https://www.therundown.ai/subscribe"
       ],
       "evidence": [
-        "The issue covered Biohub's protein biology world model, OpenAI Foundation's $250M economic-disruption commitment, and Trajectory's continual-learning startup.",
-        "The practical guide described a draft/final snapshot loop for teaching Codex or Claude Code reusable editorial rules."
+        "The issue included quick hits for Perplexity Computer managing Shopify stores, a Claude Code security-guidance plugin, Extend AI Parse 2.0, and OpenRouter's $113M funding.",
+        "No stable article-level public direct links were used for those quick hits, so the body items use no-direct-link wording and the Newsletter item points to the public subscribe page."
       ]
     },
     {
       "sender": "Every",
-      "receivedAt": "2026-05-27",
-      "subject": "After 'After Automation'",
-      "usedAs": "Automation-responsibility and agent adoption framing",
+      "receivedAt": "2026-05-28T08:00:00-04:00",
+      "subject": "Vibe Check: Opus 4.8—Anthropic Should’ve Rounded Up to 5",
+      "usedAs": "Opus 4.8 benchmark/product-shell framing and Newsletter confirmation",
       "publicLinks": [
-        "https://every.to/context-window/after-after-automation",
-        "https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now"
+        "https://every.to/vibe-check/opus-4-8-vibecheck"
       ],
       "evidence": [
-        "The Every material was used to keep the industry section focused on problem framing, judgment, responsibility, and the limits of one-agent-per-employee rollouts."
+        "The public Every article verified the Opus 4.8 framing, Senior Engineer benchmark discussion, writing benchmark discussion, and the distinction between model quality and app/harness quality."
       ]
     }
   ],
   "publicSourceVisits": [
     {
-      "url": "https://openai.com/index/cisco",
-      "status": 403,
-      "usedFor": "AI Engineering item; OpenAI Cloudflare challenge on HEAD"
+      "url": "https://blog.bytebytego.com/p/how-airtable-built-the-search-layer",
+      "status": 200,
+      "usedFor": "Discovery/context source only; rejected as a public Markdown link because 2026-05-27 already uses the same URL"
     },
     {
-      "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex",
-      "status": 403,
-      "usedFor": "AI Engineering item; OpenAI Cloudflare challenge on HEAD"
+      "url": "https://medium.com/airtable-eng/productionizing-semantic-search-how-we-built-and-scaled-vector-infrastructure-at-airtable-180fff11a136",
+      "status": 200,
+      "usedFor": "AI Engineering item; Airtable semantic search and Milvus infrastructure context"
     },
     {
-      "url": "https://openai.com/index/warp",
-      "status": 403,
-      "usedFor": "AI Engineering item; OpenAI Cloudflare challenge on HEAD"
+      "url": "https://blog.bytebytego.com/p/must-know-failure-modes-in-distributed",
+      "status": 200,
+      "usedFor": "Rejected as a public Markdown link because 2026-05-29 already uses the same URL"
     },
     {
       "url": "https://huggingface.co/blog/ibm-research/itbench-aa",
@@ -84,38 +84,23 @@
     },
     {
       "url": "https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag",
-      "status": 200,
-      "usedFor": "tooling/RAG taxonomy item"
+      "status": 404,
+      "usedFor": "Rejected: newsletter topic public slug unavailable"
     },
     {
       "url": "https://www.dailydoseofds.com/a-crash-course-on-building-rag-systems-part-4-with-implementation/",
       "status": 200,
-      "usedFor": "tooling/tool-calling item"
+      "usedFor": "Rejected: fetched title/date matched an older 2024 multimodal RAG article, not the 2026-05-28 Newsletter item"
     },
     {
-      "url": "https://www.therundown.ai/",
-      "status": 403,
-      "usedFor": "tooling/editorial workflow item; Cloudflare challenge on HEAD"
-    },
-    {
-      "url": "https://openai.com/foundation/",
-      "status": 403,
-      "usedFor": "industry/OpenAI Foundation item; OpenAI Cloudflare challenge on HEAD"
-    },
-    {
-      "url": "https://www.therundown.ai/tags/ai-startups",
-      "status": 403,
-      "usedFor": "industry/Trajectory discovery item; Cloudflare challenge on HEAD"
-    },
-    {
-      "url": "https://www.dailydoseofds.com/rl-course-part-5/",
+      "url": "https://every.to/vibe-check/opus-4-8-vibecheck",
       "status": 200,
-      "usedFor": "tooling/RL foundation item"
+      "usedFor": "industry/Opus 4.8 and product-shell item plus Newsletter item"
     },
     {
-      "url": "https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now",
+      "url": "https://www.anthropic.com/news/claude-opus-4-8",
       "status": 200,
-      "usedFor": "industry/adoption item"
+      "usedFor": "Confirmation only; not linked in public Markdown to avoid cross-day duplicate with the 2026-05-30 daily"
     },
     {
       "url": "https://www.dailydoseofds.com/",
@@ -128,7 +113,7 @@
       "usedFor": "Newsletter source item; Cloudflare challenge on HEAD"
     },
     {
-      "url": "https://github.com/openai/codex",
+      "url": "https://github.com/milvus-io/milvus",
       "status": 200,
       "usedFor": "GitHub trend item"
     },
@@ -144,8 +129,8 @@
     }
   ],
   "publishedItems": {
-    "zh": 19,
-    "ja": 19,
+    "zh": 15,
+    "ja": 15,
     "newsletter": 3,
     "githubTrend": 3
   },

@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-28"
 date: 2026-05-28
 category: radar
 cadence: daily
-plainSummary: "今日の主線は、agent engineering が demo から production loop に入っていることです。OpenAI の Cisco、Tax AI、Warp cases は code、tax workflow、developer environment における verifiable workflows を示し、Hugging Face / IBM の ITBench-AA は enterprise SRE diagnosis がまだ難しいことを示しました。Daily Dose と Every は RAG、tool calling、automation 後の responsibility boundary を補っています。"
+plainSummary: "今日の主線は、agent engineering が demo から verifiable and recoverable production systems へ進んでいることです。Airtable は semantic search infrastructure が real data shape に左右されることを示し、Hugging Face / IBM の ITBench-AA は enterprise SRE agents がまだ 50% 未満であることを示しました。Daily Dose、Every、The Rundown は RAG/tool calling、Opus 4.8、OpenRouter、agent tooling ecosystem を同じ日の情報流に置きました。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -20,39 +20,25 @@ draft: false
 
 ## 対象範囲
 
-- 対象期間：2026-05-27 〜 2026-05-28。少量の high-signal newsletters と public sources も補足します。
+- 対象期間：2026-05-27 〜 2026-05-28。Newsletter 精選は reader が追える items だけを列挙し、本文 source の代替にはしません。
 
 ## 1. AI Engineering & アーキテクチャ
 
-### Cisco と OpenAI は Codex を enterprise engineering lifecycle に組み込んだ
+### Airtable の AI search layer は「data shape」が vector infrastructure を決めることを示す
 
-- 出典：OpenAI
+- 出典：Airtable Engineering
 - 日付：2026-05-27
-- リンク：https://openai.com/index/cisco
-- 要約：Cisco は Codex を AI Defense、新機能開発、cross-repository build optimization、defect remediation、framework migration に使っています。Code completion tool としてではなく、production engineering workflow の一部として扱っています。Article によると、Codex は AI Defense の critical engineering work を quarters から weeks に短縮しました。15 以上の connected repositories で build logs と dependency graph を分析し、build time を約 20% 下げ、monthly で 1,500 engineering hours 以上を節約しました。CodeWatch では Codex-CLI が large-scale C/C++ defects に compile-test-fix loop で対応し、defect resolution throughput を 10-15x にしました。Signal は明確です。Enterprise coding agent の核心は「code を書ける」ことではなく、existing review、security、governance、long-running task flow の中で継続稼働できることです。
+- リンク：https://medium.com/airtable-eng/productionizing-semantic-search-how-we-built-and-scaled-vector-infrastructure-at-airtable-180fff11a136
+- 要約：Airtable Engineering は Omni と linked-record recommendations のための semantic search layer を詳しく分解しました。難点は embeddings を追加することではなく、多数の customer bases に対して vector data を write、index、isolate しつつ、約 500ms p99、horizontal scaling、self-hosting、disaster recovery、multi-tenant boundaries を満たすことでした。Airtable は Milvus を選び、base-level isolation、cold-data offloading、source data から embeddings を rebuild する recovery path で cost と complexity を抑えました。Agent engineering への lesson は明確です。Retrieval system の reliability は model demo ではなく、real data shape、write frequency、tenant isolation に左右されます。
 
-### OpenAI、Thrive、Crete は production traces から self-improving Tax AI を作った
-
-- 出典：OpenAI
-- 日付：2026-05-27
-- リンク：https://openai.com/index/building-self-improving-tax-agents-with-codex
-- 要約：OpenAI と Thrive Holdings は、Crete の 30 以上の accounting firms 向けに 1040 / 1041 tax return preparation を支える Tax AI を構築しました。This season の pilot では 7,000 tax returns を処理し、preparation time を約 3 分の 1 削減し、draft accuracy は最大 97%、throughput は約 50% 向上しました。価値があるのは self-improvement loop です。Practitioner corrections から structured differences を捕捉し、source files、field extraction、citations、mapping、final filed return を production trace として保存します。Repeated failure patterns は eval targets に変換され、Codex が bounded code surface の中で investigation、fix、regression validation を行います。Agent learning は自動的な魔法ではなく、expert feedback、traceable product evidence、explicit validation gates の組み合わせです。
-
-### Warp は GPT-5.5 と Oz control plane で open agentic development を進める
-
-- 出典：OpenAI
-- 日付：2026-05-27
-- リンク：https://openai.com/index/warp
-- 要約：Warp は terminal client の open source 化に続き、Open Agentic Development を提案しました。Humans が objectives を定義し outcomes を supervise し、agents が planning、coding、testing、pull request creation を担う形です。OpenAI article によると、GPT-5.5 は Warp の internal agentic coding tasks で GPT-5.4 より 30% fewer tokens を使いました。Warp は現在 almost 1 million developers を持ち、Fortune 500 の 56% 以上で使われ、社内では pull requests の約 90% が agents と共同作成されています。Oz control plane は local / cloud environments across agents の deployment、context preservation、long-running workflow observation、recurring workflows を担当し、memory、compaction、code-search subagents、evaluation pipelines で reliability を保ちます。Product shape は single chat から agent fleet management に移っています。
-
-## 2. モデル最前線 & アルゴリズム探索
-
-### ITBench-AA は frontier models が enterprise SRE root-cause localization で 50% 未満であることを示す
+### ITBench-AA は enterprise SRE agents の root-cause localization がまだ 50% 未満であることを示す
 
 - 出典：Hugging Face / IBM Research / Artificial Analysis
 - 日付：2026-05-27
 - リンク：https://huggingface.co/blog/ibm-research/itbench-aa
-- 要約：Artificial Analysis と IBM Software Innovation Lab は ITBench-AA を公開しました。Series の最初は agentic enterprise IT capability を SRE tasks で評価します。59 tasks には Kubernetes incident snapshots が含まれ、models は alerts、events、traces、metrics、logs、topology を読んで minimal independent root-cause entities を特定する必要があります。Claude Opus 4.7 が 47%、GPT-5.5 xhigh が 46%、Qwen3.7 Max が 42% で、すべての frontier models が 50% 未満でした。Longer trajectories は必ずしも better ではありません。Gemini 3.1 Pro Preview は平均 83 turns ですが 30% にとどまり、fault-injection mechanism や co-occurring symptoms を root cause と誤認しがちでした。この benchmark は production agent boom への必要な counterweight です。Enterprise workflow は「もっと多く試す」だけでは reliable に解けません。
+- 要約：Artificial Analysis と IBM Software Innovation Lab は ITBench-AA を公開しました。Series の最初は agentic enterprise IT capability を SRE tasks で評価します。59 tasks には Kubernetes incident snapshots が含まれ、models は alerts、events、traces、metrics、logs、topology を読んで minimal independent root-cause entities を特定する必要があります。Claude Opus 4.7 が 47%、GPT-5.5 xhigh が 46%、Qwen3.7 Max が 42% で、すべての frontier models が 50% 未満でした。Production agent への必要な counterweight です。Enterprise workflow は「もっと多く試す」だけでは reliable に解けず、architecture は diagnosis boundary、evidence source、rollback path を一緒に設計する必要があります。
+
+## 2. モデル最前線 & アルゴリズム探索
 
 ### Hugging Face TRL は Delta Weight Sync で RL weight synchronization を full snapshot から sparse delta に変えた
 
@@ -74,61 +60,47 @@ draft: false
 
 - 出典：Daily Dose of Data Science
 - 日付：2026-05-28
-- リンク：https://www.dailydoseofds.com/a-crash-course-on-building-rag-systems-part-4-with-implementation/
+- リンク：公開版リンクなし
 - 要約：Daily Dose of DS は、standard RAG、Graph RAG、Agentic RAG を query type で分けました。Standard RAG は single-hop factual lookup、Graph RAG は entity relationships を使う multi-hop query、Agentic RAG は model が tools、sources、order を選ぶ dynamic multi-source task に向きます。この整理は enterprise agent に重要です。「agent を追加する」ことが常に高度化ではありません。安定した fact lookup なら standard RAG、関係探索なら Graph RAG、tool use と multi-step planning が必要なときだけ Agentic RAG が合います。
 
 ### Tool calling example は LLM を generator から auditable coordinator に変える
 
 - 出典：Daily Dose of Data Science
 - 日付：2026-05-28
-- リンク：https://www.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag
+- リンク：公開版リンクなし
 - 要約：同じ email は stock price assistant を使って tool calling を説明しました。Model は外部支援が必要かを判断し、function name と arguments を生成し、external code の実行結果を受け取って answer に統合します。小さな例ですが、agent engineering の基礎境界を示しています。Model は realtime data を「知っているふり」をするのではなく、observable、testable、replaceable な tool に委譲するべきです。MCP、workflow orchestration、production agent はこの境界の上に乗ります。
 
-### OpenAI editing-style workflow は human revision を reusable rules に変える
+### The Rundown AI は agent tooling stack の 3 つの実用 signal をまとめた
 
 - 出典：The Rundown AI
 - 日付：2026-05-27
-- リンク：https://www.therundown.ai/
-- 要約：The Rundown AI の guide は、draft / final snapshot を使って Codex や Claude Code に editing style を学習させる流れを示しました。Writing rules を interview で作り、draft と immutable snapshot を保存し、人間が final に編集した後、agent が差分を比較して rules を更新します。価値は「AI が自分らしく書く」だけではありません。Audience、forbidden claims、CTA style、tone、examples を reusable asset に変えることです。Team writing と knowledge work では、implicit judgment を maintainable rules に変えることが重要になります。
-
-### Daily Dose of Data Science の RL series は function approximation を agent learning foundation に戻す
-
-- 出典：Daily Dose of Data Science
-- 日付：2026-05-24
-- リンク：https://www.dailydoseofds.com/rl-course-part-5/
-- 要約：Daily Dose of Data Science は reinforcement learning course chapter 5、Function Approximation を公開しました。Article は tabular value functions が巨大または連続 state space でなぜ失敗するかを説明します。Memory が足りず、neighboring states から generalize できないからです。Parameterized value functions、MSVE、linear function approximation、Gradient Monte Carlo、semi-gradient TD、deadly triad、mountain car tile coding へ展開します。本日の enterprise agent theme への low-level supplement です。Agents が long-term interaction と policy learning に入ると、問題は prompt writing から representation、objective functions、generalization、stability、off-policy risk に戻ります。
+- リンク：公開版リンクなし
+- 要約：The Rundown AI の quick hits は agent tooling ecosystem を 3 方向に分けて見せました。Perplexity の Computer cloud agent は Shopify stores を管理し始め、Claude Code は security-guidance plugin を追加し、Extend AI は agents 向け document parsing API の Parse 2.0 を公開しました。共通する signal は、agent tooling が chat assistant から browser/cloud operations、security constraints、structured document intake へ広がっていることです。追うべき点は、これらの tools が permissions、action logs、failure handling をどう設計するかです。
 
 ## 4. 業界 & ビジネス速報
 
-### OpenAI Foundation は AI の work and economy impact に 2.5 億ドルを投じる
+### Every の Opus 4.8 review は model quality と product shell を分けて見る
+
+- 出典：Every / Anthropic
+- 日付：2026-05-28
+- リンク：https://every.to/vibe-check/opus-4-8-vibecheck
+- 要約：Every の Vibe Check は Claude Opus 4.8 が Senior Engineer benchmark と writing tests で非常に強く、同チームが tested した best models の一つだと評価しました。同時に、model capability と Claude app / coding harness の experience は別問題だと指摘します。この見方は enterprise adoption に重要です。Product shell、context management、tool orchestration、review flow が追いつかない場合、model score が高くても team productivity に安定して変換されません。
+
+### The Rundown AI は OpenRouter funding を記録し、model routing layer が infrastructure 化していることを示した
 
 - 出典：The Rundown AI
 - 日付：2026-05-27
-- リンク：https://openai.com/foundation/
-- 要約：The Rundown AI は、OpenAI Foundation が first tranche として 250M dollars を commitment し、AI economic impact research、near-term worker disruption support、long-term economic security mechanisms に使うと報じました。これは technical section ではなく business signal です。Frontier AI companies は model capability だけでなく、value distribution、retraining、meaning of work、policy tools にも向き合う必要があります。Enterprise readers にとって agent adoption は efficiency project であると同時に、organization design と public responsibility の問題でもあります。
-
-### Trajectory は product corrections、retries、user edits を continual post-training data に変える
-
-- 出典：The Rundown AI
-- 日付：2026-05-27
-- リンク：https://www.therundown.ai/tags/ai-startups
-- 要約：The Rundown AI は、ex-DeepMind and Apple researchers による startup Trajectory を紹介しました。同社は real product feedback から models を continual learning させることを狙います。User corrections、retries、edits を production traces として捕捉し、regular post-training data に変換します。Early customers には Clay、Harvey、Decagon、Rogo が含まれます。この direction は Tax AI の production trace loop と響き合います。Enterprise agent に本当に効く learning material は抽象 prompt ではなく、実際に起きた failures、fixes、references、approvals です。
-
-### Every は「every employee gets an agent」が良い starting point ではない理由を振り返る
-
-- 出典：Every
-- 日付：2026-05-15
-- リンク：https://every.to/source-code/we-gave-every-employee-an-ai-agent-here-s-what-we-re-doing-differently-now
-- 要約：Every は internal Plus One / OpenClaw experiment を振り返りました。Slack 内で each employee に personal AI assistant を与えたところ、一部 agents は writing や bug management に役立ったものの、全体としては efficiency より frustration が大きくなりました。Common failures は、app に接続済みなのに permission がないと言う、execution が terminate する、instructions を安定して守れない、そして user preference に合わせるために継続的な upkeep が必要になることです。Team はそのため、方向性を「personal assistant for every employee」から「defined jobs を持つ shared team resources」に変えています。Enterprise deployment への lesson は実用的です。Agent は personality が強いほど良いわけではなく、最初に scale しやすいのは clear boundaries、explicit permissions、stable inputs / outputs、shared maintenance を持つ role-based capability です。
+- リンク：公開版リンクなし
+- 要約：The Rundown AI は OpenRouter が 113M dollars を調達し、約 8M developers、1.5 quadrillion-token annual run rate に達したと報じました。これらの metrics は今後も market validation が必要ですが、方向性は明確です。Teams が Claude、OpenAI、Gemini、open models、vertical models を並行して試すほど、model routing、billing、rate limits、logging、fallback、evaluation は infrastructure layer になります。Agent applications が増えるほど、unified entry point の価値も上がります。
 
 ## 5. GitHub 人気 repo & トレンド追跡
 
-### openai/codex：enterprise coding cases は CLI agent を long-running workflow entry にする
+### milvus-io/milvus：vector database は AI product core path に入り続けている
 
-- 出典：GitHub
+- 出典：GitHub / ByteByteGo
 - 日付：2026-05-28
-- リンク：https://github.com/openai/codex
-- 要約：Cisco、Tax AI、Warp の OpenAI cases は同じ方向を向いています。Developers は chat UI だけでなく、repositories、terminal、CI、tests、review process の中で動く coding agent を必要としています。openai/codex のような CLI entry は、task execution、file context、command loop、human review を同じ engineering path に置きます。本当の判断基準は demo の滑らかさではなく、reproducible diff、test result、rollback boundary を残せるかです。
+- リンク：https://github.com/milvus-io/milvus
+- 要約：Airtable の case は Milvus を trend section に戻します。Vector database は RAG demo の accessory ではなく、multi-tenant semantic search、AI recommendations、enterprise knowledge entry points の中で indexing、isolation、scaling、recovery を担います。次に見るべきは、vector systems が permission model、hot/cold data、incremental updates、disaster recovery とどう結びつくかであり、single-query speed だけではありません。
 
 ### huggingface/trl：RL training efficiency は agent post-training の基本 infrastructure になる
 
@@ -153,16 +125,16 @@ draft: false
 - リンク：https://www.dailydoseofds.com/
 - 要約：この email は visual explanation で traditional RAG、Graph RAG、Agentic RAG を区別し、tool calling tutorial も含んでいました。本日の retrieval と tool-use foundation の主な source です。
 
-### The Rundown AI：Biohub、OpenAI Foundation、Trajectory の continual learning signals
+### Every：Vibe Check: Opus 4.8
+
+- 出典：Every
+- 日付：2026-05-28
+- リンク：https://every.to/vibe-check/opus-4-8-vibecheck
+- 要約：Every は Opus 4.8 の engineering と writing ability を評価しつつ、「model is strong」と「product shell is usable」を分けて論じました。本文ではこの productization judgment を吸収しています。
+
+### The Rundown AI：Exclusive: Demis Hassabis on when AGI arrives
 
 - 出典：The Rundown AI
 - 日付：2026-05-27
 - リンク：https://www.therundown.ai/subscribe
-- 要約：この issue は Biohub の protein biology world model、OpenAI Foundation の 250M dollar economic disruption fund、Trajectory の continual learning platform を扱いました。Research and industry signals を提供し、本文では agent production loop、economic responsibility、continual learning に直接関係する部分を中心に扱っています。
-
-### Every：After ‘After Automation’
-
-- 出典：Every
-- 日付：2026-05-27
-- リンク：https://every.to/context-window/after-after-automation
-- 要約：Every は Dan Shipper の “After Automation” の続きとして、AI が work を消すかどうかではなく、automation が problem definition、taste、judgment、responsibility の threshold を上げることを論じました。OpenAI Foundation と Every の agent retrospective と合わせると、agent adoption の難しさは、誰が frame を設定し、誰が rules を維持し、誰が result を引き受けるかにあります。
+- 要約：この issue は Demis Hassabis の AGI timeline interview に加え、Perplexity Computer、Claude Code security-guidance plugin、Extend Parse 2.0、OpenRouter funding を扱いました。本文では agent tooling と model routing infrastructure に直接関係する部分だけを吸収しています。
