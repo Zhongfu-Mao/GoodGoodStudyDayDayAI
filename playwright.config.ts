@@ -32,7 +32,7 @@ export default defineConfig({
   webServer: skipWebServer
     ? undefined
     : {
-        command: `npm run preview -- --host ${host} --port ${port}`,
+        command: `npm run preview:test -- --host ${host} --port ${port}`,
         url: readyUrl,
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,

@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "preview:test": "node scripts/preview-static.mjs",
     "check": "astro check",
     "check:tags": "node scripts/check/bilingual-tags.mjs",
     "check:radar-build": "node scripts/check/radar-build-smoke.mjs",
