@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-05-20"
 date: 2026-05-20
 category: radar
 cadence: daily
-plainSummary: "今天关注 Google I/O 把 Gemini、Search 和 Workspace 推向可行动的 Agent 产品层，OpenAI 与 Anthropic 分别补强内容溯源和 Agent 工具连接，GitHub 将 Copilot cloud agent、模型接入和供应链认证继续嵌入开发流程，GitHub 趋势侧则看到长期记忆和多 Agent 编排基础设施升温。"
+plainSummary: "今天关注 Google I/O 把 Gemini、Search 和 Workspace 推向可行动的 Agent 产品层，OpenAI 补强内容溯源，GitHub 将 Copilot cloud agent、模型接入和供应链认证继续嵌入开发流程，GitHub 趋势侧则看到长期记忆和多 Agent 编排基础设施升温。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -85,13 +85,6 @@ draft: false
 - 日期：2026-05-19
 - 链接：https://blog.google/products-and-platforms/products/search/search-io-2026/
 - 摘要：Google 宣布 Search 的 AI Mode 默认升级到 Gemini 3.5 Flash，并支持更长自然语言输入、AI 建议、文本、图片、文件、视频和浏览器标签页等多模态输入。Search agents 会从 information agents 开始，持续监控网页、新闻、购物、金融和体育等数据，并在满足条件时给出综合更新。Search 还会按问题生成可交互界面、图表和持续追踪的 mini apps，搜索框正在变成任务编排入口。
-
-### Anthropic 收购 Stainless 强化 Claude 的工具连接层
-
-- 来源：Anthropic
-- 日期：2026-05-19
-- 链接：https://www.anthropic.com/news/anthropic-acquires-stainless
-- 摘要：Anthropic 宣布收购 Stainless，用来加强 Claude 与 API、SDK 和 MCP server 的连接能力。Stainless 长期聚焦高质量 SDK 生成和 agent-friendly API 表面，Anthropic 将其纳入体系，说明模型公司正在把竞争范围从模型本身扩展到开发者工具、协议表面和 Agent 可操作的软件接口。对生态来说，谁能让 Agent 更稳定地使用外部软件，谁就更接近企业工作流的真实入口。
 
 ## 5. GitHub 热门 repo & 趋势追踪
 

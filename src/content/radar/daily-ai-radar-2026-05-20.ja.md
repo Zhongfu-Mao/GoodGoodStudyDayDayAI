@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-20"
 date: 2026-05-20
 category: radar
 cadence: daily
-plainSummary: "今日は Google I/O が Gemini、Search、Workspace を action-oriented Agent product layer へ押し出し、OpenAI と Anthropic がそれぞれ content provenance と Agent tool connectivity を補強し、GitHub は Copilot cloud agent、model access、supply-chain authentication を developer workflow に埋め込みました。GitHub trend では long-term memory と multi-agent orchestration infrastructure が目立ちます。"
+plainSummary: "今日は Google I/O が Gemini、Search、Workspace を action-oriented Agent product layer へ押し出し、OpenAI が content provenance を補強し、GitHub は Copilot cloud agent、model access、supply-chain authentication を developer workflow に埋め込みました。GitHub trend では long-term memory と multi-agent orchestration infrastructure が目立ちます。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -85,13 +85,6 @@ draft: false
 - 日付：2026-05-19
 - リンク：https://blog.google/products-and-platforms/products/search/search-io-2026/
 - 要約：Google は Search の AI Mode を Gemini 3.5 Flash に upgrade し、longer natural-language input、AI suggestions、text、image、file、video、browser tabs などの multimodal input を扱えるようにしました。Search agents は information agents から始まり、web、news、shopping、finance、sports などの data を monitor し、条件に合ったときに synthesized update を返します。Search は question に応じて interactive UI、charts、ongoing mini apps も生成し、search box は task orchestration entry になりつつあります。
-
-### Anthropic は Stainless acquisition で Claude の tool connectivity layer を強化した
-
-- 出典：Anthropic
-- 日付：2026-05-19
-- リンク：https://www.anthropic.com/news/anthropic-acquires-stainless
-- 要約：Anthropic は Stainless の acquisition を発表し、Claude が API、SDK、MCP server と接続する能力を強化します。Stainless は high-quality SDK generation と agent-friendly API surface に焦点を当ててきた developer tooling company です。Anthropic がこれを取り込むことは、model company の競争領域が model quality だけでなく、developer tools、protocol surfaces、Agent が操作できる software interfaces へ広がっていることを示します。
 
 ## 5. GitHub 人気 repo & トレンド追跡
 

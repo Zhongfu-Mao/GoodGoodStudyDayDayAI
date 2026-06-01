@@ -5,7 +5,7 @@
     "src/content/radar/daily-ai-radar-2026-05-20.md",
     "src/content/radar/daily-ai-radar-2026-05-20.ja.md"
   ],
-  "status": "text-and-assets-backfilled",
+  "status": "text-backfilled-assets-preserved-after-dedupe",
   "backfill": {
     "reason": "Restore the fixed four-quadrant schema plus GitHub trends and reader-facing Newsletter items after the mid-May source and taxonomy drift.",
     "assetsRerun": true,
@@ -14,6 +14,7 @@
   "assetRegeneration": {
     "date": "2026-06-01",
     "noKeepNotebook": true,
+    "note": "On 2026-06-02, a text-only cross-day dedupe cleanup removed the repeated Anthropic Stainless public link already retained on 2026-05-19; existing infographic and audio URLs were intentionally preserved.",
     "notebookCleanup": "passed: no 2026-05-20 daily temporary notebooks remained after regeneration",
     "files": {
       "zhImage": {
@@ -140,7 +141,7 @@
     {
       "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
       "status": 200,
-      "usedFor": "industry item"
+      "usedFor": "removed during 2026-06-02 cross-day dedupe because the same public link is retained on 2026-05-19"
     },
     {
       "url": "https://github.com/getzep/graphiti",
@@ -164,17 +165,17 @@
     }
   ],
   "publishedItems": {
-    "zh": 14,
-    "ja": 14,
+    "zh": 13,
+    "ja": 13,
     "newsletter": 3,
     "githubTrend": 2
   },
   "selfReview": {
     "schema": "passed: fixed six public sections restored in zh/ja",
-    "zhJaTopicOrder": "passed: 14 matched H3 items in both locales",
+    "zhJaTopicOrder": "passed: 13 matched H3 items in both locales",
     "duplicateLinks": "passed: no repeated public URLs within either locale file",
     "forbiddenPublicTerms": "passed: public Markdown scan clean",
     "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
-    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check"
+    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, and check:radar-dedupe through 2026-05-20 after 2026-06-02 text-only cleanup"
   }
 }

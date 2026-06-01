@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-05-19"
 date: 2026-05-19
 category: radar
 cadence: daily
-plainSummary: "今天关注 Anthropic 收购 Stainless 强化 Claude API 的 SDK 与 MCP 连接层，GitHub 继续把 Copilot cloud agent 扩展到 CI 修复、模型选择、会话远程控制和上下文空间管理，OpenAI 与 Dell 则把 Codex 推向混合云与本地企业环境。GitHub 趋势侧，Sim 和 PaddleOCR 体现了 Agent workflow 与 Document AI 工程化的热度。"
+plainSummary: "今天关注 Anthropic 收购 Stainless 强化 Claude API 的 SDK 与 MCP 连接层，GitHub 继续把 Copilot cloud agent 扩展到 CI 修复、模型选择、会话远程控制和上下文空间管理，ByteByteGo 复盘 Snap Bento 的十亿级预测系统，OpenAI 与 Dell 则把 Codex 推向混合云与本地企业环境。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -55,12 +55,12 @@ draft: false
 - 链接：https://github.blog/changelog/2026-05-18-copilot-cloud-agent-fast-cost-efficient-models-for-simple-tasks/
 - 摘要：GitHub 为 Copilot cloud agent 加入更快、更便宜的模型选项，Claude Haiku 4.5 与 GPT-5.4-mini 都标注为 0.33x multiplier。信号不只是“多两个模型”，而是 agent workflow 开始按任务复杂度做成本分层，简单变更可以用小模型处理，复杂任务再切换到更强模型。
 
-### Daily Dose 用 PyTorch 从零实现 Knowledge Distillation，强调部署成本而不只看精度
+### ByteByteGo 复盘 Snap Bento：十亿级预测系统的难点在特征、数据面和反馈闭环
 
-- 来源：Daily Dose of Data Science
-- 日期：2026-05-18
-- 链接：https://www.dailydoseofds.com/model-compression-a-critical-step-towards-efficient-machine-learning/
-- 摘要：Daily Dose 以 teacher / student model、KL divergence 和 MNIST/PyTorch 实现讲解 knowledge distillation，提醒生产环境选型不能只看 accuracy，还要看 latency、model size 和 scalability。它适合放在模型前沿区，因为重点是模型压缩如何改变部署成本与性能取舍。
+- 来源：ByteByteGo
+- 日期：2026-05-19
+- 链接：https://blog.bytebytego.com/p/how-snapchat-serves-a-billion-predictions
+- 摘要：ByteByteGo 复盘 Snap 的 Bento ML 平台，说明推荐和广告 ranking 请求会从一个用户动作扩展成数百到数千个 user-candidate 评分，压力集中在 latency、scale、freshness 和 iteration 四条线上。文章把核心工程拆成训练侧和 serving 侧：训练侧用 Kubeflow、TensorFlow/Keras Core framework 和 YAML 配置支撑高频实验，export 时把 dense matrix math 放到 GPU，把 embedding lookup 与 feature parsing 放到 CPU；serving 侧用 Robusta 维持 offline Iceberg feature store 与 online KV store 一致，部分 workload 将 document features collocate 到 inference instance，另一部分用 Retrieval service 做 ANN / inverted / forward index。最值得借鉴的是，Bento 通过 raw bytes 传输和 Protobuf 优化把数据面 latency 降低 2x、成本降低 10x，提醒团队大规模 ML serving 的瓶颈常常在模型外部。
 
 ## 3. 实战代码 & 工具库
 

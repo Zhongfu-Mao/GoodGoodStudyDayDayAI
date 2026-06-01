@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-19"
 date: 2026-05-19
 category: radar
 cadence: daily
-plainSummary: "今日は Anthropic による Stainless acquisition が Claude API の SDK と MCP 接続層を強化し、GitHub が Copilot cloud agent を CI 修復、model selection、session remote control、context space 管理へ広げた点に注目します。OpenAI と Dell は Codex を hybrid cloud / on-prem enterprise environment へ進め、GitHub trend では Sim と PaddleOCR が agent workflow と Document AI の実装熱を示しました。"
+plainSummary: "今日は Anthropic による Stainless acquisition が Claude API の SDK と MCP 接続層を強化し、GitHub が Copilot cloud agent を CI 修復、model selection、session remote control、context space 管理へ広げた点に注目します。ByteByteGo は Snap Bento の billion-scale prediction system を振り返り、OpenAI と Dell は Codex を hybrid cloud / on-prem enterprise environment へ進めました。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -55,12 +55,12 @@ draft: false
 - リンク：https://github.blog/changelog/2026-05-18-copilot-cloud-agent-fast-cost-efficient-models-for-simple-tasks/
 - 要約：GitHub は Copilot cloud agent に faster / cheaper model options を追加し、Claude Haiku 4.5 と GPT-5.4-mini を 0.33x multiplier として示した。これは単に model が増えたというより、agent workflow が task complexity に応じて cost layer を選ぶ段階に入ったという signal だ。
 
-### Daily Dose は PyTorch で Knowledge Distillation を scratch 実装し、accuracy だけでなく deployment cost を見る
+### ByteByteGo は Snap Bento を通じて、billion-scale prediction system の難所が feature、data plane、feedback loop にあることを示す
 
-- 出典：Daily Dose of Data Science
-- 日付：2026-05-18
-- リンク：https://www.dailydoseofds.com/model-compression-a-critical-step-towards-efficient-machine-learning/
-- 要約：Daily Dose は teacher / student model、KL divergence、MNIST / PyTorch implementation を使って knowledge distillation を説明した。Production model selection は accuracy だけでなく latency、model size、scalability を見る必要があり、model compression が deployment cost と performance trade-off をどう変えるかを示している。
+- 出典：ByteByteGo
+- 日付：2026-05-19
+- リンク：https://blog.bytebytego.com/p/how-snapchat-serves-a-billion-predictions
+- 要約：ByteByteGo は Snap の Bento ML platform を取り上げ、recommendation / ads ranking request が 1 つの user action から数百から数千の user-candidate scoring に広がることを説明した。Pressure は latency、scale、freshness、iteration の 4 つで、training side は Kubeflow、TensorFlow/Keras Core framework、YAML config によって high-frequency experiments を支え、export step では dense matrix math を GPU、embedding lookup と feature parsing を CPU に分ける。Serving side では Robusta が offline Iceberg feature store と online KV store を同期し、一部 workload は document features を inference instance に collocate し、別の workload は Retrieval service で ANN / inverted / forward index を組み合わせる。特に raw bytes transfer と Protobuf optimization による 2x latency reduction / 10x data plane cost reduction は、大規模 ML serving の bottleneck が model 外の data plane にあることを示している。
 
 ## 3. 実践コード & ツールライブラリ
 

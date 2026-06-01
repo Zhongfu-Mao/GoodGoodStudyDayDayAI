@@ -5,7 +5,7 @@
     "src/content/radar/daily-ai-radar-2026-05-19.md",
     "src/content/radar/daily-ai-radar-2026-05-19.ja.md"
   ],
-  "status": "text-and-assets-backfilled",
+  "status": "text-backfilled-assets-preserved-after-dedupe",
   "backfill": {
     "reason": "Restore the fixed four-quadrant schema plus GitHub trends and reader-facing Newsletter items after the mid-May source and taxonomy drift.",
     "assetsRerun": true,
@@ -14,6 +14,7 @@
   "assetRegeneration": {
     "date": "2026-06-01",
     "noKeepNotebook": true,
+    "note": "On 2026-06-02, a text-only cross-day dedupe cleanup replaced the repeated 2026-05-18 Daily Dose public article with ByteByteGo's 2026-05-19 Snap Bento article; existing infographic and audio URLs were intentionally preserved.",
     "notebookCleanup": "passed: no 2026-05-19 daily temporary notebooks remained after regeneration",
     "files": {
       "zhImage": {
@@ -66,11 +67,11 @@
       "sender": "Daily Dose of DS",
       "receivedAt": "2026-05-18T22:03:08",
       "subject": "Implement Knowledge Distillation from Scratch",
-      "usedAs": "tooling / implementation item with public article link",
+      "usedAs": "removed during 2026-06-02 cross-day dedupe because the public article link is retained on 2026-05-18",
       "publicLink": "https://www.dailydoseofds.com/model-compression-a-critical-step-towards-efficient-machine-learning/",
       "evidence": [
         "The email covered teacher/student distillation, KL divergence and model compression tradeoffs.",
-        "It was considered but the final Newsletter section prioritized the newer Daily Dose issue from May 19."
+        "It was considered but removed from the 2026-05-19 body after the 2026-05-18 report retained the same public link."
       ]
     },
     {
@@ -133,9 +134,9 @@
       "usedFor": "tooling item"
     },
     {
-      "url": "https://www.dailydoseofds.com/model-compression-a-critical-step-towards-efficient-machine-learning/",
+      "url": "https://blog.bytebytego.com/p/how-snapchat-serves-a-billion-predictions",
       "status": 200,
-      "usedFor": "tooling / implementation item"
+      "usedFor": "model-serving item"
     },
     {
       "url": "https://github.com/PaddlePaddle/PaddleOCR",
@@ -175,6 +176,6 @@
     "duplicateLinks": "passed: no repeated public URLs within either locale file",
     "forbiddenPublicTerms": "passed: public Markdown scan clean",
     "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
-    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check"
+    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, and check:radar-dedupe through 2026-05-19 after 2026-06-02 text-only cleanup"
   }
 }
