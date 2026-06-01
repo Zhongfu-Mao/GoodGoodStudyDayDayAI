@@ -1,0 +1,198 @@
+{
+  "date": "2026-06-01",
+  "cadence": "daily",
+  "localeSlugs": {
+    "zh": "daily-ai-radar-2026-06-01",
+    "ja": "daily-ai-radar-2026-06-01"
+  },
+  "sourceVisits": [
+    {
+      "name": "The Rundown AI",
+      "url": "https://www.therundown.ai/",
+      "method": "chrome",
+      "status": "checked-no-new-public-article-after-2026-05-29"
+    },
+    {
+      "name": "Latent.Space / AINews",
+      "url": "https://www.latent.space/feed",
+      "method": "fetch-url/rss",
+      "status": "checked-latest-2026-05-30-not-selected"
+    },
+    {
+      "name": "Daily Dose of Data Science",
+      "url": "https://blog.dailydoseofds.com/feed",
+      "method": "fetch-url/rss + gmail original",
+      "status": "confirmed"
+    },
+    {
+      "name": "Every",
+      "url": "https://every.to/",
+      "method": "fetch-url/readability + gmail original",
+      "status": "confirmed"
+    },
+    {
+      "name": "ByteByteGo",
+      "url": "https://blog.bytebytego.com/feed",
+      "method": "fetch-url/rss + gmail original",
+      "status": "checked-latest-already-covered-2026-05-31"
+    },
+    {
+      "name": "老范讲故事",
+      "url": "https://lukefan.com/feed/",
+      "method": "fetch-url/rss",
+      "status": "checked-2026-06-01-post-not-ai-relevant"
+    },
+    {
+      "name": "The Batch / DeepLearning.AI",
+      "url": "https://www.deeplearning.ai/the-batch/",
+      "method": "fetch-url/readability",
+      "status": "checked-latest-already-covered-2026-05-31"
+    },
+    {
+      "name": "Ahead of AI",
+      "url": "https://magazine.sebastianraschka.com/feed",
+      "method": "fetch-url/rss",
+      "status": "checked-no-new-post-after-2026-05-16"
+    },
+    {
+      "name": "AI Valley",
+      "url": "https://www.theaivalley.com/",
+      "method": "fetch-url/readability",
+      "status": "checked-latest-already-covered-2026-05-31"
+    },
+    {
+      "name": "Programmer Weekly",
+      "url": "https://programmerweekly.com/",
+      "method": "fetch-url/readability",
+      "status": "checked-no-public-item-list"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://openai.com/news/rss.xml",
+      "method": "fetch-url/rss",
+      "status": "confirmed"
+    },
+    {
+      "name": "Anthropic",
+      "url": "https://www.anthropic.com/news",
+      "method": "fetch-url/readability",
+      "status": "checked-no-new-public-news-after-2026-04-17"
+    },
+    {
+      "name": "Google / Gemini / DeepMind",
+      "url": "https://blog.google/technology/ai/rss/",
+      "method": "fetch-url/rss",
+      "status": "confirmed"
+    },
+    {
+      "name": "GitHub Trending",
+      "url": "https://github.com/trending?since=daily",
+      "method": "fetch-url/readability",
+      "status": "confirmed"
+    }
+  ],
+  "publishedItems": [
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "Braintrust 把客户请求直接接进 Codex 实验与代码闭环",
+      "source": "OpenAI",
+      "url": "https://openai.com/index/braintrust"
+    },
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "第三方评测开始从榜单竞争转向可审计协议",
+      "source": "OpenAI",
+      "url": "https://openai.com/index/trustworthy-third-party-evaluations-foundations"
+    },
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "Rosalind Biodefense 把可信访问与高风险能力治理放到同一条线上",
+      "source": "OpenAI",
+      "url": "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense"
+    },
+    {
+      "section": "2. 模型前沿 & 算法探索",
+      "title": "Gemini Omni 与 Gemini 3.5 的九段 demo 把多模态能力拉回可观察体验",
+      "source": "Google / Gemini / DeepMind",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/"
+    },
+    {
+      "section": "2. 模型前沿 & 算法探索",
+      "title": "医疗诊断案例显示模型前沿正在进入罕见病工作流",
+      "source": "OpenAI",
+      "url": "https://openai.com/index/boston-childrens-hospital"
+    },
+    {
+      "section": "3. 实战代码 & 工具库",
+      "title": "Google AI Studio 的 I/O quiz 展示了“活动内容即刻产品化”的轻量路径",
+      "source": "Google / Gemini / DeepMind",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-vibe-coded-quiz/"
+    },
+    {
+      "section": "3. 实战代码 & 工具库",
+      "title": "大学实验室原型显示 AI 教学工具正在从 demo 走向真实课堂问题",
+      "source": "Google / Gemini / DeepMind",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/university-waterloo-labs/"
+    },
+    {
+      "section": "4. 行业与商业快讯",
+      "title": "Every 把“自动化之后”重新定义为更多人类判断，而不是更少工作",
+      "source": "Every",
+      "url": "https://every.to/context-window/after-after-automation"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "OpenBMB/VoxCPM 把多语种 TTS 推向 tokenizer-free 路线",
+      "source": "GitHub Trending / OpenBMB",
+      "url": "https://github.com/OpenBMB/VoxCPM"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "supermemory 把 agent memory 做成高速 API 与应用层",
+      "source": "GitHub Trending / supermemoryai",
+      "url": "https://github.com/supermemoryai/supermemory"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "stable-worldmodel 给 world model 研究补上可复现实验平台",
+      "source": "GitHub Trending / galilai-group",
+      "url": "https://github.com/galilai-group/stable-worldmodel"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "awesome-harness-engineering 把 agent 可靠性知识整理成工程清单",
+      "source": "GitHub Trending / ai-boost",
+      "url": "https://github.com/ai-boost/awesome-harness-engineering"
+    },
+    {
+      "section": "📬 Newsletter 精选",
+      "title": "Daily Dose：Deep RL 与 DQN 重新成为 LLM 后训练时代的基础课",
+      "source": "Daily Dose of Data Science",
+      "url": "https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn"
+    },
+    {
+      "section": "📬 Newsletter 精选",
+      "title": "Every：How We Work Now 把 Codex、Opus 4.8、Proof 和医疗 AI 放在一张工作流地图里",
+      "source": "Every",
+      "url": "https://every.to/context-window/how-we-work-now"
+    }
+  ],
+  "newsletterEvidence": [
+    {
+      "source": "Daily Dose of Data Science",
+      "gmailSubject": "Introduction to Deep RL and DQN",
+      "gmailTimestamp": "2026-05-31T20:41:14"
+    },
+    {
+      "source": "Every",
+      "gmailSubject": "How We Work Now",
+      "gmailTimestamp": "2026-05-31T11:58:37"
+    }
+  ],
+  "qualityNotes": [
+    "The public markdown excludes backend collection logs, Gmail links, message ids, and no-new-source notes.",
+    "The Rundown AI, AI Valley, The Batch, ByteByteGo, 老范讲故事, Ahead of AI, and Programmer Weekly were checked; only high-signal or new relevant items were selected.",
+    "AWS email was seen in Gmail but excluded because AWS is not an active daily source under the current source pool.",
+    "Chinese and Japanese markdown use the same topic order and the same URLs."
+  ]
+}
