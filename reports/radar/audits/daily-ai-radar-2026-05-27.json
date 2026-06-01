@@ -1,8 +1,8 @@
 {
   "date": "2026-05-27",
   "cadence": "daily",
-  "status": "text-backfilled-infographic-regenerated-audio-pending",
-  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source coverage and used a shifted section taxonomy. This pass rewrites the text from source-pool, public-page, RSS and Gmail-original evidence; infographic/audio remain intentionally pending for a later asset batch.",
+  "status": "text-and-assets-backfilled",
+  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source coverage and used a shifted section taxonomy. This pass rewrites the text from source-pool, public-page, RSS and Gmail-original evidence; infographic and audio have been regenerated against the backfilled text.",
   "publicFiles": {
     "zh": "src/content/radar/daily-ai-radar-2026-05-27.md",
     "ja": "src/content/radar/daily-ai-radar-2026-05-27.ja.md"
@@ -90,10 +90,11 @@
   ],
   "assetStatus": {
     "infographic": "regenerated-2026-06-02",
-    "audio": "pending-regeneration-after-text-batch",
-    "existingFrontmatterKept": true,
+    "audio": "regenerated-2026-06-02",
+    "existingFrontmatterKept": false,
     "publicRepresentativeImage": "old AWS body image removed from Markdown body",
     "imageQa": "passed: zh and ja NotebookLM infographics were visually inspected after overwrite regeneration; both are readable and have no severe text corruption",
+    "audioQa": "passed: zh and ja NotebookLM audio was regenerated with --no-keep-notebook, downloaded with --force, compressed to mono MP3, and frontmatter metadata was verified after generation",
     "imageFiles": {
       "zhInfographic": {
         "path": "public/images/radar/daily-ai-radar-2026-05-27-infographic.webp",
@@ -102,6 +103,18 @@
       "jaInfographic": {
         "path": "public/images/radar/daily-ai-radar-2026-05-27.ja-infographic.webp",
         "sizeBytes": 500818
+      }
+    },
+    "audioFiles": {
+      "zhAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-27.mp3",
+        "durationSeconds": 1434,
+        "sizeBytes": 11471497
+      },
+      "jaAudio": {
+        "path": "public/audio/radar/daily-ai-radar-2026-05-27.ja.mp3",
+        "durationSeconds": 1145,
+        "sizeBytes": 9160601
       }
     }
   }
