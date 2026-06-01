@@ -49,29 +49,29 @@ test.describe('multi-viewport layout QA', () => {
     test.skip(isMobile, 'custom viewport crawl covers mobile, tablet, and desktop');
   });
 
-  test('key routes have no broken images, horizontal overflow, or covered controls', async ({
-    page,
-  }) => {
-    test.setTimeout(180_000);
+  for (const viewport of viewports) {
+    test(`${viewport.name} routes have no broken images, horizontal overflow, or covered controls`, async ({
+      page,
+    }) => {
+      test.setTimeout(180_000);
 
-    const consoleErrors: string[] = [];
-    const pageErrors: string[] = [];
-    let currentCase = '';
+      const consoleErrors: string[] = [];
+      const pageErrors: string[] = [];
+      let currentCase = '';
 
-    page.on('console', (message) => {
-      const text = message.text();
-      if (
-        message.type() === 'error' &&
-        !text.includes('Failed to load resource: the server responded with a status of 404')
-      ) {
-        consoleErrors.push(`${currentCase}: ${text}`);
-      }
-    });
-    page.on('pageerror', (error) => {
-      pageErrors.push(`${currentCase}: ${error.message}`);
-    });
+      page.on('console', (message) => {
+        const text = message.text();
+        if (
+          message.type() === 'error' &&
+          !text.includes('Failed to load resource: the server responded with a status of 404')
+        ) {
+          consoleErrors.push(`${currentCase}: ${text}`);
+        }
+      });
+      page.on('pageerror', (error) => {
+        pageErrors.push(`${currentCase}: ${error.message}`);
+      });
 
-    for (const viewport of viewports) {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
 
       for (const route of layoutRoutes) {
@@ -87,8 +87,8 @@ test.describe('multi-viewport layout QA', () => {
         expect(pageErrors.slice(errorStart)).toEqual([]);
         expect(consoleErrors.slice(consoleStart)).toEqual([]);
       }
-    }
-  });
+    });
+  }
 });
 
 async function scanViewportAtScrollPositions(page: Page, label: string) {
