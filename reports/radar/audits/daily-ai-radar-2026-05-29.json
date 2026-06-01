@@ -1,7 +1,7 @@
 {
   "date": "2026-05-29",
   "cadence": "daily",
-  "status": "text-backfilled-assets-pending",
+  "status": "text-backfilled-infographic-regenerated-audio-pending",
   "reason": "P0 triage item: previous public Markdown was AWS-heavy, used non-fixed sections, and contained Newsletter drift. This pass rewrites the text from source-pool and Gmail-original evidence; infographic/audio remain intentionally pending for a later asset batch.",
   "publicFiles": {
     "zh": "src/content/radar/daily-ai-radar-2026-05-29.md",
@@ -91,8 +91,19 @@
     "no active AWS/Meta/Microsoft/NVIDIA source labels"
   ],
   "assetStatus": {
-    "infographic": "pending-regeneration-after-text-batch",
+    "infographic": "regenerated-2026-06-02",
     "audio": "pending-regeneration-after-text-batch",
-    "existingFrontmatterKept": true
+    "existingFrontmatterKept": true,
+    "imageQa": "passed: zh and ja NotebookLM infographics were visually inspected after overwrite regeneration; both are readable and have no severe text corruption",
+    "imageFiles": {
+      "zhInfographic": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-29-infographic.webp",
+        "sizeBytes": 480338
+      },
+      "jaInfographic": {
+        "path": "public/images/radar/daily-ai-radar-2026-05-29.ja-infographic.webp",
+        "sizeBytes": 490598
+      }
+    }
   }
 }
