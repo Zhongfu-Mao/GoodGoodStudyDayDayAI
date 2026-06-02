@@ -74,9 +74,7 @@ Thumbs.db
 
 # AI assistant local state
 .claude/
-.codex/*
-!.codex/
-!.codex/AGENTS.md
+.codex/
 .cursor/
 .windsurf/
 .mcp.json
