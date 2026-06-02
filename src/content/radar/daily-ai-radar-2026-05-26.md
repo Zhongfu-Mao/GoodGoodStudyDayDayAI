@@ -31,13 +31,6 @@ draft: false
 - 链接：https://blog.bytebytego.com/p/how-vercel-cut-build-wait-times-from
 - 摘要：ByteByteGo 复盘 Vercel 如何把 build provisioning 从 90 秒压到 5 秒。关键不是简单换容器，而是承认用户提交的 build script 属于 hostile multi-tenancy：代码可能是恶意的，不能只靠共享内核的容器隔离。Vercel 用 Firecracker microVM 做每个 build 的 cell 边界，再叠加本地镜像缓存、block device snapshot 和 warm pool，把安全边界与启动速度同时推进。对 coding agent 和自动化执行平台来说，这个案例很重要：一旦你允许模型运行第三方代码，真正的架构问题就会变成隔离、冷启动、成本、销毁策略和故障域。
 
-### ByteByteGo 复盘 CockroachDB C-SPANN：向量索引要继承数据库的分布式语义
-
-- 来源：ByteByteGo
-- 日期：2026-05-25
-- 链接：https://blog.bytebytego.com/p/how-cockroachdb-built-vector-indexing
-- 摘要：CockroachDB 的 C-SPANN 不是把一个单机向量库外挂到 SQL 旁边，而是把向量索引作为普通表数据放进 CockroachDB 的 range、replication、sharding 和 rebalancing 机制里。文章强调六个约束：不要中心协调器、不要大型内存缓存、网络跳数要少、数据布局要能分片、不能制造 hot spot、插入删除要实时更新。它还用 RaBitQ 把 1536 维 embedding 压到约 200 bytes，再用 full-precision rerank 修正近似误差。这个设计提醒我们，agent memory 与企业检索不是“加一个向量库”那么简单，而是要把事务一致性、多租户前缀、地域驻留和查询路径一起纳入系统设计。
-
 ### Every 把 Codex 写成知识工作操作系统，而不只是代码生成器
 
 - 来源：Every
@@ -108,20 +101,6 @@ draft: false
 - 摘要：The Rundown AI 报道了教宗 Leo XIV 关于 AI 伦理、权力集中和自动化武器决策的表态，并提到 Anthropic 的 Christopher Olah 在梵蒂冈相关场合讨论 frontier lab 激励问题。这个条目不是技术突破，但它显示 AI 治理议题正在进入宗教、国际法和公共道德框架：谁能控制强 AI、哪些决策不能交给机器、商业激励是否会偏离社会利益，都会持续影响监管和产品边界。
 
 ## 5. GitHub 热门 repo & 趋势追踪
-
-### comet-ml / opik：把 agent 评测、观测和优化纳入同一个开源工作台
-
-- 来源：GitHub / Comet Opik
-- 日期：2026-05-24
-- 链接：https://github.com/comet-ml/opik
-- 摘要：Opik 是 Comet 维护的开源 LLM evaluation 与 observability 工具，Daily Dose 邮件把它与 agent optimization workflow 联系在一起。它值得追踪的原因不只是作为评测 UI，而是把 prompt、trace、dataset、评分和优化过程放到同一个工作台里。随着 agent 应用变复杂，团队会越来越需要这种“可回放、可比较、可优化”的质量系统，而不是靠一次性人工读结果。
-
-### cockroachdb / cockroach：向量搜索进入分布式事务数据库主干
-
-- 来源：GitHub / CockroachDB
-- 日期：2026-05-25
-- 链接：https://github.com/cockroachdb/cockroach
-- 摘要：CockroachDB 的 C-SPANN 让主数据库也能承载多租户、实时更新、地域感知的向量索引。这个 repo 值得放进趋势追踪，不是因为它突然变成“向量数据库”，而是因为它代表一个更长线的方向：AI 检索能力会被吸收到既有数据系统里，和事务、权限、部署区域、schema 以及业务查询一起演进。
 
 ### firecracker-microvm / firecracker：agent sandbox 与 serverless 隔离继续复用 microVM 基础设施
 

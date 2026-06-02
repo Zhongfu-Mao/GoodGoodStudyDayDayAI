@@ -65,14 +65,14 @@ draft: false
 
 - 来源：The Batch / DeepLearning.AI
 - 日期：2026-05-15
-- 链接：https://www.deeplearning.ai/the-batch/issue-353
+- 链接：https://www.nist.gov/news-events/news/2024/11/us-ai-safety-institute-establishes-new-us-government-taskforce-collaborate
 - 摘要：The Batch 报道，美国 NIST 牵头的多机构任务组 TRAINS 将在前沿模型公开前评估网络安全、生物安全和化学武器等国家安全风险，多家美国 AI 公司同意在发布前提交模型。报道指出，这与此前更少监管的政策方向形成反差，也可能演变为强制性行政要求。对模型发布流程来说，重点不只是榜单性能，而是高能力模型在公开前是否需要统一测试、缓解方案和透明的风险处置规则。
 
 ### The Batch 追踪新 Realtime API 音频模型，低延迟语音 Agent 进入可调推理阶段
 
 - 来源：The Batch / DeepLearning.AI
 - 日期：2026-05-15
-- 链接：https://www.deeplearning.ai/the-batch/issue-353
+- 链接：https://openai.com/index/advancing-voice-intelligence-with-new-models-in-the-api/
 - 摘要：The Batch 汇总了 OpenAI 新一代 Realtime API 音频模型：GPT-Realtime-2 支持可配置 reasoning effort、并行工具调用、工具调用旁白和语气控制；GPT-Realtime-Translate 面向 70 多种输入语言和 13 种输出语言的语音翻译；GPT-Realtime-Whisper 负责转录。对于语音 Agent，关键变化是实时语音不再只是“语音转文本再回答”，而是在端到端音频、延迟、推理强度、工具调用和多语翻译之间做产品级权衡。
 
 ## 3. 实战代码 & 工具库
@@ -104,7 +104,7 @@ draft: false
 
 - 来源：The Batch / DeepLearning.AI
 - 日期：2026-05-15
-- 链接：https://www.deeplearning.ai/the-batch/issue-353
+- 链接：https://www.nature.com/articles/s43018-026-01127-0
 - 摘要：The Batch 报道了 Google 乳腺癌检测系统在英国真实筛查流程中的两项评估：回顾性测试中，系统在部分指标上高于第一位人工读片医生，并识别出部分最初被人类漏掉、后来显现的癌症；模拟替代第二位读片医生的流程则显示它可能减少人工工作量，但也会增加仲裁病例。报道的重点不是“AI 替代医生”，而是医疗 AI 必须嵌入现有双读片、仲裁、信任和解释流程中，才能从模型准确率变成临床效率。
 
 ## 5. GitHub 热门 repo & 趋势追踪

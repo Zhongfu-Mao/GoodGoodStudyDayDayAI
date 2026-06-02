@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-05-25"
 date: 2026-05-25
 category: radar
 cadence: daily
-plainSummary: "今天的信号集中在三个层面：Deep Research 和向量索引把 agent 与检索系统推向更工程化的架构；AlphaProof Nexus 与 Mythos 显示 AI 正进入可验证数学和安全漏洞发现；Bumblebee、Onyx 与公开仓库趋势说明开发者工具正在把 AI 风险、评测和研究流程落到可运行系统。"
+plainSummary: "今天的信号集中在三个层面：Deep Research 和向量索引把 agent 与检索系统推向更工程化的架构；AlphaProof Nexus 与 Mythos 显示 AI 正进入可验证数学和安全漏洞发现；Bumblebee、ONNX 与公开结果仓库说明开发者工具正在把 AI 风险、评测和研究流程落到可运行系统。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -94,13 +94,6 @@ draft: false
 - 摘要：围绕 McKinsey 调整合伙人薪酬和客户收费结构的报道指出，咨询行业正在从按小时投入转向更强调结果和产出的定价。AI 提高分析、文档和运营交付效率后，客户更难接受单纯按人天计费。这个信号不只属于咨询业：所有知识服务都要回答同一个问题，即当模型降低执行成本后，组织如何定义成果、归因价值，并设计新的激励和商业模式。
 
 ## 5. GitHub 热门 repo & 趋势追踪
-
-### onyx-dot-app/onyx：企业 Deep Research 和知识检索正在汇合到同一个开源系统
-
-- 来源：GitHub / Daily Dose of Data Science
-- 日期：2026-05-25
-- 链接：https://github.com/onyx-dot-app/onyx
-- 摘要：Daily Dose of DS 将 Onyx 作为开源 deep researcher 的代表案例；公开仓库显示，它面向企业搜索、连接器、知识库和 agentic research。它值得进入第五象限，是因为 Deep Research 不再只是消费者产品功能，而是和内部文档权限、连接器、研究任务拆解、引用汇总、权限边界和部署形态结合成企业级知识系统。
 
 ### onnx/onnx：模型交换格式继续承担训练框架与运行时之间的契约层
 

@@ -26,7 +26,7 @@ draft: false
 
 ### Google I/O 100 项清单把 Gemini、Search、Antigravity 和科学工具串成产品矩阵
 
-- 来源：Google
+- 来源：AI Valley + Google
 - 日期：2026-05-20
 - 链接：https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/
 - 摘要：Google 发布 I/O 2026 的 100 项公告总表，把 Gemini、Search、Workspace、AI Studio、Antigravity、Flow、Android XR 和 Gemini for Science 放在同一张产品地图里。最值得看的是连接方式：模型不是孤立端点，而是被翻译成 Search agents、生成式界面、创意工作流、科学研究工具和开发环境入口。对工程团队来说，这说明 Google 的 I/O 主线已经从“发布模型”走向“把模型变成可行动产品表面”。
@@ -49,7 +49,7 @@ draft: false
 
 ### OpenAI 模型自主推翻 Erdős 平面单位距离猜想
 
-- 来源：OpenAI
+- 来源：AI Valley + OpenAI
 - 日期：2026-05-20
 - 链接：https://openai.com/index/model-disproves-discrete-geometry-conjecture/
 - 摘要：OpenAI 宣布内部通用推理模型推翻了离散几何中的 Erdős 平面单位距离猜想。这个问题追问平面上 n 个点最多能形成多少对距离正好为 1 的点对，长期直觉认为网格类构造几乎最优。模型给出一族无限构造，能达到至少 n^(1+δ) 个单位距离点对；Will Sawin 后续精炼证明给出 δ=0.014。OpenAI 强调模型不是数学专用系统，也没有为该问题定制 proof-search scaffold。若外部核验持续成立，这是模型从辅助证明走向原创数学构造的强信号。
@@ -97,14 +97,14 @@ draft: false
 
 ### OpenPipe/ART 把 GRPO 和 RULER 带进真实 Agent 训练
 
-- 来源：GitHub
+- 来源：Daily Dose of Data Science + GitHub
 - 日期：2026-05-21
 - 链接：https://github.com/OpenPipe/ART
 - 摘要：ART 是 OpenPipe 的 Agent Reinforcement Trainer，用 GRPO 训练多步 Agent，并通过 RULER 把自然语言奖励标准变成更高维的反馈信号。Daily Dose of DS 当天邮件把它放在 Karpathy 对 reward function 的批评之后：现实 Agent 任务很难靠手写评分函数稳定训练，RULER 让 LLM 根据自然语言标准评估轨迹。趋势点在于，Agent 训练正在从静态 SFT 和人工规则，走向可迭代的任务环境、轨迹和奖励评审。
 
 ### Nutlope/hallmark 把“反 AI 味”的设计规则做成可安装 skill
 
-- 来源：GitHub
+- 来源：AI Valley + GitHub
 - 日期：2026-05-21
 - 链接：https://github.com/Nutlope/hallmark
 - 摘要：Hallmark 是面向 Claude Code、Cursor 和 Codex 的设计 skill，目标是避免 AI 生成页面的同质化默认风格。它会根据 brief 选择 macrostructure 和主题，运行 65 个 slop-test gates，并支持 audit、redesign、study 等动词。AI Valley 当天邮件把它列为 trending tool。这个 repo 值得跟踪，因为它把“审美与设计质量”从提示词偏好变成可安装、可复用、可审计的 skill 包。

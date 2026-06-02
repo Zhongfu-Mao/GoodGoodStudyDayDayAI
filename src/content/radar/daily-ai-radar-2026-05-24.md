@@ -31,12 +31,12 @@ draft: false
 - 链接：https://www.latent.space/p/ainews-all-model-labs-are-now-agent
 - 摘要：Latent.Space 在 AINews 中把近期信号概括为“模型实验室正在变成 Agent 实验室”。文章从 AI21 转向 agents、DeepSeek 组建 harness 团队、模型供应商越来越强调 workflow / UI / memory / economics 等线索出发，指出竞争面已经从单一模型能力扩展到模型与 harness 的组合。这里真正值得跟踪的是封闭风险：如果模型与专有 harness 共同后训练，模型供应商可能把更多价值导向自家 agent 产品，而不是开放 API 或可替换模型接口。
 
-### Google I/O 2026 把 Gemini、Antigravity、AI Studio 和 Managed Agents 组织成 agent-first developer surface
+### ByteByteGo 把 RAG 与 agents 的边界重新拉回工程基本问题
 
-- 来源：Google
-- 日期：2026-05-20
-- 链接：https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/
-- 摘要：Google 的 I/O 2026 汇总列出大量发布，但主线是把 Gemini、Google Antigravity、AI Studio、Managed Agents 和 WebMCP 放进同一个 agent-first 平台故事。Managed Agents 通过一次 API call 给 agent 配置远程 Linux 环境、代码执行、文件管理和网页浏览；Antigravity 继续扩展桌面应用、CLI、SDK、subagents、hooks 和 async task management。Google 正在把模型、IDE、API、托管执行环境和开放工具协议打包成一套开发者表面。
+- 来源：ByteByteGo
+- 日期：2026-05-23
+- 链接：https://blog.bytebytego.com/p/ep216-rags-vs-agents
+- 摘要：ByteByteGo 的 EP216 用四步流程区分 RAG 和 agents：RAG 是一次检索加一次生成，适合答案已经在文档里的问题；agent 则是在运行时反复选择工具、执行动作、读取结果并继续推理，适合需要改文件、查系统或操作外部服务的任务。这个条目值得保留，因为它把“什么时候用 RAG、什么时候用 agent”从口号拉回成本、可调试性、错误传播和工具边界。对企业内部知识系统来说，很多失败不是模型不够强，而是把检索问题误包装成 agent 问题，或把行动问题误压成一次检索生成。
 
 ## 2. 模型前沿 & 算法探索
 
@@ -55,13 +55,6 @@ draft: false
 - 摘要：Hugging Face 发布六个 Sentence Transformers CrossEncoder rerankers，参数规模从 17M 到 1B，基于 Johns Hopkins Ettin ModernBERT encoders，支持 8K context，并公开模型、约 143M 条训练数据和训练脚本。小模型在 MTEB 与 NanoBEIR 上超过更大的旧 reranker，1B 模型则接近 teacher。对 RAG 和 agent memory 系统来说，reranker 不是边缘组件，而是决定上下文质量、延迟和成本的控制点。
 
 ## 3. 实战代码 & 工具库
-
-### Google Workspace 把 Gmail Live、Docs Live、Keep、Pics、AI Inbox 和 Gemini Spark 连成语音优先工作流
-
-- 来源：Google
-- 日期：2026-05-19
-- 链接：https://blog.google/products-and-platforms/products/workspace/workspace-updates/
-- 摘要：Google Workspace 发布一组面向 Google AI 订阅者和 Workspace 商业客户的新功能：Gmail Live 支持用语音询问收件箱信息，Docs Live 把语音 brainstorm 组织成文档草稿，Keep 把口述内容整理成 notes 和 lists，Google Pics 提供对象分割、文字编辑、翻译和 Workspace 集成，AI Inbox 扩展到 Plus / Pro 用户，Gemini Spark 作为 24/7 personal AI agent 接入 Workspace。这里的重点是输入方式和工作流边界变化：AI 不只帮写正文，而是在 inbox、docs、notes、images 和 daily planning 之间形成连续操作层。
 
 ### Running Guide agent 展示端侧多模态 Agent 在无障碍场景里需要低延迟安全链路
 
@@ -85,6 +78,13 @@ draft: false
 - 日期：2026-05-20
 - 链接：https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/
 - 摘要：Google 介绍 Universal Cart、Agent Payments Protocol 和 Universal Commerce Protocol 的最新进展。Universal Cart 会跨 Search、Gemini 等入口工作，UCP 支持通过 Google Pay 在 Google 内完成结账，或把商品转回商户网站购买，并计划扩展到 YouTube Shopping ads、Direct Offers、酒店预订和本地外卖。agentic commerce 的难点不只是“帮我找商品”，而是支付、责任归属、商户记录、促销、品牌可见性和跨平台结账协议。
+
+### 老范讲故事认为 Google I/O 的问题不是技术少，而是入口太散
+
+- 来源：老范讲故事
+- 日期：2026-05-24
+- 链接：https://lukefan.com/2026/05/24/google-io-gemini-antigravity-agent-reliability/
+- 摘要：老范复盘 Google I/O 2026 后给出的判断是：Google 并非输在技术，而是输在主线分散。文章把 Gemini 3.5 Flash 的可靠性、Gemini Spark 的云端工作流潜力、Antigravity 2.0 的入口困境、Workspace 与 AI Studio 等多产品争夺入口放在一起看。这个中文产业视角补充了官方发布稿没有说清的部分：agent 时代的竞争不只是“功能够多”，而是能否形成一个用户信任、可持续使用、不会让组织入口互相打架的默认工作面。
 
 ## 5. GitHub 热门 repo & 趋势追踪
 
@@ -110,13 +110,6 @@ draft: false
 - 日期：2026-05-24
 - 链接：https://www.dailydoseofds.com/p/the-anatomy-of-an-agent-harness/
 - 摘要：这封邮件把 prompt engineering、context engineering 和 harness engineering 做了清晰拆分：prompt 是单次输入，context 是多步任务中留下什么，harness 才是能行动、验证和失败恢复的机器。它把 Gather、Act、Verify 作为 agent loop 的基本结构，解释为什么 agent 不是一次 API 调用，而是可重复运行的系统。
-
-### Daily Dose of DS：Build an automated Agent optimization workflow
-
-- 来源：Daily Dose of Data Science
-- 日期：2026-05-24
-- 链接：https://www.comet.com/docs/opik/v1/agent_optimization/overview
-- 摘要：这封邮件还推荐了 Comet Opik 的 agent optimization workflow，把 prompt / agent 版本、evaluation dataset、optimizer 和结果比较接成闭环。它补充说明了为什么 agent 工程需要从“写一个好 prompt”转向可复现的评测与迭代流程。
 
 ### Every：Cheap Competence, New Frontier
 

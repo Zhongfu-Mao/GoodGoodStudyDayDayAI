@@ -1,6 +1,8 @@
 import { readFile, readdir, writeFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import process from 'node:process';
+import { parseFrontmatter } from '../lib/frontmatter.mjs';
 import { normalizeNewlines } from '../lib/markdown.mjs';
 
 const WORKSPACE_ROOT = process.cwd();
@@ -9,28 +11,24 @@ const TARGET_DIR = path.join(WORKSPACE_ROOT, 'src/content/radar');
 const USER_AGENT =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
 
-function hasRepresentativeImage(content) {
+export function hasRepresentativeImage(content) {
   return /^!\[[^\]]*?\]\([^)]+?\)$/m.test(content);
 }
 
-function extractCandidateUrls(content) {
-  const urls = [];
+function normalizeImageSourceUrl(value) {
+  if (!value) return null;
+  const trimmed = value.trim().replace(/^["']|["']$/g, '');
+  return /^https?:\/\//i.test(trimmed) ? trimmed : null;
+}
 
-  for (const line of normalizeNewlines(content).split('\n')) {
-    if (!/(链接|リンク|来源|出典|Direct Link|Source)/i.test(line)) {
-      continue;
-    }
+export function extractCandidateUrls(content) {
+  const meta = parseFrontmatter(content, { requireTitle: false });
+  const explicitSource = normalizeImageSourceUrl(
+    meta.raw.match(/^representativeImageSource:\s*(.*?)$/m)?.[1] ??
+      meta.raw.match(/^representativeImageUrl:\s*(.*?)$/m)?.[1],
+  );
 
-    for (const match of line.matchAll(/\[[^\]]+\]\((https?:\/\/[^)]+)\)/g)) {
-      urls.push(match[1]);
-    }
-
-    for (const match of line.matchAll(/<?(https?:\/\/[^>\s)]+)>?/g)) {
-      urls.push(match[1]);
-    }
-  }
-
-  return [...new Set(urls)];
+  return explicitSource ? [explicitSource] : [];
 }
 
 function decodeHtmlEntities(value) {
@@ -61,14 +59,14 @@ function extractTitle(html) {
   );
 }
 
-function isUsefulImage(url) {
+export function isUsefulImage(url) {
   if (!url) return false;
   const lowered = url.toLowerCase();
   if (!/^https?:\/\//.test(lowered)) return false;
   return !/(favicon|apple-touch-icon|logo|avatar|profile)/.test(lowered);
 }
 
-async function fetchMetadata(url) {
+export async function fetchMetadata(url) {
   const response = await fetch(url, {
     redirect: 'follow',
     headers: {
@@ -102,12 +100,12 @@ function getLocaleFromFile(file) {
   return file.endsWith('.ja.md') ? 'ja' : 'zh';
 }
 
-function buildImageBlock({ title, image, url, locale }) {
+export function buildImageBlock({ title, image, url, locale }) {
   const safeTitle = escapeAltText(title || 'Representative image');
   const caption =
     locale === 'ja'
-      ? `*代表画像は [${title || url}](${url}) から。この記事の主線を最もよく表す元シグナルとして選んでいます。*`
-      : `*代表图来自 [${title || url}](${url})。它对应这期日报里最能概括当天主线的一条原始信号。*`;
+      ? `*代表画像は [${title || url}](${url}) から。本文で明示的に指定した代表シグナルとして掲載しています。*`
+      : `*代表图来自 [${title || url}](${url})。这是正文明确指定的代表信号。*`;
 
   return ['---', `![${safeTitle}](${image})`, '', caption, ''].join('\n');
 }
@@ -133,7 +131,7 @@ function insertAfterScope(content, imageBlock, locale) {
   return `${normalized.trimEnd()}\n\n${imageBlock}`;
 }
 
-async function main() {
+export async function main() {
   const requestedFiles = process.argv
     .slice(2)
     .filter((arg) => !arg.startsWith('-'))
@@ -161,6 +159,11 @@ async function main() {
 
     const urls = extractCandidateUrls(content);
     let chosen = null;
+
+    if (urls.length === 0) {
+      console.warn(`warn ${file} no explicit representativeImageSource frontmatter`);
+      continue;
+    }
 
     for (const url of urls) {
       try {
@@ -192,7 +195,11 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+const isCliEntry = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
+
+if (isCliEntry) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

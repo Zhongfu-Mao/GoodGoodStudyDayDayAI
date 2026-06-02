@@ -117,16 +117,16 @@ draft: false
 
 ## 📬 Newsletter 精選
 
-### Daily Dose：Deep RL と DQN は LLM post-training 時代の基礎科目に戻っている
+### The Rundown AI：AI の次の training data は real household labor から来るかもしれない
+
+- 出典：The Rundown AI
+- 日付：2026-06-01
+- リンク：公開版リンクなし
+- 要約：The Rundown の当日メールは MicroAGI の Shift を headline にしました。New York で free home-cleaning service を提供する一方、cleaner が head-mounted camera で作業を記録し、その first-person data を robotics と AI research に使うというものです。意味があるのは、physical AI の data acquisition が real human labor の現場へ向かっている点です。household work、delivery、repair、maintenance が training data になるなら、privacy、consent、labor compensation、data ownership は避けて通れません。
+
+### Daily Dose：Claude Code dynamic workflows は multi-agent orchestration を executable plan にする
 
 - 出典：Daily Dose of Data Science
-- 日付：2026-05-31
-- リンク：https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn
-- 要約：Daily Dose のメールは Deep RL / DQN を RL course の一部として扱い、linear function approximation から neural network に移るとき、experience replay と target network が deep Q-learning をどう安定化するかを説明しています。この newsletter signal の価値は timing にあります。RLHF、GRPO、post-training、agent learning が主線になった今、DQN のような基礎概念は frontier model training を理解するための低レイヤー言語に戻っています。
-
-### Every：How We Work Now は Codex、Opus 4.8、Proof、medical AI を同じ workflow map に置く
-
-- 出典：Every
-- 日付：2026-05-31
-- リンク：https://every.to/context-window/how-we-work-now
-- 要約：Every の weekend email は Codex power-user guide、compound engineering、Opus 4.8、Proof document collaboration、Doctronic medical AI pilot を同じ号で扱いました。これは本文に吸収済みという意味ではなく、information flow の map として残す価値があります。AI work style は code、writing、collaborative editing、medical workflow、organization operations を同時に変えています。この原文は weekly report の接続点としても有用です。
+- 日付：2026-06-01
+- リンク：https://www.dailydoseofds.com/p/claude-subagents-vs-agent-teams
+- 要約：Daily Dose の 6 月 1 日メールの二つ目の主題は Claude Code dynamic workflows でした。Claude が orchestration logic を JavaScript workflow として書き、runtime がそれを実行して複数の subagents に fan out します。すべての plan を一つの context window に抱え込むのではありません。メールは subagents、agent teams と比較しながら、scalability、resumability、adversarial verification、cost control を説明しています。本文の Claude Code full-stack case と補完関係にある newsletter signal です。

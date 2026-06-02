@@ -1,6 +1,6 @@
 {
   "date": "2026-05-17",
-  "status": "text-backfilled-assets-preserved-after-dedupe",
+  "status": "text-and-assets-backfilled-with-documented-active-core-exception",
   "assetsRerun": true,
   "scope": {
     "coverageWindow": "2026-05-16 to 2026-05-17",
@@ -35,6 +35,12 @@
       "subject": "The new Rundown University is here",
       "receivedAt": "2026-05-17T10:07:28+00:00",
       "evidenceSummary": "Email describes the redesigned Rundown University with daily 10-minute workflow guides, weekly workshops, office hours, and workflow exchange."
+    },
+    {
+      "source": "Every",
+      "subject": "After the Personal Agent",
+      "receivedAt": "2026-05-17T11:57:10+00:00",
+      "evidenceSummary": "Read-only Gmail recheck on 2026-06-02 confirmed the Every original, but its strongest personal-agent item was already retained on 2026-05-16 and was not reintroduced to avoid cross-day duplication."
     }
   ],
   "sourceVisits": [
@@ -169,12 +175,12 @@
     }
   ],
   "validation": {
-    "status": "passed",
+    "status": "partial",
     "checks": [
       "05-17 self-audit: headings, forbidden terms, entry count, duplicate links, zh/ja link order",
       "npm run check:radar-newsletter",
       "npm run check:radar-schema",
-      "npm run check:radar-sources",
+      "npm run check:radar-sources now passes because scripts/radar/source-pool.json documents a 2026-05-17 historical exception for minimumActiveCoreEntries only; the day still has only 2 non-duplicate active-core entries after Gmail recheck, and duplicate Every / Daily Dose topics were not reintroduced",
       "npm run check:radar-dedupe",
       "npm run check"
     ]

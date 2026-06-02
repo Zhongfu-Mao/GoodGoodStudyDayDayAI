@@ -138,6 +138,6 @@
     "forbiddenPublicTerms": "passed",
     "newsletterFormat": "passed: npm run check:radar-newsletter -- --from 2026-05-30",
     "sourceDiversity": "passed: npm run check:radar-sources -- --from 2026-05-30",
-    "checks": "passed for 2026-05-30 scoped checks; broader 2026-05-15..2026-05-30 cross-day dedupe still has earlier-date failures"
+    "checks": "passed for 2026-05-30 scoped checks and for the broader 2026-05-15..2026-06-01 radar schema/newsletter/source/dedupe window on 2026-06-02"
   }
 }

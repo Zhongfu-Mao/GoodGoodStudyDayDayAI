@@ -116,13 +116,6 @@ draft: false
 - リンク：https://github.com/InsForge/InsForge
 - 要約：InsForge の中心 value は backend structure を agent が直接使える context に整理し、model が codebase の中で何度も探索する cost を減らすことです。この repo は coding-agent engineering practice の観察対象として有用です。今後の “AI programming efficiency” は stronger model だけでなく、better project indexing、context declaration、interface constraints、tool-call boundaries からも生まれます。
 
-### onyx-dot-app / onyx：orchestrator と isolated research agents で deep research を組織する
-
-- 出典：GitHub Trending / Daily Dose of Data Science
-- 日付：2026-05-25
-- リンク：https://github.com/onyx-dot-app/onyx
-- 要約：Daily Dose は Onyx が DeepResearch Bench で使った architecture を紹介しました。Orchestrator は直接 search せず、self-contained task briefs を作り、複数の isolated research agents に分配し、最後に duplicate evidence cleanup、renumbering、citation map merge を行います。この design は deep research を「1 つの agent が長い context で検索する」問題から、「task decomposition、isolated execution、evidence merge」の system problem へ移します。Reproducible evaluation もしやすくなります。
-
 ## 📬 Newsletter 精選
 
 ### Daily Dose of Data Science：Hermes Agent Masterclass

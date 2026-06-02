@@ -125,13 +125,6 @@ draft: false
 - リンク：https://www.dailydoseofds.com/
 - 要約：この email は visual explanation で traditional RAG、Graph RAG、Agentic RAG を区別し、tool calling tutorial も含んでいました。本日の retrieval と tool-use foundation の主な source です。
 
-### Every：Vibe Check: Opus 4.8
-
-- 出典：Every
-- 日付：2026-05-28
-- リンク：https://every.to/vibe-check/opus-4-8-vibecheck
-- 要約：Every は Opus 4.8 の engineering と writing ability を評価しつつ、「model is strong」と「product shell is usable」を分けて論じました。本文ではこの productization judgment を吸収しています。
-
 ### The Rundown AI：Exclusive: Demis Hassabis on when AGI arrives
 
 - 出典：The Rundown AI

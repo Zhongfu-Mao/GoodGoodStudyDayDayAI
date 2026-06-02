@@ -146,12 +146,12 @@
     {
       "url": "https://github.com/getzep/graphiti",
       "status": 200,
-      "usedFor": "GitHub trend item"
+      "usedFor": "GitHub trend item; source label repaired on 2026-06-02 to Daily Dose of Data Science + GitHub after Gmail original confirmed the Graphiti discovery path"
     },
     {
       "url": "https://github.com/gastownhall/gascity",
       "status": 200,
-      "usedFor": "GitHub trend item"
+      "usedFor": "GitHub trend item; source label repaired on 2026-06-02 to Every + GitHub after Gmail original confirmed the Gas City discovery path"
     },
     {
       "url": "https://every.to/context-window/google-i-o-agents-agents-agents",
@@ -176,6 +176,6 @@
     "duplicateLinks": "passed: no repeated public URLs within either locale file",
     "forbiddenPublicTerms": "passed: public Markdown scan clean",
     "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
-    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, and check:radar-dedupe through 2026-05-20 after 2026-06-02 text-only cleanup"
+    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, and check:radar-dedupe through 2026-05-20 after 2026-06-02 text-only cleanup; source labels were later calibrated to core-source discovery plus canonical links and npm run check:radar-sources -- --from 2026-05-20 --to 2026-05-21 passed"
   }
 }

@@ -11,7 +11,7 @@
       "name": "The Rundown AI",
       "url": "https://www.therundown.ai/",
       "method": "chrome",
-      "status": "checked-no-new-public-article-after-2026-05-29"
+      "status": "gmail-original-confirmed-2026-06-01-newsletter; public article slug not found, so public markdown uses no-public-direct-link"
     },
     {
       "name": "Latent.Space / AINews",
@@ -23,13 +23,13 @@
       "name": "Daily Dose of Data Science",
       "url": "https://blog.dailydoseofds.com/feed",
       "method": "fetch-url/rss + fetch-url/readability + gmail original",
-      "status": "confirmed-2026-06-01-weather-globe-and-2026-05-31-newsletter"
+      "status": "confirmed-2026-06-01-weather-globe-and-2026-06-01-dynamic-workflows-newsletter"
     },
     {
       "name": "Every",
       "url": "https://every.to/",
       "method": "fetch-url/readability + gmail original",
-      "status": "confirmed-newsletter-only"
+      "status": "checked; 2026-05-31 newsletter moved back to 2026-05-31 report to avoid cross-day duplicate"
     },
     {
       "name": "ByteByteGo",
@@ -185,33 +185,34 @@
     },
     {
       "section": "📬 Newsletter 精选",
-      "title": "Daily Dose：Deep RL 与 DQN 重新成为 LLM 后训练时代的基础课",
-      "source": "Daily Dose of Data Science",
-      "url": "https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn"
+      "title": "The Rundown AI：AI 的下一批训练数据可能来自真实家务劳动",
+      "source": "The Rundown AI",
+      "url": "暂无公开直链"
     },
     {
       "section": "📬 Newsletter 精选",
-      "title": "Every：How We Work Now 把 Codex、Opus 4.8、Proof 和医疗 AI 放在一张工作流地图里",
-      "source": "Every",
-      "url": "https://every.to/context-window/how-we-work-now"
+      "title": "Daily Dose：Claude Code dynamic workflows 把多 agent 编排写成可执行计划",
+      "source": "Daily Dose of Data Science",
+      "url": "https://www.dailydoseofds.com/p/claude-subagents-vs-agent-teams"
     }
   ],
   "newsletterEvidence": [
     {
-      "source": "Daily Dose of Data Science",
-      "gmailSubject": "Introduction to Deep RL and DQN",
-      "gmailTimestamp": "2026-05-31T20:41:14"
+      "source": "The Rundown AI",
+      "gmailSubject": "🧹 AI's next dataset is your apartment",
+      "gmailTimestamp": "2026-06-01T10:14:51"
     },
     {
-      "source": "Every",
-      "gmailSubject": "How We Work Now",
-      "gmailTimestamp": "2026-05-31T11:58:37"
+      "source": "Daily Dose of Data Science",
+      "gmailSubject": "[Hands-on] Build a 3D Weather Globe with Claude Code",
+      "gmailTimestamp": "2026-06-01T20:50:25"
     }
   ],
   "qualityNotes": [
     "The 2026-06-01 text was repaired after the source gate showed insufficient active-core entries and excessive official-triad share.",
     "Previously covered OpenAI, Google, Every, ByteByteGo, The Batch and AI Valley links were removed or not reused in public markdown.",
     "The final public markdown has 13 entries: 8 active-core or core-surfaced entries, 1 official-triad entry, 4 GitHub trend entries and 2 Newsletter entries.",
+    "Newsletter entries were realigned on 2026-06-02 to 2026-06-01 Gmail originals after dedupe showed the previous 2026-05-31 Every and Daily Dose items belonged to the previous daily report.",
     "Chinese and Japanese markdown use the same topic order and the same URLs.",
     "Chinese and Japanese infographics were regenerated on 2026-06-02 with --overwrite --no-keep-notebook and visually checked for source alignment.",
     "Chinese audio was regenerated on 2026-06-02 with --no-keep-notebook; frontmatter now records audioDuration 1071 and audioSize 8567099.",

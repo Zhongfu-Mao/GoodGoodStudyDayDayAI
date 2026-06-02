@@ -2,7 +2,7 @@
   "date": "2026-05-26",
   "cadence": "daily",
   "status": "text-and-assets-backfilled",
-  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source AWS/AgentCore coverage and used a shifted section taxonomy. This pass rewrites the text from source-pool, public-page, RSS and Gmail-original evidence; infographic and audio have been regenerated against the backfilled text.",
+  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source AWS/AgentCore coverage and used a shifted section taxonomy. This pass rewrites the text from source-pool, public-page, RSS and Gmail-original evidence; infographic and audio have been regenerated against the backfilled text. On 2026-06-02, cross-day duplicate Opik and CockroachDB links were removed from public Markdown while audit evidence was retained.",
   "publicFiles": {
     "zh": "src/content/radar/daily-ai-radar-2026-05-26.md",
     "ja": "src/content/radar/daily-ai-radar-2026-05-26.ja.md"
@@ -12,8 +12,10 @@
       "source": "ByteByteGo RSS and public pages",
       "path": "node scripts/radar/fetch-url.mjs https://blog.bytebytego.com/feed --mode rss; public article fetches for how-vercel-cut-build-wait-times-from and how-cockroachdb-built-vector-indexing",
       "confirmedItems": [
-        "How Vercel Cut Build Wait Times From 90 Seconds To 5",
-        "How CockroachDB Built Vector Indexing at Scale"
+        "How Vercel Cut Build Wait Times From 90 Seconds To 5"
+      ],
+      "removedFromPublicMarkdown": [
+        "How CockroachDB Built Vector Indexing at Scale was already retained in the 2026-05-25 daily"
       ]
     },
     {
@@ -61,9 +63,11 @@
       "source": "GitHub repository pages surfaced by core sources",
       "path": "Canonical repository links from Daily Dose and ByteByteGo coverage",
       "confirmedItems": [
-        "comet-ml/opik",
-        "cockroachdb/cockroach",
         "firecracker-microvm/firecracker"
+      ],
+      "removedFromPublicMarkdown": [
+        "comet-ml/opik was already retained in the 2026-05-24 daily",
+        "cockroachdb/cockroach was already retained in the 2026-05-25 daily"
       ]
     }
   ],

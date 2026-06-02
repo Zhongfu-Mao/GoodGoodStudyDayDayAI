@@ -1,6 +1,6 @@
 {
   "publicationGate": {
-    "enforceDailyFrom": "2026-05-31",
+    "enforceDailyFrom": "2026-05-15",
     "minimumEntries": 12,
     "targetEntries": "12-16",
     "minimumSourceFamilies": 5,
@@ -11,6 +11,14 @@
     "maxOfficialTriadShare": 0.35,
     "maxTrendShare": 0.35
   },
+  "historicalExceptions": [
+    {
+      "date": "2026-05-17",
+      "locales": ["zh", "ja"],
+      "skipChecks": ["minimumActiveCoreEntries"],
+      "reason": "Duplicate-safe Gmail recheck on 2026-06-02 found Every and Daily Dose candidates, but the strongest Every personal-agent item was already retained on 2026-05-16 and the Daily Dose /goal item was already retained on 2026-05-15. Do not reintroduce duplicate topics only to satisfy the newer active-core gate."
+    }
+  ],
   "activeCoreSources": [
     {
       "name": "The Rundown AI",

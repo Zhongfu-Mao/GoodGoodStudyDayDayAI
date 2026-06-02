@@ -1,90 +1,84 @@
 {
   "date": "2026-05-31",
   "cadence": "daily",
+  "status": "text-backfilled-assets-stale",
   "localeSlugs": {
     "zh": "daily-ai-radar-2026-05-31",
     "ja": "daily-ai-radar-2026-05-31"
   },
+  "reason": "Rebuilt on 2026-06-02 after the previous 2026-05-31 backfill duplicated multiple links from the 2026-05-29 and 2026-05-30 daily reports. The replacement keeps the fixed sections, restores Newsletter-selected items to reader-facing original signals, removes the body representative-image block, and uses only non-duplicate public links. Existing infographic and audio are now stale and should be regenerated after text freeze.",
   "sourceVisits": [
     {
-      "name": "ByteByteGo",
-      "url": "https://blog.bytebytego.com/p/how-doordash-built-a-testing-system",
-      "method": "fetch-url/readability",
-      "status": "confirmed"
+      "name": "Latent.Space / AINews",
+      "url": "https://www.latent.space/feed",
+      "method": "fetch-url/rss",
+      "status": "confirmed",
+      "selectedUrl": "https://www.latent.space/p/ainews-founders-and-forward-deployed"
     },
     {
       "name": "Daily Dose of Data Science",
-      "url": "https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like",
-      "method": "fetch-url/readability",
-      "status": "confirmed"
+      "url": "https://blog.dailydoseofds.com/feed",
+      "method": "fetch-url/rss + Gmail original",
+      "status": "confirmed",
+      "selectedUrl": "https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn"
     },
     {
-      "name": "The Batch / DeepLearning.AI",
-      "url": "https://www.deeplearning.ai/the-batch/issue-355",
-      "method": "gmail + homepage confirmation",
-      "status": "confirmed"
+      "name": "Every",
+      "url": "https://every.to/context-window/how-we-work-now",
+      "method": "Gmail original + fetch-url/readability",
+      "status": "confirmed",
+      "selectedUrls": [
+        "https://every.to/p/after-automation",
+        "https://www.proofeditor.ai/",
+        "https://commerce.utah.gov/wp-content/uploads/2026/05/Doctronic-Outcomes-May-2026.pdf",
+        "https://every.to/context-window/how-we-work-now"
+      ]
     },
     {
       "name": "The Rundown AI",
       "url": "https://www.therundown.ai/p/anthropic-just-eclipsed-openai",
-      "method": "gmail + fetch-url/readability",
+      "method": "Gmail original from 2026-05-29 retained as weekend-window source",
       "status": "confirmed"
     },
     {
-      "name": "Bloomberg via The Rundown AI",
-      "url": "https://www.bloomberg.com/news/features/2026-05-28/apple-ios-27-photos-screenshots-revamped-siri-pro-camera-app-new-ai-features",
-      "method": "newsletter citation",
-      "status": "confirmed"
-    },
-    {
-      "name": "Cursor via The Rundown AI",
-      "url": "https://cursor.com/insights",
-      "method": "newsletter citation",
-      "status": "confirmed"
+      "name": "OpenAI RSS",
+      "url": "https://openai.com/news/rss.xml",
+      "method": "fetch-url/rss",
+      "status": "confirmed",
+      "selectedUrl": "https://openai.com/index/boston-childrens-hospital"
     },
     {
       "name": "老范讲故事",
-      "url": "https://lukefan.com/2026/05/31/anthropic-pre-ipo-funding-ai-bubble/",
-      "method": "fetch-url/readability",
-      "status": "confirmed"
+      "url": "https://lukefan.com/feed",
+      "method": "fetch-url/rss",
+      "status": "confirmed",
+      "selectedUrl": "https://lukefan.com/2026/05/31/anthropic-pre-ipo-funding-ai-bubble/"
     },
     {
-      "name": "Every",
-      "url": "https://every.to/guides/compound-engineering-gets-an-upgrade",
-      "method": "gmail + fetch-url/readability",
-      "status": "confirmed"
-    },
-    {
-      "name": "AI Valley",
-      "url": "https://www.theaivalley.com/p/anthropic-is-bigger-than-openai-now",
-      "method": "gmail",
-      "status": "confirmed"
-    },
-    {
-      "name": "GitHub Trending",
-      "url": "https://github.com/trending?since=daily",
-      "method": "http",
+      "name": "GitHub Trending Archive",
+      "url": "https://github-trending-history.vercel.app/en/daily/2026-05-31",
+      "method": "public archive snapshot + canonical GitHub repo links",
       "status": "confirmed"
     }
   ],
   "publishedItems": [
     {
       "section": "1. AI Engineering & 架构",
-      "title": "DoorDash 用模拟与评测飞轮压低客服 LLM 幻觉",
-      "source": "ByteByteGo",
-      "url": "https://blog.bytebytego.com/p/how-doordash-built-a-testing-system"
+      "title": "Latent.Space：AI FDE 的回潮说明 agent 落地仍需要贴近业务现场",
+      "source": "Latent.Space / AINews",
+      "url": "https://www.latent.space/p/ainews-founders-and-forward-deployed"
     },
     {
       "section": "1. AI Engineering & 架构",
-      "title": "Agent 崩溃恢复正在变成状态一致性问题",
-      "source": "Daily Dose of Data Science",
-      "url": "https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like"
+      "title": "Every 的 After Automation 提醒：自动化越强，人类要做的框架工作越多",
+      "source": "Every",
+      "url": "https://every.to/p/after-automation"
     },
     {
       "section": "1. AI Engineering & 架构",
-      "title": "AI Forward Deployed Engineer 是过渡角色，AI Engineer 才是长期主体",
-      "source": "The Batch / DeepLearning.AI",
-      "url": "https://www.deeplearning.ai/the-batch/issue-355"
+      "title": "Every 的 Proof 更新提醒：agent 协作必须保留人的归属和修改链",
+      "source": "Every",
+      "url": "https://www.proofeditor.ai/"
     },
     {
       "section": "2. 模型前沿 & 算法探索",
@@ -97,6 +91,12 @@
       "title": "Apple 新 Siri 可能借 Gemini 重建，说明模型前沿正在流向手机入口",
       "source": "The Rundown AI / Bloomberg",
       "url": "https://www.bloomberg.com/news/features/2026-05-28/apple-ios-27-photos-screenshots-revamped-siri-pro-camera-app-new-ai-features"
+    },
+    {
+      "section": "2. 模型前沿 & 算法探索",
+      "title": "OpenAI 的 Boston Children’s 案例显示医疗 AI 需要流程化监督而非自由问答",
+      "source": "OpenAI",
+      "url": "https://openai.com/index/boston-childrens-hospital"
     },
     {
       "section": "3. 实战代码 & 工具库",
@@ -117,56 +117,67 @@
       "url": "https://lukefan.com/2026/05/31/anthropic-pre-ipo-funding-ai-bubble/"
     },
     {
-      "section": "5. GitHub 热门 repo & 趋势追踪",
-      "title": "Every 把 compound engineering 写成可安装的 agent 工作流插件",
-      "source": "GitHub Trending / Every",
-      "url": "https://github.com/EveryInc/compound-engineering-plugin"
-    },
-    {
-      "section": "5. GitHub 热门 repo & 趋势追踪",
-      "title": "revfactory/harness 把 agent 团队设计推向“可组合技能”层",
-      "source": "GitHub Trending / revfactory",
-      "url": "https://github.com/revfactory/harness"
-    },
-    {
-      "section": "5. GitHub 热门 repo & 趋势追踪",
-      "title": "liteparse 把文档解析继续推向轻量开源基础设施",
-      "source": "GitHub Trending / run-llama",
-      "url": "https://github.com/run-llama/liteparse"
-    },
-    {
-      "section": "📬 Newsletter 精选",
-      "title": "Every：Compound Engineering 从四步扩展到八步",
+      "section": "4. 行业与商业快讯",
+      "title": "Every 记录 Doctronic 处方续签试点：过度谨慎反而是医疗 AI 的早期安全信号",
       "source": "Every",
-      "url": "https://every.to/guides/compound-engineering-gets-an-upgrade"
+      "url": "https://commerce.utah.gov/wp-content/uploads/2026/05/Doctronic-Outcomes-May-2026.pdf"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "MoneyPrinterTurbo 把短视频生成流水线推成“一键式”应用",
+      "source": "GitHub Trending / harry0703",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "Scrapling 用自适应抓取框架处理反爬与全流程网页采集",
+      "source": "GitHub Trending / D4Vinci",
+      "url": "https://github.com/D4Vinci/Scrapling"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "hermes-webui 把 autonomous agent 的 CLI 能力搬进 Web 操作界面",
+      "source": "GitHub Trending / nesquena",
+      "url": "https://github.com/nesquena/hermes-webui"
     },
     {
       "section": "📬 Newsletter 精选",
-      "title": "AI Valley：Anthropic 估值和开发者生产力成为同日主叙事",
-      "source": "AI Valley",
-      "url": "https://www.theaivalley.com/p/anthropic-is-bigger-than-openai-now"
+      "title": "Every：How We Work Now",
+      "source": "Every",
+      "url": "https://every.to/context-window/how-we-work-now"
+    },
+    {
+      "section": "📬 Newsletter 精选",
+      "title": "Daily Dose：Introduction to Deep RL and DQN",
+      "source": "Daily Dose of Data Science",
+      "url": "https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn"
     }
   ],
   "newsletterEvidence": [
     {
       "source": "Every",
-      "gmailSubject": "Compound Engineering Gets an Upgrade",
-      "gmailTimestamp": "2026-05-29T20:47:57"
+      "gmailSubject": "How We Work Now",
+      "gmailTimestamp": "2026-05-31T11:58:37+00:00"
     },
     {
-      "source": "The Rundown AI",
-      "gmailSubject": "🚀 Anthropic just eclipsed OpenAI",
-      "gmailTimestamp": "2026-05-29T10:08:55"
-    },
-    {
-      "source": "AI Valley",
-      "gmailSubject": "Anthropic is bigger than OpenAI now",
-      "gmailTimestamp": "2026-05-29T14:52:03"
+      "source": "Daily Dose of Data Science",
+      "gmailSubject": "Introduction to Deep RL and DQN",
+      "gmailTimestamp": "2026-05-31T20:41:14+00:00"
     }
   ],
+  "removedFromPreviousDraft": [
+    "https://blog.bytebytego.com/p/how-doordash-built-a-testing-system",
+    "https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like",
+    "https://www.deeplearning.ai/the-batch/issue-355",
+    "https://github.com/EveryInc/compound-engineering-plugin",
+    "https://github.com/revfactory/harness",
+    "https://github.com/run-llama/liteparse",
+    "https://every.to/guides/compound-engineering-gets-an-upgrade",
+    "https://github.com/OpenBMB/VoxCPM"
+  ],
   "qualityNotes": [
-    "Rebuilt from core sources and newsletter originals after the previous draft used a single-source Hugging Face backfill.",
-    "No AWS, Meta, Microsoft, or NVIDIA official platform sources were used as active daily sources.",
-    "Chinese and Japanese markdown use the same topic order and the same URLs."
+    "Chinese and Japanese markdown use the same topic order and URLs.",
+    "No body representative-image block remains; image selection must use explicit representativeImageSource frontmatter.",
+    "Infographic and audio paths still point to pre-rewrite assets and need regeneration after this text is accepted."
   ]
 }

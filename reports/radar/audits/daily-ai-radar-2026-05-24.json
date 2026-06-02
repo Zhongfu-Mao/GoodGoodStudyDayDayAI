@@ -7,7 +7,7 @@
     "src/content/radar/daily-ai-radar-2026-05-24.ja.md"
   ],
   "backfill": {
-    "reason": "Restore fixed schema, remove active AWS platform sourcing, and add GitHub trend plus reader-facing Newsletter entries.",
+    "reason": "Restore fixed schema, remove active AWS platform sourcing, add GitHub trend plus reader-facing Newsletter entries, then remove cross-day duplicate Google carryovers and same-topic Opik Newsletter duplication on 2026-06-02. The date was topped back up to 12 entries with non-duplicate public source-pool evidence from ByteByteGo and 老范讲故事.",
     "assetsRerun": false,
     "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
   },
@@ -30,7 +30,7 @@
       "sender": "Daily Dose of DS",
       "receivedAt": "2026-05-24T20:48:42",
       "subject": "Function Approximation in RL",
-      "usedAs": "Newsletter items and GitHub trend discovery for Opik",
+      "usedAs": "RL and harness Newsletter items plus GitHub trend discovery for Opik; Opik docs Newsletter entry removed on 2026-06-02 because the same topic is already covered in the GitHub trend section",
       "publicLink": "https://www.dailydoseofds.com/rl-course-part-5",
       "publicLinks": [
         "https://www.dailydoseofds.com/rl-course-part-5",
@@ -61,9 +61,14 @@
       "usedFor": "AI Engineering item"
     },
     {
+      "url": "https://blog.bytebytego.com/p/ep216-rags-vs-agents",
+      "status": 200,
+      "usedFor": "AI Engineering item added on 2026-06-02 after duplicate cleanup"
+    },
+    {
       "url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
       "status": 200,
-      "usedFor": "AI Engineering item"
+      "usedFor": "Removed from public Markdown on 2026-06-02 because the same Google I/O roundup link was already covered in the 2026-05-21 daily"
     },
     {
       "url": "https://www.dailydoseofds.com/rl-course-part-5",
@@ -78,7 +83,7 @@
     {
       "url": "https://www.comet.com/docs/opik/v1/agent_optimization/overview",
       "status": 200,
-      "usedFor": "Newsletter item and Opik trend corroboration"
+      "usedFor": "Audit corroboration for Opik trend only; Newsletter duplicate removed on 2026-06-02"
     },
     {
       "url": "https://huggingface.co/blog/ettin-reranker",
@@ -88,7 +93,7 @@
     {
       "url": "https://blog.google/products-and-platforms/products/workspace/workspace-updates/",
       "status": 200,
-      "usedFor": "tooling item"
+      "usedFor": "Removed from public Markdown on 2026-06-02 because the same Workspace update link was already covered in the 2026-05-20 daily"
     },
     {
       "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/running-guide-agent/",
@@ -111,6 +116,11 @@
       "usedFor": "industry item"
     },
     {
+      "url": "https://lukefan.com/2026/05/24/google-io-gemini-antigravity-agent-reliability/",
+      "status": 200,
+      "usedFor": "industry item added on 2026-06-02 after duplicate cleanup"
+    },
+    {
       "url": "https://github.com/comet-ml/opik",
       "status": 200,
       "usedFor": "GitHub trend item"
@@ -127,15 +137,15 @@
     }
   ],
   "publishedItems": {
-    "zh": 13,
-    "ja": 13,
-    "newsletter": 3,
+    "zh": 12,
+    "ja": 12,
+    "newsletter": 2,
     "githubTrend": 2
   },
   "selfReview": {
     "schema": "passed",
     "zhJaTopicOrder": "passed",
-    "duplicateLinks": "single-file duplicate scan passed; cross-day 7-day dedupe remains a follow-up cleanup item",
+    "duplicateLinks": "cross-day duplicate Google links and same-topic Opik Newsletter duplicate removed on 2026-06-02",
     "forbiddenPublicTerms": "passed",
     "newsletterFormat": "passed",
     "checks": "passed: check:radar-newsletter -- --from 2026-05-15, check:radar-schema -- --from 2026-05-15, and check:radar-sources -- --from 2026-05-15 after source balancing"

@@ -2,7 +2,7 @@
   "date": "2026-05-29",
   "cadence": "daily",
   "status": "text-and-assets-backfilled",
-  "reason": "P0 triage item: previous public Markdown was AWS-heavy, used non-fixed sections, and contained Newsletter drift. This pass rewrites the text from source-pool and Gmail-original evidence; infographic and audio have been regenerated against the backfilled text.",
+  "reason": "P0 triage item: previous public Markdown was AWS-heavy, used non-fixed sections, and contained Newsletter drift. This pass rewrites the text from source-pool and Gmail-original evidence; infographic and audio have been regenerated against the backfilled text. On 2026-06-02, the Boston Children's OpenAI customer case was removed to keep official-triad share under the source gate without fabricating a core-source discovery path.",
   "publicFiles": {
     "zh": "src/content/radar/daily-ai-radar-2026-05-29.md",
     "ja": "src/content/radar/daily-ai-radar-2026-05-29.ja.md"
@@ -46,7 +46,9 @@
       "confirmedItems": [
         "How Braintrust turns customer requests into code with Codex",
         "A shared playbook for trustworthy third party evaluations",
-        "How Endava builds an agentic organization with Codex",
+        "How Endava builds an agentic organization with Codex"
+      ],
+      "removedFromPublicMarkdown": [
         "Boston Children’s uses AI to unlock new diagnoses"
       ]
     },

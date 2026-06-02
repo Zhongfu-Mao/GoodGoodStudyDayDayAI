@@ -2,7 +2,7 @@
   "date": "2026-05-27",
   "cadence": "daily",
   "status": "text-and-assets-backfilled",
-  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source coverage and used a shifted section taxonomy. This pass rewrites the text from source-pool, public-page, RSS and Gmail-original evidence; infographic and audio have been regenerated against the backfilled text.",
+  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source coverage and used a shifted section taxonomy. This pass rewrites the text from source-pool, public-page, RSS and Gmail-original evidence; infographic and audio have been regenerated against the backfilled text. On 2026-06-02, the duplicate Onyx trend link was removed from public Markdown because the same repository had already been retained in the 2026-05-25 daily.",
   "publicFiles": {
     "zh": "src/content/radar/daily-ai-radar-2026-05-27.md",
     "ja": "src/content/radar/daily-ai-radar-2026-05-27.ja.md"
@@ -75,8 +75,10 @@
       "path": "Canonical repository links from Daily Dose and DeepLearning.AI coverage",
       "confirmedItems": [
         "CopilotKit/CopilotKit",
-        "InsForge/InsForge",
-        "onyx-dot-app/onyx"
+        "InsForge/InsForge"
+      ],
+      "removedFromPublicMarkdown": [
+        "onyx-dot-app/onyx was already retained in the 2026-05-25 daily"
       ]
     }
   ],

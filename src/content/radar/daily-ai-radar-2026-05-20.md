@@ -26,7 +26,7 @@ draft: false
 
 ### Google I/O 2026 把 Gemini 主线推向 agentic era
 
-- 来源：Google
+- 来源：Every + Google
 - 日期：2026-05-19
 - 链接：https://blog.google/innovation-and-ai/sundar-pichai-io-2026/
 - 摘要：Google 在 I/O 2026 上把今年的主题定义为 agentic Gemini era，并把模型、芯片、Search、Workspace、Antigravity、企业 Agent 平台和科学工具放在同一条产品线上。官方披露 AI Overviews、AI Mode、Gemini app 和模型 API 的使用量继续放大，说明 Google 的重点已经不是单个聊天入口，而是把 Gemini 作为跨产品的行动层。对工程团队来说，关键变化是 Agent 能力开始和搜索、办公、开发、企业流程一起交付。
@@ -90,14 +90,14 @@ draft: false
 
 ### getzep/graphiti 让 Agent memory 走向时间感知的上下文图
 
-- 来源：GitHub
+- 来源：Daily Dose of Data Science + GitHub
 - 日期：2026-05-20
 - 链接：https://github.com/getzep/graphiti
 - 摘要：Graphiti 是用于 AI Agents 的 temporal context graph 框架，强调事实随时间变化、来源可追溯、增量更新、混合检索和历史查询。Daily Dose of DS 当天邮件也把它放进 Hermes / Agent memory 语境里讨论，说明开发者正在寻找比聊天记录和静态 RAG 更适合长期 Agent 的记忆层。它的核心价值不是“再做一个知识图谱”，而是让 Agent 能区分现在为真、过去为真和信息来自哪里。
 
 ### gastownhall/gascity 把多 Agent 编排抽成可配置 SDK
 
-- 来源：GitHub
+- 来源：Every + GitHub
 - 日期：2026-05-20
 - 链接：https://github.com/gastownhall/gascity
 - 摘要：Gas City 是面向多 Agent coding workflows 的 orchestration-builder SDK，提供运行时 provider、任务路由、工作追踪、controller / supervisor loop 和 declarative city configuration。Every 的 05-19 邮件提到 Gas City 延续 Gas Town 的 100-agent software factory 思路；公开 repo 则显示它把实验性的多 Agent 协作经验沉淀为可配置基础设施。趋势点在于，多 Agent 正从演示脚本转向有健康检查、状态收敛和项目级配置的工程框架。

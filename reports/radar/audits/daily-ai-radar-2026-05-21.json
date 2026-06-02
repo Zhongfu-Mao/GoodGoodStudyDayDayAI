@@ -101,7 +101,7 @@
     {
       "url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
       "status": 200,
-      "usedFor": "AI Engineering item"
+      "usedFor": "AI Engineering item; source label repaired on 2026-06-02 to AI Valley + Google after Gmail original confirmed AI Valley surfaced the Google I/O follow-up"
     },
     {
       "url": "https://ai.google.dev/gemini-api/docs/agents",
@@ -116,7 +116,7 @@
     {
       "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
       "status": 200,
-      "usedFor": "model-frontier item"
+      "usedFor": "model-frontier item; source label repaired on 2026-06-02 to AI Valley + OpenAI after Gmail original confirmed AI Valley surfaced the OpenAI math result"
     },
     {
       "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/google-beam-group-meetings/",
@@ -146,12 +146,12 @@
     {
       "url": "https://github.com/OpenPipe/ART",
       "status": 200,
-      "usedFor": "GitHub trend item"
+      "usedFor": "GitHub trend item; source label repaired on 2026-06-02 to Daily Dose of Data Science + GitHub after Gmail original confirmed the ART/RULER discovery path"
     },
     {
       "url": "https://github.com/Nutlope/hallmark",
       "status": 200,
-      "usedFor": "GitHub trend item"
+      "usedFor": "GitHub trend item; source label repaired on 2026-06-02 to AI Valley + GitHub after Gmail original confirmed Hallmark appeared as a trending tool"
     }
   ],
   "publishedItems": {
@@ -166,6 +166,6 @@
     "duplicateLinks": "passed: no repeated public URLs within either locale file",
     "forbiddenPublicTerms": "passed: public Markdown scan clean",
     "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
-    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check"
+    "checks": "passed: check:radar-newsletter, check:radar-schema, check:radar-sources, check:radar-dedupe, and npm run check; source labels were later calibrated to core-source discovery plus canonical links and npm run check:radar-sources -- --from 2026-05-20 --to 2026-05-21 passed"
   }
 }

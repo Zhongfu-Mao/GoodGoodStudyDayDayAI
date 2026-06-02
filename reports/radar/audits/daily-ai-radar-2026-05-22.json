@@ -1,8 +1,8 @@
 {
   "date": "2026-05-22",
   "cadence": "daily",
-  "status": "text-and-assets-backfilled",
-  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source AWS coverage, had only 3 zh public sections and 4 ja sections, and over-concentrated one source family. This pass rewrites the text from versioned source-pool, Gmail-original newsletter evidence, RSS evidence and public/canonical pages; infographic and audio have been regenerated against the backfilled text.",
+  "status": "text-backfilled-assets-preserved-after-dedupe",
+  "reason": "P0 triage item: previous public Markdown was dominated by excluded active-source AWS coverage, had only 3 zh public sections and 4 ja sections, and over-concentrated one source family. This pass rewrites the text from versioned source-pool, Gmail-original newsletter evidence, RSS evidence and public/canonical pages; infographic and audio were regenerated against the backfilled text. On 2026-06-02, a text-only cross-day dedupe cleanup removed repeated public links already retained on 2026-05-16, 2026-05-20 and 2026-05-21, added the The Batch / Google Threat Intelligence security item from public evidence, moved the Every Google I/O newsletter item to 2026-05-23 to preserve single-day ownership, and preserved the existing asset URLs.",
   "publicFiles": {
     "zh": "src/content/radar/daily-ai-radar-2026-05-22.md",
     "ja": "src/content/radar/daily-ai-radar-2026-05-22.ja.md"
@@ -22,17 +22,7 @@
       "confirmedItems": [
         "Agent Memory Is Only as Good as Its Schema",
         "Karpathy’s Prediction About RL is Coming True Now",
-        "Onyx",
-        "Graphiti",
-        "OpenPipe ART"
-      ]
-    },
-    {
-      "source": "Every public pages and Gmail originals",
-      "path": "node scripts/radar/fetch-url.mjs https://every.to/p/after-automation; node scripts/radar/fetch-url.mjs https://every.to/playtesting/notes-from-the-foothills-of-the-singularity; Gmail read-only search for 2026-05-21 and 2026-05-22 originals",
-      "confirmedItems": [
-        "After Automation",
-        "Notes From the Foothills of the Singularity"
+        "Onyx"
       ]
     },
     {
@@ -47,7 +37,8 @@
       "source": "The Batch / DeepLearning.AI public page",
       "path": "node scripts/radar/fetch-url.mjs https://www.deeplearning.ai/the-batch/; node scripts/radar/fetch-url.mjs https://www.deeplearning.ai/the-batch/issue-354/",
       "confirmedItems": [
-        "Toward Agent Benchmarks That Reflect Human Work"
+        "Toward Agent Benchmarks That Reflect Human Work",
+        "Cybersecurity Alarms Grow Louder"
       ]
     },
     {
@@ -75,11 +66,9 @@
     },
     {
       "source": "GitHub repository pages surfaced by core sources",
-      "path": "Canonical repository links from Daily Dose and Programmer Weekly coverage",
+      "path": "Canonical repository links from Daily Dose coverage after cross-day dedupe removed repositories already retained in previous daily reports",
       "confirmedItems": [
-        "onyx-dot-app/onyx",
-        "getzep/graphiti",
-        "OpenPipe/ART"
+        "onyx-dot-app/onyx"
       ]
     }
   ],
@@ -96,6 +85,7 @@
     "infographic": "regenerated-2026-06-02",
     "audio": "regenerated-2026-06-02",
     "existingFrontmatterKept": false,
+    "dedupeFollowup": "2026-06-02 text-only cleanup preserved the regenerated 05-22 infographic and audio files; no NotebookLM rerun was triggered.",
     "publicRepresentativeImage": "old AWS body image removed from Markdown body",
     "imageQa": "passed: zh and ja NotebookLM infographics were visually inspected after overwrite regeneration; both are readable and have no severe text corruption",
     "audioQa": "passed: zh and ja NotebookLM audio was regenerated with --no-keep-notebook, downloaded with --force, compressed to mono MP3, and frontmatter metadata was verified after generation",

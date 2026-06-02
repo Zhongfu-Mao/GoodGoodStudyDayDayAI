@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-05-23"
 date: 2026-05-23
 category: radar
 cadence: daily
-plainSummary: "今天关注 Codex 企业治理和真实交付案例、npm 发布链路的显式批准门、Google I/O 后的 agent 平台叙事、Latent.Space 记录的 agent infra 与研究信号，以及 Onyx / NanoClaw 等 GitHub 项目的自托管和安全取向。"
+plainSummary: "今天关注 npm 发布链路的显式批准门、model labs 转向 agent labs、stateless MCP 对运行时基础设施的影响、Thinking Machines 的实时 interaction model、Printing Press 的 agent 原生 CLI，以及 Codex 进入企业采购与治理框架。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -24,26 +24,26 @@ draft: false
 
 ## 1. AI Engineering & 架构
 
-### OpenAI 把 Codex 的企业价值落在治理、沙箱和可审计开发环境上
-
-- 来源：OpenAI
-- 日期：2026-05-22
-- 链接：https://openai.com/index/gartner-2026-agentic-coding-leader/
-- 摘要：OpenAI 宣布 Codex 在企业 AI coding agent 评估中进入领导者象限，并把重点放在 agentic software development、enterprise governance、sandboxing 和 flexible deployment。文章强调 Codex 已经不只是补全或生成代码，而是要理解大型代码库、调用工具、改代码、跑测试并把结果交给人类 review。对企业来说，真正的竞争点是能否把 coding agent 放进审批门、RBAC、自定义策略、系统级沙箱和可审计 workspace governance 中。
-
-### Virgin Atlantic 用 Codex 把移动 App 发布、测试覆盖和遗留代码重构串成工程交付案例
-
-- 来源：OpenAI
-- 日期：2026-05-22
-- 链接：https://openai.com/index/virgin-atlantic/
-- 摘要：OpenAI 发布 Virgin Atlantic 案例，说明该航空公司如何在圣诞出行高峰前交付新版移动 App。案例称团队在固定发布窗口内达到接近完整的单元测试覆盖，发布时没有 P1 缺陷；部分遗留代码重构从数周缩短到数小时，个别 codebase size 降低 78% 到 80%。这个案例的价值在于，Codex 被放进移动发布、测试、遗留系统重构、数据仓库迁移和业务团队原型开发的完整生命周期里，而不是被当成孤立的代码生成器。
-
 ### GitHub 为 npm 发布链路加入 staged publishing 和安装来源控制
 
 - 来源：GitHub Changelog
 - 日期：2026-05-22
 - 链接：https://github.blog/changelog/2026-05-22-staged-publishing-and-new-install-time-controls-for-npm/
 - 摘要：GitHub 宣布 npm staged publishing 正式可用，并在 npm CLI 11.15.0 及以上版本中加入新的 install-time source controls。staged publishing 会先把 package tarball 放入 stage queue，维护者必须通过 2FA 显式批准后才会进入 registry；安装侧新增 `--allow-file`、`--allow-remote`、`--allow-directory`，补齐已有的 `--allow-git`。当 agent 更频繁地改依赖和发包时，人工批准、来源约束和默认拒绝策略会成为软件供应链的基础安全面。
+
+### Latent.Space 认为 model labs 正在变成 agent labs，竞争焦点上移到 harness
+
+- 来源：Latent.Space / AINews
+- 日期：2026-05-23
+- 链接：https://www.latent.space/p/agent-labs
+- 摘要：Latent.Space 05-23 AINews 把 Greg Brockman 关于“model alone is no longer the product”的判断、AI21 转向 agents、DeepSeek 组建 harness 团队等信号放在一起，指出模型实验室正在把产品面从 API 能力上移到 model + harness + workflow + UI + memory + economics。这个变化会重塑竞争边界：模型能力仍是底座，但真正锁住用户和工作流的，可能是与模型共同演化的 agent harness。
+
+### Stateless MCP release candidate 把 agent 协议从会话黏性推向可水平扩展
+
+- 来源：Latent.Space / AINews
+- 日期：2026-05-23
+- 链接：https://x.com/dsp_/status/2057780712187580924
+- 摘要：AINews 摘要了 MCP 2026-07-28 release candidate 的关键变化：协议核心转向 stateless，不再依赖 handshake、session ID 和固定服务器实例，同时引入 MCP Apps、Tasks、auth hardening 与更清晰的 deprecation policy。对 agent infra 来说，这不是小版本调整，而是把工具调用协议从“长连接会话状态”拉回可负载均衡、可缓存、可审计的 HTTP 式基础设施设计。
 
 ## 2. 模型前沿 & 算法探索
 
@@ -54,46 +54,46 @@ draft: false
 - 链接：https://blog.google/innovation-and-ai/technology/ai/io-2026-dialogues-recap/
 - 摘要：Google 总结 I/O 2026 Dialogues 舞台，主题覆盖 Beyond the Keynote、AI Agents、Quantum & AI、Science、Robotics 和 Creativity。Sundar Pichai、Josh Woodward、Koray Kavukcuoglu、Liz Reid、Jeff Dean、Hartmut Neven、James Manyika、Demis Hassabis 等人分别讨论 I/O 发布背后的平台愿景、proactive agents、量子与 AI、科学问题、具身机器人和影视创意。这里的信号是 Google 正试图把 agent 能力、科学发现、机器人和创意工具组织成一个长期平台叙事。
 
-### Latent.Space 追踪 RAEv2、Gated DeltaNet-2 和数据过滤讨论，研究热点继续向表示与长上下文移动
+### Thinking Machines 用 interaction models 重新打开实时多模态协作问题
 
-- 来源：Latent.Space
+- 来源：Thinking Machines Lab / The Batch
 - 日期：2026-05-22
-- 链接：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa#model-benchmark-and-research-updates-raev2-gated-deltanet-2-data-filtering-and-open-math
-- 摘要：Latent.Space 的 AINews 汇总了 RAEv2、Gated DeltaNet-2、tokenization、data filtering 和 AI 数学讨论等研究信号。RAEv2 被讨论为 Representation Autoencoders 的后续方向，强调更快 convergence、reconstruction 和 generation；Gated DeltaNet-2 用 channel-wise gates 分离 linear attention 中的 erase / write 操作，并在长上下文检索上取得改进；数据过滤和数学任务的讨论则继续把研究焦点拉向可检验任务和更可靠的数据策略。
+- 链接：https://thinkingmachines.ai/blog/interaction-models/
+- 摘要：The Batch 05-22 期重点介绍 Thinking Machines Lab 的 interaction models，官方博客显示 TML-Interaction-Small 是 276B 总参数、12B active 的 MoE，围绕 200ms micro-turn、audio/video/text 并行输入输出、异步 background model 和 shared context 设计。它的重点不是再做一个语音助手，而是把“什么时候听、什么时候说、什么时候看见并主动介入”训练进模型本体，减少外部 turn-taking harness 对实时体验的限制。
 
-### Gemini 相关 agent 信号显示，强多模态模型正在压低简单工作流的 orchestration 成本
+### Agent workflow distillation 把昂贵运行时循环压进模型权重
 
-- 来源：Latent.Space
-- 日期：2026-05-22
-- 链接：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa#agent-capability-trendlines
-- 摘要：AINews 记录了 Gemini agent/tool 方向的多个信号：Gemini 3.5 Flash 在 APEX-Agents-AA 中排名靠前，有开发者展示用单次 Gemini API call 做 GitHub issue triage agent，也有人用一个 multimodal API call 替换定制 vision pipeline。共同趋势不是“所有 agent 都需要重框架”，而是强模型、内置工具和产品级 action surface 正在把简单工作流的编排成本压低。
+- 来源：Latent.Space / AINews
+- 日期：2026-05-23
+- 链接：https://x.com/dair_ai/status/2057846601843146760
+- 摘要：Latent.Space 记录了 DAIR.AI 提到的 agent workflow distillation 论文：完整 agentic workflow 中的多步调用、工具使用、scratchpad 和决策结构可以被蒸馏进权重，在接近前沿质量的同时把推理成本降低约两个数量级。这个方向很重要，因为它把 agent 工程从“每次都运行昂贵循环”推进到“把稳定流程编译成便宜模型”的经济学问题。
 
 ## 3. 实战代码 & 工具库
 
-### Daytona 把 agent sandbox 定义成 composable computers，agent cloud 不再只是代码执行盒
+### Printing Press 把网站和 API 转成 agent-native CLI，减少浏览器和 MCP 的重复上下文成本
 
-- 来源：Latent.Space
-- 日期：2026-05-21
-- 链接：https://www.latent.space/p/daytona
-- 摘要：Latent.Space 采访 Daytona CEO Ivan Burazin，讨论 AI agents 为什么需要可通过 API 使用的“电脑”，而不只是短生命周期代码执行 sandbox。Daytona 强调 stateful、快速启动、动态扩缩容、隔离和可组合 API，并把 RL/eval workloads、browser agents、coding agents 都放进同一类 agent cloud 需求里。这个方向解释了为什么长期运行、能跑测试、能开浏览器、能操作文件系统的 agent，会推动新的云执行基础设施。
+- 来源：The Rundown AI / Printing Press
+- 日期：2026-05-22
+- 链接：https://app.therundown.ai/guides/generate-an-agent-native-cli-from-any-api-or-website
+- 摘要：The Rundown 的实践指南介绍 Printing Press：开发者可以把网站、API 或没有公开 API 的服务转成 token-efficient Go CLI、Claude Code / OpenClaw skill 和 MCP server。Printing Press 官网进一步强调 local SQLite mirror、compound commands 和 agent-native flags，用 CLI 替代反复浏览网页或展开冗长 API 响应。这个工具项的价值在于，它把“给 agent 一个可靠操作界面”从临时脚本推进到可复用接口工厂，适合 ESPN、Google Flights、Linear 等重复查询场景。
 
 ## 4. 行业与商业快讯
 
-### Exa、Modal 和 turbopuffer 的融资与收入信号显示，AI infra 的经济层正在集中到检索、执行和上下文供应
+### OpenAI 把 Codex 放进 Gartner 领导者象限，企业 AI coding 进入采购与治理框架
 
-- 来源：Latent.Space
+- 来源：OpenAI
 - 日期：2026-05-22
-- 链接：https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa
-- 摘要：Latent.Space 汇总了本周 AI infra 的资本和收入信号：Exa 宣布 2.5 亿美元 Series C、估值 22 亿美元；Modal 宣布 3.55 亿美元 Series C、估值约 46.5 亿美元；turbopuffer 被报道达到 1 亿美元 run-rate 且盈利。三者分别对应 AI search / retrieval、AI cloud execution 和向量/检索数据库基础设施。模型仍然重要，但商业价值正在明显流向“上下文从哪里来、在哪里执行、如何快速检索”的系统层。
+- 链接：https://openai.com/index/gartner-2026-agentic-coding-leader/
+- 摘要：OpenAI 宣布 Codex 在企业 AI coding agent 评估中进入领导者象限，并把重点放在 agentic software development、enterprise governance、sandboxing 和 flexible deployment。这个信号更像企业采购和治理节点，而不只是产品功能更新：coding agent 要进入大型组织，必须被放进审批门、RBAC、自定义策略、系统级沙箱和可审计 workspace governance 中。也就是说，Codex 的竞争点正在从“能不能改代码”延伸到“能不能被企业安全地采购、部署、审计和扩展”。
+
+### DeepSeek V4-Pro 折扣常态化，让 agent 推理成本曲线继续下探
+
+- 来源：Latent.Space / AINews
+- 日期：2026-05-23
+- 链接：https://x.com/deepseek_ai/status/2057854261699195173
+- 摘要：Latent.Space 把 DeepSeek V4-Pro 75% 折扣常态化列为当天最大的成本信号，并引用 Artificial Analysis 对一方价格的估算：输入、输出和缓存命中价格组合后，V4-Pro 的综合成本被放到 intelligence/run-cost Pareto frontier 上。对 agent 系统来说，这类价格变化会直接改变模型路由、长程任务预算、缓存策略和开源/闭源模型搭配方式。
 
 ## 5. GitHub 热门 repo & 趋势追踪
-
-### Onyx：自托管 AI chat 平台把 RAG、agents、deep research 和 MCP 放到同一层应用里
-
-- 来源：GitHub / Daily Dose of Data Science
-- 日期：2026-05-22
-- 链接：https://github.com/onyx-dot-app/onyx
-- 摘要：Daily Dose of Data Science 把 Onyx 作为开源 Claude 替代方案推荐；公开仓库显示它是一个可自托管的 AI chat / LLM application layer，支持 RAG、web search、code execution、file generation、deep research、MCP、actions、voice mode 和 50+ connectors。它的趋势意义不是单点功能，而是把企业内部知识、外部工具、LLM provider 和 agent 能力整合成一个可部署应用层。
 
 ### NanoClaw：OpenClaw 替代项目把重点放在容器隔离和可审计的小代码库
 
@@ -104,23 +104,16 @@ draft: false
 
 ## 📬 Newsletter 精选
 
-### Daily Dose of DS：Agent Memory Is Only as Good as Its Schema
-
-- 来源：Daily Dose of Data Science
-- 日期：2026-05-22
-- 链接：https://github.com/getzep/graphiti
-- 摘要：这封邮件把 agent memory 的关键问题从“能不能检索”推进到“记忆结构是否可查询”。它用 Zep / Graphiti 说明，如果知识图谱抽取缺少 Pydantic schema、entity / edge type 和 source-target constraints，记忆会退化成一堆泛化的 Topic / RELATES_TO，难以支持多跳推理。
-
-### Every：Notes From the Foothills of the Singularity
-
-- 来源：Every
-- 日期：2026-05-22
-- 链接：https://every.to/playtesting/notes-from-the-foothills-of-the-singularity
-- 摘要：Every 从 Google I/O 复盘出发，把 Gemini 3.5 Flash、Search 生成工具、后台运行的 Gemini assistant 和 Gemini Omni 放进同一条“补齐产品断点”的叙事里。它强调这轮更新的价值不在发布数量，而在于把 agent 能力推进到真实产品入口。
-
 ### The Rundown AI：Exclusive insights from Sundar Pichai at I/O 2026
 
 - 来源：The Rundown AI
 - 日期：2026-05-22
 - 链接：暂无公开直链
 - 摘要：The Rundown AI 的邮件围绕 I/O 2026 采访 Sundar Pichai，重点讨论 Google 如何把 AI 从单点演示推进到创作者、工程师和日常用户的产品层。它同时把 Codex 升级、agent-native CLI、加州 AI 劳工保护等信号放在一起，补充了当天 Google 平台叙事的媒体视角。
+
+### Every：Google I/O 不是炫技发布，而是把 AI 缺口补进产品系统
+
+- 来源：Every
+- 日期：2026-05-22
+- 链接：https://every.to/playtesting/notes-from-the-foothills-of-the-singularity
+- 摘要：Every 的 Alex Duffy 认为 2026 年 Google I/O 没有去年那么炫目，但可能更重要：Gemini 3.5 Flash、Search 的动态工具构建、可在笔记本合盖后继续运行的 Gemini assistants，以及 Gemini Omni 这类 world model，都在补齐 AI 产品的真实使用缺口。文章引用 Demis Hassabis “foothills of the singularity” 的说法，并强调 Google 需要更具体地展示 AI 的社会收益。这个视角有助于平衡发布会报道：真正值得追踪的不是一次 demo，而是模型能力如何进入搜索、设备、生产力和科学工作流。

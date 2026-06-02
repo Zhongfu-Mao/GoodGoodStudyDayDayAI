@@ -42,7 +42,7 @@
       "sender": "Every",
       "receivedAt": "2026-05-28T08:00:00-04:00",
       "subject": "Vibe Check: Opus 4.8—Anthropic Should’ve Rounded Up to 5",
-      "usedAs": "Opus 4.8 benchmark/product-shell framing and Newsletter confirmation",
+      "usedAs": "Opus 4.8 benchmark/product-shell framing in the body; removed from Newsletter on 2026-06-02 to avoid duplicating the same public link and topic",
       "publicLinks": [
         "https://every.to/vibe-check/opus-4-8-vibecheck"
       ],
@@ -131,13 +131,13 @@
   "publishedItems": {
     "zh": 15,
     "ja": 15,
-    "newsletter": 3,
+    "newsletter": 2,
     "githubTrend": 3
   },
   "selfReview": {
     "schema": "passed",
     "zhJaTopicOrder": "passed",
-    "duplicateLinks": "passed",
+    "duplicateLinks": "passed after removing the repeated Every Opus 4.8 Newsletter entry on 2026-06-02",
     "forbiddenPublicTerms": "passed",
     "newsletterFormat": "passed",
     "checks": "passed"

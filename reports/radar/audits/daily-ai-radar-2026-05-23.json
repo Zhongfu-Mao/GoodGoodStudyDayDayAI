@@ -1,13 +1,13 @@
 {
   "date": "2026-05-23",
   "cadence": "daily",
-  "status": "text-backfilled-source-balanced",
+  "status": "text-backfilled-assets-preserved-after-dedupe",
   "localeFiles": [
     "src/content/radar/daily-ai-radar-2026-05-23.md",
     "src/content/radar/daily-ai-radar-2026-05-23.ja.md"
   ],
   "backfill": {
-    "reason": "Restore fixed six-section schema and remove drifted active platform-blog sourcing from the May 23 daily radar.",
+    "reason": "Restore fixed six-section schema, remove drifted active platform-blog sourcing, remove cross-day and same-report duplicate links from the May 23 daily radar, and expand the text back to the source-diversity gate using Gmail-original newsletter evidence plus public source pages.",
     "assetsRerun": false,
     "scope": "text-only backfill; existing coverImage and audioUrl frontmatter preserved"
   },
@@ -27,36 +27,25 @@
   },
   "gmailEvidence": [
     {
-      "sender": "Daily Dose of DS",
-      "receivedAt": "2026-05-22T20:34:41",
-      "subject": "Agent Memory Is Only as Good as Its Schema",
-      "usedAs": "Newsletter item and GitHub trend discovery for Onyx and Graphiti",
-      "publicLink": "https://github.com/getzep/graphiti",
+      "sender": "The Rundown AI",
+      "receivedAt": "2026-05-22T10:06:25",
+      "subject": "Exclusive interview: Sundar Pichai on AI's flip phone moment",
+      "usedAs": "Newsletter item and discovery for NanoClaw / Printing Press / Google I/O interview context",
+      "publicLink": null,
       "evidence": [
-        "The issue explained why flat retrieval misses multi-hop memory questions.",
-        "It linked Graphiti and described schema, typed entities, edge constraints, temporal validity and context templates."
+        "The issue centered on The Rundown's Sundar Pichai interview at I/O 2026.",
+        "It listed NanoClaw as a lightweight open-source alternative to OpenClaw and surfaced the Printing Press guide; both public pages were then verified."
       ]
     },
     {
       "sender": "Every",
       "receivedAt": "2026-05-22T10:41:44",
       "subject": "Notes From the Foothills of the Singularity",
-      "usedAs": "Newsletter item and Google I/O product narrative context",
+      "usedAs": "Newsletter item on Google I/O product-system interpretation",
       "publicLink": "https://every.to/playtesting/notes-from-the-foothills-of-the-singularity",
       "evidence": [
-        "The issue framed Google I/O as product-layer iteration around Gemini 3.5 Flash, Search tools, assistants and Gemini Omni.",
-        "The public article was fetched successfully and matched the email subject."
-      ]
-    },
-    {
-      "sender": "The Rundown AI",
-      "receivedAt": "2026-05-22T10:06:25",
-      "subject": "Exclusive interview: Sundar Pichai on AI's flip phone moment",
-      "usedAs": "Newsletter item and discovery for NanoClaw / Google I/O interview context",
-      "publicLink": null,
-      "evidence": [
-        "The issue centered on The Rundown's Sundar Pichai interview at I/O 2026.",
-        "It listed NanoClaw as a lightweight open-source alternative to OpenClaw; the public GitHub repository was then verified."
+        "Gmail original confirmed the newsletter subject and public Every link.",
+        "The public article frames Google I/O as product-system gap filling rather than only flashy demos."
       ]
     },
     {
@@ -78,11 +67,6 @@
       "usedFor": "AI Engineering item"
     },
     {
-      "url": "https://openai.com/index/virgin-atlantic/",
-      "status": 200,
-      "usedFor": "AI Engineering item"
-    },
-    {
       "url": "https://github.blog/changelog/2026-05-22-staged-publishing-and-new-install-time-controls-for-npm/",
       "status": 200,
       "usedFor": "AI Engineering item"
@@ -93,19 +77,14 @@
       "usedFor": "model-frontier item"
     },
     {
-      "url": "https://www.latent.space/p/ainews-new-ai-infra-unicorns-exa",
-      "status": 200,
-      "usedFor": "model, tooling and industry items"
-    },
-    {
-      "url": "https://www.latent.space/p/daytona",
+      "url": "https://app.therundown.ai/guides/generate-an-agent-native-cli-from-any-api-or-website",
       "status": 200,
       "usedFor": "tooling item"
     },
     {
-      "url": "https://github.com/onyx-dot-app/onyx",
+      "url": "https://printingpress.dev/",
       "status": 200,
-      "usedFor": "GitHub trend item"
+      "usedFor": "tooling item source confirmation"
     },
     {
       "url": "https://github.com/nanocoai/nanoclaw",
@@ -113,28 +92,53 @@
       "usedFor": "GitHub trend item"
     },
     {
-      "url": "https://github.com/getzep/graphiti",
+      "url": "https://www.latent.space/p/ainews-all-model-labs-are-now-agent",
       "status": 200,
-      "usedFor": "Newsletter item"
+      "usedFor": "AINews discovery page for agent labs, stateless MCP, agent distillation and DeepSeek pricing"
+    },
+    {
+      "url": "https://www.latent.space/p/agent-labs",
+      "status": 200,
+      "usedFor": "agent labs public body link surfaced by AINews"
+    },
+    {
+      "url": "https://x.com/dsp_/status/2057780712187580924",
+      "status": "public-reference",
+      "usedFor": "stateless MCP public body link surfaced by AINews"
+    },
+    {
+      "url": "https://x.com/dair_ai/status/2057846601843146760",
+      "status": "public-reference",
+      "usedFor": "agent workflow distillation public body link surfaced by AINews"
+    },
+    {
+      "url": "https://x.com/deepseek_ai/status/2057854261699195173",
+      "status": "public-reference",
+      "usedFor": "DeepSeek pricing public body link surfaced by AINews"
+    },
+    {
+      "url": "https://thinkingmachines.ai/blog/interaction-models/",
+      "status": 200,
+      "usedFor": "Thinking Machines interaction model item surfaced by The Batch"
     },
     {
       "url": "https://every.to/playtesting/notes-from-the-foothills-of-the-singularity",
       "status": 200,
-      "usedFor": "Newsletter item"
+      "usedFor": "Every Newsletter item"
     }
   ],
   "publishedItems": {
-    "zh": 13,
-    "ja": 13,
-    "newsletter": 3,
-    "githubTrend": 2
+    "zh": 12,
+    "ja": 12,
+    "newsletter": 2,
+    "githubTrend": 1
   },
   "selfReview": {
-    "schema": "passed: fixed six public sections restored in zh/ja",
-    "zhJaTopicOrder": "passed: 13 matched H3 items in both locales",
-    "duplicateLinks": "single-file duplicate scan passed; cross-day 7-day dedupe remains a follow-up cleanup item",
-    "forbiddenPublicTerms": "passed: public Markdown scan clean",
+    "schema": "passed: check:radar-schema -- --from 2026-05-22 --to 2026-05-23",
+    "zhJaTopicOrder": "passed by schema/source order gates for 2026-05-22 to 2026-05-23",
+    "duplicateLinks": "passed: check:radar-dedupe -- --from 2026-05-15 --to 2026-05-23, including same-report duplicate detection",
+    "forbiddenPublicTerms": "passed: check:radar-newsletter -- --from 2026-05-22 --to 2026-05-23",
     "newsletterFormat": "passed: Newsletter uses reader-facing title/source/date/link/summary entries",
-    "checks": "passed: check:radar-newsletter -- --from 2026-05-15, check:radar-schema -- --from 2026-05-15, and check:radar-sources -- --from 2026-05-15 after source balancing"
+    "checks": "passed for this date pair: check:radar-newsletter, check:radar-schema, check:radar-sources and check:radar-dedupe"
   }
 }

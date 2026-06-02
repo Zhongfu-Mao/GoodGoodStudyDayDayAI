@@ -1,10 +1,16 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { isDailyRadarFileInRange, parseDateRangeArgs } from './radar-date-range.mjs';
 
 const root = process.cwd();
 const radarDir = path.join(root, 'src/content/radar');
-const enforceFromDate = parseFromDateArg() ?? '2026-05-23';
+const sourcePoolPath = path.join(root, 'scripts/radar/source-pool.json');
+const sourcePool = JSON.parse(await readFile(sourcePoolPath, 'utf8'));
+const range = parseDateRangeArgs(process.argv, {
+  from: sourcePool.publicationGate?.enforceDailyFrom ?? '9999-99-99',
+  to: '9999-99-99',
+});
 const sectionPattern = /^## 📬 Newsletter 精(?:选|選)\s*$/m;
 const headingPattern = /^## /m;
 const entryPattern = /^### /gm;
@@ -30,17 +36,6 @@ function extractNewsletterSection(body) {
 
 function normalize(value) {
   return value.trim().replace(/\/$/, '').toLowerCase();
-}
-
-function parseFromDateArg() {
-  const index = process.argv.indexOf('--from');
-  const value = index === -1 ? '' : process.argv[index + 1];
-  if (!value) return null;
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-    console.error(`Invalid --from date: ${value}`);
-    process.exit(1);
-  }
-  return value;
 }
 
 function checkEntry(file, entry, index, failures) {
@@ -106,7 +101,7 @@ function checkSection(file, section, failures) {
 async function main() {
   const files = (await readdir(radarDir))
     .filter((file) => /^daily-ai-radar-\d{4}-\d{2}-\d{2}(\.ja)?\.md$/.test(file))
-    .filter((file) => file.slice('daily-ai-radar-'.length, 'daily-ai-radar-'.length + 10) >= enforceFromDate)
+    .filter((file) => isDailyRadarFileInRange(file, range))
     .sort();
   const failures = [];
 

@@ -26,7 +26,7 @@ draft: false
 
 ### Google I/O 100-item list は Gemini、Search、Antigravity、science tools を product matrix に接続した
 
-- 出典：Google
+- 出典：AI Valley + Google
 - 日付：2026-05-20
 - リンク：https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/
 - 要約：Google は I/O 2026 の 100 announcements overview を公開し、Gemini、Search、Workspace、AI Studio、Antigravity、Flow、Android XR、Gemini for Science を一つの product map に置きました。重要なのは connection pattern です。Model は isolated endpoint ではなく、Search agents、generative interface、creative workflow、scientific research tools、developer environment entry に翻訳されています。Engineering team にとって、Google の I/O 主線は「model release」から「model を actionable product surface にする」方向へ移っています。
@@ -49,7 +49,7 @@ draft: false
 
 ### OpenAI model は Erdős planar unit distance conjecture を自律的に反証した
 
-- 出典：OpenAI
+- 出典：AI Valley + OpenAI
 - 日付：2026-05-20
 - リンク：https://openai.com/index/model-disproves-discrete-geometry-conjecture/
 - 要約：OpenAI は internal general-purpose reasoning model が discrete geometry の Erdős planar unit distance conjecture を反証したと発表しました。この問題は、平面上の n 点が距離ちょうど 1 の点対を最大いくつ作れるかを問います。長く grid-like construction がほぼ optimal と考えられていましたが、model は少なくとも n^(1+δ) 個の unit-distance pairs を持つ infinite family を見つけ、Will Sawin の refinement で δ=0.014 が得られました。OpenAI は math-specialized system でも problem-specific proof-search scaffold でもないと説明しています。External verification が続くなら、model が proof checking assistant から original mathematical construction へ踏み出した強い signal です。
@@ -97,14 +97,14 @@ draft: false
 
 ### OpenPipe/ART は GRPO と RULER を real Agent training に持ち込む
 
-- 出典：GitHub
+- 出典：Daily Dose of Data Science + GitHub
 - 日付：2026-05-21
 - リンク：https://github.com/OpenPipe/ART
 - 要約：ART は OpenPipe の Agent Reinforcement Trainer で、GRPO を使って multi-step agents を training し、RULER によって natural-language reward criteria を higher-dimensional feedback signal にします。Daily Dose of DS の当日メールは、Karpathy の reward function 批判の後に ART / RULER を位置づけました。Real Agent task では hand-coded scoring function を安定維持するのが難しく、RULER は LLM に自然言語基準で trajectory を評価させます。Trend は、Agent training が static SFT / hand rules から task environment、trajectory、reward review の loop へ移っていることです。
 
 ### Nutlope/hallmark は anti-AI-slop design rules を installable skill にした
 
-- 出典：GitHub
+- 出典：AI Valley + GitHub
 - 日付：2026-05-21
 - リンク：https://github.com/Nutlope/hallmark
 - 要約：Hallmark は Claude Code、Cursor、Codex 向けの design skill で、AI-generated page の同質的 default style を避けることを目的にしています。Brief に応じて macrostructure と theme を選び、65 個の slop-test gates を走らせ、audit、redesign、study などの verbs を提供します。AI Valley の当日メールはこれを trending tool として挙げました。この repo が面白いのは、aesthetic / design quality を prompt preference ではなく、installable、reusable、auditable skill package にしている点です。

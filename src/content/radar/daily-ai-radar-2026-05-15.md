@@ -41,14 +41,14 @@ draft: false
 
 ### LangSmith Engine 和 SmithDB 把 Agent 观测推进到“发现失败、生成修复、补评测”的闭环
 
-- 来源：LangChain
+- 来源：Latent.Space / AINews + LangChain
 - 日期：2026-05-14
 - 链接：https://www.langchain.com/blog/interrupt-2026-overview
 - 摘要：LangChain 在 Interrupt 2026 发布 LangSmith Engine、SmithDB、Managed Deep Agents、Context Hub、LLM Gateway、Sandboxes 和 Fleet 更新。LangSmith Engine 会观察生产 traces、聚类失败、诊断根因，并提出代码修复与 eval 覆盖；SmithDB 则面向深层嵌套、长时间跨度、多模态和大量事件的 agent trace 查询。对团队来说，Agent 可观测性正在从“记录调用日志”升级为生产改进循环的一部分。
 
 ### CoreWeave Sandboxes 把 RL、Agent 工具调用和模型评测的隔离执行层产品化
 
-- 来源：CoreWeave
+- 来源：Latent.Space / AINews + CoreWeave
 - 日期：2026-05-14
 - 链接：https://www.coreweave.com/news/coreweave-sandboxes-launches-to-accelerate-reinforcement-learning-agent-tool-use-and-model-evaluation
 - 摘要：CoreWeave 发布 Sandboxes，为强化学习、Agent 工具使用和模型评测提供隔离执行环境。它支持在客户自己的 CoreWeave Kubernetes Service 集群中运行，也可以通过 Weights & Biases serverless runtime 使用；每个 sandbox 默认运行在隔离虚拟环境中，并把活动记录并入 W&B run view。这个方向重要，因为模型训练和 Agent 评测正在产生大量模型生成代码、命令和工具调用，企业需要可扩展、可审计、可治理的执行层。

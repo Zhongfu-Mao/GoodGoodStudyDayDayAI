@@ -99,13 +99,6 @@ draft: false
 - リンク：https://lukefan.com/2026/05/29/pope-leo-xiv-ai-encyclical-human-dignity/
 - 要約：老范は教皇の AI 通諭を、人間の尊厳、労働価値、model power concentration、自動兵器倫理という文脈で読んだ。その中で Anthropic がなぜ関連 narrative に現れるのかも説明している。この中国語 source の価値は、AI safety を model company news だけでなく、社会制度、宗教倫理、労働秩序の問題として捉え直す点にある。公式確認源ではないが、中国語読者に必要な産業・社会 context を補っている。
 
-### Boston Children’s は OpenAI 技術で rare disease diagnosis と operational burden に取り組む
-
-- 出典：OpenAI
-- 日付：2026-05-29
-- リンク：https://openai.com/index/boston-childrens-hospital
-- 要約：OpenAI は Boston Children’s Hospital が AI を使って patient care を改善し、operational burden を下げ、40 件超の rare disease diagnosis を支援したと紹介した。医療領域での意味は明確だ。AI deployment は、model を end user に自由に渡すことではなく、controlled workflow、expert oversight、data governance、result explanation に依存する。高リスク業界での AI adoption は、evidence chain と responsibility boundary をますます重視する。
-
 ## 5. GitHub 人気 repo & トレンド追跡
 
 ### revfactory/harness は agent team design を composable skill layer へ押し出す

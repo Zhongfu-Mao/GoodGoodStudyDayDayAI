@@ -117,16 +117,16 @@ draft: false
 
 ## 📬 Newsletter 精选
 
-### Daily Dose：Deep RL 与 DQN 重新成为 LLM 后训练时代的基础课
+### The Rundown AI：AI 的下一批训练数据可能来自真实家务劳动
+
+- 来源：The Rundown AI
+- 日期：2026-06-01
+- 链接：暂无公开直链
+- 摘要：The Rundown 当日邮件以 MicroAGI 的 Shift 为头条：在纽约提供免费家务清洁，但清洁员佩戴头戴摄像头记录第一视角数据，用于机器人和 AI 研究。它的意义不只是“又一个 robotics startup”，而是 physical AI 的数据获取方式正在走向真实人类劳动现场。家务、物流、配送、维修这些任务如果成为训练数据来源，隐私、同意、劳动报酬和数据所有权会变成绕不开的问题。
+
+### Daily Dose：Claude Code dynamic workflows 把多 agent 编排写成可执行计划
 
 - 来源：Daily Dose of Data Science
-- 日期：2026-05-31
-- 链接：https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn
-- 摘要：Daily Dose 的邮件把 Deep RL / DQN 放进完整 RL 课程中，强调从线性函数近似转向神经网络后，经验回放和 target network 如何让深度 Q-learning 稳定下来。它的 newsletter 价值在于时机：在 RLHF、GRPO、post-training 和 agent 学习都成为主线之后，DQN 这类基础概念又重新变成理解前沿模型训练的底层语言。
-
-### Every：How We Work Now 把 Codex、Opus 4.8、Proof 和医疗 AI 放在一张工作流地图里
-
-- 来源：Every
-- 日期：2026-05-31
-- 链接：https://every.to/context-window/how-we-work-now
-- 摘要：Every 的周末邮件把 Codex power-user guide、compound engineering、Opus 4.8、Proof 文档协作和 Doctronic 医疗 AI pilot 放在同一期。它不是说这些内容已经被正文吸收，而是提供了一张信息流地图：AI 工作方式正在同时改变代码、写作、协作编辑、医疗流程和组织运营。这个邮件原文值得保留为后续周报的连接点。
+- 日期：2026-06-01
+- 链接：https://www.dailydoseofds.com/p/claude-subagents-vs-agent-teams
+- 摘要：Daily Dose 当日邮件的第二个主题是 Claude Code dynamic workflows：让 Claude 把编排逻辑写成 JavaScript workflow，由 runtime 执行并 fan out 到多个 subagents，而不是把所有计划塞在一个上下文窗口里。邮件把它和 subagents、agent teams 对比，强调扩展性、可恢复、adversarial verification 和成本控制。这条适合作为 6 月 1 日 Newsletter 信号，因为它与正文的 Claude Code 全栈案例形成互补。

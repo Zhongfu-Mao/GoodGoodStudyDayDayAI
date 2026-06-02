@@ -2,7 +2,7 @@
   "date": "2026-05-16",
   "cadence": "daily",
   "status": "text-backfilled-assets-preserved-after-dedupe",
-  "reason": "P0 triage item: previous public Markdown used excluded active-source items as first-class coverage, lacked the fixed five-quadrant schema, had zh/ja heading and link-order drift, and used Newsletter as a source-count summary instead of reader-facing curated items. This pass rewrites the text from versioned source-pool rules, Gmail-original newsletter evidence, RSS evidence, public pages and canonical repository pages. Infographic/audio were regenerated on 2026-06-01 after the text backfill stabilized; existing public URLs were preserved while underlying files and audio metadata were refreshed. On 2026-06-02, the repeated public OpenAI Codex mobile link already covered by the 2026-05-15 daily radar was removed from the 2026-05-16 public body; The Rundown Gmail-original newsletter context remains as a no-public-direct-link reader-facing item.",
+  "reason": "P0 triage item: previous public Markdown used excluded active-source items as first-class coverage, lacked the fixed five-quadrant schema, had zh/ja heading and link-order drift, and used Newsletter as a source-count summary instead of reader-facing curated items. This pass rewrites the text from versioned source-pool rules, Gmail-original newsletter evidence, RSS evidence, public pages and canonical repository pages. Infographic/audio were regenerated on 2026-06-01 after the text backfill stabilized; existing public URLs were preserved while underlying files and audio metadata were refreshed. On 2026-06-02, the repeated public OpenAI Codex mobile link already covered by the 2026-05-15 daily radar was removed from the 2026-05-16 public body; The Rundown Gmail-original newsletter context remains as a no-public-direct-link reader-facing item. A later same-report dedupe hardening replaced repeated The Batch issue links with the corresponding NIST, OpenAI and Nature original links while preserving the same topics.",
   "publicFiles": {
     "zh": "src/content/radar/daily-ai-radar-2026-05-16.md",
     "ja": "src/content/radar/daily-ai-radar-2026-05-16.ja.md"
@@ -49,9 +49,9 @@
       "source": "The Batch / DeepLearning.AI public page",
       "path": "node scripts/radar/fetch-url.mjs https://www.deeplearning.ai/the-batch/issue-353 --mode readability",
       "confirmedItems": [
-        "U.S. to Evaluate Upcoming Models",
-        "OpenAI Challenges Speech-to-Speech Leaders",
-        "AI Mammogram Diagnosis Under Real-World Conditions"
+        "U.S. to Evaluate Upcoming Models (public body links to the NIST taskforce page surfaced by The Batch)",
+        "OpenAI Challenges Speech-to-Speech Leaders (public body links to OpenAI's voice-intelligence API post surfaced by The Batch)",
+        "AI Mammogram Diagnosis Under Real-World Conditions (public body links to the Nature study surfaced by The Batch)"
       ]
     },
     {

@@ -43,16 +43,16 @@
       "status": "confirmed"
     },
     {
-      "name": "LangChain",
+      "name": "Latent.Space / AINews + LangChain",
       "url": "https://www.langchain.com/blog/interrupt-2026-overview",
       "method": "fetch-url/readability",
-      "status": "confirmed"
+      "status": "confirmed; surfaced in Latent.Space AINews Everything is Conductor under agent infrastructure and self-improvement loops"
     },
     {
-      "name": "CoreWeave",
+      "name": "Latent.Space / AINews + CoreWeave",
       "url": "https://www.coreweave.com/news/coreweave-sandboxes-launches-to-accelerate-reinforcement-learning-agent-tool-use-and-model-evaluation",
       "method": "fetch-url/readability",
-      "status": "confirmed"
+      "status": "confirmed; surfaced in Latent.Space AINews Everything is Conductor as W&B/CoreWeave Sandboxes for isolated execution"
     },
     {
       "name": "Datadog",
@@ -133,13 +133,13 @@
     {
       "section": "1. AI Engineering & 架构",
       "title": "LangSmith Engine 和 SmithDB 把 Agent 观测推进到闭环",
-      "source": "LangChain",
+      "source": "Latent.Space / AINews + LangChain",
       "url": "https://www.langchain.com/blog/interrupt-2026-overview"
     },
     {
       "section": "1. AI Engineering & 架构",
       "title": "CoreWeave Sandboxes 把隔离执行层产品化",
-      "source": "CoreWeave",
+      "source": "Latent.Space / AINews + CoreWeave",
       "url": "https://www.coreweave.com/news/coreweave-sandboxes-launches-to-accelerate-reinforcement-learning-agent-tool-use-and-model-evaluation"
     },
     {
@@ -217,7 +217,7 @@
     "manualLinkParity": "passed: zh/ja both contain 15 public links in identical order",
     "manualSchema": "passed: both locales use the fixed six-section daily taxonomy",
     "manualNewsletter": "passed: both locales contain two reader-facing Newsletter entries and no backend phrasing",
-    "manualSourceDiversity": "passed: 15 entries, 11 source families, 6 core/trend entries, largest source share 20%",
+    "manualSourceDiversity": "passed: 15 entries, 11 source families, 8 core/trend/official entries, 5 active-core entries after Latent.Space AINews source-chain calibration, largest source share 20%",
     "forbiddenPublicTerms": "passed",
     "npmCheckRadarNewsletter": "passed",
     "npmCheckRadarSchema": "passed",

@@ -31,12 +31,12 @@ draft: false
 - リンク：https://www.latent.space/p/ainews-all-model-labs-are-now-agent
 - 要約：Latent.Space は AINews で最近の signal を「model labs are becoming agent labs」と整理しました。AI21 の agents pivot、DeepSeek の harness team、model providers が workflow / UI / memory / economics を強調し始めていることから、competition surface は single model capability から model と harness の組み合わせへ広がっています。追うべき論点は closed ecosystem risk です。Model と proprietary harness が一緒に post-train されるなら、provider は value を open API や interchangeable model interface ではなく自社 agent product に寄せられます。
 
-### Google I/O 2026 は Gemini、Antigravity、AI Studio、Managed Agents を agent-first developer surface として束ねた
+### ByteByteGo は RAG と agents の境界を engineering の基本問題に戻した
 
-- 出典：Google
-- 日付：2026-05-20
-- リンク：https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/
-- 要約：Google の I/O 2026 roundup は多くの releases を列挙していますが、中心線は Gemini、Google Antigravity、AI Studio、Managed Agents、WebMCP を同じ agent-first platform story に置いたことです。Managed Agents は 1 回の API call で remote Linux environment、code execution、file management、web browsing を agent に与え、Antigravity は desktop app、CLI、SDK、subagents、hooks、async task management を広げています。Google は model、IDE、API、managed execution environment、open tool protocols を developer surface として束ねています。
+- 出典：ByteByteGo
+- 日付：2026-05-23
+- リンク：https://blog.bytebytego.com/p/ep216-rags-vs-agents
+- 要約：ByteByteGo の EP216 は、RAG と agents を四つの step で区別しました。RAG は one retrieval と one generation で、answer が documents にある時に向いています。Agent は runtime で tool を選び、action を実行し、result を読み、また reasoning する loop です。この item を残す理由は、「いつ RAG、いつ agent か」を slogan ではなく、cost、debuggability、error propagation、tool boundary の問題として整理しているからです。Enterprise knowledge systems の失敗は、model が弱いだけでなく、retrieval problem を agent problem と誤分類したり、action problem を one-shot generation に押し込めたりするところから起きます。
 
 ## 2. モデル最前線 & アルゴリズム探索
 
@@ -55,13 +55,6 @@ draft: false
 - 要約：Hugging Face は 6 つの Sentence Transformers CrossEncoder rerankers を公開しました。17M から 1B までの sizes があり、Johns Hopkins Ettin ModernBERT encoders をベースにし、8K context をサポートします。Models、約 143M の training data、training scripts も公開されています。Small models は MTEB と NanoBEIR でより大きい旧 rerankers を上回り、1B model は teacher に近づきました。RAG と agent memory systems では、reranker は peripheral component ではなく、context quality、latency、cost を決める control point です。
 
 ## 3. 実践コード & ツールライブラリ
-
-### Google Workspace は Gmail Live、Docs Live、Keep、Pics、AI Inbox、Gemini Spark を voice-first workflow としてつなげた
-
-- 出典：Google
-- 日付：2026-05-19
-- リンク：https://blog.google/products-and-platforms/products/workspace/workspace-updates/
-- 要約：Google Workspace は Google AI subscribers と Workspace business customers 向けに new features を発表しました。Gmail Live は voice で inbox information を聞けるようにし、Docs Live は voice brainstorm を document draft に整理し、Keep は spoken notes を notes and lists に変換します。Google Pics は object segmentation、text editing、translation、Workspace integration を提供し、AI Inbox は Plus / Pro users に広がり、Gemini Spark は 24/7 personal AI agent として Workspace apps に接続されます。AI は本文作成補助だけではなく、inbox、docs、notes、images、daily planning の operation layer になっています。
 
 ### Running Guide agent は on-device multimodal agent が accessibility で low-latency safety path を必要とすることを示した
 
@@ -85,6 +78,13 @@ draft: false
 - 日付：2026-05-20
 - リンク：https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/
 - 要約：Google は Universal Cart、Agent Payments Protocol、Universal Commerce Protocol の update を紹介しました。Universal Cart は Search、Gemini などをまたいで動き、UCP は Google Pay による Google 内 checkout、または merchant site への cart transfer を支えます。今後は YouTube Shopping ads、Direct Offers、hotel booking、local food delivery にも広げる計画です。Agentic commerce の難所は「商品を探す」だけではなく、payments、merchant of record、promotions、brand visibility、cross-platform checkout protocols にあります。
+
+### 老范讲故事は Google I/O の問題を技術不足ではなく入口の分散だと見た
+
+- 出典：老范讲故事
+- 日付：2026-05-24
+- リンク：https://lukefan.com/2026/05/24/google-io-gemini-antigravity-agent-reliability/
+- 要約：老范は Google I/O 2026 を振り返り、Google の問題は technology ではなく product line の分散だと見ました。Gemini 3.5 Flash の reliability、Gemini Spark の cloud workflow potential、Antigravity 2.0 の entry-point problem、Workspace と AI Studio など複数 surface の競合を一つの story として扱っています。この Chinese industry view は official release では見えにくい点を補います。Agent era の競争は features の数ではなく、user が信頼して継続利用でき、組織内の入口同士が衝突しない default workspace を作れるかにかかっています。
 
 ## 5. GitHub 人気 repo & トレンド追跡
 
@@ -110,13 +110,6 @@ draft: false
 - 日付：2026-05-24
 - リンク：https://www.dailydoseofds.com/p/the-anatomy-of-an-agent-harness/
 - 要約：このメールは prompt engineering、context engineering、harness engineering を切り分けた。Prompt は single input、context は multi-step task で何を残すか、harness は action、verification、failure recovery を持つ machine である。Gather、Act、Verify を agent loop の基本構造として置き、agent は API call ではなく runnable system だと説明している。
-
-### Daily Dose of DS：Build an automated Agent optimization workflow
-
-- 出典：Daily Dose of Data Science
-- 日付：2026-05-24
-- リンク：https://www.comet.com/docs/opik/v1/agent_optimization/overview
-- 要約：このメールは Comet Opik の agent optimization workflow も推薦していた。Prompt / agent versions、evaluation dataset、optimizer、result comparison を closed loop にし、agent engineering が「良い prompt を書く」だけではなく、reproducible evaluation と iteration の工程になっていることを補足している。
 
 ### Every：Cheap Competence, New Frontier
 

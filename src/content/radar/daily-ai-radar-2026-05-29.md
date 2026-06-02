@@ -99,13 +99,6 @@ draft: false
 - 链接：https://lukefan.com/2026/05/29/pope-leo-xiv-ai-encyclical-human-dignity/
 - 摘要：老范围绕教皇 AI 通谕讨论人工智能时代的人类尊严、劳动价值、模型权力集中和自动化武器伦理，并解释为什么 Anthropic 会出现在相关叙事中。这个中文来源的价值在于把 AI 安全从模型公司新闻拉回社会制度、宗教伦理和劳动秩序。它不是官方确认源，但提供了中文读者需要的产业与社会语境。
 
-### Boston Children’s 用 OpenAI 技术辅助罕见病诊断与运营负担下降
-
-- 来源：OpenAI
-- 日期：2026-05-29
-- 链接：https://openai.com/index/boston-childrens-hospital
-- 摘要：OpenAI 披露 Boston Children’s Hospital 使用 AI 改善病患照护、降低运营负担，并帮助诊断 40 多个罕见病案例。医疗场景的信号意义在于：AI 落地越来越依赖受控流程、专家监督、数据治理和结果解释，而不是简单把模型放给终端用户自由问答。它与本期治理和评测条目一起说明，高风险行业的 AI 采用会更重视证据链和责任边界。
-
 ## 5. GitHub 热门 repo & 趋势追踪
 
 ### revfactory/harness 把 agent 团队设计推向可组合技能层

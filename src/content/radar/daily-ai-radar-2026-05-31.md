@@ -21,35 +21,30 @@ draft: false
 ## 本期范围
 
 - 覆盖时间：2026-05-29 至 2026-05-31。
-- 本期基于核心水源、官方三家确认源、GitHub 趋势和邮件原文重新整理；不再用单一平台补录替代日报主线。
-
----
-![DoorDash LLM chatbot simulation and evaluation flywheel](https://substackcdn.com/image/fetch/$s_!L2Ta!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5832df44-5f71-4dcf-b4e9-6f38f771758d_2054x1852.png)
-
-*代表图来自 [How DoorDash Built a Testing System to Evaluate LLMs](https://blog.bytebytego.com/p/how-doordash-built-a-testing-system)。它对应本期最核心的工程信号：AI 产品不是靠一次 prompt 变好，而是靠可重复的模拟、评测和回归闭环变好。*
+- 本期基于核心水源、官方三家确认源、GitHub 趋势快照和邮件原文重新整理；不再重复使用 5 月 29 日和 5 月 30 日已经进入日报的链接。
 
 ## 1. AI Engineering & 架构
 
-### DoorDash 用模拟与评测飞轮压低客服 LLM 幻觉
+### Latent.Space：AI FDE 的回潮说明 agent 落地仍需要贴近业务现场
 
-- 来源：ByteByteGo
+- 来源：Latent.Space / AINews
 - 日期：2026-05-30
-- 链接：https://blog.bytebytego.com/p/how-doordash-built-a-testing-system
-- 摘要：DoorDash 的客服 chatbot 问题不是缺少上下文，而是原始订单、配送、退款和工具调用信息太多，模型会误读字段并生成不存在的政策。工程团队把改进方式改成离线 flywheel：先用历史工单提取用户画像和场景，再让 LLM 扮演顾客完成多轮对话，最后用校准过的人类一致性 LLM judge 检查是否遵守政策。系统可在 5 分钟内跑 200 多段模拟会话，并覆盖 50 多个评测维度。最值得借鉴的是 case state：把原始工具历史蒸馏成结构化中间状态，减少上下文噪声。它说明 AI 客服的可靠性来自模拟、评测、状态抽象和人工校准的组合，而不是单纯换更强模型。
+- 链接：https://www.latent.space/p/ainews-founders-and-forward-deployed
+- 摘要：Latent.Space 在周末 AINews 中把 Founders、Forward Deployed Engineers 和 AI Engineer workflow 放在一起讨论。它的重点不是给 FDE 换一个时髦名字，而是指出 agent 和 AI coding 工具越强，越需要有人把客户流程、权限、数据、评测和交付节奏翻译成可运行系统。这个信号适合放在架构栏目：AI 产品从 demo 进入现场，瓶颈往往不是模型调用，而是业务语境、系统边界和可维护 workflow。
 
-### Agent 崩溃恢复正在变成状态一致性问题
+### Every 的 After Automation 提醒：自动化越强，人类要做的框架工作越多
 
-- 来源：Daily Dose of Data Science
-- 日期：2026-05-29
-- 链接：https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like
-- 摘要：这篇文章把 agent crash 与数据库 crash 区分开来：数据库恢复可以依赖确定性 replay，而 agent 如果重新跑一遍，模型可能改变之前的判断、工具调用和分支。长任务 agent 因此需要 checkpoint/resume、可序列化的中间状态、精确的上下文重建，以及必要时的人类暂停点。文章还把 Google Cloud Agent Platform 的 Memory Bank、Resume Agents、Ambient Agents 放在这个语境下看：agent memory 不是“多放一点 RAG”，而是把任务状态当作一致性资产来管理。
+- 来源：Every
+- 日期：2026-05-31
+- 链接：https://every.to/p/after-automation
+- 摘要：Every 周日邮件把 Dan Shipper 的 “After Automation” 作为本周工作方式主线之一。它的核心不是“AI 会减少人类工作”，而是模型越能执行，人类越需要提出好问题、定义清楚目标、拆分框架、审查体验并沉淀方法。对 agent 工程来说，这解释了为什么 goal、规则、审计、复盘和质量门禁会越来越重要：自动化扩大的是可执行空间，而不是替人决定什么值得做。
 
-### AI Forward Deployed Engineer 是过渡角色，AI Engineer 才是长期主体
+### Every 的 Proof 更新提醒：agent 协作必须保留人的归属和修改链
 
-- 来源：The Batch / DeepLearning.AI
-- 日期：2026-05-29
-- 链接：https://www.deeplearning.ai/the-batch/issue-355
-- 摘要：Andrew Ng 在 The Batch 中讨论了 AI Forward Deployed Engineer 的回潮：这类角色嵌入客户组织，把通用 LLM、agent workflow、评测和业务约束落成定制系统。文章的判断是，FDE 会存在，但长期岗位主体会是更广泛的 AI Engineer，因为大多数公司更需要内部团队持续构建、维护和选择供应商中立的 AI 应用。这个信号与 DoorDash、Braintrust 的案例相互呼应：AI 工程的稀缺点不是会不会调用模型，而是能不能把模型放进客户反馈、测试、部署和业务沟通的闭环。
+- 来源：Every
+- 日期：2026-05-31
+- 链接：https://www.proofeditor.ai/
+- 摘要：Every 在周日 Context Window 中提到 Proof 本周围绕协作文档提交了 8 个 PR，重点是共享文档的归属和修订署名：第一位打开文档的人会成为归属者，后续编辑也保留人的名字。这个细节很小，但对 agent 协作很关键。AI 参与文档、报告和审校后，系统必须能回答“谁创建、谁改过、为什么改”，否则审计链会断，团队也很难放心把 agent 放进正式工作流。
 
 ## 2. 模型前沿 & 算法探索
 
@@ -66,6 +61,13 @@ draft: false
 - 日期：2026-05-29
 - 链接：https://www.bloomberg.com/news/features/2026-05-28/apple-ios-27-photos-screenshots-revamped-siri-pro-camera-app-new-ai-features
 - 摘要：The Rundown 摘要了 Bloomberg 关于 Apple 新 Siri 的报道：新版 Siri 可能用 Gemini 重建，包含类似 ChatGPT 的专用 app、Dynamic Island 入口、AI search、屏幕与本机数据理解，以及第三方 AI agent 支持。这个信号放在模型前沿栏目，是因为它说明多模态和 agent 能力的下一轮竞争不只发生在 API 控制台，也会流向手机 OS 的默认入口。
+
+### OpenAI 的 Boston Children’s 案例显示医疗 AI 需要流程化监督而非自由问答
+
+- 来源：OpenAI
+- 日期：2026-05-29
+- 链接：https://openai.com/index/boston-childrens-hospital
+- 摘要：OpenAI 披露 Boston Children’s Hospital 使用 AI 改善病患照护、降低运营负担，并帮助诊断 40 多个罕见病案例。这个条目没有放进 5 月 29 日日报，是为了控制官方三家来源占比；在 5 月 31 日作为周末窗口补入更合适。医疗场景的重点不是“模型会诊断”，而是受控流程、专家监督、数据治理和结果解释。高风险行业采用 AI 时，证据链和责任边界比单次回答能力更重要。
 
 ## 3. 实战代码 & 工具库
 
@@ -92,41 +94,48 @@ draft: false
 - 链接：https://lukefan.com/2026/05/31/anthropic-pre-ipo-funding-ai-bubble/
 - 摘要：老范把 Anthropic 近期动作串成一条资本市场主线：限制未授权股权转让、释放盈利信号、融资到 650 亿美元、投后估值接近 9650 亿美元、并发布 Claude Opus 4.8。文章的价值在于提醒读者不要把不同时间点、不同口径的 ARR 直接比较，也不要把“AI 真实有用”与“上市窗口估值合理”混为一谈。它把 Anthropic 放进更大的 IPO 与泡沫周期里看，是本期中文来源中最值得保留的一条。
 
+### Every 记录 Doctronic 处方续签试点：过度谨慎反而是医疗 AI 的早期安全信号
+
+- 来源：Every
+- 日期：2026-05-31
+- 链接：https://commerce.utah.gov/wp-content/uploads/2026/05/Doctronic-Outcomes-May-2026.pdf
+- 摘要：Every 周日邮件引用 Utah Office of AI Policy 对 Doctronic 处方续签试点的前五个月观察：AI 会收集患者信息并给出续签或升级给医生的建议，医生大多数情况下认可建议；更关键的是，被 AI 升级给医生的案例里，医生也经常认同这种升级。Every 的解读是，早期医疗 AI 像“谨慎的初级医生”并不是坏事。它提示我们，高风险 AI 产品的理想状态不是自信地自动放行，而是在不确定时保守升级。
+
 ## 5. GitHub 热门 repo & 趋势追踪
 
-### Every 把 compound engineering 写成可安装的 agent 工作流插件
+### MoneyPrinterTurbo 把短视频生成流水线推成“一键式”应用
 
-- 来源：GitHub Trending / Every
+- 来源：GitHub Trending / harry0703
 - 日期：2026-05-31
-- 链接：https://github.com/EveryInc/compound-engineering-plugin
-- 摘要：Every 的 `compound-engineering-plugin` 出现在 GitHub 趋势里，与同日 Every newsletter 的主题互相印证：compound engineering 从一篇方法论文章变成了可安装到 Claude Code、Codex、Cursor 等工具里的工作流插件。这个 repo 值得跟踪，因为它把“计划、执行、审查、沉淀经验”的流程外化成工程约束，而这正是本次 AI 雷达生产线修复要补上的能力。
+- 链接：https://github.com/harry0703/MoneyPrinterTurbo
+- 摘要：`MoneyPrinterTurbo` 在 5 月 31 日趋势快照里位居前列，主打一键生成高清短视频，覆盖脚本、配音、字幕和成片流程。它的趋势意义不在“又一个自动剪视频工具”，而在内容生产链继续被端到端封装：从文本生成、TTS、素材组织到最终视频，越来越多工具试图把多模型 pipeline 包成普通用户能运行的产品。
 
-### revfactory/harness 把 agent 团队设计推向“可组合技能”层
+### Scrapling 用自适应抓取框架处理反爬与全流程网页采集
 
-- 来源：GitHub Trending / revfactory
+- 来源：GitHub Trending / D4Vinci
 - 日期：2026-05-31
-- 链接：https://github.com/revfactory/harness
-- 摘要：`revfactory/harness` 主打用 meta-skill 设计领域专用 agent teams：把任务拆成 specialized agents、skills 和 orchestration，而不是只让一个通用 agent 硬扛全部上下文。它的趋势价值在于命名很准确：agent 可靠性越来越依赖 harness，而 harness 本身正在变成可复用、可组合、可审计的软件资产。
+- 链接：https://github.com/D4Vinci/Scrapling
+- 摘要：`Scrapling` 是一个 Python 网页抓取框架，强调自适应处理 anti-bot 场景，并覆盖从单次请求到完整 crawl 的任务。对 AI 雷达这类自动化内容系统来说，抓取工具本身就是基础设施：网页越来越多使用 JS、challenge、重定向和登录墙，可靠采集不能只靠简单 HTTP。它值得跟踪，因为 agent 和研究流水线都需要更稳的网页读取层。
 
-### liteparse 把文档解析继续推向轻量开源基础设施
+### hermes-webui 把 autonomous agent 的 CLI 能力搬进 Web 操作界面
 
-- 来源：GitHub Trending / run-llama
+- 来源：GitHub Trending / nesquena
 - 日期：2026-05-31
-- 链接：https://github.com/run-llama/liteparse
-- 摘要：`run-llama/liteparse` 是 LlamaIndex 生态里一个轻量文档解析项目。它不是最吸睛的模型发布，但对实际 RAG、agent 工具调用和知识库流水线很关键：文档解析质量会直接影响后续检索、摘要、评测和引用。把这类项目纳入趋势栏目，可以避免日报只追逐模型 headline，而漏掉真正决定生产系统质量的底层工具。
+- 链接：https://github.com/nesquena/hermes-webui
+- 摘要：`hermes-webui` 为 Hermes autonomous agent 提供 Web 界面，强调 CLI parity 和 persistent memory access。它代表一个正在变清楚的产品方向：agent 不能永远停留在命令行黑箱里，用户需要可视化任务、记忆、操作记录和控制点。Web UI 不是装饰，而是让非专家也能理解和接管 agent 工作流的必要层。
 
 ## 📬 Newsletter 精选
 
-### Every：Compound Engineering 从四步扩展到八步
+### Every：How We Work Now
 
 - 来源：Every
-- 日期：2026-05-29
-- 链接：https://every.to/guides/compound-engineering-gets-an-upgrade
-- 摘要：Every 原文把 compound engineering 从 “brainstorm → work → review → compound → repeat” 扩展为 “ideate → brainstorm → plan → work → review → polish → compound → repeat”。它强调 AI 做中间的执行层，人仍要在开头决定什么值得做、在结尾判断体验是否真正成立。这不是简单的方法论文章，而是对 agent 工程质量控制的补课：如果没有 ideation、polish 和 compound，自动化只会放大已有偏差。
+- 日期：2026-05-31
+- 链接：https://every.to/context-window/how-we-work-now
+- 摘要：Every 周日邮件把 Codex 知识工作指南、compound engineering 更新、Opus 4.8 Vibe Check、After Automation 讨论、Proof 文档协作和 Doctronic 医疗试点串在一起。它的价值是提供工作方式层面的索引：AI 不是单点工具，而是在写作、代码、文档、运营和医疗判断里同时改变“谁做、怎么审、如何留痕”。
 
-### AI Valley：Anthropic 估值和开发者生产力成为同日主叙事
+### Daily Dose：Introduction to Deep RL and DQN
 
-- 来源：AI Valley
-- 日期：2026-05-29
-- 链接：https://www.theaivalley.com/p/anthropic-is-bigger-than-openai-now
-- 摘要：AI Valley 当日邮件把 Anthropic 接近万亿美元估值、Claude 4.8、Apple Siri 与开发者生产力报告放在同一期。与老范的资本视角不同，AI Valley 更像一张英文信息流索引：它提示哪些话题正在跨来源传播，哪些需要回到官方或一手链接再确认。保留它的意义，是让 Newsletter 精选恢复原意：不是说正文已经吸收完毕，而是记录邮件原文里值得继续追踪的主题信号。
+- 来源：Daily Dose of Data Science
+- 日期：2026-05-31
+- 链接：https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn
+- 摘要：Daily Dose 当日邮件主推 Deep RL 与 DQN，并同时提到 Google 的 5 天 AI Agents 课程、PCA vs. t-SNE 等学习内容。它值得保留在 Newsletter 精选里，是因为 RL 正在重新成为 LLM 后训练、alignment 和 agent 行为优化的基础能力；同时，Google 课程也说明 agent 教育正在从概念介绍转向工具集成、上下文工程、eval、安全和部署的完整路径。

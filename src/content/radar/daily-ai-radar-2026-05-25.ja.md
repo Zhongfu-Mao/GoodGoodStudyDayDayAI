@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-05-25"
 date: 2026-05-25
 category: radar
 cadence: daily
-plainSummary: "今日の signal は 3 層に集まっています。Deep Research と vector indexing は agent / retrieval systems をより engineering-driven な architecture へ押し上げ、AlphaProof Nexus と Mythos は verifiable mathematics と vulnerability discovery を進め、Bumblebee、Onyx、public repos は AI risk、evaluation、research workflows を runnable systems に落としています。"
+plainSummary: "今日の signal は 3 層に集まっています。Deep Research と vector indexing は agent / retrieval systems をより engineering-driven な architecture へ押し上げ、AlphaProof Nexus と Mythos は verifiable mathematics と vulnerability discovery を進め、Bumblebee、ONNX、public result repos は AI risk、evaluation、research workflows を runnable systems に落としています。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -94,13 +94,6 @@ draft: false
 - 要約：McKinsey の partner compensation と client fee structure の見直しに関する報道は、consulting industry が hours-based billing から outcomes-based pricing へ移っていることを示しています。AI が analysis、documents、operations delivery を効率化すると、clients は person-days だけで払うことを受け入れにくくなります。この signal は consulting に限りません。Knowledge services 全体が、models によって execution cost が下がった後、outcomes、value attribution、new incentives、business models をどう定義するかを迫られています。
 
 ## 5. GitHub 人気 repo & トレンド追跡
-
-### onyx-dot-app/onyx：enterprise Deep Research と knowledge retrieval が同じ open-source system に近づいている
-
-- 出典：GitHub / Daily Dose of Data Science
-- 日付：2026-05-25
-- リンク：https://github.com/onyx-dot-app/onyx
-- 要約：Daily Dose of DS は Onyx を open-source deep researcher の代表例として取り上げました。Public repository は enterprise search、connectors、knowledge base、agentic research を対象にしています。第五象限で追う理由は、Deep Research が consumer product feature だけではなく、internal document permissions、connectors、research task decomposition、citation synthesis、permission boundaries、deployment shape と結びついた enterprise knowledge system になりつつあるからです。
 
 ### onnx/onnx：model exchange format continues to serve as the contract layer between training frameworks and runtimes
 

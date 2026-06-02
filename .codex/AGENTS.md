@@ -180,7 +180,7 @@ The Rundown AI 站点级规则：
 
 ### 3.8 资源生成
 
-- **日报代表图**：冻结 Markdown 后、生成 NotebookLM 信息图前，先跑 `npm run radar:images`，从日报里的原始链接补入外链代表图；NotebookLM 信息图继续写入 `coverImage` 作为顶部封面。
+- **日报代表图**：冻结 Markdown 后、生成 NotebookLM 信息图前，只有在 frontmatter 显式写入 `representativeImageSource` 时才跑 `npm run radar:images` 补入外链代表图；禁止脚本从普通正文链接里猜测“第一张可用图”。`representativeImageSource` 必须来自本期明确主线或审计记录里的 lead item。若无明确 lead item，宁可不插入外链代表图。NotebookLM 信息图继续写入 `coverImage` 作为顶部封面。
 - **日报**：中日双语的信息图与音频分支独立生成。
 - **周报 / 月报**：Audio、Slide/Deck、Infographic 必须 **全部生成**，或在报告中明确说明不可用原因。
 - **周报 / 月报音频**：commit 前必须跑仓库的音频压缩路径，避免发布原始 NotebookLM MP3。

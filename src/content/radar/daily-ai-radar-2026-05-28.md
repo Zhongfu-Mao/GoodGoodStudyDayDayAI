@@ -125,13 +125,6 @@ draft: false
 - 链接：https://www.dailydoseofds.com/
 - 摘要：这封邮件用可视化方式区分传统 RAG、Graph RAG 与 Agentic RAG，同时包含 tool calling 教程。它是本期检索和工具调用基础层的主要来源。
 
-### Every：Vibe Check: Opus 4.8
-
-- 来源：Every
-- 日期：2026-05-28
-- 链接：https://every.to/vibe-check/opus-4-8-vibecheck
-- 摘要：Every 评测 Opus 4.8 的工程与写作能力，同时把“模型强”和“产品外壳好用”拆开讨论。正文吸收了这层产品化判断。
-
 ### The Rundown AI：Exclusive: Demis Hassabis on when AGI arrives
 
 - 来源：The Rundown AI

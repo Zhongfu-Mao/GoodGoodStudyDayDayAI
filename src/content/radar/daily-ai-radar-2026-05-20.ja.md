@@ -26,7 +26,7 @@ draft: false
 
 ### Google I/O 2026 は Gemini の主線を agentic era へ進めた
 
-- 出典：Google
+- 出典：Every + Google
 - 日付：2026-05-19
 - リンク：https://blog.google/innovation-and-ai/sundar-pichai-io-2026/
 - 要約：Google は I/O 2026 で今年のテーマを agentic Gemini era と位置づけ、model、chip、Search、Workspace、Antigravity、enterprise Agent platform、science tools を一つの product line に並べました。AI Overviews、AI Mode、Gemini app、model API の利用拡大も示され、Google の焦点が単一 chat entry ではなく、Gemini を cross-product action layer にすることへ移っていると分かります。Engineering team にとっての変化は、Agent capability が search、office、development、enterprise workflow と一緒に提供され始めたことです。
@@ -90,14 +90,14 @@ draft: false
 
 ### getzep/graphiti は Agent memory を temporal context graph に寄せている
 
-- 出典：GitHub
+- 出典：Daily Dose of Data Science + GitHub
 - 日付：2026-05-20
 - リンク：https://github.com/getzep/graphiti
 - 要約：Graphiti は AI Agents 向けの temporal context graph framework で、fact が時間とともに変わること、provenance、incremental updates、hybrid retrieval、historical queries を重視します。Daily Dose of DS の当日メールも Hermes / Agent memory の文脈で Graphiti を扱っており、developers が chat history や static RAG より long-term Agent に合う memory layer を探していることが分かります。価値は知識グラフそのものではなく、Agent が「今正しいこと」「過去に正しかったこと」「情報源」を区別できる点です。
 
 ### gastownhall/gascity は multi-agent orchestration を configurable SDK にしている
 
-- 出典：GitHub
+- 出典：Every + GitHub
 - 日付：2026-05-20
 - リンク：https://github.com/gastownhall/gascity
 - 要約：Gas City は multi-agent coding workflows 向けの orchestration-builder SDK で、runtime providers、work routing、work tracking、controller / supervisor loop、declarative city configuration を提供します。Every の 05-19 メールは Gas City を Gas Town の 100-agent software factory の延長として紹介し、公開 repo はその経験を configurable infrastructure に落とし込んでいます。Trend としては、multi-agent が demo script から health check、state convergence、project-level config を持つ engineering framework へ移っています。

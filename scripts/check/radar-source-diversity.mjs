@@ -4,6 +4,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
+import { isDailyRadarFileInRange, parseDateRangeArgs } from './radar-date-range.mjs';
 
 if (isCliEntry()) {
   await main();
@@ -16,14 +17,17 @@ async function main() {
 
   const sourcePool = JSON.parse(await readFile(sourcePoolPath, 'utf8'));
   const gate = sourcePool.publicationGate ?? {};
-  const enforceFromDate = parseFromDateArg() ?? gate.enforceDailyFrom ?? '9999-99-99';
+  const range = parseDateRangeArgs(process.argv, {
+    from: gate.enforceDailyFrom ?? '9999-99-99',
+    to: '9999-99-99',
+  });
   const failures = [];
 
   checkSourcePoolConfig(sourcePool, failures);
 
   const files = (await readdir(radarDir))
     .filter((file) => /^daily-ai-radar-\d{4}-\d{2}-\d{2}(?:\.ja)?\.md$/.test(file))
-    .filter((file) => extractDate(file) >= enforceFromDate)
+    .filter((file) => isDailyRadarFileInRange(file, range))
     .sort();
 
   const byDate = new Map();
@@ -73,9 +77,9 @@ export function extractSourceGroups(body, sourcePool) {
 
 function buildSourceAliases(config) {
   const buckets = [
+    ['trendSources', 'trend'],
     ['activeCoreSources', 'core'],
     ['officialConfirmationSources', 'official-triad'],
-    ['trendSources', 'trend'],
     ['canonicalConfirmationSources', 'canonical'],
   ];
   const aliases = [];
@@ -98,17 +102,6 @@ function buildSourceAliases(config) {
 
 function extractDate(file) {
   return file.match(/^daily-ai-radar-(\d{4}-\d{2}-\d{2})/)?.[1] ?? '';
-}
-
-function parseFromDateArg() {
-  const index = process.argv.indexOf('--from');
-  const value = index === -1 ? '' : process.argv[index + 1];
-  if (!value) return null;
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-    console.error(`Invalid --from date: ${value}`);
-    process.exit(1);
-  }
-  return value;
 }
 
 function extractSourceLabels(body) {
@@ -137,6 +130,7 @@ function normalizeLabel(label) {
 
 function checkFile(file, body, groups, sourcePool, fileFailures) {
   const gate = sourcePool.publicationGate ?? {};
+  const exception = findHistoricalException(sourcePool, file);
   const minimumEntries = gate.minimumEntries ?? 0;
   const minimumSourceFamilies = gate.minimumSourceFamilies ?? 0;
   const minimumCoreEntries = gate.minimumCoreEntries ?? 0;
@@ -185,7 +179,10 @@ function checkFile(file, body, groups, sourcePool, fileFailures) {
     );
   }
 
-  if (activeCoreEntries < minimumActiveCoreEntries) {
+  if (
+    activeCoreEntries < minimumActiveCoreEntries &&
+    !exception?.skipChecks?.includes('minimumActiveCoreEntries')
+  ) {
     fileFailures.push(
       `${file}: has ${activeCoreEntries} active-core source entries, expected at least ${minimumActiveCoreEntries}`,
     );
@@ -234,6 +231,16 @@ function checkFile(file, body, groups, sourcePool, fileFailures) {
       }
     }
   }
+}
+
+function findHistoricalException(sourcePool, file) {
+  const date = extractDate(file);
+  const locale = file.endsWith('.ja.md') ? 'ja' : 'zh';
+  return (sourcePool.historicalExceptions ?? []).find((entry) => {
+    if (entry.date !== date) return false;
+    if (entry.locales && !entry.locales.includes(locale)) return false;
+    return true;
+  });
 }
 
 function extractNewsletterBlock(body) {

@@ -65,14 +65,14 @@ draft: false
 
 - 出典：The Batch / DeepLearning.AI
 - 日付：2026-05-15
-- リンク：https://www.deeplearning.ai/the-batch/issue-353
+- リンク：https://www.nist.gov/news-events/news/2024/11/us-ai-safety-institute-establishes-new-us-government-taskforce-collaborate
 - 要約：The Batch は、NIST が主導する多機関タスクフォース TRAINS が、frontier model の公開前にサイバーセキュリティ、バイオセキュリティ、化学兵器などの国家安全リスクを評価すると報じた。複数の米国 AI 企業は公開前にモデルを提出することに同意している。これは以前の規制緩和寄りの政策から大きく変わる動きで、将来的には強制的な行政要件になる可能性もある。モデル公開では、ベンチマーク性能だけでなく、事前テスト、緩和策、リスク処理の透明性が争点になりつつある。
 
 ### The Batch は新しい Realtime API 音声モデルを追い、低遅延音声 Agent が調整可能な推論段階へ入った
 
 - 出典：The Batch / DeepLearning.AI
 - 日付：2026-05-15
-- リンク：https://www.deeplearning.ai/the-batch/issue-353
+- リンク：https://openai.com/index/advancing-voice-intelligence-with-new-models-in-the-api/
 - 要約：The Batch は OpenAI の新しい Realtime API 音声モデルをまとめた。GPT-Realtime-2 は configurable reasoning effort、parallel tool calls、tool-call narration、tone control を備える。GPT-Realtime-Translate は 70 以上の入力言語と 13 の出力言語を対象にした音声翻訳、GPT-Realtime-Whisper は文字起こしを担当する。音声 Agent にとって重要なのは、リアルタイム音声が単なる speech-to-text + text response ではなく、end-to-end audio、遅延、推論強度、tool calling、多言語翻訳の間で製品レベルの設計判断を要求する点だ。
 
 ## 3. 実践コード & ツールライブラリ
@@ -104,7 +104,7 @@ draft: false
 
 - 出典：The Batch / DeepLearning.AI
 - 日付：2026-05-15
-- リンク：https://www.deeplearning.ai/the-batch/issue-353
+- リンク：https://www.nature.com/articles/s43018-026-01127-0
 - 要約：The Batch は、Google の乳がん検出システムを英国の現実の screening workflow で評価した 2 件の研究を報じた。retrospective test では、いくつかの指標で最初の人間の読影医を上回り、人間が見落として後に判明したがんの一部も検出した。二人目の読影医を代替する simulation では、人間の作業量を減らせる可能性が示された一方、arbitration に回る症例は増えた。重要なのは「AI が医師を置き換える」ことではなく、double reading、arbitration、trust、explainability の既存流程に組み込めるかである。
 
 ## 5. GitHub 人気 repo & トレンド追跡

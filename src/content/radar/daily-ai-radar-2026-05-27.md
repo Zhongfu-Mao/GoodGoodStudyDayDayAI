@@ -116,13 +116,6 @@ draft: false
 - 链接：https://github.com/InsForge/InsForge
 - 摘要：InsForge 的核心价值在于把后端结构整理成 agent 可直接使用的上下文，从而降低模型在代码库中反复探路的成本。这个 repo 适合作为 coding-agent 工程实践的观察对象：未来很多“AI 编程效率”不会只来自更强模型，而会来自更好的项目索引、上下文声明、接口约束和工具调用边界。
 
-### onyx-dot-app / onyx：用 orchestrator 和隔离研究 agent 组织 deep research
-
-- 来源：GitHub Trending / Daily Dose of Data Science
-- 日期：2026-05-25
-- 链接：https://github.com/onyx-dot-app/onyx
-- 摘要：Daily Dose 介绍 Onyx 在 DeepResearch Bench 上的架构：orchestrator 自身不直接搜索，而是生成自洽的任务 brief，再分派多个隔离 research agents，最后做重复证据整理、重编号和 citation map 合并。这个设计值得放入趋势追踪，因为它把 deep research 从“一个 agent 长上下文搜索”转成“任务分解、隔离执行、证据合并”的系统问题，也更容易做可重复评测。
-
 ## 📬 Newsletter 精选
 
 ### Daily Dose of Data Science：Hermes Agent Masterclass

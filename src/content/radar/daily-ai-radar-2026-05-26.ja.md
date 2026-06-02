@@ -31,13 +31,6 @@ draft: false
 - リンク：https://blog.bytebytego.com/p/how-vercel-cut-build-wait-times-from
 - 要約：ByteByteGo は、Vercel が build provisioning を 90 秒から 5 秒へ短縮した方法を復盤しました。重要なのは単に container を使うことではなく、user-submitted build scripts を hostile multi-tenancy として扱うことです。Code が malicious かもしれない以上、shared kernel に依存する containers だけでは足りません。Vercel は Firecracker microVM を各 build cell の boundary にし、local image cache、block device snapshot、warm pool を重ねました。Coding agent や automated execution platform にとって、この case は重要です。Model に third-party code を実行させるなら、architecture の中心は isolation、cold start、cost、destroy policy、failure domain になります。
 
-### ByteByteGo は CockroachDB C-SPANN を通じて、vector index が database の distributed semantics を継承すべきだと示した
-
-- 出典：ByteByteGo
-- 日付：2026-05-25
-- リンク：https://blog.bytebytego.com/p/how-cockroachdb-built-vector-indexing
-- 要約：CockroachDB の C-SPANN は、single-node vector store を SQL の横に付けるのではなく、vector index を CockroachDB の range、replication、sharding、rebalancing mechanism に入る ordinary table data として扱います。Article は六つの constraints を強調します。central coordinator を置かない、大きな in-memory cache に依存しない、network hops を抑える、data layout が shardable である、hot spots を作らない、inserts/deletes を real-time に反映する。さらに RaBitQ で 1536-dimensional embedding を約 200 bytes に圧縮し、full-precision rerank で approximation error を補います。Agent memory や enterprise retrieval は「vector database を足す」だけではなく、transactional consistency、tenant prefixes、regional residency、query path を一緒に設計する問題です。
-
 ### Every は Codex を code generator ではなく knowledge-work operating system として捉えた
 
 - 出典：Every
@@ -108,20 +101,6 @@ draft: false
 - 要約：The Rundown AI は、Pope Leo XIV が AI ethics、power concentration、automated weapons decisions について述べた内容を報じ、Anthropic の Christopher Olah が Vatican 関連の場で frontier lab incentives を議論したことにも触れました。これは technical breakthrough ではありませんが、AI governance が religion、international law、public moral frameworks に入っていることを示します。誰が powerful AI を control するのか、どの decisions を machine に任せてはいけないのか、commercial incentives は social interest からずれるのか。これらは regulation と product boundary に影響し続けます。
 
 ## 5. GitHub 人気 repo & トレンド追跡
-
-### comet-ml / opik：agent evaluation、observability、optimization を一つの open-source workbench に入れる
-
-- 出典：GitHub / Comet Opik
-- 日付：2026-05-24
-- リンク：https://github.com/comet-ml/opik
-- 要約：Opik は Comet が維持する open-source LLM evaluation and observability tool です。Daily Dose email はこれを agent optimization workflow と結びつけました。単なる evaluation UI ではなく、prompt、trace、dataset、score、optimization process を一つの workbench に入れる点が重要です。Agent applications が複雑になるほど、team は one-off manual review ではなく、replayable、comparable、optimizable quality system を必要とします。
-
-### cockroachdb / cockroach：vector search が distributed transactional database の mainline に入る
-
-- 出典：GitHub / CockroachDB
-- 日付：2026-05-25
-- リンク：https://github.com/cockroachdb/cockroach
-- 要約：CockroachDB の C-SPANN は、main database が multi-tenant、real-time、region-aware vector index を持てることを示しました。この repo を trend tracking に置く理由は、突然 vector database になったからではありません。AI retrieval capability が existing data systems に吸収され、transactions、permissions、deployment regions、schema、business queries と一緒に進化する流れを示しているからです。
 
 ### firecracker-microvm / firecracker：agent sandbox と serverless isolation は microVM infrastructure を再利用し続ける
 

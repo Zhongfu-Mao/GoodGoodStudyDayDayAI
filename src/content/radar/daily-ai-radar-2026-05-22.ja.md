@@ -38,13 +38,6 @@ draft: false
 - リンク：https://blog.dailydoseofds.com/p/agent-memory-is-only-as-good-as-its
 - 要約：Daily Dose は Zep Graphiti を使い、unstructured agent memory が高価な vector retrieval に退化しやすい理由を説明しました。Extraction model が entity、relationship、attributes を自由に決めると、nodes は Topic / Object になり、edges は RELATES_TO になり、多段 reasoning は安定して query できません。Article は Pydantic で entity types、edge types、source/target constraints を定義し、memory graph に domain semantics、validity windows、filterable attributes を持たせるべきだと主張します。Production agent では schema が reasoning boundary になります。
 
-### Every の After Automation は、automation が増えるほど expert work はむしろ前面に出ると論じた
-
-- 出典：Every
-- 日付：2026-05-21
-- リンク：https://every.to/p/after-automation
-- 要約：Dan Shipper は Every 内部の実践をもとに、automation が増えるほど human work が消えるのではなく、judgment と framing に近づくと論じました。Every は coding、writing、design、customer service、email で Codex、Claude Code、agent を広く使っていますが、人間の仕事は残り、むしろ形を変えています。Article は agent work を、委任できる agent employees と、Codex / Claude Code のように人間と agent が同じ work environment を共有する collaboration mode に分けます。Model は明示化された技能を commodity 化しますが、何をすべきか、どう評価するか、どこに boundary を置くかは expert work として残ります。
-
 ## 2. モデル最前線 & アルゴリズム探索
 
 ### Daily Dose は natural-language reward を追跡し、RL reward engineering が prompt engineering に近づいていると示した
@@ -53,13 +46,6 @@ draft: false
 - 日付：2026-05-21
 - リンク：https://blog.dailydoseofds.com/p/karpathys-prediction-about-rl-is
 - 要約：Daily Dose は Karpathy が reward function を低次元すぎる feedback と見ていた点を取り上げ、OpenPipe ART の RULER を例に新しい流れを説明しました。Real agent tasks では hand-coded scoring function が壊れやすく、team は natural language で evaluation criteria を定義し、LLM に trajectory を評価させる方向へ向かっています。Article は GRPO で Qwen3 1.4B agent に 2048 を学習させ、agent が board を見て direction を選び、RULER が natural language definition に基づいて評価する例を示します。Reward engineering は readable、iterable、auditable な specification engineering へ近づいています。
-
-### Ahead of AI は KV sharing、mHC、compressed attention を整理し、long-context cost optimization を示した
-
-- 出典：Ahead of AI
-- 日付：2026-05-16
-- リンク：https://magazine.sebastianraschka.com/p/recent-developments-in-llm-architectures
-- 要約：Sebastian Raschka の article は Programmer Weekly の 05-21 issue でも再紹介され、open-weight models が Transformer block をどう変えて long-context cost を下げているかを整理しています。Covered topics include cross-layer KV sharing、layer-wise attention budgeting、compressed convolutional attention。重要なのは、industry が attention を捨てるのではなく、core structure を保ったまま memory と inference overhead を削る方向へ進んでいることです。Agent、retrieval、long-running tasks が context を長くするほど、KV cache、attention budget、compression strategy は deployability を直接左右します。
 
 ### The Batch は agent benchmark と real labor distribution のずれを論じた
 
@@ -86,6 +72,13 @@ draft: false
 - リンク：https://openai.com/index/adventhealth
 - 要約：OpenAI は AdventHealth が ChatGPT Enterprise と ChatGPT for Healthcare を clinical documentation、utilization management、operations workflows に展開している case を公開しました。価値があるのは governance と measurement です。AdventHealth は adoption を product として扱い、messages per user per business day を追跡し、electronic health record timestamps で workflow time changes を測定し、clinical / operational peer groups が prompts、workflows、best practices を共有します。Healthcare AI の bottleneck は chart summary ではなく、trust、compliance、workflow redesign、real usage を operating system にすることです。
 
+### The Batch は Google Threat Intelligence report を通じて、AI security risk が industrialized attack chain へ進むと警告した
+
+- 出典：The Batch / Google Threat Intelligence Group
+- 日付：2026-05-22
+- リンク：https://cloud.google.com/blog/topics/threat-intelligence/ai-vulnerability-exploitation-initial-access
+- 要約：The Batch の 05-22 issue は、Google Threat Intelligence Group の report を AI security の重要信号として扱いました。Attackers は generative models を vulnerability discovery、exploit generation、obfuscation networks、polymorphic malware、autonomous malware、AI environment を狙う software supply chain attacks に使い始めています。特に重要なのは、GTIG が AI-assisted と見られる 2FA bypass zero-day exploit を確認し、PROMPTSPY のように LLM を Android backdoor の autonomous operation loop に組み込む例を観測したことです。AI engineering teams は prompt jailbreak だけでなく、dependency chain、agent harness、model-access proxy、logging, least privilege, AI infrastructure initial-access risk を設計対象にする必要があります。
+
 ### 老范讲故事は domestic memory IPO を通じて、AI hardware cycle は compute narrative だけでは読めないと示した
 
 - 出典：老范讲故事
@@ -109,20 +102,6 @@ draft: false
 - リンク：https://github.com/onyx-dot-app/onyx
 - 要約：Daily Dose は 05-22 issue で Onyx を強く取り上げ、any LLM を使える self-hostable enterprise AI chat platform と説明しました。Onyx の signal は chat UI だけではなく、40+ connectors、full indexing、RAG、multi-tool agents、MCP、code interpreter、enterprise data sources を一つにまとめる点です。この kind of repo は enterprise AI entry point の open-source 化を示します。Organizations は Claude / Gemini / GPT の capability を使いたい一方で、data indexing、deployment boundary、permission control を自分で握りたいからです。
 
-### getzep / graphiti：agent memory には bitemporal graph と typed extraction が必要になる
-
-- 出典：GitHub / Daily Dose of Data Science
-- 日付：2026-05-22
-- リンク：https://github.com/getzep/graphiti
-- 要約：Graphiti は Daily Dose の structured agent memory discussion の central repo です。注目点は memory を similar text retrieval から typed nodes、typed edges、temporal validity、fact resolution、context templates へ進めることです。Agent が long-running tasks、cross-session collaboration、organizational knowledge を扱うほど、memory system は fact がいつ valid か、いつ newer fact に置き換えられたか、どの relationships が schema で許可されるかを知る必要があります。Graphiti のような project は agent platform の production layer に近い位置にあります。
-
-### OpenPipe / ART：natural-language reward と GRPO workflow が open-source agent training tool になりつつある
-
-- 出典：GitHub / Daily Dose of Data Science
-- 日付：2026-05-21
-- リンク：https://github.com/OpenPipe/ART
-- 要約：OpenPipe ART は Daily Dose の RL article で RULER implementation として出てきました。It lets teams write reward criteria in natural language, have an LLM score agent trajectories, and feed that signal into GRPO-style training workflows. この repo は、agent が良くできたかどうかを hand-written function ではなく readable specification and repeatable training loop に変える点で重要です。Open-source teams が small-model agents、game agents、task agents を train するほど、task trajectories を learning signal に変える tools の重要性は増します。
-
 ## 📬 Newsletter 精選
 
 ### The Rundown AI：Pichai interview、Codex updates、Printing Press は agent-native tool entry を示した
@@ -131,13 +110,6 @@ draft: false
 - 日付：2026-05-21
 - リンク：公開版リンクなし
 - 要約：The Rundown AI の 05-21 email は、Google I/O 後の Sundar Pichai interview を中心に、creators、everyday users、engineers、24/7 agents に関する Pichai の view を紹介しました。同じ issue は OpenAI の Codex updates、つまり Appshots、goal mode、locked computer use、advanced annotation も取り上げ、さらに Printing Press で website / API から agent-native CLI を生成する guide も載せています。Newsletter item としての価値は、agent entry が chat box から cross-device work、observable app context、agent-built command-line tools へ広がっていることをまとめている点です。
-
-### Every：Google I/O は flashy demo より AI gaps を product system に埋める方向だった
-
-- 出典：Every
-- 日付：2026-05-22
-- リンク：https://every.to/playtesting/notes-from-the-foothills-of-the-singularity
-- 要約：Every の Alex Duffy は 2026 Google I/O について、去年ほど flashy ではないが、おそらくより重要だったと論じました。Gemini 3.5 Flash、Search building small tools on the fly、laptop closed でも走り続ける Gemini assistants、Gemini Omni のような world model は、AI products の real usage gaps を埋める方向です。Article は Demis Hassabis の “foothills of the singularity” を引用し、Google は AI の benefits をもっと concrete に示す必要があると述べています。見るべきものは single demo ではなく、model capability が search、devices、productivity、science workflows に入る過程です。
 
 ### Programmer Weekly：Issue 301 は AI infra、LLM architecture、agent tools を developer view に載せた
 

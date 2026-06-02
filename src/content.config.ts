@@ -44,6 +44,7 @@ const forbiddenCourseFields = {
 export const radarSchema = baseBlogSchema.extend({
   category: z.literal('radar'),
   cadence: z.enum(['daily', 'weekly', 'monthly']).optional(),
+  representativeImageSource: z.string().url().optional(),
   audioUrl: z.string().optional(),
   audioDuration: z.number().int().positive().optional(),
   audioExplicit: z.boolean().default(false),

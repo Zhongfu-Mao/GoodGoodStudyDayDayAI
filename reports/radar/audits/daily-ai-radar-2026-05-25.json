@@ -101,11 +101,6 @@
       "usedFor": "industry item"
     },
     {
-      "url": "https://github.com/onyx-dot-app/onyx",
-      "status": 200,
-      "usedFor": "GitHub trend item"
-    },
-    {
       "url": "https://github.com/onnx/onnx",
       "status": 200,
       "usedFor": "GitHub trend item"
@@ -127,15 +122,15 @@
     }
   ],
   "publishedItems": {
-    "zh": 14,
-    "ja": 14,
+    "zh": 13,
+    "ja": 13,
     "newsletter": 2,
-    "githubTrend": 3
+    "githubTrend": 2
   },
   "selfReview": {
     "schema": "passed",
     "zhJaTopicOrder": "passed",
-    "duplicateLinks": "passed",
+    "duplicateLinks": "passed after removing the repeated Onyx GitHub trend item already covered on 2026-05-22",
     "forbiddenPublicTerms": "passed",
     "newsletterFormat": "passed",
     "checks": "passed"
