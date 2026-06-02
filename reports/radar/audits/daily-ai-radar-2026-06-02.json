@@ -1,0 +1,212 @@
+{
+  "date": "2026-06-02",
+  "cadence": "daily",
+  "localeSlugs": {
+    "zh": "daily-ai-radar-2026-06-02",
+    "ja": "daily-ai-radar-2026-06-02"
+  },
+  "status": "assets-generated-before-publish",
+  "sourceVisits": [
+    {
+      "name": "The Rundown AI",
+      "url": "https://www.therundown.ai/",
+      "method": "fetch-url/readability + gmail original",
+      "status": "homepage visible but article slug not found via HTTP; 2026-06-01 newsletter original confirmed in Gmail; only distinct unused newsletter subitems selected"
+    },
+    {
+      "name": "Latent.Space / AINews",
+      "url": "https://www.latent.space/feed",
+      "method": "fetch-url/rss + fetch-url/readability",
+      "status": "confirmed 2026-06-02 AINews issue; retained one public URL to avoid same-report duplicate links"
+    },
+    {
+      "name": "Daily Dose of Data Science",
+      "url": "https://blog.dailydoseofds.com/feed",
+      "method": "fetch-url/rss + gmail original",
+      "status": "checked; 2026-06-01 email topics already used in 2026-06-01 daily except lower-priority clustering note, so no 2026-06-02 reuse"
+    },
+    {
+      "name": "Every",
+      "url": "https://every.to/",
+      "method": "gmail search + GitHub trend cross-check",
+      "status": "confirmed 2026-06-01 public article Company-wide AI Implementation in Five Steps; no Gmail hit in 2026-06-01 to 2026-06-03 search; EveryInc compound-engineering-plugin was rejected because the same public link appeared in the 2026-05-29 daily"
+    },
+    {
+      "name": "ByteByteGo",
+      "url": "https://blog.bytebytego.com/feed",
+      "method": "fetch-url/rss + fetch-url/readability",
+      "status": "checked; 2026-05-30 DoorDash LLM evaluation article was rejected by dedupe because it already appeared in the 2026-05-30 daily"
+    },
+    {
+      "name": "老范讲故事",
+      "url": "https://lukefan.com/feed/",
+      "method": "fetch-url/rss + fetch-url/readability",
+      "status": "confirmed 2026-06-02 N1X / RTX Spark analysis"
+    },
+    {
+      "name": "The Batch / DeepLearning.AI",
+      "url": "https://www.deeplearning.ai/the-batch/",
+      "method": "fetch-url/readability + gmail search",
+      "status": "checked; no 2026-06-01 to 2026-06-03 Gmail hit and no new public issue after 2026-05-22"
+    },
+    {
+      "name": "Ahead of AI",
+      "url": "https://magazine.sebastianraschka.com/feed",
+      "method": "fetch-url/rss",
+      "status": "checked; no new post after 2026-05-16"
+    },
+    {
+      "name": "AI Valley",
+      "url": "https://www.theaivalley.com/",
+      "method": "fetch-url/readability + gmail search",
+      "status": "checked; no 2026-06-01 to 2026-06-03 Gmail hit and latest public archive item remained 2026-05-29"
+    },
+    {
+      "name": "Programmer Weekly",
+      "url": "https://programmerweekly.com/",
+      "method": "fetch-url/readability",
+      "status": "checked; public homepage did not expose usable item list"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://openai.com/news/rss.xml",
+      "method": "fetch-url/rss + fetch-url/readability",
+      "status": "confirmed 2026-06-01 Stargate Michigan item; policy advocacy item was reviewed but replaced by Every's enterprise AI implementation article for section-level source balance; AWS / Bedrock item intentionally not retained"
+    },
+    {
+      "name": "Anthropic",
+      "url": "https://www.anthropic.com/news",
+      "method": "fetch-url/readability",
+      "status": "checked; no new public newsroom item in fetch output"
+    },
+    {
+      "name": "Google / Gemini / DeepMind",
+      "url": "https://blog.google/technology/ai/rss/",
+      "method": "fetch-url/rss + fetch-url/readability",
+      "status": "confirmed 2026-06-01 Google I/O production article"
+    },
+    {
+      "name": "GitHub Trending",
+      "url": "https://github.com/trending?since=daily",
+      "method": "fetch-url/readability + selected repo fetches",
+      "status": "confirmed current trend list; Microsoft markitdown was rejected by source policy, revfactory/harness was rejected by dedupe, and other duplicate candidates were removed"
+    },
+    {
+      "name": "dmtrKovalenko/fff",
+      "url": "https://github.com/dmtrKovalenko/fff",
+      "method": "fetch-url/readability",
+      "status": "selected as non-duplicate GitHub trend for AI-agent file search and MCP workflow"
+    },
+    {
+      "name": "TauricResearch/TradingAgents",
+      "url": "https://github.com/TauricResearch/TradingAgents",
+      "method": "fetch-url/readability",
+      "status": "selected as non-duplicate GitHub trend for vertical multi-agent financial research framework; framed as research scaffold, not investment advice"
+    },
+    {
+      "name": "MiniMax",
+      "url": "https://www.minimax.io/models/text/m3",
+      "method": "fetch-url/readability",
+      "status": "canonical confirmation from Latent.Space / AINews discovery"
+    }
+  ],
+  "publishedItems": [
+    {
+      "section": "1. AI Engineering & 架构",
+      "title": "fff 把 agent 的重复文件搜索变成常驻索引和 MCP 工具",
+      "source": "GitHub Trending / dmtrKovalenko",
+      "url": "https://github.com/dmtrKovalenko/fff"
+    },
+    {
+      "section": "2. 模型前沿 & 算法探索",
+      "title": "NVIDIA Cosmos 3 把 world model 做成语言、图像、视频、音频与动作统一架构",
+      "source": "Latent.Space / AINews",
+      "url": "https://www.latent.space/p/ainews-nvidia-cosmos-3-nemotron-3"
+    },
+    {
+      "section": "2. 模型前沿 & 算法探索",
+      "title": "MiniMax M3 把 1M 上下文、多模态和 agentic coding 绑成一个开源叙事",
+      "source": "Latent.Space / AINews + MiniMax",
+      "url": "https://www.minimax.io/models/text/m3"
+    },
+    {
+      "section": "3. 实战代码 & 工具库",
+      "title": "Google I/O 制作复盘展示了生成式工具如何进入真实创意流水线",
+      "source": "Google / Gemini / DeepMind",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/"
+    },
+    {
+      "section": "4. 行业与商业快讯",
+      "title": "OpenAI 的 Michigan Stargate 项目把算力、能源、劳动力和教育绑在一起",
+      "source": "OpenAI",
+      "url": "https://openai.com/index/stargate-michigan-data-center"
+    },
+    {
+      "section": "4. 行业与商业快讯",
+      "title": "Every 把企业 AI 落地从买工具推进到组织实施能力",
+      "source": "Every",
+      "url": "https://every.to/p/company-wide-ai-implementation-in-five-steps"
+    },
+    {
+      "section": "4. 行业与商业快讯",
+      "title": "老范讲故事把 N1X / RTX Spark 看作 DGX Spark 的 PC 化再包装",
+      "source": "老范讲故事",
+      "url": "https://lukefan.com/2026/06/02/nvidia-n1x-not-windows-m1-moment/"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "TradingAgents 把金融研究流程拆成可恢复的多 agent 团队",
+      "source": "GitHub Trending / TauricResearch",
+      "url": "https://github.com/TauricResearch/TradingAgents"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "impeccable 用可检测反模式约束 AI 生成前端的审美退化",
+      "source": "GitHub Trending / pbakaus",
+      "url": "https://github.com/pbakaus/impeccable"
+    },
+    {
+      "section": "5. GitHub 热门 repo & 趋势追踪",
+      "title": "oh-my-pi 把终端 coding agent 做成带 IDE、LSP、debugger 和 subagents 的完整表面",
+      "source": "GitHub Trending / can1357",
+      "url": "https://github.com/can1357/oh-my-pi"
+    },
+    {
+      "section": "📬 Newsletter 精选",
+      "title": "The Rundown AI：Inherent Labs 把 self-improving AI 放进科学研究组织",
+      "source": "The Rundown AI",
+      "url": "暂无公开直链"
+    },
+    {
+      "section": "📬 Newsletter 精选",
+      "title": "The Rundown AI：Higgsfield + Claude 的视频工作站把创作流程沉淀成 skill",
+      "source": "The Rundown AI",
+      "url": "暂无公开直链"
+    }
+  ],
+  "newsletterEvidence": [
+    {
+      "source": "The Rundown AI",
+      "gmailSubject": "🧹 AI's next dataset is your apartment",
+      "gmailTimestamp": "2026-06-01T10:14:51",
+      "usedSubitems": [
+        "Ex-DeepMind group tackles self-improving science AI",
+        "Build a video workstation with Higgsfield and Claude"
+      ]
+    }
+  ],
+  "qualityNotes": [
+    "The public markdown has 12 entries: 5 active-core or core-surfaced entries, 2 official-triad entries, 4 GitHub trend entries and 2 Newsletter entries.",
+    "AWS, Meta, Microsoft and NVIDIA were not used as active standalone discovery sources; NVIDIA appears only as a core-surfaced subject through Latent.Space and 老范讲故事.",
+    "The 2026-06-01 Daily Dose and The Rundown topics already published in the 2026-06-01 daily report were not repeated; only distinct unused newsletter subitems were retained.",
+    "Same-report duplicate public URLs and seven-day duplicate public URLs were removed after checker feedback.",
+    "Chinese and Japanese markdown use the same topic order and the same URLs.",
+    "No representativeImageSource was set, so radar:images should not be run for this daily unless a lead image is explicitly chosen later."
+  ],
+  "assetNotes": [
+    "NotebookLM infographic generation failed twice with RPC CREATE_ARTIFACT. Both daily infographics were regenerated with the built-in imagegen workflow in the early-May hand-drawn editorial style, then regenerated again after the OpenAI policy item was replaced by Every's enterprise AI implementation item so the industry quadrant matched the final text.",
+    "Final infographic assets: /images/radar/daily-ai-radar-2026-06-02-infographic.webp and /images/radar/daily-ai-radar-2026-06-02.ja-infographic.webp.",
+    "Audio was generated with npm run radar:audio and --no-keep-notebook. The first zh wait hung and was terminated before a clean retry; the retry produced /audio/radar/daily-ai-radar-2026-06-02.mp3. The ja run produced /audio/radar/daily-ai-radar-2026-06-02.ja.mp3.",
+    "R2 was not configured in this environment, so daily audio URLs remained local public/audio paths."
+  ]
+}
