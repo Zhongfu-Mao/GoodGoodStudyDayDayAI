@@ -5,7 +5,7 @@
     "zh": "daily-ai-radar-2026-06-01",
     "ja": "daily-ai-radar-2026-06-01"
   },
-  "status": "text-repaired-assets-preserved",
+  "status": "text-and-assets-repaired",
   "sourceVisits": [
     {
       "name": "The Rundown AI",
@@ -213,6 +213,8 @@
     "Previously covered OpenAI, Google, Every, ByteByteGo, The Batch and AI Valley links were removed or not reused in public markdown.",
     "The final public markdown has 13 entries: 8 active-core or core-surfaced entries, 1 official-triad entry, 4 GitHub trend entries and 2 Newsletter entries.",
     "Chinese and Japanese markdown use the same topic order and the same URLs.",
-    "Infographic and audio frontmatter were preserved; no NotebookLM asset regeneration was performed during this text repair."
+    "Chinese and Japanese infographics were regenerated on 2026-06-02 with --overwrite --no-keep-notebook and visually checked for source alignment.",
+    "Chinese audio was regenerated on 2026-06-02 with --no-keep-notebook; frontmatter now records audioDuration 1071 and audioSize 8567099.",
+    "Japanese audio was regenerated on 2026-06-02 with --no-keep-notebook; frontmatter now records audioDuration 1030 and audioSize 8244016."
   ]
 }
