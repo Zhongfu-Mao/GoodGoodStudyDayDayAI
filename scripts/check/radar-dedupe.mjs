@@ -15,10 +15,12 @@ async function main() {
   const radarDir = path.join(root, 'src/content/radar');
   const sourcePoolPath = path.join(root, 'scripts/radar/source-pool.json');
   const sourcePool = JSON.parse(await readFile(sourcePoolPath, 'utf8'));
+  const enforceDailyFrom = sourcePool.publicationGate?.enforceDailyFrom ?? '9999-99-99';
   const range = parseDateRangeArgs(process.argv, {
-    from: sourcePool.publicationGate?.enforceDailyFrom ?? '9999-99-99',
+    from: enforceDailyFrom,
     to: '9999-99-99',
   });
+  range.historyFrom = enforceDailyFrom;
 
   const zhFiles = (await readdir(radarDir))
     .filter((file) => /^daily-ai-radar-\d{4}-\d{2}-\d{2}\.md$/.test(file))
@@ -41,7 +43,13 @@ async function main() {
   console.log(`Checked radar dedupe for ${zhFiles.length} daily radar files.`);
 }
 
-export function findDuplicateLinkFailures(byDate, { from, to }, lookbackDays = 7) {
+/**
+ * @param {Map<string, { file: string, links: string[] }>} byDate
+ * @param {{ from?: string, to?: string, historyFrom?: string }} range
+ * @param {number} [lookbackDays]
+ */
+export function findDuplicateLinkFailures(byDate, range, lookbackDays = 7) {
+  const { from, to, historyFrom } = range;
   const failures = [];
 
   for (const [date, current] of byDate.entries()) {
@@ -61,8 +69,7 @@ export function findDuplicateLinkFailures(byDate, { from, to }, lookbackDays = 7
     const seen = new Map();
 
     for (const [otherDate, other] of byDate.entries()) {
-      if (from && otherDate < from) continue;
-      if (to && otherDate > to) continue;
+      if (historyFrom && otherDate < historyFrom) continue;
       const delta = daysBetween(parseDate(otherDate), currentDate);
       if (delta <= 0 || delta > lookbackDays) continue;
       for (const link of other.links) {

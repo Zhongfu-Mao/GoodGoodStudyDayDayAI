@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-06-03"
 date: 2026-06-03
 category: radar
 cadence: daily
-plainSummary: "今天的主线是 agent 工程继续平台化：GitHub 要承载 agent 速度，工程团队要把 context、spec、verification 做进流程，Codex 也在扩展到更多知识工作角色。另一边，文档 OCR、前沿模型安全、表格内 workflow、生产级 RAG、自适应抓取和保险理赔语音 agent 都在把 AI 从单点能力推向可验证、可运行、可治理的系统。"
+plainSummary: "今天的主线是 agent 工程继续平台化：GitHub 要承载 agent 速度，工程团队要把 context、spec、verification 做进流程，Codex 也在扩展到更多知识工作角色。另一边，文档 OCR、前沿模型安全、表格内 workflow、生产级 RAG、本地语音交互和保险理赔语音 agent 都在把 AI 从单点能力推向可验证、可运行、可治理的系统。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -13,8 +13,8 @@ tags:
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-06-03-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-06-03.mp3
-audioDuration: 355
-audioSize: 2839804
+audioDuration: 1159
+audioSize: 9276585
 draft: false
 ---
 
@@ -78,12 +78,12 @@ draft: false
 - 链接：https://github.com/jamwithai/production-agentic-rag-course
 - 摘要：`jamwithai/production-agentic-rag-course` 是一个从 arXiv Paper Curator 开始的生产级 RAG 课程项目。它先做 Docker、FastAPI、PostgreSQL、OpenSearch 和 Airflow，再进入 arXiv ingest、BM25、chunking、hybrid search、local LLM、streaming、Langfuse、Redis cache，最后用 LangGraph 做 query rewrite、document grading、guardrails 和 Telegram bot。值得注意的是它把 keyword search 和 observability 放在向量检索之前，符合真实生产 RAG 的工程顺序。
 
-### Scrapling 把自适应选择器、stealth fetcher、spider 和 MCP 放进同一个抓取框架
+### Open-LLM-VTuber 把本地 LLM、语音和 Live2D 组合成桌面伴侣
 
-- 来源：GitHub Trending / D4Vinci
+- 来源：GitHub Trending / Open-LLM-VTuber
 - 日期：2026-06-03
-- 链接：https://github.com/D4Vinci/Scrapling
-- 摘要：`D4Vinci/Scrapling` 是一个 Python web scraping framework，覆盖单次请求、动态页面、stealth browser、proxy rotation、concurrent spider、pause / resume 和 CLI。它的特色是 adaptive element tracking：页面结构变化后可以重新定位元素；同时提供 MCP server，让 AI 工具先用 Scrapling 提取目标内容，再把更少 token 交给模型。对于需要长期维护抓取入口的 AI workflow，这类工具能减少页面改版和反爬带来的维护成本。
+- 链接：https://github.com/Open-LLM-VTuber/Open-LLM-VTuber
+- 摘要：`Open-LLM-VTuber` 是一个可本地运行的语音交互 AI companion，支持实时语音对话、视觉感知、Live2D avatar、桌面 pet 模式和跨平台客户端。它把 LLM、ASR、TTS、语音打断、角色设定、表情映射和离线模型支持放在同一个开源项目里，并计划用 v2.0 重写架构。这个项目说明开源端侧 AI 体验正在从“聊天窗口”走向更连续的语音、视觉和人格化交互界面。
 
 ## 4. 行业与商业快讯
 

@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-06-03"
 date: 2026-06-03
 category: radar
 cadence: daily
-plainSummary: "今日の主線は、agent engineering がさらに platform 化していることです。GitHub は agent speed を支える必要があり、engineering team は context、spec、verification を workflow に組み込む必要があります。Codex も developer だけでなく多くの knowledge worker role へ広がっています。同時に、document OCR、frontier model safety、table-based workflow、production RAG、adaptive scraping、insurance claims voice agent が、AI を単発能力から verifiable、runnable、governable な system へ押し出しています。"
+plainSummary: "今日の主線は、agent engineering がさらに platform 化していることです。GitHub は agent speed を支える必要があり、engineering team は context、spec、verification を workflow に組み込む必要があります。Codex も developer だけでなく多くの knowledge worker role へ広がっています。同時に、document OCR、frontier model safety、table-based workflow、production RAG、local voice interaction、insurance claims voice agent が、AI を単発能力から verifiable、runnable、governable な system へ押し出しています。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -13,8 +13,8 @@ tags:
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-06-03.ja-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-06-03.ja.mp3
-audioDuration: 389
-audioSize: 3114821
+audioDuration: 919
+audioSize: 7350629
 draft: false
 ---
 
@@ -78,12 +78,12 @@ draft: false
 - リンク：https://github.com/jamwithai/production-agentic-rag-course
 - 要約：`jamwithai/production-agentic-rag-course` は arXiv Paper Curator から始まる production-grade RAG course project です。Docker、FastAPI、PostgreSQL、OpenSearch、Airflow から始め、arXiv ingest、BM25、chunking、hybrid search、local LLM、streaming、Langfuse、Redis cache を経て、最後に LangGraph による query rewrite、document grading、guardrails、Telegram bot に進みます。vector search より前に keyword search と observability を置く点は、real production RAG の engineering order に近いです。
 
-### Scrapling は adaptive selectors、stealth fetchers、spiders、MCP を一つの scraping framework に入れる
+### Open-LLM-VTuber は local LLM、voice、Live2D を desktop companion にまとめる
 
-- 出典：GitHub Trending / D4Vinci
+- 出典：GitHub Trending / Open-LLM-VTuber
 - 日付：2026-06-03
-- リンク：https://github.com/D4Vinci/Scrapling
-- 要約：`D4Vinci/Scrapling` は Python web scraping framework で、single request、dynamic pages、stealth browser、proxy rotation、concurrent spiders、pause / resume、CLI を扱います。特徴は adaptive element tracking です。page structure が変わっても elements を再発見できます。さらに MCP server を提供し、AI tools が Scrapling で target content を抽出してから少ない token を model に渡せます。長期運用する AI workflow では、page redesign と anti-bot による maintenance cost を下げる tool になります。
+- リンク：https://github.com/Open-LLM-VTuber/Open-LLM-VTuber
+- 要約：`Open-LLM-VTuber` は local で動かせる voice-interactive AI companion です。real-time voice conversation、visual perception、Live2D avatar、desktop pet mode、cross-platform clients を扱います。LLM、ASR、TTS、voice interruption、persona、expression mapping、offline model support を一つの open-source project にまとめ、v2.0 では codebase rewrite も計画しています。open-source edge AI experience は chat window から、より continuous な voice、vision、character interface へ広がっています。
 
 ## 4. 業界 & ビジネス速報
 

@@ -64,7 +64,7 @@
       "method": "Trending page + public repository pages",
       "url": "https://github.com/trending?since=daily",
       "selected": true,
-      "notes": "headroom and ECC selected for the GitHub trend quadrant; production-agentic-rag-course and Scrapling were reclassified into practical tools because they are implementation resources rather than only trend signals. Duplicated VoxCPM and supermemory were skipped."
+      "notes": "headroom and ECC selected for the GitHub trend quadrant; production-agentic-rag-course and Open-LLM-VTuber were reclassified into practical tools because they are implementation resources rather than only trend signals. Scrapling remained popular but was skipped from public Markdown because it duplicated the 2026-05-31 report inside the 7-day dedupe window; duplicated VoxCPM, hermes-webui and supermemory were also skipped. MarkItDown was skipped because Microsoft is excluded from active daily source selection."
     },
     {
       "source": "Google / Gemini / DeepMind",
@@ -113,7 +113,7 @@
     "GitHub Trending: chopratejas/headroom",
     "GitHub Trending: affaan-m/ECC",
     "GitHub Trending: jamwithai/production-agentic-rag-course",
-    "GitHub Trending: D4Vinci/Scrapling",
+    "GitHub Trending: Open-LLM-VTuber/Open-LLM-VTuber",
     "The Rundown AI: Meta AI support account-recovery risk",
     "The Rundown AI: Claude sessions to reusable skills",
     "Every: Eight levels of AI adoption"
@@ -172,6 +172,7 @@
     },
     "duplicateAvoidance": [
       "Skipped NVIDIA Cosmos / N1X / VoxCPM / supermemory items covered on 2026-06-01 or 2026-06-02.",
+      "Skipped D4Vinci/Scrapling because it was already covered on 2026-05-31; continued trending was treated as an audit signal rather than a repeated full daily item.",
       "Avoided AWS, Meta, Microsoft and NVIDIA as active direct crawls; Meta appeared only through The Rundown newsletter."
     ],
     "publicMarkdownReview": [
@@ -182,8 +183,8 @@
   },
   "assetNotes": {
     "representativeImage": "No representativeImageSource frontmatter was set, so radar:images should be skipped for this daily report.",
-    "infographic": "NotebookLM infographic output was retried three times. Watermark was treated as expected NotebookLM behavior, not a failure criterion; the failing criteria were low text fidelity, pseudo-text and factual drift. Final zh/ja infographic assets were regenerated with the built-in imagegen tool and converted to WebP.",
-    "audio": "NotebookLM CLI was upgraded from notebooklm-py 0.3.4 to 0.6.0, and source upload compatibility was fixed by adding --follow-symlinks for local source files. The first post-upgrade audio retry created notebook 61b566c7-b1db-4136-a7ee-9fa032b54f8d but failed before generation because the new CLI rejected the macOS temp brief path without --follow-symlinks; that notebook was intentionally retained for traceability. After the fix, zh audio succeeded from notebook ea38ca64-01a1-4136-b379-dc857a5879d9 / artifact 1ab121e4-8b58-4e11-8f71-0033f7b9f9bd, and ja audio succeeded from notebook 67ffcfb5-e247-440d-868c-57b50fbb832b / artifact d53bc039-2a00-4987-bfb4-b48b7fae3fed. Temporary audio notebooks were retained instead of immediately deleted."
+    "infographic": "After the 7-day dedupe fix replaced Scrapling with Open-LLM-VTuber, zh/ja infographic assets were regenerated with the built-in imagegen tool from a structured brief and converted to WebP. The selected candidates were /Users/maozhongfu/.codex/generated_images/019e2899-82bf-79b2-a072-3af16970372b/ig_0eaa57e5a41fbc5a016a2026501ce8819199b1237f73901707.png and /Users/maozhongfu/.codex/generated_images/019e2899-82bf-79b2-a072-3af16970372b/ig_0eaa57e5a41fbc5a016a202753fee48191828e583f3d5abc7f.png. Visual QA confirmed the date, five sections, Newsletter strip, Open-LLM-VTuber replacement, and absence of Scrapling / MarkItDown.",
+    "audio": "NotebookLM audio was regenerated after the public Markdown replacement. The zh audio succeeded from notebook 0d844343-9b39-42bb-a5f5-ab5fd2dd77f0 / artifact 4d1d6496-a39f-41cd-9660-ccd34acffd4c, producing /audio/radar/daily-ai-radar-2026-06-03.mp3 with duration 1159s and size 9276585 bytes. The ja audio succeeded from notebook 1131b679-9e6a-4300-8d0b-7a003a98517e / artifact 99eea440-96de-48b2-af68-df2751358be5, producing /audio/radar/daily-ai-radar-2026-06-03.ja.mp3 with duration 919s and size 7350629 bytes. Temporary audio notebooks were retained for traceability."
   },
   "gmailReadPlan": {
     "markReadAfterChecks": [
