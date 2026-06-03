@@ -203,6 +203,7 @@ async function main() {
 
   console.log(`Creating notebook for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
   const notebookId = await createNotebook(notebookTitle);
+  let completed = false;
 
   try {
     const sourcePath = options.sourceMode === 'brief' ? briefMemoPath : targetFile;
@@ -282,12 +283,17 @@ async function main() {
     }
 
     console.log(`Done. Audio ready at ${publishedAudioUrl}`);
+    completed = true;
   } finally {
     if (options.sourceMode === 'brief') {
       await rm(briefMemoPath, { force: true });
     }
 
-    await maybeDeleteNotebook(notebookId, options.keepNotebook);
+    if (!completed && !options.keepNotebook) {
+      console.warn(`Keeping failed audio notebook for traceability: ${notebookId}`);
+    }
+
+    await maybeDeleteNotebook(notebookId, options.keepNotebook || !completed);
   }
 }
 

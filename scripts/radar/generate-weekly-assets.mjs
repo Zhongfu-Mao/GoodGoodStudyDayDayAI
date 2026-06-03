@@ -159,6 +159,7 @@ async function main() {
 
   console.log(`Creating notebook for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
   const notebookId = await createNotebook(notebookTitle);
+  let completed = false;
 
   try {
     for (const dailyFile of dailyFiles) {
@@ -266,8 +267,13 @@ async function main() {
     }
 
     console.log(`Done. Weekly assets ready: ${publishedAudioUrl} and ${publishedDeckUrl}`);
+    completed = true;
   } finally {
-    await maybeDeleteNotebook(notebookId, options.keepNotebook);
+    if (!completed && !options.keepNotebook) {
+      console.warn(`Keeping failed weekly assets notebook for traceability: ${notebookId}`);
+    }
+
+    await maybeDeleteNotebook(notebookId, options.keepNotebook || !completed);
   }
 }
 

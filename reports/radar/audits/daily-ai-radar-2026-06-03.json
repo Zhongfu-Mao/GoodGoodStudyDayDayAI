@@ -12,7 +12,7 @@
       "method": "RSS + public article",
       "url": "https://www.latent.space/p/github",
       "selected": true,
-      "notes": "Kyle Daigle / GitHub agent platform interview selected; Cosmos and Video Agents were treated as recent duplicates."
+      "notes": "Kyle Daigle / GitHub agent platform interview selected for AI Engineering; Cosmos and Video Agents were treated as recent duplicates."
     },
     {
       "source": "ByteByteGo",
@@ -41,7 +41,7 @@
       "method": "RSS + public article",
       "url": "https://lukefan.com/2026/06/03/ai-chernobyl-moment-anthropic-mythos-risk/",
       "selected": true,
-      "notes": "Claude Mythos / Project Glasswing governance article selected."
+      "notes": "Claude Mythos / Project Glasswing article selected under model frontier and cyber safety rather than general industry."
     },
     {
       "source": "Every",
@@ -64,7 +64,7 @@
       "method": "Trending page + public repository pages",
       "url": "https://github.com/trending?since=daily",
       "selected": true,
-      "notes": "headroom, ECC, production-agentic-rag-course and Scrapling selected; duplicated VoxCPM and supermemory were skipped."
+      "notes": "headroom and ECC selected for the GitHub trend quadrant; production-agentic-rag-course and Scrapling were reclassified into practical tools because they are implementation resources rather than only trend signals. Duplicated VoxCPM and supermemory were skipped."
     },
     {
       "source": "Google / Gemini / DeepMind",
@@ -109,7 +109,7 @@
     "Daily Dose of Data Science: Surya OCR 2",
     "Daily Dose of Data Science: Sim workflow tables",
     "OpenAI: Travelers claims assistant",
-    "老范讲故事: Claude Mythos / Project Glasswing governance",
+    "老范讲故事: Claude Mythos / Project Glasswing cyber safety",
     "GitHub Trending: chopratejas/headroom",
     "GitHub Trending: affaan-m/ECC",
     "GitHub Trending: jamwithai/production-agentic-rag-course",
@@ -162,6 +162,14 @@
       "The Rundown AI",
       "Every"
     ],
+    "sectionBalance": {
+      "engineering": 3,
+      "modelFrontier": 2,
+      "tools": 3,
+      "industry": 1,
+      "githubTrendQuadrant": 2,
+      "newsletter": 3
+    },
     "duplicateAvoidance": [
       "Skipped NVIDIA Cosmos / N1X / VoxCPM / supermemory items covered on 2026-06-01 or 2026-06-02.",
       "Avoided AWS, Meta, Microsoft and NVIDIA as active direct crawls; Meta appeared only through The Rundown newsletter."
@@ -174,8 +182,8 @@
   },
   "assetNotes": {
     "representativeImage": "No representativeImageSource frontmatter was set, so radar:images should be skipped for this daily report.",
-    "infographic": "NotebookLM infographic output had visible text quality issues, so the final zh/ja infographic assets were regenerated with the built-in imagegen tool and converted to WebP.",
-    "audio": "NotebookLM audio generation did not return an artifact for long, default or short length within the manual waiting window. Stuck local wait processes were terminated and the three 2026-06-03 temporary audio notebooks were deleted."
+    "infographic": "NotebookLM infographic output was retried three times. Watermark was treated as expected NotebookLM behavior, not a failure criterion; the failing criteria were low text fidelity, pseudo-text and factual drift. Final zh/ja infographic assets were regenerated with the built-in imagegen tool and converted to WebP.",
+    "audio": "NotebookLM CLI was upgraded from notebooklm-py 0.3.4 to 0.6.0, and source upload compatibility was fixed by adding --follow-symlinks for local source files. The first post-upgrade audio retry created notebook 61b566c7-b1db-4136-a7ee-9fa032b54f8d but failed before generation because the new CLI rejected the macOS temp brief path without --follow-symlinks; that notebook was intentionally retained for traceability. After the fix, zh audio succeeded from notebook ea38ca64-01a1-4136-b379-dc857a5879d9 / artifact 1ab121e4-8b58-4e11-8f71-0033f7b9f9bd, and ja audio succeeded from notebook 67ffcfb5-e247-440d-868c-57b50fbb832b / artifact d53bc039-2a00-4987-bfb4-b48b7fae3fed. Temporary audio notebooks were retained instead of immediately deleted."
   },
   "gmailReadPlan": {
     "markReadAfterChecks": [

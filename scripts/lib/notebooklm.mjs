@@ -93,7 +93,15 @@ export async function createNotebook(title) {
 }
 
 export async function addSourceFile(notebookId, sourcePath, { waitTimeout = 300 } = {}) {
-  await runNotebooklm(['source', 'add', '--notebook', notebookId, sourcePath, '--json']);
+  await runNotebooklm([
+    'source',
+    'add',
+    '--notebook',
+    notebookId,
+    '--follow-symlinks',
+    sourcePath,
+    '--json',
+  ]);
 
   const { stdout } = await runNotebooklm(['source', 'list', '--notebook', notebookId, '--json']);
   const source = pickLatestItem(parseJsonOutput(stdout)?.sources);

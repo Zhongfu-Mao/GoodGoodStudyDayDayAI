@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-06-03"
 date: 2026-06-03
 category: radar
 cadence: daily
-plainSummary: "今天的主线是 agent 工程继续平台化：GitHub 要承载 agent 速度，工程团队要把 context、spec、verification 做进流程，Codex 也在扩展到更多知识工作角色。另一边，文档 OCR、表格内 workflow、保险理赔语音 agent、前沿模型安全治理，以及 GitHub 上的 context compression、agent harness、RAG 和自适应抓取工具都在升温。"
+plainSummary: "今天的主线是 agent 工程继续平台化：GitHub 要承载 agent 速度，工程团队要把 context、spec、verification 做进流程，Codex 也在扩展到更多知识工作角色。另一边，文档 OCR、前沿模型安全、表格内 workflow、生产级 RAG、自适应抓取和保险理赔语音 agent 都在把 AI 从单点能力推向可验证、可运行、可治理的系统。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -12,6 +12,9 @@ tags:
   - Evaluation
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-06-03-infographic.webp
+audioUrl: /audio/radar/daily-ai-radar-2026-06-03.mp3
+audioDuration: 355
+audioSize: 2839804
 draft: false
 ---
 
@@ -52,6 +55,13 @@ draft: false
 - 链接：https://github.com/datalab-to/surya
 - 摘要：Daily Dose 提到的 Surya OCR 2 是 Datalab 发布的 650M 参数文档模型，覆盖 90 多种语言的 OCR、版面检测、阅读顺序和表格识别。项目页面给出 olmOCR-bench 83.3、RTX 5090 上约 5.35 页 / 秒、内部 91 语言 benchmark 87.2 的结果，并支持图像、图表 caption、手写、数学公式和表格。它代表了一个很实用的模型方向：文档理解不一定要依赖超大模型，轻量、可部署、结构化输出的 OCR / layout model 仍有很大空间。
 
+### Claude Mythos 把前沿模型安全推向 cyber capability 透明度
+
+- 来源：老范讲故事
+- 日期：2026-06-03
+- 链接：https://lukefan.com/2026/06/03/ai-chernobyl-moment-anthropic-mythos-risk/
+- 摘要：老范围绕 Anthropic 的 Claude Mythos / Project Glasswing 和金融时报关于“AI Chernobyl moment”的社论，讨论前沿模型的 cyber capability、受限发布和安全披露。文章真正关心的是制度问题：当模型已经能在漏洞发现和利用上超过多数专家时，企业、媒体、监管者和国家是否允许坏消息被公开、复核和处理。前沿模型安全正在从模型卡和红队测试，走向独立评估、强制报告和事故透明度。
+
 ## 3. 实战代码 & 工具库
 
 ### Sim 把 CRM 表格变成可运行 workflow 的操作界面
@@ -61,6 +71,20 @@ draft: false
 - 链接：https://github.com/simstudioai/sim
 - 摘要：Daily Dose 的 hands-on 文章展示了 `simstudioai/sim`：它把表格、AI workflow、审批和外部集成放在同一个 visual workspace 里。销售或运营团队可以让某一列触发 enrichment workflow，把输出写回行数据，再用 approval gate 触发后续动作，而不是在 CRM、webhook、自动化工具和外部脚本之间来回同步。它的价值不在“又一个 agent builder”，而在把 spreadsheet-like interface 变成 workflow runtime。
 
+### production-agentic-rag-course 把 RAG 教程推进到生产监控和 Agentic RAG
+
+- 来源：GitHub Trending / jamwithai
+- 日期：2026-06-03
+- 链接：https://github.com/jamwithai/production-agentic-rag-course
+- 摘要：`jamwithai/production-agentic-rag-course` 是一个从 arXiv Paper Curator 开始的生产级 RAG 课程项目。它先做 Docker、FastAPI、PostgreSQL、OpenSearch 和 Airflow，再进入 arXiv ingest、BM25、chunking、hybrid search、local LLM、streaming、Langfuse、Redis cache，最后用 LangGraph 做 query rewrite、document grading、guardrails 和 Telegram bot。值得注意的是它把 keyword search 和 observability 放在向量检索之前，符合真实生产 RAG 的工程顺序。
+
+### Scrapling 把自适应选择器、stealth fetcher、spider 和 MCP 放进同一个抓取框架
+
+- 来源：GitHub Trending / D4Vinci
+- 日期：2026-06-03
+- 链接：https://github.com/D4Vinci/Scrapling
+- 摘要：`D4Vinci/Scrapling` 是一个 Python web scraping framework，覆盖单次请求、动态页面、stealth browser、proxy rotation、concurrent spider、pause / resume 和 CLI。它的特色是 adaptive element tracking：页面结构变化后可以重新定位元素；同时提供 MCP server，让 AI 工具先用 Scrapling 提取目标内容，再把更少 token 交给模型。对于需要长期维护抓取入口的 AI workflow，这类工具能减少页面改版和反爬带来的维护成本。
+
 ## 4. 行业与商业快讯
 
 ### Travelers 把 OpenAI 语音理赔助手推广到全美
@@ -69,13 +93,6 @@ draft: false
 - 日期：2026-06-02
 - 链接：https://openai.com/index/travelers
 - 摘要：Travelers 和 OpenAI 合作推出的 AI Claim Assistant 已从 8 个州扩展到全美，用 Realtime API 和 frontier models 支持全天候 auto property damage claims。它能回答保单问题、收集 first notice of loss 信息并提交理赔；OpenAI 披露用户完成率约 85-90%。这个案例的重点是大型保险公司把语音 AI 接进既有理赔系统和 orchestration，而不是停留在客服问答 demo。
-
-### Claude Mythos 把前沿模型安全从发布问题推向制度透明问题
-
-- 来源：老范讲故事
-- 日期：2026-06-03
-- 链接：https://lukefan.com/2026/06/03/ai-chernobyl-moment-anthropic-mythos-risk/
-- 摘要：老范围绕 Anthropic 的 Claude Mythos / Project Glasswing 和金融时报关于“AI Chernobyl moment”的社论，讨论前沿模型的 cyber capability、受限发布和安全披露。文章真正关心的是制度问题：当模型已经能在漏洞发现和利用上超过多数专家时，企业、媒体、监管者和国家是否允许坏消息被公开、复核和处理。AI 安全正在从模型卡和红队测试，走向独立评估、强制报告和事故透明度。
 
 ## 5. GitHub 热门 repo & 趋势追踪
 
@@ -92,20 +109,6 @@ draft: false
 - 日期：2026-06-03
 - 链接：https://github.com/affaan-m/ECC
 - 摘要：`affaan-m/ECC` 把自己定位为 agent harness performance optimization system，覆盖 Claude Code、Codex、OpenCode、Cursor、Gemini、Zed 和 GitHub Copilot 等表面。它包含 skills、instincts、memory persistence、continuous learning、security scanning、verification loops、parallelization 和 cross-harness workflows。与单个 prompt pack 不同，ECC 把 agent 工作流中的规则、技能、hooks、状态、审查和安装路径系统化，说明开发者开始把“如何让 agent 长期稳定工作”当作独立工程对象。
-
-### production-agentic-rag-course 把 RAG 教程推进到生产监控和 Agentic RAG
-
-- 来源：GitHub Trending / jamwithai
-- 日期：2026-06-03
-- 链接：https://github.com/jamwithai/production-agentic-rag-course
-- 摘要：`jamwithai/production-agentic-rag-course` 是一个从 arXiv Paper Curator 开始的生产级 RAG 课程项目。它先做 Docker、FastAPI、PostgreSQL、OpenSearch 和 Airflow，再进入 arXiv ingest、BM25、chunking、hybrid search、local LLM、streaming、Langfuse、Redis cache，最后用 LangGraph 做 query rewrite、document grading、guardrails 和 Telegram bot。值得注意的是它把 keyword search 和 observability 放在向量检索之前，符合真实生产 RAG 的工程顺序。
-
-### Scrapling 把自适应选择器、stealth fetcher、spider 和 MCP 放进同一个抓取框架
-
-- 来源：GitHub Trending / D4Vinci
-- 日期：2026-06-03
-- 链接：https://github.com/D4Vinci/Scrapling
-- 摘要：`D4Vinci/Scrapling` 是一个 Python web scraping framework，覆盖单次请求、动态页面、stealth browser、proxy rotation、concurrent spider、pause / resume 和 CLI。它的特色是 adaptive element tracking：页面结构变化后可以重新定位元素；同时提供 MCP server，让 AI 工具先用 Scrapling 提取目标内容，再把更少 token 交给模型。对于需要长期维护抓取入口的 AI workflow，这类工具能减少页面改版和反爬带来的维护成本。
 
 ## 📬 Newsletter 精选
 

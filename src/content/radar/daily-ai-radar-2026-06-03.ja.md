@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-06-03"
 date: 2026-06-03
 category: radar
 cadence: daily
-plainSummary: "今日の主線は、agent engineering がさらに platform 化していることです。GitHub は agent speed を支える必要があり、engineering team は context、spec、verification を workflow に組み込む必要があります。Codex も developer だけでなく多くの knowledge worker role へ広がっています。同時に、document OCR、table-based workflow、insurance claims voice agent、frontier model safety governance、GitHub 上の context compression、agent harness、RAG、adaptive scraping tools も動いています。"
+plainSummary: "今日の主線は、agent engineering がさらに platform 化していることです。GitHub は agent speed を支える必要があり、engineering team は context、spec、verification を workflow に組み込む必要があります。Codex も developer だけでなく多くの knowledge worker role へ広がっています。同時に、document OCR、frontier model safety、table-based workflow、production RAG、adaptive scraping、insurance claims voice agent が、AI を単発能力から verifiable、runnable、governable な system へ押し出しています。"
 difficulty: intermediate
 tags:
   - AI Engineering
@@ -12,6 +12,9 @@ tags:
   - Evaluation
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-06-03.ja-infographic.webp
+audioUrl: /audio/radar/daily-ai-radar-2026-06-03.ja.mp3
+audioDuration: 389
+audioSize: 3114821
 draft: false
 ---
 
@@ -52,6 +55,13 @@ draft: false
 - リンク：https://github.com/datalab-to/surya
 - 要約：Daily Dose が取り上げた Surya OCR 2 は、Datalab の 650M parameter document model です。90 以上の languages に対して OCR、layout detection、reading order、table recognition を扱います。project page は olmOCR-bench 83.3、RTX 5090 で約 5.35 pages / sec、内部 91-language benchmark 87.2 を示し、images、diagrams captions、handwriting、math、tables もサポートします。document understanding は必ずしも巨大モデルだけの領域ではなく、lightweight、deployable、structured-output OCR / layout model に大きな余地があります。
 
+### Claude Mythos は frontier model safety を cyber capability transparency へ押し広げる
+
+- 出典：老范讲故事
+- 日付：2026-06-03
+- リンク：https://lukefan.com/2026/06/03/ai-chernobyl-moment-anthropic-mythos-risk/
+- 要約：老范は Anthropic の Claude Mythos / Project Glasswing と、Financial Times の「AI Chernobyl moment」に関する editorial を手がかりに、frontier model の cyber capability、restricted release、safety disclosure を論じました。記事の焦点は制度です。model が vulnerability discovery と exploitation で多くの experts を上回る時、companies、media、regulators、states が bad news を公開、検証、処理できるかが問われます。frontier model safety は model cards と red teaming だけでなく、independent evaluation、mandatory reporting、incident transparency へ進んでいます。
+
 ## 3. 実践コード & ツールライブラリ
 
 ### Sim は CRM table を executable workflow interface に変える
@@ -61,6 +71,20 @@ draft: false
 - リンク：https://github.com/simstudioai/sim
 - 要約：Daily Dose の hands-on article は `simstudioai/sim` を紹介しました。tables、AI workflow、approval、external integrations を一つの visual workspace に置く tool です。sales や operations team は、ある column で enrichment workflow を走らせ、output を row data に戻し、approval gate で次の action を起動できます。CRM、webhook、automation tool、external script を往復するのではなく、spreadsheet-like interface を workflow runtime にする点が重要です。
 
+### production-agentic-rag-course は RAG learning を production monitoring と Agentic RAG まで進める
+
+- 出典：GitHub Trending / jamwithai
+- 日付：2026-06-03
+- リンク：https://github.com/jamwithai/production-agentic-rag-course
+- 要約：`jamwithai/production-agentic-rag-course` は arXiv Paper Curator から始まる production-grade RAG course project です。Docker、FastAPI、PostgreSQL、OpenSearch、Airflow から始め、arXiv ingest、BM25、chunking、hybrid search、local LLM、streaming、Langfuse、Redis cache を経て、最後に LangGraph による query rewrite、document grading、guardrails、Telegram bot に進みます。vector search より前に keyword search と observability を置く点は、real production RAG の engineering order に近いです。
+
+### Scrapling は adaptive selectors、stealth fetchers、spiders、MCP を一つの scraping framework に入れる
+
+- 出典：GitHub Trending / D4Vinci
+- 日付：2026-06-03
+- リンク：https://github.com/D4Vinci/Scrapling
+- 要約：`D4Vinci/Scrapling` は Python web scraping framework で、single request、dynamic pages、stealth browser、proxy rotation、concurrent spiders、pause / resume、CLI を扱います。特徴は adaptive element tracking です。page structure が変わっても elements を再発見できます。さらに MCP server を提供し、AI tools が Scrapling で target content を抽出してから少ない token を model に渡せます。長期運用する AI workflow では、page redesign と anti-bot による maintenance cost を下げる tool になります。
+
 ## 4. 業界 & ビジネス速報
 
 ### Travelers は OpenAI voice claims assistant を全米展開する
@@ -69,13 +93,6 @@ draft: false
 - 日付：2026-06-02
 - リンク：https://openai.com/index/travelers
 - 要約：Travelers と OpenAI が共同で作った AI Claim Assistant は、8 州から全米へ拡大しました。Realtime API と frontier models を使い、auto property damage claims を 24/7 で支援します。policy questions に答え、first notice of loss information を集め、claim submission まで進めます。OpenAI は user completion rate を 85-90% としています。重要なのは、大手 insurance company が voice AI を既存の claims infrastructure と orchestration に接続している点で、customer support demo に留まっていません。
-
-### Claude Mythos は frontier model safety を release issue から institutional transparency issue へ広げる
-
-- 出典：老范讲故事
-- 日付：2026-06-03
-- リンク：https://lukefan.com/2026/06/03/ai-chernobyl-moment-anthropic-mythos-risk/
-- 要約：老范は Anthropic の Claude Mythos / Project Glasswing と、Financial Times の「AI Chernobyl moment」に関する editorial を手がかりに、frontier model の cyber capability、restricted release、safety disclosure を論じました。記事の焦点は制度です。model が vulnerability discovery と exploitation で多くの experts を上回る時、companies、media、regulators、states が bad news を公開、検証、処理できるかが問われます。AI safety は model cards と red teaming だけでなく、independent evaluation、mandatory reporting、incident transparency へ進んでいます。
 
 ## 5. GitHub 人気 repo & トレンド追跡
 
@@ -92,20 +109,6 @@ draft: false
 - 日付：2026-06-03
 - リンク：https://github.com/affaan-m/ECC
 - 要約：`affaan-m/ECC` は agent harness performance optimization system として、Claude Code、Codex、OpenCode、Cursor、Gemini、Zed、GitHub Copilot などを対象にします。skills、instincts、memory persistence、continuous learning、security scanning、verification loops、parallelization、cross-harness workflows を含みます。単なる prompt pack ではなく、agent workflow の rules、skills、hooks、state、review、install paths を system 化しています。developer は「agent を長期的に安定して働かせる方法」を独立した engineering object として扱い始めています。
-
-### production-agentic-rag-course は RAG learning を production monitoring と Agentic RAG まで進める
-
-- 出典：GitHub Trending / jamwithai
-- 日付：2026-06-03
-- リンク：https://github.com/jamwithai/production-agentic-rag-course
-- 要約：`jamwithai/production-agentic-rag-course` は arXiv Paper Curator から始まる production-grade RAG course project です。Docker、FastAPI、PostgreSQL、OpenSearch、Airflow から始め、arXiv ingest、BM25、chunking、hybrid search、local LLM、streaming、Langfuse、Redis cache を経て、最後に LangGraph による query rewrite、document grading、guardrails、Telegram bot に進みます。vector search より前に keyword search と observability を置く点は、real production RAG の engineering order に近いです。
-
-### Scrapling は adaptive selectors、stealth fetchers、spiders、MCP を一つの scraping framework に入れる
-
-- 出典：GitHub Trending / D4Vinci
-- 日付：2026-06-03
-- リンク：https://github.com/D4Vinci/Scrapling
-- 要約：`D4Vinci/Scrapling` は Python web scraping framework で、single request、dynamic pages、stealth browser、proxy rotation、concurrent spiders、pause / resume、CLI を扱います。特徴は adaptive element tracking です。page structure が変わっても elements を再発見できます。さらに MCP server を提供し、AI tools が Scrapling で target content を抽出してから少ない token を model に渡せます。長期運用する AI workflow では、page redesign と anti-bot による maintenance cost を下げる tool になります。
 
 ## 📬 Newsletter 精選
 

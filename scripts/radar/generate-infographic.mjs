@@ -433,6 +433,7 @@ async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
 
   console.log(`Creating notebook for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
   const notebookId = await createNotebook(notebookTitle);
+  let completed = false;
 
   try {
     console.log(`Adding markdown source to notebook ${notebookId}...`);
@@ -468,8 +469,13 @@ async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
       imagePath,
       '--json',
     ]);
+    completed = true;
   } finally {
-    await maybeDeleteNotebook(notebookId, options.keepNotebook);
+    if (!completed && !options.keepNotebook) {
+      console.warn(`Keeping failed infographic notebook for traceability: ${notebookId}`);
+    }
+
+    await maybeDeleteNotebook(notebookId, options.keepNotebook || !completed);
   }
 }
 
