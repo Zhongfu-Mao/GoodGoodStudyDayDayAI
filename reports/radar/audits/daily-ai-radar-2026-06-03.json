@@ -1,0 +1,187 @@
+{
+  "date": "2026-06-03",
+  "cadence": "daily",
+  "localTimezone": "Asia/Tokyo",
+  "coverageWindow": {
+    "from": "2026-06-02",
+    "to": "2026-06-03"
+  },
+  "sourceVisits": [
+    {
+      "source": "Latent.Space / AINews",
+      "method": "RSS + public article",
+      "url": "https://www.latent.space/p/github",
+      "selected": true,
+      "notes": "Kyle Daigle / GitHub agent platform interview selected; Cosmos and Video Agents were treated as recent duplicates."
+    },
+    {
+      "source": "ByteByteGo",
+      "method": "RSS + public article",
+      "url": "https://blog.bytebytego.com/p/a-practical-guide-to-becoming-an",
+      "selected": true,
+      "notes": "AI-native engineering guide selected for architecture workflow and verification framing."
+    },
+    {
+      "source": "OpenAI",
+      "method": "RSS + public article",
+      "url": "https://openai.com/news/rss.xml",
+      "selected": true,
+      "notes": "Codex role/workflow expansion and Travelers claims assistant selected; youth safety and overlapping Codex narrative were not used."
+    },
+    {
+      "source": "Daily Dose of Data Science",
+      "method": "RSS + Gmail confirmation + public article",
+      "url": "https://blog.dailydoseofds.com/p/hands-on-collapse-crm-pipelines-into",
+      "selected": true,
+      "gmailMessageId": "19e8a3b32be17a8a",
+      "notes": "Sim and Surya were selected from the public post and original newsletter email."
+    },
+    {
+      "source": "老范讲故事",
+      "method": "RSS + public article",
+      "url": "https://lukefan.com/2026/06/03/ai-chernobyl-moment-anthropic-mythos-risk/",
+      "selected": true,
+      "notes": "Claude Mythos / Project Glasswing governance article selected."
+    },
+    {
+      "source": "Every",
+      "method": "Homepage + Gmail confirmation + public article",
+      "url": "https://every.to/p/where-do-you-fall-on-the-eight-levels-of-ai-adoption",
+      "selected": true,
+      "gmailMessageId": "19e8918e0d1769a8",
+      "notes": "Eight levels of AI adoption selected for Newsletter."
+    },
+    {
+      "source": "The Rundown AI",
+      "method": "Gmail original",
+      "url": "暂无公开直链",
+      "selected": true,
+      "gmailMessageId": "19e87cadec4ab729",
+      "notes": "Meta AI support account-recovery risk and Claude session-to-skills process selected for Newsletter."
+    },
+    {
+      "source": "GitHub Trending",
+      "method": "Trending page + public repository pages",
+      "url": "https://github.com/trending?since=daily",
+      "selected": true,
+      "notes": "headroom, ECC, production-agentic-rag-course and Scrapling selected; duplicated VoxCPM and supermemory were skipped."
+    },
+    {
+      "source": "Google / Gemini / DeepMind",
+      "method": "RSS",
+      "url": "https://blog.google/technology/ai/rss/",
+      "selected": false,
+      "notes": "No new non-duplicate item in the daily window."
+    },
+    {
+      "source": "The Batch / DeepLearning.AI",
+      "method": "Homepage",
+      "url": "https://www.deeplearning.ai/the-batch/",
+      "selected": false,
+      "notes": "Latest visible issue was outside today's high-signal window."
+    },
+    {
+      "source": "Ahead of AI",
+      "method": "RSS",
+      "url": "https://magazine.sebastianraschka.com/feed",
+      "selected": false,
+      "notes": "No new item in the daily window."
+    },
+    {
+      "source": "AI Valley",
+      "method": "Homepage + Gmail search",
+      "url": "https://www.theaivalley.com/",
+      "selected": false,
+      "notes": "Latest public topic overlapped with NVIDIA / agent PC items already covered recently."
+    },
+    {
+      "source": "Programmer Weekly",
+      "method": "Homepage",
+      "url": "https://programmerweekly.com/",
+      "selected": false,
+      "notes": "No concrete AI / agent / data tooling item selected."
+    }
+  ],
+  "publishedItems": [
+    "Latent.Space / AINews: GitHub agent platform plan",
+    "ByteByteGo: AI-native engineering",
+    "OpenAI: Codex for every role, tool and workflow",
+    "Daily Dose of Data Science: Surya OCR 2",
+    "Daily Dose of Data Science: Sim workflow tables",
+    "OpenAI: Travelers claims assistant",
+    "老范讲故事: Claude Mythos / Project Glasswing governance",
+    "GitHub Trending: chopratejas/headroom",
+    "GitHub Trending: affaan-m/ECC",
+    "GitHub Trending: jamwithai/production-agentic-rag-course",
+    "GitHub Trending: D4Vinci/Scrapling",
+    "The Rundown AI: Meta AI support account-recovery risk",
+    "The Rundown AI: Claude sessions to reusable skills",
+    "Every: Eight levels of AI adoption"
+  ],
+  "newsletterEvidence": [
+    {
+      "source": "The Rundown AI",
+      "gmailMessageId": "19e87cadec4ab729",
+      "subject": "🤖 Nvidia corners the AI agent stack",
+      "timestamp": "2026-06-02T10:04:39+00:00",
+      "itemsUsed": [
+        "Meta AI support account-recovery risk",
+        "Claude sessions to reusable skills"
+      ]
+    },
+    {
+      "source": "Every",
+      "gmailMessageId": "19e8918e0d1769a8",
+      "subject": "Where Do You Fall on the Eight Levels of AI Adoption?",
+      "timestamp": "2026-06-02T16:09:29+00:00",
+      "itemsUsed": [
+        "Eight levels of AI adoption"
+      ]
+    },
+    {
+      "source": "Daily Dose of Data Science",
+      "gmailMessageId": "19e8a3b32be17a8a",
+      "subject": "[Hands-on] Collapse CRM Pipelines into One Table",
+      "timestamp": "2026-06-02T21:26:35+00:00",
+      "itemsUsed": [
+        "Sim",
+        "Surya OCR 2"
+      ]
+    }
+  ],
+  "qualityNotes": {
+    "entryCount": 14,
+    "newsletterCount": 3,
+    "sourceFamilies": [
+      "Latent.Space / AINews",
+      "ByteByteGo",
+      "OpenAI",
+      "Daily Dose of Data Science",
+      "老范讲故事",
+      "GitHub Trending",
+      "The Rundown AI",
+      "Every"
+    ],
+    "duplicateAvoidance": [
+      "Skipped NVIDIA Cosmos / N1X / VoxCPM / supermemory items covered on 2026-06-01 or 2026-06-02.",
+      "Avoided AWS, Meta, Microsoft and NVIDIA as active direct crawls; Meta appeared only through The Rundown newsletter."
+    ],
+    "publicMarkdownReview": [
+      "No Gmail links, message IDs, local paths or fetch logs in public Markdown.",
+      "Newsletter section uses full reader-facing entries rather than source summary bullets.",
+      "Chinese and Japanese editions keep the same topics, links and order."
+    ]
+  },
+  "assetNotes": {
+    "representativeImage": "No representativeImageSource frontmatter was set, so radar:images should be skipped for this daily report.",
+    "infographic": "NotebookLM infographic output had visible text quality issues, so the final zh/ja infographic assets were regenerated with the built-in imagegen tool and converted to WebP.",
+    "audio": "NotebookLM audio generation did not return an artifact for long, default or short length within the manual waiting window. Stuck local wait processes were terminated and the three 2026-06-03 temporary audio notebooks were deleted."
+  },
+  "gmailReadPlan": {
+    "markReadAfterChecks": [
+      "19e87cadec4ab729",
+      "19e8918e0d1769a8",
+      "19e8a3b32be17a8a"
+    ]
+  }
+}
