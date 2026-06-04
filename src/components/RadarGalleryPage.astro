@@ -171,7 +171,7 @@ const galleryItems = entries.map((item) => {
         >
           <button
             type="button"
-            class="group relative block w-full overflow-hidden rounded-[1rem] border border-[color:var(--theme-border)] bg-[#f5efe4] text-left shadow-glow"
+            class="radar-wall-media group relative block w-full overflow-hidden rounded-[1rem] border border-[color:var(--theme-border)] bg-[#f5efe4] text-left shadow-glow"
             data-preview-trigger
             data-image-src={galleryItem.coverImage}
             data-image-alt={text.coverAlt(galleryItem.fullTitle)}
@@ -183,7 +183,7 @@ const galleryItems = entries.map((item) => {
               alt={text.coverAlt(galleryItem.fullTitle)}
               loading={index < 6 ? 'eager' : 'lazy'}
               decoding="async"
-              class="block h-auto w-full transition duration-300 group-hover:scale-[1.018]"
+              class="block h-full w-full object-contain transition duration-300 group-hover:scale-[1.018]"
             />
           </button>
         </article>
@@ -359,6 +359,10 @@ const galleryItems = entries.map((item) => {
     width: 100%;
     margin: 0 0 1rem;
     break-inside: avoid;
+  }
+
+  .radar-wall-media {
+    aspect-ratio: 16 / 10;
   }
 
   .radar-wall-card[hidden] {

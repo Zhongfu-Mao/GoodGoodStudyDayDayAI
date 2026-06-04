@@ -53,7 +53,7 @@ const placeholderKicker = locale === 'ja' ? 'テキスト稿' : '文字稿';
 ---
 
 <article
-  class="radar-visual-card theme-panel group self-start overflow-hidden rounded-[1rem] shadow-glow transition duration-200 hover:-translate-y-1"
+  class="radar-visual-card theme-panel group flex h-full flex-col overflow-hidden rounded-[1rem] shadow-glow transition duration-200 hover:-translate-y-1"
   data-gallery-card
   data-cadence={cadence ?? 'radar'}
   data-month={month}
@@ -62,7 +62,7 @@ const placeholderKicker = locale === 'ja' ? 'テキスト稿' : '文字稿';
     preview ? (
       <button
         type="button"
-        class="ui-tooltip ui-tooltip-inset-top relative block w-full overflow-hidden bg-[#f5efe4] text-left"
+        class="radar-visual-media ui-tooltip ui-tooltip-inset-top relative block w-full overflow-hidden bg-[#f5efe4] text-left"
         data-preview-trigger
         data-image-src={coverImage}
         data-image-alt={previewAlt}
@@ -77,17 +77,17 @@ const placeholderKicker = locale === 'ja' ? 'テキスト稿' : '文字稿';
           alt={previewAlt}
           loading={loading}
           decoding="async"
-          class="block h-auto w-full transition duration-200 group-hover:scale-[1.012]"
+          class="block h-full w-full object-contain transition duration-200 group-hover:scale-[1.012]"
         />
       </button>
     ) : (
-      <a href={href} class="relative block w-full overflow-hidden bg-[#f5efe4] text-left">
+      <a href={href} class="radar-visual-media relative block w-full overflow-hidden bg-[#f5efe4] text-left">
         <img
           src={coverImage}
           alt={previewAlt}
           loading={loading}
           decoding="async"
-          class="block h-auto w-full transition duration-200 group-hover:scale-[1.012]"
+          class="block h-full w-full object-contain transition duration-200 group-hover:scale-[1.012]"
         />
       </a>
     )
@@ -144,6 +144,10 @@ const placeholderKicker = locale === 'ja' ? 'テキスト稿' : '文字稿';
 <style>
   .radar-visual-card {
     container-type: inline-size;
+  }
+
+  .radar-visual-media {
+    aspect-ratio: 16 / 10;
   }
 
   .radar-card-meta {
