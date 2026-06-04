@@ -141,18 +141,52 @@ export async function waitForLatestArtifact(notebookId, type, { timeout = 900 } 
     throw new Error(`Failed to determine latest ${type} artifact ID.`);
   }
 
-  await runNotebooklm([
-    'artifact',
-    'wait',
-    '--notebook',
-    notebookId,
-    artifact.id,
-    '--timeout',
-    String(timeout),
-    '--json',
-  ]);
+  const deadline = Date.now() + timeout * 1000;
+
+  while (true) {
+    const remainingSeconds = Math.max(1, Math.ceil((deadline - Date.now()) / 1000));
+
+    try {
+      await runNotebooklm([
+        'artifact',
+        'wait',
+        '--notebook',
+        notebookId,
+        artifact.id,
+        '--timeout',
+        String(remainingSeconds),
+        '--json',
+      ]);
+      break;
+    } catch (error) {
+      if (!isTransientArtifactDisappearance(error) || Date.now() >= deadline) {
+        throw error;
+      }
+
+      console.warn(
+        `Artifact ${artifact.id} temporarily disappeared; retrying until ${timeout}s timeout expires...`,
+      );
+      await sleep(60_000);
+    }
+  }
 
   return artifact;
+}
+
+function isTransientArtifactDisappearance(error) {
+  const message = error?.message ?? '';
+
+  return (
+    message.includes('disappeared from list') ||
+    message.includes('treating as removed') ||
+    message.includes('not-found polls')
+  );
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 export async function maybeDeleteNotebook(notebookId, keepNotebook) {
