@@ -3,6 +3,7 @@ import process from 'node:process';
 import { spawn } from 'node:child_process';
 
 export const NOTEBOOKLM_BIN = path.join(process.cwd(), '.venv/bin/notebooklm');
+const TRANSIENT_ARTIFACT_RETRY_DELAY_MS = 120_000;
 
 export function runNotebooklm(args, { cwd = process.cwd() } = {}) {
   return new Promise((resolve, reject) => {
@@ -166,7 +167,7 @@ export async function waitForLatestArtifact(notebookId, type, { timeout = 900 } 
       console.warn(
         `Artifact ${artifact.id} temporarily disappeared; retrying until ${timeout}s timeout expires...`,
       );
-      await sleep(60_000);
+      await sleep(TRANSIENT_ARTIFACT_RETRY_DELAY_MS);
     }
   }
 

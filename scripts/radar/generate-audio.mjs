@@ -234,7 +234,7 @@ async function main() {
       '--json',
     ]);
 
-    const artifact = await waitForLatestArtifact(notebookId, 'audio', { timeout: 1200 });
+    const artifact = await waitForLatestArtifact(notebookId, 'audio', { timeout: 1800 });
     console.log(`Audio artifact ${artifact.id} ready.`);
 
     console.log(`Downloading audio to ${path.relative(WORKSPACE_ROOT, audioPath)}...`);
