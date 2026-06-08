@@ -1,6 +1,7 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { pathToFileURL } from 'node:url';
 import { parseFrontmatter, stripFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
 import { formatImageCompressionResult, optimizeWebpImage } from '../lib/image-compression.mjs';
 import { assetUrlMatchesPublicAsset, publishRadarAsset } from '../lib/radar-assets.mjs';
@@ -404,28 +405,28 @@ async function generateWithOpenAI(meta, body, targetFile, imagePath, options) {
   await writeFile(imagePath, Buffer.from(base64Image, 'base64'));
 }
 
-function inferInfographicPrompt(title, lang, cadence = 'daily') {
+export function inferInfographicPrompt(title, lang, cadence = 'daily') {
   if (lang === 'ja') {
     if (cadence === 'weekly') {
-      return `${title} をもとに、横長の週間情報図解を作ってください。今週の主線を中央に置き、3〜5 個の重要シグナルを束ね、流れ・因果・来週も追うべき論点が分かる構成にしてください。文字は短い日本語ラベル中心にし、小さな文字、長文、ロゴ一覧、人物コラージュは避けてください。`;
+      return `${title} をもとに、横長の週間情報図解を作ってください。NotebookLM の Detailed モードを前提に、高密度だが読みやすい editorial infographic にしてください。今週の主線を中央に置き、5〜7 個の重要シグナルを束ね、各ノードに短いラベルとごく短い事実を 1 つ入れ、流れ・因果・来週も追うべき論点が分かる構成にしてください。モデル名、企業名、repo 名、重要な数字は可能な範囲で残し、長文段落、ロゴ一覧、人物コラージュ、読めない疑似文字は避けてください。公開前に読みにくければ必要なら standard で再生成します。`;
     }
 
     if (cadence === 'monthly') {
-      return `${title} をもとに、横長の月次情報図解を作ってください。今月の大きな流れを中央に置き、4〜6 個の主要トレンド、各週の変化、構造的な意味、次月への示唆が分かる構成にしてください。文字は短い日本語ラベル中心にし、小さな文字、長文、ロゴ一覧、人物コラージュは避けてください。`;
+      return `${title} をもとに、横長の月次情報図解を作ってください。NotebookLM の Detailed モードを前提に、高密度だが読みやすい editorial infographic にしてください。今月の大きな流れを中央に置き、6〜8 個の主要トレンド、各週の変化、構造的な意味、次月への示唆を関係図・タイムライン・レイヤーで表現してください。各ノードに短いラベルとごく短い事実を 1 つ入れ、モデル名、企業名、repo 名、重要な数字は可能な範囲で残してください。長文段落、ロゴ一覧、人物コラージュ、読めない疑似文字は避け、公開前に読みにくければ必要なら standard で再生成します。`;
     }
 
-    return `${title} をもとに、横長の情報図解を作ってください。今日の主線を中央に置き、3〜5 個の重要シグナル、短い注釈、因果のつながりがひと目で分かる構成にしてください。文字は短い日本語ラベル中心にし、小さな文字、長文、ロゴ一覧、人物コラージュは避けてください。`;
+    return `${title} をもとに、横長の情報図解を作ってください。NotebookLM の Detailed モードを前提に、高密度だが読みやすい editorial infographic にしてください。今日の主線を中央に置き、5 個前後の重要シグナルを関係図として束ね、各ノードに短いラベルとごく短い事実を 1 つ入れてください。モデル名、企業名、repo 名、重要な数字は可能な範囲で残し、因果のつながりがひと目で分かる構成にしてください。長文段落、ロゴ一覧、人物コラージュ、読めない疑似文字は避け、公開前に読みにくければ必要なら standard で再生成します。`;
   }
 
   if (cadence === 'weekly') {
-    return `请基于《${title}》生成一张适合博客文章顶部展示的中文横向周报信息图。不要做成海报，而是做成“本周主线 + 3 到 5 个关键分支”的结构：一眼能看懂这一周的核心变化、关键趋势之间的关系，以及下周值得继续跟踪的点。文字只保留短标题和短标签，避免小字、长文、Logo 列表和人物拼贴。`;
+    return `请基于《${title}》生成一张适合博客文章顶部展示的中文横向周报信息图。当前使用 NotebookLM Detailed 模式，请做成高密度但可读的 editorial infographic，不要退回成只有栏目名的装饰封面。结构上用“本周主线 + 5 到 7 个关键分支”：每个节点包含一个短标签和一个极短事实，用箭头、时间层、因果线、信号簇表达这一周的核心变化、关键趋势之间的关系，以及下周值得继续跟踪的点。保留关键模型名、公司名、repo 名和数字，但避免长段落、细密小字、Logo 列表和人物拼贴。`;
   }
 
   if (cadence === 'monthly') {
-    return `请基于《${title}》生成一张适合博客文章顶部展示的中文横向月报信息图。不要做成海报，而是做成“本月主线 + 4 到 6 个核心趋势”的结构：一眼能看懂本月 AI 技术和产业信号如何汇聚、各周之间如何演化，以及下个月值得关注的方向。文字只保留短标题和短标签，避免小字、长文、Logo 列表和人物拼贴。`;
+    return `请基于《${title}》生成一张适合博客文章顶部展示的中文横向月报信息图。当前使用 NotebookLM Detailed 模式，请做成高密度但可读的 editorial infographic，不要退回成只有栏目名的装饰封面。结构上用“本月主线 + 6 到 8 个核心趋势”：每个节点包含一个短标签和一个极短事实，用趋势地图、周际时间线、生态层级和因果连接表现本月 AI 技术与产业信号如何汇聚、各周之间如何演化，以及下个月值得关注的方向。保留关键模型名、公司名、repo 名和数字，但避免长段落、细密小字、Logo 列表和人物拼贴。`;
   }
 
-  return `请基于《${title}》生成一张适合博客文章顶部展示的中文横向信息图。不要做成海报，而是做成“今日主线 + 3 到 5 个关键分支”的结构：一眼能看懂今天的核心主题、关键趋势之间的关系，以及对从业者的启发。文字只保留短标题和短标签，避免小字、长文、Logo 列表和人物拼贴。`;
+  return `请基于《${title}》生成一张适合博客文章顶部展示的中文横向信息图。当前使用 NotebookLM Detailed 模式，请做成高密度但可读的 editorial infographic，不要退回成只有栏目名的装饰封面。结构上用“今日主线 + 5 个左右关键分支”：每个节点包含一个短标签和一个极短事实，用箭头、节点、时间层和信号簇表达今天的核心主题、关键趋势之间的关系，以及对从业者的启发。保留关键模型名、公司名、repo 名和数字，但避免长段落、细密小字、Logo 列表和人物拼贴。`;
 }
 
 async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
@@ -598,7 +599,9 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
+}
