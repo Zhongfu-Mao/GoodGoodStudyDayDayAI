@@ -73,6 +73,23 @@ async function expectCardsToFitViewport(page: Page, sectionSelector: string) {
   }
 }
 
+async function expectElementAspectRatio(locator: Locator, expectedRatio: number) {
+  await expect(locator).toBeVisible();
+  const ratio = await locator.evaluate((element) => {
+    const value = getComputedStyle(element).aspectRatio;
+    const parts = value.split('/').map((part) => Number(part.trim()));
+
+    if (parts.length === 2 && parts.every(Number.isFinite)) {
+      return parts[0] / parts[1];
+    }
+
+    return Number(value);
+  });
+
+  expect(ratio).toBeGreaterThan(expectedRatio - 0.03);
+  expect(ratio).toBeLessThan(expectedRatio + 0.03);
+}
+
 async function expectArticleBodyContrast(page: Page, minimumRatio: number) {
   const result = await page.locator('.theme-prose').evaluate((prose) => {
     type Rgba = { r: number; g: number; b: number; a: number };
@@ -705,6 +722,17 @@ test.describe('published site UI', () => {
     const japaneseWeeklySection = page.locator('[data-radar-section]#weekly');
     await expectSectionHasLocaleInfographic(japaneseWeeklySection, 'ja');
     await expect(japaneseWeeklySection.locator('.radar-visual-placeholder')).toHaveCount(0);
+  });
+
+  test('radar infographic media slots match the widescreen asset ratio', async ({ page }) => {
+    await gotoApp(page, '/radar/#daily');
+    await expectElementAspectRatio(
+      page.locator('[data-radar-section]#daily .radar-visual-media').first(),
+      16 / 9,
+    );
+
+    await gotoApp(page, '/radar/gallery/');
+    await expectElementAspectRatio(page.locator('.radar-wall-media').first(), 16 / 9);
   });
 
   test('radar image wall filters cards and opens the preview dialog', async ({ page }) => {
