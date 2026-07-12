@@ -45,9 +45,9 @@ draft: false
 - リンク：https://www.latent.space/p/ainews-not-much-happened-today-f5c
 - 要約：GPT-5.6 の最大の perceived leap の一つは、普通の chat quality ではなく planner、verifier、orchestrator、computer use の coordination だった。AINews は、Sol が planning / verification / orchestration に強いという user reports を記録し、hidden subagents が premium settings を継承して quota を急速に消費する可能性にも触れた。結論は明確である。model が task decomposition、subagent spawning、GUI operation を自動化できるほど、本当の product は model alone ではなく、その周囲の harness、permissions、cost boundary、memory、tool-call control になる。
 
-### Microsoft Agent Governance Toolkit：agent governance は prompt safety から deterministic control plane へ移る
+### Agent Governance Toolkit：agent governance は prompt safety から deterministic control plane へ移る
 
-- 出典：GitHub Trending
+- 出典：Agent Governance Toolkit / GitHub
 - 日付：2026-07-12
 - リンク：https://github.com/microsoft/agent-governance-toolkit
 - 要約：Agent Governance Toolkit は policy enforcement、zero-trust identity、execution sandboxing、audit log、SRE controls を主軸にする。project は、prompt layer の「please follow the rules」は reliable control surface ではなく、各 tool call、message send、agent delegation を application code layer で intercept、evaluate、log、allow / deny すべきだと強調する。OWASP Agentic AI Top 10、NIST AI RMF、EU AI Act、SOC 2 などの mapping も含む。production agent に必要なのは capability だけでなく、provable boundaries、audit、fail-closed behavior である。
@@ -68,11 +68,11 @@ draft: false
 - リンク：https://www.latent.space/p/ainews-not-much-happened-today-f5c
 - 要約：AINews が集めた early signals では、GPT-5.6 は agentic coding、presentation、一部 science tasks、computer use で強いが、あらゆる場面で無条件に支配的というわけではない。記事は、Code Arena: Frontend で Claude Fable 5 と近い位置にあり、presentation eval では GPT-5.5 を大きく上回った一方、instruction-following、token efficiency、jailbreakability、reward hacking について user concerns が残ることも伝える。model launch 後の第一週は peak capability だけでなく、default behavior、cost curve、failure modes を見る必要がある。
 
-### Latent.Space：Meta Muse Spark 1.1 は「good enough, fast, cheap」model pressure を強める
+### Artificial Analysis：Muse Spark 1.1 は「good enough, fast, cheap」model pressure を強める
 
-- 出典：Latent.Space / AINews
+- 出典：Artificial Analysis
 - 日付：2026-07-11
-- リンク：https://www.latent.space/p/ainews-not-much-happened-today-f5c
+- リンク：https://x.com/ArtificialAnlys/status/2075677416295739660
 - 要約：Muse Spark 1.1 は AINews のもう一つの major model signal であり、UI / frontend generation、fast response、1M context、aggressive pricing が強調された。まとめでは、Artificial Analysis がこれを GLM-5.2、GPT-5.4、GPT-5.6 Luna に近い水準に置きつつ、Grok 4.5、GPT-5.6 Sol、Claude Fable 5 よりは下と評価したことが紹介されている。意味は「すべての frontier model に勝つ」ことではない。多くの product tasks が、lower cost、higher speed、near-enough capability の model に流れる可能性である。
 
 ### Latent.Space：Qwen3.6 quantization、vLLM speculative decoding、Gemma speed challenge は inference efficiency competition を示す
@@ -93,14 +93,14 @@ draft: false
 
 ### Hugging Face speech-to-speech：local voice-agent pipeline は swappable components に向かう
 
-- 出典：GitHub Trending
+- 出典：Hugging Face / GitHub
 - 日付：2026-07-12
 - リンク：https://github.com/huggingface/speech-to-speech
 - 要約：speech-to-speech は low-latency modular voice-agent pipeline を提供する。構成は VAD → STT → LLM → TTS で、OpenAI Realtime-compatible WebSocket API を公開する。default path は Parakeet TDT、OpenAI-compatible LLM、Qwen3-TTS を使い、llama.cpp、vLLM、HF Inference Providers、OpenRouter、local Apple Silicon / CUDA backends にも接続できる。重要なのは、voice agent が single cloud service に縛られないことだ。各 component は交換可能であり、realtime interaction protocol は安定して保てる。
 
 ### Google Stitch Skills：design workflows は cross-agent skills / plugins として package 化され始めた
 
-- 出典：GitHub Trending
+- 出典：Google / Gemini / DeepMind / GitHub
 - 日付：2026-07-12
 - リンク：https://github.com/google-labs-code/stitch-skills
 - 要約：stitch-skills は Google Stitch 向けの design、build、utility skills / plugins を収録し、Agent Skills open standard に従うため Codex、Antigravity、Gemini CLI、Claude Code、Cursor などと互換性があると説明している。code-to-design、generate-design、manage-design-system、extract-design-md、react-components、react-native、prompt enhancement、design taste enforcement などを含む。trend としては、agent capability が prompt trick から installable、reusable、cross-client portable workflow packages へ変わっている。
@@ -114,11 +114,11 @@ draft: false
 - リンク：https://lukefan.com/2026/07/12/dji-drone-rescue-guangxi-floods-ai-photo/
 - 要約：老范は広西洪水の drone rescue から始め、real rescue と AI-generated images を区別しつつ、agricultural drones、FlyCart cargo drones、compound-wing aerial base stations、pilot dispatch networks、license requirements、equipment cost、repair support を整理した。技術産業として重要なのは、これらの pilots が普段は分散した agricultural service workers であり、災害時には WeChat groups、dispatch platforms、local repair networks を通じて temporary aerial logistics / communications capability を形成した点である。DJI Agriculture の救援中損傷の無料修理も、hardware vendor が temporary rescue network の risk backstop になったことを示す。
 
-### Latent.Space：security、health、bio risk は GPT-5.6 後続 narrative の一部になった
+### OpenAI：security、health、bio risk は GPT-5.6 後続 narrative の一部になった
 
-- 出典：Latent.Space / AINews
+- 出典：OpenAI
 - 日付：2026-07-11
-- リンク：https://www.latent.space/p/ainews-not-much-happened-today-f5c
+- リンク：https://x.com/OpenAI/status/2075647722766614733
 - 要約：AINews は GPT-5.6 capability discussion と health intelligence、bio bug bounty、cyber access、misuse risk を同じ号に置いた。記事は、OpenAI が GPT-5.6 の health tasks での progress を強調したこと、Bio Bug Bounty が ongoing private program になり reward が doubled されたこと、cyber-capable models への access requirements が厳格化されたことを伝える。この組み合わせは、capability launch が同時に二つの方向を生むことを示す。application surface は広がり、risk governance もより concrete and continuous になる。
 
 ## 5. GitHub 人気 repo & トレンド追跡
