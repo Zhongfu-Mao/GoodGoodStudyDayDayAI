@@ -35,14 +35,14 @@ draft: false
 
 - 出典：Latent.Space / AINews
 - 日付：2026-07-11
-- リンク：https://www.latent.space/p/ainews-not-much-happened-today-f5c
+- リンク：https://x.com/rasbt/status/2075369179817902176
 - 要約：AINews は GPT-5.6 launch 後の early feedback を整理した。ユーザーはもはや「one model を選ぶ」だけではなく、Luna / Terra / Sol、effort level、Max / Ultra の組み合わせから quality、cost、latency を判断している。記事は、API users が 30 以上の configurations に直面し、community が「lower tier から始め、大きい task だけ上げる」という practical guidance を出し始めたことを伝える。この signal は、frontier model competition が routing、defaults、usage limits、cost explainability、UX の組み合わせで体験を決める段階に入ったことを示す。
 
 ### Latent.Space：parallel-agent capability は harness の product value を押し上げる
 
 - 出典：Latent.Space / AINews
 - 日付：2026-07-11
-- リンク：https://www.latent.space/p/ainews-not-much-happened-today-f5c
+- リンク：https://x.com/omarsar0/status/2075611352878481577
 - 要約：GPT-5.6 の最大の perceived leap の一つは、普通の chat quality ではなく planner、verifier、orchestrator、computer use の coordination だった。AINews は、Sol が planning / verification / orchestration に強いという user reports を記録し、hidden subagents が premium settings を継承して quota を急速に消費する可能性にも触れた。結論は明確である。model が task decomposition、subagent spawning、GUI operation を自動化できるほど、本当の product は model alone ではなく、その周囲の harness、permissions、cost boundary、memory、tool-call control になる。
 
 ### Agent Governance Toolkit：agent governance は prompt safety から deterministic control plane へ移る
@@ -65,7 +65,7 @@ draft: false
 
 - 出典：Latent.Space / AINews
 - 日付：2026-07-11
-- リンク：https://www.latent.space/p/ainews-not-much-happened-today-f5c
+- リンク：https://x.com/arena/status/2075672492312768683
 - 要約：AINews が集めた early signals では、GPT-5.6 は agentic coding、presentation、一部 science tasks、computer use で強いが、あらゆる場面で無条件に支配的というわけではない。記事は、Code Arena: Frontend で Claude Fable 5 と近い位置にあり、presentation eval では GPT-5.5 を大きく上回った一方、instruction-following、token efficiency、jailbreakability、reward hacking について user concerns が残ることも伝える。model launch 後の第一週は peak capability だけでなく、default behavior、cost curve、failure modes を見る必要がある。
 
 ### Artificial Analysis：Muse Spark 1.1 は「good enough, fast, cheap」model pressure を強める
@@ -79,7 +79,7 @@ draft: false
 
 - 出典：Latent.Space / AINews
 - 日付：2026-07-11
-- リンク：https://www.latent.space/p/ainews-not-much-happened-today-f5c
+- リンク：https://x.com/vllm_project/status/2075698626140295378
 - 要約：AINews は同じ号で、Unsloth の Qwen3.6 NVFP4 quants、Cohere が vLLM に open-sourced した hardware-aware dynamic speculative decoding、Google / Hugging Face の Gemma inference speed challenge も記録した。共通テーマは、model engineering の競争が parameters、benchmarks、context length から、low-memory deployment、batch-size-aware decoding、tokens per second、throughput、cost へ広がっていることだ。self-hosted agents、voice agents、edge apps では、nominal ranking より inference efficiency が実用性を直接決める。
 
 ## 3. 実践コード & ツールライブラリ

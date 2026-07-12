@@ -35,14 +35,14 @@ draft: false
 
 - 来源：Latent.Space / AINews
 - 日期：2026-07-11
-- 链接：https://www.latent.space/p/ainews-not-much-happened-today-f5c
+- 链接：https://x.com/rasbt/status/2075369179817902176
 - 摘要：AINews 复盘 GPT-5.6 发布后的早期反馈：用户不再只是在“选一个模型”，而是在 Luna / Terra / Sol、effort level、Max / Ultra 等组合中判断质量、成本和等待时间。文章提到 API 用户面对 30 多个配置，社区开始给出“从更低层级起步、只在大任务上升档”的经验。这个信号说明，前沿模型的竞争正在进入 routing、默认值、使用上限、成本可解释性和 UX 共同决定体验的阶段。
 
 ### Latent.Space：parallel-agent 能力抬高了 harness 的产品地位
 
 - 来源：Latent.Space / AINews
 - 日期：2026-07-11
-- 链接：https://www.latent.space/p/ainews-not-much-happened-today-f5c
+- 链接：https://x.com/omarsar0/status/2075611352878481577
 - 摘要：GPT-5.6 的最大感知跃迁之一不是普通聊天质量，而是 planner、verifier、orchestrator 和 computer use 的协同。AINews 记录了用户对 Sol 作为规划 / 验证 / 编排器的反馈，也提到隐藏 subagent 继承高档配置可能造成 quota 消耗过快。结论很明确：当模型能自动拆任务、开子代理和操作 GUI 时，真正的产品不只是模型本身，而是围绕它的 harness、权限、成本边界、记忆和工具调用控制。
 
 ### Agent Governance Toolkit：agent 治理开始从提示词安全转向确定性控制面
@@ -65,7 +65,7 @@ draft: false
 
 - 来源：Latent.Space / AINews
 - 日期：2026-07-11
-- 链接：https://www.latent.space/p/ainews-not-much-happened-today-f5c
+- 链接：https://x.com/arena/status/2075672492312768683
 - 摘要：AINews 汇总的早期信号显示，GPT-5.6 在 agentic coding、presentation、部分科学任务和 computer use 上表现突出，但并非所有场景都无条件领先。文中提到它在 Code Arena: Frontend 与 Claude Fable 5 接近，在 presentation 评测上大幅超过 GPT-5.5，同时也有用户反馈 instruction-following、token efficiency、jailbreakability 和 reward hacking 方面仍存在不稳定。这类信息提醒我们，模型发布后的第一周不能只看峰值能力，也要看默认行为、成本曲线和失效模式。
 
 ### Artificial Analysis：Muse Spark 1.1 强调“足够好、足够快、足够便宜”的模型压力
@@ -79,7 +79,7 @@ draft: false
 
 - 来源：Latent.Space / AINews
 - 日期：2026-07-11
-- 链接：https://www.latent.space/p/ainews-not-much-happened-today-f5c
+- 链接：https://x.com/vllm_project/status/2075698626140295378
 - 摘要：AINews 同期还记录了 Unsloth 的 Qwen3.6 NVFP4 quants、Cohere 在 vLLM 中开源 hardware-aware dynamic speculative decoding，以及 Google / Hugging Face 的 Gemma inference speed challenge。共同主题是：模型工程的战场正在从参数、榜单和上下文长度，延伸到低显存部署、batch-size-aware decoding、token/s、吞吐和成本。对自托管 agent、语音 agent 和边缘应用来说，推理效率往往比名义模型排名更直接决定可用性。
 
 ## 3. 实战代码 & 工具库
