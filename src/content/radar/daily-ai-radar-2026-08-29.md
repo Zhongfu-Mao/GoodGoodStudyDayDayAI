@@ -10,7 +10,7 @@ tags:
   - Agents
   - Open Models
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-08-29-imagegen.webp
+coverImage: /images/radar/daily-ai-radar-2026-08-29-infographic.webp
 representativeImageSource: https://www.anthropic.com/news/model-hardware-standard-research-preview
 audioUrl: /audio/radar/daily-ai-radar-2026-08-29.mp3
 audioDuration: 1017
