@@ -10,7 +10,7 @@ tags:
   - Agents
   - Multimodal
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-09-02-infographic-corrected.webp
+coverImage: /images/radar/daily-ai-radar-2026-09-02-infographic.webp
 representativeImageSource: https://www.worldlabs.ai/blog/atlas
 audioUrl: /audio/radar/daily-ai-radar-2026-09-02.mp3
 audioDuration: 1709

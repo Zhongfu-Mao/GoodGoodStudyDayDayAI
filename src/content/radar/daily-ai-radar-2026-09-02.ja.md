@@ -10,7 +10,7 @@ tags:
   - Agents
   - Multimodal
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-09-02.ja-infographic-corrected.webp
+coverImage: /images/radar/daily-ai-radar-2026-09-02.ja-infographic.webp
 representativeImageSource: https://www.worldlabs.ai/blog/atlas
 audioUrl: /audio/radar/daily-ai-radar-2026-09-02.ja.mp3
 audioDuration: 892
