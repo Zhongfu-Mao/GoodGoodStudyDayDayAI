@@ -9,7 +9,7 @@ tags:
   - AI Engineering
   - Agents
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-09-09-infographic-corrected.webp
+coverImage: /images/radar/daily-ai-radar-2026-09-09-infographic.webp
 audioUrl: /audio/radar/daily-ai-radar-2026-09-09.mp3
 audioDuration: 1318
 audioSize: 10544254
