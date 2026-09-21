@@ -260,6 +260,8 @@ test.describe('content and asset QA', () => {
   });
 
   test('built HTML references existing local assets', async () => {
+    // This scans the whole growing site, including under parallel UI-test load.
+    test.setTimeout(120_000);
     const missing = new Set<string>();
     const htmlPages = listDistHtmlPages();
     expect(htmlPages.length).toBeGreaterThan(0);
