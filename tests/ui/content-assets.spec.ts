@@ -259,15 +259,17 @@ test.describe('content and asset QA', () => {
     expect(problems).toEqual([]);
   });
 
-  test('built HTML references existing local assets', () => {
+  test('built HTML references existing local assets', async () => {
     const missing = new Set<string>();
     const htmlPages = listDistHtmlPages();
     expect(htmlPages.length).toBeGreaterThan(0);
 
     for (const htmlPath of htmlPages) {
       const html = fs.readFileSync(htmlPath, 'utf8');
-      const document = new JSDOM(html).window.document;
-      const references = collectLocalAssetReferences(document);
+      const references = extractLocalAssetReferences(html);
+      // Let pending jsdom callbacks finish so closed windows can be collected
+      // between pages instead of retaining the entire site's DOMs in one turn.
+      await new Promise<void>((resolve) => setImmediate(resolve));
 
       for (const reference of references) {
         if (reference.pathname === '/') {
@@ -288,6 +290,15 @@ test.describe('content and asset QA', () => {
     expect(Array.from(missing).sort()).toEqual([]);
   });
 });
+
+function extractLocalAssetReferences(html: string) {
+  const dom = new JSDOM(html);
+  try {
+    return collectLocalAssetReferences(dom.window.document);
+  } finally {
+    dom.window.close();
+  }
+}
 
 function collectLocalAssetReferences(document: Document) {
   const references: Array<{ original: string; pathname: string }> = [];
