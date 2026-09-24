@@ -4,8 +4,8 @@ date: 2026-09-24
 category: radar
 cadence: daily
 audioUrl: /audio/radar/daily-ai-radar-2026-09-24.mp3
-audioDuration: 104
-audioSize: 829838
+audioDuration: 1219
+audioSize: 9751803
 draft: false
 plainSummary: "Claude Opus 5.5、Reka EdgeQ、DigitalOcean 托管 Agent 与 VS Code Agents window 展示模型和工程平台进展；Step Code 与 MentalHealthBench 提供工具和评估新入口；Google Beam 和乌克兰网络防御项目拓展应用场景；Univer 与 Strands 登上 GitHub 趋势榜。"
 difficulty: intermediate
