@@ -54,6 +54,24 @@ function sourceLine(label: string) {
 }
 
 describe('radar source diversity gate', () => {
+  it('allows an excluded vendor discovered through Trending but rejects direct vendor discovery', () => {
+    const config = { ...sourcePool, excludedActiveSources: [{ name: 'NVIDIA' }] };
+    const check = (label: string) => evaluateRadarSourceDiversity({
+      file: 'daily-ai-radar-2026-09-27.md', body: sourceLine(label), sourcePool: config,
+    }).filter((failure: string) => failure.includes('excluded from active'));
+    expect(check('GitHub Trending / NVIDIA Model Optimizer')).toEqual([]);
+    expect(check('NVIDIA')).toHaveLength(1);
+  });
+
+  it('keeps pilot discovery sources separate from required active core sources', () => {
+    const groups = extractSourceGroups(sourceLine('Simon Willison'), {
+      ...sourcePool,
+      supplementalDiscoverySources: [{ name: 'Simon Willison', aliases: ['simonwillison.net'] }],
+    });
+    expect(groups[0]).toMatchObject({ name: 'Simon Willison', kind: 'supplemental' });
+    expect(groups.filter((group) => group.kind === 'core')).toHaveLength(0);
+  });
+
   it('classifies explicit GitHub Trending labels as trend even when the owner matches an official source', () => {
     const body = sourceLine('GitHub Trending / Anthropic');
 

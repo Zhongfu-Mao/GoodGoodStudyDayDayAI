@@ -80,6 +80,7 @@ function buildSourceAliases(config) {
     ['trendSources', 'trend'],
     ['activeCoreSources', 'core'],
     ['officialConfirmationSources', 'official-triad'],
+    ['supplementalDiscoverySources', 'supplemental'],
     ['canonicalConfirmationSources', 'canonical'],
   ];
   const aliases = [];
@@ -223,6 +224,9 @@ function checkFile(file, body, groups, sourcePool, fileFailures) {
   }
 
   for (const group of groups) {
+    // Exclusion concerns proactive vendor discovery, not an explicitly identified
+    // GitHub Trending discovery. Editorial review still verifies the trend evidence.
+    if (group.kind === 'trend') continue;
     for (const excluded of excludedPatterns) {
       if (excluded.pattern.test(group.label)) {
         fileFailures.push(
@@ -263,6 +267,7 @@ function checkSourcePoolConfig(config, configFailures) {
     'officialConfirmationSources',
     'trendSources',
     'canonicalConfirmationSources',
+    'supplementalDiscoverySources',
   ];
 
   for (const bucket of sourceBuckets) {

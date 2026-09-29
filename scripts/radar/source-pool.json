@@ -125,6 +125,26 @@
       "strategy": "Use only when AI/agent/data tooling signal is concrete."
     }
   ],
+  "supplementalDiscoverySources": [
+    {
+      "name": "Hugging Face project-team releases",
+      "aliases": ["HF project-team"],
+      "access": { "primary": { "kind": "homepage", "url": "https://huggingface.co/blog" } },
+      "strategy": "User-approved pilot from 2026-09-28. Select identifiable original project-team model, dataset or evaluation releases with linked artifacts and original publication dates. Do not ingest the community trending feed wholesale or treat SEO summaries as primary evidence. Does not replace active-core quota."
+    },
+    {
+      "name": "Simon Willison",
+      "aliases": ["simonwillison.net"],
+      "access": { "primary": { "kind": "homepage", "url": "https://simonwillison.net/" } },
+      "strategy": "User-approved pilot from 2026-09-28. Prefer original AI experiments, code, transcripts and annotated technical talks with limitations. Quoted third-party claims require their original source. Does not replace active-core quota."
+    },
+    {
+      "name": "LangChain engineering",
+      "aliases": ["LangChain Blog", "LangGraph", "LangSmith"],
+      "access": { "primary": { "kind": "homepage", "url": "https://www.langchain.com/blog" } },
+      "strategy": "User-approved pilot from 2026-09-28. Prefer engineering, evaluations, observability and deployment posts with concrete methods, docs or code. Exclude sales-only posts and repetitive launch roundups. Does not replace active-core quota."
+    }
+  ],
   "officialConfirmationSources": [
     {
       "name": "OpenAI",
@@ -179,7 +199,7 @@
       "access": {
         "primary": { "kind": "homepage", "url": "https://huggingface.co/blog" }
       },
-      "strategy": "Not an active daily source. Use only when a core source or trend source points to a model, dataset, benchmark, library or Hub item."
+      "strategy": "General Hub content remains canonical confirmation only. The user-approved supplementalDiscoverySources pilot permits bounded discovery of identifiable project-team original releases, not unrestricted community feed ingestion."
     },
     {
       "name": "arXiv / Paper / Project",
