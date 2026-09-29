@@ -11,8 +11,8 @@ tags:
   - Inference
   - GitHub
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-06-16-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-06-16.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-06-16-infographic.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-06-16.mp3
 audioDuration: 1226
 audioSize: 9805303
 draft: false

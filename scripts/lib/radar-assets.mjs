@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { mkdir, rename } from 'node:fs/promises';
 import { createR2Client, getPublicUrl, isR2Configured, missingR2Env, uploadToR2 } from './r2.mjs';
 
 let sharedR2Client;
@@ -40,6 +41,8 @@ export function assetUrlMatchesPublicAsset(assetUrl, publicUrl) {
 }
 
 export async function publishRadarAsset({ localPath, publicUrl, label = 'asset' }) {
+  // New images travel with Pages; dated image archival is a separate verified cutover.
+  if (publicUrl.startsWith('/images/')) return publicUrl;
   if (!isR2Configured()) {
     const missing = missingR2Env();
     console.log(`R2 not configured; keeping local ${label} URL (${missing.join(', ')} missing).`);
@@ -53,7 +56,13 @@ export async function publishRadarAsset({ localPath, publicUrl, label = 'asset' 
   }
 
   sharedR2Client ??= createR2Client();
-  const result = await uploadToR2(sharedR2Client, { localPath, key });
+  const result = await uploadToR2(sharedR2Client, { localPath, key, preserveExisting: true });
+
+  if (/^(audio|decks)\/radar\//.test(key)) {
+    const cached = path.resolve('.cache/r2-published', result.key);
+    await mkdir(path.dirname(cached), { recursive: true });
+    await rename(localPath, cached);
+  }
 
   console.log(`${result.uploaded ? 'Uploaded' : 'Reused'} ${label} at ${result.publicUrl}`);
 

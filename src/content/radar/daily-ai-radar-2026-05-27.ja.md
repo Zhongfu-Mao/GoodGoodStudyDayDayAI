@@ -11,8 +11,8 @@ tags:
   - Infrastructure
   - Product
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-05-27.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-27.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-27.ja-infographic-512d093e67ac96c15d8e67091f8b12e8ed0a29c79b5ce9a07940488cadf63881.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-27.ja-56bd8cd7377acd39ed4fd6e9c6139a4c0ee8a5ce007b7106b519a5541c0838d5.mp3
 audioDuration: 1145
 audioSize: 9160601
 draft: false

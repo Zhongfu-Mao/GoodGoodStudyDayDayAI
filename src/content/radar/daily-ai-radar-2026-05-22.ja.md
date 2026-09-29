@@ -11,8 +11,8 @@ tags:
   - Developer Tools
   - Evaluation
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-05-22.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-22.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-22.ja-infographic-7579126d2cd26a729f9345d631203119bbc7fe857aed9cf626e08b8fc318157d.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-22.ja-1c14bd4029d89700b38dcbffcaf689d9d2cd57af8992b2a593e672d6cf8dea7d.mp3
 audioDuration: 1077
 audioSize: 8616627
 draft: false

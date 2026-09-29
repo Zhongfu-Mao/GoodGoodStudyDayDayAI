@@ -11,11 +11,11 @@ tags:
   - Evaluation
   - AI Infrastructure
 lang: zh
-coverImage: /images/radar/monthly-ai-radar-2026-05-infographic.webp
-audioUrl: /audio/radar/monthly-ai-radar-2026-05.mp3?v=monthly
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-05-infographic.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-05.mp3?v=monthly
 audioDuration: 1281
 audioSize: 10246668
-deckUrl: /decks/radar/monthly-ai-radar-2026-05.pdf
+deckUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-05.pdf
 draft: false
 ---
 
@@ -155,9 +155,9 @@ Compound engineering、Codex workflow、Cursor habits 和 Copilot metrics 说明
 
 ## 资产索引
 
-- **Audio Overview**: /audio/radar/monthly-ai-radar-2026-05.mp3
-- **Slide Deck**: /decks/radar/monthly-ai-radar-2026-05.pdf
-- **Infographic**: /images/radar/monthly-ai-radar-2026-05-infographic.webp
+- **Audio Overview**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-05.mp3
+- **Slide Deck**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-05.pdf
+- **Infographic**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-05-infographic.webp
 
 ## 月内周报导航
 

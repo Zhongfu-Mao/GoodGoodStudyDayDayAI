@@ -11,8 +11,8 @@ tags:
   - Developer Tools
   - Document AI
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-05-19.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-19.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-19.ja-infographic-71f899dbc617c891c1f91c533b3b19d3b9003a730d1e9855b5dc69d518d1818b.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-19.ja-fccb3d651caacffe820e44890443736f86bd5f781e25fd17e539392cb6ab1834.mp3
 audioDuration: 1001
 audioSize: 8006407
 draft: false

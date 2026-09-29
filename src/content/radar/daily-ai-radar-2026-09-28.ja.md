@@ -3,7 +3,7 @@ title: "AI レーダー日報：2026-09-28"
 date: 2026-09-28
 category: radar
 cadence: daily
-audioUrl: /audio/radar/daily-ai-radar-2026-09-28.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-09-28.ja.mp3
 audioDuration: 1082
 audioSize: 8659258
 draft: false

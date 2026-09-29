@@ -12,9 +12,9 @@ tags:
   - Open Source
   - GitHub
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-07-30.ja-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-07-30.ja-infographic.webp
 representativeImageSource: https://blog.bytebytego.com/p/how-chatgpt-optimizes-its-agent-loop
-audioUrl: /audio/radar/daily-ai-radar-2026-07-30.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-07-30.ja.mp3
 audioDuration: 1005
 audioSize: 8041515
 draft: false

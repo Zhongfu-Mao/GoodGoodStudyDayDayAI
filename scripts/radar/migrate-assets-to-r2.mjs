@@ -40,7 +40,9 @@ function parseArgs(argv) {
     if (arg === '--public-base') {
       options.publicBase = argv[index + 1] ?? options.publicBase;
       index += 1;
+      continue;
     }
+    throw new Error(`Unknown migration option: ${arg}`);
   }
 
   return options;
@@ -202,7 +204,12 @@ async function main() {
   );
 }
 
-main().catch((error) => {
+const operation =
+  process.argv.includes('--upload-only') || process.argv.includes('--verify-only')
+    ? import('./stage-assets-to-r2.mjs').then(({ stageAssets }) => stageAssets())
+    : main();
+
+operation.catch((error) => {
   console.error(error instanceof Error ? error.message : error);
   process.exitCode = 1;
 });

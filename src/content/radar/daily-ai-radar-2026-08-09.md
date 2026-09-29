@@ -12,9 +12,9 @@ tags:
   - Cost
   - GitHub
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-08-09-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-08-09-infographic.webp
 representativeImageSource: https://www.latent.space/p/ainews-zawinskis-law-of-multiagents
-audioUrl: /audio/radar/daily-ai-radar-2026-08-09.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-08-09.mp3
 audioDuration: 1091
 audioSize: 8731984
 draft: false

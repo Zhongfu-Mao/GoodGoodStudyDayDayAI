@@ -1,7 +1,7 @@
 ---
 title: "AI 雷达日报：2026-06-02"
 date: 2026-06-02
-coverImage: /images/radar/daily-ai-radar-2026-06-02-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-06-02-infographic.webp
 category: radar
 cadence: daily
 plainSummary: "今天的主线是 agent 工程继续从模型能力转向系统能力：常驻文件索引、个人 AI 电脑、开源多模态 agent 模型、Google 的生成式制作流水线，以及 GitHub 上围绕设计技能、team harness 和终端 agent 的工具热度。"
@@ -12,7 +12,7 @@ tags:
   - Evaluation
   - GitHub
 lang: zh
-audioUrl: /audio/radar/daily-ai-radar-2026-06-02.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-06-02.mp3
 audioDuration: 1214
 audioSize: 9710844
 draft: false

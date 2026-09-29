@@ -12,9 +12,9 @@ tags:
   - GitHub
   - Future of Work
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-08-24.ja-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-08-24.ja-infographic.webp
 representativeImageSource: https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x
-audioUrl: /audio/radar/daily-ai-radar-2026-08-24.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-08-24.ja.mp3
 audioDuration: 1285
 audioSize: 10278223
 draft: false

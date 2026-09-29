@@ -11,8 +11,8 @@ tags:
   - Developer Tools
   - Model Efficiency
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-05-18.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-18.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-18.ja-infographic-5cd69cdd1f878983dbafe8c9015106a5df83421e157715e61b07aa301e552960.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-18.ja-19aa663e4b2c92c88fb043c8e6de38658e8273b9dfe71c664fa1452f73bde17d.mp3
 audioDuration: 1045
 audioSize: 8359791
 draft: false

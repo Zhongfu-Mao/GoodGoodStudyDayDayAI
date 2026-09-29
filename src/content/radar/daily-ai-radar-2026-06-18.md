@@ -11,8 +11,8 @@ tags:
   - Models
   - GitHub
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-06-18-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-06-18.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-06-18-infographic.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-06-18.mp3
 audioDuration: 1237
 audioSize: 9897463
 draft: false

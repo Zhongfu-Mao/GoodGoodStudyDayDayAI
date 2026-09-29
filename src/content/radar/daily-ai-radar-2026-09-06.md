@@ -12,7 +12,7 @@ tags:
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-09-06-infographic.webp
 representativeImageSource: https://skild.ai/blogs/s1
-audioUrl: /audio/radar/daily-ai-radar-2026-09-06.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-09-06.mp3
 audioDuration: 1494
 audioSize: 11953403
 draft: false

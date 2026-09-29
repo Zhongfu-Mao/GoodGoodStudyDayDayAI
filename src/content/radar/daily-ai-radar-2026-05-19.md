@@ -11,8 +11,8 @@ tags:
   - Developer Tools
   - Document AI
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-05-19-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-19.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-19-infographic-2e24fce23b521f2e4d04155b1cbb9e0860d99d789ec07617b074248d562891a8.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-19-24ec0e639dfa806a01a81a2419765fd927bf19e0fa9eca886aacf11fb8ffae08.mp3
 audioDuration: 1226
 audioSize: 9807602
 draft: false

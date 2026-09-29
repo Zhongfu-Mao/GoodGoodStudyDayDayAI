@@ -11,8 +11,8 @@ tags:
   - Infrastructure
   - Finance
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-05-16.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-16.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-16.ja-infographic-bc0d4aa7e3f35c166464841d38d433cb1f7f02fc40040fe313307a45dcde05d1.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-16.ja-3229bb71bd646038c5d3e33a6141105df27edf6643bbe6dbb059533513a88251.mp3
 audioDuration: 1144
 audioSize: 9156421
 draft: false

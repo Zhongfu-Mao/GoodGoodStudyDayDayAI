@@ -12,7 +12,7 @@ tags:
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-09-06.ja-infographic.webp
 representativeImageSource: https://skild.ai/blogs/s1
-audioUrl: /audio/radar/daily-ai-radar-2026-09-06.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-09-06.ja.mp3
 audioDuration: 1029
 audioSize: 8233566
 draft: false

@@ -12,9 +12,9 @@ tags:
   - Evaluation
   - GitHub
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-08-03.ja-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-08-03.ja-infographic.webp
 representativeImageSource: https://github.com/Panniantong/Agent-Reach
-audioUrl: /audio/radar/daily-ai-radar-2026-08-03.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-08-03.ja.mp3
 audioDuration: 1080
 audioSize: 8638361
 draft: false

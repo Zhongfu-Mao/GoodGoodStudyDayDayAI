@@ -11,8 +11,8 @@ tags:
   - Developer Tools
   - GitHub Trends
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-05-20-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-20.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-20-infographic-044da3ce0ededfc6a0e8e3e67a08e0ea2c41d9ee994d7d1588aa5e025129adfb.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-20-98669bdb77a5789b99a8b84c814d2c6eb9a8e958c5c9678f47086ee05bae758c.mp3
 audioDuration: 899
 audioSize: 7191595
 draft: false

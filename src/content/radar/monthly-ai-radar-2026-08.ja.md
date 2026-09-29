@@ -11,10 +11,10 @@ tags:
   - Evaluation
   - Infrastructure
 lang: ja
-audioUrl: /audio/radar/monthly-ai-radar-2026-08.ja.mp3?v=monthly
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-08.ja.mp3?v=monthly
 audioDuration: 2661
 audioSize: 21290820
-deckUrl: /decks/radar/monthly-ai-radar-2026-08.ja-corrected.pdf
+deckUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-08.ja-corrected.pdf
 coverImage: /images/radar/monthly-ai-radar-2026-08.ja-infographic.webp
 draft: false
 ---

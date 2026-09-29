@@ -13,8 +13,8 @@ tags:
   - AI Infrastructure
 lang: ja
 representativeImageSource: https://www.latent.space/p/lovable-future-of-saas
-coverImage: /images/radar/daily-ai-radar-2026-08-27.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-08-27.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-08-27.ja-infographic.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-08-27.ja.mp3
 audioDuration: 1561
 audioSize: 12490899
 draft: false

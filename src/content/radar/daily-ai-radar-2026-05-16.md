@@ -11,8 +11,8 @@ tags:
   - Infrastructure
   - Finance
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-05-16-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-16.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-16-infographic-078ef846260efe5068474fcd9a5ef58f7208d64ac1b5dfb6ef2ab803b3be4661.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-16-2065610d744632ee827dae3d97892aadfdc326e8c16f2c2b36d7b8322687e086.mp3
 audioDuration: 1127
 audioSize: 9014315
 draft: false

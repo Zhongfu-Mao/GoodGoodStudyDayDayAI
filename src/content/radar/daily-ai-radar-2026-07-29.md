@@ -12,9 +12,9 @@ tags:
   - Open Source
   - GitHub
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-07-29-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-07-29-infographic.webp
 representativeImageSource: https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/
-audioUrl: /audio/radar/daily-ai-radar-2026-07-29.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-07-29.mp3
 audioDuration: 889
 audioSize: 7112601
 draft: false

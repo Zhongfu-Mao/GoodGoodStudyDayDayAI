@@ -9,7 +9,7 @@ tags:
   - AI Engineering
   - Agents
 lang: ja
-audioUrl: /audio/radar/daily-ai-radar-2026-09-15.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-09-15.ja.mp3
 audioDuration: 1114
 audioSize: 8908989
 coverImage: /images/radar/daily-ai-radar-2026-09-15.ja-infographic.webp

@@ -1,7 +1,7 @@
 ---
 title: "AI レーダー日報：2026-06-02"
 date: 2026-06-02
-coverImage: /images/radar/daily-ai-radar-2026-06-02.ja-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-06-02.ja-infographic.webp
 category: radar
 cadence: daily
 plainSummary: "今日の主線は、agent engineering が model capability から system capability へ進む流れです。persistent file index、personal AI computer、open multimodal agent models、Google の generative production pipeline、そして GitHub 上の design skill、team harness、terminal agent が同時に動いています。"
@@ -12,7 +12,7 @@ tags:
   - Evaluation
   - GitHub
 lang: ja
-audioUrl: /audio/radar/daily-ai-radar-2026-06-02.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-06-02.ja.mp3
 audioDuration: 1022
 audioSize: 8180696
 draft: false

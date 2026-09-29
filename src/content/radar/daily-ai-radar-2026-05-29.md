@@ -11,8 +11,8 @@ tags:
   - Governance
   - Evaluation
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-05-29-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-29.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-29-infographic-130807d048731f4f3ca20e58eaa8e6e8520c3175f318fa72f3bde29a63d32ae5.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-29-7b6a3820183542ca2bfecb9d5fce60e498382270e1557b05341e6fc255d6d99b.mp3
 audioDuration: 1391
 audioSize: 11128353
 draft: false

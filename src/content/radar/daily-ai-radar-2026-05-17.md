@@ -11,8 +11,8 @@ tags:
   - Governance
   - Infrastructure
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-05-17-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-17.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-17-infographic-04a30df75f3a3172b031e6d2eda5517d8b390b70633bbee949c120a8c6ff04cf.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-17-070a269085a66840034c5beae6c0added6bca009acc4d811f172a6bdbd25dfa8.mp3
 audioDuration: 1024
 audioSize: 8190936
 draft: false

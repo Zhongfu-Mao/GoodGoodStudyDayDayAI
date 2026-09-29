@@ -11,8 +11,8 @@ tags:
   - Infrastructure
   - Evaluation
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-05-26.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-26.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-26.ja-infographic-c10a084585338a373d95c4623396c459f7d1362bc0a9739ae8e05946561e38c5.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-26.ja-cc4497883735f184d30f9004560ed46296a4acbc35fe3f561bff21d16f9ba691.mp3
 audioDuration: 1047
 audioSize: 8377136
 draft: false

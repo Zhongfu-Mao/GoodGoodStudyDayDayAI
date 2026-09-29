@@ -11,7 +11,7 @@ tags:
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-09-08-infographic.webp
 representativeImageSource: https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures
-audioUrl: /audio/radar/daily-ai-radar-2026-09-08.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-09-08.mp3
 audioDuration: 1468
 audioSize: 11747349
 draft: false

@@ -11,7 +11,7 @@ tags:
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-09-08.ja-infographic.webp
 representativeImageSource: https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures
-audioUrl: /audio/radar/daily-ai-radar-2026-09-08.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-09-08.ja.mp3
 audioDuration: 1007
 audioSize: 8056979
 draft: false

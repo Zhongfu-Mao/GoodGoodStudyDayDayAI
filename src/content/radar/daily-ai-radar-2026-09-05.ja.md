@@ -12,7 +12,7 @@ tags:
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-09-05.ja-infographic.webp
 representativeImageSource: https://ziyaerkoc.com/worldagents/
-audioUrl: /audio/radar/daily-ai-radar-2026-09-05.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-09-05.ja.mp3
 audioDuration: 1150
 audioSize: 9202814
 draft: false

@@ -11,11 +11,11 @@ tags:
   - Evaluation
   - GitHub
 lang: zh
-coverImage: /images/radar/monthly-ai-radar-2026-06-infographic.webp
-audioUrl: /audio/radar/monthly-ai-radar-2026-06.mp3?v=monthly
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-06-infographic.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-06.mp3?v=monthly
 audioDuration: 1276
 audioSize: 10212133
-deckUrl: /decks/radar/monthly-ai-radar-2026-06.pdf
+deckUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-06.pdf
 draft: false
 ---
 
@@ -143,9 +143,9 @@ skills、MCP、system prompts、plugins 和 agent-readable specs 会像包管理
 
 ## 资产索引
 
-- **Audio Overview**: /audio/radar/monthly-ai-radar-2026-06.mp3
-- **Slide Deck**: /decks/radar/monthly-ai-radar-2026-06.pdf
-- **Infographic**: /images/radar/monthly-ai-radar-2026-06-infographic.webp
+- **Audio Overview**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-06.mp3
+- **Slide Deck**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-06.pdf
+- **Infographic**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-06-infographic.webp
 
 ## 月内周报导航
 

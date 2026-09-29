@@ -12,9 +12,9 @@ tags:
   - GitHub
   - AI Governance
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-08-28-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-08-28-infographic.webp
 representativeImageSource: https://blog.dailydoseofds.com/p/kv-vs-prefix-vs-prompt-vs-semantic
-audioUrl: /audio/radar/daily-ai-radar-2026-08-28.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-08-28.mp3
 audioDuration: 975
 audioSize: 7798262
 draft: false

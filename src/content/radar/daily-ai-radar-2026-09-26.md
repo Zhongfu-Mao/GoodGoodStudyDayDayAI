@@ -3,7 +3,7 @@ title: "AI 雷达日报：2026-09-26"
 date: 2026-09-26
 category: radar
 cadence: daily
-audioUrl: /audio/radar/daily-ai-radar-2026-09-26.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-09-26.mp3
 audioDuration: 1096
 audioSize: 8764793
 draft: false

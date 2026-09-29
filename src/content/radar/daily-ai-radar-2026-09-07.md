@@ -12,7 +12,7 @@ tags:
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-09-07-infographic.webp
 representativeImageSource: https://www.anthropic.com/research/formalizing-fermats-last-theorem
-audioUrl: /audio/radar/daily-ai-radar-2026-09-07.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-09-07.mp3
 audioDuration: 830
 audioSize: 6641769
 draft: false

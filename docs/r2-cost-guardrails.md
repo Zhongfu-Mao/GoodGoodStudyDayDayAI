@@ -1,151 +1,55 @@
-# R2 Cost Guardrails
+# R2 media delivery and cost guardrails
 
-This project treats public R2 media as a low-budget, fail-closed surface. The goal is to keep podcast audio, radar infographics, and cover art available without leaving a runaway billing path open.
+## Current delivery policy (2026-09-29)
 
-Current default: keep public podcast media on GitHub Pages. Use R2 only after a custom Cloudflare media domain, cache rules, and rate limits are ready.
+The website remains on GitHub Pages. All radar MP3 audio and PDF decks are served from R2. Radar images referenced by a report within the previous calendar month stay in `public/` and travel with Pages; older referenced images move to R2. The cutoff is inclusive: on 2026-09-29, images referenced on or after 2026-08-29 stay local. Shared images use their latest referring report date. Undated shared artwork and podcast covers stay local.
 
-## Current Dashboard State
+The user authorized public access on 2026-09-29 after private staging. The `ggsdda-media` bucket's public development URL is enabled temporarily:
 
-- R2 bucket: `ggsdda-media`
-- Budget alert: `R2 emergency budget alert - $1`
-- Public development URL: disabled
-- Custom R2 domain: not connected yet
-- Cloudflare zone/domain: none found in the dashboard
+`https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev`
 
-GitHub Pages feed and media URLs are the active public podcast delivery path.
+This is a deliberate temporary exception to the custom-domain guardrail. Cloudflare documents `r2.dev` as rate-limited and unsuitable for production; it lacks the custom-domain cache and WAF controls. A successful request is not a production reliability guarantee. No domain or paid Workers plan has been purchased.
 
-## Guardrail 0: R2 Is Explicit Opt-In
+- Standard storage; the staged inventory was about 4.65 GB including preserved legacy objects.
+- CORS allows only GET/HEAD from `https://zhongfu-mao.github.io`, `http://localhost:4321`, and `http://127.0.0.1:4321`.
+- Allowed request header: `Range`; exposed response headers: `Accept-Ranges`, `Content-Range`, `Content-Length`, `ETag`.
+- Public Range responses for audio, PDF and images were verified on 2026-09-29.
+- The historical `$1` alert has **not** been freshly verified. Alerts are notifications, not spending caps.
+- Standard free tier: 10 GB-month storage, 1 million Class A and 10 million Class B operations per month; overages are billable. Current pricing: https://developers.cloudflare.com/r2/pricing/ . Public-access limitations: https://developers.cloudflare.com/r2/buckets/public-buckets/ .
 
-Radar generation keeps media on GitHub Pages unless local `.env` explicitly contains:
+## Safe staging and cutover
 
-```bash
+Only Git-tracked accepted media is staged; untracked corrected candidates/backups are not accepted publication assets. Staging preserves conflicting legacy objects under their original keys and records hash-versioned replacement keys. Never construct cutover URLs from filenames alone.
+
+```sh
+npm run assets:migrate:r2 -- --upload-only --manifest tmp/r2-migration/DATE/staged.json
+npm run assets:migrate:r2 -- --upload-only --verify-only --manifest tmp/r2-migration/DATE/staged.json
+node scripts/radar/cutover-assets-to-r2.mjs --manifest tmp/r2-migration/DATE/staged.json --as-of YYYY-MM-DD --public-base https://PUBLIC_HOST
+# Review the dry-run counts, then repeat with --apply.
+```
+
+The cutover requires a completed, independently verified staging manifest. It hashes originals again, verifies every selected public object's size, ETag and CORS before modifying any content, rewrites exact local references using the manifest's actual keys, preserves audio sizes and feed GUIDs, and moves originals into ignored `.cache/r2-cutover/DATE/`. Original content snapshots are also retained there. Back up this cache before clearing local caches. The script does not push or rewrite Git history.
+
+Repeat staging/verification/cutover when images age out of the retention window, using a new date and manifest after committing the previous cutover. This is an explicit maintenance operation, not a background scheduler or an R2 deletion lifecycle rule. Existing Git history still contains old media; removing current files reduces Pages output but does not shrink clone history.
+
+After cutover, run the Pages-base-path build and relevant asset, podcast and deck preview tests. Old direct GitHub Pages asset URLs will cease working once removal is deployed; feed GUIDs remain stable, but podcast clients holding old enclosure URLs may need to refresh their feed.
+
+## New media generation
+
+Local `.env` explicitly opts into R2:
+
+```sh
 R2_ENABLED=1
+# Temporary only, until a custom domain is connected:
+ALLOW_R2_DEV_PUBLIC_BASE=1
 ```
 
-Leave `R2_ENABLED` unset or `0` while this project is still in the low-traffic interest-project phase.
+New images stay local. The publishing helper uploads audio/PDF with checksum verification and preserves conflicting remote objects; verified originals go to ignored `.cache/r2-published/` so heavy media does not return to Pages. Keep credentials and `.env` out of Git. A machine without R2 credentials keeps local output and must stage/cut over before publishing heavy media.
 
-## Guardrail 1: Custom Domain Before Production
+`npm run check:r2-public-base` checks the opt-in configuration. `npm run audit:r2-public-urls` intentionally reports/fails on the temporary `r2.dev` references; do not silence this reminder by weakening the audit.
 
-Do not use `r2.dev` as the long-term public media host. Cloudflare documents `r2.dev` as a non-production development URL, and Cache/WAF/Bot controls require a custom domain.
+## Custom-domain follow-up and emergency stop
 
-Once a Cloudflare zone exists in this account:
+Connect a user-owned domain in the same Cloudflare account and attach a media hostname to this bucket. Verify CORS and Range behavior, configure caching and available abuse controls, replace the temporary host in content, update `R2_PUBLIC_BASE`, and remove `ALLOW_R2_DEV_PUBLIC_BASE`. Validate feeds and build again before disabling the development URL. Rules and thresholds must match the actual Cloudflare plan; do not assume all WAF features are available.
 
-1. Add a media hostname, for example `media.example.com`.
-2. Connect `media.example.com` to the `ggsdda-media` bucket in R2 settings.
-3. Update local `.env` only:
-
-   ```bash
-   R2_ENABLED=1
-   R2_PUBLIC_BASE=https://media.example.com
-   ```
-
-4. Dry-run the URL rewrite:
-
-   ```bash
-   npm run assets:migrate:r2 -- --dry-run --public-base https://media.example.com
-   ```
-
-5. Run the real migration with the same custom domain.
-6. Verify no `r2.dev` URLs remain:
-
-   ```bash
-   npm run audit:r2-public-urls
-   ```
-
-7. Keep the R2 public development URL disabled.
-
-## Guardrail 2: Cache Rules
-
-After the custom domain is active, create a Cache Rule for the media hostname.
-
-Recommended match expression:
-
-```text
-http.host eq "media.example.com" and (
-  starts_with(http.request.uri.path, "/audio/radar/") or
-  starts_with(http.request.uri.path, "/images/radar/") or
-  http.request.uri.path eq "/images/podcast-cover.jpg"
-)
-```
-
-Recommended settings:
-
-- Cache eligibility: Eligible for cache
-- Edge TTL: ignore origin cache-control and cache for 30 days
-- Browser TTL: 1 day for `podcast-cover.jpg`; 7 to 30 days for versioned episode media
-
-If cover art becomes versioned, raise the browser TTL to match the other immutable assets.
-
-## Guardrail 3: Budget Alerts
-
-The dashboard has a `$1` budget alert. This is intentionally tiny: it should fire while there is still time to react.
-
-Budget alerts are only notifications; they do not stop traffic or cap spend. Treat any alert email as an incident:
-
-1. Check R2 and cache analytics.
-2. If traffic looks abusive, enable the emergency kill switch below.
-3. Only then investigate whether the threshold should be raised.
-
-## Guardrail 4: WAF And Rate Limiting
-
-After the custom domain is active, add rate limiting rules for the media hostname.
-
-Start conservative:
-
-```text
-http.host eq "media.example.com" and starts_with(http.request.uri.path, "/audio/radar/")
-```
-
-- Characteristic: IP
-- Period: 10 minutes
-- Threshold: 60 requests
-- Action: Block
-- Mitigation timeout: 10 minutes
-
-Add a second rule for image paths:
-
-```text
-http.host eq "media.example.com" and (
-  starts_with(http.request.uri.path, "/images/radar/") or
-  http.request.uri.path eq "/images/podcast-cover.jpg"
-)
-```
-
-- Characteristic: IP
-- Period: 10 minutes
-- Threshold: 120 requests
-- Action: Block
-- Mitigation timeout: 10 minutes
-
-Keep these rules scoped to the media hostname so normal site browsing is not affected.
-
-## Local Fail-Closed Checks
-
-R2 publishing is disabled unless `R2_ENABLED=1`. When enabled, the R2 helper refuses to generate new public URLs if `R2_PUBLIC_BASE` points to `r2.dev`. This blocks accidental future publishing through the development URL.
-
-Emergency override:
-
-```bash
-ALLOW_R2_DEV_PUBLIC_BASE=1 npm run assets:migrate:r2
-```
-
-Use the override only when deliberately migrating away from `r2.dev`, and do not commit secrets or local `.env` values.
-
-Useful checks:
-
-```bash
-npm run check:r2-public-base
-npm run audit:r2-public-urls
-```
-
-`audit:r2-public-urls` should pass while podcast media is served from GitHub Pages or a future custom media domain.
-
-## Emergency Kill Switch
-
-If an attack or runaway usage starts before custom-domain controls exist and R2 public access has been re-enabled:
-
-1. Go to R2 > `ggsdda-media` > Settings.
-2. Disable the Public Development URL.
-3. Accept that podcast/media URLs using `r2.dev` will stop working.
-
-After the custom domain is active, prefer a WAF block rule on the media hostname so the bucket settings can remain stable.
+For unexpected public traffic or billable usage, disable Public Development URL under R2 > `ggsdda-media` > Settings. This immediately breaks media served through that host. Restoring Pages delivery requires restoring originals and source snapshots, rebuilding and deploying. Budget alerts do not automatically perform this stop.

@@ -11,8 +11,8 @@ tags:
   - Infrastructure
   - Healthcare
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-05-15.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-15.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-15.ja-infographic-48c4319230627a7e799a40610ce44d2198d6d65a454a62ccd92a82b9b941bf3e.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-15.ja-b34c32af1e009e56abb0022a317744f7443868c3532ec066fdc981655b4490f2.mp3
 audioDuration: 1103
 audioSize: 8826652
 draft: false

@@ -11,8 +11,8 @@ tags:
   - Governance
   - Infrastructure
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-05-17.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-17.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-17.ja-infographic-dfc5a0937ce202e6e25e2fdd1a705b2a0736fee5c70c2429cbda62434db05449.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-17.ja-e69faa43056adbd8a5f5de0e8116bc54a18db019be349b5aed9fdacf379cd31f.mp3
 audioDuration: 1052
 audioSize: 8419141
 draft: false

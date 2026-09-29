@@ -11,11 +11,11 @@ tags:
   - Evaluation
   - GitHub
 lang: ja
-coverImage: /images/radar/monthly-ai-radar-2026-06.ja-infographic.webp
-audioUrl: /audio/radar/monthly-ai-radar-2026-06.ja.mp3?v=monthly
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-06.ja-infographic.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-06.ja.mp3?v=monthly
 audioDuration: 973
 audioSize: 7788597
-deckUrl: /decks/radar/monthly-ai-radar-2026-06.ja.pdf
+deckUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-06.ja.pdf
 draft: false
 ---
 
@@ -143,9 +143,9 @@ Skills、MCP、system prompts、plugins、agent-readable specs は package manag
 
 ## アセット索引
 
-- **Audio Overview**: /audio/radar/monthly-ai-radar-2026-06.ja.mp3
-- **Slide Deck**: /decks/radar/monthly-ai-radar-2026-06.ja.pdf
-- **Infographic**: /images/radar/monthly-ai-radar-2026-06.ja-infographic.webp
+- **Audio Overview**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-06.ja.mp3
+- **Slide Deck**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-06.ja.pdf
+- **Infographic**: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-06.ja-infographic.webp
 
 ## 月内週報ナビ
 

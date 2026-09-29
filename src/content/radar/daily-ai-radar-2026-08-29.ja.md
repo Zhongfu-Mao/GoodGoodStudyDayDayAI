@@ -12,7 +12,7 @@ tags:
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-08-29.ja-infographic.webp
 representativeImageSource: https://www.anthropic.com/news/model-hardware-standard-research-preview
-audioUrl: /audio/radar/daily-ai-radar-2026-08-29.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-08-29.ja.mp3
 audioDuration: 837
 audioSize: 6697984
 draft: false

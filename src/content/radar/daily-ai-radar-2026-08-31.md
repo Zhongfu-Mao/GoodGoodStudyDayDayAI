@@ -12,7 +12,7 @@ tags:
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-08-31-infographic.webp
 representativeImageSource: https://developer.chrome.com/docs/ai/webmcp
-audioUrl: /audio/radar/daily-ai-radar-2026-08-31.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-08-31.mp3
 audioDuration: 1095
 audioSize: 8759777
 draft: false

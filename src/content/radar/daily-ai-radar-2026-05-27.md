@@ -11,8 +11,8 @@ tags:
   - Infrastructure
   - Product
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-05-27-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-27.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-27-infographic-760412dcc38c50c035fc96214d3a9daefaecc053d43a1d1a4d737988af54aab5.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-27-10e523e5d668b6b36d77e5f3c5c44b8b153d9838f20f48da68d7df59631ca2c8.mp3
 audioDuration: 1434
 audioSize: 11471497
 draft: false

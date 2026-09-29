@@ -12,10 +12,10 @@ tags:
   - Infrastructure
 lang: zh
 coverImage: /images/radar/monthly-ai-radar-2026-08-infographic.webp
-audioUrl: /audio/radar/monthly-ai-radar-2026-08.mp3?v=monthly
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/monthly-ai-radar-2026-08.mp3?v=monthly
 audioDuration: 3476
 audioSize: 27812446
-deckUrl: /decks/radar/monthly-ai-radar-2026-08-corrected.pdf
+deckUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/decks/radar/monthly-ai-radar-2026-08-corrected.pdf
 draft: false
 ---
 

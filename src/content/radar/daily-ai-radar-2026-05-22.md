@@ -11,8 +11,8 @@ tags:
   - Developer Tools
   - Evaluation
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-05-22-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-22.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-22-infographic-c7180697158baa2d00b4ff656470ecb8cc458a5c2fb5bc62758887348783edc1.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-22.mp3
 audioDuration: 381
 audioSize: 3047112
 draft: false

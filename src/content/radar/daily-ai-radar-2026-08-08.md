@@ -12,9 +12,9 @@ tags:
   - Safety
   - GitHub
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-08-08-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-08-08-infographic.webp
 representativeImageSource: https://www.therundown.ai/p/ai-designs-viruses-never-seen-in-nature
-audioUrl: /audio/radar/daily-ai-radar-2026-08-08.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-08-08.mp3
 audioDuration: 1359
 audioSize: 10874234
 draft: false

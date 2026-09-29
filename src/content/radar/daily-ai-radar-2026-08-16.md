@@ -12,9 +12,9 @@ tags:
   - Enterprise AI
   - GitHub
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-08-16-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-08-16-infographic.webp
 representativeImageSource: https://www.latent.space/p/flue-2
-audioUrl: /audio/radar/daily-ai-radar-2026-08-16.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-08-16.mp3
 audioDuration: 1112
 audioSize: 8896241
 draft: false

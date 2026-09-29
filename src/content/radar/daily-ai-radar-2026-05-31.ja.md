@@ -11,8 +11,8 @@ tags:
   - Evaluation
   - GitHub
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-05-31.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-31.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-31.ja-infographic.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-31.ja.mp3
 audioDuration: 1142
 audioSize: 9134270
 draft: false

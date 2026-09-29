@@ -11,7 +11,7 @@ tags:
   - MCP
   - CI/CD
 lang: zh
-coverImage: /images/radar/monthly-ai-radar-2026-04-market-ecosystem-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/monthly-ai-radar-2026-04-market-ecosystem-infographic.webp
 includeInRadarArchive: false
 draft: false
 ---

@@ -1,15 +1,16 @@
 import { HeadObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { createHash } from 'node:crypto';
 import { createReadStream, readFileSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import path from 'node:path';
 
-const REQUIRED_R2_ENV = [
+const REQUIRED_R2_STORAGE_ENV = [
   'R2_ACCOUNT_ID',
   'R2_ACCESS_KEY_ID',
   'R2_SECRET_ACCESS_KEY',
   'R2_BUCKET',
-  'R2_PUBLIC_BASE',
 ];
+const REQUIRED_R2_ENV = [...REQUIRED_R2_STORAGE_ENV, 'R2_PUBLIC_BASE'];
 const R2_ENABLED = 'R2_ENABLED';
 const ALLOW_R2_DEV_PUBLIC_BASE = 'ALLOW_R2_DEV_PUBLIC_BASE';
 
@@ -68,6 +69,11 @@ export function missingR2Env() {
   loadDotEnv();
   const missing = REQUIRED_R2_ENV.filter((name) => !process.env[name]);
   return isR2Enabled() ? missing : [R2_ENABLED, ...missing];
+}
+
+export function missingR2StorageEnv() {
+  loadDotEnv();
+  return REQUIRED_R2_STORAGE_ENV.filter((name) => !process.env[name]);
 }
 
 export function isR2Enabled() {
@@ -133,6 +139,8 @@ export function createR2Client() {
     region: 'auto',
     endpoint: `https://${requireR2Env('R2_ACCOUNT_ID')}.r2.cloudflarestorage.com`,
     forcePathStyle: true,
+    requestChecksumCalculation: 'WHEN_REQUIRED',
+    responseChecksumValidation: 'WHEN_REQUIRED',
     credentials: {
       accessKeyId: requireR2Env('R2_ACCESS_KEY_ID'),
       secretAccessKey: requireR2Env('R2_SECRET_ACCESS_KEY'),
@@ -164,19 +172,62 @@ export async function objectExists(client, key) {
   return Boolean(await headR2Object(client, key));
 }
 
-export async function uploadToR2(client, { localPath, key, skipExisting = true } = {}) {
+export async function hashR2File(localPath) {
+  const sha = createHash('sha256');
+  const md5 = createHash('md5');
+  let size = 0;
+  for await (const chunk of createReadStream(localPath)) {
+    sha.update(chunk);
+    md5.update(chunk);
+    size += chunk.length;
+  }
+  return { size, sha256: sha.digest('hex'), md5: md5.digest('hex') };
+}
+
+export function matchesR2Object(remote, digest) {
+  if (!remote || remote.ContentLength !== digest.size) return false;
+  const etag = remote.ETag?.replaceAll('"', '');
+  // Old single-part objects have no custom checksum metadata, but do have an MD5 ETag.
+  return remote.Metadata?.sha256 === digest.sha256 || etag === digest.md5;
+}
+
+export async function uploadToR2(
+  client,
+  {
+    localPath = '',
+    key = '',
+    skipExisting = true,
+    includePublicUrl = true,
+    preserveExisting = false,
+  } = {},
+) {
   if (!localPath || !key) {
     throw new Error('uploadToR2 requires localPath and key.');
   }
 
+  // Validate the public target before writing, except for explicitly private staging.
+  if (includePublicUrl) assertSafeR2PublicBase();
   const file = await stat(localPath);
+  const digest = await hashR2File(localPath);
+  if (file.size !== digest.size) throw new Error(`Asset changed while hashing: ${localPath}`);
+  let remote = await headR2Object(client, key);
 
-  if (skipExisting) {
-    const remote = await headR2Object(client, key);
-
-    if (remote?.ContentLength === file.size) {
-      return { publicUrl: getPublicUrl(key), uploaded: false };
+  if (preserveExisting && remote && !matchesR2Object(remote, digest)) {
+    const extension = path.posix.extname(key);
+    key = `${key.slice(0, -extension.length)}-${digest.sha256}${extension}`;
+    remote = await headR2Object(client, key);
+    if (remote && !matchesR2Object(remote, digest)) {
+      throw new Error(`Checksum conflict at versioned R2 key: ${key}`);
     }
+  }
+
+  if (skipExisting && matchesR2Object(remote, digest)) {
+    return {
+      publicUrl: includePublicUrl ? getPublicUrl(key) : null,
+      key,
+      ...digest,
+      uploaded: false,
+    };
   }
 
   const contentType =
@@ -189,10 +240,16 @@ export async function uploadToR2(client, { localPath, key, skipExisting = true }
       Body: createReadStream(localPath),
       ContentLength: file.size,
       ContentType: contentType,
+      ContentMD5: Buffer.from(digest.md5, 'hex').toString('base64'),
+      Metadata: { sha256: digest.sha256 },
+      StorageClass: 'STANDARD',
+      ...(preserveExisting ? { IfNoneMatch: '*' } : {}),
     }),
   );
 
-  return { publicUrl: getPublicUrl(key), uploaded: true };
+  const verified = await headR2Object(client, key);
+  if (!matchesR2Object(verified, digest)) throw new Error(`R2 upload verification failed: ${key}`);
+  return { publicUrl: includePublicUrl ? getPublicUrl(key) : null, key, ...digest, uploaded: true };
 }
 
 export function getPublicUrl(key) {

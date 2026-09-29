@@ -10,7 +10,7 @@ tags:
   - Agents
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-09-18.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-09-18.ja.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-09-18.ja.mp3
 audioDuration: 1209
 audioSize: 9671973
 draft: false

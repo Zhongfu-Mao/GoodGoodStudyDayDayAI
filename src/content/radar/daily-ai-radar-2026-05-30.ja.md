@@ -11,10 +11,10 @@ tags:
   - Evaluation
   - Engineering Workflow
 lang: ja
-coverImage: /images/radar/daily-ai-radar-2026-05-30.ja-infographic.webp
-audioUrl: /audio/radar/daily-ai-radar-2026-05-30.ja.mp3
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-05-30.ja-infographic.webp
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-05-30.ja.mp3
 audioDuration: 1143
-audioSize: 9142570
+audioSize: 8594475
 draft: false
 ---
 

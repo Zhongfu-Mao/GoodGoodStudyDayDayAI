@@ -12,9 +12,9 @@ tags:
   - Local AI
   - GitHub
 lang: zh
-coverImage: /images/radar/daily-ai-radar-2026-08-13-infographic.webp
+coverImage: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/images/radar/daily-ai-radar-2026-08-13-infographic.webp
 representativeImageSource: https://www.comet.com/site/blog/debugging-ai-agents/
-audioUrl: /audio/radar/daily-ai-radar-2026-08-13.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-08-13.mp3
 audioDuration: 790
 audioSize: 6323912
 draft: false
