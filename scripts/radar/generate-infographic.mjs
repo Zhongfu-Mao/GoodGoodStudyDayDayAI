@@ -16,7 +16,8 @@ import {
   languageArg,
   maybeDeleteNotebook,
   runNotebooklm,
-  waitForLatestArtifact,
+  waitForArtifact,
+  generationArtifact,
 } from '../lib/notebooklm.mjs';
 
 const WORKSPACE_ROOT = process.cwd();
@@ -441,7 +442,7 @@ async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
     await addSourceFile(notebookId, targetFile);
 
     console.log(`Generating infographic (${options.style}, ${options.orientation})...`);
-    await runNotebooklm([
+    const generation = await runNotebooklm([
       'generate',
       'infographic',
       '--notebook',
@@ -458,12 +459,16 @@ async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
       '--json',
     ]);
 
-    await waitForLatestArtifact(notebookId, 'infographic', { timeout: 600 });
+    const artifact = await waitForArtifact(notebookId, generationArtifact(generation.stdout), {
+      timeout: 600,
+    });
 
     console.log(`Downloading infographic to ${path.relative(WORKSPACE_ROOT, imagePath)}...`);
     await runNotebooklm([
       'download',
       'infographic',
+      '--artifact',
+      artifact.id,
       '--notebook',
       notebookId,
       '--force',

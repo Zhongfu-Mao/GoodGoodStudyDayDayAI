@@ -21,6 +21,10 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { Readability } from '@mozilla/readability';
 import { JSDOM } from 'jsdom';
 import { XMLParser } from 'fast-xml-parser';
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { compactFetch } from '../lib/radar-output.mjs';
 
 const UA_PRESETS = {
   chrome:
@@ -43,6 +47,8 @@ const HELP_TEXT = `用法:
   --timeout <秒>                            单次请求超时，默认 20
   --retries <次数>                          失败重试次数（指数退避），默认 2
   --ua <chrome|safari|firefox|自定义字符串>  User-Agent，默认 chrome
+  --compact                                限量摘要，完整结果写入私有缓存
+  --cache-dir <目录>                        缓存目录，默认 tmp/radar-fetch
   -h, --help                                显示本帮助
 
 输出:
@@ -63,6 +69,8 @@ function parseArgs(argv) {
     else if (a === '--timeout') args.timeout = Number(argv[++i]);
     else if (a === '--retries') args.retries = Number(argv[++i]);
     else if (a === '--ua') args.ua = argv[++i];
+    else if (a === '--compact') args.compact = true;
+    else if (a === '--cache-dir') args.cacheDir = argv[++i];
     else if (a.startsWith('--')) throw new Error(`未知参数: ${a}（用 --help 查看用法）`);
     else positional.push(a);
   }
@@ -123,7 +131,7 @@ async function fetchWithRetry(url, { timeoutSec, retries, ua }) {
       clearTimeout(timer);
       lastErr = err;
     }
-    if (attempt < retries) await delay(500 * Math.pow(2, attempt));
+    if (attempt < retries) await delay(500 * 2 ** attempt);
   }
   throw lastErr ?? new Error('fetch 失败');
 }
@@ -221,7 +229,7 @@ async function main() {
   if (!fetched.ok) {
     out.error = fetched.error;
     out.body = fetched.body?.slice(0, 2000);
-    process.stdout.write(JSON.stringify(out) + '\n');
+    await emitResult(out, args);
     process.exit(2);
   }
 
@@ -239,7 +247,7 @@ async function main() {
     } catch (err) {
       out.error = `RSS 解析失败: ${err.message}`;
       out.body = fetched.body;
-      process.stdout.write(JSON.stringify(out) + '\n');
+      await emitResult(out, args);
       process.exit(3);
     }
   } else if (mode === 'readability') {
@@ -254,7 +262,20 @@ async function main() {
     throw new Error(`未知 mode: ${mode}`);
   }
 
-  process.stdout.write(JSON.stringify(out) + '\n');
+  await emitResult(out, args);
+}
+
+async function emitResult(out, args) {
+  if (!args.compact) {
+    process.stdout.write(JSON.stringify(out) + '\n');
+    return;
+  }
+  const dir = path.resolve(args.cacheDir ?? 'tmp/radar-fetch');
+  await mkdir(dir, { recursive: true });
+  const key = createHash('sha256').update(args.url).digest('hex').slice(0, 16);
+  const cacheFile = path.join(dir, `${Date.now()}-${key}.json`);
+  await writeFile(cacheFile, JSON.stringify(out), { mode: 0o600, flag: 'wx' });
+  process.stdout.write(JSON.stringify({ ...compactFetch(out), cacheFile }) + '\n');
 }
 
 main().catch((err) => {

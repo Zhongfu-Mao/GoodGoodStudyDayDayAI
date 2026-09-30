@@ -1,4 +1,4 @@
-import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
@@ -17,7 +17,8 @@ import {
   languageArg,
   maybeDeleteNotebook,
   runNotebooklm,
-  waitForLatestArtifact,
+  waitForArtifact,
+  generationArtifact,
 } from '../lib/notebooklm.mjs';
 
 const WORKSPACE_ROOT = process.cwd();
@@ -29,7 +30,7 @@ function parseArgs(argv) {
     file: null,
     lang: null,
     format: 'deep-dive',
-    length: 'long',
+    length: 'default',
     keepNotebook: true,
     sourceMode: 'brief',
   };
@@ -101,7 +102,7 @@ function buildBriefMemo(body, meta) {
             '4. 📰 Industry & Business',
           ],
           trends: ['5. GitHub 人気 repo & トレンド追跡'],
-          mail: ['📬 Newsletter 精选', '📬 メール補遺', '📬 補遺'],
+          mail: ['📬 Newsletter 精選', '📬 Newsletter 精选', '📬 メール補遺', '📬 補遺'],
         }
       : {
           scope: ['本期范围'],
@@ -219,7 +220,7 @@ async function main() {
     await addSourceFile(notebookId, sourcePath);
 
     console.log(`Generating audio (${options.format}, ${options.length})...`);
-    await runNotebooklm([
+    const generation = await runNotebooklm([
       'generate',
       'audio',
       '--notebook',
@@ -234,22 +235,44 @@ async function main() {
       '--json',
     ]);
 
-    const artifact = await waitForLatestArtifact(notebookId, 'audio', { timeout: 1800 });
+    const artifact = await waitForArtifact(notebookId, generationArtifact(generation.stdout), {
+      timeout: 1800,
+    });
     console.log(`Audio artifact ${artifact.id} ready.`);
+
+    const rawAudioPath = path.join(
+      WORKSPACE_ROOT,
+      'tmp/radar-audio-raw',
+      `${slug}-${artifact.id}.m4a`,
+    );
+    await mkdir(path.dirname(rawAudioPath), { recursive: true });
 
     console.log(`Downloading audio to ${path.relative(WORKSPACE_ROOT, audioPath)}...`);
     await runNotebooklm([
       'download',
       'audio',
+      '--artifact',
+      artifact.id,
       '--notebook',
       notebookId,
       '--force',
-      audioPath,
+      rawAudioPath,
       '--json',
     ]);
+    const originalAudio = await getAudioFileMetadata(rawAudioPath);
+    await copyFile(rawAudioPath, audioPath);
     console.log('Compressing audio to MP3 mono 64k...');
     await compressSpeechMp3(audioPath);
     const audio = await getAudioFileMetadata(audioPath);
+    if (
+      !originalAudio.duration ||
+      !audio.duration ||
+      Math.abs(originalAudio.duration - audio.duration) > 1
+    ) {
+      throw new Error(
+        `Audio duration changed during conversion; raw file retained at ${rawAudioPath}`,
+      );
+    }
     const publishedAudioUrl = await publishRadarAsset({
       localPath: audioPath,
       publicUrl: publicAudioUrl,

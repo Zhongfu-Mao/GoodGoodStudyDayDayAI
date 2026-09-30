@@ -2,15 +2,18 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { getAudioFileMetadata } from '../lib/audio-metadata.mjs';
+import { compressSpeechMp3 } from '../lib/audio-compression.mjs';
 import { parseFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
 import { publishRadarAsset } from '../lib/radar-assets.mjs';
+import { validateMonthlySourceNames } from '../lib/monthly-source-boundary.mjs';
 import {
   addSourceFile,
   createNotebook,
   languageArg,
   maybeDeleteNotebook,
   runNotebooklm,
-  waitForLatestArtifact,
+  waitForArtifact,
+  generationArtifact,
 } from '../lib/notebooklm.mjs';
 
 const WORKSPACE_ROOT = process.cwd();
@@ -24,10 +27,19 @@ function parseArgs(argv) {
     lang: null,
     keepNotebook: true,
     includeMonthlyBrief: true,
+    sourceFiles: [],
   };
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
+
+    if (arg === '--source-file') {
+      const value = argv[index + 1];
+      if (!value || value.startsWith('--')) throw new Error('--source-file requires a path');
+      options.sourceFiles.push(path.resolve(WORKSPACE_ROOT, value));
+      index += 1;
+      continue;
+    }
 
     if (arg === '--file') {
       options.file = argv[index + 1] ?? null;
@@ -159,7 +171,16 @@ async function main() {
   const publicAudioUrl = `/audio/radar/${slug}.mp3?v=monthly`;
   const publicDeckUrl = `/decks/radar/${slug}.pdf`;
   const period = parseMonthlyPeriod(targetFile);
-  const weeklyFiles = await resolveWeeklySourceFiles({ ...period, lang: meta.lang });
+  const weeklyFiles = options.sourceFiles.length
+    ? validateMonthlySourceNames(options.sourceFiles, { ...period, lang: meta.lang })
+    : await resolveWeeklySourceFiles({ ...period, lang: meta.lang });
+
+  for (const sourceFile of weeklyFiles) {
+    const sourceMeta = parseFrontmatter(await readFile(sourceFile, 'utf8'));
+    if (sourceMeta.lang !== meta.lang || /^draft:\s*true\s*$/m.test(sourceMeta.raw)) {
+      throw new Error(`Monthly source must be published and match language: ${sourceFile}`);
+    }
+  }
 
   if (weeklyFiles.length === 0) {
     throw new Error('No weekly radar files found in the monthly period.');
@@ -174,7 +195,7 @@ async function main() {
 
   try {
     for (const weeklyFile of weeklyFiles) {
-      console.log(`Adding weekly source ${path.basename(weeklyFile)}...`);
+      console.log(`Adding monthly evidence source ${path.basename(weeklyFile)}...`);
       await addSourceFile(notebookId, weeklyFile);
     }
 
@@ -184,7 +205,7 @@ async function main() {
     }
 
     console.log('Generating monthly audio...');
-    await runNotebooklm([
+    const generation = await runNotebooklm([
       'generate',
       'audio',
       '--notebook',
@@ -199,10 +220,14 @@ async function main() {
       '--json',
     ]);
 
-    await waitForLatestArtifact(notebookId, 'audio', { timeout: 1200 });
+    const artifact = await waitForArtifact(notebookId, generationArtifact(generation.stdout), {
+      timeout: 1200,
+    });
     await runNotebooklm([
       'download',
       'audio',
+      '--artifact',
+      artifact.id,
       '--notebook',
       notebookId,
       '--force',
@@ -211,7 +236,7 @@ async function main() {
     ]);
 
     console.log('Generating monthly slide deck...');
-    await runNotebooklm([
+    const deckGeneration = await runNotebooklm([
       'generate',
       'slide-deck',
       '--notebook',
@@ -226,10 +251,16 @@ async function main() {
       '--json',
     ]);
 
-    await waitForLatestArtifact(notebookId, 'slide-deck', { timeout: 1200 });
+    const deckArtifact = await waitForArtifact(
+      notebookId,
+      generationArtifact(deckGeneration.stdout),
+      { timeout: 1200 },
+    );
     await runNotebooklm([
       'download',
       'slide-deck',
+      '--artifact',
+      deckArtifact.id,
       '--notebook',
       notebookId,
       '--format',
@@ -239,6 +270,7 @@ async function main() {
       '--json',
     ]);
 
+    await compressSpeechMp3(audioPath);
     const audio = await getAudioFileMetadata(audioPath);
     const publishedAudioUrl = await publishRadarAsset({
       localPath: audioPath,

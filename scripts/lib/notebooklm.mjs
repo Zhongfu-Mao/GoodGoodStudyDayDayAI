@@ -1,6 +1,8 @@
 import path from 'node:path';
 import process from 'node:process';
 import { spawn } from 'node:child_process';
+import { mkdir, writeFile, rename } from 'node:fs/promises';
+import { createHash, randomUUID } from 'node:crypto';
 
 export const NOTEBOOKLM_BIN = path.join(process.cwd(), '.venv/bin/notebooklm');
 const TRANSIENT_ARTIFACT_RETRY_DELAY_MS = 120_000;
@@ -94,7 +96,7 @@ export async function createNotebook(title) {
 }
 
 export async function addSourceFile(notebookId, sourcePath, { waitTimeout = 300 } = {}) {
-  await runNotebooklm([
+  const { stdout } = await runNotebooklm([
     'source',
     'add',
     '--notebook',
@@ -104,8 +106,7 @@ export async function addSourceFile(notebookId, sourcePath, { waitTimeout = 300 
     '--json',
   ]);
 
-  const { stdout } = await runNotebooklm(['source', 'list', '--notebook', notebookId, '--json']);
-  const source = pickLatestItem(parseJsonOutput(stdout)?.sources);
+  const source = parseJsonOutput(stdout)?.source;
 
   if (!source?.id) {
     throw new Error(`Failed to determine source ID for ${sourcePath}`);
@@ -125,22 +126,42 @@ export async function addSourceFile(notebookId, sourcePath, { waitTimeout = 300 
   return source;
 }
 
-export async function waitForLatestArtifact(notebookId, type, { timeout = 900 } = {}) {
-  const { stdout } = await runNotebooklm([
-    'artifact',
-    'list',
-    '--notebook',
-    notebookId,
-    '--type',
-    type,
-    '--json',
-  ]);
-
-  const artifact = pickLatestItem(parseJsonOutput(stdout)?.artifacts);
-
-  if (!artifact?.id) {
-    throw new Error(`Failed to determine latest ${type} artifact ID.`);
+export function generationArtifact(stdout) {
+  const payload = parseJsonOutput(stdout);
+  if (typeof payload?.task_id !== 'string' || !payload.task_id.trim()) {
+    throw new Error('Generation returned no task_id; refusing to select an unrelated artifact.');
   }
+  return { id: payload.task_id };
+}
+
+export async function waitForArtifact(notebookId, artifact, { timeout = 900 } = {}) {
+  if (!artifact?.id) throw new Error('An explicit artifact ID is required.');
+
+  // Persist before the long wait: a client timeout does not mean generation failed.
+  const key = createHash('sha256').update(`${notebookId}:${artifact.id}`).digest('hex');
+  const statePath = path.join(process.cwd(), 'tmp/radar-artifact-jobs', `${key}.json`);
+  async function saveState(phase, error = null) {
+    await mkdir(path.dirname(statePath), { recursive: true });
+    const temporaryPath = `${statePath}.${randomUUID()}.tmp`;
+    await writeFile(
+      temporaryPath,
+      JSON.stringify({
+        notebookId,
+        artifactId: artifact.id,
+        phase,
+        error,
+        updatedAt: new Date().toISOString(),
+        nextAction:
+          phase === 'completed'
+            ? 'download_exact_artifact'
+            : 'inspect_or_resume_exact_artifact_do_not_regenerate',
+      }),
+      { mode: 0o600 },
+    );
+    await rename(temporaryPath, statePath);
+  }
+  await saveState('waiting');
+  console.log(JSON.stringify({ notebookId, artifactId: artifact.id, statePath }));
 
   const deadline = Date.now() + timeout * 1000;
 
@@ -161,6 +182,7 @@ export async function waitForLatestArtifact(notebookId, type, { timeout = 900 } 
       break;
     } catch (error) {
       if (!isTransientArtifactDisappearance(error) || Date.now() >= deadline) {
+        await saveState('wait_interrupted', error?.message ?? String(error));
         throw error;
       }
 
@@ -170,6 +192,8 @@ export async function waitForLatestArtifact(notebookId, type, { timeout = 900 } 
       await sleep(TRANSIENT_ARTIFACT_RETRY_DELAY_MS);
     }
   }
+
+  await saveState('completed');
 
   return artifact;
 }

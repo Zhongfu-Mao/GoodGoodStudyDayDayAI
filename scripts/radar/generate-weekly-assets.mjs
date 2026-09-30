@@ -2,6 +2,7 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { getAudioFileMetadata } from '../lib/audio-metadata.mjs';
+import { compressSpeechMp3 } from '../lib/audio-compression.mjs';
 import { parseFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
 import { publishRadarAsset } from '../lib/radar-assets.mjs';
 import {
@@ -10,7 +11,8 @@ import {
   languageArg,
   maybeDeleteNotebook,
   runNotebooklm,
-  waitForLatestArtifact,
+  waitForArtifact,
+  generationArtifact,
 } from '../lib/notebooklm.mjs';
 
 const WORKSPACE_ROOT = process.cwd();
@@ -173,7 +175,7 @@ async function main() {
     }
 
     console.log('Generating weekly audio...');
-    await runNotebooklm([
+    const generation = await runNotebooklm([
       'generate',
       'audio',
       '--notebook',
@@ -188,10 +190,12 @@ async function main() {
       '--json',
     ]);
 
-    await waitForLatestArtifact(notebookId, 'audio');
+    const artifact = await waitForArtifact(notebookId, generationArtifact(generation.stdout));
     await runNotebooklm([
       'download',
       'audio',
+      '--artifact',
+      artifact.id,
       '--notebook',
       notebookId,
       '--force',
@@ -200,7 +204,7 @@ async function main() {
     ]);
 
     console.log('Generating weekly slide deck...');
-    await runNotebooklm([
+    const deckGeneration = await runNotebooklm([
       'generate',
       'slide-deck',
       '--notebook',
@@ -215,10 +219,15 @@ async function main() {
       '--json',
     ]);
 
-    await waitForLatestArtifact(notebookId, 'slide-deck');
+    const deckArtifact = await waitForArtifact(
+      notebookId,
+      generationArtifact(deckGeneration.stdout),
+    );
     await runNotebooklm([
       'download',
       'slide-deck',
+      '--artifact',
+      deckArtifact.id,
       '--notebook',
       notebookId,
       '--format',
@@ -228,6 +237,7 @@ async function main() {
       '--json',
     ]);
 
+    await compressSpeechMp3(audioPath);
     const audio = await getAudioFileMetadata(audioPath);
     const publishedAudioUrl = await publishRadarAsset({
       localPath: audioPath,
