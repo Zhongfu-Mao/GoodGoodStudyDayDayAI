@@ -1,0 +1,8 @@
+{
+  "enforceFrom": "2026-10-07",
+  "trendDefaultMaximum": 2,
+  "trendMaximum": 3,
+  "trendLeadMaximum": 4,
+  "minimumModelAndToolEntriesWhenTrendExpanded": 2,
+  "exceptions": []
+}

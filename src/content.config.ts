@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 import { collectionNames } from './lib/site';
 
@@ -8,7 +9,7 @@ const academyMetaSchema = z.object({
   module: z.string(),
   moduleOrder: z.number().int().positive().optional(),
   source: z.string().optional(),
-  sourceUrl: z.string().url().optional(),
+  sourceUrl: z.url().optional(),
   prerequisites: z.array(z.string()).default([]),
   completionScore: z.string().optional(),
 });
@@ -44,7 +45,7 @@ const forbiddenCourseFields = {
 export const radarSchema = baseBlogSchema.extend({
   category: z.literal('radar'),
   cadence: z.enum(['daily', 'weekly', 'monthly']).optional(),
-  representativeImageSource: z.string().url().optional(),
+  representativeImageSource: z.url().optional(),
   audioUrl: z.string().optional(),
   audioDuration: z.number().int().positive().optional(),
   audioExplicit: z.boolean().default(false),

@@ -5,11 +5,7 @@ import { pathToFileURL } from 'node:url';
 import { parseFrontmatter, stripFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
 import { formatImageCompressionResult, optimizeWebpImage } from '../lib/image-compression.mjs';
 import { assetUrlMatchesPublicAsset, publishRadarAsset } from '../lib/radar-assets.mjs';
-import {
-  extractSectionBlock,
-  extractShortParagraphs,
-  extractTopSignals,
-} from '../lib/markdown.mjs';
+import { buildInfographicBrief, renderInfographicPrompt } from '../lib/radar-infographic-brief.mjs';
 import {
   addSourceFile,
   createNotebook,
@@ -28,13 +24,12 @@ function parseArgs(argv) {
   const options = {
     file: null,
     orientation: 'landscape',
-    detail: 'detailed',
+    detail: 'standard',
     style: 'editorial',
     keepNotebook: true,
     backend: 'notebooklm',
     model: 'gpt-image-2',
-    briefModel: 'gpt-5.4-mini',
-    briefMode: 'auto',
+    briefOnly: false,
     size: '1536x1024',
     quality: 'medium',
     outputFormat: 'webp',
@@ -49,8 +44,7 @@ function parseArgs(argv) {
     '--style',
     '--backend',
     '--model',
-    '--brief-model',
-    '--brief-mode',
+
     '--size',
     '--quality',
     '--output-format',
@@ -63,8 +57,7 @@ function parseArgs(argv) {
     '--style': 'style',
     '--backend': 'backend',
     '--model': 'model',
-    '--brief-model': 'briefModel',
-    '--brief-mode': 'briefMode',
+
     '--size': 'size',
     '--quality': 'quality',
     '--output-format': 'outputFormat',
@@ -78,6 +71,17 @@ function parseArgs(argv) {
       options[key] = argv[index + 1] ?? options[key];
       index += 1;
       continue;
+    }
+
+    if (arg === '--brief-only') {
+      options.briefOnly = true;
+      continue;
+    }
+
+    if (arg === '--brief-model' || arg === '--brief-mode') {
+      throw new Error(
+        'LLM brief refinement was replaced by a complete shared fact brief; remove --brief-model/--brief-mode.',
+      );
     }
 
     if (arg === '--all-missing') {
@@ -102,102 +106,6 @@ function slugFromPath(filePath) {
   return path.basename(filePath, '.md');
 }
 
-function headingsForLang(lang) {
-  return lang === 'ja'
-    ? {
-        scope: ['対象範囲'],
-        engineering: [
-          '1. AI Engineering & アーキテクチャ',
-          '1. 🛠️ AI Engineering & アーキテクチャ',
-          '1. 🛠️ AI Engineering & Architecture',
-        ],
-        models: [
-          '2. モデル最前線 & アルゴリズム探索',
-          '2. 🧠 モデル動向 & アルゴリズム',
-          '2. 🧠 モデル最前線 & アルゴリズム探索',
-        ],
-        tools: [
-          '3. 実践コード & ツールライブラリ',
-          '3. 💻 実装コード & ツール',
-          '3. 💻 Tools & Code',
-        ],
-        market: ['4. 業界 & ビジネス速報', '4. 📰 業界 & ビジネス', '4. 📰 業界・ビジネス速報'],
-        trends: ['5. GitHub 人気 repo & トレンド追跡'],
-        mail: ['📬 Newsletter 精选', '📬 メール補遺', '📬 補遺'],
-      }
-    : {
-        scope: ['本期范围'],
-        engineering: ['1. AI Engineering & 架构', '1. 🛠️ AI Engineering & 架构'],
-        models: ['2. 模型前沿 & 算法探索', '2. 🧠 模型前沿 & 算法探索'],
-        tools: ['3. 实战代码 & 工具库', '3. 💻 实战代码 & 工具库'],
-        market: ['4. 行业与商业快讯', '4. 📰 行业与商业快讯'],
-        trends: ['5. GitHub 热门 repo & 趋势追踪'],
-        mail: ['📬 Newsletter 精选', '📬 邮件补遗'],
-      };
-}
-
-function inferMainline(meta, body) {
-  const paragraphs = extractShortParagraphs(body, 6);
-
-  if (paragraphs.length === 0) {
-    return meta.lang === 'ja'
-      ? '今日の AI レーダーを 1 枚で俯瞰できる構図'
-      : '把今天 AI 雷达的主线压缩成一眼能读懂的结构图';
-  }
-
-  return paragraphs[0];
-}
-
-function buildHeuristicBrief(meta, body) {
-  const headings = headingsForLang(meta.lang);
-  const engineeringBlock = extractSectionBlock(body, headings.engineering);
-  const modelsBlock = extractSectionBlock(body, headings.models);
-  const toolsBlock = extractSectionBlock(body, headings.tools);
-  const marketBlock = extractSectionBlock(body, headings.market);
-  const trendsBlock = extractSectionBlock(body, headings.trends ?? []);
-  const mailBlock = extractSectionBlock(body, headings.mail);
-  const topSignals = extractTopSignals(body, 5);
-  const summaryCandidates = [
-    ...extractShortParagraphs(engineeringBlock, 2),
-    ...extractShortParagraphs(modelsBlock, 2),
-    ...extractShortParagraphs(toolsBlock, 1),
-    ...extractShortParagraphs(marketBlock, 1),
-    ...extractShortParagraphs(trendsBlock, 1),
-    ...extractShortParagraphs(mailBlock, 1),
-  ].filter(Boolean);
-
-  const branches = topSignals.map((signal, index) => ({
-    label: signal,
-    note:
-      summaryCandidates[index] ??
-      (meta.lang === 'ja' ? '今日の流れを支える補助シグナル' : '支撑当天主线的辅助信号'),
-  }));
-
-  return {
-    centralTheme: meta.title,
-    mainline: inferMainline(meta, body),
-    branches,
-    designConstraints:
-      meta.lang === 'ja'
-        ? [
-            'ブログ冒頭のヒーロー画像として使える横長レイアウト',
-            'ポスターではなく、編集的な情報図解',
-            '文字は少なく、大きく、読みやすく',
-            '人物写真コラージュより、関係図・記号・流れを重視',
-          ]
-        : [
-            '适合作为博客文章顶部横向头图',
-            '更像编辑型信息图，不要做成营销海报',
-            '文字尽量少且大，避免小字堆砌',
-            '尽量用结构关系、节点、流向表达，而不是人物拼贴',
-          ],
-  };
-}
-
-function escapeJson(value) {
-  return JSON.stringify(value, null, 2);
-}
-
 async function callOpenAIJson({ url, apiKey, payload }) {
   const response = await fetch(url, {
     method: 'POST',
@@ -220,164 +128,14 @@ function resolveOpenAIBaseUrl() {
   return process.env.OPENAI_BASE_URL?.replace(/\/$/, '') ?? 'https://api.openai.com';
 }
 
-function buildBriefSchema() {
-  return {
-    name: 'radar_infographic_brief',
-    strict: true,
-    schema: {
-      type: 'object',
-      additionalProperties: false,
-      properties: {
-        centralTheme: { type: 'string' },
-        mainline: { type: 'string' },
-        branches: {
-          type: 'array',
-          minItems: 3,
-          maxItems: 5,
-          items: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-              label: { type: 'string' },
-              note: { type: 'string' },
-            },
-            required: ['label', 'note'],
-          },
-        },
-        designConstraints: {
-          type: 'array',
-          minItems: 3,
-          maxItems: 6,
-          items: { type: 'string' },
-        },
-      },
-      required: ['centralTheme', 'mainline', 'branches', 'designConstraints'],
-    },
-  };
-}
-
-async function maybeRefineBriefWithLLM(meta, body, heuristicBrief, options) {
-  if (options.briefMode === 'heuristic') {
-    return heuristicBrief;
-  }
-
-  const apiKey = process.env.OPENAI_API_KEY;
-
-  if (!apiKey) {
-    if (options.briefMode === 'llm') {
-      throw new Error('OPENAI_API_KEY is required for --brief-mode llm.');
-    }
-
-    return heuristicBrief;
-  }
-
-  const baseUrl = resolveOpenAIBaseUrl();
-  const payload = {
-    model: options.briefModel,
-    messages: [
-      {
-        role: 'system',
-        content:
-          meta.lang === 'ja'
-            ? 'あなたは編集デザインのブリーフを作るアートディレクターです。ブログ冒頭に載せる横長インフォグラフィック用に、主線・分岐・制約を高密度かつ視覚設計しやすい JSON へ整えてください。小さな文字を大量に置かず、図解として成立する brief にしてください。'
-            : '你是一名为技术博客封面服务的编辑型信息图创意总监。请把日报正文整理成适合横向信息图的结构化 brief：只保留一条主线、3 到 5 个分支、以及明确的视觉约束。避免生成需要大量小字排版的 brief。',
-      },
-      {
-        role: 'user',
-        content: [
-          `标题：${meta.title}`,
-          `语言：${meta.lang}`,
-          meta.tags.length > 0 ? `标签：${meta.tags.join('、')}` : '',
-          '当前的启发式提要：',
-          escapeJson(heuristicBrief),
-          '原始正文：',
-          body,
-        ]
-          .filter(Boolean)
-          .join('\n\n'),
-      },
-    ],
-    response_format: {
-      type: 'json_schema',
-      json_schema: buildBriefSchema(),
-    },
-  };
-
-  try {
-    const json = await callOpenAIJson({
-      url: `${baseUrl}/v1/chat/completions`,
-      apiKey,
-      payload,
-    });
-    const content = json.choices?.[0]?.message?.content;
-
-    if (!content) {
-      throw new Error('Missing brief content in OpenAI response.');
-    }
-
-    return JSON.parse(content);
-  } catch (error) {
-    if (options.briefMode === 'llm') {
-      throw error;
-    }
-
-    console.warn(
-      `warn brief-refine ${meta.title} -> ${error instanceof Error ? error.message : error}`,
-    );
-    return heuristicBrief;
-  }
-}
-
-function inferOpenAIPrompt(meta, brief) {
-  const branches = brief.branches
-    .slice(0, 5)
-    .map((branch, index) => `${index + 1}. ${branch.label}: ${branch.note}`)
-    .join('\n');
-  const constraints = brief.designConstraints
-    .map((item, index) => `${index + 1}. ${item}`)
-    .join('\n');
-
-  if (meta.lang === 'ja') {
-    return [
-      `AI レーダー日報「${meta.title}」のブログ冒頭用ヒーロー画像を作成してください。`,
-      '形式は横長 16:9 の editorial infographic。広告ポスターではなく、記事を読む前に構造を掴むための情報図解にしてください。',
-      `中央テーマ: ${brief.centralTheme}`,
-      `主線: ${brief.mainline}`,
-      '主要ブランチ:',
-      branches,
-      '制約:',
-      constraints,
-      '見た目の方向性: 余白を広く取り、チャコール、深い青緑、淡い紙色、少量の赤または金のアクセントを使う。抽象ノード、接続線、タイムライン、レイヤー、信号クラスターで関係性を表現する。',
-      '重要: 小さな文字を大量に並べない。画像内テキストは短い日本語のタイトル 1 本と短いラベル 3〜5 個まで。長文、UI モック、人物写真コラージュ、ロゴ一覧、読めない細字は避ける。',
-      '画像単体で「今日の主線」と「重要な分岐」が分かり、ブログのヘッダーとして落ち着いた知的な印象になること。',
-    ].join('\n');
-  }
-
-  return [
-    `请为 AI 雷达日报《${meta.title}》生成一张博客文章顶部使用的横向 editorial infographic。`,
-    '画幅使用横向 16:9。整体要像高质量编辑部信息图，而不是营销海报，也不是产品截图拼贴。',
-    `中心主题：${brief.centralTheme}`,
-    `主线：${brief.mainline}`,
-    '关键分支：',
-    branches,
-    '设计约束：',
-    constraints,
-    '视觉方向：留白充足、层次清晰，使用炭黑、深青绿、柔和纸色，并用少量红色或金色强调重点。尽量用节点、连接线、时间层、信号簇来表达结构关系，呈现“今日 AI 技术版图”的感觉。',
-    '重要：不要塞满小字。图中文字控制在一个短标题和 3 到 5 个短标签以内；不要出现大段正文，不要做 UI mockup，不要做人物或 Logo 拼贴。',
-    '最终效果要兼具“头图吸引力”和“信息结构感”，让读者一眼知道今天的主线与分支。',
-  ].join('\n');
-}
-
-async function generateWithOpenAI(meta, body, targetFile, imagePath, options) {
+async function generateWithOpenAI(brief, targetFile, imagePath, options) {
   const apiKey = process.env.OPENAI_API_KEY;
 
   if (!apiKey) {
     throw new Error('OPENAI_API_KEY is required for the OpenAI infographic backend.');
   }
 
-  const heuristicBrief = buildHeuristicBrief(meta, body);
-  const brief = await maybeRefineBriefWithLLM(meta, body, heuristicBrief, options);
-  const prompt = inferOpenAIPrompt(meta, brief);
+  const prompt = renderInfographicPrompt(brief, { backend: 'imagegen' });
   const baseUrl = resolveOpenAIBaseUrl();
 
   const payload = {
@@ -406,31 +164,13 @@ async function generateWithOpenAI(meta, body, targetFile, imagePath, options) {
   await writeFile(imagePath, Buffer.from(base64Image, 'base64'));
 }
 
-export function inferInfographicPrompt(title, lang, cadence = 'daily') {
-  if (lang === 'ja') {
-    if (cadence === 'weekly') {
-      return `${title} をもとに、横長の週間情報図解を作ってください。NotebookLM の Detailed モードを前提に、高密度だが読みやすい editorial infographic にしてください。今週の主線を中央に置き、5〜7 個の重要シグナルを束ね、各ノードに短いラベルとごく短い事実を 1 つ入れ、流れ・因果・来週も追うべき論点が分かる構成にしてください。モデル名、企業名、repo 名、重要な数字は可能な範囲で残し、長文段落、ロゴ一覧、人物コラージュ、読めない疑似文字は避けてください。公開前に読みにくければ必要なら standard で再生成します。`;
-    }
+export { buildInfographicBrief } from '../lib/radar-infographic-brief.mjs';
 
-    if (cadence === 'monthly') {
-      return `${title} をもとに、横長の月次情報図解を作ってください。NotebookLM の Detailed モードを前提に、高密度だが読みやすい editorial infographic にしてください。今月の大きな流れを中央に置き、6〜8 個の主要トレンド、各週の変化、構造的な意味、次月への示唆を関係図・タイムライン・レイヤーで表現してください。各ノードに短いラベルとごく短い事実を 1 つ入れ、モデル名、企業名、repo 名、重要な数字は可能な範囲で残してください。長文段落、ロゴ一覧、人物コラージュ、読めない疑似文字は避け、公開前に読みにくければ必要なら standard で再生成します。`;
-    }
-
-    return `${title} をもとに、横長の情報図解を作ってください。NotebookLM の Detailed モードを前提に、高密度だが読みやすい editorial infographic にしてください。今日の主線を中央に置き、5 個前後の重要シグナルを関係図として束ね、各ノードに短いラベルとごく短い事実を 1 つ入れてください。モデル名、企業名、repo 名、重要な数字は可能な範囲で残し、因果のつながりがひと目で分かる構成にしてください。長文段落、ロゴ一覧、人物コラージュ、読めない疑似文字は避け、公開前に読みにくければ必要なら standard で再生成します。`;
-  }
-
-  if (cadence === 'weekly') {
-    return `请基于《${title}》生成一张适合博客文章顶部展示的中文横向周报信息图。当前使用 NotebookLM Detailed 模式，请做成高密度但可读的 editorial infographic，不要退回成只有栏目名的装饰封面。结构上用“本周主线 + 5 到 7 个关键分支”：每个节点包含一个短标签和一个极短事实，用箭头、时间层、因果线、信号簇表达这一周的核心变化、关键趋势之间的关系，以及下周值得继续跟踪的点。保留关键模型名、公司名、repo 名和数字，但避免长段落、细密小字、Logo 列表和人物拼贴。`;
-  }
-
-  if (cadence === 'monthly') {
-    return `请基于《${title}》生成一张适合博客文章顶部展示的中文横向月报信息图。当前使用 NotebookLM Detailed 模式，请做成高密度但可读的 editorial infographic，不要退回成只有栏目名的装饰封面。结构上用“本月主线 + 6 到 8 个核心趋势”：每个节点包含一个短标签和一个极短事实，用趋势地图、周际时间线、生态层级和因果连接表现本月 AI 技术与产业信号如何汇聚、各周之间如何演化，以及下个月值得关注的方向。保留关键模型名、公司名、repo 名和数字，但避免长段落、细密小字、Logo 列表和人物拼贴。`;
-  }
-
-  return `请基于《${title}》生成一张适合博客文章顶部展示的中文横向信息图。当前使用 NotebookLM Detailed 模式，请做成高密度但可读的 editorial infographic，不要退回成只有栏目名的装饰封面。结构上用“今日主线 + 5 个左右关键分支”：每个节点包含一个短标签和一个极短事实，用箭头、节点、时间层和信号簇表达今天的核心主题、关键趋势之间的关系，以及对从业者的启发。保留关键模型名、公司名、repo 名和数字，但避免长段落、细密小字、Logo 列表和人物拼贴。`;
+export function inferInfographicPrompt(brief) {
+  return renderInfographicPrompt(brief);
 }
 
-async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
+async function generateWithNotebooklm(meta, promptPath, targetFile, imagePath, options) {
   const notebookTitle = `${meta.title} · Infographic`;
 
   console.log(`Creating notebook for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
@@ -439,7 +179,7 @@ async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
 
   try {
     console.log(`Adding markdown source to notebook ${notebookId}...`);
-    await addSourceFile(notebookId, targetFile);
+    const source = await addSourceFile(notebookId, targetFile);
 
     console.log(`Generating infographic (${options.style}, ${options.orientation})...`);
     const generation = await runNotebooklm([
@@ -455,7 +195,10 @@ async function generateWithNotebooklm(meta, targetFile, imagePath, options) {
       options.style,
       '--language',
       languageArg(meta.lang),
-      inferInfographicPrompt(meta.title, meta.lang, meta.cadence),
+      '--source',
+      source.id,
+      '--prompt-file',
+      promptPath,
       '--json',
     ]);
 
@@ -533,15 +276,37 @@ async function processFile(targetFile, options) {
   const imagePath = path.join(IMAGE_DIR, `${slug}-infographic.${imageExtension}`);
   const publicImageUrl = `/images/radar/${slug}-infographic.${imageExtension}`;
 
-  if (!options.overwrite && assetUrlMatchesPublicAsset(meta.coverImage, publicImageUrl)) {
+  if (
+    !options.briefOnly &&
+    !options.overwrite &&
+    assetUrlMatchesPublicAsset(meta.coverImage, publicImageUrl)
+  ) {
     console.log(`skip ${path.basename(targetFile)} (coverImage already set)`);
     return { status: 'skipped', targetFile, publicImageUrl };
   }
 
+  const brief = buildInfographicBrief(meta, body);
+  const briefDir = path.join(WORKSPACE_ROOT, '.cache/radar-infographic', slug);
+  await mkdir(briefDir, { recursive: true });
+  await writeFile(path.join(briefDir, 'brief.json'), `${JSON.stringify(brief, null, 2)}\n`);
+  const promptPath = path.join(briefDir, 'notebooklm-prompt.txt');
+  await writeFile(promptPath, inferInfographicPrompt(brief));
+  await writeFile(
+    path.join(briefDir, 'imagegen-prompt.txt'),
+    renderInfographicPrompt(brief, { backend: 'imagegen' }),
+  );
+
+  if (options.briefOnly) {
+    console.log(
+      `Brief ready: ${path.relative(WORKSPACE_ROOT, briefDir)} (${brief.sections.length} sections, ${brief.itemCount} items)`,
+    );
+    return { status: 'brief', targetFile, briefDir };
+  }
+
   if (options.backend === 'openai') {
-    await generateWithOpenAI(meta, body, targetFile, imagePath, options);
+    await generateWithOpenAI(brief, targetFile, imagePath, options);
   } else if (options.backend === 'notebooklm') {
-    await generateWithNotebooklm(meta, targetFile, imagePath, options);
+    await generateWithNotebooklm(meta, promptPath, targetFile, imagePath, options);
   } else {
     throw new Error(`Unsupported backend: ${options.backend}`);
   }

@@ -89,6 +89,10 @@ scripts/*.local.*
 scripts/**/*.local.*
 public/audio/radar/.radar-audio-*/
 
+# Radar heavy media is published to R2; keep local generation output out of Git.
+/public/audio/radar/
+/public/decks/radar/
+
 # Temporary/private artifacts
 *.tmp
 *.temp

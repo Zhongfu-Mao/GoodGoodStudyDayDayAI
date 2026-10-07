@@ -27,10 +27,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7.0.1
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
           cache: npm
@@ -39,7 +39,7 @@ jobs:
         run: npm ci
 
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: actions/cache@v6.1.0
         with:
           path: /home/runner/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
@@ -57,11 +57,17 @@ jobs:
       - name: Run Astro checks
         run: npm run check
 
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Verify radar publication gates
+        run: npm run check:radar
+
       - name: Run UI tests
         run: npm run test:ui
 
       - name: Run Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v12
+        uses: treosh/lighthouse-ci-action@12.6.2
         with:
           configPath: ./lighthouserc.json
 
@@ -79,10 +85,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7.0.1
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
           cache: npm
@@ -98,15 +104,6 @@ jobs:
         env:
           GITHUB_REPOSITORY: Zhongfu-Mao/GoodGoodStudyDayDayAI
 
-      - name: Verify radar source diversity
-        run: npm run check:radar-sources
-
-      - name: Verify radar schema
-        run: npm run check:radar-schema
-
-      - name: Verify radar dedupe
-        run: npm run check:radar-dedupe
-
       - name: Verify latest radar output
         run: npm run check:radar-build
 
@@ -114,7 +111,7 @@ jobs:
         run: du -sh dist public public/images/radar
 
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: dist
 
@@ -130,4 +127,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.1

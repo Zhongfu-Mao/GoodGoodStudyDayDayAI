@@ -1,0 +1,2 @@
+# Runtime used by scripts/lib/notebooklm.mjs. Install into the project's .venv.
+notebooklm-py[browser]==0.8.4

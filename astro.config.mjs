@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import pagefind from 'astro-pagefind';
+import { unified } from '@astrojs/markdown-remark';
 import { resolveBasePath } from './scripts/lib/base-path.mjs';
 import {
   createRehypeGitHubPagesBase,
@@ -20,6 +21,8 @@ const remarkGitHubPagesBase = createRemarkGitHubPagesBase(base);
 const rehypeImageAltFallback = createRehypeImageAltFallback();
 
 export default defineConfig({
+  // Preserve existing inline whitespace and Markdown plugins across Astro 7.
+  compressHTML: true,
   devToolbar: {
     enabled: false,
   },
@@ -38,8 +41,10 @@ export default defineConfig({
     defaultStrategy: 'hover',
   },
   markdown: {
-    remarkPlugins: [remarkGitHubPagesBase],
-    rehypePlugins: [rehypeImageAltFallback, rehypeGitHubPagesBase],
+    processor: unified({
+      remarkPlugins: [remarkGitHubPagesBase],
+      rehypePlugins: [rehypeImageAltFallback, rehypeGitHubPagesBase],
+    }),
   },
   i18n: {
     defaultLocale: 'zh',

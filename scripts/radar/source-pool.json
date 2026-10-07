@@ -25,7 +25,10 @@
       "aliases": ["The Rundown", "therundown"],
       "access": {
         "primary": { "kind": "chrome", "url": "https://www.therundown.ai/" },
-        "fallbacks": [{ "kind": "homepage", "url": "https://www.therundown.ai/" }],
+        "fallbacks": [
+          { "kind": "homepage", "url": "https://www.therundown.ai/" },
+          { "kind": "gmail", "query": "from:(news@daily.therundown.ai) newer_than:7d" }
+        ],
         "notes": "HTTP/RSS is only a probe. Chrome homepage plus article pages are the required route."
       },
       "role": "Product, industry and mainstream AI signal discovery.",
@@ -69,7 +72,10 @@
       "aliases": ["ByteByteGo"],
       "access": {
         "primary": { "kind": "rss", "url": "https://blog.bytebytego.com/feed" },
-        "fallbacks": [{ "kind": "homepage", "url": "https://blog.bytebytego.com/" }]
+        "fallbacks": [
+          { "kind": "homepage", "url": "https://blog.bytebytego.com/" },
+          { "kind": "gmail", "query": "from:(bytebytego@substack.com) newer_than:7d" }
+        ]
       },
       "role": "Engineering architecture, system design, AI infra and production lessons.",
       "strategy": "Daily required source. Select AI infra, RAG, agent, platform engineering and observability items."
@@ -89,7 +95,7 @@
       "aliases": ["The Batch", "DeepLearning.AI", "DeepLearning AI"],
       "access": {
         "primary": { "kind": "homepage", "url": "https://www.deeplearning.ai/the-batch/" },
-        "fallbacks": [{ "kind": "gmail", "query": "from:(news@deeplearning.ai) newer_than:7d" }]
+        "fallbacks": [{ "kind": "gmail", "query": "{from:thebatch@deeplearning.ai from:hello@deeplearning.ai} newer_than:7d" }]
       },
       "role": "Research, industry, course and Andrew Ng ecosystem signal.",
       "strategy": "Daily required source. If RSS is unstable, use the public page or Gmail original."
@@ -109,7 +115,7 @@
       "aliases": ["AI Valley", "The AI Valley"],
       "access": {
         "primary": { "kind": "homepage", "url": "https://www.theaivalley.com/" },
-        "fallbacks": [{ "kind": "gmail", "query": "from:(newsletter@aivalley.ai) newer_than:7d" }]
+        "fallbacks": [{ "kind": "gmail", "query": "from:(aivalley@mail.beehiiv.com) newer_than:7d" }]
       },
       "role": "Newsletter discovery and product/industry roundup.",
       "strategy": "Use Gmail or public page confirmation. Include only reader-facing entries, never source-count summaries."
@@ -119,7 +125,7 @@
       "aliases": ["Programmer Weekly"],
       "access": {
         "primary": { "kind": "homepage", "url": "https://programmerweekly.com/" },
-        "fallbacks": [{ "kind": "gmail", "query": "from:(programmerweekly) newer_than:7d" }]
+        "fallbacks": [{ "kind": "gmail", "query": "from:(rahul@programmerweekly.com) newer_than:7d" }]
       },
       "role": "Developer tooling and engineering newsletter discovery.",
       "strategy": "Use only when AI/agent/data tooling signal is concrete."

@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22.12"
+    "node": ">=24"
   },
   "scripts": {
     "dev": "astro dev",
@@ -17,6 +17,7 @@
     "check:radar-sources": "node scripts/check/radar-source-diversity.mjs",
     "check:radar-schema": "node scripts/check/radar-schema.mjs",
     "check:radar-dedupe": "node scripts/check/radar-dedupe.mjs",
+    "check:radar-media": "node scripts/check/radar-media.mjs",
     "check:r2-public-base": "node scripts/check/r2-guardrails.mjs --env-only",
     "audit:r2-public-urls": "node scripts/check/r2-guardrails.mjs --scan-content",
     "lint": "biome check",
@@ -41,31 +42,40 @@
     "radar:infographic:openai": "node scripts/radar/generate-infographic.mjs --backend openai",
     "radar:weekly-assets": "node scripts/radar/generate-weekly-assets.mjs",
     "radar:monthly-assets": "node scripts/radar/generate-monthly-assets.mjs",
-    "radar:notebook-cleanup": "node scripts/radar/cleanup-notebooks.mjs"
+    "radar:notebook-cleanup": "node scripts/radar/cleanup-notebooks.mjs",
+    "check:radar-editorial": "node scripts/check/radar-editorial.mjs",
+    "check:radar": "npm run check:radar-newsletter && npm run check:radar-sources && npm run check:radar-schema && npm run check:radar-dedupe && npm run check:radar-media && npm run check:radar-editorial"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.18",
-    "@astrojs/sitemap": "^3.7.2",
-    "@aws-sdk/client-s3": "^3.1045.0",
-    "astro": "^5.13.0",
-    "astro-pagefind": "^1.8.6",
+    "@astrojs/markdown-remark": "^7.3.2",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "@aws-sdk/client-s3": "^3.1147.0",
+    "astro": "^7.3.6",
+    "astro-pagefind": "^2.0.1",
     "clsx": "^2.1.1",
-    "pdfjs-dist": "^5.7.284",
-    "tailwind-merge": "^3.5.0"
+    "pdfjs-dist": "^6.4.299",
+    "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.8",
-    "@axe-core/playwright": "^4.11.3",
-    "@biomejs/biome": "^2.4.14",
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
+    "@biomejs/biome": "^2.5.15",
     "@mozilla/readability": "^0.6.0",
-    "@playwright/test": "^1.59.1",
-    "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.2.4",
-    "@types/node": "^24.0.0",
-    "fast-xml-parser": "^5.7.2",
+    "@playwright/test": "^1.63.0",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.19.1",
+    "fast-xml-parser": "^5.11.2",
     "jsdom": "^29.1.1",
-    "tailwindcss": "^4.2.4",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.5"
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.3",
+    "yaml": "^2.9.1"
+  },
+  "overrides": {
+    "@tailwindcss/typography": {
+      "postcss-selector-parser": "7.1.6"
+    }
   }
 }

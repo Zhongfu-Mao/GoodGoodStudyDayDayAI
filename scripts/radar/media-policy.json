@@ -1,0 +1,5 @@
+{
+  "publicBases": ["https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev"],
+  "temporaryDevelopmentHost": true,
+  "note": "Exact host approved for the temporary R2 cutover. This publication allowlist does not waive audit:r2-public-urls or establish production reliability. Update it with the verified custom-domain cutover."
+}

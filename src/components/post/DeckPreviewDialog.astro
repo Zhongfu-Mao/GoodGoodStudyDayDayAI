@@ -190,7 +190,7 @@ const { href, title, text } = Astro.props;
       if (!loadingPromise) {
         setBusy(loadingLabel);
         const pdfjsLib = await loadPdfJs();
-        loadingPromise = pdfjsLib.getDocument(deckSrc).promise;
+        loadingPromise = pdfjsLib.getDocument({ url: deckSrc }).promise;
       }
 
       pdfDocument = await loadingPromise;

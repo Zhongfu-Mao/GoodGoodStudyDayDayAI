@@ -138,10 +138,13 @@ AI ニュース、ツール更新、研究動向、業界シグナルを記録�
 
 ## 本地开发 / ローカル開発
 
+使用 Node.js 24 LTS（CI 同版本线）；锁定的依赖版本见 `package-lock.json`。
+Node.js 24 LTS を使用します。依存関係はロックファイルに従います。
+
 安装依赖 / 依存関係のインストール:
 
 ```bash
-npm install
+npm ci
 ```
 
 启动开发环境 / 開発サーバー起動:
@@ -180,7 +183,17 @@ npx playwright install chromium
 npm run setup:hooks
 ```
 
-启用后，`git push` 前会自动运行 `npm run check` 和 `npm run test:ui`。
+启用后，commit 前检查暂存媒体边界，push 前检查提交媒体边界、`npm run check` 与 `npm run test:ui`。雷达发布另跑 `npm run check:radar`；远端媒体核验命令见 [雷达发布规则](docs/agents/radar.md)。
+
+雷达资产工具使用项目的 `.venv`，安装 / 升级时运行：
+
+```bash
+uv venv .venv  # 仅首次创建 / 初回のみ
+uv pip install --python .venv/bin/python -r requirements-notebooklm.txt
+.venv/bin/notebooklm auth check --test --passive --json
+```
+
+NotebookLM 登录状态保存在私有配置中，不提交。依赖迁移说明见 [升级记录](docs/maintenance/2026-10-upgrade.md)。
 
 ## 浏览统计 / Analytics
 
