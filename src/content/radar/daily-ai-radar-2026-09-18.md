@@ -107,9 +107,21 @@ draft: false
 - 链接：https://blog.dailydoseofds.com/p/where-does-all-the-vram-go-during
 - 摘要：这期图解将推理显存拆为权重、KV 缓存、激活与工作区峰值，以及运行时开销。上下文长度、并发和预填充批次会改变预算；预留的缓存池也不能直接当作活跃张量用量。因此模型能加载不代表真实负载能运行，容量规划应保留安全余量，量化的速度收益也取决于内核与反量化成本。
 
+<!-- radar-visual:2aefb44d381a -->
+[![推理显存预算示意图，将模型权重与完整工作负载占用区分开](/images/radar/inline/2aefb44d381a.webp)](/images/radar/inline/2aefb44d381a.webp)
+
+*图中将推理显存拆成权重、KV 缓存、激活与工作区、运行时开销四部分；上下文、并发和批量增大时，权重之外的部分也会增长。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/where-does-all-the-vram-go-during)。点击图片查看原尺寸。*
+<!-- /radar-visual:2aefb44d381a -->
+
 ### Every：实验费用要对应收获，减少无边界的智能体协调
 
 - 来源：Every
 - 日期：2026-09-17
 - 链接：https://every.to/context-window/why-you-should-burn-more-tokens
 - 摘要：Every 分享了一次多层智能体反复传递上下文、消耗大量 token 却未达到预期的实验。团队随后减少调度层级、限制子任务数量，并设置具体目标与人工反馈停点。文章主张分别记录花费、产出和学到什么，再为重复任务测试较便宜模型；这是团队实践，不是高消耗必然带来高回报的证据。
+
+<!-- radar-visual:b259f846a8be -->
+[![Every 团队的 OpenAI token 使用排行榜截图](/images/radar/inline/b259f846a8be.webp)](/images/radar/inline/b259f846a8be.webp)
+
+*截图展示团队成员间显著不同的 token 使用量。文章借此追问费用换来了什么，排行榜本身不能证明产出质量或投资回报。 图片来源：[Every / Laura Entis](https://every.to/context-window/why-you-should-burn-more-tokens)。点击图片查看原尺寸。*
+<!-- /radar-visual:b259f846a8be -->

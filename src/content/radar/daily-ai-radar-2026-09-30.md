@@ -48,6 +48,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-30-infographic.webp
 - 链接：https://magazine.sebastianraschka.com/p/classifier-history-and-jev
 - 摘要：Raschka从词袋、RNN和BERT梳理到Jev，指出通用低延迟分类器的价值在于跨任务适用性，而非分类本身是新发明。文章用温度缩放和Brier损失解释为什么标签判对不等于置信概率可靠，生产系统应在独立数据上检查校准。Jev的具体架构和RLCD训练方法未公开；文中与ModernBERT、RLCR的联系是作者推测，不能当作已披露实现。
 
+<!-- radar-visual:486366d66ea8 -->
+[![Jev API接口功能概览图](/images/radar/inline/486366d66ea8.webp)](/images/radar/inline/486366d66ea8.webp)
+
+*图中将付款失败的工单送入分类 API，再按 billing 标签分配队列。输出把 confidence 与各类别概率分开列出，两者不能混为同一个数值。 图片来源：[Ahead of AI](https://magazine.sebastianraschka.com/p/classifier-history-and-jev)。点击图片查看原尺寸。*
+<!-- /radar-visual:486366d66ea8 -->
+
 ## 3. 实战代码 & 工具库
 
 ### 实时酒店语音智能体把转写与响应延迟展示出来
@@ -56,6 +62,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-30-infographic.webp
 - 日期：2026-09-29
 - 链接：https://blog.dailydoseofds.com/p/build-a-real-time-hotel-booking-voice
 - 摘要：这份与Speechmatics合作的教程把LiveKit、Linden、OpenRouter、Fish Audio和Streamlit串成语音流水线，展示临时转写、最终轮次及开始回复的时刻，并保留用户对日期等字段的更正。它区分“说话到最终转写”和“最终转写到回复发声”，前者包含用户说话时间；单项语音识别延迟不能代替端到端体验。教程演示不代表已接入真实酒店库存或完成预订。
+
+<!-- radar-visual:04dcc09ca0c1 -->
+[![实时酒店预订语音智能体架构流水线示意图](/images/radar/inline/04dcc09ca0c1.webp)](/images/radar/inline/04dcc09ca0c1.webp)
+
+*这张通用示意图串起语音转写、LLM 与内部工具、语音合成三个环节；图中采用 Speechmatics，不能把它当成本文酒店示例所用组件的逐项清单。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/build-a-real-time-hotel-booking-voice)。点击图片查看原尺寸。*
+<!-- /radar-visual:04dcc09ca0c1 -->
 
 ### Manus 2.0 将自动化触发与可编辑创作环境合并
 
@@ -111,3 +123,9 @@ coverImage: /images/radar/daily-ai-radar-2026-09-30-infographic.webp
 - 日期：2026-09-29
 - 链接：https://blog.bytebytego.com/p/why-do-llms-lie
 - 摘要：文章把幻觉拆为事实错误、与来源不一致和凭空捏造，强调流畅解释、引用链接或自报置信度都不能代替验证。RAG需要正确版本与适用范围，工具调用需要实际执行并保留失败状态；即使条件满足，也不能在外部系统确认前宣称操作完成。工程上应允许“证据不足、需要复核”的状态，并分别测试正确回答、合理拒答和错误承诺。
+
+<!-- radar-visual:8efa26b52295 -->
+[![客服支持场景下的RAG检索增强生成流程图](/images/radar/inline/8efa26b52295.webp)](/images/radar/inline/8efa26b52295.webp)
+
+*上方展示检索政策、将证据加入提示词、生成有出处回答的流程；下方仍列出旧政策、错误产品、缺失规则等失败情形，提醒检索成功不等于答案正确。 图片来源：[ByteByteGo](https://blog.bytebytego.com/p/why-do-llms-lie)。点击图片查看原尺寸。*
+<!-- /radar-visual:8efa26b52295 -->

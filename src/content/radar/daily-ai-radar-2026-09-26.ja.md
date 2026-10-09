@@ -30,12 +30,24 @@ representativeImageSource: https://blog.google/innovation-and-ai/models-and-rese
 - リンク：https://cursor.com/blog/rollouts-and-security-reviewer
 - 要約：Cursor が Rollouts と Security Reviewer を発表。前者は PR の差分から監視計画を作り、デプロイ前の基準と比較して回帰を検出する。設定に応じて通知、段階的展開の停止、承認待ちのリバート PR を行う。後者はコード全体の文脈で脆弱性と修正案を提示。機能フラグの直接操作は今後の予定である。
 
+<!-- radar-visual:c5e9011c795d -->
+[![Security Reviewerにより平均レビュー時間が4.8分から3.8分に短縮され、コメント採択率が60〜70%に向上](/images/radar/inline/c5e9011c795d.webp)](/images/radar/inline/c5e9011c795d.webp)
+
+*レビュー時間の短縮とコメント採択率向上を示す公式指標グラフですが、ベンダー側の自己報告データであり環境による変動が考えられます。 画像出典：[Cursor](https://cursor.com/blog/rollouts-and-security-reviewer)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:c5e9011c795d -->
+
 ### CognitionのDevin Fusionデュアル構成とSWE-2モデル分析
 
 - 出典：The Batch / Cognition
 - 日付：2026-09-25（分析記事；Fusion ローカル版発表 2026-09-11）
 - リンク：https://www.deeplearning.ai/the-batch/issue-372
 - 要約：The Batchは2026年9月25日、CognitionのDevin Fusion（ローカル版は9月11日発表）を分析。主導モデルと副手モデルが独立した文脈とキャッシュを保持して割引を維持する構成であり、評価ベンチマークではトークン消費増の一方でコスト36%減を記録したとされるが、これは特定条件下での結果であり一般的なトークン削減の保証ではない。
+
+<!-- radar-visual:f9051611ac5f -->
+[![メインエージェントがタスクを計画・レビューし、サイドキックが探索、コーディング、バグ修正を行う構成図](/images/radar/inline/f9051611ac5f.webp)](/images/radar/inline/f9051611ac5f.webp)
+
+*左の主エージェントが探索・実装・修正を右の補助エージェントへ渡し、ファイル断片と修正結果を受け取ります。計画とレビューを主側に残す分担です。 画像出典：[The Batch / Cognition](https://www.deeplearning.ai/the-batch/issue-372)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:f9051611ac5f -->
 
 ## 2. モデル最前線 & アルゴリズム探索
 
@@ -116,3 +128,9 @@ representativeImageSource: https://blog.google/innovation-and-ai/models-and-rese
 - 日付：2026-09-25
 - リンク：https://every.to/p/copilot-gets-a-seat-in-the-org-chart
 - 要約：Every の Ryan Sloan は Copilot の発表会で Home、Code、継続動作する Autopilot を確認。スライド編集は成功したが、Word の表を Excel に移す操作や Code への引き継ぎは権限で止まった。プレビュー・早期アクセス段階で、Autopilot は初期無効かつ従量制。企業固有のタスク評価と人の作業基準で価値を測るべきだと述べる。
+
+<!-- radar-visual:06899ec003aa -->
+[![新しいCopilotアプリのHomeタブ画面（画像提供：マイクロソフト）](/images/radar/inline/06899ec003aa.webp)](/images/radar/inline/06899ec003aa.webp)
+
+*原文の画面にはHome・Code・Autopilotの入口と、入力欄のChat / Cowork切替があります。入口の表示だけで組織データや外部アプリへの権限が付与されるわけではありません。 画像出典：[Every](https://every.to/p/copilot-gets-a-seat-in-the-org-chart)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:06899ec003aa -->

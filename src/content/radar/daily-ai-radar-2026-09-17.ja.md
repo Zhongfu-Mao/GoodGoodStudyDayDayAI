@@ -27,6 +27,12 @@ draft: false
 - リンク：https://blog.bytebytego.com/p/how-llms-can-find-a-needle-in-a-haystack
 - 要約：文書のチャンク化、埋め込み、類似度指標からベクトル索引までを解説する。Flat は条件を満たす全ベクトルを比較し、選択した指標上の正確な近傍を返す。IVF と HNSW はクラスタリングやグラフ探索で比較量を減らす一方、再現率を損なう可能性がある。最終的な証拠品質にはメタデータ絞り込み、版管理、ハイブリッド検索、再ランキングも関わる。
 
+<!-- radar-visual:5f9cc75011fc -->
+[![ベクトルのフラット検索図。条件に合う全ベクトルとクエリを比較する仕組みを説明](/images/radar/inline/5f9cc75011fc.webp)](/images/radar/inline/5f9cc75011fc.webp)
+
+*3欄は全件比較のFlat、グループを絞るIVF、階層グラフ探索を示します。比較回数を減らせる一方、近似探索では候補を見逃す可能性があります。 画像出典：[ByteByteGo](https://blog.bytebytego.com/p/how-llms-can-find-a-needle-in-a-haystack)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:5f9cc75011fc -->
+
 ### OpenAI、モデル不整合事例の報告枠組みを導入
 
 - 出典：OpenAI
@@ -58,6 +64,12 @@ draft: false
 - 日付：2026-09-16
 - リンク：https://every.to/context-window/show-us-your-folders
 - 要約：Every が紹介する運用では Tuin が文脈・目標・メモを保存し、Erf が対応フォルダへタスクを振り分け、常時稼働の Mac mini が実行を担う。保存と配信を分離し、記憶を日・週・月・年単位で整理する。再編前には正本と派生物を区別し、移動や削除に人の承認を求める。個人環境での実践例である。
+
+<!-- radar-visual:39fb7a90f1eb -->
+[![常時稼働Mac mini上のフォルダ運用図。Erfがセッションを調整し、Tuinが記憶を保持](/images/radar/inline/39fb7a90f1eb.webp)](/images/radar/inline/39fb7a90f1eb.webp)
+
+*Erfがセッションを調整し、Tuinが作業記憶を保持し、常時稼働のMac miniで動く。保存とスケジューリングを分けた構成を示す。 画像出典：[Astra / Every Agent](https://every.to/context-window/show-us-your-folders)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:39fb7a90f1eb -->
 
 ### StepAudio 3 Realtime：全二重音声対話とツール利用
 
@@ -106,6 +118,12 @@ draft: false
 - 日付：2026-09-16
 - リンク：https://blog.dailydoseofds.com/p/how-to-fine-tune-llms-in-2026-bf8
 - 要約：強化ファインチューニングの実装に焦点を当てる。ART はエージェントコードをクライアント側に置き、ツール呼び出しと環境フィードバックを含む軌跡をバックエンドへ送り、vLLM、Unsloth、GRPO、LoRA で学習を循環させる。RULER は複数軌跡を LLM に比較させ、相対スコアを報酬として使う。手書き報酬関数やラベルへの依存は減るが、報酬信号自体が不要になるわけではない。
+
+<!-- radar-visual:13076e69bafa -->
+[![ARTのクライアント・バックエンド構成図。軌跡記録と推論・GRPO訓練を分担](/images/radar/inline/13076e69bafa.webp)](/images/radar/inline/13076e69bafa.webp)
+
+*クライアントが行動と環境報酬を集め、軌跡をバックエンドの学習へ渡します。新しいLoRAチェックポイントをvLLMに読み込み、推論・フィードバック・学習を循環させます。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/how-to-fine-tune-llms-in-2026-bf8)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:13076e69bafa -->
 
 ### Mike Taylor が実践する AI 支援ライティングの原則
 

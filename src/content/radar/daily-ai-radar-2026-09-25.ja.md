@@ -38,6 +38,12 @@ representativeImageSource: https://www.anthropic.com/news/claude-discovers-novel
 - リンク：https://www.latent.space/p/foundries-vs-navigators-lowering
 - 要約：Endura TherapeuticsのAdrian Sanbornは寄稿で「Foundries」と「Navigators」を区別した。前者は高スループット測定、自動化、データ生成に投資し、後者はAIを研究上の判断や日常業務に組み込む。物理的な実験には時間と資源が要るため、推論が速くなっても実験数が自動的に増えるわけではない。これは筆者の産業分析の枠組みであり、すべての研究室に同じ道が適するという意味ではない。
 
+<!-- radar-visual:405a8fc6ddb4 -->
+[![Endura Therapeutics が数時間で構築した社内ダッシュボード](/images/radar/inline/405a8fc6ddb4.webp)](/images/radar/inline/405a8fc6ddb4.webp)
+
+*Enduraの画面では散布図、ヒット一覧、サンプル間ヒートマップを並べ、同じ実験結果を複数の視点から比較できます。 画像出典：[Latent.Space / Endura Therapeutics](https://www.latent.space/p/foundries-vs-navigators-lowering)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:405a8fc6ddb4 -->
+
 ## 2. モデル最前線 & アルゴリズム探索
 
 ### RunwayのWorldPromptがリアルタイム世界モデルに時間軸の制御を追加
@@ -47,12 +53,24 @@ representativeImageSource: https://www.anthropic.com/news/claude-discovers-novel
 - リンク：https://www.latent.space/p/runway
 - 要約：Latent.SpaceはRunwayチームへの取材を通じ、GWM Worlds 2の研究プレビューにあるWorldPromptを紹介した。生成する環境、最初のフレーム、時刻付きの動作を指定し、実行中にも動作を入力できる。リアルタイムの映像・音声シミュレーションに明示的な制御層を与えるが、まだ研究プレビューであり、継続時間、遅延、一貫性は用途ごとに確認が必要だ。
 
+<!-- radar-visual:558848968283 -->
+[![GWM Worlds 2の3段階の学習経路](/images/radar/inline/558848968283.webp)](/images/radar/inline/558848968283.webp)
+
+*基盤の音声・映像モデルをWorldPromptで微調整し、後学習でリアルタイム自己回帰拡散モデルへ進める3段階を示します。微調整だけでリアルタイム化するわけではありません。 画像出典：[Latent.Space / Runway](https://www.latent.space/p/runway)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:558848968283 -->
+
 ### Gemini 3.8 Flash TTSが音声設計と台詞ごとの演技制御を拡張
 
 - 出典：Google
 - 日付：2026-09-23（米国時間；2026-09-24 JST）
 - リンク：https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/
 - 要約：GoogleはGemini 3.8 Flash TTSと、大量処理向けのFlash-Lite TTSを発表した。自然言語で声を設計し、台詞ごとのテンポ、口調、役柄の演技を指示できるとする。対応は100以上の言語・方言に及び、AI StudioやAPIなどから利用できるという。声の一貫性、費用、各言語での品質は実際の用途で試す必要がある。
+
+<!-- radar-visual:3fee68a412fd -->
+[![Hume AI の音声合成品質ベンチマーク評価を示す図表](/images/radar/inline/3fee68a412fd.webp)](/images/radar/inline/3fee68a412fd.webp)
+
+*Google公開のHume AI評価表は総合品質、人間らしい変化、複数話者、スタイル制御を分けて比較しています。各行の評価軸が異なるため、単一スコアで全体を判断できません。 画像出典：[Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:3fee68a412fd -->
 
 ## 3. 実践コード & ツールライブラリ
 

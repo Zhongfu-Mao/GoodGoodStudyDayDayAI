@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-29",
+  "visuals": [
+    {
+      "id": "7958e775a0f0",
+      "sourceUrl": "https://huggingface.co/blog/transformers-llama-cpp-quants",
+      "originalImageUrl": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/benchmark-comparison.svg",
+      "asset": "/images/radar/inline/7958e775a0f0.webp",
+      "sha256": "489589b4bb4098791fd508c046dc25dba5956a6d0663d57f4ddcf261e74963c1",
+      "credit": "Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "Transformers 通过 ggml 内核运行压缩 GGUF 权重",
+        "alt": "Transformers与llama.cpp的GGUF生成吞吐量对比图表",
+        "caption": "图中比较同一台 M2 Max 上的 GGUF 吞吐量。底部注明 Transformers 取三次最佳值且含预填充，llama.cpp 取三次均值且仅解码，不能将柱高直接视为同口径胜负。"
+      },
+      "ja": {
+        "heading": "Transformers、ggmlカーネルで圧縮GGUF重みを実行",
+        "alt": "Transformersとllama.cppにおけるGGUF生成スループット比較グラフ",
+        "caption": "同じM2 MaxでGGUFのスループットを比較しています。注記ではTransformersはプリフィル込みの3回の最高値、llama.cppはデコードのみの3回平均であり、棒の高さだけで同条件の優劣は判断できません。"
+      }
+    },
+    {
+      "id": "ca3976a88774",
+      "sourceUrl": "https://lukefan.com/2026/09/29/human-sandwich-ai-delegation-growth/",
+      "originalImageUrl": "https://pictures.lukefan.com/human-sandwich-ai-delegation-growth/human-sandwich-ai-delegation-growth-03.jpg",
+      "asset": "/images/radar/inline/ca3976a88774.webp",
+      "sha256": "319ebcbf32e4fa1fc4ff5ca0ed91cd0635f0455ebfd16e59e9c243fb768d20c6",
+      "credit": "老范讲故事",
+      "review": "accepted",
+      "zh": {
+        "heading": "老范：AI 委派之后，组织仍需提供成长空间",
+        "alt": "正视平面的三层人肉三明治分工示意图",
+        "caption": "示意图描绘“人—AI—人”工作结构：顶层由人类定方向，中间层由AI处理任务执行，底层由人进行结果验收与质量把关。"
+      },
+      "ja": {
+        "heading": "老范：AIへの委任後も、組織には成長の余地が必要",
+        "alt": "人間とAIの役割分担を示す3層サンドイッチ構造図",
+        "caption": "「人間・AI・人間」の協業構造を示し、上流の方針策定と下流の検証を人間が担い、中間でAIが作業を実行する分担を描いています。"
+      }
+    },
+    {
+      "id": "85896cb044b2",
+      "sourceUrl": "https://blog.bytebytego.com/p/ai-agents-can-think-now-they-can",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!gNlQ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F38af2e84-a27a-4d0a-bab4-ed6729866015_2048x1681.png",
+      "asset": "/images/radar/inline/85896cb044b2.webp",
+      "sha256": "e537cd45ee90db976da034fd71f9ddf82495a3c8752e0695883f49333ab8960c",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "ByteByteGo：机器支付需要协议，也需要授权边界",
+        "alt": "机器支付协议MPP处理流程示意图",
+        "caption": "按箭头看请求、402付款要求、核对条件、提交支付凭证、验证结算和收据返回。协议描述机器间的交互，不能代替用户对具体交易的授权。"
+      },
+      "ja": {
+        "heading": "ByteByteGo：機械の支払いにはプロトコルと権限境界が必要",
+        "alt": "機械決済プロトコルMPPの処理フロー図",
+        "caption": "矢印は要求、402の支払条件、条件確認、支払証明の送信、検証・決済、領収情報の返却を示します。機械間の手順は、個別取引に対する利用者の承認を代替しません。"
+      }
+    }
+  ]
+}

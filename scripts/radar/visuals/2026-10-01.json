@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-01",
+  "visuals": [
+    {
+      "id": "03fc4003c7d1",
+      "sourceUrl": "https://huggingface.co/blog/nvidia/kumo-tabular",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/684040a5de1ad7f4fcec9508/TkT695UAWJnUIyEydIYRv.png",
+      "asset": "/images/radar/inline/03fc4003c7d1.webp",
+      "sha256": "c7dea08f851316cb669505241fc85efd452ff6c9d801c23330937d82e4b83290",
+      "credit": "Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "Kumo Tabular 用带标签的上下文表格预测新行",
+        "alt": "Kumo Tabular模型架构示意图",
+        "caption": "从左到右看三个阶段：单元格编码、行列注意力与上下文学习。右侧把带标签的已知行作为上下文，为新行输出分类或回归预测。"
+      },
+      "ja": {
+        "heading": "Kumo Tabular がラベル付きインコンテキストテーブルを用いて新規行を予測",
+        "alt": "Kumo Tabularモデルのアーキテクチャ概要図",
+        "caption": "左からセルの符号化、行・列の注意機構、文脈内学習の3段階。右側ではラベル付きの既知行を文脈として、新しい行の分類・回帰を予測します。"
+      }
+    },
+    {
+      "id": "089a52e51851",
+      "sourceUrl": "https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/svnUpzhFgTpLqOF_bRDHl.png",
+      "asset": "/images/radar/inline/089a52e51851.webp",
+      "sha256": "f1dfdca20a4849b0a723d9d458a5a49165ee46b770060dd0544ddbf77b1d956a",
+      "credit": "Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "ProvenanceGuard 不仅核验事实，也核验事实来自哪个工具",
+        "alt": "盲源支持与溯源核验机制的对比示意图",
+        "caption": "示意图对比了不区分来源的统一验证与具溯源意识的核验机制，说明政策文档支持但被误归至账户记录的退款期限主张如何被检测。"
+      },
+      "ja": {
+        "heading": "ProvenanceGuard が事実だけでなく、事実がどのツールから得られたかも検証",
+        "alt": "情報源を区別しない検証と出所認識型検証の比較図",
+        "caption": "情報源を区別しない検証と出所認識型の検証を比較し、規約文書に基づく返金期限の主張が口座記録へ誤帰属されるケースの検出を示しています。"
+      }
+    },
+    {
+      "id": "8aeaf08c7d7e",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/jev-for-rag-clearly-explained",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!sxe7!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7b349b18-bfdc-4828-9174-11f567fb3839_1300x744.png",
+      "asset": "/images/radar/inline/8aeaf08c7d7e.webp",
+      "sha256": "6ce4998b72cc2048b3c7be3266ddef0c6ff876bf4f42b7caca3a0a0e10237ecf",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "Daily Dose：把 RAG 的证据相关性与能否作答显式化",
+        "alt": "基于Jev增强RAG检索与生成流程示意图",
+        "caption": "流程图展示在稠密检索与关键词检索融合后，利用Jev在候选片段进入生成上下文前进行相关性评分与阈值过滤的处理过程。"
+      },
+      "ja": {
+        "heading": "Daily Dose：RAG の証拠関連性と回答可能性を明示化",
+        "alt": "Jevを用いたRAGの検索および生成フロー図",
+        "caption": "高密度検索とキーワード検索の融合後、候補文章が生成コンテキストに入る前にJevで関連度スコアを判定し選別する流れを示しています。"
+      }
+    }
+  ]
+}

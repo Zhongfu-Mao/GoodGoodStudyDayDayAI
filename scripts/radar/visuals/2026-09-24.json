@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-24",
+  "visuals": [
+    {
+      "id": "9d57b3ffc89b",
+      "sourceUrl": "https://code.visualstudio.com/docs/agents/run/agents-window",
+      "originalImageUrl": "https://code.visualstudio.com/assets/docs/agents/agents-window/agents-window-ui-annotated.png",
+      "asset": "/images/radar/inline/9d57b3ffc89b.webp",
+      "sha256": "d37f386c430d9f32feeea13ef838a7883419c3c9cac54dfd812ac1f46f81287e",
+      "credit": "Visual Studio Code",
+      "review": "accepted",
+      "zh": {
+        "heading": "VS Code 的 Agents window 提供跨工作区 Agent 会话管理",
+        "alt": "VS Code Agents window 界面截图，展示会话列表、定制面板、聊天区域、变更面板与文件面板",
+        "caption": "截图展示 VS Code Agents window 界面布局，包含跨工作区会话列表、聊天窗口以及侧边的变更和工作区文件面板。"
+      },
+      "ja": {
+        "heading": "VS CodeのAgents windowがワークスペースをまたぐAgentセッション管理を提供",
+        "alt": "セッション一覧、設定パネル、チャット領域、変更・ファイルパネルを表示する VS Code Agents window の画面",
+        "caption": "VS Code の Agents window 画面。ワークスペースを跨ぐセッション一覧やチャット領域、変更差分およびファイル一覧パネルの構成を確認できます。"
+      }
+    },
+    {
+      "id": "61ebf8c37292",
+      "sourceUrl": "https://www.latent.space/p/bio-security-is-an-ai-arms-race-eric",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!cp9W!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd69cd8e-9021-4c59-b0ea-13cbae20bd7c_1456x1328.png",
+      "asset": "/images/radar/inline/61ebf8c37292.webp",
+      "sha256": "a9a05a484e14427a6a25dfb139726b379725414759d3672d0e50f0e9f2a680bc",
+      "credit": "Latent.Space",
+      "review": "accepted",
+      "zh": {
+        "heading": "Latent.Space：生物安全防御也进入 AI 能力竞速",
+        "alt": "改编自维基百科的基因组大小图表",
+        "caption": "横轴以碱基对表示基因组大小，每条网格线相差十倍；紫色区间展示各生物群的范围，说明生物数据规模差异，而非模型能力排名。"
+      },
+      "ja": {
+        "heading": "Latent.Space：生物セキュリティの防御もAI能力競争の一部に",
+        "alt": "Wikipedia の Genome Size を基に作成されたゲノムサイズの図表",
+        "caption": "横軸は塩基対で表すゲノムサイズで、目盛りごとに10倍になります。紫の帯は生物群ごとの範囲を示し、データ規模の違いを説明する図です。"
+      }
+    },
+    {
+      "id": "50a50ea52425",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/moe-inference-engineering-clearly",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!GqHQ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F95d03bb6-558d-4ccc-a81c-bf5461e712f9_1080x1080.gif",
+      "asset": "/images/radar/inline/50a50ea52425.webp",
+      "sha256": "e30472b318f2c7a761d94731508718b028f261896b4aa957ebcb5cd06d07a8f9",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "Daily Dose：MoE 推理需分别测量权重、专家计算和通信",
+        "alt": "稠密 Transformer 与 MoE 层结构对比",
+        "caption": "左侧为稠密 Transformer，右侧在前馈位置加入路由器和多个专家；MoE 改变的是这一计算环节，并非把整个注意力结构替换成专家。"
+      },
+      "ja": {
+        "heading": "Daily Dose：MoE推論では重み、専門家の計算、通信を分けて測る",
+        "alt": "密なTransformerとMoE層の構造比較",
+        "caption": "左は密なTransformer、右はフィードフォワード部分にルーターと複数のエキスパートを配置した構成です。MoE化するのはこの計算部分で、注意機構全体を置き換える図ではありません。"
+      }
+    }
+  ]
+}

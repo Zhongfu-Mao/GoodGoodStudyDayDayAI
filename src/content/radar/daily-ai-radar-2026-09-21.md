@@ -80,6 +80,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-21-infographic.webp
 - 链接：https://lukefan.com/2026/09/21/ordinary-people-careers-robot-era-platform-choice/
 - 摘要：科技博主老范针对机器人时代的就业前景发表评论，探讨普通人与服务型平台的职业选择。他指出未来机器人落地场景中的重要岗位将围绕设备维护、现场运营、数据采集以及人机互动的“最后一米”展开，建议求职者根据平台的真实培训与员工保障体系进行甄选。该观点属于作者的前瞻性行业思考，并非经过确证的官方投资计划或就业保障。
 
+<!-- radar-visual:35484ef1c55c -->
+[![最后一米人机协作流程](/images/radar/inline/35484ef1c55c.webp)](/images/radar/inline/35484ef1c55c.webp)
+
+*原文以分拣装货、无人运输和人工挂钩三个环节说明“最后一米”的人机分工，这是作者对未来岗位的场景分析。 图片来源：[老范讲故事](https://lukefan.com/2026/09/21/ordinary-people-careers-robot-era-platform-choice/)。点击图片查看原尺寸。*
+<!-- /radar-visual:35484ef1c55c -->
+
 ## 5. GitHub 热门 repo & 趋势追踪
 
 ### Builder.io 开源 agent-native：打通 Agent 与 UI 动作及权限共享
@@ -104,6 +110,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-21-infographic.webp
 - 日期：2026-09-21
 - 链接：https://every.to/also-true-for-humans/how-to-create-your-own-personal-ai-benchmark
 - 摘要：Mike Taylor 在 Every 撰文介绍个人专属 AI 基准测试的构建方案：收集日常工作中导致模型失败的 10 个真实任务与上下文，比较不同厂商与尺寸的模型，并对同一模型重复运行 3 次观察波动，再将人工反馈提炼为 3 至 10 项二元校验指标。随着模型能力提升再逐步扩充更复杂的用例。作者指出，该方案专用于个人特定场景下的模型选型，不能替代全局基准。
+
+<!-- radar-visual:c79d74af12bc -->
+[![个人基准中的 NPS 仪表板示例](/images/radar/inline/c79d74af12bc.webp)](/images/radar/inline/c79d74af12bc.webp)
+
+*截图展示个人基准中的 NPS 仪表板输出，包含评分、回复数量与用户分组；这类真实任务可用于检查模型是否正确组织数据和说明。 图片来源：[Every](https://every.to/also-true-for-humans/how-to-create-your-own-personal-ai-benchmark)。点击图片查看原尺寸。*
+<!-- /radar-visual:c79d74af12bc -->
 
 ### The Rundown AI 分享图像技能评测方案：以人工反馈迭代评测闭环
 

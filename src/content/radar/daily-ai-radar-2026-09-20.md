@@ -25,6 +25,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-20-infographic.webp
 - 链接：https://openai.com/index/how-to-connect-ai-usage-to-business-value/
 - 摘要：OpenAI 探讨如何衡量 AI 落地效能，其管理控制台整合了用量、积分、Token 消耗、任务分类及合并代码贡献等指标。官方强调需将活动数据与代码评审负担、缺陷率、返工率及业务基线结合评估。文中所提 ROI 仅为假设推导示例而非客户实际测算结果，核心目标在于严格区分调用活跃度与经过验证的真实业务产出。
 
+<!-- radar-visual:5ca0b9560449 -->
+[![管理控制台用量总览演示截图](/images/radar/inline/5ca0b9560449.webp)](/images/radar/inline/5ca0b9560449.webp)
+
+*管理控制台用量概览展示ChatGPT Work与Codex的活跃用户及积分趋势，官方说明图中界面均采用示例演示数据。 图片来源：[OpenAI](https://openai.com/index/how-to-connect-ai-usage-to-business-value/)。点击图片查看原尺寸。*
+<!-- /radar-visual:5ca0b9560449 -->
+
 ### Google 推出 Gemini 托管 Agent 预览版：原生整合 Antigravity 工具链
 
 - 来源：Latent.Space / Google
@@ -41,6 +47,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-20-infographic.webp
 - 链接：https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling
 - 摘要：Anthropic 报告，在两名研究员监督下，Claude 通过 FlashPairformer 内核与冗余计算优化，使30多个生物模型在少量精度取舍下平均提速约4倍。低显存模式可在单个 GPU 节点准确预测部分超过1万 Token 的分子系统；超过7万 Token 的运行虽能完成，结构仍不正确。计算模拟成绩不等于湿实验或临床验证。
 
+<!-- radar-visual:20311f514457 -->
+[![结构预测模型优化加速倍率柱状图](/images/radar/inline/20311f514457.webp)](/images/radar/inline/20311f514457.webp)
+
+*柱状图分别比较 Exact、Fast 与 Big 模式的前向计算提速，右下角汇总值约为 1.6、4.2 与 3.5 倍；这是指定结构预测模型的计算测试。 图片来源：[Anthropic](https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling)。点击图片查看原尺寸。*
+<!-- /radar-visual:20311f514457 -->
+
 ### Qwen 发布 Qwen3.8-Omni-Flash：主动由粗到精多模态证据检索
 
 - 来源：The Rundown AI / Qwen
@@ -56,6 +68,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-20-infographic.webp
 - 日期：2026-09-19
 - 链接：https://abc.bot/
 - 摘要：具身智能项目 ABC 正式开源其训练与评估代码库，已被 CoRL 2026 接收。该工作核心在于提供可复现的完整基准，公开了覆盖 24 项任务的超 400 小时仿真数据，以及 5850 条带标注的评估 Episode 数据集。项目聚焦于规范具身策略的标准化评测与复现流程，为机器人策略学习提供公开可验证的基准参照。
+
+<!-- radar-visual:19b7da0ca5c5 -->
+[![ABC 真实世界机器人任务网格](/images/radar/inline/19b7da0ca5c5.webp)](/images/radar/inline/19b7da0ca5c5.webp)
+
+*任务网格呈现机器人在不同物体与场景中的操作，帮助理解数据集覆盖面；画面展示任务类型，本身不代表任务成功率。 图片来源：[ABC](https://abc.bot/)。点击图片查看原尺寸。*
+<!-- /radar-visual:19b7da0ca5c5 -->
 
 ### Rowboat Spaces：明确共享边界的团队协作多 Agent 工作区
 

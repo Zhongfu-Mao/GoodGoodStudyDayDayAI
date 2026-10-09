@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-08",
+  "visuals": [
+    {
+      "id": "b385fef92353",
+      "sourceUrl": "https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!ssQz!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c05e69-245b-42d6-9fc1-46aad86d054f_3142x2072.png",
+      "asset": "/images/radar/inline/b385fef92353.webp",
+      "sha256": "633fdaba238139082e127d2431bc8567fd9963f0eeb6f20f48cef7883a19a161",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "LLM应用中的技术故障与语义故障应对实践",
+        "alt": "LLM应用请求流与多组件交互示意图",
+        "caption": "从左到右是用户、应用、检索、模型与工具；请求先做输入及权限验证，生成结果返回应用后再验证，说明技术与语义检查可落在多个环节。"
+      },
+      "ja": {
+        "heading": "LLMアプリにおける技術的障害と意味的障害への対処法",
+        "alt": "LLMアプリケーションの要求フローとコンポーネント構成図",
+        "caption": "左から利用者、アプリ、検索、モデル、ツールを示します。入力・権限の検証から、生成結果を受け取った後の検証まで、複数の段階に確認を置く構成です。"
+      }
+    },
+    {
+      "id": "a6fc0a085fe8",
+      "sourceUrl": "https://lukefan.com/2026/09/07/deepseek-huawei-ascend-ulaanqab-data-center/",
+      "originalImageUrl": "https://pictures.lukefan.com/deepseek-huawei-ascend-ulaanqab-data-center/deepseek-huawei-ascend-ulaanqab-data-center-03.jpg",
+      "asset": "/images/radar/inline/a6fc0a085fe8.webp",
+      "sha256": "460b8d775fa927ac87df05028f90fa226314ac6bffed9b02749a296357c13b67",
+      "credit": "老范讲故事",
+      "review": "accepted",
+      "zh": {
+        "heading": "乌兰察布算力中心规划观察：芯片供给与消纳平衡",
+        "alt": "Atlas 950超节点与超级集群三级数量对照图",
+        "caption": "原文把超节点、超级集群与报道中的订单规模分栏列示，提醒读者区分硬件组织层级与采购数量；这些数字不等同于已部署或已消纳的算力。"
+      },
+      "ja": {
+        "heading": "ウランチャブ計算基盤構想の分析：チップ供給と実効稼働",
+        "alt": "Atlas 950スーパーノードとクラスタの規模対比図",
+        "caption": "原文はスーパーノード、クラスタ、報道された発注規模を別欄に整理しています。ハードウェアの階層と購入量を区別する図で、数値は稼働・利用済み計算資源を意味しません。"
+      }
+    },
+    {
+      "id": "1448ea5f4f7f",
+      "sourceUrl": "https://openai.com/index/supporting-independent-journalism-in-ukraine/",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/37OFqsC8iOXYQKpQuwWha/efe539782862e144884fd4e6f103da47/ukraine-media-map-3kOlFhA52bJ2PZntVUfudJ.png?w=3840&q=90&fm=webp",
+      "asset": "/images/radar/inline/1448ea5f4f7f.webp",
+      "sha256": "3c127de45b69a0eda8b106b2313bac04e1d4a588400a4d04b33b7c508571f710",
+      "credit": "OpenAI / WAN-IFRA / AIRPPU",
+      "review": "accepted",
+      "zh": {
+        "heading": "乌克兰独立新闻机构AI赋能与转型支持项目",
+        "alt": "乌克兰全国独立新闻机构分布地图",
+        "caption": "该地图展示遍布乌克兰全国的独立新闻机构地理分布，反映该项AI赋能与转型支持计划在乌克兰独立新闻领域的覆盖范围。"
+      },
+      "ja": {
+        "heading": "ウクライナ独立報道機関へのAI導入・事業変革支援構想",
+        "alt": "ウクライナ全土の独立系報道機関の分布地図",
+        "caption": "ウクライナ各地に点在する独立系報道機関の分布を示し、AI導入・転換支援プログラムが対象とするメディアの展開範囲を表しています。"
+      }
+    }
+  ]
+}

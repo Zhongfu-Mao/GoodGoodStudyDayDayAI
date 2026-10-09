@@ -66,6 +66,12 @@ draft: false
 - リンク：https://runway.com/news/research/introducing-solaris
 - 要約：Runwayが発表したSolarisは、LLMがユーザーのクリックやドラッグ操作を解釈して次のアクションを決定し、世界モデルがフレーム単位で画面を描画する仕組みであり、従来のWebコード生成とは異なります。現在はアーリーアクセス段階にあり、文字の鮮明度、長時間のセッションにおける整合性、出力内容の信頼性、アクセシビリティに課題が残されており、本番Webサイトの直接的な代替とは見なせません。
 
+<!-- radar-visual:510de74b2371 -->
+[![標準的な製品ウェブページと各マルチモーダルモデルによる再構成の並列比較](/images/radar/inline/510de74b2371.webp)](/images/radar/inline/510de74b2371.webp)
+
+*元の製品ウェブページと各マルチモーダル言語モデルによる再構成結果の並列比較であり、単一のスクリーンショットからインターフェースを再現するベンダー評価の忠実度検証を示しています。 画像出典：[Runway](https://runway.com/news/research/introducing-solaris)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:510de74b2371 -->
+
 ### LLM Cliché Highlighterは陳腐な表現の検出を検証可能な規則に変える
 
 - 出典：AI Valley · Simon Willison
@@ -81,6 +87,12 @@ draft: false
 - 日付：2026-09-01
 - リンク：https://lukefan.com/2026/09/01/china-us-ai-controls-models-chips/
 - 要約：本論評はモデルの重み、学習データ、先端半導体、越境投資に関する制約が、企業のコンプライアンス、時間、資金コストにどう影響するかを考察します。著者は一部の案が報道や議論の段階にあると指摘しており、実際の影響は正式文書と適用範囲、運用次第です。議論中の措置を施行済みの規則と同一視することはできません。
+
+<!-- radar-visual:9a9eb1e1ba57 -->
+[![モデルコア、訓練データ、チップ設計図、企業握手記号を巡る4つの並列抽象規制ゲートのインフォグラフィック](/images/radar/inline/9a9eb1e1ba57.webp)](/images/radar/inline/9a9eb1e1ba57.webp)
+
+*原文はモデル、データ、半導体、企業間協力の4種類の記号で論評の対象を整理しています。半透明の門は著者が論じる未実施の措置を表し、具体的な法令確認に代わる図ではありません。 画像出典：[老范讲故事](https://lukefan.com/2026/09/01/china-us-ai-controls-models-chips/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:9a9eb1e1ba57 -->
 
 ### ChatGPT Adsはセルフサーブ配信と効果測定を拡大する
 

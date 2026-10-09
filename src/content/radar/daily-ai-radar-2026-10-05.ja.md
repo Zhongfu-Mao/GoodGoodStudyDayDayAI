@@ -25,12 +25,24 @@ coverImage: /images/radar/daily-ai-radar-2026-10-05.ja-infographic.webp
 - リンク：https://claude.dev/blog/getting-started-with-claude-code-mods/
 - 要約：ModsはJavaScriptまたはTypeScriptモジュールとしてイベントハンドラを登録し、ミドルウェアのようにツール呼び出しの監視、書き換え、拒否を行うほか、セッション状態の保持、コマンドの登録、リアルタイムUIの描画も可能です。イベントごとにシェルを起動するsettings hookとは異なり、モジュールはロード後にセッション内に常駐します。ガイドではClaude Code 2.1.287以上が要求されており、APIはバージョンによって変更される可能性があるため、ローカルで生成された型定義を基準とする必要があります。拡張機能がアクションをインターセプトできることは、任意のプラグインの安全性が検証済みであることを意味しません。
 
+<!-- radar-visual:37da4bfb17e2 -->
+[![端末のBlast Radius警告。git reset --hardで失う可能性のあるファイルと続行・取消を表示](/images/radar/inline/37da4bfb17e2.webp)](/images/radar/inline/37da4bfb17e2.webp)
+
+*git reset --hardの前に失われ得る未コミットファイルを列挙し、続行か取消を求める。記事自身も、これは権限制御ではなく警告層だと説明する。 画像出典：[Claude Code](https://claude.dev/blog/getting-started-with-claude-code-mods/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:37da4bfb17e2 -->
+
 ### Matthew Green：サンドボックスの外部でも、エージェントが指示を受け取る経路の精査が必要
 
 - 出典：Simon Willison / Matthew Green
 - 日付：2026-09-30（原文）；2026-10-01（引用議論）
 - リンク：https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/
 - 要約：Green氏は隔離と情報アクセスの間にある矛盾を分析しています。各プロセスがサンドボックス内に留まっていたとしても、共有パッケージキャッシュ、メール、共同作業ドキュメントなどを介して、他のエージェントの目的を改変するテキストが伝播する可能性があります。氏の懸念は「サンドボックスが無用である」ということではなく、隔離境界は指示の出所、認可、データフローの検証を代替できない点にあります。この経路をワームに例えるのは筆者のリスク分析であり、本番環境で大規模な拡散が発見されたという結論ではありません。
+
+<!-- radar-visual:0fee3d7a215e -->
+[![エージェント安全構成図。紫色でサンドボックス外の分類器と決定論的Sentinelを表示](/images/radar/inline/0fee3d7a215e.webp)](/images/radar/inline/0fee3d7a215e.webp)
+
+*サンドボックス内のエージェントと、外部の安全分類器・決定論的Sentinelを分離して示す。隔離だけでなく指示元とデータ流の審査も必要になる。 画像出典：[Matthew Green](https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:0fee3d7a215e -->
 
 ## 2. モデル最前線 & アルゴリズム探索
 
@@ -72,6 +84,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-05.ja-infographic.webp
 - 日付：2026-10-02（研究発表）
 - リンク：https://research.meta.ai/blog/solving-open-research-problems-together
 - 要約：研究発表では、数学者とMuse Sparkの協同によって6本の論文が作成され、そのうち5本が各分野の未解決問題に回答したことが紹介されています。プロセスは人間が問題を定義し、反復的に誘導を行い、数学者を組織して論証を検証する形をとっており、一部の結果には同時期の独立した研究が存在することも発表内で認められています。6本の論文をモデルによる6回の自律的発見と表現することはできず、チームによる確認も外部査読が完了したことと同義ではありません。注目すべきは探索と検証の役割分担であり、論文数で汎用知能を直接測るべきではありません。
+
+<!-- radar-visual:7c5bea145878 -->
+[![2つの楕円体と閾値軸で、ランダム点数に伴う厳密ガウス当てはめの相転移を示す](/images/radar/inline/7c5bea145878.webp)](/images/radar/inline/7c5bea145878.webp)
+
+*低次元の楕円体と閾値軸で、点数が約d²/4を越えると厳密な当てはめが高確率で可能な領域から困難な領域へ移ることを示す。 画像出典：[Meta AI Research](https://research.meta.ai/blog/solving-open-research-problems-together)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:7c5bea145878 -->
 
 ### David Robinson氏のOpenAI退社：安全性の議論を個人の対処から組織的な冗長性へ転換
 

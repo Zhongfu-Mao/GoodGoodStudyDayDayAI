@@ -33,6 +33,12 @@ draft: false
 - 链接：https://tomov.github.io/CW-Net/
 - 摘要：MIT与Motional联合研发CW-Net，在自动驾驶轨迹评分前加入可理解概念层，将接近骑车人等语义直接融入决策而非仅作事后解释。研究表明其有助于预测车辆行为并发现停车盲点。但该项目目前仅适配单类规划器和有限场景，概念本身可能误判，且尚未证明能减少实际事故。
 
+<!-- radar-visual:d0da94476e1a -->
+[![CW-Net架构与黑盒规划器概念层对比图](/images/radar/inline/d0da94476e1a.webp)](/images/radar/inline/d0da94476e1a.webp)
+
+*对比黑盒机器学习规划器与CW-Net，展示在轨迹评分前引入人类可理解概念层的框架设计。 图片来源：[The Rundown AI](https://tomov.github.io/CW-Net/)。点击图片查看原尺寸。*
+<!-- /radar-visual:d0da94476e1a -->
+
 ### SpeedrunBench基准发布：通过游戏速通渐进优化检验长程任务能力
 
 - 来源：Latent.Space / AINews
@@ -48,6 +54,12 @@ draft: false
 - 日期：2026-09-06（介绍）
 - 链接：https://skild.ai/blogs/s1
 - 摘要：本期介绍原于8月发布的Skild S1模型。该模型观看单段人类示范视频后可尝试执行种植、煎饼等新任务，无需更新权重。官方宣称预训练后步骤累计成功率达66%，但该测试包含人工协助恢复，并不等于整项任务完全自主完成，单次示范适配与实际工业验收之间仍需完整任务验证。
+
+<!-- radar-visual:f79ab3d0d579 -->
+[![为机器人录制人类演示](/images/radar/inline/f79ab3d0d579.webp)](/images/radar/inline/f79ab3d0d579.webp)
+
+*官方示例展示人类录制任务演示作为视频提示；输入的是操作过程，而非为每个新任务重新编写一套动作程序。 图片来源：[Skild AI](https://skild.ai/blogs/s1)。点击图片查看原尺寸。*
+<!-- /radar-visual:f79ab3d0d579 -->
 
 ### GEN-1.5：区分上下文示范与微调后的机器人适配效果
 
@@ -112,6 +124,12 @@ draft: false
 - 日期：2026-09-06
 - 链接：https://blog.bytebytego.com/p/ep224-mcp-vs-rag-vs-ai-agents
 - 摘要：ByteByteGo本期区分了MCP的标准化工具连接、RAG的外部检索增强，以及Agent的决策执行职责，三者可以互补而非互相替代。另一个栏目梳理熔断、退避重试与Saga补偿等九类分布式模式，为长期运行智能体提供可靠性设计视角。连接、检索与执行需分别验收，RAG也不能保证完全消除幻觉。
+
+<!-- radar-visual:25284a89bdc9 -->
+[![MCP、RAG与AI智能体对比图表](/images/radar/inline/25284a89bdc9.webp)](/images/radar/inline/25284a89bdc9.webp)
+
+*三栏分别解释 MCP 的工具连接、RAG 的检索补充上下文，以及智能体的规划—观察—行动循环；三者可以组合，并不是互斥选项。 图片来源：[ByteByteGo](https://blog.bytebytego.com/p/ep224-mcp-vs-rag-vs-ai-agents)。点击图片查看原尺寸。*
+<!-- /radar-visual:25284a89bdc9 -->
 
 ### Every比较Fable与Astra：体验偏好不等于交付质量
 

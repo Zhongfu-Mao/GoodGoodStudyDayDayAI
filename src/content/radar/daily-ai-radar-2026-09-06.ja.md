@@ -33,6 +33,12 @@ draft: false
 - リンク：https://tomov.github.io/CW-Net/
 - 要約：MITとMotionalが開発したCW-Netは、自動運転の軌道評価前に人間が理解可能な概念層を組み込み、自転車への接近などを直接意思決定に反映させます。挙動予測や停車盲点の把握に役立つ一方、検証は単一プランナーと限定シナリオに留まり、概念誤認のリスクもあり、事故削減が証明されたわけではありません。
 
+<!-- radar-visual:d0da94476e1a -->
+[![CW-Netのアーキテクチャとブラックボックス計画器の対比図](/images/radar/inline/d0da94476e1a.webp)](/images/radar/inline/d0da94476e1a.webp)
+
+*ブラックボックス計画器と比較し、軌道スコアリング前に概念層を組み込むCW-Net構造を示します。 画像出典：[The Rundown AI](https://tomov.github.io/CW-Net/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:d0da94476e1a -->
+
 ### SpeedrunBench発表：ゲーム速通の漸進的最適化で長期タスク学習を検証
 
 - 出典：Latent.Space / AINews
@@ -48,6 +54,12 @@ draft: false
 - 日付：2026-09-06（紹介）
 - リンク：https://skild.ai/blogs/s1
 - 要約：本号で紹介されたSkild S1（8月18日公開）は、重み更新なしに単一の人手デモ動画から植栽や調理など新タスクへ適応します。公式発表の成功率66%は人手による復旧を含むステップ累積平均であり、全工程の完全無人成功率ではありません。ワンショット適応の実用化には検証上の乖離への留意が必要です。
+
+<!-- radar-visual:f79ab3d0d579 -->
+[![ロボット向けの人による実演の録画](/images/radar/inline/f79ab3d0d579.webp)](/images/radar/inline/f79ab3d0d579.webp)
+
+*公式例は人による作業の実演を動画プロンプトとして記録する場面です。新しい課題ごとに動作プログラムを書く代わりに作業過程を入力します。 画像出典：[Skild AI](https://skild.ai/blogs/s1)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:f79ab3d0d579 -->
 
 ### GEN-1.5：文脈内デモ適応と微調整後の効果を区別
 
@@ -112,6 +124,12 @@ draft: false
 - 日付：2026-09-06
 - リンク：https://blog.bytebytego.com/p/ep224-mcp-vs-rag-vs-ai-agents
 - 要約：ByteByteGo本号は、MCPの標準化されたツール接続、RAGの外部検索による補強、Agentの意思決定・実行を区別し、相互補完的な関係を整理します。別の欄ではサーキットブレーカー、バックオフ再試行、Saga補償など九つの分散パターンを紹介しており、長期稼働エージェントの信頼性設計にも参考になります。接続・検索・実行は個別に検証する必要があり、RAGも幻覚の完全排除を保証しません。
+
+<!-- radar-visual:25284a89bdc9 -->
+[![MCP、RAG、AIエージェントの比較図](/images/radar/inline/25284a89bdc9.webp)](/images/radar/inline/25284a89bdc9.webp)
+
+*3欄でMCPによるツール接続、RAGによる文脈の取得、エージェントの計画・観察・行動の循環を示します。排他的な選択肢ではなく、組み合わせられる役割です。 画像出典：[ByteByteGo](https://blog.bytebytego.com/p/ep224-mcp-vs-rag-vs-ai-agents)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:25284a89bdc9 -->
 
 ### EveryがFableとAstraを比較：執筆・コーディング体験の評価の分かれ目
 

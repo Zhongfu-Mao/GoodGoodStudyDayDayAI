@@ -27,12 +27,24 @@ draft: false
 - リンク：https://blog.dailydoseofds.com/p/4-speculative-decoding-variants
 - 要約：小型モデルによる草案生成、対象モデルの内部特徴を予測するEAGLE、複数の予測ヘッドを使うMedusa、早期終了を活用するLayerSkipを比較。安価に複数トークンを提案し、対象モデルが検証する考え方が共通する。効果は受容率と草案・検証コスト次第で、提案トークン数がそのまま高速化倍率になるわけではない。
 
+<!-- radar-visual:26b2398c411b -->
+[![低コストなドラフト生成とターゲットモデルによる並列検証を示す投機的デコーディングの図](/images/radar/inline/26b2398c411b.webp)](/images/radar/inline/26b2398c411b.webp)
+
+*2段階の投機プロセスに注目：ドラフト側が低コストでトークン候補を提案し、ターゲットモデルが並列検証して一致した接頭辞を採用し、不一致時は修正を行います。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/4-speculative-decoding-variants)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:26b2398c411b -->
+
 ### アプリケーションネットワークの基礎ガイド
 
 - 出典：ByteByteGo
 - 日付：2026-09-10
 - リンク：https://blog.bytebytego.com/p/a-guide-to-application-networking
 - 要約：ByteByteGoの公開導入部は、DNSによるAPIエンドポイントのIP解決から、従来のHTTPSでのTCP接続、TLSハンドシェイク、負荷分散装置による正常なアプリインスタンスへの振り分けまでを整理する。名前解決・接続・暗号化・経路選択を分けて考えると、遅延をすべてアプリコードの問題とみなさずに切り分けられる。
+
+<!-- radar-visual:f6d9c9d30726 -->
+[![TCP接続、TLSハンドシェイク、ロードバランサによる転送を示すHTTPSネットワーク経路図](/images/radar/inline/f6d9c9d30726.webp)](/images/radar/inline/f6d9c9d30726.webp)
+
+*6つのパネルでHTTP接続、HTTP/3、応答の時系列、多重化、gRPC、NATを説明します。全体が単一の要求経路なのではなく、各仕組みの役割を比較する図です。 画像出典：[ByteByteGo](https://blog.bytebytego.com/p/a-guide-to-application-networking)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:f6d9c9d30726 -->
 
 ## 2. モデル最前線 & アルゴリズム探索
 
@@ -74,6 +86,12 @@ draft: false
 - 日付：2026-09-12
 - リンク：https://www.latent.space/p/forward-deployed-engineer-best-practices
 - 要約：実務経験に基づきFDE（前方展開エンジニア）の本質を説く論考。単なる受託開発や案件ごとの一時的支援にとどまらず、顧客現場の泥臭い運用から真の要求を抽出し、自社プラットフォームを汎用化するためのフィードバック経路として機能すべきと主張する。個人の知見に基づく考察である。
+
+<!-- radar-visual:19727011c8f3 -->
+[![FDE（フォワードデプロイドエンジニア）とコンサルティングの違いを示す比較図](/images/radar/inline/19727011c8f3.webp)](/images/radar/inline/19727011c8f3.webp)
+
+*Vinoo Ganesh氏による比較図に注目：顧客の運用現場に入り込んで課題解決を図るFDEと、従来のコンサルティングとの役割や位置付けの違いを示しています。 画像出典：[Latent.Space](https://www.latent.space/p/forward-deployed-engineer-best-practices)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:19727011c8f3 -->
 
 ### 短編映画『Love, Rendered』：AIを用いた未記録の記憶再現
 

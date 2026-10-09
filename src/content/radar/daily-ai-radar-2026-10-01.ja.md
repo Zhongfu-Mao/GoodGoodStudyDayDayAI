@@ -41,6 +41,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-01.ja-infographic.webp
 - リンク：https://huggingface.co/blog/nvidia/kumo-tabular
 - 要約：NVIDIAが事前学習済みテーブルモデルKumo Tabularを発表。分類と回帰に対応し、モデル規模は2800万から2億1500万パラメータの3種。列と行の情報を圧縮したうえで、インコンテキストアテンションを通じてラベル付き行を活用して新規行を予測し、クエリ行はコンテキストのみを参照するためキャッシュを再利用可能。ベンダーによると合成テーブルのみで事前学習され、報告された4つのベンチマークで首位を獲得したとされています。ここでの「訓練不要」は新タスク推論時の再訓練が不要であることを指し、モデルが未学習であるわけではなく、任意の業務テーブルでの優位性を保証するものでもありません。
 
+<!-- radar-visual:03fc4003c7d1 -->
+[![Kumo Tabularモデルのアーキテクチャ概要図](/images/radar/inline/03fc4003c7d1.webp)](/images/radar/inline/03fc4003c7d1.webp)
+
+*左からセルの符号化、行・列の注意機構、文脈内学習の3段階。右側ではラベル付きの既知行を文脈として、新しい行の分類・回帰を予測します。 画像出典：[Hugging Face](https://huggingface.co/blog/nvidia/kumo-tabular)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:03fc4003c7d1 -->
+
 ### OpenAI が保護対象の推論に対する敵対的蒸留活動を公表
 
 - 出典：OpenAI
@@ -63,6 +69,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-01.ja-infographic.webp
 - 日付：2026-09-29
 - リンク：https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source
 - 要約：ProvenanceGuardはMCPの実行トレースからソースIDを保持し、回答内の具体的な主張を分解して、裏付け証拠と提示された情報源を個別に検証することで、ポリシー文書の内容を顧客記録と取り違えるような情報源横断の混同を防止。医療エージェントの40件のホールドアウト回答・361件の主張において、専門家が不合格と判定した139件中138件を識別した一方、専門家が裏付けありとした67件の主張もブロック。結果は論文内のローカルモデル構成に基づくものであり、保守的な遮断と誤検知（偽陽性）のトレードオフを反映したもので、汎用的な正解率の保証ではありません。
+
+<!-- radar-visual:089a52e51851 -->
+[![情報源を区別しない検証と出所認識型検証の比較図](/images/radar/inline/089a52e51851.webp)](/images/radar/inline/089a52e51851.webp)
+
+*情報源を区別しない検証と出所認識型の検証を比較し、規約文書に基づく返金期限の主張が口座記録へ誤帰属されるケースの検出を示しています。 画像出典：[Hugging Face](https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:089a52e51851 -->
 
 ## 4. 業界 & ビジネス速報
 
@@ -104,6 +116,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-01.ja-infographic.webp
 - 日付：2026-09-30
 - リンク：https://blog.dailydoseofds.com/p/jev-for-rag-clearly-explained
 - 要約：チュートリアルではBM25と高密度（Dense）検索の後にJev判定を追加し、候補パッセージの関連確率を一括出力したうえでコードによりしきい値ポリシーを実行。残った証拠が回答に十分かを個別に判断し、不足時は制御された拒否回答を返します。検索が依然として証拠の上限を決定づけ、欠落した裏付けパッセージがリランカーによって補完されることはありません。確率のしきい値は評価セットでキャリブレーションする必要があり、プロンプトインジェクションのスコア付けも単なる選別シグナルであって、権限隔離やセキュリティ境界ではありません。
+
+<!-- radar-visual:8aeaf08c7d7e -->
+[![Jevを用いたRAGの検索および生成フロー図](/images/radar/inline/8aeaf08c7d7e.webp)](/images/radar/inline/8aeaf08c7d7e.webp)
+
+*高密度検索とキーワード検索の融合後、候補文章が生成コンテキストに入る前にJevで関連度スコアを判定し選別する流れを示しています。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/jev-for-rag-clearly-explained)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:8aeaf08c7d7e -->
 
 ### Every：Altman のエージェント活用法は割り込み管理と反復速度を重視
 

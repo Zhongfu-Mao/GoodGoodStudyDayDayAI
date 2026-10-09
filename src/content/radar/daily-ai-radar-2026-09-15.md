@@ -43,12 +43,24 @@ draft: false
 - 链接：https://www.latent.space/p/good-start-labs
 - 摘要：Good Start Labs 将游戏作为模型训练环境。访谈介绍对 30B 模型的《1830》实验：单轮答题与多轮终端智能体都改善了游戏内目标，但只有后者改善 Finance-Agent 基准表现。这个结果提示，工具使用方式与训练环境设计可能影响迁移；它仍是团队报告的特定实验，不能推成游戏训练普遍改善现实工作的结论。
 
+<!-- radar-visual:de7c96e32a25 -->
+[![Good Start Labs于2026年9月公布的强权外交博弈模型背叛倾向排名图表。](/images/radar/inline/de7c96e32a25.webp)](/images/radar/inline/de7c96e32a25.webp)
+
+*表格按测试中的背叛比例排列模型，前五个模型均显示 0.0%；这反映特定博弈任务的观测结果，不是模型在所有场景中的可信度。 图片来源：[Good Start Labs](https://www.latent.space/p/good-start-labs)。点击图片查看原尺寸。*
+<!-- /radar-visual:de7c96e32a25 -->
+
 ### Smaug-Flash：基于 DeepSeek-V4-Flash-0731 的代码智能体微调模型
 
 - 来源：Abacus.AI / The Rundown AI
 - 日期：2026-09-14 观察；模型卡版本：2026-09-20
 - 链接：https://huggingface.co/abacusai/Smaug-Flash
 - 摘要：Smaug-Flash 是 Abacus.AI 对 DeepSeek-V4-Flash-0731 的编程智能体微调版本。模型卡说明，仅调整 129 个 MLA 注意力因子矩阵，专家、路由器及投机解码模块保持不变。厂商报告了基准改善，也提醒模型可能较早提交而省略充分自测；改用不同方案重新量化还可能降低指令遵循，部署应保留显式验证步骤。
+
+<!-- radar-visual:4e2736e332df -->
+[![Smaug-Flash与基座模型DeepSeek-V4-Flash-0731在智能体基准上的对比柱状图。](/images/radar/inline/4e2736e332df.webp)](/images/radar/inline/4e2736e332df.webp)
+
+*关注柱状图对比：展示Smaug-Flash与基座模型的基准得分，部分含厂商自报数据，实际效能仍待独立验证。 图片来源：[Abacus.AI](https://huggingface.co/abacusai/Smaug-Flash)。点击图片查看原尺寸。*
+<!-- /radar-visual:4e2736e332df -->
 
 ## 3. 实战代码 & 工具库
 
@@ -106,6 +118,12 @@ draft: false
 - 日期：2026-09-14（2026-09-20 修订）
 - 链接：https://every.to/working-overtime/what-playing-with-ai-taught-me-about-my-work
 - 摘要：Katie Parrott 反思把写作技能变成虚拟角色的 AI 实验：有趣的探索也可能绕开真正需要交付的工作。她把读者需求沉淀到 AUDIENCE.md，再用 Is This Anything? 对照对话记录与当前优先级，提取至多三条经验，并区分记录中的依据和模型建议。这是个人实践，不是量化生产力研究；有用的收获不要求把每个支线项目都做完。
+
+<!-- radar-visual:a9a9368932a8 -->
+[![Every 团队工作重点摘录](/images/radar/inline/a9a9368932a8.webp)](/images/radar/inline/a9a9368932a8.webp)
+
+*原文摘出的团队工作重点包括经验积累、提高内容发布频率和探索个性化阅读；明确这些优先级，才能判断 AI 建议是否与实际工作相关。 图片来源：[Every](https://every.to/working-overtime/what-playing-with-ai-taught-me-about-my-work)。点击图片查看原尺寸。*
+<!-- /radar-visual:a9a9368932a8 -->
 
 ### 微软起草《人道主义 AI 行为准则》并明确否认 AI 人格权
 

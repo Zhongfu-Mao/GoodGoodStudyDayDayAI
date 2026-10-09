@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-04",
+  "visuals": [
+    {
+      "id": "ed57a02773da",
+      "sourceUrl": "https://huggingface.co/blog/microsoft/thinkingbox",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/Dzuml_9K2lfRq4hZi17EY.png",
+      "asset": "/images/radar/inline/ed57a02773da.webp",
+      "sha256": "cda6de63a0a19f7394c50ef43ab9959b306df95f6b7d9cf23b88587df4054425",
+      "credit": "Microsoft / Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "ThinkingBox：以后台状态验收智能体，而不是听它说“完成”",
+        "alt": "ThinkingBox 流程图，智能体使用隔离的MCP会话后由检查器核对最终状态和副作用",
+        "caption": "流程图展示智能体连接隔离的 MCP 工具会话，随后由可执行检查核对最终后端状态和副作用；工具调用成功不等于任务完成。"
+      },
+      "ja": {
+        "heading": "ThinkingBox：エージェントの「完了」宣言を鵜呑みにせず、バックエンド状態によって検証する",
+        "alt": "ThinkingBoxの流れ。隔離MCPセッション実行後に最終状態と副作用を検査する",
+        "caption": "隔離されたMCPツールセッションで実行した後、実行可能な検査で最終状態と副作用を確認する。ツール呼び出し成功だけでは完了を証明できない。"
+      }
+    },
+    {
+      "id": "6d8cd7d6b129",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/how-work-is-organized-inside-a-gpu",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!gof3!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6d678944-82c6-4ffd-b902-ff18f9aa028a_2752x1536.jpeg",
+      "asset": "/images/radar/inline/6d8cd7d6b129.webp",
+      "sha256": "5a90952e216fafc930e8c1d09a5047af0591e4ae23ef3c260c2d897378d54fec",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "Daily Dose：从 grid、block 与 warp 理解 GPU 如何隐藏延迟",
+        "alt": "GPU并行工作不足与充足时的SM利用率对比",
+        "caption": "左图因可并行工作不足，部分 SM 闲置且内存等待会造成停顿；右图有更多就绪 warp 可供调度，说明高吞吐依赖足够的独立工作。"
+      },
+      "ja": {
+        "heading": "Daily Dose：grid、block、warp から理解する GPU のレイテンシ隠蔽の仕組み",
+        "alt": "並列作業が不足する場合と十分な場合のGPU・SM利用率比較",
+        "caption": "左は並列作業が少なく、SMの遊休とメモリ待ちによる停止が生じます。右は実行可能なwarpを多く用意し、高いスループットに独立した作業が必要なことを示します。"
+      }
+    },
+    {
+      "id": "9abe34f2141f",
+      "sourceUrl": "https://www.deeplearning.ai/the-batch/issue-373",
+      "originalImageUrl": "https://charonhub.deeplearning.ai/content/images/2026/10/Andrew-Letter-2026.10.01-1.webp",
+      "asset": "/images/radar/inline/9abe34f2141f.webp",
+      "sha256": "3edcd03f9725d86b998b14b7092ea326d6791572385c27eeabfae462f5636aed",
+      "credit": "DeepLearning.AI / Anthropic",
+      "review": "accepted",
+      "zh": {
+        "heading": "The Batch：开放模型的网络能力扩散，更要求加快防御工程",
+        "alt": "ExploitBench 对比图，在可比token条件下显示GLM-5.3与Claude Mythos Preview的成功率",
+        "caption": "图表在可比 token 条件下给出部分 ExploitBench 任务的12%与14%成功率；它不能与另一份全基准结果直接混用。"
+      },
+      "ja": {
+        "heading": "The Batch：オープンモデルのサイバー能力拡散に伴い、より一層求められる防御エンジニアリングの加速",
+        "alt": "同等トークン条件でGLM-5.3とClaude Mythos PreviewのExploitBench成功率を比較する図",
+        "caption": "同程度のトークン条件で、一部ExploitBench課題の成功率12％と14％を示す。別の全ベンチマーク結果とは直接比較できない。"
+      }
+    }
+  ]
+}

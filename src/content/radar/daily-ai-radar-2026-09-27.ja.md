@@ -30,6 +30,12 @@ representativeImageSource: https://huggingface.co/blog/espnet/yodasv3
 - リンク：https://lukefan.com/2026/09/21/jev-ai-judgment-model-workflow/
 - 要約：著者は毎週のコメントフィルタリングを例に、長さ、トピック関連性、情報増分、感情などの条件を個別の判定に分解し、低コストな判定モデルで処理する手法を論じています。元のモデルを置き換えた後も品質チェックを継続し、実タスクに応じて入力情報を補うことの重要性を強調しています。タスクの分解とレビュー手法は参考になりますが、文中の個人によるコスト検証は一般的なコスト削減を保証するものではなく、判定結果も権限管理や高リスクな意思決定の代わりにはなりません。
 
+<!-- radar-visual:cd74488411cf -->
+[![Jevの適切な入力処理フロー図](/images/radar/inline/cd74488411cf.webp)](/images/radar/inline/cd74488411cf.webp)
+
+*左でPython・検索・モデル抽出によりデータを整え、Jevへ並列判定を渡します。問題数と処理時間は著者の特定バッチ試験で、任意の入力に対する速度保証ではありません。 画像出典：[老范讲故事](https://lukefan.com/2026/09/21/jev-ai-judgment-model-workflow/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:cd74488411cf -->
+
 ### OpenAI が第三者安全評価の対象範囲と独立性原則を提示
 
 - 出典：OpenAI
@@ -52,6 +58,12 @@ representativeImageSource: https://huggingface.co/blog/espnet/yodasv3
 - 日付：2026-09-24
 - リンク：https://huggingface.co/blog/liquidai/lfm2-5-vl-dspark
 - 要約：Liquid AI は LFM2.5-VL-3B 向けに約2億8,000万パラメータのドラフトモデルを公開しました。候補トークンをまとめて提案し、対象モデルが検証することでデコードを高速化します。記事は llama.cpp、MLX-VLM、SGLang の対応実装と検証条件を示していますが、視覚エンコーダやプリフィルは高速化対象ではないため、デコード速度の改善をそのまま応答全体の短縮率とは見なせません。利用には対応するビルドと、対象ハードウェアでの検証が必要です。
+
+<!-- radar-visual:3bca61531d04 -->
+[![DSpark-Vision アーキテクチャ図](/images/radar/inline/3bca61531d04.webp)](/images/radar/inline/3bca61531d04.webp)
+
+*左の対象モデルがKV情報を右のドラフトモデルへ渡します。並列ブロック、逐次ブロック、ハードウェアを考慮した接頭辞スケジューラーを経て、上部で候補の保持・破棄を示します。 画像出典：[Liquid AI / Hugging Face](https://huggingface.co/blog/liquidai/lfm2-5-vl-dspark)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:3bca61531d04 -->
 
 ## 3. 実践コード & ツールライブラリ
 
@@ -77,6 +89,12 @@ representativeImageSource: https://huggingface.co/blog/espnet/yodasv3
 - 日付：2026-09-23
 - リンク：https://openai.com/index/ringg
 - 要約：Ringg の導入事例では、音声、チャット、WhatsApp、ウェブにまたがるエンタープライズエージェントプラットフォームが紹介されています。チームはレイテンシ、ツール呼び出しの信頼性、指示への追従性、運用コストを選定条件として併せて考慮し、適したワークロードに応じてモデルを移行しています。文中のコール解決率やコスト推移は企業事例における自己申告であり、他の業界や異なる業務フローにおける保証として一般化することはできません。実運用における真の定着は業務システムとの連携やタスク境界の明確さに依存します。
+
+<!-- radar-visual:94a6613786fd -->
+[![Ringg オーケストレーション図（入力からルーティング、通話後分析、評価ループの流れ）](/images/radar/inline/94a6613786fd.webp)](/images/radar/inline/94a6613786fd.webp)
+
+*入力がオーケストレーションを経て各モデルへルーティングされ、通話後分析や評価ループに流れる構成図ですが事例特有の報告を含みます。 画像出典：[OpenAI / Ringg](https://openai.com/index/ringg)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:94a6613786fd -->
 
 ### Enveda が新規資金調達を完了、AI創薬パイプラインの後続臨床開発を推進
 

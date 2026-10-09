@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "date": "2026-09-21",
+  "visuals": [
+    {
+      "id": "35484ef1c55c",
+      "sourceUrl": "https://lukefan.com/2026/09/21/ordinary-people-careers-robot-era-platform-choice/",
+      "originalImageUrl": "https://pictures.lukefan.com/ordinary-people-careers-robot-era-platform-choice/ordinary-people-careers-robot-era-platform-choice-06.jpg",
+      "asset": "/images/radar/inline/35484ef1c55c.webp",
+      "sha256": "0a0994fffbed0cfd8ce6f953ee7bf62e245d26b99483d762012bf63a96c32271",
+      "credit": "老范讲故事",
+      "review": "accepted",
+      "zh": {
+        "heading": "老范探讨机器人时代的职业与平台选择：聚焦维护运营与真实保障",
+        "alt": "最后一米人机协作流程",
+        "caption": "原文以分拣装货、无人运输和人工挂钩三个环节说明“最后一米”的人机分工，这是作者对未来岗位的场景分析。"
+      },
+      "ja": {
+        "heading": "老范がロボット時代のキャリアとプラットフォーム選択を考察：保守・運用と現実的な保障に焦点を当てる",
+        "alt": "ラストワンメートルの人と機械の協働",
+        "caption": "原文は仕分け・積載、自動輸送、人によるフック操作を通じて末端作業の分担を説明します。将来の仕事に関する著者の場面分析です。"
+      }
+    },
+    {
+      "id": "c79d74af12bc",
+      "sourceUrl": "https://every.to/also-true-for-humans/how-to-create-your-own-personal-ai-benchmark",
+      "originalImageUrl": "https://every.to/_next/image?url=https%3A%2F%2Fd24ovhgu8s7341.cloudfront.net%2Fuploads%2Feditor%2Fpost%2F4488%2Foptimized_53391ca9-1d38-4ded-9f61-8b0e2f10aaf5.jpg&w=1200&q=75",
+      "asset": "/images/radar/inline/c79d74af12bc.webp",
+      "sha256": "48672c4653014ed7b6afb50dd29f76b983b33b9dba1010a1ddca764b10272523",
+      "credit": "Every",
+      "review": "accepted",
+      "zh": {
+        "heading": "Every 介绍构建个人 AI 基准实践：从真实失败任务中提炼检查项",
+        "alt": "个人基准中的 NPS 仪表板示例",
+        "caption": "截图展示个人基准中的 NPS 仪表板输出，包含评分、回复数量与用户分组；这类真实任务可用于检查模型是否正确组织数据和说明。"
+      },
+      "ja": {
+        "heading": "Everyが個人用AIベンチマークの構築実践を紹介：実際の失敗タスクから検証項目を抽出",
+        "alt": "個人ベンチマークのNPSダッシュボード例",
+        "caption": "個人ベンチマークのNPSダッシュボード出力で、スコア、回答数、利用者区分が示されています。実務に即した課題でデータと説明の整理を確認できます。"
+      }
+    }
+  ],
+  "exception": "Reviewed all three source entries: V7 supplies only a logo and unrelated recommendation art. The other two entries have useful reviewed illustrations; retain two rather than adding decorative art."
+}

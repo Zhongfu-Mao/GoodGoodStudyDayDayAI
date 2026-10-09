@@ -57,6 +57,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-22-infographic.webp
 - 链接：https://openai.com/index/expanding-openai-academy-with-new-learning-paths/
 - 摘要：OpenAI Academy 在既有 Apply AI at Work 基础上拓展全新学习路径，覆盖开发者、企业管理者、教育者及在校大学生。课程将实际任务操作与测试考核相结合；官方说明指出，学员通过考核后将获得相应课程徽章，该徽章属于学习证明，并非通用的专业职业资质认证。
 
+<!-- radar-visual:7705e9ae61c7 -->
+[![OpenAI Academy学习路径示意图](/images/radar/inline/7705e9ae61c7.webp)](/images/radar/inline/7705e9ae61c7.webp)
+
+*四条学习路径分别面向工作应用、构建开发、领导采纳与教学学习；图中课程数量帮助读者选择入口，并不表示每条路径的学习难度。 图片来源：[OpenAI](https://openai.com/index/expanding-openai-academy-with-new-learning-paths/)。点击图片查看原尺寸。*
+<!-- /radar-visual:7705e9ae61c7 -->
+
 ### AutoClip 视频高光剪辑工具：基于字幕提取并支持多形态集成
 
 - 来源：GitHub Trending / zhouxiaoka
@@ -79,6 +85,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-22-infographic.webp
 - 日期：2026-09-22
 - 链接：https://lukefan.com/2026/09/22/guiyang-potato-bus-mobile-third-space/
 - 摘要：老范撰文评述贵阳 PIX Moving / RoboBus 移动巴士，认为其商业定位更接近私密的移动第三空间，而非单纯销售自动驾驶技术。文章区分了公司开发的线控底盘、供应链传感器与尚缺公开细节的自动驾驶算法；这一商业判断属于作者评论，不应据此断言车辆已完全无人化或具备经独立审计的盈利。
+
+<!-- radar-visual:03e48a52413d -->
+[![底盘3D打印与开模经济性对比示意图](/images/radar/inline/03e48a52413d.webp)](/images/radar/inline/03e48a52413d.webp)
+
+*左侧呈现金属3D打印与无模具成型底盘，右侧对比年产千辆与高产量的开模经济性差异，并以Czinger 21C作为量产参照。 图片来源：[老范讲故事](https://lukefan.com/2026/09/22/guiyang-potato-bus-mobile-third-space/)。点击图片查看原尺寸。*
+<!-- /radar-visual:03e48a52413d -->
 
 ## 5. GitHub 热门 repo & 趋势追踪
 
@@ -111,3 +123,9 @@ coverImage: /images/radar/daily-ai-radar-2026-09-22-infographic.webp
 - 日期：2026-09-22
 - 链接：https://blog.bytebytego.com/p/how-to-run-a-big-model-on-cheap-hardware
 - 摘要：ByteByteGo 解析在较低配置硬件上运行大模型的取舍：量化可压缩权重内存，逐层卸载以更高延迟换取运行空间，MoE 则在一次推理中仅激活部分专家以减少计算量，却不自动消除总权重的存储需求。文章提醒磁盘容量不等于可用内存或可接受的响应时间，技术组合也不能保证适配任意机器。
+
+<!-- radar-visual:1c2071d984cc -->
+[![模型层在内存与显存之间的卸载过程](/images/radar/inline/1c2071d984cc.webp)](/images/radar/inline/1c2071d984cc.webp)
+
+*分层卸载让模型权重在不同存储层之间移动，以减少显存常驻量；代价是额外的数据传输与等待。 图片来源：[ByteByteGo](https://blog.bytebytego.com/p/how-to-run-a-big-model-on-cheap-hardware)。点击图片查看原尺寸。*
+<!-- /radar-visual:1c2071d984cc -->

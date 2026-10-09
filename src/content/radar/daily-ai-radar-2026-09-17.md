@@ -27,6 +27,12 @@ draft: false
 - 链接：https://blog.bytebytego.com/p/how-llms-can-find-a-needle-in-a-haystack
 - 摘要：文章从文档切块、嵌入与相似度度量讲到向量索引：Flat 会比较所有符合条件的向量并返回所选度量下的精确近邻；IVF 与 HNSW 以分组或图导航减少比较，但会引入召回损失。元数据过滤、版本管理、混合检索和重排序共同决定最终证据质量。
 
+<!-- radar-visual:5f9cc75011fc -->
+[![向量扁平检索示意图，说明查询需与所有符合条件的向量逐一比较](/images/radar/inline/5f9cc75011fc.webp)](/images/radar/inline/5f9cc75011fc.webp)
+
+*三栏分别展示全量比较的 Flat、先选分组的 IVF 与分层图搜索；减少比较次数能加速检索，但近似搜索可能漏掉候选。 图片来源：[ByteByteGo](https://blog.bytebytego.com/p/how-llms-can-find-a-needle-in-a-haystack)。点击图片查看原尺寸。*
+<!-- /radar-visual:5f9cc75011fc -->
+
 ### OpenAI 建立模型失准事件报告框架
 
 - 来源：OpenAI
@@ -58,6 +64,12 @@ draft: false
 - 日期：2026-09-16
 - 链接：https://every.to/context-window/show-us-your-folders
 - 摘要：Every 介绍的工作流用 Tuin 保存上下文、目标与笔记，由 Erf 把任务分发到对应文件夹，并在常开的 Mac mini 上运行。方案把存储与调度分开，按日、周、月、年组织记忆；重组文件前先区分权威原件和衍生副本，移动或删除需要人工批准。这是个人环境中的实践方案。
+
+<!-- radar-visual:39fb7a90f1eb -->
+[![常开 Mac mini 上的文件夹工作流示意图，Erf 调度会话，Tuin 保存共享记忆](/images/radar/inline/39fb7a90f1eb.webp)](/images/radar/inline/39fb7a90f1eb.webp)
+
+*示意图把会话调度交给 Erf，把工作记忆保存在 Tuin，并运行于常开的 Mac mini；存储与调度因此保持分离。 图片来源：[Astra / Every Agent](https://every.to/context-window/show-us-your-folders)。点击图片查看原尺寸。*
+<!-- /radar-visual:39fb7a90f1eb -->
 
 ### StepAudio 3 Realtime：全双工语音交互与工具调用
 
@@ -106,6 +118,12 @@ draft: false
 - 日期：2026-09-16
 - 链接：https://blog.dailydoseofds.com/p/how-to-fine-tune-llms-in-2026-bf8
 - 摘要：文章聚焦强化微调工作流：ART 把智能体代码放在客户端，将含工具调用与环境反馈的完整轨迹交给后端，以 vLLM、Unsloth、GRPO 和 LoRA 循环训练；RULER 再让大模型比较多条轨迹并给出相对分数。它减少手写奖励函数和标注依赖，但仍需要奖励信号。
+
+<!-- radar-visual:13076e69bafa -->
+[![ART 客户端与后端架构图，客户端记录智能体轨迹，后端执行推理和GRPO训练](/images/radar/inline/13076e69bafa.webp)](/images/radar/inline/13076e69bafa.webp)
+
+*客户端收集智能体动作与环境奖励，把轨迹交给后端训练；新的 LoRA 检查点再载入 vLLM，形成推理、反馈和训练的循环。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/how-to-fine-tune-llms-in-2026-bf8)。点击图片查看原尺寸。*
+<!-- /radar-visual:13076e69bafa -->
 
 ### Mike Taylor 的 AI 辅助写作原则
 

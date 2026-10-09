@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-08",
+  "visuals": [
+    {
+      "id": "f8de652b37f1",
+      "sourceUrl": "https://www.latent.space/p/stacklok",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!Veeq!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F75525a15-e747-469e-b269-6f591f949ab2_1600x1044.png",
+      "asset": "/images/radar/inline/f8de652b37f1.webp",
+      "sha256": "4ff98398c40506908d365691ac450761f1c6b40252afe2208e192927cbe1676b",
+      "credit": "Mecatl GitHub，经 Latent.Space",
+      "review": "accepted",
+      "zh": {
+        "heading": "Mecatl：把智能体循环、工具执行和会话状态分开管理",
+        "alt": "Mecatl 架构图，展示智能体循环与客户端、模型、状态存储和执行环境的分离",
+        "caption": "图中把智能体循环与客户端、模型、状态存储和执行环境拆开；这说明云端治理依赖解耦，但不自动证明可靠性或安全性。"
+      },
+      "ja": {
+        "heading": "Mecatl：エージェントループ、ツール実行、セッション状態を分離して管理",
+        "alt": "Mecatlの構成図。エージェントループとクライアント、モデル、状態保存、実行環境を分離",
+        "caption": "図はエージェントループをクライアント、モデル、状態保存、実行環境から分離する。クラウド運用の前提を示すが、信頼性や安全性の保証ではない。"
+      }
+    },
+    {
+      "id": "4ad08b2a9e88",
+      "sourceUrl": "https://www.langchain.com/blog/revamping-skills-in-deep-agents",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6ac683627460955a72092e93_progressive-disclosure.png",
+      "asset": "/images/radar/inline/4ad08b2a9e88.webp",
+      "sha256": "241d1640010d27c5455b281d7d42378f5c73d49bcf29e88ef2a090e768da1025",
+      "credit": "LangChain",
+      "review": "accepted",
+      "zh": {
+        "heading": "Deep Agents skills：把说明与工具绑定，在激活时一起加载",
+        "alt": "技能渐进披露图，从技能名与描述逐步加载说明和参考文件",
+        "caption": "图中按需扩展上下文：启动时只放技能名与描述，任务需要时再加载技能说明和参考文件，以减少无关上下文。"
+      },
+      "ja": {
+        "heading": "Deep Agents skills：指示とツールを紐付け、アクティブ化時に一括ロード",
+        "alt": "スキル名と説明から、指示書と参照ファイルを段階的に読み込む図",
+        "caption": "起動時はスキル名と説明だけを置き、必要になった時点で指示書と参照ファイルを読む。不要な文脈を増やさない設計を示す。"
+      }
+    },
+    {
+      "id": "54a0303d14d6",
+      "sourceUrl": "https://every.to/context-window/building-a-more-efficient-agent",
+      "originalImageUrl": "https://every.to/_next/image?url=https%3A%2F%2Fd24ovhgu8s7341.cloudfront.net%2Fuploads%2Feditor%2Fpost%2F4514%2Foptimized_f811fee5-7f99-4b69-9e56-76fbb3bff32e.jpg&w=1200&q=75",
+      "asset": "/images/radar/inline/54a0303d14d6.webp",
+      "sha256": "93fa49515dcca5843549cfb1c61d86b678fd18fcbee9d74ea0acec95b5e587fc",
+      "credit": "Every / Laura Entis",
+      "review": "accepted",
+      "zh": {
+        "heading": "Every 的成本排查：先检查重复输入和缓存，再增加模型路由",
+        "alt": "Every Agent 成本优化改动的多张界面截图组合",
+        "caption": "截图按工具重构、模型升级、缓存修复与延迟加载逐步列出成本变化。图中是单项任务的最佳情形，不能与正文11项任务的整体结果混为一谈。"
+      },
+      "ja": {
+        "heading": "Everyのコスト調査：モデルルーティングを増やす前に、まず重複入力とキャッシュを点検",
+        "alt": "Every Agentのコスト削減施策をまとめた複数の画面キャプチャ",
+        "caption": "画面はツール再設計、モデル更新、キャッシュ修正、遅延読み込みごとの費用変化です。1タスクの最良ケースであり、本文の11タスク全体の結果とは区別が必要です。"
+      }
+    }
+  ]
+}

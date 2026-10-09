@@ -27,6 +27,12 @@ draft: false
 - 链接：https://blog.dailydoseofds.com/p/what-it-takes-to-build-a-production
 - 摘要：生产级AI Agent不仅需要模型和工具，更需要管理状态与执行流的Harness执行层。文章探讨了会话、检查点、跟踪、人工审批以及沙箱执行等核心能力，分析了如何区分单次运行状态与持久化状态、处理工具错误传播，以及在LangChain和LangGraph中平衡模型决策与确定性状态流转。
 
+<!-- radar-visual:0c8390c7d4a0 -->
+[![智能体模型与执行层关系](/images/radar/inline/0c8390c7d4a0.webp)](/images/radar/inline/0c8390c7d4a0.webp)
+
+*工具调用失败后，执行层可选择重试、将错误交给模型、请求人工输入或停止；这些处理规则决定了模型下一步能看到什么。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/what-it-takes-to-build-a-production)。点击图片查看原尺寸。*
+<!-- /radar-visual:0c8390c7d4a0 -->
+
 ### Fyxer如何构建受信任的AI高管助理
 
 - 来源：OpenAI / Fyxer
@@ -49,6 +55,12 @@ draft: false
 - 日期：2026-09-14
 - 链接：https://blog.bytebytego.com/p/llms-as-a-judge-how-to-know-if-your
 - 摘要：文章阐述了大模型作为裁判（LLM as a Judge）在评测体系中的定位，强调多层评测栈是互为补充的整体而非单向替代。LLM裁判主要依据细则评估语义相关性与完整性，需要传统确定性软件测试保证基础逻辑，自动化指标衡量结构，并依赖人类专家定期校准以纠正模型的位置偏见与漂移。
+
+<!-- radar-visual:7815c96478bf -->
+[![大模型评估反馈流程](/images/radar/inline/7815c96478bf.webp)](/images/radar/inline/7815c96478bf.webp)
+
+*流程把输出评估与测试集维护相连，新发现的失败应回填为后续测试样本。 图片来源：[ByteByteGo](https://blog.bytebytego.com/p/llms-as-a-judge-how-to-know-if-your)。点击图片查看原尺寸。*
+<!-- /radar-visual:7815c96478bf -->
 
 ## 3. 实战代码 & 工具库
 
@@ -106,6 +118,12 @@ draft: false
 - 日期：2026-09-08
 - 链接：https://blog.bytebytego.com/p/built-for-reliability-how-american
 - 摘要：ByteByteGo 解析美国运通支付架构如何利用单元隔离故障。文章区分交易处理的不同阶段：在触达发卡行等不可盲目重放的边界前，可舍弃未完成的中间工作，把原始请求转到健康单元；较晚发生故障则需要不同的恢复处理。唯一交易标识与幂等机制有助于识别重复请求，但不能把所有阶段都简化为失败后立即重试。
+
+<!-- radar-visual:6b670c305e38 -->
+[![支付系统分区隔离架构](/images/radar/inline/6b670c305e38.webp)](/images/radar/inline/6b670c305e38.webp)
+
+*分区架构将故障限制在局部，关键交易路径避免同步依赖其他分区，从而减少故障传播。 图片来源：[ByteByteGo](https://blog.bytebytego.com/p/built-for-reliability-how-american)。点击图片查看原尺寸。*
+<!-- /radar-visual:6b670c305e38 -->
 
 ### 如何看待Anthropic安全预警：编辑部关于风险认知的讨论
 

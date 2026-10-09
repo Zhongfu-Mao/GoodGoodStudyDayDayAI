@@ -58,6 +58,12 @@ representativeImageSource: https://www.tavus.io/griffin
 - リンク：https://huggingface.co/blog/ServiceNow-AI/autosynthdata
 - 要約：このワークフローは、対象モデルの失敗とより強力な教師モデルの成功を比較し、元の評価プロンプトやエンティティ、軌跡を除去した「能力カード」を抽出した上で、新しいシステム仕様、ユーザータスク、検証器を生成します。サンプルは実行可能かつ現実的で、一定の訓練難易度を備えている必要があり、検証器は一貫性、信頼性、有効な解の網羅性を兼ね備えなければなりません。教師モデルによる実行がパスした後に初めて訓練へ投入されます。記事では EnterpriseOps Gym のデータを用いて手法を実証していますが、あらゆる企業環境で同様の成果が得られることが証明されたわけではありません。
 
+<!-- radar-visual:e8c1a092f171 -->
+[![AutoSynthData概要図。環境診断と能力不足からシステム仕様、利用者タスク、検証器を生成](/images/radar/inline/e8c1a092f171.webp)](/images/radar/inline/e8c1a092f171.webp)
+
+*左の対象環境と対象エージェントをAutoSynthへ入力し、右にシステム仕様・利用者タスク・検証器を組にしたサンプルを出力します。データを環境とモデルの需要に合わせる構成です。 画像出典：[ServiceNow AI，经 Hugging Face](https://huggingface.co/blog/ServiceNow-AI/autosynthdata)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:e8c1a092f171 -->
+
 ### MAI 音声モデル：低遅延文字起こしでまず仮説を出力し、続いて安定したテキストを確定
 - 出典：The Rundown AI
 - 日付：2026-10-01
@@ -72,11 +78,23 @@ representativeImageSource: https://www.tavus.io/griffin
 - リンク：https://www.latent.space/p/airbnb
 - 要約：Airbnb CTO の Ahmad Al-Dahle 氏は、共有コードプロトタイプによる引き継ぎコストの削減や、社内 Everest 組織ナレッジグラフを活用したプロジェクト横断の検索と経験の再利用について説明しました。カスタマーサポートエージェントはリリース前に合成テストを実行し、安全に関わるシナリオでは人手による処理を維持しています。バックグラウンドのコーディングタスクも人間のレビューを経る必要があります。インタビューではコードの60%が AI によって作成され、平均 PR スループットが従来の約1.6倍になったと言及されていますが、これらは社内報告値であり、単独で AI が生産性向上をもたらしたとする対照実験の結論と見なすことはできません。
 
+<!-- radar-visual:5fb07e744c62 -->
+[![Airbnbのinside-out AI図。社内Everestツールが外部サービス公開を支援](/images/radar/inline/5fb07e744c62.webp)](/images/radar/inline/5fb07e744c62.webp)
+
+*食料品配送の経験を社内Everestの文脈へ取り込み、空港送迎に再利用する流れです。右の所要期間は同社の2事例で、一般に再現できる高速化倍率ではありません。 画像出典：[Latent.Space](https://www.latent.space/p/airbnb)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:5fb07e744c62 -->
+
 ### Shopify Canvas：ページごとの編集から店舗全体の視覚的・コード協調作業へ
 - 出典：The Rundown AI / Shopify
 - 日付：2026-10-01
 - リンク：https://www.shopify.com/news/introducing-canvas
 - 要約：Canvas は複数のストアページを拡大縮小可能な共有キャンバスに配置し、実際のコードを直接レンダリングしてインタラクティブなプレビューを提供することで、デザインを単一ページに限定しないようにします。Sidekick はテーマファイルを変更でき、コード検査やスクリーンショットのフィードバックを通じてイテレーションを行い、ユーザーの好みを保持します。本製品は段階的に提供される予定で、初期段階では機能的なギャップが残るため、既存のテーマエディタが直ちに置き換わるわけではありません。また、視覚的なプレビューが可能であっても、マーチャントによるページ機能と一貫性の検収が免除されるわけではありません。
+
+<!-- radar-visual:9ee788620331 -->
+[![Shopify Canvas公式デモの静止画。店舗の3ページを並べて表示](/images/radar/inline/9ee788620331.webp)](/images/radar/inline/9ee788620331.webp)
+
+*公式デモの静止画では、店舗のホーム・商品・コレクションを同じキャンバスに並べ、ページ横断で確認・変更できます。見た目の確認に加え、機能と一貫性の検証が必要です。 画像出典：[Shopify](https://www.shopify.com/news/introducing-canvas)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:9ee788620331 -->
 
 ## 5. GitHub 人気 repo & トレンド追跡
 

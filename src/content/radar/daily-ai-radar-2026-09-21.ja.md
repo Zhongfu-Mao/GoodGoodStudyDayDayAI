@@ -80,6 +80,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-21.ja-infographic.webp
 - リンク：https://lukefan.com/2026/09/21/ordinary-people-careers-robot-era-platform-choice/
 - 要約：テックブロガーの老范がロボット時代における雇用見通しについて論考を発表し、一般の人々やサービス型プラットフォームの職業選択について考察した。将来ロボットが実導入される場面において重要な職種は、機器保守、現場運用、データ収集、および人間とロボットの協働における「ラストワンメートル」を中心に展開されると指摘し、求職者はプラットフォームが提供する実践的トレーニングと従業員保障体系に基づいて見極めるべきだと提言している。この見解は筆者による業界の前瞻的な考察であり、確証された公式の投資計画や雇用保障ではない。
 
+<!-- radar-visual:35484ef1c55c -->
+[![ラストワンメートルの人と機械の協働](/images/radar/inline/35484ef1c55c.webp)](/images/radar/inline/35484ef1c55c.webp)
+
+*原文は仕分け・積載、自動輸送、人によるフック操作を通じて末端作業の分担を説明します。将来の仕事に関する著者の場面分析です。 画像出典：[老范讲故事](https://lukefan.com/2026/09/21/ordinary-people-careers-robot-era-platform-choice/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:35484ef1c55c -->
+
 ## 5. GitHub 人気 repo & トレンド追跡
 
 ### Builder.ioがagent-nativeをオープンソース化：AgentとUIアクションおよび権限の共有を実現
@@ -104,6 +110,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-21.ja-infographic.webp
 - 日付：2026-09-21
 - リンク：https://every.to/also-true-for-humans/how-to-create-your-own-personal-ai-benchmark
 - 要約：Mike TaylorはEveryへの寄稿で、個人専用のAIベンチマークテストを構築するアプローチを紹介した。日常業務でモデルが失敗した10件の実際のタスクとコンテキストを収集し、異なるベンダーおよびサイズのモデルを比較する。同じモデルを3回実行して結果のばらつきを確認し、人間によるフィードバックを3〜10項目の二値評価指標にまとめる。モデルの能力向上に伴い、より複雑なユースケースへと段階的に拡張していく。筆者は、このアプローチは個人の特定シナリオにおけるモデル選定専用であり、網羅的なグローバルベンチマークを代替するものではないと指摘している。
+
+<!-- radar-visual:c79d74af12bc -->
+[![個人ベンチマークのNPSダッシュボード例](/images/radar/inline/c79d74af12bc.webp)](/images/radar/inline/c79d74af12bc.webp)
+
+*個人ベンチマークのNPSダッシュボード出力で、スコア、回答数、利用者区分が示されています。実務に即した課題でデータと説明の整理を確認できます。 画像出典：[Every](https://every.to/also-true-for-humans/how-to-create-your-own-personal-ai-benchmark)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:c79d74af12bc -->
 
 ### The Rundown AIが画像スキル評価手法を共有：人間のフィードバックで評価ループを反復
 

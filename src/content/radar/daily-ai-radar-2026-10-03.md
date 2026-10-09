@@ -58,6 +58,12 @@ representativeImageSource: https://www.tavus.io/griffin
 - 链接：https://huggingface.co/blog/ServiceNow-AI/autosynthdata
 - 摘要：流程比较目标模型的失败与更强教师的成功，提炼去除原评测提示、实体和轨迹的能力卡，再生成新的系统规范、用户任务与验证器。样本必须可执行、真实且有训练难度，验证器还要兼顾一致性、可靠性和有效解的覆盖；教师执行通过后才进入训练。文章以 EnterpriseOps Gym 数据展示方法，不代表已经证明所有企业环境都能获得相同收益。
 
+<!-- radar-visual:e8c1a092f171 -->
+[![AutoSynthData 总览图，从环境诊断和能力缺口生成系统规范、用户任务与验证器](/images/radar/inline/e8c1a092f171.webp)](/images/radar/inline/e8c1a092f171.webp)
+
+*左侧的目标环境和目标智能体共同输入 AutoSynth，右侧输出由系统规范、用户任务和验证器组成的样本；训练数据因此围绕特定环境与模型需求组织。 图片来源：[ServiceNow AI，经 Hugging Face](https://huggingface.co/blog/ServiceNow-AI/autosynthdata)。点击图片查看原尺寸。*
+<!-- /radar-visual:e8c1a092f171 -->
+
 ### MAI 语音模型：低延迟转写先给假设，再提交稳定文本
 - 来源：The Rundown AI
 - 日期：2026-10-01
@@ -72,11 +78,23 @@ representativeImageSource: https://www.tavus.io/griffin
 - 链接：https://www.latent.space/p/airbnb
 - 摘要：Airbnb CTO Ahmad Al-Dahle 介绍以共享代码原型减少交接，并用内部 Everest 组织知识图谱支持跨项目检索和经验复用。客服智能体上线前运行合成测试，安全相关场景保留人工处理；后台编码任务也要经人审查。访谈称60%的代码由 AI 编写、平均 PR 吞吐约为原来的1.6倍，这些是公司报告的指标，不能单独作为 AI 导致生产率提升的对照实验结论。
 
+<!-- radar-visual:5fb07e744c62 -->
+[![Airbnb inside-out AI 示意图，内部 Everest 工具支持外部服务上线](/images/radar/inline/5fb07e744c62.webp)](/images/radar/inline/5fb07e744c62.webp)
+
+*图中把生鲜配送项目的经验输入内部 Everest 上下文，再复用于机场接送。右侧时长属于公司报告的两个项目案例，不能当作普遍可复现的提速倍数。 图片来源：[Latent.Space](https://www.latent.space/p/airbnb)。点击图片查看原尺寸。*
+<!-- /radar-visual:5fb07e744c62 -->
+
 ### Shopify Canvas：从逐页编辑转向整店视觉与代码协作
 - 来源：The Rundown AI / Shopify
 - 日期：2026-10-01
 - 链接：https://www.shopify.com/news/introducing-canvas
 - 摘要：Canvas 将多个店铺页面放入可缩放的共享画布，直接渲染实际代码并提供交互预览，让设计不再局限于单页。Sidekick 可以修改主题文件，通过代码检查和截图反馈迭代，并保留用户偏好。产品将逐步开放，早期仍有能力缺口，现有主题编辑器不会立即被替代；视觉预览也不免除商家对页面功能和一致性的验收。
+
+<!-- radar-visual:9ee788620331 -->
+[![Shopify Canvas官方演示静帧，三个店铺页面并排展示](/images/radar/inline/9ee788620331.webp)](/images/radar/inline/9ee788620331.webp)
+
+*这张官方演示静帧将店铺首页、商品页和集合页并排放在同一画布，便于跨页面检查和修改；视觉预览仍需配合功能与一致性验收。 图片来源：[Shopify](https://www.shopify.com/news/introducing-canvas)。点击图片查看原尺寸。*
+<!-- /radar-visual:9ee788620331 -->
 
 ## 5. GitHub 热门 repo & 趋势追踪
 

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-27",
+  "visuals": [
+    {
+      "id": "cd74488411cf",
+      "sourceUrl": "https://lukefan.com/2026/09/21/jev-ai-judgment-model-workflow/",
+      "originalImageUrl": "https://pictures.lukefan.com/jev-ai-judgment-model-workflow/jev-ai-judgment-model-workflow-06.jpg",
+      "asset": "/images/radar/inline/cd74488411cf.webp",
+      "sha256": "eb987ebbd7941320ac8e1e3a990ab829e6d1903dcd7bb303bd6eb521460e95bc",
+      "credit": "老范讲故事",
+      "review": "accepted",
+      "zh": {
+        "heading": "将评论筛选拆为明确判定任务，同时保留质量复核",
+        "alt": "Jev的正确输入流程图",
+        "caption": "左侧先用 Python、检索或模型抽取整理数据，再交给 Jev 做并行判断。图中的问题数和耗时属于作者特定批量测试，不是任意输入的速度承诺。"
+      },
+      "ja": {
+        "heading": "コメントのフィルタリングを明確な判定タスクへ分解し、品質レビューを担保する",
+        "alt": "Jevの適切な入力処理フロー図",
+        "caption": "左でPython・検索・モデル抽出によりデータを整え、Jevへ並列判定を渡します。問題数と処理時間は著者の特定バッチ試験で、任意の入力に対する速度保証ではありません。"
+      }
+    },
+    {
+      "id": "3bca61531d04",
+      "sourceUrl": "https://huggingface.co/blog/liquidai/lfm2-5-vl-dspark",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/P7UX63U74cbjMWDapPjFm.png",
+      "asset": "/images/radar/inline/3bca61531d04.webp",
+      "sha256": "9be8d5d1aeb4fd67f5fc0016dc81fb55ac96050a2eceb78b07e619fc4f47f657",
+      "credit": "Liquid AI / Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "Liquid AI 发布视觉语言模型的实验性投机解码方案",
+        "alt": "DSpark-Vision 架构图",
+        "caption": "左侧目标模型将 KV 信息注入右侧草稿模型；草稿依次经过并行块、顺序块与硬件感知的前缀调度，顶部显示候选的保留或丢弃。"
+      },
+      "ja": {
+        "heading": "Liquid AI が視覚言語モデル向けの実験的な投機的デコードを公開",
+        "alt": "DSpark-Vision アーキテクチャ図",
+        "caption": "左の対象モデルがKV情報を右のドラフトモデルへ渡します。並列ブロック、逐次ブロック、ハードウェアを考慮した接頭辞スケジューラーを経て、上部で候補の保持・破棄を示します。"
+      }
+    },
+    {
+      "id": "94a6613786fd",
+      "sourceUrl": "https://openai.com/index/ringg",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/2aP3lOgn14gHjqA6ehqV4I/37313052b8cc32a91daa3cb3c1fb8b14/ringg-orchestration-min12-light-4x3-padded.png?w=3840&q=90&fm=webp",
+      "asset": "/images/radar/inline/94a6613786fd.webp",
+      "sha256": "f4aae0a5a64a4a4fbf2ef7af512bf767f1679c2a0c6ab6e3e712d1aa56e0ae2d",
+      "credit": "OpenAI / Ringg",
+      "review": "accepted",
+      "zh": {
+        "heading": "Ringg 将语音与聊天智能体接入企业服务流程",
+        "alt": "Ringg 编排架构图，展示输入流经编排、模型路由、通话后分析与评估循环",
+        "caption": "编排架构图说明输入请求如何经由编排引擎分流至不同模型，并连接通话后分析及评估循环；属于案例自述方案，效果因场景而异。"
+      },
+      "ja": {
+        "heading": "Ringg が音声およびチャットエージェントをエンタープライズ業務プロセスに統合",
+        "alt": "Ringg オーケストレーション図（入力からルーティング、通話後分析、評価ループの流れ）",
+        "caption": "入力がオーケストレーションを経て各モデルへルーティングされ、通話後分析や評価ループに流れる構成図ですが事例特有の報告を含みます。"
+      }
+    }
+  ]
+}

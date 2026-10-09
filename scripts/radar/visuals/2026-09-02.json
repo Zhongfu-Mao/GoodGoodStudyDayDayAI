@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-02",
+  "visuals": [
+    {
+      "id": "ff572fc15fd8",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/",
+      "originalImageUrl": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/agentic-video__evals.width-1200.format-webp.webp",
+      "asset": "/images/radar/inline/ff572fc15fd8.webp",
+      "sha256": "a897a55ca02b03d73baee6586250824b8ebd3fdd9f4b06118d22af0f48a73482",
+      "credit": "Google / Gemini",
+      "review": "accepted",
+      "zh": {
+        "heading": "主动视频理解按问题动态选择片段与模态",
+        "alt": "分析主动视频理解下 Token 消耗减少与准确率提升的图表",
+        "caption": "图表反映官方测试中开启主动视频理解后长视频的 Token 节省与准确率增益情况，相关指标仍属厂商基准数据。"
+      },
+      "ja": {
+        "heading": "問題に応じて映像区間とモダリティを動的選択する能動的動画理解",
+        "alt": "エージェント型動画理解によるトークン削減と精度向上を分析したグラフ",
+        "caption": "能動的動画理解によるトークン消費削減と精度向上を示した公式検証グラフで、長尺動画での効率化傾向を提示。"
+      }
+    },
+    {
+      "id": "7941eb9924e0",
+      "sourceUrl": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "originalImageUrl": "https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F3dd626b47b88feb72082646cdea87944d49a3c7f-800x800.png&w=1920&q=75",
+      "asset": "/images/radar/inline/7941eb9924e0.webp",
+      "sha256": "4213d827fc6aeb683e33b40d7d6779444d743108fcb86683a8bed445697ff063",
+      "credit": "The Rundown AI · Anthropic",
+      "review": "accepted",
+      "zh": {
+        "heading": "Fable 5.1与Mythos 5.1共享基础模型并采用差异化准入",
+        "alt": "金星表面直径15公里火山的新高分辨率数字高程模型（300米）图像",
+        "caption": "官方示例呈现一座约 15 公里宽金星火山的新高程图，白线为 10 公里比例尺；图注的 300 米网格不等于所有地表细节均有 300 米观测精度。"
+      },
+      "ja": {
+        "heading": "Fable 5.1とMythos 5.1が同一基盤モデルを共有し異なるアクセス管理を採用",
+        "alt": "金星上の直径15kmの火山を示す新しい300m解像度数値標高モデル画像",
+        "caption": "公式例は幅約15kmの金星の火山を表す新しい標高図で、白線は10kmの尺度です。300mの格子間隔は、全地形を300mの観測精度で捉えたことを意味しません。"
+      }
+    },
+    {
+      "id": "9625e970a7f7",
+      "sourceUrl": "https://openai.com/index/ai-native-company-workflows/",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/4oxkFMgjlG7Fc8pO3HzbNj/9537b70e217f364551b88469f026f47b/ai-native-workflows-final.gif?w=3840&q=90&fm=webp",
+      "asset": "/images/radar/inline/9625e970a7f7.webp",
+      "sha256": "432f0f1ed72ae1fda49b37044eeb6be1a14425305be837613b4f125e16d92c35",
+      "credit": "OpenAI",
+      "review": "accepted",
+      "zh": {
+        "heading": "将企业可重复流程转化为明确验收的标准技能",
+        "alt": "Basis 的 AI 入职引导工作区演示，显示新员工入职核对清单与自动化设置步骤",
+        "caption": "入职工作台将访问权限、当天安排与学习材料集中呈现，并标出仍需本人处理的项目；标准技能把重复步骤组织起来，也保留人工参与节点。"
+      },
+      "ja": {
+        "heading": "再現可能な企業ワークフローを明確な検収基準を持つスキルへ変換",
+        "alt": "新入社員向けの初日チェックリストと自動設定手順を示すBasisのAIオンボーディング画面",
+        "caption": "入社用画面にアクセス権、当日の予定、学習資料を集め、本人の対応が必要な項目も示しています。標準スキルで反復手順を整理しつつ、人が関与する箇所を残す例です。"
+      }
+    }
+  ]
+}

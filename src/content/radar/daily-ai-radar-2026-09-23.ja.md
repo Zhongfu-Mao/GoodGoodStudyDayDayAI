@@ -25,12 +25,24 @@ coverImage: /images/radar/daily-ai-radar-2026-09-23.ja-infographic.webp
 - リンク：https://openai.com/index/better-prompt-caching-for-gpt-6/
 - 要約：OpenAIによると、GPT-6系では共通プレフィックスの既定のキャッシュヒット率が改善し、条件を満たすプレフィックスを30分以内に再利用するとキャッシュ料金が適用される。新しいダッシュボードと診断ツールは、モデル、ツール、設定、入力の変更によるミスを特定する。明示的なブレークポイントでキャッシュ範囲も選択できる。最大90%というキャッシュ入力の割引は実際のヒット次第であり、すべてのリクエストに自動適用されるわけではない。
 
+<!-- radar-visual:90c5e9185e58 -->
+[![プロンプトキャッシュダッシュボード。キャッシュヒット率、時系列でのパフォーマンス、入力トークンの構成比を表示](/images/radar/inline/90c5e9185e58.webp)](/images/radar/inline/90c5e9185e58.webp)
+
+*プロンプトキャッシュのダッシュボード画面。ヒット率の推移やキャッシュ内外のトークン構成を可視化し、キャッシュミスの原因分析を支援します。 画像出典：[OpenAI](https://openai.com/index/better-prompt-caching-for-gpt-6/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:90c5e9185e58 -->
+
 ### AnthropicがAI研究開発の自動化とAgent監督の指標を公開：協働、主導、完全自律を区別
 
 - 出典：Anthropic
 - 日付：2026-09-22
 - リンク：https://www.anthropic.com/institute/measuring-pace-of-ai-development
 - 要約：Anthropicの社内測定では、2026年8月時点でClaudeが同社のAI研究開発業務の26%を「主導」し、90%超で少なくとも「協働」している。一方、測定した業務に完全自律のものはない。記事はAgent行動の監視や研究用計算資源の分類方法も示すが、内部モデルによる判定と研究所間で共通手法がない点を認めている。この数値を独立検証済みの業界全体の水準とみなすべきではない。
+
+<!-- radar-visual:b1258c859a14 -->
+[![Anthropic のモデル研究開発タスクにおいて、Claude が主導する割合が 2026 年 2 月の 1% 未満から 26% に達したことを示す図表](/images/radar/inline/b1258c859a14.webp)](/images/radar/inline/b1258c859a14.webp)
+
+*Anthropic 社内での自動化レベル評価推移を示す図表。Claude が研究開発を主導・協調する割合を示していますが、社内基準による測定値です。 画像出典：[Anthropic](https://www.anthropic.com/institute/measuring-pace-of-ai-development)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:b1258c859a14 -->
 
 ## 2. モデル最前線 & アルゴリズム探索
 
@@ -72,6 +84,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-23.ja-infographic.webp
 - 日付：2026-09-23
 - リンク：https://lukefan.com/2026/09/23/huawei-ascend-cann-cuda-open-source-ecosystem/
 - 要約：老范はHuawei Connect 2026で示されたAscend 960のロードマップとCANNのオープン化計画を手掛かりに、中国製AIアクセラレーターの競争軸はチップ性能だけでなく、PyTorch、vLLM、Tritonなどへの長期的な適合にもあると論じた。オープンソースコミュニティからの信頼、技術的保守、学習・推論への対応を重要な変数とみる。「エコシステムの壁を越えた」という評価は筆者の分析であり、独立検証された互換性の結論ではない。
+
+<!-- radar-visual:f84eebdab6b4 -->
+[![3つのオープンソース連携パスを示すインフォグラフィック：vllm 本流への統合、Triton のフォークと主線PR、PyTorch 公式サイトでの昇騰掲載](/images/radar/inline/f84eebdab6b4.webp)](/images/radar/inline/f84eebdab6b4.webp)
+
+*原文はvLLM、Triton、PyTorchとの接続経路を3欄に整理し、フレームワーク適応と継続的な保守を重視しています。各ハードウェア環境で同等の対応が完了したことを示す図ではありません。 画像出典：[老范讲故事](https://lukefan.com/2026/09/23/huawei-ascend-cann-cuda-open-source-ecosystem/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:f84eebdab6b4 -->
 
 ### HacktronがOpenAIの過去の脆弱性連鎖を公表：コミュニティフォーラム経由で内部コードにアクセス
 

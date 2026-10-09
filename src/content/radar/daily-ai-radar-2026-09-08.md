@@ -32,6 +32,12 @@ draft: false
 - 链接：https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures
 - 摘要：文章指出LLM应用需区分技术故障与语义故障：HTTP成功不代表输出合规或事实正确。重试仅适用于瞬时故障，需设次数上限并配合退避抖动，权限或输入错误需修正而非盲目重试。针对确认丢失的工具调用，须借助幂等键、状态追踪与恢复机制防止重复操作。
 
+<!-- radar-visual:b385fef92353 -->
+[![LLM应用请求流与多组件交互示意图](/images/radar/inline/b385fef92353.webp)](/images/radar/inline/b385fef92353.webp)
+
+*从左到右是用户、应用、检索、模型与工具；请求先做输入及权限验证，生成结果返回应用后再验证，说明技术与语义检查可落在多个环节。 图片来源：[ByteByteGo](https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures)。点击图片查看原尺寸。*
+<!-- /radar-visual:b385fef92353 -->
+
 ## 2. 模型前沿 & 算法探索
 
 ### AI辅助重建成年雄性果蝇完整脑与中枢神经系统图谱
@@ -73,12 +79,24 @@ draft: false
 - 链接：https://lukefan.com/2026/09/07/deepseek-huawei-ascend-ulaanqab-data-center/
 - 摘要：老范围绕媒体报道的DeepSeek乌兰察布算力中心规划，分析国产芯片供给、推理需求与当地能源散热条件。相关规模仍属报道与规划层面，不等于合同已落地或设施已投产。文章强调，除了装机规模，还需关注实际需求、利用率与稳定供电，避免把容量直接当作有效产出。
 
+<!-- radar-visual:a6fc0a085fe8 -->
+[![Atlas 950超节点与超级集群三级数量对照图](/images/radar/inline/a6fc0a085fe8.webp)](/images/radar/inline/a6fc0a085fe8.webp)
+
+*原文把超节点、超级集群与报道中的订单规模分栏列示，提醒读者区分硬件组织层级与采购数量；这些数字不等同于已部署或已消纳的算力。 图片来源：[老范讲故事](https://lukefan.com/2026/09/07/deepseek-huawei-ascend-ulaanqab-data-center/)。点击图片查看原尺寸。*
+<!-- /radar-visual:a6fc0a085fe8 -->
+
 ### 乌克兰独立新闻机构AI赋能与转型支持项目
 
 - 来源：OpenAI / WAN-IFRA / AIRPPU
 - 日期：2026-09-07
 - 链接：https://openai.com/index/supporting-independent-journalism-in-ukraine/
 - 摘要：OpenAI、WAN-IFRA与AIRPPU宣布乌克兰新闻机构AI支持项目，覆盖采编与商业转型。Masterclass已于8月5日开始，计划9月17日启动的Catalyst将深度支持10家机构，所有参与机构获API额度。项目关注负责任采用与组织能力，尚不代表已实现营收增长或自动替代记者。
+
+<!-- radar-visual:1448ea5f4f7f -->
+[![乌克兰全国独立新闻机构分布地图](/images/radar/inline/1448ea5f4f7f.webp)](/images/radar/inline/1448ea5f4f7f.webp)
+
+*该地图展示遍布乌克兰全国的独立新闻机构地理分布，反映该项AI赋能与转型支持计划在乌克兰独立新闻领域的覆盖范围。 图片来源：[OpenAI / WAN-IFRA / AIRPPU](https://openai.com/index/supporting-independent-journalism-in-ukraine/)。点击图片查看原尺寸。*
+<!-- /radar-visual:1448ea5f4f7f -->
 
 ### 路透社称中美筹备AI安全对话，白宫否认已有相关安排
 

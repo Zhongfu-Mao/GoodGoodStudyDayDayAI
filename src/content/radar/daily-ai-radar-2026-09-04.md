@@ -56,6 +56,12 @@ draft: false
 - 链接：https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-weathernext-3/
 - 摘要：Google于9月3日发布WeatherNext-3气象模型。该模型融合实时卫星观测与历史分析数据，实现逐小时更新；其中温湿度等部分地表变量分辨率达5公里，其余变量为10或25公里。目前该模型已开始接入Google相关产品及BigQuery等数据平台，但并不替代官方发布的灾害预警信息。
 
+<!-- radar-visual:9b8e2efc2895 -->
+[![WeatherNext 3 系统架构图](/images/radar/inline/9b8e2efc2895.webp)](/images/radar/inline/9b8e2efc2895.webp)
+
+*卫星拼图与分析场输入 WeatherNext 3，右侧输出分成网格化气象场和站点、气旋等目标；图示强调同一模型连接不同观测与预测形式。 图片来源：[Google / DeepMind](https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-weathernext-3/)。点击图片查看原尺寸。*
+<!-- /radar-visual:9b8e2efc2895 -->
+
 ## 3. 实战代码 & 工具库
 
 ### 基于文件夹的Agent架构与运行实践
@@ -64,6 +70,12 @@ draft: false
 - 日期：2026-09-04 重刊
 - 链接：https://every.to/source-code/the-folder-is-the-agent-rerun
 - 摘要：Every于9月4日重刊文章，总结了基于44个Agent的实践经验：通过在专门文件夹内维护规则、技能与运行知识来构建专业上下文；由文件队列与后台进程负责状态分派，同时由人工负责任务决策与最终验收。作者强调必须先建立并亲自验证可靠的工作流程，再将其交由调度层自动化管理。
+
+<!-- radar-visual:87d1368b3814 -->
+[![主智能体通过 orchestrate 命令向不同上下文专业工作者派发任务的终端运行示意](/images/radar/inline/87d1368b3814.webp)](/images/radar/inline/87d1368b3814.webp)
+
+*终端截图显示主会话发起任务后，后台协调器继续运行并提示可稍后查看进度；这是作者实际工作流的一帧，并非完整的多窗口状态图。 图片来源：[Every](https://every.to/source-code/the-folder-is-the-agent-rerun)。点击图片查看原尺寸。*
+<!-- /radar-visual:87d1368b3814 -->
 
 ### Anthropic推出ant apply声明式资源管理工具
 
@@ -112,6 +124,12 @@ draft: false
 - 日期：2026-09-04
 - 链接：https://www.deeplearning.ai/the-batch/issue-369
 - 摘要：吴恩达在9月4日公开信中提出构建编码智能体需关注规划、执行与部署监控三个阶段，并掌握五项核心技能：流程把控、自主权配置、输出审查、环境定制及理解编码Agent基础。他建议开发者根据项目风险设立人工干预门槛与验收验证定义，且流程反馈机制应允许回溯到前一阶段进行修正。
+
+<!-- radar-visual:7bad694e08f8 -->
+[![编码智能体 AI 工程技能图谱](/images/radar/inline/7bad694e08f8.webp)](/images/radar/inline/7bad694e08f8.webp)
+
+*技能图将“使用编码智能体”拆成工作流指导、自主性配置、审查成果、定制环境与基础知识五项；它们共同嵌在更大的 AI 工程能力体系中。 图片来源：[The Batch / DeepLearning.AI](https://www.deeplearning.ai/the-batch/issue-369)。点击图片查看原尺寸。*
+<!-- /radar-visual:7bad694e08f8 -->
 
 ### The Rundown提出Loop Method工作流优化方法
 

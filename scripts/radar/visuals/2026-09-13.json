@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-13",
+  "visuals": [
+    {
+      "id": "26b2398c411b",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/4-speculative-decoding-variants",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!RTr5!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F95419d15-ef03-441e-8791-064875e0c8c8_1376x482.jpeg",
+      "asset": "/images/radar/inline/26b2398c411b.webp",
+      "sha256": "501045614ab1e580e946a96048570309727b929c3b8e431de178c0c0e0697e38",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "大模型投机解码的四种变体解析",
+        "alt": "投机解码的两阶段流程图，展示低成本起草词元与目标模型并行验证机制",
+        "caption": "关注图解呈现的两阶段投机流程：草稿端先低成本提出多个词元，目标模型并行验证并接受匹配前缀，若出现不匹配则替换并丢弃剩余草稿。"
+      },
+      "ja": {
+        "heading": "投機的デコーディングの4つの方式",
+        "alt": "低コストなドラフト生成とターゲットモデルによる並列検証を示す投機的デコーディングの図",
+        "caption": "2段階の投機プロセスに注目：ドラフト側が低コストでトークン候補を提案し、ターゲットモデルが並列検証して一致した接頭辞を採用し、不一致時は修正を行います。"
+      }
+    },
+    {
+      "id": "f6d9c9d30726",
+      "sourceUrl": "https://blog.bytebytego.com/p/a-guide-to-application-networking",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!nVwY!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2702fa23-683a-41a0-916c-5cf86d018e77_2650x3068.png",
+      "asset": "/images/radar/inline/f6d9c9d30726.webp",
+      "sha256": "ad7e683dace23419c51c247d2a5f0c0da9659673fbb4348a2ef49ad9bc7144fa",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "应用层网络基础架构指南",
+        "alt": "传统HTTPS请求网络链路示意图，展示TCP握手、TLS握手及负载均衡转发",
+        "caption": "六个面板分别说明 HTTP 连接、HTTP/3、响应时序、多路复用、gRPC 与 NAT；可横向比较协议负责哪一层，而不是把全部面板当成一条请求链。"
+      },
+      "ja": {
+        "heading": "アプリケーションネットワークの基礎ガイド",
+        "alt": "TCP接続、TLSハンドシェイク、ロードバランサによる転送を示すHTTPSネットワーク経路図",
+        "caption": "6つのパネルでHTTP接続、HTTP/3、応答の時系列、多重化、gRPC、NATを説明します。全体が単一の要求経路なのではなく、各仕組みの役割を比較する図です。"
+      }
+    },
+    {
+      "id": "19727011c8f3",
+      "sourceUrl": "https://www.latent.space/p/forward-deployed-engineer-best-practices",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!5LAd!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd9ad2af0-b40a-433d-bd78-0514683c9eb4_2560x1440.png",
+      "asset": "/images/radar/inline/19727011c8f3.webp",
+      "sha256": "6c1d0181ce590ac733a4040f7ce7a146e7b40719281072f802abfdc5a03da181",
+      "credit": "Latent.Space",
+      "review": "accepted",
+      "zh": {
+        "heading": "前向部署工程师的定位与实践沉淀",
+        "alt": "前向部署工程师与传统咨询顾问定位差异对比图",
+        "caption": "关注Vinoo Ganesh绘制的职责对比图，呈现前向部署工程师深入客户业务一线与传统咨询在职责定位及推动平台演进上的区别。"
+      },
+      "ja": {
+        "heading": "前方展開エンジニア（FDE）の役割とプラットフォーム還元",
+        "alt": "FDE（フォワードデプロイドエンジニア）とコンサルティングの違いを示す比較図",
+        "caption": "Vinoo Ganesh氏による比較図に注目：顧客の運用現場に入り込んで課題解決を図るFDEと、従来のコンサルティングとの役割や位置付けの違いを示しています。"
+      }
+    }
+  ]
+}

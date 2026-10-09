@@ -34,12 +34,24 @@ draft: false
 - リンク：https://blog.dailydoseofds.com/p/kv-cache-engineering-for-llm-serving
 - 要約：大規模モデル推論における12種類のKVキャッシュ技術を整理し、論理保持量、GPU常駐容量、読み出し帯域幅の違いを明確化。構造変更には対応するチェックポイントの学習が必要であり、FP8は精度誤差を伴い、破棄は文脈喪失を招き、CPUオフロードはGPU専有を減らすものの総データ量は減らず復元遅延が生じるため、ボトルネックの事前特定を推奨しています。
 
+<!-- radar-visual:dfa0d3e4b131 -->
+[![KVキャッシュ工学技術の一覧表](/images/radar/inline/dfa0d3e4b131.webp)](/images/radar/inline/dfa0d3e4b131.webp)
+
+*12種類のKVキャッシュ技術をまとめ、ヘッド数・層数・トークン・次元・ビット幅削減の対応を示します。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/kv-cache-engineering-for-llm-serving)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:dfa0d3e4b131 -->
+
 ### Claudeマルチエージェントによるフェルマーの最終定理Lean形式化検証
 
 - 出典：The Rundown AI
 - 日付：2026-09-07
 - リンク：https://www.anthropic.com/research/formalizing-fermats-last-theorem
 - 要約：AnthropicはClaudeマルチエージェントを用い、11日間でフェルマーの最終定理のエンドツーエンドLean形式化を達成したと公表しました。新規の定理証明ではなく既存数学の計算機検証であり、Prove2Me基盤が有向非巡回グラフ（DAG）、宣言と証明の分離、自然言語索引の再利用で協調を支え、内部研究モデルの約60億出力トークンを用いて検証を完遂しました。
+
+<!-- radar-visual:cb950efe3921 -->
+[![フェルマーの最終定理形式化におけるProve2MeマイルストーンDAG](/images/radar/inline/cb950efe3921.webp)](/images/radar/inline/cb950efe3921.webp)
+
+*Prove2Me計画のマイルストーンDAGであり、フェルマーの最終定理証明に必要な3つの核心補題を示します。 画像出典：[The Rundown AI](https://www.anthropic.com/research/formalizing-fermats-last-theorem)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:cb950efe3921 -->
 
 ## 2. モデル最前線 & アルゴリズム探索
 
@@ -88,6 +100,12 @@ draft: false
 - 日付：2026-09-07
 - リンク：https://lukefan.com/2026/09/07/openai-anthropic-mac-mini-ai-agent-training/
 - 要約：AI企業によるMac調達報道を起点に、Computer-Using Agents（CUA）の運用基盤を論考した解説記事です。基底モデルの学習ではなく、スクリーンショットや操作フィードバックの閉ループと実アプリ環境の提供が要点と指摘。プラットフォームの一貫性、仮想化、保守運用の観点から、Macがエージェント標準環境となる可能性を考察しています。
+
+<!-- radar-visual:bacf3cff0fc0 -->
+[![コンピュータ操作エージェントの画面操作とフィードバック閉ループ図](/images/radar/inline/bacf3cff0fc0.webp)](/images/radar/inline/bacf3cff0fc0.webp)
+
+*画面取得、マウス・キー操作、評価の循環と学習ノードを示します。下段の異なる年のベンチマーク値から、実務での成功率を直接推定することはできません。 画像出典：[老范讲故事](https://lukefan.com/2026/09/07/openai-anthropic-mac-mini-ai-agent-training/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:bacf3cff0fc0 -->
 
 ## 5. GitHub 人気 repo & トレンド追跡
 

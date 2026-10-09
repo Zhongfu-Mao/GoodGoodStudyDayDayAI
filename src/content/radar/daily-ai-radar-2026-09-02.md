@@ -41,6 +41,12 @@ draft: false
 - 链接：https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/
 - 摘要：Gemini 3.7 Flash、3.6 Flash与3.5 Flash-Lite推出主动视频理解能力，改变了固定帧率采样的处理方式。模型通过内置视频工具按目标搜索、扫描与检查画面、音频或转录文本。在官方测试基准中，该方案最高降低88%的Token消耗与66%的成本，同时准确率有所提升，目前已面向API开放。
 
+<!-- radar-visual:ff572fc15fd8 -->
+[![分析主动视频理解下 Token 消耗减少与准确率提升的图表](/images/radar/inline/ff572fc15fd8.webp)](/images/radar/inline/ff572fc15fd8.webp)
+
+*图表反映官方测试中开启主动视频理解后长视频的 Token 节省与准确率增益情况，相关指标仍属厂商基准数据。 图片来源：[Google / Gemini](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/)。点击图片查看原尺寸。*
+<!-- /radar-visual:ff572fc15fd8 -->
+
 ## 2. 模型前沿 & 算法探索
 
 ### Fable 5.1与Mythos 5.1共享基础模型并采用差异化准入
@@ -49,6 +55,12 @@ draft: false
 - 日期：2026-09-02（报道）
 - 链接：https://www.anthropic.com/claude-fable-and-mythos-5-1
 - 摘要：Anthropic推出Fable 5.1与Mythos 5.1：两者共享模型但采用不同防护，前者一般提供，后者当时仅向部分美国机构限量准入。厂商估计缓存读取降价可使典型负载成本下降约25%，并非所有Token统一降价；企业级防护EFS计划于秋季分阶段推出。
+
+<!-- radar-visual:7941eb9924e0 -->
+[![金星表面直径15公里火山的新高分辨率数字高程模型（300米）图像](/images/radar/inline/7941eb9924e0.webp)](/images/radar/inline/7941eb9924e0.webp)
+
+*官方示例呈现一座约 15 公里宽金星火山的新高程图，白线为 10 公里比例尺；图注的 300 米网格不等于所有地表细节均有 300 米观测精度。 图片来源：[The Rundown AI · Anthropic](https://www.anthropic.com/claude-fable-and-mythos-5-1)。点击图片查看原尺寸。*
+<!-- /radar-visual:7941eb9924e0 -->
 
 ### Atlas统一空间上下文生成与三维重建
 
@@ -81,6 +93,12 @@ draft: false
 - 日期：2026-09-01
 - 链接：https://openai.com/index/ai-native-company-workflows/
 - 摘要：OpenAI介绍Basis、Clay与Exa的工作流案例：Basis称入职流程技能化后从两小时缩短至30分钟；Clay用账号子智能体维持商谈上下文；Exa把集成机会转为PR与测试，保留人工决策。可借鉴之处是明确任务、持续上下文与验收条件；公司报告不能直接推广为所有企业的生产率收益。
+
+<!-- radar-visual:9625e970a7f7 -->
+[![Basis 的 AI 入职引导工作区演示，显示新员工入职核对清单与自动化设置步骤](/images/radar/inline/9625e970a7f7.webp)](/images/radar/inline/9625e970a7f7.webp)
+
+*入职工作台将访问权限、当天安排与学习材料集中呈现，并标出仍需本人处理的项目；标准技能把重复步骤组织起来，也保留人工参与节点。 图片来源：[OpenAI](https://openai.com/index/ai-native-company-workflows/)。点击图片查看原尺寸。*
+<!-- /radar-visual:9625e970a7f7 -->
 
 ### 教育观察：完成作业并不等同于真正掌握知识能力
 

@@ -27,6 +27,12 @@ draft: false
 - 链接：https://openai.com/index/introducing-the-agents-api
 - 摘要：OpenAI 宣布 Agents API 进入公开测试，开发者可在一次调用中指定任务、模型、工具和运行环境，使用由 OpenAI 托管的智能体底座。运行环境可选 OpenAI 托管沙箱、自有基础设施或合作伙伴环境；接口还支持长会话上下文压缩、按需加载工具定义、程序化工具调用和子智能体协作。官方称不另收平台费，但仍按模型 token 与工具用量计费。真正的隔离边界取决于所选环境与配置。
 
+<!-- radar-visual:07b88a2f0d9b -->
+[![应用程序与Agents API交互流程图，展示托管Codex框架、工具调用以及沙箱环境运行机制。](/images/radar/inline/07b88a2f0d9b.webp)](/images/radar/inline/07b88a2f0d9b.webp)
+
+*展示应用程序与Agents API的交互流：API运行托管Codex底座，向沙箱发起工具调用并获取结果，支持在托管或自建环境中运行。 图片来源：[OpenAI](https://openai.com/index/introducing-the-agents-api)。点击图片查看原尺寸。*
+<!-- /radar-visual:07b88a2f0d9b -->
+
 ### Pi 汇集统一模型接口、Agent 运行时和编码 CLI
 
 - 来源：earendil-works/pi GitHub README
@@ -113,6 +119,12 @@ draft: false
 - 日期：2026-09-15
 - 链接：https://every.to/also-true-for-humans/mini-vibe-check-typesafe-s-jev-judged-everything-i-ve-written-in-0-7-seconds
 - 摘要：Every 的 Mike Taylor 记录了对 TypeSafe Jev 的探索性试用。该工具采用 RLCD 方法，目标是输出经过校准的类别概率，而非生成长篇文字；目标不等于在所有任务上已经实现校准。作者称，对 37 份文档提出 21 个问题、合计 777 次判断，耗时不足 0.7 秒；另一次小型合成缺陷测试中，Jev 找出预设的 7 处缺陷中的 6 处。这些是作者自测，不是通用性能或可靠性保证，实际工作流仍要用自身数据验证。
+
+<!-- radar-visual:5f28c496a8f2 -->
+[![写作检查工具返回的概率矩阵截图，各行对应文章，各列对应AI写作模式，数值越接近1表示越可能由AI生成。](/images/radar/inline/5f28c496a8f2.webp)](/images/radar/inline/5f28c496a8f2.webp)
+
+*每行是一篇文章，各列分别判断结构对称、格式过度使用等模式；数值是该分类器的判断，不能直接当作文章由 AI 写成的事实证明。 图片来源：[Every](https://every.to/also-true-for-humans/mini-vibe-check-typesafe-s-jev-judged-everything-i-ve-written-in-0-7-seconds)。点击图片查看原尺寸。*
+<!-- /radar-visual:5f28c496a8f2 -->
 
 ### 老范从 IPO、算力成本与定价权解读 AI“减速”争论
 

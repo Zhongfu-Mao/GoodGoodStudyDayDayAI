@@ -63,6 +63,12 @@ representativeImageSource: https://www.anthropic.com/claude-sonnet-5-5
 - 链接：https://huggingface.co/blog/transformers-llama-cpp-quants
 - 摘要：Transformers把ggml的Metal内核接入熟悉的加载与生成接口，让兼容GGUF权重保持压缩状态推理。初期重点是Apple Silicon上的Qwen3.5及兼容Qwen3.8架构；缺少兼容量化内核时可能退回反量化并增加内存。官方吞吐比较的预填充口径不同，不能视为完全同条件评测，也不能推广为所有模型与设备均已支持。
 
+<!-- radar-visual:7958e775a0f0 -->
+[![Transformers与llama.cpp的GGUF生成吞吐量对比图表](/images/radar/inline/7958e775a0f0.webp)](/images/radar/inline/7958e775a0f0.webp)
+
+*图中比较同一台 M2 Max 上的 GGUF 吞吐量。底部注明 Transformers 取三次最佳值且含预填充，llama.cpp 取三次均值且仅解码，不能将柱高直接视为同口径胜负。 图片来源：[Hugging Face](https://huggingface.co/blog/transformers-llama-cpp-quants)。点击图片查看原尺寸。*
+<!-- /radar-visual:7958e775a0f0 -->
+
 ## 4. 行业与商业快讯
 
 ### AMD 签署约82亿美元收购 World Labs 的协议
@@ -85,6 +91,12 @@ representativeImageSource: https://www.anthropic.com/claude-sonnet-5-5
 - 日期：2026-09-29
 - 链接：https://lukefan.com/2026/09/29/human-sandwich-ai-delegation-growth/
 - 摘要：老范以“人—AI—人”的工作结构讨论管理：人确定方向，AI承担执行，人再判断结果。但把常规任务交出去，并不自动创造新的职责或成长机会。文章主张管理者保留业务判断、团队培养和结果责任。这是对组织激励与分工的分析，不是证明AI导致特定就业变化的因果研究。
+
+<!-- radar-visual:ca3976a88774 -->
+[![正视平面的三层人肉三明治分工示意图](/images/radar/inline/ca3976a88774.webp)](/images/radar/inline/ca3976a88774.webp)
+
+*示意图描绘“人—AI—人”工作结构：顶层由人类定方向，中间层由AI处理任务执行，底层由人进行结果验收与质量把关。 图片来源：[老范讲故事](https://lukefan.com/2026/09/29/human-sandwich-ai-delegation-growth/)。点击图片查看原尺寸。*
+<!-- /radar-visual:ca3976a88774 -->
 
 ## 5. GitHub 热门 repo & 趋势追踪
 
@@ -117,3 +129,9 @@ representativeImageSource: https://www.anthropic.com/claude-sonnet-5-5
 - 日期：2026-09-28
 - 链接：https://blog.bytebytego.com/p/ai-agents-can-think-now-they-can
 - 摘要：ByteByteGo解释已有的Machine Payments Protocol：利用HTTP 402表达付款要求，再交换支付凭证与收据，让服务调用包含机器可读的支付步骤。智能体授权仍需金额、收款方和有效期等边界。协议不替代身份信任或购买判断，退款与争议也依赖具体支付方式；可自动交换凭证不等于可以无限制自行消费。
+
+<!-- radar-visual:85896cb044b2 -->
+[![机器支付协议MPP处理流程示意图](/images/radar/inline/85896cb044b2.webp)](/images/radar/inline/85896cb044b2.webp)
+
+*按箭头看请求、402付款要求、核对条件、提交支付凭证、验证结算和收据返回。协议描述机器间的交互，不能代替用户对具体交易的授权。 图片来源：[ByteByteGo](https://blog.bytebytego.com/p/ai-agents-can-think-now-they-can)。点击图片查看原尺寸。*
+<!-- /radar-visual:85896cb044b2 -->

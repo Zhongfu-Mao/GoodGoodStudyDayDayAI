@@ -66,6 +66,12 @@ draft: false
 - 链接：https://runway.com/news/research/introducing-solaris
 - 摘要：Runway公布Solaris，利用大语言模型解析用户的点击与拖拽意图并决策下一步，再由世界模型逐帧渲染交互界面，而非生成传统网页代码。目前该技术处于早期访问阶段，在文本清晰度、长会话一致性、内容可靠性及无障碍访问方面仍存挑战，切不可将其视为可直接替代生产环境网站的方案。
 
+<!-- radar-visual:510de74b2371 -->
+[![普通产品网页与各多模态模型重建效果的并列对比](/images/radar/inline/510de74b2371.webp)](/images/radar/inline/510de74b2371.webp)
+
+*画面展示原始普通产品网页与多模态模型重建效果的并列对比，反映厂商测试各模型从单张截图中复原网页界面外观的保真度评估。 图片来源：[Runway](https://runway.com/news/research/introducing-solaris)。点击图片查看原尺寸。*
+<!-- /radar-visual:510de74b2371 -->
+
 ### LLM Cliché Highlighter 将套话检测变成可检查规则
 
 - 来源：AI Valley · Simon Willison
@@ -81,6 +87,12 @@ draft: false
 - 日期：2026-09-01
 - 链接：https://lukefan.com/2026/09/01/china-us-ai-controls-models-chips/
 - 摘要：该行业评论探讨模型权重、训练数据、先进制程芯片与跨境投资相关限制，如何增加企业的合规、时间与资金成本。作者提醒，若干方案仍停留在报道与讨论阶段。文章提供的是产业观察，实际影响仍取决于正式文件、适用范围及执行方式，不能把讨论中的措施直接当作已生效规则。
+
+<!-- radar-visual:9a9eb1e1ba57 -->
+[![围绕模型核心、训练数据、芯片图纸和企业握手符号展开的四个并列抽象监管闸门信息图](/images/radar/inline/9a9eb1e1ba57.webp)](/images/radar/inline/9a9eb1e1ba57.webp)
+
+*原文用模型、数据、芯片和企业合作四种符号解释评论中的监管对象；透明闸门表示作者讨论的未落地措施，这张概念图不能替代具体法规核查。 图片来源：[老范讲故事](https://lukefan.com/2026/09/01/china-us-ai-controls-models-chips/)。点击图片查看原尺寸。*
+<!-- /radar-visual:9a9eb1e1ba57 -->
 
 ### ChatGPT Ads 扩大自助投放与效果衡量
 

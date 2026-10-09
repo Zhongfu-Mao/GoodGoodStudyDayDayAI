@@ -49,6 +49,12 @@ draft: false
 - 链接：https://ziyaerkoc.com/worldagents/
 - 摘要：9月5日介绍的WorldAgents通过协调现有图像模型与视觉语言模型生成3D场景，而非单体世界模型。系统由Director提出视角提示，Generator合成新视角，Verifier进行2D一致性与3D重建双重检验，最后经AnySplat构建可探索高斯场景。当前展示适用于受控实验场景，并不代表真实物理模拟已完全解决。
 
+<!-- radar-visual:00f36e9dd217 -->
+[![WorldAgents多视角3D场景生成流水线概览图](/images/radar/inline/00f36e9dd217.webp)](/images/radar/inline/00f36e9dd217.webp)
+
+*展示导演模型提示、生成器合成新视角、验证器双重检验并经AnySplat重建3D高斯场景的流程。 图片来源：[AI Valley](https://ziyaerkoc.com/worldagents/)。点击图片查看原尺寸。*
+<!-- /radar-visual:00f36e9dd217 -->
+
 ### Microsoft AI推出MAI-Transcribe-2转写模型公告
 
 - 来源：AI Valley
@@ -71,6 +77,12 @@ draft: false
 - 日期：2026-09-03
 - 链接：https://www.llamaindex.ai/blog/introducing-turbo-our-fastest-extraction-tier
 - 摘要：LlamaIndex于9月3日推出ExtractTurbo测试版，免除单独解析步骤，直接从页面并行提取结构化数据。其官方ExtractBench测试显示中位耗时为每页3.7秒、F1达0.84，速度约为CostEffective的4倍，适合中等复杂度低延迟场景。但Beta版支持输入配置较少，并非对所有文档OCR都有绝对速度或精度优势。
+
+<!-- radar-visual:79195f221ea6 -->
+[![文档页数与处理延迟对比](/images/radar/inline/79195f221ea6.webp)](/images/radar/inline/79195f221ea6.webp)
+
+*横轴是文档页数，纵轴是每份文档的中位处理秒数；随着文档变长，各方案的延迟曲线分化，图中没有直接比较提取准确率。 图片来源：[LlamaIndex](https://www.llamaindex.ai/blog/introducing-turbo-our-fastest-extraction-tier)。点击图片查看原尺寸。*
+<!-- /radar-visual:79195f221ea6 -->
 
 ## 4. 行业与商业快讯
 
@@ -112,6 +124,12 @@ draft: false
 - 日期：2026-09-04
 - 链接：https://blog.dailydoseofds.com/p/5-embedding-compression-techniques
 - 摘要：9月4日刊文梳理了五种主流向量嵌入压缩技术：主成分分析（PCA）、MRL截维、标量量化、二值量化以及乘积量化（PQ），分别从缩减维度与降低位宽角度减少存储。虽然粗检索后结合全精度重排能优化排序，但无法弥补召回初期的漏检；此外向量本体的压缩并不等同于ANN索引及元数据的同比例缩减。
+
+<!-- radar-visual:cc8faf28b09b -->
+[![五种向量嵌入压缩技术分类图解](/images/radar/inline/cc8faf28b09b.webp)](/images/radar/inline/cc8faf28b09b.webp)
+
+*梳理通过降维与削减位宽压缩向量数据的五种技术，包含PCA投影和MRL训练等不同路径。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/5-embedding-compression-techniques)。点击图片查看原尺寸。*
+<!-- /radar-visual:cc8faf28b09b -->
 
 ### 数据库并发控制原理简析：读写冲突、锁机制与隔离级别
 

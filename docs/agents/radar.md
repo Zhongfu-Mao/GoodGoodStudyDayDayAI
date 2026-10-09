@@ -205,6 +205,7 @@ The Rundown AI 站点级规则：
 
 ### 3.8 资源生成
 
+- **日报正文配图**：按 [条目配图与讲解流程](radar-inline-visuals.md) 选图、写中日图注和验收。每期通常在不同栏目穿插 3–5 张有解释价值的条目配图；顶部信息图与开头代表图不计入。每张图都要有来源和读图讲解，不能只完成封面就视作图文编排完成。已验收清单通过 `npm run check:radar-visuals` 检查，历史回补范围以用户当前指令为准。
 - **日报代表图**：冻结 Markdown 后、生成 NotebookLM 信息图前，只有在 frontmatter 显式写入 `representativeImageSource` 时才跑 `npm run radar:images` 补入外链代表图；禁止脚本从普通正文链接里猜测“第一张可用图”。`representativeImageSource` 必须来自本期明确主线或审计记录里的 lead item。若无明确 lead item，宁可不插入外链代表图。NotebookLM 信息图继续写入 `coverImage` 作为顶部封面。
 - **日报**：中日双语的信息图与音频分支独立生成。
 - **周报 / 月报**：Audio、Slide/Deck、Infographic 必须 **全部生成**，或在报告中明确说明不可用原因。
@@ -223,6 +224,7 @@ The Rundown AI 站点级规则：
    - `npm run check:radar-newsletter`
    - `npm run check:radar-sources`
    - `npm run check:radar-schema`
+   - `npm run check:radar-visuals`：校验已纳入配图清单的日报中日对应、条目位置、图片校验和及图注；不替代目视验收。
    - `npm run check:radar-dedupe`
    - `npm run check:radar-media`：阻止重媒体进入 Git，并校验非草稿音频 / PDF 的批准主机、路径与音频长度字段。
    - `npm run check:radar-editorial`：新一期公开文案泄漏与栏目均衡；精确模式检查不替代人工审稿。合法技术讨论不得因单独出现“去重”或“curl”误拒。需人工认可的栏目 / 文案例外写入 `editorial-policy.json` 的精确文件与规则条目，提供具体公开理由，完整证据仍留私有 audit；隐私泄漏和硬上限不能豁免。

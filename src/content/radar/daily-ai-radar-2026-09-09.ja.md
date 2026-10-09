@@ -36,6 +36,12 @@ draft: false
 - リンク：https://arxiv.org/abs/2607.02510
 - 要約：7月2日公開、9月4日に The Batch が取り上げた論文は、外部モデルの検証スコアをリアルタイム警報へ変換し、リスク制御で閾値を較正する。数理推論とレッドチームのデータでは、簡潔な方式が逐次仮説検定型の監視と競合した。ただし示したのは較正条件下の警報判断であり、あらゆる状況で安全を保証するものではない。
 
+<!-- radar-visual:7e3f4287c6be -->
+[![MATHデータにおける誤警報率・検出力・検出遅延](/images/radar/inline/7e3f4287c6be.webp)](/images/radar/inline/7e3f4287c6be.webp)
+
+*論文は誤警報の制御、検出力、警報遅延を別々に示しています。リスク目標と検出性能を合わせて読む必要があり、早い警報は無条件の安全を意味しません。 画像出典：[CRC Monitor 论文作者](https://arxiv.org/abs/2607.02510)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:7e3f4287c6be -->
+
 ## 2. モデル最前線 & アルゴリズム探索
 
 ### 肺線維症臨床試験におけるプロテオミクス加齢時計の探索的解析
@@ -60,6 +66,12 @@ draft: false
 - 日付：2026-09-09（観測日）
 - リンク：https://github.com/cathrynlavery/diagram-design
 - 要約：diagram-design は Claude Code、Codex などのスキル対応環境向けに、アーキテクチャ、フロー、時系列、Sankey、Wardley Map、DB スキーマなど39種の図解テンプレートを提供する。自己完結した HTML と SVG を出力し、静止表示を標準に、説明順を示すアクセシブルな動きも選べる。意味上のシステム構造と配置を分けた実用ライブラリだ。
+
+<!-- radar-visual:d356959704e2 -->
+[![diagram-designのコンテンツサイト構成例](/images/radar/inline/d356959704e2.webp)](/images/radar/inline/d356959704e2.webp)
+
+*9月3日時点の例はブラウザ、Cloudflare、Astro、コンテンツ源を接続しています。要求と応答を異なる矢印で示し、構成テンプレートで要素間の関係を表す例です。 画像出典：[diagram-design](https://github.com/cathrynlavery/diagram-design)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:d356959704e2 -->
 
 ### 仕様駆動開発を再利用可能なエージェントスキルに
 

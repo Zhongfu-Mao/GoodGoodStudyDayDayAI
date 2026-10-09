@@ -38,6 +38,12 @@ representativeImageSource: https://www.anthropic.com/claude-opus-5-5
 - 链接：https://code.visualstudio.com/docs/agents/run/agents-window
 - 摘要：VS Code 文档将 Agents window 定位为独立的 Agent 工作窗口，可跨工作区启动、跟踪、审阅并结束会话，支持不同的登录与模型配置。预览功能把编码 Agent 从单一聊天栏扩展到多任务控制台；PR 评论、失败检查和冲突处理仍需开发者审阅最终差异与测试结果。
 
+<!-- radar-visual:9d57b3ffc89b -->
+[![VS Code Agents window 界面截图，展示会话列表、定制面板、聊天区域、变更面板与文件面板](/images/radar/inline/9d57b3ffc89b.webp)](/images/radar/inline/9d57b3ffc89b.webp)
+
+*截图展示 VS Code Agents window 界面布局，包含跨工作区会话列表、聊天窗口以及侧边的变更和工作区文件面板。 图片来源：[Visual Studio Code](https://code.visualstudio.com/docs/agents/run/agents-window)。点击图片查看原尺寸。*
+<!-- /radar-visual:9d57b3ffc89b -->
+
 ## 2. 模型前沿 & 算法探索
 
 ### Claude Opus 5.5 发布：Anthropic 主张提升复杂任务能力并降低运行成本
@@ -118,12 +124,24 @@ representativeImageSource: https://www.anthropic.com/claude-opus-5-5
 - 链接：https://www.latent.space/p/bio-security-is-an-ai-arms-race-eric
 - 摘要：这期访谈讨论模型提高生物研究能力的同时，如何让防御性筛查和实验验证跟上。受访者主张把多模态工具与开放防御能力纳入生物安全体系；这是对攻防结构的观点与研究方向，不代表相关防线已得到实证验证。
 
+<!-- radar-visual:61ebf8c37292 -->
+[![改编自维基百科的基因组大小图表](/images/radar/inline/61ebf8c37292.webp)](/images/radar/inline/61ebf8c37292.webp)
+
+*横轴以碱基对表示基因组大小，每条网格线相差十倍；紫色区间展示各生物群的范围，说明生物数据规模差异，而非模型能力排名。 图片来源：[Latent.Space](https://www.latent.space/p/bio-security-is-an-ai-arms-race-eric)。点击图片查看原尺寸。*
+<!-- /radar-visual:61ebf8c37292 -->
+
 ### Daily Dose：MoE 推理需分别测量权重、专家计算和通信
 
 - 来源：Daily Dose of Data Science
 - 日期：2026-09-23（美国时间；2026-09-24 JST）
 - 链接：https://blog.dailydoseofds.com/p/moe-inference-engineering-clearly
 - 摘要：文章沿 token 路径解释路由、dispatch、分组专家计算与 combine，并区分总参数占用和每 token 激活计算。其工程建议是先测权重和 KV cache 容量，再看专家负载偏斜与跨 GPU 通信；量化或减少 top-k 会改变数值或计算路径，不能与纯运行时优化混为一谈。
+
+<!-- radar-visual:50a50ea52425 -->
+[![稠密 Transformer 与 MoE 层结构对比](/images/radar/inline/50a50ea52425.webp)](/images/radar/inline/50a50ea52425.webp)
+
+*左侧为稠密 Transformer，右侧在前馈位置加入路由器和多个专家；MoE 改变的是这一计算环节，并非把整个注意力结构替换成专家。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/moe-inference-engineering-clearly)。点击图片查看原尺寸。*
+<!-- /radar-visual:50a50ea52425 -->
 
 ### ByteByteGo：模型定制不只有微调，还包括提示、检索和适配器
 

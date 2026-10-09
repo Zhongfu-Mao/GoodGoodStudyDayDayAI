@@ -25,6 +25,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-20.ja-infographic.webp
 - リンク：https://openai.com/index/how-to-connect-ai-usage-to-business-value/
 - 要約：OpenAI は AI 導入の効果をどのように測定するかを検討しており、その管理コンソールは利用量、クレジット、Token 消費量、タスク分類、マージされたコード貢献などの指標を統合しています。公式は、アクティビティデータをコードレビューの負担、欠陥率、手戻り率、およびビジネスベースラインと組み合わせて評価する必要性を強調しています。本文中で言及されている ROI は仮定に基づく試算の例に過ぎず、顧客による実際の測定結果ではありません。中核的な目的は、呼び出しのアクティビティと、検証された真のビジネス成果とを厳格に区別することにあります。
 
+<!-- radar-visual:5ca0b9560449 -->
+[![管理コンソール利用状況概要のデモ画面](/images/radar/inline/5ca0b9560449.webp)](/images/radar/inline/5ca0b9560449.webp)
+
+*ChatGPT WorkおよびCodexのアクティブユーザー数とクレジット推移を示す管理画面で、図中の数値は例示用データとされています。 画像出典：[OpenAI](https://openai.com/index/how-to-connect-ai-usage-to-business-value/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:5ca0b9560449 -->
+
 ### Google が Gemini マネージド Agent プレビュー版を公開：Antigravity ツールチェーンをネイティブ統合
 
 - 出典：Latent.Space / Google
@@ -41,6 +47,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-20.ja-infographic.webp
 - リンク：https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling
 - 要約：Anthropic の報告によると、2名の研究者の監督下で、Claude は FlashPairformer カーネルと冗長計算の最適化を通じて、30以上の生体モデルにおいてわずかな精度のトレードオフで平均約4倍の高速化を達成しました。低 VRAM モードでは単一の GPU ノードで 1万 Token を超える一部の分子システムを正確に予測できます。7万 Token を超える実行も完了はするものの、構造は依然として不正確です。計算シミュレーションの成果はウェット実験や臨床検証と同等ではありません。
 
+<!-- radar-visual:20311f514457 -->
+[![生体分子構造予測モデルの高速化倍率を示す棒グラフ](/images/radar/inline/20311f514457.webp)](/images/radar/inline/20311f514457.webp)
+
+*棒グラフはExact、Fast、Bigの前向き計算速度を比較し、右下の集計は約1.6、4.2、3.5倍です。指定された構造予測モデルでの計算ベンチマークです。 画像出典：[Anthropic](https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:20311f514457 -->
+
 ### Qwen が Qwen3.8-Omni-Flash をリリース：能動的な「粗から密へ」のマルチモーダル証拠検索
 
 - 出典：The Rundown AI / Qwen
@@ -56,6 +68,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-20.ja-infographic.webp
 - 日付：2026-09-19
 - リンク：https://abc.bot/
 - 要約：身体性インテリジェンス（Embodied AI）プロジェクトの ABC が、トレーニングおよび評価のコードベースを正式にオープンソース化し、CoRL 2026 に採択されました。この研究の核心は再現可能な完全なベンチマークを提供することにあり、24のタスクをカバーする400時間以上のシミュレーションデータと、アノテーション付きの評価 Episode データセット 5850 件を公開しています。本プロジェクトは身体性ポリシーの標準化された評価と再現プロセスの確立に注力しており、ロボットポリシー学習に向けて公開・検証可能なベンチマーク参照基準を提供します。
+
+<!-- radar-visual:19b7da0ca5c5 -->
+[![ABCの実世界ロボットタスク一覧](/images/radar/inline/19b7da0ca5c5.webp)](/images/radar/inline/19b7da0ca5c5.webp)
+
+*異なる物体や環境でのロボット操作を並べ、データセットが扱う場面の幅を示します。タスクの種類を表す画面であり、成功率を示すものではありません。 画像出典：[ABC](https://abc.bot/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:19b7da0ca5c5 -->
 
 ### Rowboat Spaces：共有境界を明確にしたチーム協調マルチ Agent ワークスペース
 

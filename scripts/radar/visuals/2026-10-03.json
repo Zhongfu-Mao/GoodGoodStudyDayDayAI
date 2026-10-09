@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-03",
+  "visuals": [
+    {
+      "id": "e8c1a092f171",
+      "sourceUrl": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/sM50frTSx9Q7Yyh6UNcGz.png",
+      "asset": "/images/radar/inline/e8c1a092f171.webp",
+      "sha256": "3d7fa541895df0111cd8f8b4de9b681c32043d75e1a9be33d6be5cd3837e4611",
+      "credit": "ServiceNow AI，经 Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "AutoSynthData：从能力缺口生成可验证的企业智能体训练任务",
+        "alt": "AutoSynthData 总览图，从环境诊断和能力缺口生成系统规范、用户任务与验证器",
+        "caption": "左侧的目标环境和目标智能体共同输入 AutoSynth，右侧输出由系统规范、用户任务和验证器组成的样本；训练数据因此围绕特定环境与模型需求组织。"
+      },
+      "ja": {
+        "heading": "AutoSynthData：能力のギャップから検証可能な企業向けエージェント訓練タスクを生成",
+        "alt": "AutoSynthData概要図。環境診断と能力不足からシステム仕様、利用者タスク、検証器を生成",
+        "caption": "左の対象環境と対象エージェントをAutoSynthへ入力し、右にシステム仕様・利用者タスク・検証器を組にしたサンプルを出力します。データを環境とモデルの需要に合わせる構成です。"
+      }
+    },
+    {
+      "id": "5fb07e744c62",
+      "sourceUrl": "https://www.latent.space/p/airbnb",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!WCQ3!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff41a8dc3-28da-4dbb-9c8c-bc893cb1dada_2048x1152.png",
+      "asset": "/images/radar/inline/5fb07e744c62.webp",
+      "sha256": "a842db2f156f15b9109d80f591261fdd86fdbce872711e5a2e728cd8bd711a7d",
+      "credit": "Latent.Space",
+      "review": "accepted",
+      "zh": {
+        "heading": "Airbnb 的 inside-out AI：组织上下文与上线验证一起建设",
+        "alt": "Airbnb inside-out AI 示意图，内部 Everest 工具支持外部服务上线",
+        "caption": "图中把生鲜配送项目的经验输入内部 Everest 上下文，再复用于机场接送。右侧时长属于公司报告的两个项目案例，不能当作普遍可复现的提速倍数。"
+      },
+      "ja": {
+        "heading": "Airbnb の inside-out AI：組織コンテキストの構築とリリース前検証を並行して推進",
+        "alt": "Airbnbのinside-out AI図。社内Everestツールが外部サービス公開を支援",
+        "caption": "食料品配送の経験を社内Everestの文脈へ取り込み、空港送迎に再利用する流れです。右の所要期間は同社の2事例で、一般に再現できる高速化倍率ではありません。"
+      }
+    },
+    {
+      "id": "9ee788620331",
+      "sourceUrl": "https://www.shopify.com/news/introducing-canvas",
+      "originalImageUrl": "https://cdn.shopify.com/s/files/1/0817/4980/3064/files/260918_CANVAS_PANNING.gif?v=1790787944",
+      "asset": "/images/radar/inline/9ee788620331.webp",
+      "sha256": "019eefdcebd123b81ccc315af092e135f7d9abac5599dfc8bf705c61f1b0ceed",
+      "credit": "Shopify",
+      "review": "accepted",
+      "zh": {
+        "heading": "Shopify Canvas：从逐页编辑转向整店视觉与代码协作",
+        "alt": "Shopify Canvas官方演示静帧，三个店铺页面并排展示",
+        "caption": "这张官方演示静帧将店铺首页、商品页和集合页并排放在同一画布，便于跨页面检查和修改；视觉预览仍需配合功能与一致性验收。"
+      },
+      "ja": {
+        "heading": "Shopify Canvas：ページごとの編集から店舗全体の視覚的・コード協調作業へ",
+        "alt": "Shopify Canvas公式デモの静止画。店舗の3ページを並べて表示",
+        "caption": "公式デモの静止画では、店舗のホーム・商品・コレクションを同じキャンバスに並べ、ページ横断で確認・変更できます。見た目の確認に加え、機能と一貫性の検証が必要です。"
+      }
+    }
+  ]
+}

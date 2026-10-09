@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-06",
+  "visuals": [
+    {
+      "id": "a066e5166530",
+      "sourceUrl": "https://huggingface.co/blog/tiiuae/falcon-emirati",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/659bc8a7b0f43ed69f0b2300/UL3Uy6LFKWEj5fALZ0Sg4.png",
+      "asset": "/images/radar/inline/a066e5166530.webp",
+      "sha256": "63f42672da5706d87e106bcc60d1bae0ca9de0ec0394399916b0745e87c1d302",
+      "credit": "TII，经 Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "Falcon-Emirati-7B：把方言数据与当地文化测试一起设计",
+        "alt": "Falcon-Emirati-7B 与阿拉伯语及多语模型在 Alyah 测试上的对比图",
+        "caption": "图表比较 Falcon-Emirati-7B 与其他模型在 Alyah 测试上的结果；84.83%是该特定文化语言评测的团队报告。"
+      },
+      "ja": {
+        "heading": "Falcon-Emirati-7B：方言データと現地文化テストを統合して設計",
+        "alt": "Falcon-Emirati-7Bとアラビア語・多言語モデルのAlyah評価比較図",
+        "caption": "Falcon-Emirati-7Bと他モデルのAlyah評価を比較する。84.83％は特定の文化・言語テストに関する開発チームの報告値である。"
+      }
+    },
+    {
+      "id": "533fe5e95829",
+      "sourceUrl": "https://hyperframes.heygen.com/studio-app/index",
+      "originalImageUrl": "https://mintcdn.com/hyperframes/_6VyncuVwS2Xkc8Q/public/images/studio-app/home.jpg?fit=max&auto=format&n=_6VyncuVwS2Xkc8Q&q=85&s=2c56b44dd2ac72bfa822533c8e210617",
+      "asset": "/images/radar/inline/533fe5e95829.webp",
+      "sha256": "c21509239be08c4b3b468603ccd4617081aed0c2372dba10a12e7d959ef73fff",
+      "credit": "HeyGen HyperFrames",
+      "review": "accepted",
+      "zh": {
+        "heading": "持续追踪｜HyperFrames Studio：把指点、涂画和批注接到视频编辑",
+        "alt": "HyperFrames Studio 首页，包含创作提示框、项目列表和灵感区域",
+        "caption": "界面显示创作提示框、左侧项目列表和灵感区域，是桌面端可视编辑入口；实际修改仍依赖所连接的编码智能体。"
+      },
+      "ja": {
+        "heading": "継続追跡｜HyperFrames Studio：ポインティング、描画、注釈を動画編集に連携",
+        "alt": "HyperFrames Studioのホーム画面。制作プロンプト欄、プロジェクト一覧、着想エリアを表示",
+        "caption": "制作プロンプト、左側のプロジェクト一覧、着想エリアを備えたデスクトップ編集の入口。実際の変更能力は接続するコーディングエージェントに依存する。"
+      }
+    },
+    {
+      "id": "62c5f956895a",
+      "sourceUrl": "https://a16z.com/100-gen-ai-apps-7/",
+      "originalImageUrl": "https://d1lamhf6l6yk6d.cloudfront.net/uploads/2026/10/In-Paid-U.S.-Subscribers-ChatGPT-Leads-But-Claude-Caught-Gemini.png",
+      "asset": "/images/radar/inline/62c5f956895a.webp",
+      "sha256": "6993bdea5813e46466a36c0a9a1094891661b71ea9fe3e779e9d675fd32336b2",
+      "credit": "a16z / YipitData",
+      "review": "accepted",
+      "zh": {
+        "heading": "a16z 消费 AI 榜单：流量、活跃用户与付费是三种不同信号",
+        "alt": "美国付费AI订阅者对比图，标题指出ChatGPT领先、Claude追上Gemini",
+        "caption": "纵轴是美国消费面板用户中订阅付费服务的占比，展示 ChatGPT、Gemini 与 Claude 的变化；这不是全球收入或全部使用量的统计。"
+      },
+      "ja": {
+        "heading": "a16z 消費者向けAIランキング：トラフィック、アクティブユーザー、課金は異なる3つのシグナル",
+        "alt": "米国の有料AI購読者比較図。ChatGPTが首位でClaudeがGeminiに追いついたと示す",
+        "caption": "縦軸は米国の消費者パネル内で有料サービスを購読する人の割合です。ChatGPT、Gemini、Claudeの推移を示しますが、世界全体の売上や利用量の統計ではありません。"
+      }
+    }
+  ]
+}

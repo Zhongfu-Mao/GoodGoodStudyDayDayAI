@@ -48,6 +48,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-06-infographic.webp
 - 链接：https://huggingface.co/blog/tiiuae/falcon-emirati
 - 摘要：TII 在 Falcon-H1-Arabic 基础上微调 Emirati-7B，组合真实阿联酋方言文本、文化相关的现代标准阿拉伯语材料及词汇约束的合成数据，并加入人工审阅。团队报告在含1,173道题的 Alyah 测试上达到84.83%。这一结果针对具体文化与语言测试，不能推出通用能力全面领先；开放式方言评估还需区分模型裁判与母语者判断，并检查少见词汇和真实场景的表现。
 
+<!-- radar-visual:a066e5166530 -->
+[![Falcon-Emirati-7B 与阿拉伯语及多语模型在 Alyah 测试上的对比图](/images/radar/inline/a066e5166530.webp)](/images/radar/inline/a066e5166530.webp)
+
+*图表比较 Falcon-Emirati-7B 与其他模型在 Alyah 测试上的结果；84.83%是该特定文化语言评测的团队报告。 图片来源：[TII，经 Hugging Face](https://huggingface.co/blog/tiiuae/falcon-emirati)。点击图片查看原尺寸。*
+<!-- /radar-visual:a066e5166530 -->
+
 ## 3. 实战代码 & 工具库
 
 ### 持续追踪｜Claude Code mods：先用练习文件验证拒绝与批准路径
@@ -64,6 +70,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-06-infographic.webp
 - 链接：https://hyperframes.heygen.com/studio-app/index
 - 摘要：在此前 HTML 视频框架之外，Studio 桌面应用增加面向画面的交互：通过文字、指点、涂画或批注告诉智能体修改哪里。官方文档列出 Mac 与 Linux，需要 HeyGen 登录及连接编码智能体；Windows 尚在计划中。新增价值是可视化反馈与本地编辑循环，不是再次介绍渲染引擎。开源核心的许可也不自动覆盖整个桌面服务，实际效果仍取决于智能体配置和逐帧检查。
 
+<!-- radar-visual:533fe5e95829 -->
+[![HyperFrames Studio 首页，包含创作提示框、项目列表和灵感区域](/images/radar/inline/533fe5e95829.webp)](/images/radar/inline/533fe5e95829.webp)
+
+*界面显示创作提示框、左侧项目列表和灵感区域，是桌面端可视编辑入口；实际修改仍依赖所连接的编码智能体。 图片来源：[HeyGen HyperFrames](https://hyperframes.heygen.com/studio-app/index)。点击图片查看原尺寸。*
+<!-- /radar-visual:533fe5e95829 -->
+
 ## 4. 行业与商业快讯
 
 ### a16z 消费 AI 榜单：流量、活跃用户与付费是三种不同信号
@@ -72,6 +84,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-06-infographic.webp
 - 日期：2026-10-05（第七版报告）
 - 链接：https://a16z.com/100-gen-ai-apps-7/
 - 摘要：第七版在网站访问量与移动月活之外，加入 YipitData 的美国银行卡消费面板。报告估算8月有4.5%的美国消费者订阅 ChatGPT、Gemini 或 Claude；消费前10%人群贡献约一半观察到的支出。支付榜前50中有29个产品未进入网站或移动榜，提示高流量不等于高付费。该样本不是全球收入普查，也不能覆盖全部企业采购；比较榜单前，应先核对人口、渠道和指标定义。
+
+<!-- radar-visual:62c5f956895a -->
+[![美国付费AI订阅者对比图，标题指出ChatGPT领先、Claude追上Gemini](/images/radar/inline/62c5f956895a.webp)](/images/radar/inline/62c5f956895a.webp)
+
+*纵轴是美国消费面板用户中订阅付费服务的占比，展示 ChatGPT、Gemini 与 Claude 的变化；这不是全球收入或全部使用量的统计。 图片来源：[a16z / YipitData](https://a16z.com/100-gen-ai-apps-7/)。点击图片查看原尺寸。*
+<!-- /radar-visual:62c5f956895a -->
 
 ### North 2：让技能、记忆和自动化进入企业权限管理
 

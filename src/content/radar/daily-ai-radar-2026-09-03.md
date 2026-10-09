@@ -50,12 +50,24 @@ draft: false
 - 链接：https://research.meta.ai/blog/introducing-muse-spark-1-3
 - 摘要：Meta推出Muse Spark 1.3，重点增强长流程智能体与编程任务中的约束保持能力，能在提示模糊时主动提问澄清，并在执行重大后果操作前请求用户确认。该模型已在Muse Code与Meta API上线。Meta内部工程师对比1.2版本的测试显示，其工具调用减少约20%，Token消耗降低约25%，但这属于厂商自身评测而非行业通用保证。此外，官方明确开放权重属于未来规划，目前尚未正式发布。
 
+<!-- radar-visual:bb5983601e75 -->
+[![Muse Spark 1.3 与其他模型在智能体及编程等维度的基准测试对比记分卡](/images/radar/inline/bb5983601e75.webp)](/images/radar/inline/bb5983601e75.webp)
+
+*图表对比厂商公布的 Muse Spark 1.3 在长程智能体与编程任务上的基准表现，具体通用收益需结合实际评估。 图片来源：[The Rundown AI](https://research.meta.ai/blog/introducing-muse-spark-1-3)。点击图片查看原尺寸。*
+<!-- /radar-visual:bb5983601e75 -->
+
 ### 谷歌发布Gemini 3.8 Flash及安全专属Cyber版本
 
 - 来源：Google
 - 日期：2026-09-02
 - 链接：https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/
 - 摘要：谷歌发布Gemini 3.8 Flash，厂商基准显示其在编程、智能体及复杂推理上表现提升，维持每百万输入0.75美元、输出3.75美元的起步定价。该模型采用多步推理与反复工具调用，高推理强度下可能消耗更多Token，官方未提供全局速度或效率保证。同日推出的Cyber变体与基础版共享底层能力，但防护规则不同，且仅通过Fairwind计划向受信任的防御机构与基建维护方开放。
+
+<!-- radar-visual:238bfca1d74c -->
+[![Gemini 3.8 Flash 与其他模型的性能对比图表](/images/radar/inline/238bfca1d74c.webp)](/images/radar/inline/238bfca1d74c.webp)
+
+*图表展示官方评估中 Gemini 3.8 Flash 在长程软件工程等基准上的表现，展示与高成本前沿模型的相对定位。 图片来源：[Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/)。点击图片查看原尺寸。*
+<!-- /radar-visual:238bfca1d74c -->
 
 ## 3. 实战代码 & 工具库
 
@@ -113,6 +125,12 @@ draft: false
 - 日期：2026-09-02
 - 链接：https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without
 - 摘要：ByteByteGo解析嵌入模型如何影响RAG检索：语义相似并不等于能够回答问题，实体、否定、日期、版本及数值细节都可能造成错配。回答出错时，先检查实际召回的文本块，使用目标领域查询评估检索质量并结合元数据过滤，比直接更换下游大模型更有助于定位问题。
+
+<!-- radar-visual:8eceec14a36c -->
+[![语义搜索空间与问答匹配偏差说明图](/images/radar/inline/8eceec14a36c.webp)](/images/radar/inline/8eceec14a36c.webp)
+
+*图解展示语义向量相似度与实际问答需求间的差异，阐明检索相关片段与准确回答问题之间可能出现的脱节原因。 图片来源：[ByteByteGo](https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without)。点击图片查看原尺寸。*
+<!-- /radar-visual:8eceec14a36c -->
 
 ### The Rundown介绍AI求职“证明项目”五页演示法
 

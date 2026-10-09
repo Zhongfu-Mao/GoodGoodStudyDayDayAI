@@ -6,6 +6,7 @@
 | --- | --- |
 | AI 雷达采编、续跑、审阅、发布 | [雷达工作流](docs/agents/radar.md)，或从 [雷达 skill](skills/ai-radar-low-token/SKILL.md) 进入 |
 | 信息图生成、返工、验收 | [共用事实清单与图片验收](docs/agents/radar-infographics.md) |
+| 日报正文配图、图注与历史回补 | [条目配图与讲解流程](docs/agents/radar-inline-visuals.md) |
 | R2 媒体生成、搬迁、故障处理 | [现有媒体交付与 R2 约束](docs/r2-cost-guardrails.md) |
 | 排查既有失败模式 | [历史案例](docs/agents/lessons.md)，按需读取 |
 

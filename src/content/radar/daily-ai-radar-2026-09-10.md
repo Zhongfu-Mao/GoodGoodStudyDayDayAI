@@ -34,6 +34,12 @@ draft: false
 - 链接：https://blog.dailydoseofds.com/p/momentum-in-ml-explained-visually-342
 - 摘要：文章以损失函数等高线和参数更新轨迹解释动量法：普通梯度下降只看当前梯度，可能在陡峭方向来回震荡；引入历史梯度的移动平均后，可抑制震荡并加快目标方向的更新。动量率仍需调参，过大可能越过极小值，过小则难以体现加速效果；这些示意图不代表所有训练任务都能获得固定提速。
 
+<!-- radar-visual:ca696fc83aee -->
+[![动量法平滑参数更新轨迹示意图](/images/radar/inline/ca696fc83aee.webp)](/images/radar/inline/ca696fc83aee.webp)
+
+*该图展示引入历史梯度的移动平均后，参数在垂直方向的震荡相互抵消，水平方向加速推进，从而平滑优化轨迹并抑制无效震荡。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/momentum-in-ml-explained-visually-342)。点击图片查看原尺寸。*
+<!-- /radar-visual:ca696fc83aee -->
+
 ## 2. 模型前沿 & 算法探索
 
 ### 从GPT-6 Astra看循环Transformer架构与推理链可见性
@@ -43,12 +49,24 @@ draft: false
 - 链接：https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and
 - 摘要：文章探讨了GPT-6 Astra在3D渲染与计算机操作上的表现，并结合Nanbeige与MoR等论文解析了循环Transformer机制。作者强调学术界对权重复用与循环深度的研究不能直接证实Astra采用该专有架构；针对思维链可见性下降的传言，指出较短的中间推理更可能是高能力模型纠错减少的体现，而非循环结构刻意隐藏。
 
+<!-- radar-visual:62739ffd0b58 -->
+[![Nanbeige4.2-3B循环Transformer架构图](/images/radar/inline/62739ffd0b58.webp)](/images/radar/inline/62739ffd0b58.webp)
+
+*图示 Nanbeige4.2-3B 两次使用同一组 22 层权重，以橙色回路说明循环计算；它是公开模型的例子，不是对 Astra 未公开内部结构的确认。 图片来源：[Ahead of AI](https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and)。点击图片查看原尺寸。*
+<!-- /radar-visual:62739ffd0b58 -->
+
 ### OpenAI称多智能体系统找到受平滑外力作用的纳维–斯托克斯奇点证明
 
 - 来源：OpenAI / The Rundown AI
 - 日期：2026-09-10（观察）
 - 链接：https://openai.com/index/navier-stokes-solution/
 - 摘要：OpenAI称，能力强于GPT-6 Astra的内部模型协调约一万个智能体，得到三维不可压缩纳维–斯托克斯方程在平滑外力作用下、保持有限能量而于有限时间形成奇点的解析证明，并公开Lean形式化材料；公司将其归入千禧年问题表述中的C、D情形，称Astra参与了后续形式化与验证。这不是无外力情形的证明；公开材料也不等于独立同行审查或获奖，OpenAI表示无意申领奖项。
+
+<!-- radar-visual:4ce5bd703e68 -->
+[![局部不可压缩漩涡运动轨迹示意图](/images/radar/inline/4ce5bd703e68.webp)](/images/radar/inline/4ce5bd703e68.webp)
+
+*该图展示局部不可压缩运动快照，橙色标记角旋转较快区域，蓝绿色标记较慢区域，轨迹呈现出向内螺旋与轴向拉伸的流动特征。 图片来源：[OpenAI](https://openai.com/index/navier-stokes-solution/)。点击图片查看原尺寸。*
+<!-- /radar-visual:4ce5bd703e68 -->
 
 ## 3. 实战代码 & 工具库
 

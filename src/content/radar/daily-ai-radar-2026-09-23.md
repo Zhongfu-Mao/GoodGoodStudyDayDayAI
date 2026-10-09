@@ -25,12 +25,24 @@ coverImage: /images/radar/daily-ai-radar-2026-09-23-infographic.webp
 - 链接：https://openai.com/index/better-prompt-caching-for-gpt-6/
 - 摘要：OpenAI 称 GPT-6 系列改善了共享前缀的默认缓存命中率，符合条件的前缀在 30 分钟窗口内复用时可享受缓存价格。新增仪表盘与诊断工具可定位模型、工具、设置或输入变化造成的缓存失效；显式断点让开发者选择缓存边界。文中所称最高 90% 的缓存输入折扣取决于实际命中情况，并非每次请求都自动降价。
 
+<!-- radar-visual:90c5e9185e58 -->
+[![提示缓存仪表板展示缓存命中率、随时间的缓存表现以及输入 token 构成](/images/radar/inline/90c5e9185e58.webp)](/images/radar/inline/90c5e9185e58.webp)
+
+*仪表板截图展示提示缓存命中率走势与输入 token 结构图表，用于排查请求变化导致的缓存失效并评估成本表现。 图片来源：[OpenAI](https://openai.com/index/better-prompt-caching-for-gpt-6/)。点击图片查看原尺寸。*
+<!-- /radar-visual:90c5e9185e58 -->
+
 ### Anthropic 公布 AI 研发自动化与 Agent 监督指标：区分协作、主导和完全自治
 
 - 来源：Anthropic
 - 日期：2026-09-22
 - 链接：https://www.anthropic.com/institute/measuring-pace-of-ai-development
 - 摘要：Anthropic 的内部测量称，截至 2026 年 8 月，Claude 在其 26% 的 AI 研发工作中达到“主导”级别，超过 90% 的工作达到至少“协作”级别；在所测范围内，没有任务达到完全自治。文章还披露 Agent 行为监测与研发算力分配口径，并承认分类依赖内部模型、跨实验室尚无统一方法；这些数字不应解读为独立验证的全行业水平。
+
+<!-- radar-visual:b1258c859a14 -->
+[![图表显示 Claude 在 Anthropic 模型研发任务中主导比例达 26%，高于 2026 年 2 月的不足 1%](/images/radar/inline/b1258c859a14.webp)](/images/radar/inline/b1258c859a14.webp)
+
+*图表展示 Anthropic 内部任务自动化评级统计，反映 Claude 在模型研发中主导与协作任务的占比变化，口径依赖内部模型判定。 图片来源：[Anthropic](https://www.anthropic.com/institute/measuring-pace-of-ai-development)。点击图片查看原尺寸。*
+<!-- /radar-visual:b1258c859a14 -->
 
 ## 2. 模型前沿 & 算法探索
 
@@ -72,6 +84,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-23-infographic.webp
 - 日期：2026-09-23
 - 链接：https://lukefan.com/2026/09/23/huawei-ascend-cann-cuda-open-source-ecosystem/
 - 摘要：老范以华为 2026 年全联接大会披露的昇腾 960 路线图和 CANN 开放计划为线索，讨论国产 AI 加速器的竞争重点为何不只是芯片参数，还包括 PyTorch、vLLM、Triton 等软件生态的长期适配。他把开源社区信任、工程维护与训练/推理支持视为关键变量；“跨越生态鸿沟”是其分析判断，并非已独立验证的兼容性结论。
+
+<!-- radar-visual:f84eebdab6b4 -->
+[![三栏纯信息图，显示三级开源接入路径：vllm-ascend 进入主仓库、Triton 分叉并提主线、PyTorch 官网下载页列出昇腾](/images/radar/inline/f84eebdab6b4.webp)](/images/radar/inline/f84eebdab6b4.webp)
+
+*原文用三栏归纳 vLLM、Triton 与 PyTorch 的生态接入路径，强调框架适配与持续维护；图中归纳不等于各硬件场景已获得同等支持。 图片来源：[老范讲故事](https://lukefan.com/2026/09/23/huawei-ascend-cann-cuda-open-source-ecosystem/)。点击图片查看原尺寸。*
+<!-- /radar-visual:f84eebdab6b4 -->
 
 ### Hacktron 披露 OpenAI 历史漏洞链：社区论坛入口影响内部代码访问
 

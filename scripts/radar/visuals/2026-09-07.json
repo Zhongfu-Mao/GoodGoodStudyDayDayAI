@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-07",
+  "visuals": [
+    {
+      "id": "dfa0d3e4b131",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/kv-cache-engineering-for-llm-serving",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!S_5O!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F20ed54e6-a2c7-43b3-be37-82553bf14016_1040x903.png",
+      "asset": "/images/radar/inline/dfa0d3e4b131.webp",
+      "sha256": "c07ab35de78a40ad9ccce744879e38b163667899d926400d09f0bb4a6479077e",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "大模型服务中的KV Cache工程实践解析",
+        "alt": "KV Cache工程技术总览表",
+        "caption": "集中展现12类KV Cache技术，对比其缩减头数、层数、Token数、维度、位宽或重复显存的机制。"
+      },
+      "ja": {
+        "heading": "LLMサービングにおけるKVキャッシュエンジニアリングの体系的解説",
+        "alt": "KVキャッシュ工学技術の一覧表",
+        "caption": "12種類のKVキャッシュ技術をまとめ、ヘッド数・層数・トークン・次元・ビット幅削減の対応を示します。"
+      }
+    },
+    {
+      "id": "cb950efe3921",
+      "sourceUrl": "https://www.anthropic.com/research/formalizing-fermats-last-theorem",
+      "originalImageUrl": "https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2Fafd8e238255ec2654f2322f3d3630dcf1e8ea4ca-6800x3264.png&w=3840&q=75",
+      "asset": "/images/radar/inline/cb950efe3921.webp",
+      "sha256": "01528383f8a4cf5d44a26a3bbdd0ab9cd0faec986f66a3180f7a10178a89f2a2",
+      "credit": "The Rundown AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "Claude多智能体协作完成费马大定理Lean形式化验证",
+        "alt": "Prove2Me形式化费马大定理的关键里程碑有向无环图",
+        "caption": "基于Prove2Me方案的里程碑DAG图，以三个彩色分区展示证明费马大定理沿途的三个核心子定理。"
+      },
+      "ja": {
+        "heading": "Claudeマルチエージェントによるフェルマーの最終定理Lean形式化検証",
+        "alt": "フェルマーの最終定理形式化におけるProve2MeマイルストーンDAG",
+        "caption": "Prove2Me計画のマイルストーンDAGであり、フェルマーの最終定理証明に必要な3つの核心補題を示します。"
+      }
+    },
+    {
+      "id": "bacf3cff0fc0",
+      "sourceUrl": "https://lukefan.com/2026/09/07/openai-anthropic-mac-mini-ai-agent-training/",
+      "originalImageUrl": "https://pictures.lukefan.com/openai-anthropic-mac-mini-ai-agent-training/openai-anthropic-mac-mini-ai-agent-training-02.jpg",
+      "asset": "/images/radar/inline/bacf3cff0fc0.webp",
+      "sha256": "51090e7b4c0f38519e85bc5d4ef0212e3c7e9deb508348b7a961928e12e876a0",
+      "credit": "老范讲故事",
+      "review": "accepted",
+      "zh": {
+        "heading": "分析探讨Mac硬件在电脑使用智能体交互基建中的角色",
+        "alt": "计算机使用智能体屏幕操作与反馈回路示意图",
+        "caption": "图中用截图、键鼠动作和评分构成电脑操作闭环，右侧画出训练节点；下方并列不同年份的基准数字，不能据此直接推算真实工作中的成功率。"
+      },
+      "ja": {
+        "heading": "コンピュータ操作エージェントの実行基盤としてのMac環境に関する考察",
+        "alt": "コンピュータ操作エージェントの画面操作とフィードバック閉ループ図",
+        "caption": "画面取得、マウス・キー操作、評価の循環と学習ノードを示します。下段の異なる年のベンチマーク値から、実務での成功率を直接推定することはできません。"
+      }
+    }
+  ]
+}

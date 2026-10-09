@@ -107,9 +107,21 @@ draft: false
 - リンク：https://blog.dailydoseofds.com/p/where-does-all-the-vram-go-during
 - 要約：今回の図解記事では、推論時のVRAMを重み、KVキャッシュ、アクティベーションとワークスペースのピーク値、およびランタイムオーバーヘッドに分解して解説している。コンテキスト長、並行数、プリフィルバッチによってバジェットは変動し、確保されたキャッシュプールをそのままアクティブなテンソル使用量と見なすこともできない。したがって、モデルがロードできることは実際のワークロードが動作可能であることを意味せず、キャパシティ計画には安全マージンを確保すべきであり、量子化による速度向上の恩恵もカーネルや逆量子化のコストに左右される。
 
+<!-- radar-visual:2aefb44d381a -->
+[![推論時VRAMの内訳図。モデル重みとワークロード全体の占有量を区別する](/images/radar/inline/2aefb44d381a.webp)](/images/radar/inline/2aefb44d381a.webp)
+
+*推論時のVRAMを重み、KVキャッシュ、活性化・作業領域、実行時オーバーヘッドに分けています。文脈長、同時実行数、バッチ数は重み以外の容量にも影響します。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/where-does-all-the-vram-go-during)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:2aefb44d381a -->
+
 ### Every：実験コストは見返りに見合うべきであり、境界のないエージェント協調を削減する
 
 - 出典：Every
 - 日付：2026-09-17
 - リンク：https://every.to/context-window/why-you-should-burn-more-tokens
 - 要約：Everyは、多層エージェントがコンテキストを繰り返し受け渡し、大量のトークンを消費したものの期待に達しなかった実験事例を共有した。チームはその後、オーケストレーションの階層を減らし、サブタスク数を制限し、具体的な目標と人間によるフィードバックの停止点を設定した。記事では、費用、成果、得られた学びを個別に記録し、そのうえで反復タスク向けにより安価なモデルをテストすることを主張している。これはチームの実践例であり、高消費が必ず高いリターンをもたらす証拠ではない。
+
+<!-- radar-visual:b259f846a8be -->
+[![EveryチームのOpenAIトークン使用量ランキング画面](/images/radar/inline/b259f846a8be.webp)](/images/radar/inline/b259f846a8be.webp)
+
+*チーム内で大きく異なるトークン使用量を示す。記事は費用で何を得たかを問うが、順位表だけでは成果の質や投資効果は証明できない。 画像出典：[Every / Laura Entis](https://every.to/context-window/why-you-should-burn-more-tokens)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:b259f846a8be -->

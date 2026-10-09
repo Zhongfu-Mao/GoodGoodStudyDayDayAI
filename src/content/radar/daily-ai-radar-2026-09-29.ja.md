@@ -63,6 +63,12 @@ representativeImageSource: https://www.anthropic.com/claude-sonnet-5-5
 - リンク：https://huggingface.co/blog/transformers-llama-cpp-quants
 - 要約：TransformersはggmlのMetalカーネルを既存の読み込み・生成APIに接続し、対応GGUF重みを圧縮状態で推論できるようにした。初期対象はApple Silicon上のQwen3.5と互換Qwen3.8。対応量子化カーネルがなければ逆量子化でメモリーが増える場合がある。公式速度比較はプリフィルの扱いが異なり、同一条件の評価や全モデル・全端末への対応とは言えない。
 
+<!-- radar-visual:7958e775a0f0 -->
+[![Transformersとllama.cppにおけるGGUF生成スループット比較グラフ](/images/radar/inline/7958e775a0f0.webp)](/images/radar/inline/7958e775a0f0.webp)
+
+*同じM2 MaxでGGUFのスループットを比較しています。注記ではTransformersはプリフィル込みの3回の最高値、llama.cppはデコードのみの3回平均であり、棒の高さだけで同条件の優劣は判断できません。 画像出典：[Hugging Face](https://huggingface.co/blog/transformers-llama-cpp-quants)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:7958e775a0f0 -->
+
 ## 4. 業界 & ビジネス速報
 
 ### AMD、約82億ドルでWorld Labsを買収する契約を締結
@@ -85,6 +91,12 @@ representativeImageSource: https://www.anthropic.com/claude-sonnet-5-5
 - 日付：2026-09-29
 - リンク：https://lukefan.com/2026/09/29/human-sandwich-ai-delegation-growth/
 - 要約：老范は「人間—AI—人間」という分業を論じる。人が方向を決め、AIが実行し、人が結果を判断する。ただし定型業務の委任だけで新たな責任や成長機会が生まれるわけではない。管理者には事業判断、人材育成、結果への責任を残すべきだとする。組織の動機付けに関する論考であり、AIと雇用変化の因果関係を証明する研究ではない。
+
+<!-- radar-visual:ca3976a88774 -->
+[![人間とAIの役割分担を示す3層サンドイッチ構造図](/images/radar/inline/ca3976a88774.webp)](/images/radar/inline/ca3976a88774.webp)
+
+*「人間・AI・人間」の協業構造を示し、上流の方針策定と下流の検証を人間が担い、中間でAIが作業を実行する分担を描いています。 画像出典：[老范讲故事](https://lukefan.com/2026/09/29/human-sandwich-ai-delegation-growth/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:ca3976a88774 -->
 
 ## 5. GitHub 人気 repo & トレンド追跡
 
@@ -117,3 +129,9 @@ representativeImageSource: https://www.anthropic.com/claude-sonnet-5-5
 - 日付：2026-09-28
 - リンク：https://blog.bytebytego.com/p/ai-agents-can-think-now-they-can
 - 要約：ByteByteGoは既存のMachine Payments Protocolを解説する。HTTP 402で支払い要求を示し、資格情報と領収情報を交換して、サービス呼び出しに機械可読の決済手順を組み込む。エージェントの権限には金額・受取先・期限などの制限が必要だ。本人性や購入判断を代替せず、返金・紛争処理も決済手段に依存する。自動処理は無制限の支出許可ではない。
+
+<!-- radar-visual:85896cb044b2 -->
+[![機械決済プロトコルMPPの処理フロー図](/images/radar/inline/85896cb044b2.webp)](/images/radar/inline/85896cb044b2.webp)
+
+*矢印は要求、402の支払条件、条件確認、支払証明の送信、検証・決済、領収情報の返却を示します。機械間の手順は、個別取引に対する利用者の承認を代替しません。 画像出典：[ByteByteGo](https://blog.bytebytego.com/p/ai-agents-can-think-now-they-can)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:85896cb044b2 -->

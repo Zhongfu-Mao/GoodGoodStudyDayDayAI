@@ -37,6 +37,12 @@ representativeImageSource: https://every.to/source-code/why-we-handed-our-agent-
 - リンク：https://www.uber.com/in/en/blog/designing-mcp-gateway/
 - 要約：Uberは、800以上のMCPサービスと5,000以上のツールをホストする内部ゲートウェイを紹介しました。AutoCrawlerがIDLやネイティブサービスからツールを検出し、Registryが所有権を管理し、Proxyが呼び出しをHTTP、gRPC、またはTChannelに変換します。新しいツールはデフォルトで無効化され、定義の変更にはサービス所有者のレビューが必要です。Omni MCPは「サービス検索→ツール検索→スキーマ取得→呼び出し」の手順で段階的に開示し、Response Projectionは必要なフィールドのみを返し、Code Modeは大規模な結果をファイルに書き込んで選択的に読み取れるようにします。集中的な検出は自動的な認可を意味するものではなく、記事内の内部実装や運用実績も、これらの機能が一般的なオープンソース製品として提供されていることを示すものではありません。
 
+<!-- radar-visual:uber -->
+[![Uber MCP Gatewayのツール検出・所有者レビュー・同期フロー](/images/radar/daily-ai-radar-2026-10-09-uber.webp)](/images/radar/daily-ai-radar-2026-10-09-uber.webp)
+
+*左上から下へ：AutoCrawlerによる検出後、所有者のレビューを経てRegistryへ登録され、ゲートウェイに同期されます。自動検出と承認・有効化は別の段階です。 画像出典：[Uber Engineering](https://www.uber.com/in/en/blog/designing-mcp-gateway/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:uber -->
+
 ## 2. モデル最前線 & アルゴリズム探索
 
 ### GPT-6 Intelligent UI：モデルが回答形式を選択し、コンパイラが段階的にUIを描画
@@ -62,6 +68,12 @@ representativeImageSource: https://every.to/source-code/why-we-handed-our-agent-
 - リンク：https://blog.google/innovation-and-ai/models-and-research/google-deepmind/synth-id-ai-content/
 - 要約：GoogleはSynthID Detectorの英語版を世界に向けて一般公開しました。画像、動画、音声に含まれる知覚できない電子透かしを検査でき、Googleおよび記載された提携先による生成コンテンツの一部をカバーしています。Appleのサポートは発表時点では今後の計画にとどまっています。透かし検証が答えるのは「サポートされている生成マーカーが検出されたかどうか」であり、検出されなかった結果をもってファイルが必ず人間によって作成されたと判断することはできず、画像が描写する事象が真実であるかを検証するものでもありません。これはメディアの出所判断を補完するものであり、一次記録やコンテキストの確認を代替するものではありません。
 
+<!-- radar-visual:synthid -->
+[![アライグマの動画例でGoogle AIの透かしを検出したSynthID Detectorの公式画面](/images/radar/daily-ai-radar-2026-10-09-synthid.webp)](/images/radar/daily-ai-radar-2026-10-09-synthid.webp)
+
+*右側に「SynthIDを検出」と表示され、下のタイムラインに検出結果が示されています。Google公開のデモ画面です。生成マーカーの検出は出来事の真偽の検証ではなく、未検出も人間による制作の証明にはなりません。 画像出典：[Google](https://blog.google/innovation-and-ai/models-and-research/google-deepmind/synth-id-ai-content/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:synthid -->
+
 ### Restock：決済ツール、認証情報、ユーザー承認を分離してSlackエージェントに統合
 
 - 出典：LangChain engineering / Stripe
@@ -85,6 +97,12 @@ representativeImageSource: https://every.to/source-code/why-we-handed-our-agent-
 - リンク：https://www.langchain.com/blog/how-snyk-turned-an-internal-support-agent-into-a-customer-feature
 - 要約：Snykはまず社内サポートチームで試用し、続いてサポートポータルを開放、最終的に有料顧客向けの製品インターフェースにAssistを組み込みました。Slack、Web、APIで同一のLangGraphランタイムを共有し、ツールはログインユーザーの権限に応じて登録され、会話状態はPostgreSQLに保存されます。実際のQ&A、レッドチームテスト、オンラインの実行トレースによって評価ループを構成し、合意されたしきい値に達しない変更はリリースできません。チームの報告によると、2026年4月の顧客向け公開以降、6万件以上のクエリを処理し、500以上のアカウントをカバーし、85%以上のセッションでサポートチケットが作成されませんでした。チケットが作成されなかったことはすべての回答が正確であったことを意味するものではなく、この数値は依然としてチーム自身が報告した特定の運用指標です。
 
+<!-- radar-visual:snyk -->
+[![Snyk Assistの構成：3つの入口から権限・安全性チェックを経て共通ランタイムへ](/images/radar/daily-ai-radar-2026-10-09-snyk.webp)](/images/radar/daily-ai-radar-2026-10-09-snyk.webp)
+
+*上部の3つの入口がID・権限チェックに合流する点と、下部の破線のツール枠に注目してください。これらはユーザーに対応する権限やライセンスがある場合のみ利用可能です。右側はトレース・評価とPostgreSQLの会話状態に接続します。 画像出典：[LangChain / Snyk](https://www.langchain.com/blog/how-snyk-turned-an-internal-support-agent-into-a-customer-feature)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:snyk -->
+
 ## 5. GitHub 人気 repo & トレンド追跡
 
 ### anthropics/knowledge-work-plugins：職種別の手順、ツール接続、明示的なコマンドをプラグインにまとめる
@@ -100,6 +118,12 @@ representativeImageSource: https://every.to/source-code/why-we-handed-our-agent-
 - 日付：2026-10-09（メインランキングのトレンド観測）
 - リンク：https://github.com/storytold/artcraft
 - 要約：メインランキングでは当日に2,103スターが追加されました。ArtCraftはAI画像・動画制作を対話的な作業台として構成します。2Dレイヤー、マスク、部分編集で画面領域を制御し、3Dの場面配置、物体のポーズ、カメラ位置で先に場面を制約してから選択したモデルを呼び出します。画像からのロケーションやメッシュ作成、キャラクターのポーズ誘導に対応し、視覚的な構造で文章の指示を補います。Windows・macOSの安定版と、Linuxを含むソースビルドの説明を提供しています。モデル一覧には無効化・制限された項目もあり、掲載名がすべてデスクトップで直ちに使えることや、キャラクターの一貫性が常に保証されることを意味しません。
+
+<!-- radar-visual:artcraft -->
+[![ArtCraft公式デモの3Dキャラクターポーズ操作画面](/images/radar/daily-ai-radar-2026-10-09-artcraft.webp)](/images/radar/daily-ai-radar-2026-10-09-artcraft.webp)
+
+*キャラクターの関節点と上部の移動・回転・拡縮ツールが、生成前のポーズ制御を示します。リポジトリのデモからの静止画であり、生成結果で常にキャラクターの一貫性が保たれることを保証するものではありません。 画像出典：[ArtCraft](https://github.com/storytold/artcraft)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:artcraft -->
 
 ## 📬 Newsletter 精選
 

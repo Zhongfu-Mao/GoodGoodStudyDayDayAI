@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "date": "2026-09-01",
+  "visuals": [
+    {
+      "id": "510de74b2371",
+      "sourceUrl": "https://runway.com/news/research/introducing-solaris",
+      "originalImageUrl": "https://d3phaj0sisr2ct.cloudfront.net/site/assets/solaris-eval-reconstruction-strip-1.webp",
+      "asset": "/images/radar/inline/510de74b2371.webp",
+      "sha256": "2641453f836043923660ffeeb2fdb3e0b3d50a2dfaaa6a20325e9d1ecc558b6a",
+      "credit": "Runway",
+      "review": "accepted",
+      "zh": {
+        "heading": "Solaris 用实时视频生成可交互界面",
+        "alt": "普通产品网页与各多模态模型重建效果的并列对比",
+        "caption": "画面展示原始普通产品网页与多模态模型重建效果的并列对比，反映厂商测试各模型从单张截图中复原网页界面外观的保真度评估。"
+      },
+      "ja": {
+        "heading": "Solarisはリアルタイム動画で対話型UIを生成する",
+        "alt": "標準的な製品ウェブページと各マルチモーダルモデルによる再構成の並列比較",
+        "caption": "元の製品ウェブページと各マルチモーダル言語モデルによる再構成結果の並列比較であり、単一のスクリーンショットからインターフェースを再現するベンダー評価の忠実度検証を示しています。"
+      }
+    },
+    {
+      "id": "9a9eb1e1ba57",
+      "sourceUrl": "https://lukefan.com/2026/09/01/china-us-ai-controls-models-chips/",
+      "originalImageUrl": "https://pictures.lukefan.com/china-us-ai-controls-models-chips/china-us-ai-controls-models-chips-02.jpg",
+      "asset": "/images/radar/inline/9a9eb1e1ba57.webp",
+      "sha256": "eea9fdb58c39ef2235381c50de032ce0288d7cbe07bb29722b0bf1aa3c092f9e",
+      "credit": "老范讲故事",
+      "review": "accepted",
+      "zh": {
+        "heading": "行业评论关注 AI 跨境业务的合规与资金成本",
+        "alt": "围绕模型核心、训练数据、芯片图纸和企业握手符号展开的四个并列抽象监管闸门信息图",
+        "caption": "原文用模型、数据、芯片和企业合作四种符号解释评论中的监管对象；透明闸门表示作者讨论的未落地措施，这张概念图不能替代具体法规核查。"
+      },
+      "ja": {
+        "heading": "業界論評はAI越境ビジネスのコンプライアンスと資金コストに注目する",
+        "alt": "モデルコア、訓練データ、チップ設計図、企業握手記号を巡る4つの並列抽象規制ゲートのインフォグラフィック",
+        "caption": "原文はモデル、データ、半導体、企業間協力の4種類の記号で論評の対象を整理しています。半透明の門は著者が論じる未実施の措置を表し、具体的な法令確認に代わる図ではありません。"
+      }
+    }
+  ],
+  "exception": "Only two source entries provide relevant visual material; the ads source supplies unrelated recommendation art. Retain the interface comparison and the explicitly attributed conceptual illustration."
+}

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-10",
+  "visuals": [
+    {
+      "id": "ca696fc83aee",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/momentum-in-ml-explained-visually-342",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!tPzJ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcfc713f4-2694-40a5-bec7-479918935eda_693x352.png",
+      "asset": "/images/radar/inline/ca696fc83aee.webp",
+      "sha256": "57a4c3e6239d7ddd42f23f8ed76431839a8359c27525e8860cb19c48a8a77908",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "动量法如何抑制梯度下降震荡并加速训练",
+        "alt": "动量法平滑参数更新轨迹示意图",
+        "caption": "该图展示引入历史梯度的移动平均后，参数在垂直方向的震荡相互抵消，水平方向加速推进，从而平滑优化轨迹并抑制无效震荡。"
+      },
+      "ja": {
+        "heading": "モメンタム法は勾配降下の振動をどう抑え、学習を速めるか",
+        "alt": "モメンタム法によるパラメータ更新軌道の平滑化を示す図",
+        "caption": "過去の勾配の移動平均を考慮することで垂直方向の振動が相殺され、水平方向への進行が加速して最適化軌道が平滑化される様子を示しています。"
+      }
+    },
+    {
+      "id": "62739ffd0b58",
+      "sourceUrl": "https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!v0Tz!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd41d18af-38d4-4925-97c3-175a1b9443cd_2682x2664.png",
+      "asset": "/images/radar/inline/62739ffd0b58.webp",
+      "sha256": "0588c7a9a4b9dc743dec38d0c5b985549d72aadc55a34962ec106a50f94318fa",
+      "credit": "Ahead of AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "从GPT-6 Astra看循环Transformer架构与推理链可见性",
+        "alt": "Nanbeige4.2-3B循环Transformer架构图",
+        "caption": "图示 Nanbeige4.2-3B 两次使用同一组 22 层权重，以橙色回路说明循环计算；它是公开模型的例子，不是对 Astra 未公开内部结构的确认。"
+      },
+      "ja": {
+        "heading": "GPT-6 Astraから見る循環型Transformer構造と推論チェーンの可視性",
+        "alt": "Nanbeige4.2-3Bのループ型Transformerアーキテクチャ図",
+        "caption": "Nanbeige4.2-3Bが同じ22層の重みを2回使う構造を、オレンジのループで示します。公開モデルの例であり、Astraの非公開構造を確認する図ではありません。"
+      }
+    },
+    {
+      "id": "4ce5bd703e68",
+      "sourceUrl": "https://openai.com/index/navier-stokes-solution/",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/75EbpsuBOy5LbUgCppWXD1/88da8c19dcf76d6f4f8fd7485dcb6346/navier-stokes-light-master.png?w=3840&q=90&fm=webp",
+      "asset": "/images/radar/inline/4ce5bd703e68.webp",
+      "sha256": "df5e7a1f7aba6bc0314e288a328ddfda60a0a3633909aa01e21564c89a033167",
+      "credit": "OpenAI",
+      "review": "accepted",
+      "zh": {
+        "heading": "OpenAI称多智能体系统找到受平滑外力作用的纳维–斯托克斯奇点证明",
+        "alt": "局部不可压缩漩涡运动轨迹示意图",
+        "caption": "该图展示局部不可压缩运动快照，橙色标记角旋转较快区域，蓝绿色标记较慢区域，轨迹呈现出向内螺旋与轴向拉伸的流动特征。"
+      },
+      "ja": {
+        "heading": "OpenAI、滑らかな外力下のナビエ・ストークス特異点を示す証明を主張",
+        "alt": "局所的な非圧縮性渦運動の軌跡を示す図",
+        "caption": "非圧縮性流体の局所運動を示し、オレンジ色が高速、青緑色が低速の角回転を表し、内側への螺旋と軸方向の引き伸ばし軌跡が描かれています。"
+      }
+    }
+  ]
+}

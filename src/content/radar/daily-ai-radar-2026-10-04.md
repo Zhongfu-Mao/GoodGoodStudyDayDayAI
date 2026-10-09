@@ -31,6 +31,12 @@ representativeImageSource: https://huggingface.co/blog/microsoft/thinkingbox
 - 链接：https://huggingface.co/blog/microsoft/thinkingbox
 - 摘要：Microsoft 的 ThinkingBox 在507个有状态业务任务上各运行20次，通过可执行检查核对最终记录、必要变化与额外副作用，并经 OpenEnv 开放。一次成功、20次中至少成功一次、实测20次全部成功是不同指标，不能混用。研究中的常见集消融显示，失败尝试中67.24%仍正常结束、调用了修改状态的工具且没有最终工具报错；这一比例针对失败尝试，不是全部任务。
 
+<!-- radar-visual:ed57a02773da -->
+[![ThinkingBox 流程图，智能体使用隔离的MCP会话后由检查器核对最终状态和副作用](/images/radar/inline/ed57a02773da.webp)](/images/radar/inline/ed57a02773da.webp)
+
+*流程图展示智能体连接隔离的 MCP 工具会话，随后由可执行检查核对最终后端状态和副作用；工具调用成功不等于任务完成。 图片来源：[Microsoft / Hugging Face](https://huggingface.co/blog/microsoft/thinkingbox)。点击图片查看原尺寸。*
+<!-- /radar-visual:ed57a02773da -->
+
 ### Simon Willison：智能体调用服务需要硬预算上限，而非只有提醒
 
 - 来源：Simon Willison
@@ -111,9 +117,21 @@ representativeImageSource: https://huggingface.co/blog/microsoft/thinkingbox
 - 链接：https://blog.dailydoseofds.com/p/how-work-is-organized-inside-a-gpu
 - 摘要：通讯按 kernel、grid、thread block、warp 和 SM 解释工作组织。以 NVIDIA CUDA 的32线程 warp 为例，256线程 block 分成8个 warp；同一 warp 的分支分歧会让不同路径分批执行。调度器在一个 warp 等待内存时运行其他就绪 warp，隐藏而非消除延迟。32线程不是所有 GPU 的通用常数，单靠增大批量也不保证效率，应同时考虑寄存器、共享内存与驻留工作量。
 
+<!-- radar-visual:6d8cd7d6b129 -->
+[![GPU并行工作不足与充足时的SM利用率对比](/images/radar/inline/6d8cd7d6b129.webp)](/images/radar/inline/6d8cd7d6b129.webp)
+
+*左图因可并行工作不足，部分 SM 闲置且内存等待会造成停顿；右图有更多就绪 warp 可供调度，说明高吞吐依赖足够的独立工作。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/how-work-is-organized-inside-a-gpu)。点击图片查看原尺寸。*
+<!-- /radar-visual:6d8cd7d6b129 -->
+
 ### The Batch：开放模型的网络能力扩散，更要求加快防御工程
 
 - 来源：The Batch / DeepLearning.AI
 - 日期：2026-10-02
 - 链接：https://www.deeplearning.ai/the-batch/issue-373
 - 摘要：Andrew Ng 的来信讨论开放模型带来的攻防能力扩散，主张用更好的隔离、监测与根因修复加快防御。其引用的 Anthropic 测试中，GLM-5.3 与 Mythos 在部分 ExploitBench 任务、可比 token 条件下成功率为12%和14%；另一份全基准报告的54.4%和78.0%不能直接混为同一对照。防守长期占优是作者判断，不是已经消除攻击窗口或证明系统安全。
+
+<!-- radar-visual:9abe34f2141f -->
+[![ExploitBench 对比图，在可比token条件下显示GLM-5.3与Claude Mythos Preview的成功率](/images/radar/inline/9abe34f2141f.webp)](/images/radar/inline/9abe34f2141f.webp)
+
+*图表在可比 token 条件下给出部分 ExploitBench 任务的12%与14%成功率；它不能与另一份全基准结果直接混用。 图片来源：[DeepLearning.AI / Anthropic](https://www.deeplearning.ai/the-batch/issue-373)。点击图片查看原尺寸。*
+<!-- /radar-visual:9abe34f2141f -->

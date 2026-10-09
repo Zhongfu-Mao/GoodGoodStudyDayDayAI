@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "date": "2026-09-09",
+  "visuals": [
+    {
+      "id": "7e3f4287c6be",
+      "sourceUrl": "https://arxiv.org/abs/2607.02510",
+      "originalImageUrl": "https://arxiv.org/html/2607.02510v1/plots/monitors_compared_math_transposed.png",
+      "asset": "/images/radar/inline/7e3f4287c6be.webp",
+      "sha256": "ec86c8242a369da1d97beb9e37f065d91388f1509d1d878d01533428c01f5c1c",
+      "credit": "CRC Monitor 论文作者",
+      "review": "accepted",
+      "zh": {
+        "heading": "基于风险控制阈值的 LLM 实时安全监控研究",
+        "alt": "MATH 数据上的监控误报率、检出能力与延迟",
+        "caption": "论文将误报控制、检出能力与报警延迟分别作图；读图时需同时看风险目标与检测效果，较早报警并不表示无条件安全。"
+      },
+      "ja": {
+        "heading": "リスク制御閾値に基づく LLM リアルタイム安全性監視",
+        "alt": "MATHデータにおける誤警報率・検出力・検出遅延",
+        "caption": "論文は誤警報の制御、検出力、警報遅延を別々に示しています。リスク目標と検出性能を合わせて読む必要があり、早い警報は無条件の安全を意味しません。"
+      }
+    },
+    {
+      "id": "d356959704e2",
+      "sourceUrl": "https://github.com/cathrynlavery/diagram-design",
+      "originalImageUrl": "https://raw.githubusercontent.com/cathrynlavery/diagram-design/4451eadc484d76aa860edf3289c16fcd082dcdbf/docs/screenshots/thumbs/architecture.webp",
+      "asset": "/images/radar/inline/d356959704e2.webp",
+      "sha256": "0b58e497e1da9ecd707984b9aa9efaf7318d4cb075e78377dbbdba1b6948e93c",
+      "credit": "diagram-design",
+      "review": "accepted",
+      "zh": {
+        "heading": "diagram-design：面向 AI 编程助手的 39 种编辑级图表技能库",
+        "alt": "diagram-design 内容站点架构示例",
+        "caption": "项目 9 月 3 日版本的示例连接浏览器、Cloudflare、Astro 与内容源；不同箭头区分请求和返回，展示架构模板如何表达组件关系。"
+      },
+      "ja": {
+        "heading": "diagram-design：AI コーディング支援向け 39 種のエディトリアル図表スキル",
+        "alt": "diagram-designのコンテンツサイト構成例",
+        "caption": "9月3日時点の例はブラウザ、Cloudflare、Astro、コンテンツ源を接続しています。要求と応答を異なる矢印で示し、構成テンプレートで要素間の関係を表す例です。"
+      }
+    }
+  ],
+  "exception": "Expanded source search recovered a paper figure and a GitHub example pinned to a pre-issue commit. Other accessible source images are tracking pixels, unrelated recommendations or logos; Nature redirects to identity transit. Retain two verified visuals."
+}

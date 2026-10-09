@@ -48,6 +48,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-06.ja-infographic.webp
 - リンク：https://huggingface.co/blog/tiiuae/falcon-emirati
 - 要約：TIIはFalcon-H1-ArabicをベースにEmirati-7Bをファインチューニングし、実際のUAE方言テキスト、文化に関連する現代標準アラビア語資料、および語彙制約付きの合成データを組み合わせ、人手によるレビューを追加しました。チームは1,173問からなるAlyahテストで84.83%を達成したと報告しています。この結果は特定の文化・言語テストに対するものであり、汎用能力が全面的に優れていると結論付けることはできません。オープンエンドな方言評価では、モデルジャッジと母語話者の判断を区別し、希少な語彙や実際の利用シーンにおける性能を確認する必要があります。
 
+<!-- radar-visual:a066e5166530 -->
+[![Falcon-Emirati-7Bとアラビア語・多言語モデルのAlyah評価比較図](/images/radar/inline/a066e5166530.webp)](/images/radar/inline/a066e5166530.webp)
+
+*Falcon-Emirati-7Bと他モデルのAlyah評価を比較する。84.83％は特定の文化・言語テストに関する開発チームの報告値である。 画像出典：[TII，经 Hugging Face](https://huggingface.co/blog/tiiuae/falcon-emirati)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:a066e5166530 -->
+
 ## 3. 実践コード & ツールライブラリ
 
 ### 継続追跡｜Claude Code mods：まずは練習用ファイルで拒絶と承認のパスを検証
@@ -64,6 +70,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-06.ja-infographic.webp
 - リンク：https://hyperframes.heygen.com/studio-app/index
 - 要約：従来のHTML動画フレームワークに加え、Studioデスクトップアプリは画面に対するインタラクションを追加しました。テキスト、ポインティング、描画、または注釈を通じて、変更箇所をエージェントに指示できます。公式ドキュメントにはMacとLinuxが記載されており、HeyGenへのログインとコーディングエージェントの接続が必要です。Windows対応は計画段階です。新たに追加された価値は視覚的フィードバックとローカル編集ループであり、レンダリングエンジンの再紹介ではありません。オープンソースコアのライセンスもデスクトップサービス全体を自動的にカバーするわけではなく、実際の効果はエージェントの設定やフレームごとの確認に依存します。
 
+<!-- radar-visual:533fe5e95829 -->
+[![HyperFrames Studioのホーム画面。制作プロンプト欄、プロジェクト一覧、着想エリアを表示](/images/radar/inline/533fe5e95829.webp)](/images/radar/inline/533fe5e95829.webp)
+
+*制作プロンプト、左側のプロジェクト一覧、着想エリアを備えたデスクトップ編集の入口。実際の変更能力は接続するコーディングエージェントに依存する。 画像出典：[HeyGen HyperFrames](https://hyperframes.heygen.com/studio-app/index)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:533fe5e95829 -->
+
 ## 4. 業界 & ビジネス速報
 
 ### a16z 消費者向けAIランキング：トラフィック、アクティブユーザー、課金は異なる3つのシグナル
@@ -72,6 +84,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-06.ja-infographic.webp
 - 日付：2026-10-05（第7版レポート）
 - リンク：https://a16z.com/100-gen-ai-apps-7/
 - 要約：第7版では、ウェブサイト訪問数とモバイルMAUに加え、YipitDataの米国クレジットカード支出パネルが導入されました。レポートの推計によると、8月時点で米国消費者の4.5%がChatGPT、Gemini、またはClaudeを購読しており、支出上位10%の層が観測された総支出の約半分を占めています。決済ランキング上位50件中29製品はウェブまたはモバイルのランキングに入っておらず、高トラフィックが高い課金額を意味しないことを示しています。このサンプルは世界全体の収益調査ではなく、すべての法人調達を網羅するものでもありません。ランキングを比較する前に、対象人口、チャネル、指標の定義を確認する必要があります。
+
+<!-- radar-visual:62c5f956895a -->
+[![米国の有料AI購読者比較図。ChatGPTが首位でClaudeがGeminiに追いついたと示す](/images/radar/inline/62c5f956895a.webp)](/images/radar/inline/62c5f956895a.webp)
+
+*縦軸は米国の消費者パネル内で有料サービスを購読する人の割合です。ChatGPT、Gemini、Claudeの推移を示しますが、世界全体の売上や利用量の統計ではありません。 画像出典：[a16z / YipitData](https://a16z.com/100-gen-ai-apps-7/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:62c5f956895a -->
 
 ### North 2：スキル、メモリ、自動化を企業の権限管理下に統合
 

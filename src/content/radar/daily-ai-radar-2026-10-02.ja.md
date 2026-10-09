@@ -38,6 +38,12 @@ representativeImageSource: https://blog.google/innovation-and-ai/models-and-rese
 - リンク：https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness
 - 要約：Open SWEはスレッド最初の要求に基づいて高速、バランス、または高性能モデルを選択し、ルーティングロジックは汎用ゲートウェイではなくタスクのコンテキストを把握するmiddleware内に配置されています。973スレッドのA/Bテストでは、常に最強モデルを使用する対照群と比較して、ルーティング群のスレッドあたりコスト中央値が64%減少しました。マージされたPRの割合は29.2%と27.3%で、その差は統計的有意差に達していません。マージ率は品質の代理指標にすぎず、品質が完全に同等であることを証明するものではありません。現在の実装ではスレッド全体でモデルが固定されており、処理途中での再ルーティングやサブエージェント単位のルーティングは今後の課題にとどまります。
 
+<!-- radar-visual:29bdfe742da6 -->
+[![スレッド当たりLLM費用のバイオリン図。常時GPT-6 Astraと高速・均衡・高性能ルーティングを比較](/images/radar/inline/29bdfe742da6.webp)](/images/radar/inline/29bdfe742da6.webp)
+
+*対数軸でスレッド当たり費用を比較し、中央値はルーター群0.94ドル、対照群2.61ドル。64％減は973スレッドの特定実験結果である。 画像出典：[LangChain](https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:29bdfe742da6 -->
+
 ## 2. モデル最前線 & アルゴリズム探索
 
 ### Gemini 4 Argonはまず信頼できるサイバー防衛チーム向けに公開
@@ -53,6 +59,12 @@ representativeImageSource: https://blog.google/innovation-and-ai/models-and-rese
 - 日付：2026-10-01
 - リンク：https://huggingface.co/blog/allenai/olmocore3
 - 要約：AllenAIはエキスパート並列、パイプライン並列、および分散オプティマイザを刷新し、エキスパートをGPUに常駐させてトークンをそこへルーティングすることで、重みの反復集約を削減しました。トークンあたり約32億のアクティブパラメータを維持し、毎回4つのエキスパートを選択するテストにおいて、エキスパート数を8から128に増やし、総パラメータ数を46億から470億に増やした際のスループット低下は5%未満にとどまりました。記事では1兆パラメータシステムのテストも報告されていますが、ランダムルーティングが使用されており、2.38兆パラメータの設定は短期的なキャパシティ試験にすぎません。今回オープン化されたのはトレーニングシステムであり、すでに学習が完了し一定の品質に達した新しいOlmoモデルではありません。
+
+<!-- radar-visual:c145d89b8c38 -->
+[![Olmo-core 3のエキスパートプール拡張と訓練スループット比較図](/images/radar/inline/c145d89b8c38.webp)](/images/radar/inline/c145d89b8c38.webp)
+
+*MoEの専門家プール拡大時の規模と訓練スループットを比較する。8から128専門家への拡大で低下5％未満という値は、この試験条件に限られる。 画像出典：[Allen Institute for AI，经 Hugging Face](https://huggingface.co/blog/allenai/olmocore3)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:c145d89b8c38 -->
 
 ## 3. 実践コード & ツールライブラリ
 
@@ -110,6 +122,12 @@ representativeImageSource: https://blog.google/innovation-and-ai/models-and-rese
 - 日付：2026-10-01
 - リンク：https://blog.dailydoseofds.com/p/building-a-production-agent-harness
 - 要約：このチュートリアルでは、LangGraphとJevを用いて、リトライ、フォールバック、呼び出し予算、および人手による書き込み承認を備えたエージェント実行フレームワークを構築し、計画に完了条件を設定します。検証は3層に分かれています。決定論的なエビデンスチェックで明らかな失敗をまず防ぎ、Jevが確率的に確信度の高い判断を処理し、独立したLLMが不確実な領域を再検証します。停滞した場合は修復または再計画を行い、検証済みの結論のみをメモリに書き込みます。確率は制御フロー内のシグナルであり、権限付与や人間の承認を代替するものではありません。また、チュートリアル内の実行可能なリファレンス実装は、任意の商用環境がすでにセキュリティ承認を通過したことを意味するものではありません。
+
+<!-- radar-visual:4cd020d2f867 -->
+[![決定論的検査・確率判定・LLM再確認・人の承認の階層フロー](/images/radar/inline/4cd020d2f867.webp)](/images/radar/inline/4cd020d2f867.webp)
+
+*上から決定論的検査、Jevの確率判定、独立LLMの再確認へ進みます。最下段には外部への影響に対する人の承認も残され、内容判断と実行許可を分けています。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/building-a-production-agent-harness)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:4cd020d2f867 -->
 
 ### Every：オープンモデルの選択はタスク、デプロイ先、保守負担を同時に考慮すべき
 

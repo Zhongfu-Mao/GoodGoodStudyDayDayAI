@@ -25,12 +25,24 @@ coverImage: /images/radar/daily-ai-radar-2026-10-05-infographic.webp
 - 链接：https://claude.dev/blog/getting-started-with-claude-code-mods/
 - 摘要：Mods 以 JavaScript 或 TypeScript 模块注册事件处理器，像中间件一样观察、改写或拒绝工具调用，也能维护会话状态、注册命令并绘制实时界面。它不同于每次事件都启动 shell 的 settings hook：模块加载后留在会话中。指南要求 Claude Code 2.1.287及以上；API可能随版本变化，应以本机生成的类型声明为准。扩展能拦截动作，不等于已经验证任意插件的安全性。
 
+<!-- radar-visual:37da4bfb17e2 -->
+[![终端中的 Blast Radius 提示框，列出 git reset --hard 可能丢失的文件并提供继续或取消选项](/images/radar/inline/37da4bfb17e2.webp)](/images/radar/inline/37da4bfb17e2.webp)
+
+*终端界面在执行 git reset --hard 前列出可能丢失的未提交文件，并要求继续或取消；文章说明它只是提示层。 图片来源：[Claude Code](https://claude.dev/blog/getting-started-with-claude-code-mods/)。点击图片查看原尺寸。*
+<!-- /radar-visual:37da4bfb17e2 -->
+
 ### Matthew Green：沙箱之外，还要审查智能体接收指令的通道
 
 - 来源：Simon Willison / Matthew Green
 - 日期：2026-09-30（原文）；2026-10-01（引用讨论）
 - 链接：https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/
 - 摘要：Green 分析隔离与信息访问之间的矛盾：即使进程各自留在沙箱中，共享包缓存、邮件或协作文档仍可能传递改变其他智能体目标的文本。其担忧不是“沙箱无用”，而是隔离边界不能替代对指令来源、授权与数据流的核验。把这种路径类比为蠕虫，是作者的风险分析，不是已经发现生产环境大规模传播的结论。
+
+<!-- radar-visual:0fee3d7a215e -->
+[![智能体安全架构示意图，紫色区域标出沙箱外的分类器与确定性 Sentinel 组件](/images/radar/inline/0fee3d7a215e.webp)](/images/radar/inline/0fee3d7a215e.webp)
+
+*示意图把沙箱内智能体与沙箱外安全分类器、确定性 Sentinel 决策组件分开；隔离仍需配合指令来源和数据流审查。 图片来源：[Matthew Green](https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/)。点击图片查看原尺寸。*
+<!-- /radar-visual:0fee3d7a215e -->
 
 ## 2. 模型前沿 & 算法探索
 
@@ -72,6 +84,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-05-infographic.webp
 - 日期：2026-10-02（研究公告）
 - 链接：https://research.meta.ai/blog/solving-open-research-problems-together
 - 摘要：研究公告介绍数学家与 Muse Spark 的协作，形成六篇论文，其中五篇回答各领域的开放问题。流程由人设定问题、反复引导，并组织数学家检查论证；公告也承认部分结果存在同期独立研究。六篇论文不能写成六次模型自主发现，团队复核也不等于已经完成外部同行评审。值得关注的是探索与验证的分工，而非用论文数量直接衡量通用智能。
+
+<!-- radar-visual:7c5bea145878 -->
+[![两个椭球示意图与阈值轴，表示随机点数量变化时精确高斯拟合的相变](/images/radar/inline/7c5bea145878.webp)](/images/radar/inline/7c5bea145878.webp)
+
+*图中以低维椭球和阈值轴说明：随机点数量跨过约 d²/4 后，精确拟合会从高概率存在转向不太可能存在。 图片来源：[Meta AI Research](https://research.meta.ai/blog/solving-open-research-problems-together)。点击图片查看原尺寸。*
+<!-- /radar-visual:7c5bea145878 -->
 
 ### David Robinson 离开 OpenAI：把安全讨论从个体补救转向组织冗余
 

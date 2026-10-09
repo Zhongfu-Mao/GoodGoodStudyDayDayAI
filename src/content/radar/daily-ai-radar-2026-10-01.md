@@ -41,6 +41,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-01-infographic.webp
 - 链接：https://huggingface.co/blog/nvidia/kumo-tabular
 - 摘要：NVIDIA发布预训练表格模型Kumo Tabular，覆盖分类与回归，三个规模为2800万至2.15亿参数。模型先压缩列与行的信息，再通过上下文注意力利用已标注行预测新行；查询行只关注上下文，缓存可复用。厂商称模型仅用人工合成表格预训练，并在所报告的四套基准上领先。这里的“无需训练”指新任务推理时无需重新训练，不是模型未经预训练，也不保证在任意业务表格上胜出。
 
+<!-- radar-visual:03fc4003c7d1 -->
+[![Kumo Tabular模型架构示意图](/images/radar/inline/03fc4003c7d1.webp)](/images/radar/inline/03fc4003c7d1.webp)
+
+*从左到右看三个阶段：单元格编码、行列注意力与上下文学习。右侧把带标签的已知行作为上下文，为新行输出分类或回归预测。 图片来源：[Hugging Face](https://huggingface.co/blog/nvidia/kumo-tabular)。点击图片查看原尺寸。*
+<!-- /radar-visual:03fc4003c7d1 -->
+
 ### OpenAI 披露针对受保护推理的对抗性蒸馏活动
 
 - 来源：OpenAI
@@ -63,6 +69,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-01-infographic.webp
 - 日期：2026-09-29
 - 链接：https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source
 - 摘要：ProvenanceGuard从MCP轨迹保留来源ID，拆分回答中的具体主张，分别检查支持证据与声明来源，防止把政策文档内容误归到客户记录等跨来源混淆。在医疗智能体的40份留出回答、361项主张上，专家判定不应通过的139项中识别出138项，但同时拦住67项专家认为有支持的主张。结果来自论文的本地模型配置，体现保守拦截与误报的权衡，不是通用准确率保证。
+
+<!-- radar-visual:089a52e51851 -->
+[![盲源支持与溯源核验机制的对比示意图](/images/radar/inline/089a52e51851.webp)](/images/radar/inline/089a52e51851.webp)
+
+*示意图对比了不区分来源的统一验证与具溯源意识的核验机制，说明政策文档支持但被误归至账户记录的退款期限主张如何被检测。 图片来源：[Hugging Face](https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source)。点击图片查看原尺寸。*
+<!-- /radar-visual:089a52e51851 -->
 
 ## 4. 行业与商业快讯
 
@@ -104,6 +116,12 @@ coverImage: /images/radar/daily-ai-radar-2026-10-01-infographic.webp
 - 日期：2026-09-30
 - 链接：https://blog.dailydoseofds.com/p/jev-for-rag-clearly-explained
 - 摘要：教程在BM25与稠密检索之后增加Jev评判，批量输出候选片段的相关概率，再由代码执行阈值策略；还可单独判断留下的证据是否足够作答，不足时返回受控拒答。检索仍决定证据上限，缺失的支持片段不会被重排器补出来。概率阈值需要在评测集上校准，提示注入评分也只是筛选信号，不是权限隔离或安全边界。
+
+<!-- radar-visual:8aeaf08c7d7e -->
+[![基于Jev增强RAG检索与生成流程示意图](/images/radar/inline/8aeaf08c7d7e.webp)](/images/radar/inline/8aeaf08c7d7e.webp)
+
+*流程图展示在稠密检索与关键词检索融合后，利用Jev在候选片段进入生成上下文前进行相关性评分与阈值过滤的处理过程。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/jev-for-rag-clearly-explained)。点击图片查看原尺寸。*
+<!-- /radar-visual:8aeaf08c7d7e -->
 
 ### Every：Altman 的智能体使用经验强调打断管理与迭代速度
 

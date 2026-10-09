@@ -50,12 +50,24 @@ draft: false
 - リンク：https://research.meta.ai/blog/introducing-muse-spark-1-3
 - 要約：MetaはMuse Spark 1.3を公開し、Muse CodeおよびAPI経由で提供を開始した。長時間のマルチステップ作業における制約条件の保持が強化され、曖昧な指示への確認質問や重大な影響を伴うアクション前の事前確認を求めるよう訓練された。Meta社内エンジニアによる1.2との比較では、ツール呼び出しが約20%、トークン消費が約25%削減されたとされるが、これはベンダー独自の主張である。なお、オープンウェイト版の公開は将来計画であり未リリースである。
 
+<!-- radar-visual:bb5983601e75 -->
+[![Muse Spark 1.3および他社モデルのエージェントやコーディング評価スコア比較表](/images/radar/inline/bb5983601e75.webp)](/images/radar/inline/bb5983601e75.webp)
+
+*ベンダー公表によるMuse Spark 1.3のエージェント・プログラミング評価を他モデルと比較した結果を掲載。 画像出典：[The Rundown AI](https://research.meta.ai/blog/introducing-muse-spark-1-3)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:bb5983601e75 -->
+
 ### GoogleがGemini 3.8 Flashおよび防衛専用Cyber版を発表
 
 - 出典：Google
 - 日付：2026-09-02
 - リンク：https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/
 - 要約：GoogleはGemini 3.8 Flashを発表した。ベンダー評価においてコーディングやエージェント推論の向上が示され、価格は100万トークンあたり入力0.75ドル、出力3.75ドルに据え置かれた。追加推論や反復ツール呼び出しを行うため高い推論設定ではトークン消費が増加する可能性があり、包括的な高速化の保証はない。共通の基盤を持ち脆弱性検知等に特化したCyber版は、安全基準が異なりFairwind計画を通じた信頼できる防御者にのみ限定提供される。
+
+<!-- radar-visual:238bfca1d74c -->
+[![Gemini 3.8 Flashと他モデルの性能を比較したチャート](/images/radar/inline/238bfca1d74c.webp)](/images/radar/inline/238bfca1d74c.webp)
+
+*公式ベンチマークにおけるGemini 3.8 Flashの長周期タスク性能を比較し、コスト対効果の位置付けを提示。 画像出典：[Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:238bfca1d74c -->
 
 ## 3. 実践コード & ツールライブラリ
 
@@ -113,6 +125,12 @@ draft: false
 - 日付：2026-09-02
 - リンク：https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without
 - 要約：ByteByteGoは、埋め込みモデルがRAG検索に与える影響を解説する。意味の類似性は回答可能性と同じではなく、固有名詞、否定、日付、版数、数値の違いが誤検索を招く。回答が誤った際は、下流LLMを交換する前に取得チャンクを確認し、対象領域のクエリで検索品質を測定し、メタデータによる絞り込みも検討することが問題の特定に役立つ。
+
+<!-- radar-visual:8eceec14a36c -->
+[![セマンティック検索空間と回答適合の課題を示す説明図](/images/radar/inline/8eceec14a36c.webp)](/images/radar/inline/8eceec14a36c.webp)
+
+*意味的類似度と回答適合性の相違を図解し、質問に関連するテキストが必ずしも直接の答えにならない課題を解説。 画像出典：[ByteByteGo](https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:8eceec14a36c -->
 
 ### The Rundownが紹介するAI面接対策「プルーフ・プロジェクト」手法
 

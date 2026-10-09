@@ -30,12 +30,24 @@ representativeImageSource: https://huggingface.co/blog/Hcompany/holo4
 - リンク：https://www.langchain.com/blog/langsmith-engine-v2-redteam
 - 要約：Engine v2 は、プロアクティブなレッドチームテスト、重複ツール呼び出しなどの非効率な動作の特定、および修正提案の事前検証を拡張。事前検証ではまず失敗を再現し、変更案を提示して元の入力でテストした上で、最終的な提案をユーザーのレビューに回す。レッドチーム機能と修正の事前検証は既存の Deployment ユーザー向けに Private Beta として提供され、セルフホストや BYOK は今後の計画にとどまる。自動テストは、人手による承認の省略や直接デプロイを行う理由にはならない。
 
+<!-- radar-visual:de597f765f5c -->
+[![LangSmith Engine v2 自動テストフロー](/images/radar/inline/de597f765f5c.webp)](/images/radar/inline/de597f765f5c.webp)
+
+*左から問題の再現、プレビュー環境での修正検証、利用者が受け入れた後のPR提出です。人の確認が残っており、自動検証の成功は公開完了とは異なります。 画像出典：[LangChain Blog](https://www.langchain.com/blog/langsmith-engine-v2-redteam)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:de597f765f5c -->
+
 ### LangSmith Trajectories が単一タイムラインで長時間タスクの動作を可視化
 
 - 出典：LangChain Blog
 - 日付：2026-09-24
 - リンク：https://www.langchain.com/blog/langsmith-trajectories-tracing
 - 要約：Trajectories は、メインエージェント、サブエージェント、およびツールのメッセージを初出順に整理し、各メッセージを1度だけ表示することで、レビュー担当者が長いセッション内の動作の逸脱を特定し、完全な trace に戻って実行詳細を確認できるように支援する。軌跡（Trajectories）はオンライン評価、人手によるアノテーション、およびトレーニングデータセットに活用できる。これは低層のログに対する閲覧ビューであり、完全な実行ツリーを代替するものではない。リリース時点での利用可能範囲は米国リージョンの全プランである。
+
+<!-- radar-visual:33877b8309cb -->
+[![LangSmith Trajectories スレッドビュー](/images/radar/inline/33877b8309cb.webp)](/images/radar/inline/33877b8309cb.webp)
+
+*スレッド内の実行トレースを投影し、入れ子構造を省いてメッセージと行動を順序通りに表示してセッション経路を辿る画面です。 画像出典：[LangChain Blog](https://www.langchain.com/blog/langsmith-trajectories-tracing)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:33877b8309cb -->
 
 ## 2. モデル最前線 & アルゴリズム探索
 
@@ -45,6 +57,12 @@ representativeImageSource: https://huggingface.co/blog/Hcompany/holo4
 - 日付：2026-09-28
 - リンク：https://huggingface.co/blog/Hcompany/holo4
 - 要約：Holo4 は 27B の密モデルと 35B-A3B の Mixture-of-Experts モデルを提供し、画面操作、コード、MCP、API 呼び出しを組み合わせてタスクを完遂する。重みとベンチマークの実行軌跡も公開された。著者は 27B バージョンが OSWorld 2.0 で 61.7% を達成したと報告しているが、同時に比較対象のタスクサブセット、実行フレームワーク、およびコスト試算基準に差異が存在することを説明している。したがって、グラフを統一されたテスト条件下でのコスト優位性の証明としてそのまま受け取ることはできず、デプロイには依然として権限と実タスクの成功率の検証が必要である。
+
+<!-- radar-visual:008756076471 -->
+[![OSWorld 2.0：タスクあたりのコストと平均部分スコアの比較](/images/radar/inline/008756076471.webp)](/images/radar/inline/008756076471.webp)
+
+*OSWorld 2.0におけるスコアとタスク推定コストの公式比較図ですが、評価ハーネスや価格算出条件が異なるため優位性には留保が必要です。 画像出典：[H Company / Hugging Face](https://huggingface.co/blog/Hcompany/holo4)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:008756076471 -->
 
 ## 3. 実践コード & ツールライブラリ
 

@@ -31,12 +31,24 @@ representativeImageSource: https://www.latent.space/p/stacklok
 - リンク：https://www.latent.space/p/stacklok
 - 要約：Kubernetesの共同創設者であるCraig McLuckie氏とJoe Beda氏が、Stacklokのクラウドネイティブなエージェント路線を紹介しました。オープンソースのMecatlは、エージェントループをクライアント、モデルプロバイダー、状態ストレージ、実行環境から分離し、ツール実行とセッション管理をそれぞれガバナンス可能なインフラに組み入れます。ToolHiveはMCPサービスを管理し、商用コントロールプレーンがアイデンティティ、ポリシー、監査を補完します。AI Gatewayは現在、アクセス、予算、レポート、プロバイダールーティングに焦点を当てており、タスクに基づいて自動的にモデルを選択するわけではなく、まだオープンソース化もされていません。アーキテクチャの分離は集中運用の前提条件であり、障害復旧やセキュリティが普遍的に保証されたことを意味するものではありません。
 
+<!-- radar-visual:f8de652b37f1 -->
+[![Mecatlの構成図。エージェントループとクライアント、モデル、状態保存、実行環境を分離](/images/radar/inline/f8de652b37f1.webp)](/images/radar/inline/f8de652b37f1.webp)
+
+*図はエージェントループをクライアント、モデル、状態保存、実行環境から分離する。クラウド運用の前提を示すが、信頼性や安全性の保証ではない。 画像出典：[Mecatl GitHub，经 Latent.Space](https://www.latent.space/p/stacklok)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:f8de652b37f1 -->
+
 ### Everyのコスト調査：モデルルーティングを増やす前に、まず重複入力とキャッシュを点検
 
 - 出典：Every
 - 日付：2026-10-07（原文およびニュースレター）
 - リンク：https://every.to/context-window/building-a-more-efficient-agent
 - 要約：Everyはかつて、安価なSonnetで調整を行い、複雑なリクエストをOpusに渡していましたが、結果として品質と速度が低下し、重複処理によってコストも増加しました。その後の改善策として、モデルのアップグレード、ツールの戻り値の短縮、ツール指示のオンデマンド読み込み、システムプロンプトキャッシュの修正などが挙げられます。SlackのユーザーIDを含むメモリーディレクトリ名がユーザー間のキャッシュ再利用を妨げていたため、汎用ディレクトリ名に変更し、ユーザー間の権限分離を維持したことで再利用が回復しました。チームはよく使われる11のタスクでトークンコストが80%以上削減され、キャッシュ修正の最良ケーステストでは74%削減されたと報告しています。これらは当該チームの特定のテスト結果であり、他のワークフローにおける期待できる削減効果としてそのまま見なすことはできません。
+
+<!-- radar-visual:54a0303d14d6 -->
+[![Every Agentのコスト削減施策をまとめた複数の画面キャプチャ](/images/radar/inline/54a0303d14d6.webp)](/images/radar/inline/54a0303d14d6.webp)
+
+*画面はツール再設計、モデル更新、キャッシュ修正、遅延読み込みごとの費用変化です。1タスクの最良ケースであり、本文の11タスク全体の結果とは区別が必要です。 画像出典：[Every / Laura Entis](https://every.to/context-window/building-a-more-efficient-agent)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:54a0303d14d6 -->
 
 ## 2. モデル最前線 & アルゴリズム探索
 
@@ -69,6 +81,12 @@ representativeImageSource: https://www.latent.space/p/stacklok
 - 日付：2026-10-07（エンジニアリングアップデート）
 - リンク：https://www.langchain.com/blog/revamping-skills-in-deep-agents
 - 要約：Deep Agentsは、metadata.include_toolsを介してツールをskillに紐付けることをサポートしました。対応するSKILL.mdを読み取った後にのみツールを解放し、ツールを先に見つけたものの操作指示を読んでいないという状況を回避します。アプリケーションはpinned_skillsを明示的に渡して次回のモデル呼び出し前に必要な指示をロードすることも、skills_metadataをクリアして長いスレッドでスキルライブラリを再スキャンさせることも可能です。一部の新しいモデルでは、対話内でツールを追加しながら以前のキャッシュプレフィックスを維持できますが、他のモデルでは依然としてリクエストのツールリストを変更する必要があります。再スキャンによって新しいスキルが見つかった場合も、システムプロンプトが変更されてキャッシュが無効になります。ツールのオンデマンド開示と実際の認可チェックを混同してはなりません。
+
+<!-- radar-visual:4ad08b2a9e88 -->
+[![スキル名と説明から、指示書と参照ファイルを段階的に読み込む図](/images/radar/inline/4ad08b2a9e88.webp)](/images/radar/inline/4ad08b2a9e88.webp)
+
+*起動時はスキル名と説明だけを置き、必要になった時点で指示書と参照ファイルを読む。不要な文脈を増やさない設計を示す。 画像出典：[LangChain](https://www.langchain.com/blog/revamping-skills-in-deep-agents)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:4ad08b2a9e88 -->
 
 ### Managed Deep Agents v0.9：スケジュール、実行ごとの構成、Slack受領確認がSDKに登場
 

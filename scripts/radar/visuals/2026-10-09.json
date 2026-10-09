@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "date": "2026-10-09",
+  "visuals": [
+    {
+      "id": "uber",
+      "sourceUrl": "https://www.uber.com/in/en/blog/designing-mcp-gateway/",
+      "originalImageUrl": "https://cn-geo1.uber.com/image-proc/crop/smartcrop/udam/format=auto/width=1552/height=720/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC91ZGFtLWFzc2V0cy8yNGJjYjJlMi01NTQ0LTQyYjctOWFhMS1hN2Y4MjhhNTU1N2MucG5n",
+      "asset": "/images/radar/daily-ai-radar-2026-10-09-uber.webp",
+      "sha256": "f95765d832cbb785ef26ffe12804a7fa03f22cf5c8078857f82d88b8cfe80e0e",
+      "credit": "Uber Engineering",
+      "review": "accepted",
+      "zh": {
+        "heading": "Uber MCP Gateway：自动发现工具，默认仍不向智能体开放",
+        "alt": "Uber MCP Gateway 的工具发现、所有者审阅与同步流程",
+        "caption": "从左上向下看：AutoCrawler 发现工具后，先经过所有者审阅，再进入 Registry 并同步到网关；自动发现与批准启用是分开的环节。"
+      },
+      "ja": {
+        "heading": "Uber MCP Gateway：ツールを自動検出するも、デフォルトではエージェントに開放せず",
+        "alt": "Uber MCP Gatewayのツール検出・所有者レビュー・同期フロー",
+        "caption": "左上から下へ：AutoCrawlerによる検出後、所有者のレビューを経てRegistryへ登録され、ゲートウェイに同期されます。自動検出と承認・有効化は別の段階です。"
+      }
+    },
+    {
+      "id": "synthid",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/synth-id-ai-content/",
+      "originalImageUrl": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Raccoon_Video_SynthIDDetector.width-1200.format-webp.webp",
+      "asset": "/images/radar/daily-ai-radar-2026-10-09-synthid.webp",
+      "sha256": "9b9e02bacfd17d2a3be1d63c7434207c76072e9ed29392781910d75af78d8771",
+      "credit": "Google",
+      "review": "accepted",
+      "zh": {
+        "heading": "SynthID Detector：检查支持的水印，不是判定所有内容真伪",
+        "alt": "SynthID Detector 在浣熊视频示例中检出 Google AI 水印的官方界面",
+        "caption": "右侧显示“检出 SynthID”，下方时间轴标示检测结果。这是 Google 公布的演示画面；检出生成标记不等于验证事件真实性，未检出也不等于真人制作。"
+      },
+      "ja": {
+        "heading": "SynthID Detector：サポート対象の電子透かしを検査するものであり、全コンテンツの真偽を判定するものではない",
+        "alt": "アライグマの動画例でGoogle AIの透かしを検出したSynthID Detectorの公式画面",
+        "caption": "右側に「SynthIDを検出」と表示され、下のタイムラインに検出結果が示されています。Google公開のデモ画面です。生成マーカーの検出は出来事の真偽の検証ではなく、未検出も人間による制作の証明にはなりません。"
+      }
+    },
+    {
+      "id": "snyk",
+      "sourceUrl": "https://www.langchain.com/blog/how-snyk-turned-an-internal-support-agent-into-a-customer-feature",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6ac8102db53bcadc6cc0f006_snyk-assist-architecture%404x.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-09-snyk.webp",
+      "sha256": "e9434fedac7cc4fbd4e91acbe7877e9ea6b70f78665a76d2c2e9428ac9583e23",
+      "credit": "LangChain / Snyk",
+      "review": "accepted",
+      "zh": {
+        "heading": "Snyk Assist：从内部支持工具到客户产品，用评估阈值约束发布",
+        "alt": "Snyk Assist 架构：三个入口经过身份权限与安全检查，连接共享智能体运行时",
+        "caption": "先看顶部三个入口如何汇入身份与权限检查，再看底部虚线工具框：这些工具仅在用户具备相应权限或许可时可用。右侧分别连接追踪评估和 PostgreSQL 会话状态。"
+      },
+      "ja": {
+        "heading": "Snyk Assist：社内サポートツールから顧客向け製品へ、評価しきい値によるリリース制限",
+        "alt": "Snyk Assistの構成：3つの入口から権限・安全性チェックを経て共通ランタイムへ",
+        "caption": "上部の3つの入口がID・権限チェックに合流する点と、下部の破線のツール枠に注目してください。これらはユーザーに対応する権限やライセンスがある場合のみ利用可能です。右側はトレース・評価とPostgreSQLの会話状態に接続します。"
+      }
+    },
+    {
+      "id": "artcraft",
+      "sourceUrl": "https://github.com/storytold/artcraft",
+      "originalImageUrl": "https://raw.githubusercontent.com/storytold/github-media/22a27373707b13f48fc56405f1f89ca143c43d5d/character-posing.webp",
+      "asset": "/images/radar/daily-ai-radar-2026-10-09-artcraft.webp",
+      "sha256": "5fa4143ba62c943c22c1330f8824756af2f5ceb822b17d3c4fe4583cce553041",
+      "credit": "ArtCraft",
+      "review": "accepted",
+      "zh": {
+        "heading": "storytold/artcraft：先布置构图、姿态与相机，再生成图像或视频",
+        "alt": "ArtCraft 官方演示中的三维角色姿态控制界面",
+        "caption": "角色关节点与顶部移动、旋转、缩放工具展示了生成前的姿态控制。这是仓库演示的静帧，说明可调整的输入方式，不代表生成结果必然保持角色一致。"
+      },
+      "ja": {
+        "heading": "storytold/artcraft：構図、ポーズ、カメラを配置してから画像や動画を生成する",
+        "alt": "ArtCraft公式デモの3Dキャラクターポーズ操作画面",
+        "caption": "キャラクターの関節点と上部の移動・回転・拡縮ツールが、生成前のポーズ制御を示します。リポジトリのデモからの静止画であり、生成結果で常にキャラクターの一貫性が保たれることを保証するものではありません。"
+      }
+    }
+  ]
+}

@@ -34,6 +34,12 @@ draft: false
 - リンク：https://blog.dailydoseofds.com/p/momentum-in-ml-explained-visually-342
 - 要約：損失関数の等高線とパラメータ更新の軌跡を使い、モメンタム法を説明する。現在の勾配だけに従うと急峻な方向で更新が振動しがちだが、過去の勾配の移動平均を取り入れると振動を抑え、進みたい方向の更新を速められる。モメンタム率が大き過ぎれば極小値を行き過ぎ、小さ過ぎれば加速効果が薄い。図解はあらゆる学習で一定の高速化を保証するものではない。
 
+<!-- radar-visual:ca696fc83aee -->
+[![モメンタム法によるパラメータ更新軌道の平滑化を示す図](/images/radar/inline/ca696fc83aee.webp)](/images/radar/inline/ca696fc83aee.webp)
+
+*過去の勾配の移動平均を考慮することで垂直方向の振動が相殺され、水平方向への進行が加速して最適化軌道が平滑化される様子を示しています。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/momentum-in-ml-explained-visually-342)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:ca696fc83aee -->
+
 ## 2. モデル最前線 & アルゴリズム探索
 
 ### GPT-6 Astraから見る循環型Transformer構造と推論チェーンの可視性
@@ -43,12 +49,24 @@ draft: false
 - リンク：https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and
 - 要約：Ahead of AIはGPT-6 Astraの3D描画やGUI操作性能を評価し、重み共有を行う循環型Transformerの最新研究動向を解説した。論文での検証はAstraの非公開アーキテクチャを直接証明するものではないと指摘。また思考プロセスの短縮について、循環構造による意図的な隠蔽ではなく、モデル能力向上に伴う試行錯誤の減少に起因する可能性が高いと分析している。
 
+<!-- radar-visual:62739ffd0b58 -->
+[![Nanbeige4.2-3Bのループ型Transformerアーキテクチャ図](/images/radar/inline/62739ffd0b58.webp)](/images/radar/inline/62739ffd0b58.webp)
+
+*Nanbeige4.2-3Bが同じ22層の重みを2回使う構造を、オレンジのループで示します。公開モデルの例であり、Astraの非公開構造を確認する図ではありません。 画像出典：[Ahead of AI](https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:62739ffd0b58 -->
+
 ### OpenAI、滑らかな外力下のナビエ・ストークス特異点を示す証明を主張
 
 - 出典：OpenAI / The Rundown AI
 - 日付：2026-09-10（観測）
 - リンク：https://openai.com/index/navier-stokes-solution/
 - 要約：OpenAIは、GPT-6 Astraより高能力とする内部モデルが約1万のエージェントを調整し、3次元非圧縮ナビエ・ストークス方程式について、滑らかな外力を受け、有限エネルギーを保ちながら有限時間で特異点に至る解析的証明を得たと発表した。Lean形式化も公開し、同社はこれをミレニアム問題のC、Dのケースと位置づけ、Astraが後続の形式化・検証に使われたと述べる。外力のない場合の証明ではなく、独立した査読や受賞も意味しない。同社は賞を請求しないとしている。
+
+<!-- radar-visual:4ce5bd703e68 -->
+[![局所的な非圧縮性渦運動の軌跡を示す図](/images/radar/inline/4ce5bd703e68.webp)](/images/radar/inline/4ce5bd703e68.webp)
+
+*非圧縮性流体の局所運動を示し、オレンジ色が高速、青緑色が低速の角回転を表し、内側への螺旋と軸方向の引き伸ばし軌跡が描かれています。 画像出典：[OpenAI](https://openai.com/index/navier-stokes-solution/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:4ce5bd703e68 -->
 
 ## 3. 実践コード & ツールライブラリ
 

@@ -27,6 +27,12 @@ draft: false
 - リンク：https://blog.dailydoseofds.com/p/what-it-takes-to-build-a-production
 - 要約：本番環境のAIエージェントには、モデルだけでなく状態とツール実行を制御するHarness層が不可欠です。本記事ではセッション管理、チェックポイント、トレーシング、人間の承認、サンドボックス実行などの要件を整理。単一実行と会話間での状態の分離、ツールエラー伝播、LangChainやLangGraphによる確定的制御の設計論を解説しています。
 
+<!-- radar-visual:0c8390c7d4a0 -->
+[![モデルとエージェント実行基盤の関係](/images/radar/inline/0c8390c7d4a0.webp)](/images/radar/inline/0c8390c7d4a0.webp)
+
+*ツール呼び出しが失敗すると、実行基盤は再試行、モデルへのエラー提示、人への入力依頼、停止を選びます。この処理規則がモデルに返る情報を決めます。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/what-it-takes-to-build-a-production)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:0c8390c7d4a0 -->
+
 ### Fyxerが信頼されるAIエグゼクティブアシスタントを構築した手法
 
 - 出典：OpenAI / Fyxer
@@ -49,6 +55,12 @@ draft: false
 - 日付：2026-09-14
 - リンク：https://blog.bytebytego.com/p/llms-as-a-judge-how-to-know-if-your
 - 要約：LLMを評価者とする「LLM-as-a-Judge」の位置付けを解説し、評価スタックは単一の代替ではなく相互補完的な層として捉えるべきだと主張しています。LLM裁判官はルーブリックに基づく意味解釈を担いますが、決定論的な基本テストや構造検証、さらに評価基準のズレや位置バイアスを補正する専門家人間による定期的なキャリブレーションが不可欠です。
+
+<!-- radar-visual:7815c96478bf -->
+[![LLM評価のフィードバック手順](/images/radar/inline/7815c96478bf.webp)](/images/radar/inline/7815c96478bf.webp)
+
+*出力評価とテストセットの保守を結び、新たな失敗を次回のテスト事例へ戻す流れを示します。 画像出典：[ByteByteGo](https://blog.bytebytego.com/p/llms-as-a-judge-how-to-know-if-your)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:7815c96478bf -->
 
 ## 3. 実践コード & ツールライブラリ
 
@@ -106,6 +118,12 @@ draft: false
 - 日付：2026-09-08
 - リンク：https://blog.bytebytego.com/p/built-for-reliability-how-american
 - 要約：ByteByteGoはアメリカン・エキスプレスの決済基盤におけるセル単位の障害分離を解説します。発行会社への到達など、無条件の再実行ができない境界より前では、途中の処理を捨てて元の要求を正常なセルへ迂回できますが、後段の障害には別の復旧処理が必要です。一意の取引識別子と冪等性は重複要求の判別に役立つ一方、どの段階でも即座に再試行すればよいわけではありません。
+
+<!-- radar-visual:6b670c305e38 -->
+[![決済システムのセル分離構成](/images/radar/inline/6b670c305e38.webp)](/images/radar/inline/6b670c305e38.webp)
+
+*セル構成で障害を局所化し、重要な取引経路から他セルへの同期依存を避けて影響拡大を抑えます。 画像出典：[ByteByteGo](https://blog.bytebytego.com/p/built-for-reliability-how-american)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:6b670c305e38 -->
 
 ### Anthropicの警告をどう捉えるか：リスク認識をめぐる編集部の議論
 

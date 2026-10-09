@@ -30,12 +30,24 @@ representativeImageSource: https://blog.google/innovation-and-ai/models-and-rese
 - 链接：https://cursor.com/blog/rollouts-and-security-reviewer
 - 摘要：Cursor 发布 Rollouts 与 Security Reviewer。前者根据 PR 变更制定监控计划，对照部署前基线识别回归；按配置通知作者、暂停灰度或提出待审批的回退 PR。后者结合代码库上下文报告漏洞与修复建议。功能面向 Teams 与 Enterprise；功能旗标直接调流仍列为后续计划，不能写成已经支持。
 
+<!-- radar-visual:c5e9011c795d -->
+[![Security Reviewer 将平均审查时间由4.8分钟缩短至3.8分钟并将评论接受率提升至60–70%](/images/radar/inline/c5e9011c795d.webp)](/images/radar/inline/c5e9011c795d.webp)
+
+*图表展示官方统计的审查指标变化，反映审查耗时缩短与评论接受率提升情况；该指标为内部测试反馈，实际效果取决于代码库环境。 图片来源：[Cursor](https://cursor.com/blog/rollouts-and-security-reviewer)。点击图片查看原尺寸。*
+<!-- /radar-visual:c5e9011c795d -->
+
 ### Cognition 的 Devin Fusion 双智能体架构与 SWE-2 模型分析
 
 - 来源：The Batch / Cognition
 - 日期：2026-09-25（分析文章；Fusion 本地版本发布于 2026-09-11）
 - 链接：https://www.deeplearning.ai/the-batch/issue-372
 - 摘要：The Batch于2026年9月25日分析了Cognition的Devin Fusion架构（本地版9月11日发布）。该系统主导与副手模型保持独立上下文与缓存以保留前缀折扣，由主模型规划审查、副模型执行。Artificial Analysis评测显示其搭配SWE-2在特定基准上成本低36%但消耗更多Token。36%降本系特定基准测试结果，并非通用的Token节省保证。
+
+<!-- radar-visual:f9051611ac5f -->
+[![双智能体架构图，展示主智能体规划审查任务，副手智能体探索、编写代码并修复Bug](/images/radar/inline/f9051611ac5f.webp)](/images/radar/inline/f9051611ac5f.webp)
+
+*左侧主智能体把探索、写代码和修复分给右侧副手，再接回文件片段与修改结果。主智能体保留计划与审查职责，图示的是协作分工。 图片来源：[The Batch / Cognition](https://www.deeplearning.ai/the-batch/issue-372)。点击图片查看原尺寸。*
+<!-- /radar-visual:f9051611ac5f -->
 
 ## 2. 模型前沿 & 算法探索
 
@@ -116,3 +128,9 @@ representativeImageSource: https://blog.google/innovation-and-ai/models-and-rese
 - 日期：2026-09-25
 - 链接：https://every.to/p/copilot-gets-a-seat-in-the-org-chart
 - 摘要：Every 作者 Ryan Sloan 在 Copilot 发布活动中观察 Home、Code 与持续运行的 Autopilot。幻灯片重排演示成功，但 Word 表格转 Excel 和聊天移交 Code 受权限阻挡。功能仍在预览与早期访问阶段，Autopilot 默认关闭、按用量计费；作者主张用企业真实任务的评估和人工基线判断价值，而不只看通用模型榜单。
+
+<!-- radar-visual:06899ec003aa -->
+[![全新 Copilot 应用的 Home 标签页界面（截图由微软提供）](/images/radar/inline/06899ec003aa.webp)](/images/radar/inline/06899ec003aa.webp)
+
+*原文截图显示 Home、Code、Autopilot 入口，以及输入区的 Chat / Cowork 切换。界面入口的存在不等于已获得组织资料或外部应用的访问权限。 图片来源：[Every](https://every.to/p/copilot-gets-a-seat-in-the-org-chart)。点击图片查看原尺寸。*
+<!-- /radar-visual:06899ec003aa -->

@@ -47,12 +47,24 @@ representativeImageSource: https://blog.google/innovation-and-ai/technology/deve
 - リンク：https://mistral.ai/news/mistral-large-4/
 - 要約：Mistral は Large 4 のパブリックプレビューを公開しました。公式発表によると総パラメータ数は1兆、トークンあたりのアクティブパラメータは490億で、ネイティブマルチモーダルに対応し、欧州にある自社データセンターの 3,800 枚の Grace Blackwell GPU でトレーニングされています。現在利用可能なのは Mistral Studio のプレビュー API であり、重みは今月末にリリース予定であるため、すでにダウンロード可能またはセルフホスト可能と記述することはできません。発表ではコード、エージェント、視覚タスクの性能が強調されていますが、依然としてテストと継続的改善の段階にあります。ベンダーのベンチマークは、独自データ、ハードウェア、セキュリティ境界での評価の代替にはなりません。
 
+<!-- radar-visual:3a5dfe8924a6 -->
+[![5モデルの人手によるコード品質評価比較](/images/radar/inline/3a5dfe8924a6.webp)](/images/radar/inline/3a5dfe8924a6.webp)
+
+*Mistralが委託した盲検評価で、専門評価者が5モデルのコード品質を1〜5点で採点した結果。結論はこの評価条件に限られる。 画像出典：[Mistral / Surge AI](https://mistral.ai/news/mistral-large-4/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:3a5dfe8924a6 -->
+
 ### EmbeddingGemma 2：単一のベクトル空間でテキスト、画像、音声、動画を検索
 
 - 出典：Simon Willison / Google DeepMind
 - 日付：2026-10-06（公式発表）
 - リンク：https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/
 - 要約：Google はローカルでのクロスモーダル検索や RAG 向けに、Apache-2.0 ライセンスを採用した 740M パラメータのマルチモーダル埋め込みモデルを公開しました。テキストモジュールは 270M パラメータで、必要に応じてビジョンおよびオーディオエンコーダーを追加できます。出力ベクトルは 768 次元から 512、256、128 次元への切り詰めに対応しています。8K コンテキストには音声、画像、動画フレームの組み合わせを収容できますが、異なるモダリティの容量を同時に重ね合わせられる保証ではありません。公式の Pixel 11 Pro 量子化テストにおけるメモリ数値は対応する重み構成を説明しているにすぎません。圧縮ベクトルとローカル実行においては、検索精度、エンドツーエンドのメモリ、データが真にデバイス内にとどまるかを依然として検証する必要があります。
+
+<!-- radar-visual:56a157ea2291 -->
+[![EmbeddingGemma 2のMassive Text Embedding Benchmarkコード評価図](/images/radar/inline/56a157ea2291.webp)](/images/radar/inline/56a157ea2291.webp)
+
+*横軸はモデル規模、縦軸はコード埋め込みタスクの平均点です。EmbeddingGemma 2を異なる規模のモデルと比較しています。公式評価は手元のデータでの検索検証を代替しません。 画像出典：[Google DeepMind](https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:56a157ea2291 -->
 
 ## 3. 実践コード & ツールライブラリ
 
@@ -62,6 +74,12 @@ representativeImageSource: https://blog.google/innovation-and-ai/technology/deve
 - 日付：2026-10-06（実践ログ）
 - リンク：https://til.simonwillison.net/datasette/datasette-parseable-opentelemetry
 - 要約：Simon は Codex の支援を受けて Datasette 1.0a41 と Parseable を統合し、有効な設定を手動で記録としてまとめました。要点は Datasette を直接起動することではなく、opentelemetry-instrument を介してトレーシングを初期化し、OTLP JSON HTTP エクスポート、サービス名、ターゲットストリームを設定することです。これにより、リクエストトレース内で下流の SQL span を検査できるようになります。サンプルは Parseable 3.2.4 と固定依存バージョンを使用しており、ローカルでの可観測性の実践例であって、測定済みのエージェント品質向上ではありません。サンプルのデフォルト認証情報やローカルポートも、そのまま本番環境のデプロイ設定として流用することはできません。
+
+<!-- radar-visual:e8060fe30b95 -->
+[![可観測性画面のトレース詳細。中央にスパンのウォーターフォールとフィルター欄を表示](/images/radar/inline/e8060fe30b95.webp)](/images/radar/inline/e8060fe30b95.webp)
+
+*Datasetteの1リクエストをトレースとスパンの滝図で展開し、下流SQLまで確認できる。追跡の接続を示すが、品質向上そのものの証明ではない。 画像出典：[Simon Willison](https://til.simonwillison.net/datasette/datasette-parseable-opentelemetry)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:e8060fe30b95 -->
 
 ### Scrimshaw Jukebox：テキストモデルに編集可能な楽譜を生成させ、ブラウザで音声を合成
 

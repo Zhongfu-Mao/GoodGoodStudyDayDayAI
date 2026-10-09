@@ -50,6 +50,12 @@ draft: false
 - リンク：https://wisprflow.ai/canto
 - 要約：WisprのCantoは、教師ありファインチューニングとGRPOを組み合わせ、完全な文字起こしの相対的品質を用いてリアルタイム音声入力を訓練している。公式テストにおいて、ランダムな実環境音声入力データセットでは優れた性能を示したものの、より困難なチャレンジセットでは全体として依然Gemini 3.1 Proに及ばず、公開英語データセットでもすべての項目で首位というわけではない。訓練とテストの話者は分離されており、ユーザーデータは自発的に共有を選択した提供者によるものである。音声モデルの評価にはノイズ、短いフレーズ、遅延、データ分布を総合的に考慮する必要があり、単一の平均誤り率だけで判断することはできない。
 
+<!-- radar-visual:be027c59d882 -->
+[![Cantoなどの音声モデルを3時間の難条件音声で比較した単語誤り率グラフ](/images/radar/inline/be027c59d882.webp)](/images/radar/inline/be027c59d882.webp)
+
+*騒音、低音量、短い発話を含む3時間の難条件データで単語誤り率を比較する。Cantoは総合ではGemini 3.1 Proに及ばない。 画像出典：[Wispr Flow](https://wisprflow.ai/canto)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:be027c59d882 -->
+
 ## 3. 実践コード & ツールライブラリ
 
 ### Claude Projectsがコーディネーションセッション、並行クラウドスレッド、共有メモリを導入
@@ -59,12 +65,24 @@ draft: false
 - リンク：https://claude.com/blog/projects-redesigned
 - 要約：新バージョンのClaude Code Projectsでは、コーディネーターが目標を分解し、各ワーカースレッドが独立したブランチおよびリポジトリの複製内で実行され、プロジェクトのメモリやファイルベースを共有することで、ユーザーがコンピュータから離れた後も作業を継続できる。Beta版はまず条件を満たす一部のProおよびMaxユーザー向けに提供され、既存プロジェクトの移行やその他のプランへの拡大は順次行われる予定であり、ローカルスレッドは未提供である。並行スレッドは利用制限に達しやすくなるほか、重複するコードについては依然としてマージコンフリクトの解消が必要となる。
 
+<!-- radar-visual:e09b2c5d4566 -->
+[![1週間のプロジェクトで複数スレッドを開き、記憶・判断・成果を蓄積する画面](/images/radar/inline/e09b2c5d4566.webp)](/images/radar/inline/e09b2c5d4566.webp)
+
+*公式デモの静止画は主会話、プロジェクト記憶、右側の作業スレッドを示します。日程変更を文脈に保持し、個別作業を別スレッドで実行する構成です。 画像出典：[Anthropic](https://claude.com/blog/projects-redesigned)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:e09b2c5d4566 -->
+
 ### Google Flowの専用ツールを服飾スタイリングとランウェイの事前可視化に活用
 
 - 出典：Google / Google Flow
 - 日付：2026年9月18日
 - リンク：https://blog.google/innovation-and-ai/technology/ai/google-flow-fashion-week/
 - 要約：GoogleはデザイナーのJane Wade氏およびSergio Hudson氏と共同で2つのFlowツールを構築した。Styling Suiteはデジタルモデル上で衣装と小物を組み合わせ、Runway Visualizationはショーの照明、小道具、ウォーキングルートの調整に用いられる。これらの事例は、サンプル試作前や制作前の意思決定プロセスに生成機能を組み込むことで、往復のやり取りを削減している。公式発表では独立して検証可能な作業時間やコストの削減幅は示されておらず、事例の成果がすべてのデザインプロセスの自動化可能性を意味するわけでもない。
+
+<!-- radar-visual:8660d21fdb2e -->
+[![Jane WadeのStyling Suite画面。デジタルモデル上で服装やスタイリング要素を組み合わせる](/images/radar/inline/8660d21fdb2e.webp)](/images/radar/inline/8660d21fdb2e.webp)
+
+*デジタルモデル上で髪型、メイク、装飾品、靴、服を組み合わせ、裁断や制作前に全体像と不足要素を確認するための画面。 画像出典：[Google / Jane Wade](https://blog.google/innovation-and-ai/technology/ai/google-flow-fashion-week/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:8660d21fdb2e -->
 
 ## 4. 業界 & ビジネス速報
 

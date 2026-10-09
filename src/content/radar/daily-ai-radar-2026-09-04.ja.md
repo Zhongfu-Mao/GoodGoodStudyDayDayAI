@@ -56,6 +56,12 @@ draft: false
 - リンク：https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-weathernext-3/
 - 要約：Googleが9月3日に発表したWeatherNext-3は、リアルタイム衛星観測と過去の分析データを統合し毎時更新されます。温湿度など一部の地表面変数は5km、その他は10km/25kmの解像度を持ちます。Google製品やBigQueryへ連携が始まっていますが、公的な気象警報を代替するものではありません。
 
+<!-- radar-visual:9b8e2efc2895 -->
+[![WeatherNext 3 システムアーキテクチャ図](/images/radar/inline/9b8e2efc2895.webp)](/images/radar/inline/9b8e2efc2895.webp)
+
+*衛星モザイクと解析場をWeatherNext 3へ入力し、格子状の気象場と観測地点・サイクロンなどの対象へ出力します。異なる観測・予測形式のつながりを示す図です。 画像出典：[Google / DeepMind](https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-weathernext-3/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:9b8e2efc2895 -->
+
 ## 3. 実践コード & ツールライブラリ
 
 ### フォルダをエージェントとする設計思想と運用実践
@@ -64,6 +70,12 @@ draft: false
 - 日付：2026-09-04 再掲載
 - リンク：https://every.to/source-code/the-folder-is-the-agent-rerun
 - 要約：Everyが9月4日に再掲載した記事では、44エージェントの運用知見を解説。専用フォルダ内のルール、スキル、実行知見が文脈を形成し、ファイルキューとバックグラウンド処理が状態を分配、人間が指示と検収を担います。信頼できる業務手順を手動で確立・検証した後にオーケストレーションへ渡す重要性を説いています。
+
+<!-- radar-visual:87d1368b3814 -->
+[![オーケストレーション命令により主エージェントが各ワーカーへ処理を委任する画面](/images/radar/inline/87d1368b3814.webp)](/images/radar/inline/87d1368b3814.webp)
+
+*端末画面では主会話から依頼した後にバックグラウンドの調整処理が続き、後から進捗を確認できると案内しています。著者の実際の作業画面の一場面です。 画像出典：[Every](https://every.to/source-code/the-folder-is-the-agent-rerun)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:87d1368b3814 -->
 
 ### Anthropicが宣言型リソース管理ツールant applyを公開
 
@@ -112,6 +124,12 @@ draft: false
 - 日付：2026-09-04
 - リンク：https://www.deeplearning.ai/the-batch/issue-369
 - 要約：Andrew Ng氏が書簡でコーディングAgent運用の3段階（計画／実行／デプロイ・監視）と5大スキル（プロセス統制、自律性設定、出力レビュー、環境整備、基盤理解）を提示。リスクに応じた人間の介入や検収基準を設け、フィードバックで前段階へ差し戻す堅牢な設計を推奨しています。
+
+<!-- radar-visual:7bad694e08f8 -->
+[![コーディングエージェント活用に向けたAIエンジニアリングスキルマップ](/images/radar/inline/7bad694e08f8.webp)](/images/radar/inline/7bad694e08f8.webp)
+
+*コーディングエージェントの利用を、作業指示、自律性の設定、成果確認、環境のカスタマイズ、基礎知識の5項目に分け、AIエンジニアリング全体の中に位置づけています。 画像出典：[The Batch / DeepLearning.AI](https://www.deeplearning.ai/the-batch/issue-369)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:7bad694e08f8 -->
 
 ### The Rundownが提唱するワークフロー改善手法「Loop Method」
 

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-06",
+  "visuals": [
+    {
+      "id": "d0da94476e1a",
+      "sourceUrl": "https://tomov.github.io/CW-Net/",
+      "originalImageUrl": "https://tomov.github.io/CW-Net/imgs/Figure1.jpg",
+      "asset": "/images/radar/inline/d0da94476e1a.webp",
+      "sha256": "dfe638573efadcdb38092cb898598b77e583868b5c1fbc3fbd212cb7e820198e",
+      "credit": "The Rundown AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "MIT与Motional研发CW-Net：在轨迹规划前引入可解释概念层",
+        "alt": "CW-Net架构与黑盒规划器概念层对比图",
+        "caption": "对比黑盒机器学习规划器与CW-Net，展示在轨迹评分前引入人类可理解概念层的框架设计。"
+      },
+      "ja": {
+        "heading": "MITとMotionalがCW-Netを発表：軌道計画前に解釈可能な概念層を導入",
+        "alt": "CW-Netのアーキテクチャとブラックボックス計画器の対比図",
+        "caption": "ブラックボックス計画器と比較し、軌道スコアリング前に概念層を組み込むCW-Net構造を示します。"
+      }
+    },
+    {
+      "id": "f79ab3d0d579",
+      "sourceUrl": "https://skild.ai/blogs/s1",
+      "originalImageUrl": "https://skild.ai/blogs/skild-brain/video/how2prompt.jpg",
+      "asset": "/images/radar/inline/f79ab3d0d579.webp",
+      "sha256": "0432b6746bdd7780c04b6565b9beee0768c679dbf514a43509a735090659e8ba",
+      "credit": "Skild AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "Skild S1机器人模型：单次人类示范无微调适应新任务",
+        "alt": "为机器人录制人类演示",
+        "caption": "官方示例展示人类录制任务演示作为视频提示；输入的是操作过程，而非为每个新任务重新编写一套动作程序。"
+      },
+      "ja": {
+        "heading": "Skild S1ロボットモデル：重み更新なしで単一動画デモから新タスクに適応",
+        "alt": "ロボット向けの人による実演の録画",
+        "caption": "公式例は人による作業の実演を動画プロンプトとして記録する場面です。新しい課題ごとに動作プログラムを書く代わりに作業過程を入力します。"
+      }
+    },
+    {
+      "id": "25284a89bdc9",
+      "sourceUrl": "https://blog.bytebytego.com/p/ep224-mcp-vs-rag-vs-ai-agents",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!tsAw!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb0fa724e-feb3-4ec6-9c53-50437d9cf884_2484x3002.png",
+      "asset": "/images/radar/inline/25284a89bdc9.webp",
+      "sha256": "d355b25cc40924fe1c146ffee7647f3567eefd0c308eac68572cf06b89ba0685",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "ByteByteGo解析MCP、RAG与智能体：系统分层与长程运行分布式模式",
+        "alt": "MCP、RAG与AI智能体对比图表",
+        "caption": "三栏分别解释 MCP 的工具连接、RAG 的检索补充上下文，以及智能体的规划—观察—行动循环；三者可以组合，并不是互斥选项。"
+      },
+      "ja": {
+        "heading": "ByteByteGoがMCP・RAG・AIエージェントを整理：分散システム視点の信頼性",
+        "alt": "MCP、RAG、AIエージェントの比較図",
+        "caption": "3欄でMCPによるツール接続、RAGによる文脈の取得、エージェントの計画・観察・行動の循環を示します。排他的な選択肢ではなく、組み合わせられる役割です。"
+      }
+    }
+  ]
+}

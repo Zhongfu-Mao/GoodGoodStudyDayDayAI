@@ -41,6 +41,12 @@ draft: false
 - リンク：https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/
 - 要約：Gemini 3.7 Flash、3.6 Flash、3.5 Flash-Liteに能動的動画理解が導入されました。従来の固定フレームレート処理とは異なり、モデルが内蔵ツールを用いて映像・音声・文字起こしを能動的に検索・精査します。公式ベンチマークではトークン消費を最大88%、コストを最大66%削減したとされ、API向けに提供が始まっています。
 
+<!-- radar-visual:ff572fc15fd8 -->
+[![エージェント型動画理解によるトークン削減と精度向上を分析したグラフ](/images/radar/inline/ff572fc15fd8.webp)](/images/radar/inline/ff572fc15fd8.webp)
+
+*能動的動画理解によるトークン消費削減と精度向上を示した公式検証グラフで、長尺動画での効率化傾向を提示。 画像出典：[Google / Gemini](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:ff572fc15fd8 -->
+
 ## 2. モデル最前線 & アルゴリズム探索
 
 ### Fable 5.1とMythos 5.1が同一基盤モデルを共有し異なるアクセス管理を採用
@@ -49,6 +55,12 @@ draft: false
 - 日付：2026-09-02（報道）
 - リンク：https://www.anthropic.com/claude-fable-and-mythos-5-1
 - 要約：AnthropicのFable 5.1とMythos 5.1は同一モデルで防護が異なります。前者は一般提供、後者は当時、一部米国機関への限定アクセスです。同社はキャッシュ読み取りの値下げで典型的な負荷のコストが約25%下がると見込みますが、全トークンの一律値下げではありません。企業向け防護EFSは秋から段階展開の予定です。
+
+<!-- radar-visual:7941eb9924e0 -->
+[![金星上の直径15kmの火山を示す新しい300m解像度数値標高モデル画像](/images/radar/inline/7941eb9924e0.webp)](/images/radar/inline/7941eb9924e0.webp)
+
+*公式例は幅約15kmの金星の火山を表す新しい標高図で、白線は10kmの尺度です。300mの格子間隔は、全地形を300mの観測精度で捉えたことを意味しません。 画像出典：[The Rundown AI · Anthropic](https://www.anthropic.com/claude-fable-and-mythos-5-1)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:7941eb9924e0 -->
 
 ### Atlasが空間文脈生成と3次元再構成を統合
 
@@ -81,6 +93,12 @@ draft: false
 - 日付：2026-09-01
 - リンク：https://openai.com/index/ai-native-company-workflows/
 - 要約：OpenAIはBasis、Clay、Exaの事例を紹介。Basisは入社手続きのスキル化で2時間を30分に短縮したと報告し、Clayは商談文脈を維持、Exaは連携機会をPRとテストにつなげ人の判断を残します。明確なタスク、継続的な文脈、検収条件が参考になりますが、企業報告を全組織の生産性効果へ一般化はできません。
+
+<!-- radar-visual:9625e970a7f7 -->
+[![新入社員向けの初日チェックリストと自動設定手順を示すBasisのAIオンボーディング画面](/images/radar/inline/9625e970a7f7.webp)](/images/radar/inline/9625e970a7f7.webp)
+
+*入社用画面にアクセス権、当日の予定、学習資料を集め、本人の対応が必要な項目も示しています。標準スキルで反復手順を整理しつつ、人が関与する箇所を残す例です。 画像出典：[OpenAI](https://openai.com/index/ai-native-company-workflows/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:9625e970a7f7 -->
 
 ### 教育的視点：課題の完了は真の能力習得と同義ではない
 

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-22",
+  "visuals": [
+    {
+      "id": "7705e9ae61c7",
+      "sourceUrl": "https://openai.com/index/expanding-openai-academy-with-new-learning-paths/",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/7BkfvuYjulIzHmkueQ2vLP/ec014763bb49ca7332c0b552c9538b8b/academy-pathways-overview.png?w=3840&q=90&fm=webp",
+      "asset": "/images/radar/inline/7705e9ae61c7.webp",
+      "sha256": "88f67ca6e2f323c2a36af3ccb616eb07f30edeee118e855b993f71dee4e4be25",
+      "credit": "OpenAI",
+      "review": "accepted",
+      "zh": {
+        "heading": "OpenAI Academy 扩充学习路径：面向开发者与教育者增设实践课程",
+        "alt": "OpenAI Academy学习路径示意图",
+        "caption": "四条学习路径分别面向工作应用、构建开发、领导采纳与教学学习；图中课程数量帮助读者选择入口，并不表示每条路径的学习难度。"
+      },
+      "ja": {
+        "heading": "OpenAI Academyが学習パスを拡充：開発者および教育者向けの実践コースを新設",
+        "alt": "OpenAI Academyの学習パス概要図",
+        "caption": "業務応用、開発、導入リード、教育の4つの学習経路を示します。コース数は入口選びの参考で、難易度の比較ではありません。"
+      }
+    },
+    {
+      "id": "03e48a52413d",
+      "sourceUrl": "https://lukefan.com/2026/09/22/guiyang-potato-bus-mobile-third-space/",
+      "originalImageUrl": "https://pictures.lukefan.com/guiyang-potato-bus-mobile-third-space/guiyang-potato-bus-mobile-third-space-02.jpg",
+      "asset": "/images/radar/inline/03e48a52413d.webp",
+      "sha256": "88a22635b6d82533d5e1e6980f53f73a613ad585eda3d2a4fe9977058581bb6b",
+      "credit": "老范讲故事",
+      "review": "accepted",
+      "zh": {
+        "heading": "老范评贵阳 PIX 移动巴士：商业价值在于移动第三空间而非单一自动驾驶",
+        "alt": "底盘3D打印与开模经济性对比示意图",
+        "caption": "左侧呈现金属3D打印与无模具成型底盘，右侧对比年产千辆与高产量的开模经济性差异，并以Czinger 21C作为量产参照。"
+      },
+      "ja": {
+        "heading": "老范が貴陽PIXの移動型バスを論評：商業的価値は単なる自動運転ではなく「移動するサードプレイス」にあり",
+        "alt": "シャシー3Dプリントと金型経済性の比較図",
+        "caption": "金属3Dプリントと無金型成型によるシャシーを示し、年産千台と大量生産の金型採算性を比較し、量产参照例を併記しています。"
+      }
+    },
+    {
+      "id": "1c2071d984cc",
+      "sourceUrl": "https://blog.bytebytego.com/p/how-to-run-a-big-model-on-cheap-hardware",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!cUYW!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Facec9d93-985c-4329-9397-d12adf83b4fd_2730x1626.png",
+      "asset": "/images/radar/inline/1c2071d984cc.webp",
+      "sha256": "d9b4ab59ebcfa77075d021f03b1c312b9ccaba53eebc77784240bb3e24afd459",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "ByteByteGo 详解消费级硬件运行大模型：量化、层级卸载与 MoE 权衡",
+        "alt": "模型层在内存与显存之间的卸载过程",
+        "caption": "分层卸载让模型权重在不同存储层之间移动，以减少显存常驻量；代价是额外的数据传输与等待。"
+      },
+      "ja": {
+        "heading": "ByteByteGoが安価なハードウェアでの大規模モデル実行を解説：量子化、レイヤーオフロード、MoEのトレードオフ",
+        "alt": "モデル層のメモリとVRAM間のオフロード",
+        "caption": "層単位のオフロードで重みを異なるメモリ階層間に移動し、VRAM常駐量を減らします。その分、転送と待ち時間が生じます。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-04",
+  "visuals": [
+    {
+      "id": "9b8e2efc2895",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-weathernext-3/",
+      "originalImageUrl": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/WeatherNext3_diagrams_fig-01.width-1200.format-webp.webp",
+      "asset": "/images/radar/inline/9b8e2efc2895.webp",
+      "sha256": "e97573ddcebfc99250072ae0b91216a493ca7db3fd639d5b011f3603cf453252",
+      "credit": "Google / DeepMind",
+      "review": "accepted",
+      "zh": {
+        "heading": "Google发布WeatherNext-3高分辨率气象预报模型",
+        "alt": "WeatherNext 3 系统架构图",
+        "caption": "卫星拼图与分析场输入 WeatherNext 3，右侧输出分成网格化气象场和站点、气旋等目标；图示强调同一模型连接不同观测与预测形式。"
+      },
+      "ja": {
+        "heading": "GoogleがWeatherNext-3を発表、高解像度気象予測モデル",
+        "alt": "WeatherNext 3 システムアーキテクチャ図",
+        "caption": "衛星モザイクと解析場をWeatherNext 3へ入力し、格子状の気象場と観測地点・サイクロンなどの対象へ出力します。異なる観測・予測形式のつながりを示す図です。"
+      }
+    },
+    {
+      "id": "87d1368b3814",
+      "sourceUrl": "https://every.to/source-code/the-folder-is-the-agent-rerun",
+      "originalImageUrl": "https://every.to/_next/image?url=https%3A%2F%2Fd24ovhgu8s7341.cloudfront.net%2Fuploads%2Feditor%2Fposts%2F4108%2Foptimized_2fdb920e-0dff-47b4-9653-b47961d8e09f.jpeg&w=1200&q=75",
+      "asset": "/images/radar/inline/87d1368b3814.webp",
+      "sha256": "0de4a32111a8a4890fbc6460a1fa698dcfcf145829c7b4d9d0065e4533813ac0",
+      "credit": "Every",
+      "review": "accepted",
+      "zh": {
+        "heading": "基于文件夹的Agent架构与运行实践",
+        "alt": "主智能体通过 orchestrate 命令向不同上下文专业工作者派发任务的终端运行示意",
+        "caption": "终端截图显示主会话发起任务后，后台协调器继续运行并提示可稍后查看进度；这是作者实际工作流的一帧，并非完整的多窗口状态图。"
+      },
+      "ja": {
+        "heading": "フォルダをエージェントとする設計思想と運用実践",
+        "alt": "オーケストレーション命令により主エージェントが各ワーカーへ処理を委任する画面",
+        "caption": "端末画面では主会話から依頼した後にバックグラウンドの調整処理が続き、後から進捗を確認できると案内しています。著者の実際の作業画面の一場面です。"
+      }
+    },
+    {
+      "id": "7bad694e08f8",
+      "sourceUrl": "https://www.deeplearning.ai/the-batch/issue-369",
+      "originalImageUrl": "https://charonhub.deeplearning.ai/content/images/2026/09/AI-Engineering-skills-map-----Using-Coding-Agents-1.webp",
+      "asset": "/images/radar/inline/7bad694e08f8.webp",
+      "sha256": "8dc0b9529ad6b5d3aedd65d160a6c547f1e93cd0d112ce07fb7249559616607c",
+      "credit": "The Batch / DeepLearning.AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "吴恩达论编码智能体的三阶段与五项核心技能",
+        "alt": "编码智能体 AI 工程技能图谱",
+        "caption": "技能图将“使用编码智能体”拆成工作流指导、自主性配置、审查成果、定制环境与基础知识五项；它们共同嵌在更大的 AI 工程能力体系中。"
+      },
+      "ja": {
+        "heading": "Andrew Ng氏が提唱するコーディングAgentの3フェーズと5つの必須スキル",
+        "alt": "コーディングエージェント活用に向けたAIエンジニアリングスキルマップ",
+        "caption": "コーディングエージェントの利用を、作業指示、自律性の設定、成果確認、環境のカスタマイズ、基礎知識の5項目に分け、AIエンジニアリング全体の中に位置づけています。"
+      }
+    }
+  ]
+}

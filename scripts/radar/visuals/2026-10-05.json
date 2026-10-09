@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-05",
+  "visuals": [
+    {
+      "id": "37da4bfb17e2",
+      "sourceUrl": "https://claude.dev/blog/getting-started-with-claude-code-mods/",
+      "originalImageUrl": "https://claude.dev/media/ac53d89fc2dbe36603c30639b12fdc7edcfba5072b9b417e656a65a2d196cc37.png",
+      "asset": "/images/radar/inline/37da4bfb17e2.webp",
+      "sha256": "9d3b95beed0fab19335630157e06bd97fefea047189fde66fac73aa3feaae400",
+      "credit": "Claude Code",
+      "review": "accepted",
+      "zh": {
+        "heading": "Claude Code mods：把事件钩子、状态与界面扩展放进同一会话",
+        "alt": "终端中的 Blast Radius 提示框，列出 git reset --hard 可能丢失的文件并提供继续或取消选项",
+        "caption": "终端界面在执行 git reset --hard 前列出可能丢失的未提交文件，并要求继续或取消；文章说明它只是提示层。"
+      },
+      "ja": {
+        "heading": "Claude Code mods：イベントフック、状態、UI拡張を同一セッション内に集約",
+        "alt": "端末のBlast Radius警告。git reset --hardで失う可能性のあるファイルと続行・取消を表示",
+        "caption": "git reset --hardの前に失われ得る未コミットファイルを列挙し、続行か取消を求める。記事自身も、これは権限制御ではなく警告層だと説明する。"
+      }
+    },
+    {
+      "id": "0fee3d7a215e",
+      "sourceUrl": "https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/",
+      "originalImageUrl": "https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?w=1024",
+      "asset": "/images/radar/inline/0fee3d7a215e.webp",
+      "sha256": "1e6f0d4c6e1a99e3d59ce7ef9d6b3a3ff6e98c599ddc14f3c7944809310f8bf2",
+      "credit": "Matthew Green",
+      "review": "accepted",
+      "zh": {
+        "heading": "Matthew Green：沙箱之外，还要审查智能体接收指令的通道",
+        "alt": "智能体安全架构示意图，紫色区域标出沙箱外的分类器与确定性 Sentinel 组件",
+        "caption": "示意图把沙箱内智能体与沙箱外安全分类器、确定性 Sentinel 决策组件分开；隔离仍需配合指令来源和数据流审查。"
+      },
+      "ja": {
+        "heading": "Matthew Green：サンドボックスの外部でも、エージェントが指示を受け取る経路の精査が必要",
+        "alt": "エージェント安全構成図。紫色でサンドボックス外の分類器と決定論的Sentinelを表示",
+        "caption": "サンドボックス内のエージェントと、外部の安全分類器・決定論的Sentinelを分離して示す。隔離だけでなく指示元とデータ流の審査も必要になる。"
+      }
+    },
+    {
+      "id": "7c5bea145878",
+      "sourceUrl": "https://research.meta.ai/blog/solving-open-research-problems-together",
+      "originalImageUrl": "https://research.meta.ai/articles/math-papers/images/gaussian-ellipsoid-threshold-v2.webp?dpl=dpl_4XhUvpi491zLwHUaeTzVKZByDKB1",
+      "asset": "/images/radar/inline/7c5bea145878.webp",
+      "sha256": "b5f300d9a8846056ac8fccccf0bb6eebf84ce3981a066761fcdbc7812a8513b5",
+      "credit": "Meta AI Research",
+      "review": "accepted",
+      "zh": {
+        "heading": "Muse Spark 数学协作：六篇论文、五个开放问题，仍由数学家主导验证",
+        "alt": "两个椭球示意图与阈值轴，表示随机点数量变化时精确高斯拟合的相变",
+        "caption": "图中以低维椭球和阈值轴说明：随机点数量跨过约 d²/4 后，精确拟合会从高概率存在转向不太可能存在。"
+      },
+      "ja": {
+        "heading": "Muse Spark 数学共同研究：6本の論文と5つの未解決問題、依然として数学者が検証を主導",
+        "alt": "2つの楕円体と閾値軸で、ランダム点数に伴う厳密ガウス当てはめの相転移を示す",
+        "caption": "低次元の楕円体と閾値軸で、点数が約d²/4を越えると厳密な当てはめが高確率で可能な領域から困難な領域へ移ることを示す。"
+      }
+    }
+  ]
+}

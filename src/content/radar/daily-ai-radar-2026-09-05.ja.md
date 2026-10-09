@@ -49,6 +49,12 @@ draft: false
 - リンク：https://ziyaerkoc.com/worldagents/
 - 要約：9月5日に紹介されたWorldAgentsは、単一の世界モデルではなく既存の画像モデルとVLMを協調させる枠組みです。Directorが指示を出し、Generatorが新視点を生成、Verifierが2D整合性と3D再構成を二重検証した上でAnySplatにより探索可能な3Dシーンを構築します。実験環境での検証であり物理シミュレーションの完全解決ではありません。
 
+<!-- radar-visual:00f36e9dd217 -->
+[![WorldAgentsパイプラインの概要図](/images/radar/inline/00f36e9dd217.webp)](/images/radar/inline/00f36e9dd217.webp)
+
+*監督VLMのプロンプト、生成器の視点合成、検証器の検証を経てAnySplatへ送るパイプラインです。 画像出典：[AI Valley](https://ziyaerkoc.com/worldagents/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:00f36e9dd217 -->
+
 ### Microsoft AIによる音声認識モデル「MAI-Transcribe-2」の発表
 
 - 出典：AI Valley
@@ -71,6 +77,12 @@ draft: false
 - 日付：2026-09-03
 - リンク：https://www.llamaindex.ai/blog/introducing-turbo-our-fastest-extraction-tier
 - 要約：LlamaIndexは9月3日にExtractTurboのベータ版を発表しました。個別のパース工程を挟まずページから直接並列で構造化データを抽出します。自社ExtractBenchでは1ページ中央値3.7秒、F1値0.84を記録し、Cost Effective比で約4倍高速と報告されています。中程度の複雑さで低遅延を要する処理に適していますが、入力形式の制限があり全OCRでの優位性を保証するものではありません。
+
+<!-- radar-visual:79195f221ea6 -->
+[![文書ページ数と処理遅延の比較](/images/radar/inline/79195f221ea6.webp)](/images/radar/inline/79195f221ea6.webp)
+
+*横軸は文書のページ数、縦軸は文書当たりの処理時間の中央値です。長い文書ほど遅延曲線が分かれますが、この図自体は抽出精度を比較していません。 画像出典：[LlamaIndex](https://www.llamaindex.ai/blog/introducing-turbo-our-fastest-extraction-tier)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:79195f221ea6 -->
 
 ## 4. 業界 & ビジネス速報
 
@@ -112,6 +124,12 @@ draft: false
 - 日付：2026-09-04
 - リンク：https://blog.dailydoseofds.com/p/5-embedding-compression-techniques
 - 要約：9月4日の記事では、PCA、MRL次元切り詰め、スカラー量子化、バイナリ量子化、積量子化（PQ）という5種類の埋め込み圧縮手法を解説しています。これらは次元数やビット幅を削減します。圧縮検索後の高精度再ランク付けは順位を改善しますが初期選別漏れは回復できず、ベクトル自体の削減率がインデックス全体の削減率とは一致しません。
+
+<!-- radar-visual:cc8faf28b09b -->
+[![5つの埋め込みベクトル圧縮技術の分類図](/images/radar/inline/cc8faf28b09b.webp)](/images/radar/inline/cc8faf28b09b.webp)
+
+*次元数やビット幅を削減して埋め込みを圧縮する5手法について、変更箇所の違いを整理して示します。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/5-embedding-compression-techniques)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:cc8faf28b09b -->
 
 ### データベース並行制御の基本原則：読み書き競合・ロック機構と分離レベル
 

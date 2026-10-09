@@ -48,6 +48,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-30.ja-infographic.webp
 - リンク：https://magazine.sebastianraschka.com/p/classifier-history-and-jev
 - 要約：RaschkaはBag-of-Words、RNN、BERTからJevに至る歴史を整理し、汎用的な低遅延分類器の真価は分類そのものが新しい発明であることではなく、タスク横断的な適用性にあると指摘しています。本記事では温度スケーリングとBrierスコアを用いて、ラベルの判定正解が信頼できる確信度確率を意味しない理由を解説し、本番システムでは独立したデータセット上でキャリブレーションを検証すべきであるとしています。Jevの具体的なアーキテクチャおよびRLCD訓練手法は非公開であり、記事中のModernBERTやRLCRとの関連付けは筆者の推測であって、開示された実装仕様として扱うことはできません。
 
+<!-- radar-visual:486366d66ea8 -->
+[![Jev APIの概要を示す説明図](/images/radar/inline/486366d66ea8.webp)](/images/radar/inline/486366d66ea8.webp)
+
+*支払い失敗のチケットを分類APIに渡し、billingラベルで担当キューへ振り分けます。出力はconfidenceと各クラスの確率を別々に示しており、同じ数値として扱えません。 画像出典：[Ahead of AI](https://magazine.sebastianraschka.com/p/classifier-history-and-jev)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:486366d66ea8 -->
+
 ## 3. 実践コード & ツールライブラリ
 
 ### リアルタイムホテル音声エージェントが文字起こしと応答遅延を可視化
@@ -56,6 +62,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-30.ja-infographic.webp
 - 日付：2026-09-29
 - リンク：https://blog.dailydoseofds.com/p/build-a-real-time-hotel-booking-voice
 - 要約：Speechmaticsと共同制作されたこのチュートリアルでは、LiveKit、Linden、OpenRouter、Fish Audio、Streamlitを連携させた音声パイプラインを構築し、暫定的な文字起こし、確定ターン、返答発声の開始タイミングを可視化しつつ、ユーザーによる日付等のフィールド修正にも対応します。「発話から確定文字起こしまで」と「確定文字起こしから音声返答まで」を明確に区別しており、前者はユーザーの発話時間を含んでいます。単一の音声認識遅延をもってエンドツーエンドの体験遅延を代弁することはできません。チュートリアルのデモは、実際のホテル在庫システムへの接続や予約完了を実証するものではありません。
+
+<!-- radar-visual:04dcc09ca0c1 -->
+[![リアルタイムホテル予約音声エージェントのパイプライン概要図](/images/radar/inline/04dcc09ca0c1.webp)](/images/radar/inline/04dcc09ca0c1.webp)
+
+*一般的な模式図として、音声認識、LLMと内部ツール、音声合成をつなぎます。図はSpeechmaticsを使っており、本文のホテル事例の構成部品をそのまま示す一覧ではありません。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/build-a-real-time-hotel-booking-voice)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:04dcc09ca0c1 -->
 
 ### Manus 2.0 が自動化トリガーと編集可能な制作環境を統合
 
@@ -111,3 +123,9 @@ coverImage: /images/radar/daily-ai-radar-2026-09-30.ja-infographic.webp
 - 日付：2026-09-29
 - リンク：https://blog.bytebytego.com/p/why-do-llms-lie
 - 要約：本記事はハルシネーションを事実誤認、情報源との不整合、根拠のない捏造に分類し、流暢な説明、参照リンク、自己申告の確信度はいずれも検証の代わりにはならないと強調しています。RAGには正確なバージョンと適用範囲が必要であり、ツール呼び出しには実際の実行と失敗ステータスの保持が必要です。たとえ条件が満たされていても、外部システムでの確認が完了する前に操作完了とみなすことはできません。エンジニアリング上は「証拠不十分につき再確認が必要」という状態を許容し、正解回答、妥当な拒否、誤ったコミットメントをそれぞれ個別にテストすべきです。
+
+<!-- radar-visual:8efa26b52295 -->
+[![サポート業務におけるRAG検索拡張生成フロー図](/images/radar/inline/8efa26b52295.webp)](/images/radar/inline/8efa26b52295.webp)
+
+*上段は規約の検索、証拠の入力、出典付き回答の生成です。下段には旧規約、別製品、規則の欠落という失敗例があり、検索成功だけでは回答の正しさを保証しません。 画像出典：[ByteByteGo](https://blog.bytebytego.com/p/why-do-llms-lie)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:8efa26b52295 -->

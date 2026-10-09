@@ -38,6 +38,12 @@ representativeImageSource: https://blog.google/innovation-and-ai/models-and-rese
 - 链接：https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness
 - 摘要：Open SWE根据线程首条请求选择快、均衡或高性能模型，路由逻辑位于掌握任务上下文的middleware，而非通用网关。在973个线程的A/B测试中，相对始终用最强模型的对照组，路由组每线程成本中位数下降64%；合并PR比例为29.2%与27.3%，差异未达统计显著。合并率只是质量代理指标，不是证明质量完全相等。当前实现一整个线程固定模型，途中重路由和子智能体路由仍属后续方向。
 
+<!-- radar-visual:29bdfe742da6 -->
+[![每线程LLM成本小提琴图，对比始终使用GPT-6 Astra与按快、均衡、性能分层路由](/images/radar/inline/29bdfe742da6.webp)](/images/radar/inline/29bdfe742da6.webp)
+
+*图表以对数刻度比较每线程成本：路由组中位数0.94美元，对照组2.61美元。该64%降幅来自973个线程的特定实验。 图片来源：[LangChain](https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness)。点击图片查看原尺寸。*
+<!-- /radar-visual:29bdfe742da6 -->
+
 ## 2. 模型前沿 & 算法探索
 
 ### Gemini 4 Argon 首先向可信网络防御团队开放
@@ -53,6 +59,12 @@ representativeImageSource: https://blog.google/innovation-and-ai/models-and-rese
 - 日期：2026-10-01
 - 链接：https://huggingface.co/blog/allenai/olmocore3
 - 摘要：AllenAI改造专家并行、流水线并行与分布式优化器，让专家常驻GPU并将token路由过去，减少反复聚合权重。在保持每token约32亿活跃参数、每次选四个专家的测试中，专家数从8增至128，总参数从46亿升至470亿，吞吐下降不足5%。文章也报告万亿参数系统测试，但使用随机路由；2.38万亿参数配置只是短容量试验。此次开放的是训练系统，不是已经完成训练、达到某种质量的新Olmo模型。
+
+<!-- radar-visual:c145d89b8c38 -->
+[![Olmo-core 3 专家池扩展与训练吞吐对比图](/images/radar/inline/c145d89b8c38.webp)](/images/radar/inline/c145d89b8c38.webp)
+
+*图表比较扩展 MoE 专家池时的参数规模与训练吞吐；正文报告专家从8增至128时吞吐下降不足5%，条件限于该测试。 图片来源：[Allen Institute for AI，经 Hugging Face](https://huggingface.co/blog/allenai/olmocore3)。点击图片查看原尺寸。*
+<!-- /radar-visual:c145d89b8c38 -->
 
 ## 3. 实战代码 & 工具库
 
@@ -110,6 +122,12 @@ representativeImageSource: https://blog.google/innovation-and-ai/models-and-rese
 - 日期：2026-10-01
 - 链接：https://blog.dailydoseofds.com/p/building-a-production-agent-harness
 - 摘要：教程用LangGraph与Jev构建带重试、降级、调用预算和人工写入审批的智能体运行框架，并为计划设置完成条件。验证分三层：确定性证据检查先拦明显失败，Jev概率处理高置信判断，独立LLM复核不确定区间；卡住时修复或重新规划，只把已验证结论写入记忆。概率是控制流程中的信号，不替代权限或人工批准；教程中的可运行参考实现也不等于任意生产环境已通过安全验收。
+
+<!-- radar-visual:4cd020d2f867 -->
+[![从确定性检查、概率判断和LLM复核到人类审批的分层流程](/images/radar/inline/4cd020d2f867.webp)](/images/radar/inline/4cd020d2f867.webp)
+
+*从上到下先做确定性检查，再交给 Jev 概率判断和独立 LLM 复核；图底还保留涉及外部副作用的人类审批，说明内容判断不能替代执行授权。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/building-a-production-agent-harness)。点击图片查看原尺寸。*
+<!-- /radar-visual:4cd020d2f867 -->
 
 ### Every：开放模型选择要同时看任务、部署位置与维护负担
 

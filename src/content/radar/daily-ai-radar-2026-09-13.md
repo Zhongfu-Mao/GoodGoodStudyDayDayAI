@@ -27,12 +27,24 @@ draft: false
 - 链接：https://blog.dailydoseofds.com/p/4-speculative-decoding-variants
 - 摘要：文章比较四种投机解码路线：小模型起草、目标模型并行验证；EAGLE 预测目标模型内部特征；Medusa 使用多个预测头；LayerSkip 利用提前退出生成草稿。共同思路是先低成本提出多个词元，再由目标模型验证。实际收益要扣除草稿和验证开销，并取决于接受率，不能直接把每轮提出的词元数当作加速倍数。
 
+<!-- radar-visual:26b2398c411b -->
+[![投机解码的两阶段流程图，展示低成本起草词元与目标模型并行验证机制](/images/radar/inline/26b2398c411b.webp)](/images/radar/inline/26b2398c411b.webp)
+
+*关注图解呈现的两阶段投机流程：草稿端先低成本提出多个词元，目标模型并行验证并接受匹配前缀，若出现不匹配则替换并丢弃剩余草稿。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/4-speculative-decoding-variants)。点击图片查看原尺寸。*
+<!-- /radar-visual:26b2398c411b -->
+
 ### 应用层网络基础架构指南
 
 - 来源：ByteByteGo
 - 日期：2026-09-10
 - 链接：https://blog.bytebytego.com/p/a-guide-to-application-networking
 - 摘要：ByteByteGo 的公开导读梳理一次应用请求经过的网络层次：客户端先通过 DNS 查询 API 端点的 IP，在传统 HTTPS 链路中建立 TCP 连接并完成 TLS 握手，随后由负载均衡器把请求送到健康的应用实例。把名称解析、连接、安全与路由分开理解，有助于定位请求究竟在哪一层受阻，而不是把所有延迟都归因于应用代码。
+
+<!-- radar-visual:f6d9c9d30726 -->
+[![传统HTTPS请求网络链路示意图，展示TCP握手、TLS握手及负载均衡转发](/images/radar/inline/f6d9c9d30726.webp)](/images/radar/inline/f6d9c9d30726.webp)
+
+*六个面板分别说明 HTTP 连接、HTTP/3、响应时序、多路复用、gRPC 与 NAT；可横向比较协议负责哪一层，而不是把全部面板当成一条请求链。 图片来源：[ByteByteGo](https://blog.bytebytego.com/p/a-guide-to-application-networking)。点击图片查看原尺寸。*
+<!-- /radar-visual:f6d9c9d30726 -->
 
 ## 2. 模型前沿 & 算法探索
 
@@ -74,6 +86,12 @@ draft: false
 - 日期：2026-09-12
 - 链接：https://www.latent.space/p/forward-deployed-engineer-best-practices
 - 摘要：作者结合在Palantir等机构的一线经历撰文探讨前向部署工程师职责。文章强调FDE的核心价值不仅是驻场交付或单次咨询，而是深入现场复杂的真实生产工作流，解决最后一公里问题并提炼通用信号，进而反哺底层平台演进。该文属从业者第一人称经验总结，并非量化的对照实验研究。
+
+<!-- radar-visual:19727011c8f3 -->
+[![前向部署工程师与传统咨询顾问定位差异对比图](/images/radar/inline/19727011c8f3.webp)](/images/radar/inline/19727011c8f3.webp)
+
+*关注Vinoo Ganesh绘制的职责对比图，呈现前向部署工程师深入客户业务一线与传统咨询在职责定位及推动平台演进上的区别。 图片来源：[Latent.Space](https://www.latent.space/p/forward-deployed-engineer-best-practices)。点击图片查看原尺寸。*
+<!-- /radar-visual:19727011c8f3 -->
 
 ### 纪录短片《渲染之爱》：用AI重现未记录的记忆
 

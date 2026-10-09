@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-20",
+  "visuals": [
+    {
+      "id": "5ca0b9560449",
+      "sourceUrl": "https://openai.com/index/how-to-connect-ai-usage-to-business-value/",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/42junALmw7MNvMfaWUOJCc/d315ef1910e886597f64ea2ad23de7a5/01.png?w=3840&q=90&fm=webp",
+      "asset": "/images/radar/inline/5ca0b9560449.webp",
+      "sha256": "98ff479ef477eea32cb2cd75d2b0cb3b9b88427a38281683db8de1a6560f09e1",
+      "credit": "OpenAI",
+      "review": "accepted",
+      "zh": {
+        "heading": "OpenAI Admin Console 效能分析：将 AI 使用量与业务价值对齐",
+        "alt": "管理控制台用量总览演示截图",
+        "caption": "管理控制台用量概览展示ChatGPT Work与Codex的活跃用户及积分趋势，官方说明图中界面均采用示例演示数据。"
+      },
+      "ja": {
+        "heading": "OpenAI Admin Console 効果分析：AI 利用量とビジネス価値を整合させる",
+        "alt": "管理コンソール利用状況概要のデモ画面",
+        "caption": "ChatGPT WorkおよびCodexのアクティブユーザー数とクレジット推移を示す管理画面で、図中の数値は例示用データとされています。"
+      }
+    },
+    {
+      "id": "20311f514457",
+      "sourceUrl": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+      "originalImageUrl": "https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2Fb5ed53a2cb9d20cf369be85a586c1b4d1c171c47-2048x1318.jpg&w=3840&q=75",
+      "asset": "/images/radar/inline/20311f514457.webp",
+      "sha256": "35c507527d75a6f77e6e5ef39c616bbfa153adf6cd684f1c5fae975d85da2ff4",
+      "credit": "Anthropic",
+      "review": "accepted",
+      "zh": {
+        "heading": "Anthropic 利用 Claude 优化生物分子建模：提速内核与精度边界",
+        "alt": "结构预测模型优化加速倍率柱状图",
+        "caption": "柱状图分别比较 Exact、Fast 与 Big 模式的前向计算提速，右下角汇总值约为 1.6、4.2 与 3.5 倍；这是指定结构预测模型的计算测试。"
+      },
+      "ja": {
+        "heading": "Anthropic が Claude を活用して生体分子モデリングを最適化：カーネル高速化と精度の境界",
+        "alt": "生体分子構造予測モデルの高速化倍率を示す棒グラフ",
+        "caption": "棒グラフはExact、Fast、Bigの前向き計算速度を比較し、右下の集計は約1.6、4.2、3.5倍です。指定された構造予測モデルでの計算ベンチマークです。"
+      }
+    },
+    {
+      "id": "19b7da0ca5c5",
+      "sourceUrl": "https://abc.bot/",
+      "originalImageUrl": "https://abc.bot/assets/overview/dataset_grid_4to3.jpg",
+      "asset": "/images/radar/inline/19b7da0ca5c5.webp",
+      "sha256": "816b1ee9788ac93af8e5b80c9c7b6b9984d240d2877a6ae66924191e2b6a2017",
+      "credit": "ABC",
+      "review": "accepted",
+      "zh": {
+        "heading": "ABC 具身基准开源：可复现训练与评估套件获 CoRL 2026 接收",
+        "alt": "ABC 真实世界机器人任务网格",
+        "caption": "任务网格呈现机器人在不同物体与场景中的操作，帮助理解数据集覆盖面；画面展示任务类型，本身不代表任务成功率。"
+      },
+      "ja": {
+        "heading": "ABC 身体性 AI ベンチマークがオープンソース化：再現可能なトレーニング＆評価スイートが CoRL 2026 に採択",
+        "alt": "ABCの実世界ロボットタスク一覧",
+        "caption": "異なる物体や環境でのロボット操作を並べ、データセットが扱う場面の幅を示します。タスクの種類を表す画面であり、成功率を示すものではありません。"
+      }
+    }
+  ]
+}

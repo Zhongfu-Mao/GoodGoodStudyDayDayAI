@@ -34,6 +34,12 @@ draft: false
 - 链接：https://blog.dailydoseofds.com/p/the-architecture-for-serving-100
 - 摘要：这篇架构文章比较每个微调变体独立部署与共享底座模型的服务方式。若多个 LoRA 适配器来自同一底座，请求可选择对应适配器，同时复用模型权重和工作池；目录较大时还能按请求加载，但首次命中会增加等待。文中的百变体显存数字是特定模型、适配器和 GPU 假设下的示例，实际容量与冷启动效果仍取决于流量和配置。
 
+<!-- radar-visual:158eb72904e1 -->
+[![运行时 LoRA 适配器解析流程](/images/radar/inline/158eb72904e1.webp)](/images/radar/inline/158eb72904e1.webp)
+
+*请求指定适配器后，运行中的工作进程检查是否已加载；未加载时再获取适配器，让后续请求可以复用。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/the-architecture-for-serving-100)。点击图片查看原尺寸。*
+<!-- /radar-visual:158eb72904e1 -->
+
 ## 2. 模型前沿 & 算法探索
 
 ### GPT-Live-1 开放 API，语音交互与深度推理分层
@@ -75,6 +81,12 @@ draft: false
 - 链接：https://www.anthropic.com/threat-intelligence-report-september-2026
 - 摘要：Anthropic 的威胁情报报告梳理 2025 年 12 月至 2026 年 8 月间被其识别并阻断的案例，涉及网络行动、影响行动、监控、诈骗欺诈、生物滥用、常规武器研发和非法蒸馏七类。报告称部分行动借助 AI 扩展执行与协调能力，但案例是经选择的显著事件，不代表常见滥用率；行为人归属与意图也应按报告证据分别判断。
 
+<!-- radar-visual:5f6dfb86f096 -->
+[![疑似ShinyHunters关联团伙攻击生命周期示意图，从凭据获取到勒索要求](/images/radar/inline/5f6dfb86f096.webp)](/images/radar/inline/5f6dfb86f096.webp)
+
+*关注图1呈现的网络攻击生命周期：展示被阻断团伙从凭证窃取、访问SaaS数据库到发起数据泄露勒索的完整攻击行为链条。 图片来源：[Anthropic](https://www.anthropic.com/threat-intelligence-report-september-2026)。点击图片查看原尺寸。*
+<!-- /radar-visual:5f6dfb86f096 -->
+
 ### ElevenLabs 与 UMG 合作开发授权音乐共创平台
 
 - 来源：ElevenLabs / The Rundown AI
@@ -113,3 +125,9 @@ draft: false
 - 日期：2026 年 9 月 10 日首发；9 月 19 日修订版补录
 - 链接：https://every.to/context-window/evals-for-everyone
 - 摘要：Every 的文章建议从自己反复处理的任务出发，把主观的质量偏好和纠错经验写成逐项通过或失败的检查，再用固定输入比较模型输出。评测标准本身也需拿人工判断对照、修正分歧，并用其他例子复测，以免只对某个模型或样本过拟合。公开基准未必覆盖个人工作标准；本文依据 9 月 19 日修订版，不把全部细节回溯到首发日。
+
+<!-- radar-visual:5f65ae6a5a14 -->
+[![把用户反馈转成评估检查项](/images/radar/inline/5f65ae6a5a14.webp)](/images/radar/inline/5f65ae6a5a14.webp)
+
+*作者将对实际输出的反馈整理为明确检查项，使下一次运行能针对同一问题复核，而不是只凭整体印象打分。 图片来源：[Every](https://every.to/context-window/evals-for-everyone)。点击图片查看原尺寸。*
+<!-- /radar-visual:5f65ae6a5a14 -->

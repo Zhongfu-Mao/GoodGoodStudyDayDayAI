@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-30",
+  "visuals": [
+    {
+      "id": "486366d66ea8",
+      "sourceUrl": "https://magazine.sebastianraschka.com/p/classifier-history-and-jev",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!0Q-x!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa5481509-dd15-42bf-9ce0-29a292276016_6461x3353.png",
+      "asset": "/images/radar/inline/486366d66ea8.webp",
+      "sha256": "8709b32ca2e8a65388d0e2bd39001e8efc664626cc916eb56a9f5c171a2c11a1",
+      "credit": "Ahead of AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "Ahead of AI：分类准确率与概率校准要分别验证",
+        "alt": "Jev API接口功能概览图",
+        "caption": "图中将付款失败的工单送入分类 API，再按 billing 标签分配队列。输出把 confidence 与各类别概率分开列出，两者不能混为同一个数值。"
+      },
+      "ja": {
+        "heading": "Ahead of AI：分類精度と確率キャリブレーションは個別に検証すべき",
+        "alt": "Jev APIの概要を示す説明図",
+        "caption": "支払い失敗のチケットを分類APIに渡し、billingラベルで担当キューへ振り分けます。出力はconfidenceと各クラスの確率を別々に示しており、同じ数値として扱えません。"
+      }
+    },
+    {
+      "id": "04dcc09ca0c1",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/build-a-real-time-hotel-booking-voice",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!nkXy!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdc52738e-a074-4582-8dc0-6c2b8b8f1ceb_960x675.gif",
+      "asset": "/images/radar/inline/04dcc09ca0c1.webp",
+      "sha256": "1c1d3000f6e3b772edaa212c8b996d57234006815eeae9ade67ca0054b66b12d",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "实时酒店语音智能体把转写与响应延迟展示出来",
+        "alt": "实时酒店预订语音智能体架构流水线示意图",
+        "caption": "这张通用示意图串起语音转写、LLM 与内部工具、语音合成三个环节；图中采用 Speechmatics，不能把它当成本文酒店示例所用组件的逐项清单。"
+      },
+      "ja": {
+        "heading": "リアルタイムホテル音声エージェントが文字起こしと応答遅延を可視化",
+        "alt": "リアルタイムホテル予約音声エージェントのパイプライン概要図",
+        "caption": "一般的な模式図として、音声認識、LLMと内部ツール、音声合成をつなぎます。図はSpeechmaticsを使っており、本文のホテル事例の構成部品をそのまま示す一覧ではありません。"
+      }
+    },
+    {
+      "id": "8efa26b52295",
+      "sourceUrl": "https://blog.bytebytego.com/p/why-do-llms-lie",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!FxOF!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc4b709c8-d91c-4806-a639-7adb27133990_4404x2024.png",
+      "asset": "/images/radar/inline/8efa26b52295.webp",
+      "sha256": "a8b3dd54055996e98c465d539f64cdc39a22db1801ffda09f92181cdd468083e",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "ByteByteGo：证据、动作结果与解释必须分别核验",
+        "alt": "客服支持场景下的RAG检索增强生成流程图",
+        "caption": "上方展示检索政策、将证据加入提示词、生成有出处回答的流程；下方仍列出旧政策、错误产品、缺失规则等失败情形，提醒检索成功不等于答案正确。"
+      },
+      "ja": {
+        "heading": "ByteByteGo：証拠・アクション結果・説明は個別に検証されなければならない",
+        "alt": "サポート業務におけるRAG検索拡張生成フロー図",
+        "caption": "上段は規約の検索、証拠の入力、出典付き回答の生成です。下段には旧規約、別製品、規則の欠落という失敗例があり、検索成功だけでは回答の正しさを保証しません。"
+      }
+    }
+  ]
+}

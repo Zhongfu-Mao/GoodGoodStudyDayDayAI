@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "date": "2026-09-16",
+  "visuals": [
+    {
+      "id": "07b88a2f0d9b",
+      "sourceUrl": "https://openai.com/index/introducing-the-agents-api",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/7oiK2YZ2Dx7hujorDOOj6R/47ba63c3fc77253118db0dbba04e19e4/agents-api_16x9_light_1.png?w=3840&q=90&fm=webp",
+      "asset": "/images/radar/inline/07b88a2f0d9b.webp",
+      "sha256": "1f359f8dfb0d8eb61bf5a5c10386e9cf9273ee77e3edfe85299a24c076096977",
+      "credit": "OpenAI",
+      "review": "accepted",
+      "zh": {
+        "heading": "OpenAI 推出 Agents API 公测：将 Codex 智能体底座开放给开发者",
+        "alt": "应用程序与Agents API交互流程图，展示托管Codex框架、工具调用以及沙箱环境运行机制。",
+        "caption": "展示应用程序与Agents API的交互流：API运行托管Codex底座，向沙箱发起工具调用并获取结果，支持在托管或自建环境中运行。"
+      },
+      "ja": {
+        "heading": "OpenAIがAgents APIを公開ベータで提供、Codexのエージェント基盤を開発者へ",
+        "alt": "アプリがAgents APIへタスクを送り、Codex基盤とサンドボックス経由でツール結果を得る構成図。",
+        "caption": "アプリとAgents APIの連携フローを示し、管理型Codex基盤がサンドボックスへツール呼び出しを行い結果を取得する仕組みを解説しています。"
+      }
+    },
+    {
+      "id": "5f28c496a8f2",
+      "sourceUrl": "https://every.to/also-true-for-humans/mini-vibe-check-typesafe-s-jev-judged-everything-i-ve-written-in-0-7-seconds",
+      "originalImageUrl": "https://every.to/_next/image?url=https%3A%2F%2Fd24ovhgu8s7341.cloudfront.net%2Fuploads%2Feditor%2Fpost%2F4478%2Foptimized_ffd2d347-2ae4-4bb6-8c8d-6e2bed61f5cb.jpg&w=1200&q=75",
+      "asset": "/images/radar/inline/5f28c496a8f2.webp",
+      "sha256": "4a65d26bb7d67f4d590f654c303b4b0040b7f459bc2cab6a48a7135833e6b821",
+      "credit": "Every",
+      "review": "accepted",
+      "zh": {
+        "heading": "Every 作者试用 Jev：快速分类判断仍须校验准确性",
+        "alt": "写作检查工具返回的概率矩阵截图，各行对应文章，各列对应AI写作模式，数值越接近1表示越可能由AI生成。",
+        "caption": "每行是一篇文章，各列分别判断结构对称、格式过度使用等模式；数值是该分类器的判断，不能直接当作文章由 AI 写成的事实证明。"
+      },
+      "ja": {
+        "heading": "Every筆者がJevを試用、高速な分類判断にも精度検証が必要",
+        "alt": "執筆チェッカーの確率マトリクス画面。行が記事、列がAI記述パターンを示し、1に近いほどAI使用の可能性を示唆。",
+        "caption": "各行が記事、各列が構造の対称性や書式の多用などの判定項目です。数値は分類器の判断であり、AI執筆を事実として証明するものではありません。"
+      }
+    }
+  ],
+  "exception": "Six source entries reviewed: two informative accepted visuals. Google candidate is a slogan card; course art is promotional; opinion cost pie misrepresents numeric proportions. Omit these rather than padding."
+}

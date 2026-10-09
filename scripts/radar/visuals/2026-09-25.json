@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-25",
+  "visuals": [
+    {
+      "id": "405a8fc6ddb4",
+      "sourceUrl": "https://www.latent.space/p/foundries-vs-navigators-lowering",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!fXvB!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd6882dd6-1780-46dd-87e0-5c5bc7cb257f_2048x1863.png",
+      "asset": "/images/radar/inline/405a8fc6ddb4.webp",
+      "sha256": "bc1651fc16b5bbf05b3c836213dac2e87adf9498a019765cc99a4b37e0ce606d",
+      "credit": "Latent.Space / Endura Therapeutics",
+      "review": "accepted",
+      "zh": {
+        "heading": "AI 科学研究的两条路径：加快实验与改善实验决策",
+        "alt": "Endura Therapeutics 在数小时内构建的内部仪表板",
+        "caption": "Endura 仪表板将样本散点、命中结果表和跨样本热图放在同一界面，方便围绕同一实验结果比较不同视角。"
+      },
+      "ja": {
+        "heading": "AIを使う科学研究の二つの道：実験を速めるか、実験の判断を改善するか",
+        "alt": "Endura Therapeutics が数時間で構築した社内ダッシュボード",
+        "caption": "Enduraの画面では散布図、ヒット一覧、サンプル間ヒートマップを並べ、同じ実験結果を複数の視点から比較できます。"
+      }
+    },
+    {
+      "id": "558848968283",
+      "sourceUrl": "https://www.latent.space/p/runway",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!c-7m!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa228c2e6-edb0-4b6e-beda-158ec9da9edf_2066x410.png",
+      "asset": "/images/radar/inline/558848968283.webp",
+      "sha256": "b53d44d579fc4f827cf33ba777de27aeaedf8ce7a062448e9a7920f6621aec78",
+      "credit": "Latent.Space / Runway",
+      "review": "accepted",
+      "zh": {
+        "heading": "Runway 的 WorldPrompt 为实时世界模型加入时间轴控制",
+        "alt": "GWM Worlds 2 三阶段训练路线",
+        "caption": "图中区分三个训练阶段：基础音视频模型先以 WorldPrompt 微调，再经后训练成为实时自回归扩散模型；微调后并不自动具备实时速度。"
+      },
+      "ja": {
+        "heading": "RunwayのWorldPromptがリアルタイム世界モデルに時間軸の制御を追加",
+        "alt": "GWM Worlds 2の3段階の学習経路",
+        "caption": "基盤の音声・映像モデルをWorldPromptで微調整し、後学習でリアルタイム自己回帰拡散モデルへ進める3段階を示します。微調整だけでリアルタイム化するわけではありません。"
+      }
+    },
+    {
+      "id": "3fee68a412fd",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "originalImageUrl": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/blog-gemini-3.8-flash-tts__evals.width-1000.format-webp_hBIZaRI.webp",
+      "asset": "/images/radar/inline/3fee68a412fd.webp",
+      "sha256": "29cf0703c418753b08efabc33884e8a20d377f43668eee074c51a2b11022f81f",
+      "credit": "Google",
+      "review": "accepted",
+      "zh": {
+        "heading": "Gemini 3.8 Flash TTS 扩展语音设计与逐行表演控制",
+        "alt": "展示 Hume AI 文本转语音质量基准评估的图表",
+        "caption": "Google 公布的 Hume AI 评估表将总体质量、类人变化、多说话人与风格控制分开比较；各行衡量不同维度，不能只凭一项得分判断全部表现。"
+      },
+      "ja": {
+        "heading": "Gemini 3.8 Flash TTSが音声設計と台詞ごとの演技制御を拡張",
+        "alt": "Hume AI の音声合成品質ベンチマーク評価を示す図表",
+        "caption": "Google公開のHume AI評価表は総合品質、人間らしい変化、複数話者、スタイル制御を分けて比較しています。各行の評価軸が異なるため、単一スコアで全体を判断できません。"
+      }
+    }
+  ]
+}

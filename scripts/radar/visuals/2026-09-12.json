@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-12",
+  "visuals": [
+    {
+      "id": "158eb72904e1",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/the-architecture-for-serving-100",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!6YA9!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F465a2025-9641-4d39-941f-cbbc334f55a5_1376x768.jpeg",
+      "asset": "/images/radar/inline/158eb72904e1.webp",
+      "sha256": "dd120ec3caad8f0216f93ae0bcf73b4080b629d1c165546eea21a4bd6f8336cc",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "多 LoRA 变体共用底座模型与工作池",
+        "alt": "运行时 LoRA 适配器解析流程",
+        "caption": "请求指定适配器后，运行中的工作进程检查是否已加载；未加载时再获取适配器，让后续请求可以复用。"
+      },
+      "ja": {
+        "heading": "複数の LoRA を基盤モデルとワーカープールで共有",
+        "alt": "実行時のLoRAアダプター解決フロー",
+        "caption": "要求されたアダプターが読み込み済みか確認し、未登録なら取得します。実行中のワーカーで読み込み、後続要求が再利用できる構成です。"
+      }
+    },
+    {
+      "id": "5f6dfb86f096",
+      "sourceUrl": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+      "originalImageUrl": "https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2Ffc8ef227f64c039d99e27145fae5204fd8a81501-1920x312.jpg&w=3840&q=75",
+      "asset": "/images/radar/inline/5f6dfb86f096.webp",
+      "sha256": "6d9b892e9066598e45271b392c452ec45ad11a06f3a164c87dfd716158e684bd",
+      "credit": "Anthropic",
+      "review": "accepted",
+      "zh": {
+        "heading": "Anthropic 披露七类 AI 滥用活动与防御边界",
+        "alt": "疑似ShinyHunters关联团伙攻击生命周期示意图，从凭据获取到勒索要求",
+        "caption": "关注图1呈现的网络攻击生命周期：展示被阻断团伙从凭证窃取、访问SaaS数据库到发起数据泄露勒索的完整攻击行为链条。"
+      },
+      "ja": {
+        "heading": "Anthropic、AI 悪用の七分野と防御上の限界を報告",
+        "alt": "ShinyHunters関連と疑われる集団の攻撃ライフサイクル（認証情報収集から恐喝まで）を示す図",
+        "caption": "図1の攻撃ライフサイクルに注目：認証情報の窃取からSaaSデータへのアクセス、情報流出を盾にした恐喝に至る一連の活動経路が示されています。"
+      }
+    },
+    {
+      "id": "5f65ae6a5a14",
+      "sourceUrl": "https://every.to/context-window/evals-for-everyone",
+      "originalImageUrl": "https://every.to/_next/image?url=https%3A%2F%2Fd24ovhgu8s7341.cloudfront.net%2Fuploads%2Feditor%2Fpost%2F4472%2Foptimized_974abb52-3869-4e3c-bce3-262c10ad6a29.jpg&w=1200&q=75",
+      "asset": "/images/radar/inline/5f65ae6a5a14.webp",
+      "sha256": "82974d9cff0124d1672759a2207862d42d2360db738754c31637ebf403405a37",
+      "credit": "Every",
+      "review": "accepted",
+      "zh": {
+        "heading": "Every：用个人化评测检验常做任务",
+        "alt": "把用户反馈转成评估检查项",
+        "caption": "作者将对实际输出的反馈整理为明确检查项，使下一次运行能针对同一问题复核，而不是只凭整体印象打分。"
+      },
+      "ja": {
+        "heading": "Every：日常タスクを個人向け評価で確かめる",
+        "alt": "ユーザーフィードバックから評価項目を作る",
+        "caption": "著者は実際の出力へのフィードバックを明確な確認項目に整理し、次の実行でも同じ問題を再評価できるようにしています。"
+      }
+    }
+  ]
+}

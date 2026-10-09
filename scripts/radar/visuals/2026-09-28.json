@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-28",
+  "visuals": [
+    {
+      "id": "de597f765f5c",
+      "sourceUrl": "https://www.langchain.com/blog/langsmith-engine-v2-redteam",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6ab3f2bd6369b9fa9a3ecc70_Engine%20v2%20blog.png",
+      "asset": "/images/radar/inline/de597f765f5c.webp",
+      "sha256": "57d0876513f8183b25ba49d7fa183fbb266a37e4b788a15f29cc577d5e74118f",
+      "credit": "LangChain Blog",
+      "review": "accepted",
+      "zh": {
+        "heading": "LangSmith Engine v2 把问题复现与修复验证放到人工审查之前",
+        "alt": "LangSmith Engine v2 自动化测试流程",
+        "caption": "从左到右是问题复现、预览部署中的修复验证，再由用户接受后提交可合并的 PR。图中仍保留人工确认，自动验证通过不等于已经发布。"
+      },
+      "ja": {
+        "heading": "LangSmith Engine v2 が問題の再現と修正検証を人手によるレビューの前に配置",
+        "alt": "LangSmith Engine v2 自動テストフロー",
+        "caption": "左から問題の再現、プレビュー環境での修正検証、利用者が受け入れた後のPR提出です。人の確認が残っており、自動検証の成功は公開完了とは異なります。"
+      }
+    },
+    {
+      "id": "33877b8309cb",
+      "sourceUrl": "https://www.langchain.com/blog/langsmith-trajectories-tracing",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6ab43de4bec754d93037bf3b_LangSmith%20Trajectories%20Thread.png",
+      "asset": "/images/radar/inline/33877b8309cb.webp",
+      "sha256": "875bbe76fb3b38a27c25104047038e2e6895a25b1cb3ff1dba0c9d0a0bc26f14",
+      "credit": "LangChain Blog",
+      "review": "accepted",
+      "zh": {
+        "heading": "LangSmith Trajectories 用单一时间线阅读长任务行为",
+        "alt": "LangSmith Trajectories 线程视图",
+        "caption": "图中展示线程中的轨迹投影视图，去除嵌套运行结构，按先后顺序单次呈现消息与动作，以便审查者直接循迹阅读会话路径。"
+      },
+      "ja": {
+        "heading": "LangSmith Trajectories が単一タイムラインで長時間タスクの動作を可視化",
+        "alt": "LangSmith Trajectories スレッドビュー",
+        "caption": "スレッド内の実行トレースを投影し、入れ子構造を省いてメッセージと行動を順序通りに表示してセッション経路を辿る画面です。"
+      }
+    },
+    {
+      "id": "008756076471",
+      "sourceUrl": "https://huggingface.co/blog/Hcompany/holo4",
+      "originalImageUrl": "https://assets.hcompanyprod.fr/holo4/hf/holo4-cost-osworld2.png",
+      "asset": "/images/radar/inline/008756076471.webp",
+      "sha256": "1881610f8305d6bbb443e23e17608dede1050f99bab7e9f0a0c66a1971fa400b",
+      "credit": "H Company / Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "H Company 发布结合 GUI、代码与 API 的 Holo4 开放权重模型",
+        "alt": "OSWorld 2.0：平均部分得分与每任务成本对比",
+        "caption": "图表展示官方在OSWorld 2.0基准下的得分与成本估算，各模型在测试框架和定价口径上存在差异，成本优势仍待实际验证。"
+      },
+      "ja": {
+        "heading": "H Company が GUI・コード・API を統合した Holo4 オープンウェイトモデルを公開",
+        "alt": "OSWorld 2.0：タスクあたりのコストと平均部分スコアの比較",
+        "caption": "OSWorld 2.0におけるスコアとタスク推定コストの公式比較図ですが、評価ハーネスや価格算出条件が異なるため優位性には留保が必要です。"
+      }
+    }
+  ]
+}

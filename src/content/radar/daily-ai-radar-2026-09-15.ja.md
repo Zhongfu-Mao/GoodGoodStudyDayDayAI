@@ -43,12 +43,24 @@ draft: false
 - リンク：https://www.latent.space/p/good-start-labs
 - 要約：Good Start Labsはゲームをモデルの訓練環境として活用しています。取材では30Bモデルを使う「1830」の実験を紹介し、単発回答と複数ターンの端末エージェントはいずれもゲーム内の目標を改善した一方、Finance-Agentの成績向上は後者だけだったと報告しています。ツール利用と環境設計の重要性を示唆しますが、チームが報告した特定実験であり、実務全般への転移を証明するものではありません。
 
+<!-- radar-visual:de7c96e32a25 -->
+[![Good Start Labsによる2026年9月のゲーム「ディプロマシー」裏切り傾向ランキング図。](/images/radar/inline/de7c96e32a25.webp)](/images/radar/inline/de7c96e32a25.webp)
+
+*表は実験中の裏切り率でモデルを並べ、上位5モデルはいずれも0.0%です。特定ゲームでの観測であり、全場面における信頼性を示すものではありません。 画像出典：[Good Start Labs](https://www.latent.space/p/good-start-labs)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:de7c96e32a25 -->
+
 ### Smaug-Flash：DeepSeek-V4-Flash-0731 ベースのエージェント型コーディング微調整モデル
 
 - 出典：Abacus.AI / The Rundown AI
 - 日付：2026-09-14観測；モデルカード確認：2026-09-20
 - リンク：https://huggingface.co/abacusai/Smaug-Flash
 - 要約：Smaug-FlashはAbacus.AIがDeepSeek-V4-Flash-0731をコーディングエージェント向けに微調整したモデルです。モデルカードによると、変更するのは129個のMLA注意因子行列だけで、専門家、ルーター、投機デコード部分は維持します。提供元はベンチマーク改善を報告する一方、十分な自己テスト前に提出する傾向や、異なる方式での再量子化による指示追従低下も指摘しており、明示的な検証が必要です。
+
+<!-- radar-visual:4e2736e332df -->
+[![Smaug-Flashとベースモデルのエージェントベンチマーク比較棒グラフ。](/images/radar/inline/4e2736e332df.webp)](/images/radar/inline/4e2736e332df.webp)
+
+*Smaug-Flashとベースモデルのベンチマーク比較棒グラフです。一部はベンダー自己報告値を含んでおり、実際の汎用性能には検証の余地が残ります。 画像出典：[Abacus.AI](https://huggingface.co/abacusai/Smaug-Flash)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:4e2736e332df -->
 
 ## 3. 実践コード & ツールライブラリ
 
@@ -106,6 +118,12 @@ draft: false
 - 日付：2026-09-14（2026-09-20改訂）
 - リンク：https://every.to/working-overtime/what-playing-with-ai-taught-me-about-my-work
 - 要約：Katie Parrott氏は、執筆スキルを架空のキャラクターにする実験を振り返り、楽しい探索が必要な納品から注意をそらすこともあると述べます。読者の需要をAUDIENCE.mdに整理し、Is This Anything?で対話記録と優先事項を照合して最大3つの教訓を抽出し、記録の根拠とモデルの提案を区別します。個人の実践であって生産性の定量研究ではなく、役立つ部分を得るためにすべての脇道を完成させる必要はないと説きます。
+
+<!-- radar-visual:a9a9368932a8 -->
+[![Everyチームの優先事項の抜粋](/images/radar/inline/a9a9368932a8.webp)](/images/radar/inline/a9a9368932a8.webp)
+
+*チームの優先事項として知識の蓄積、発信頻度の改善、個別化した読書体験を挙げています。優先順位を明文化することでAIの提案が実務に沿うか判断できます。 画像出典：[Every](https://every.to/working-overtime/what-playing-with-ai-taught-me-about-my-work)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:a9a9368932a8 -->
 
 ### マイクロソフトが「ヒューマニストAI行動規範」草案を公開、AIの人格権を否定
 

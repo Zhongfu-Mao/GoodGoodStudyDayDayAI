@@ -38,6 +38,12 @@ representativeImageSource: https://www.anthropic.com/claude-opus-5-5
 - リンク：https://code.visualstudio.com/docs/agents/run/agents-window
 - 要約：VS CodeはAgents windowを独立したAgent向けウィンドウとして説明し、複数のワークスペースにわたってセッションを開始、追跡、レビュー、終了できるようにした。プレビュー機能は単一チャット欄から複数タスクの管理画面へと進むものだが、PRコメント、失敗したチェック、競合の解決結果は開発者による差分とテストの確認が必要だ。
 
+<!-- radar-visual:9d57b3ffc89b -->
+[![セッション一覧、設定パネル、チャット領域、変更・ファイルパネルを表示する VS Code Agents window の画面](/images/radar/inline/9d57b3ffc89b.webp)](/images/radar/inline/9d57b3ffc89b.webp)
+
+*VS Code の Agents window 画面。ワークスペースを跨ぐセッション一覧やチャット領域、変更差分およびファイル一覧パネルの構成を確認できます。 画像出典：[Visual Studio Code](https://code.visualstudio.com/docs/agents/run/agents-window)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:9d57b3ffc89b -->
+
 ## 2. モデル最前線 & アルゴリズム探索
 
 ### Claude Opus 5.5公開：Anthropicは複雑な仕事の性能向上と運用費低下を主張
@@ -118,12 +124,24 @@ representativeImageSource: https://www.anthropic.com/claude-opus-5-5
 - リンク：https://www.latent.space/p/bio-security-is-an-ai-arms-race-eric
 - 要約：このインタビューは、モデルが生物研究能力を高める一方、防御側のスクリーニングや実験検証をどう追いつかせるかを論じる。取材相手はマルチモーダルなツールと開かれた防御能力を生物安全の仕組みに含めるべきだと主張する。攻防構造に関する見解と研究方向であり、防御体制の有効性が実証されたという意味ではない。
 
+<!-- radar-visual:61ebf8c37292 -->
+[![Wikipedia の Genome Size を基に作成されたゲノムサイズの図表](/images/radar/inline/61ebf8c37292.webp)](/images/radar/inline/61ebf8c37292.webp)
+
+*横軸は塩基対で表すゲノムサイズで、目盛りごとに10倍になります。紫の帯は生物群ごとの範囲を示し、データ規模の違いを説明する図です。 画像出典：[Latent.Space](https://www.latent.space/p/bio-security-is-an-ai-arms-race-eric)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:61ebf8c37292 -->
+
 ### Daily Dose：MoE推論では重み、専門家の計算、通信を分けて測る
 
 - 出典：Daily Dose of Data Science
 - 日付：2026-09-23（米国時間；2026-09-24 JST）
 - リンク：https://blog.dailydoseofds.com/p/moe-inference-engineering-clearly
 - 要約：記事はトークンの経路に沿ってルーティング、dispatch、専門家ごとの計算、combineを説明し、総パラメータの保存量とトークンごとの実行量を区別する。まず重みとKVキャッシュ容量を測り、次に専門家間の負荷偏りとGPU間通信を見ることを勧める。量子化やtop-k削減は数値や計算経路を変えるため、純粋な実行時最適化とは分ける必要がある。
+
+<!-- radar-visual:50a50ea52425 -->
+[![密なTransformerとMoE層の構造比較](/images/radar/inline/50a50ea52425.webp)](/images/radar/inline/50a50ea52425.webp)
+
+*左は密なTransformer、右はフィードフォワード部分にルーターと複数のエキスパートを配置した構成です。MoE化するのはこの計算部分で、注意機構全体を置き換える図ではありません。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/moe-inference-engineering-clearly)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:50a50ea52425 -->
 
 ### ByteByteGo：モデルのカスタマイズにはプロンプト、検索、アダプターもある
 

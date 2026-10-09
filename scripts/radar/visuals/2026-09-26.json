@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-26",
+  "visuals": [
+    {
+      "id": "c5e9011c795d",
+      "sourceUrl": "https://cursor.com/blog/rollouts-and-security-reviewer",
+      "originalImageUrl": "https://cursor.com/marketing-static/_next/image?url=https%3A%2F%2Fptht05hbb1ssoooe.public.blob.vercel-storage.com%2Fassets%2Fblog%2Fsecurity-reviewer-chart-r3-2400-9iLvPmOOav3nIdJTzMBFMcY7x7miBR.png&w=3840&q=70",
+      "asset": "/images/radar/inline/c5e9011c795d.webp",
+      "sha256": "451af1b66af87769265a1cbc5758383488723433a9dcaece6f86800ad7ca0a09",
+      "credit": "Cursor",
+      "review": "accepted",
+      "zh": {
+        "heading": "Cursor 推出部署回归监控与安全审查机器人",
+        "alt": "Security Reviewer 将平均审查时间由4.8分钟缩短至3.8分钟并将评论接受率提升至60–70%",
+        "caption": "图表展示官方统计的审查指标变化，反映审查耗时缩短与评论接受率提升情况；该指标为内部测试反馈，实际效果取决于代码库环境。"
+      },
+      "ja": {
+        "heading": "Cursorがデプロイ回帰監視とセキュリティ検証ボットを発表",
+        "alt": "Security Reviewerにより平均レビュー時間が4.8分から3.8分に短縮され、コメント採択率が60〜70%に向上",
+        "caption": "レビュー時間の短縮とコメント採択率向上を示す公式指標グラフですが、ベンダー側の自己報告データであり環境による変動が考えられます。"
+      }
+    },
+    {
+      "id": "f9051611ac5f",
+      "sourceUrl": "https://www.deeplearning.ai/the-batch/issue-372",
+      "originalImageUrl": "https://charonhub.deeplearning.ai/content/images/2026/09/FUSION.webp",
+      "asset": "/images/radar/inline/f9051611ac5f.webp",
+      "sha256": "598baf675ba2972e67a8882c981691909c949f45bbac2480274999331ceccdae",
+      "credit": "The Batch / Cognition",
+      "review": "accepted",
+      "zh": {
+        "heading": "Cognition 的 Devin Fusion 双智能体架构与 SWE-2 模型分析",
+        "alt": "双智能体架构图，展示主智能体规划审查任务，副手智能体探索、编写代码并修复Bug",
+        "caption": "左侧主智能体把探索、写代码和修复分给右侧副手，再接回文件片段与修改结果。主智能体保留计划与审查职责，图示的是协作分工。"
+      },
+      "ja": {
+        "heading": "CognitionのDevin Fusionデュアル構成とSWE-2モデル分析",
+        "alt": "メインエージェントがタスクを計画・レビューし、サイドキックが探索、コーディング、バグ修正を行う構成図",
+        "caption": "左の主エージェントが探索・実装・修正を右の補助エージェントへ渡し、ファイル断片と修正結果を受け取ります。計画とレビューを主側に残す分担です。"
+      }
+    },
+    {
+      "id": "06899ec003aa",
+      "sourceUrl": "https://every.to/p/copilot-gets-a-seat-in-the-org-chart",
+      "originalImageUrl": "https://every.to/_next/image?url=https%3A%2F%2Fd24ovhgu8s7341.cloudfront.net%2Fuploads%2Feditor%2Fpost%2F4495%2Foptimized_2f868577-e100-4c7e-aa76-cddb66c58716.jpg&w=1200&q=75",
+      "asset": "/images/radar/inline/06899ec003aa.webp",
+      "sha256": "9c90ca2be57b404d33d1a1255c8461a982db868155177a33c387c6e595e64500",
+      "credit": "Every",
+      "review": "accepted",
+      "zh": {
+        "heading": "Every 评测微软 Copilot 新功能实测表现与企业权限局限",
+        "alt": "全新 Copilot 应用的 Home 标签页界面（截图由微软提供）",
+        "caption": "原文截图显示 Home、Code、Autopilot 入口，以及输入区的 Chat / Cowork 切换。界面入口的存在不等于已获得组织资料或外部应用的访问权限。"
+      },
+      "ja": {
+        "heading": "EveryによるMicrosoft Copilot新機能の初期検証と権限制約",
+        "alt": "新しいCopilotアプリのHomeタブ画面（画像提供：マイクロソフト）",
+        "caption": "原文の画面にはHome・Code・Autopilotの入口と、入力欄のChat / Cowork切替があります。入口の表示だけで組織データや外部アプリへの権限が付与されるわけではありません。"
+      }
+    }
+  ]
+}

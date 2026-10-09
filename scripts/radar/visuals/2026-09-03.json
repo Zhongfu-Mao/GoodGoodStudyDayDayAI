@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-03",
+  "visuals": [
+    {
+      "id": "bb5983601e75",
+      "sourceUrl": "https://research.meta.ai/blog/introducing-muse-spark-1-3",
+      "originalImageUrl": "https://research.meta.ai/_next/image?url=%2Farticles%2Fintroducing-muse-1-3%2Fbenchmarks%2Fbenchmark-scorecard-v6.webp&w=3840&q=90&dpl=dpl_4XhUvpi491zLwHUaeTzVKZByDKB1",
+      "asset": "/images/radar/inline/bb5983601e75.webp",
+      "sha256": "06b964687958ab89cf147475568db3a0ff041b1feccd0237428e033befd568cb",
+      "credit": "The Rundown AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "Meta发布Muse Spark 1.3：强化长程智能体工作流与编程交互",
+        "alt": "Muse Spark 1.3 与其他模型在智能体及编程等维度的基准测试对比记分卡",
+        "caption": "图表对比厂商公布的 Muse Spark 1.3 在长程智能体与编程任务上的基准表现，具体通用收益需结合实际评估。"
+      },
+      "ja": {
+        "heading": "MetaがMuse Spark 1.3を公開：長期エージェント作業と対話確認を強化",
+        "alt": "Muse Spark 1.3および他社モデルのエージェントやコーディング評価スコア比較表",
+        "caption": "ベンダー公表によるMuse Spark 1.3のエージェント・プログラミング評価を他モデルと比較した結果を掲載。"
+      }
+    },
+    {
+      "id": "238bfca1d74c",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+      "originalImageUrl": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3.8-flash__evals__table_l.width-1200.format-webp_2pLdBp5.webp",
+      "asset": "/images/radar/inline/238bfca1d74c.webp",
+      "sha256": "f9f59dcf18e3cfd6f85be6be5d66438fbfeae52c02fe09201a59c1464f4ee9c5",
+      "credit": "Google",
+      "review": "accepted",
+      "zh": {
+        "heading": "谷歌发布Gemini 3.8 Flash及安全专属Cyber版本",
+        "alt": "Gemini 3.8 Flash 与其他模型的性能对比图表",
+        "caption": "图表展示官方评估中 Gemini 3.8 Flash 在长程软件工程等基准上的表现，展示与高成本前沿模型的相对定位。"
+      },
+      "ja": {
+        "heading": "GoogleがGemini 3.8 Flashおよび防衛専用Cyber版を発表",
+        "alt": "Gemini 3.8 Flashと他モデルの性能を比較したチャート",
+        "caption": "公式ベンチマークにおけるGemini 3.8 Flashの長周期タスク性能を比較し、コスト対効果の位置付けを提示。"
+      }
+    },
+    {
+      "id": "8eceec14a36c",
+      "sourceUrl": "https://blog.bytebytego.com/p/how-to-shrink-a-language-model-without",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!QDKL!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffc0152b6-129d-4fe4-8e52-551b5119c32a_3194x1778.png",
+      "asset": "/images/radar/inline/8eceec14a36c.webp",
+      "sha256": "9311197ac632acd03abae46e5ec69648dccc0dc9e65539eaf8b0b5975b56f858",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "ByteByteGo分析RAG系统核心：向量模型与检索瓶颈",
+        "alt": "语义搜索空间与问答匹配偏差说明图",
+        "caption": "图解展示语义向量相似度与实际问答需求间的差异，阐明检索相关片段与准确回答问题之间可能出现的脱节原因。"
+      },
+      "ja": {
+        "heading": "ByteByteGo解説：RAGの成否を握る埋め込みモデルと検索の課題",
+        "alt": "セマンティック検索空間と回答適合の課題を示す説明図",
+        "caption": "意味的類似度と回答適合性の相違を図解し、質問に関連するテキストが必ずしも直接の答えにならない課題を解説。"
+      }
+    }
+  ]
+}

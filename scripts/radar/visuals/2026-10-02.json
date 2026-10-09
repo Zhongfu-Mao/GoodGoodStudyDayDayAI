@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-02",
+  "visuals": [
+    {
+      "id": "29bdfe742da6",
+      "sourceUrl": "https://www.langchain.com/blog/how-to-build-a-model-router-in-the-harness",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6abdca4ecb95b9007a8609e4_exp1-cost-per-thread.png",
+      "asset": "/images/radar/inline/29bdfe742da6.webp",
+      "sha256": "a895d818ebeba8f9ef29d13a5460a40b2ab814322e9142e1344e3236b97ae0e3",
+      "credit": "LangChain",
+      "review": "accepted",
+      "zh": {
+        "heading": "LangChain 将模型路由放在了解任务的运行框架里",
+        "alt": "每线程LLM成本小提琴图，对比始终使用GPT-6 Astra与按快、均衡、性能分层路由",
+        "caption": "图表以对数刻度比较每线程成本：路由组中位数0.94美元，对照组2.61美元。该64%降幅来自973个线程的特定实验。"
+      },
+      "ja": {
+        "heading": "LangChainはタスクを理解する実行フレームワーク内にモデルルーティングを配置",
+        "alt": "スレッド当たりLLM費用のバイオリン図。常時GPT-6 Astraと高速・均衡・高性能ルーティングを比較",
+        "caption": "対数軸でスレッド当たり費用を比較し、中央値はルーター群0.94ドル、対照群2.61ドル。64％減は973スレッドの特定実験結果である。"
+      }
+    },
+    {
+      "id": "c145d89b8c38",
+      "sourceUrl": "https://huggingface.co/blog/allenai/olmocore3",
+      "originalImageUrl": "https://www.datocms-assets.com/64837/1790799330-olmo-core-3-blog-draft-google-docs-image-2.png?fit=max&h=810&w=1550",
+      "asset": "/images/radar/inline/c145d89b8c38.webp",
+      "sha256": "90374c4f62b80d624343c97a4cbc9340981dab05eb13a50acf91bc6a8cfa05ab",
+      "credit": "Allen Institute for AI，经 Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "Olmo-core 3 开放面向大规模 MoE 的训练基础设施",
+        "alt": "Olmo-core 3 专家池扩展与训练吞吐对比图",
+        "caption": "图表比较扩展 MoE 专家池时的参数规模与训练吞吐；正文报告专家从8增至128时吞吐下降不足5%，条件限于该测试。"
+      },
+      "ja": {
+        "heading": "Olmo-core 3は大規模MoE向けのトレーニングインフラをオープン化",
+        "alt": "Olmo-core 3のエキスパートプール拡張と訓練スループット比較図",
+        "caption": "MoEの専門家プール拡大時の規模と訓練スループットを比較する。8から128専門家への拡大で低下5％未満という値は、この試験条件に限られる。"
+      }
+    },
+    {
+      "id": "4cd020d2f867",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/building-a-production-agent-harness",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!CEiN!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78af3769-db79-4d70-82b8-792a2f0f6cba_2752x1536.jpeg",
+      "asset": "/images/radar/inline/4cd020d2f867.webp",
+      "sha256": "874e44a445f2779098a2c0e49e0ccce65e56bb2852e8200d934aeaec8ce97154",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "Daily Dose：让规划、验证与停止条件成为显式循环",
+        "alt": "从确定性检查、概率判断和LLM复核到人类审批的分层流程",
+        "caption": "从上到下先做确定性检查，再交给 Jev 概率判断和独立 LLM 复核；图底还保留涉及外部副作用的人类审批，说明内容判断不能替代执行授权。"
+      },
+      "ja": {
+        "heading": "Daily Dose：計画、検証、停止条件を明示的なループに",
+        "alt": "決定論的検査・確率判定・LLM再確認・人の承認の階層フロー",
+        "caption": "上から決定論的検査、Jevの確率判定、独立LLMの再確認へ進みます。最下段には外部への影響に対する人の承認も残され、内容判断と実行許可を分けています。"
+      }
+    }
+  ]
+}

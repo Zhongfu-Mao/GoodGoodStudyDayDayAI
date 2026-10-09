@@ -37,6 +37,12 @@ representativeImageSource: https://every.to/source-code/why-we-handed-our-agent-
 - 链接：https://www.uber.com/in/en/blog/designing-mcp-gateway/
 - 摘要：Uber 介绍承载800多个 MCP 服务、5,000多个工具的内部网关。AutoCrawler 从 IDL 和原生服务发现工具，Registry 管理所有权，Proxy 将调用转为 HTTP、gRPC 或 TChannel；新工具默认禁用，定义变更须由服务所有者审阅。Omni MCP 按“找服务→找工具→取 schema→调用”逐步披露，Response Projection 只返回所需字段，Code Mode 则把大结果写入文件供选择读取。集中发现不等于自动授权，文中的内部实现与运维效果也不代表这些能力已作为通用开源产品交付。
 
+<!-- radar-visual:uber -->
+[![Uber MCP Gateway 的工具发现、所有者审阅与同步流程](/images/radar/daily-ai-radar-2026-10-09-uber.webp)](/images/radar/daily-ai-radar-2026-10-09-uber.webp)
+
+*从左上向下看：AutoCrawler 发现工具后，先经过所有者审阅，再进入 Registry 并同步到网关；自动发现与批准启用是分开的环节。 图片来源：[Uber Engineering](https://www.uber.com/in/en/blog/designing-mcp-gateway/)。点击图片查看原尺寸。*
+<!-- /radar-visual:uber -->
+
 ## 2. 模型前沿 & 算法探索
 
 ### GPT-6 Intelligent UI：模型选择回答形式，编译器逐步呈现界面
@@ -62,6 +68,12 @@ representativeImageSource: https://every.to/source-code/why-we-handed-our-agent-
 - 链接：https://blog.google/innovation-and-ai/models-and-research/google-deepmind/synth-id-ai-content/
 - 摘要：Google 将 SynthID Detector 的英语版本向全球公众开放，可检查图像、视频和音频中的不可感知水印，覆盖 Google 与所列合作方的部分生成内容；Apple 支持在公告中仍是后续计划。水印验证回答的是“是否检出支持的生成标记”，不能据未检出结果认定文件一定由人制作，也不验证图片所表达的事件是否真实。它补充媒体来源判断，而不是替代对原始记录和上下文的核实。
 
+<!-- radar-visual:synthid -->
+[![SynthID Detector 在浣熊视频示例中检出 Google AI 水印的官方界面](/images/radar/daily-ai-radar-2026-10-09-synthid.webp)](/images/radar/daily-ai-radar-2026-10-09-synthid.webp)
+
+*右侧显示“检出 SynthID”，下方时间轴标示检测结果。这是 Google 公布的演示画面；检出生成标记不等于验证事件真实性，未检出也不等于真人制作。 图片来源：[Google](https://blog.google/innovation-and-ai/models-and-research/google-deepmind/synth-id-ai-content/)。点击图片查看原尺寸。*
+<!-- /radar-visual:synthid -->
+
 ### Restock：把支付工具、凭据与用户批准分开接入 Slack 智能体
 
 - 来源：LangChain engineering / Stripe
@@ -85,6 +97,12 @@ representativeImageSource: https://every.to/source-code/why-we-handed-our-agent-
 - 链接：https://www.langchain.com/blog/how-snyk-turned-an-internal-support-agent-into-a-customer-feature
 - 摘要：Snyk 先在内部支持团队试用，再开放支持门户，最后将 Assist 放入付费客户的产品界面。Slack、网页和 API 共用同一 LangGraph 运行时，工具按登录用户权限注册，会话状态存入 PostgreSQL；真实问答、红队测试和线上轨迹组成评估闭环，未达到约定阈值的改动不能发布。团队报告自2026年4月客户开放以来处理6万多次查询、覆盖500多个账户，85%以上会话未创建支持工单。未建工单不等于每次回答正确，数字仍是团队自报的特定运营口径。
 
+<!-- radar-visual:snyk -->
+[![Snyk Assist 架构：三个入口经过身份权限与安全检查，连接共享智能体运行时](/images/radar/daily-ai-radar-2026-10-09-snyk.webp)](/images/radar/daily-ai-radar-2026-10-09-snyk.webp)
+
+*先看顶部三个入口如何汇入身份与权限检查，再看底部虚线工具框：这些工具仅在用户具备相应权限或许可时可用。右侧分别连接追踪评估和 PostgreSQL 会话状态。 图片来源：[LangChain / Snyk](https://www.langchain.com/blog/how-snyk-turned-an-internal-support-agent-into-a-customer-feature)。点击图片查看原尺寸。*
+<!-- /radar-visual:snyk -->
+
 ## 5. GitHub 热门 repo & 趋势追踪
 
 ### anthropics/knowledge-work-plugins：把岗位流程、工具连接与显式命令组成插件
@@ -100,6 +118,12 @@ representativeImageSource: https://every.to/source-code/why-we-handed-our-agent-
 - 日期：2026-10-09（主榜趋势观察）
 - 链接：https://github.com/storytold/artcraft
 - 摘要：主榜显示当日新增2,103 stars。ArtCraft 将 AI 图像与视频创作组织为可交互工作台：2D 图层、遮罩和局部修改控制画面区域，3D 布景、物体姿态及相机位置则先约束场景，再调用所选模型生成。它支持图像到位置、图像到网格与角色姿态引导，强调用视觉结构补充文字提示。仓库提供 Windows 与 macOS 稳定版本，以及包含 Linux 的源码构建说明；模型目录中部分项停用或受限，列出名称不代表全部模型可在桌面端立即使用，也不保证生成内容始终保持角色一致。
+
+<!-- radar-visual:artcraft -->
+[![ArtCraft 官方演示中的三维角色姿态控制界面](/images/radar/daily-ai-radar-2026-10-09-artcraft.webp)](/images/radar/daily-ai-radar-2026-10-09-artcraft.webp)
+
+*角色关节点与顶部移动、旋转、缩放工具展示了生成前的姿态控制。这是仓库演示的静帧，说明可调整的输入方式，不代表生成结果必然保持角色一致。 图片来源：[ArtCraft](https://github.com/storytold/artcraft)。点击图片查看原尺寸。*
+<!-- /radar-visual:artcraft -->
 
 ## 📬 Newsletter 精选
 

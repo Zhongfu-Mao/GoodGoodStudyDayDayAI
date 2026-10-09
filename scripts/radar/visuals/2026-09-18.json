@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "date": "2026-09-18",
+  "visuals": [
+    {
+      "id": "2aefb44d381a",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/where-does-all-the-vram-go-during",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!xEgy!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F39bd286b-125f-4baf-b313-314a217fbea8_1500x1500.png",
+      "asset": "/images/radar/inline/2aefb44d381a.webp",
+      "sha256": "7a80109a9b8a7091120e3d1ade939016731d74c0d994ed123b4eba4d68ba6a17",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "推理显存预算不只看权重，还要计入临时峰值和运行时开销",
+        "alt": "推理显存预算示意图，将模型权重与完整工作负载占用区分开",
+        "caption": "图中将推理显存拆成权重、KV 缓存、激活与工作区、运行时开销四部分；上下文、并发和批量增大时，权重之外的部分也会增长。"
+      },
+      "ja": {
+        "heading": "推論用VRAMは重みだけでは足りない：一時的なピークと実行時の追加メモリ",
+        "alt": "推論時VRAMの内訳図。モデル重みとワークロード全体の占有量を区別する",
+        "caption": "推論時のVRAMを重み、KVキャッシュ、活性化・作業領域、実行時オーバーヘッドに分けています。文脈長、同時実行数、バッチ数は重み以外の容量にも影響します。"
+      }
+    },
+    {
+      "id": "b259f846a8be",
+      "sourceUrl": "https://every.to/context-window/why-you-should-burn-more-tokens",
+      "originalImageUrl": "https://every.to/_next/image?url=https%3A%2F%2Fd24ovhgu8s7341.cloudfront.net%2Fuploads%2Feditor%2Fpost%2F4485%2Foptimized_d367d573-c127-41d0-97a5-e7076a6a5e19.jpg&w=1200&q=75",
+      "asset": "/images/radar/inline/b259f846a8be.webp",
+      "sha256": "aff87afcd368daa9d8fde2308dd150219366e3560e0c07ea371c91ea248234eb",
+      "credit": "Every / Laura Entis",
+      "review": "accepted",
+      "zh": {
+        "heading": "Every：实验费用要对应收获，减少无边界的智能体协调",
+        "alt": "Every 团队的 OpenAI token 使用排行榜截图",
+        "caption": "截图展示团队成员间显著不同的 token 使用量。文章借此追问费用换来了什么，排行榜本身不能证明产出质量或投资回报。"
+      },
+      "ja": {
+        "heading": "Every：実験コストは見返りに見合うべきであり、境界のないエージェント協調を削減する",
+        "alt": "EveryチームのOpenAIトークン使用量ランキング画面",
+        "caption": "チーム内で大きく異なるトークン使用量を示す。記事は費用で何を得たかを問うが、順位表だけでは成果の質や投資効果は証明できない。"
+      }
+    }
+  ],
+  "exception": "Reviewed five entries: UN image is a decorative low-resolution laptop photo; law and Cooley entries supply branding/recommendation images only. Retain the two informative source visuals."
+}

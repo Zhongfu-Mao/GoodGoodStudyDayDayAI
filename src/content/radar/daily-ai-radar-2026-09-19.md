@@ -50,6 +50,12 @@ draft: false
 - 链接：https://wisprflow.ai/canto
 - 摘要：Wispr 的 Canto 将监督微调与 GRPO 结合，用完整转录的相对质量训练实时听写。官方测试中，随机真实听写集表现领先，而更困难的挑战集总体仍落后于 Gemini 3.1 Pro；公共英语数据集也并非项项第一。训练与测试说话人分离，用户数据来自主动选择共享者。评估语音模型需要同时看噪声、短句、时延和数据分布，不能只看一个平均错误率。
 
+<!-- radar-visual:be027c59d882 -->
+[![Canto 等语音模型在三小时高难度真实音频集上的词错误率图表](/images/radar/inline/be027c59d882.webp)](/images/radar/inline/be027c59d882.webp)
+
+*图表比较三小时挑战集上的词错误率，样本含噪声、低音量和短句；Canto 总体仍落后于 Gemini 3.1 Pro。 图片来源：[Wispr Flow](https://wisprflow.ai/canto)。点击图片查看原尺寸。*
+<!-- /radar-visual:be027c59d882 -->
+
 ## 3. 实战代码 & 工具库
 
 ### Claude Projects 加入协调会话、并行云线程和共享记忆
@@ -59,12 +65,24 @@ draft: false
 - 链接：https://claude.com/blog/projects-redesigned
 - 摘要：新版 Claude Code Projects 由协调器拆分目标，各工作线程在独立分支与仓库副本中执行，共享项目记忆与文件库，用户离开电脑后仍可继续工作。Beta 先向符合条件的部分 Pro、Max 用户开放；现有项目迁移及其他计划随后扩展，本地线程尚未推出。并行线程更快触及用量限制，重叠代码仍需处理合并冲突。
 
+<!-- radar-visual:e09b2c5d4566 -->
+[![一个项目跨一周展开多个工作线程，右侧显示请求线程并在下方积累记忆、决定和结果](/images/radar/inline/e09b2c5d4566.webp)](/images/radar/inline/e09b2c5d4566.webp)
+
+*官方演示的静态帧展示主会话、项目记忆与右侧工作线程；日期变更留在项目上下文中，具体任务可另开线程执行。 图片来源：[Anthropic](https://claude.com/blog/projects-redesigned)。点击图片查看原尺寸。*
+<!-- /radar-visual:e09b2c5d4566 -->
+
 ### Google Flow 的定制工具进入服装搭配与秀场预演
 
 - 来源：Google / Google Flow
 - 日期：2026-09-18
 - 链接：https://blog.google/innovation-and-ai/technology/ai/google-flow-fashion-week/
 - 摘要：Google 与设计师 Jane Wade、Sergio Hudson 共建了两款 Flow 工具：Styling Suite 在数字模特上组合服装与配饰，Runway Visualization 用于调整秀场灯光、道具和行走路线。案例把生成能力嵌入打样前与制作前的决策过程，减少来回沟通。官方未给出可独立对照的工时或成本降幅，案例成效也不等于所有设计流程都能自动化。
+
+<!-- radar-visual:8660d21fdb2e -->
+[![Jane Wade 的 Styling Suite Google Flow 工具界面，用数字模特组合服装与造型元素](/images/radar/inline/8660d21fdb2e.webp)](/images/radar/inline/8660d21fdb2e.webp)
+
+*界面用于在数字模特上组合发型、妆容、配饰、鞋履和服装，以便裁剪制作前检查整体造型与缺失元素。 图片来源：[Google / Jane Wade](https://blog.google/innovation-and-ai/technology/ai/google-flow-fashion-week/)。点击图片查看原尺寸。*
+<!-- /radar-visual:8660d21fdb2e -->
 
 ## 4. 行业与商业快讯
 

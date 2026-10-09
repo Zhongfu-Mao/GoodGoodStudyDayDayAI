@@ -36,6 +36,12 @@ draft: false
 - 链接：https://arxiv.org/abs/2607.02510
 - 摘要：这篇 7 月 2 日提交、9 月 4 日被 The Batch 介绍的论文，把外部模型的验证分数转为实时警报，并以风险控制方法校准阈值。在数学推理和红队数据上的实验显示，简单阈值方案可与更复杂的序贯假设检验监控器竞争；结论针对受校准风险下的报警决策，并非任何场景都安全的无条件保证。
 
+<!-- radar-visual:7e3f4287c6be -->
+[![MATH 数据上的监控误报率、检出能力与延迟](/images/radar/inline/7e3f4287c6be.webp)](/images/radar/inline/7e3f4287c6be.webp)
+
+*论文将误报控制、检出能力与报警延迟分别作图；读图时需同时看风险目标与检测效果，较早报警并不表示无条件安全。 图片来源：[CRC Monitor 论文作者](https://arxiv.org/abs/2607.02510)。点击图片查看原尺寸。*
+<!-- /radar-visual:7e3f4287c6be -->
+
 ## 2. 模型前沿 & 算法探索
 
 ### 基于蛋白质组学时钟的肺纤维化临床试验探索性分析
@@ -60,6 +66,12 @@ draft: false
 - 日期：2026-09-09（观察日期）
 - 链接：https://github.com/cathrynlavery/diagram-design
 - 摘要：diagram-design 为 Claude Code、Codex 等兼容技能的环境提供 39 种编辑型图表模板，覆盖架构、流程、时间线、Sankey、Wardley Map、数据库模式等类型。它输出自包含 HTML 与 SVG，静态呈现为默认，也可为有序讲解添加可访问动效，并把语义系统模式与具体布局分开。
+
+<!-- radar-visual:d356959704e2 -->
+[![diagram-design 内容站点架构示例](/images/radar/inline/d356959704e2.webp)](/images/radar/inline/d356959704e2.webp)
+
+*项目 9 月 3 日版本的示例连接浏览器、Cloudflare、Astro 与内容源；不同箭头区分请求和返回，展示架构模板如何表达组件关系。 图片来源：[diagram-design](https://github.com/cathrynlavery/diagram-design)。点击图片查看原尺寸。*
+<!-- /radar-visual:d356959704e2 -->
 
 ### 把规格驱动开发封装为可复用的智能体技能
 

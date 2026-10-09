@@ -38,6 +38,12 @@ representativeImageSource: https://www.anthropic.com/news/claude-discovers-novel
 - 链接：https://www.latent.space/p/foundries-vs-navigators-lowering
 - 摘要：Endura Therapeutics 的 Adrian Sanborn 在客座文章中区分“Foundries”和“Navigators”：前者投资高通量测量、自动化与数据生产，后者让 AI 进入研究决策和日常工作流程。核心约束是实体实验仍需时间和资源，推理变快并不会自动增加实验吞吐量。这是作者提出的产业分析框架，不代表所有实验室都适合采用同一路径。
 
+<!-- radar-visual:405a8fc6ddb4 -->
+[![Endura Therapeutics 在数小时内构建的内部仪表板](/images/radar/inline/405a8fc6ddb4.webp)](/images/radar/inline/405a8fc6ddb4.webp)
+
+*Endura 仪表板将样本散点、命中结果表和跨样本热图放在同一界面，方便围绕同一实验结果比较不同视角。 图片来源：[Latent.Space / Endura Therapeutics](https://www.latent.space/p/foundries-vs-navigators-lowering)。点击图片查看原尺寸。*
+<!-- /radar-visual:405a8fc6ddb4 -->
+
 ## 2. 模型前沿 & 算法探索
 
 ### Runway 的 WorldPrompt 为实时世界模型加入时间轴控制
@@ -47,12 +53,24 @@ representativeImageSource: https://www.anthropic.com/news/claude-discovers-novel
 - 链接：https://www.latent.space/p/runway
 - 摘要：Latent.Space 采访 Runway 团队，介绍 GWM Worlds 2 研究预览中的 WorldPrompt：用户可指定生成环境、首帧以及带时间戳的动作，并在运行时继续输入动作。它为实时视频与音频模拟提供更明确的控制层；目前仍是研究预览，连续交互时长、延迟和一致性需要在具体场景验证。
 
+<!-- radar-visual:558848968283 -->
+[![GWM Worlds 2 三阶段训练路线](/images/radar/inline/558848968283.webp)](/images/radar/inline/558848968283.webp)
+
+*图中区分三个训练阶段：基础音视频模型先以 WorldPrompt 微调，再经后训练成为实时自回归扩散模型；微调后并不自动具备实时速度。 图片来源：[Latent.Space / Runway](https://www.latent.space/p/runway)。点击图片查看原尺寸。*
+<!-- /radar-visual:558848968283 -->
+
 ### Gemini 3.8 Flash TTS 扩展语音设计与逐行表演控制
 
 - 来源：Google
 - 日期：2026-09-23（美国时间；2026-09-24 JST）
 - 链接：https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/
 - 摘要：Google 发布 Gemini 3.8 Flash TTS 与面向高吞吐场景的 Flash-Lite TTS，支持用自然语言设计声音，并按台词控制节奏、语气和角色表演。Google 称这些能力覆盖 100 多种语言和方言，接入 AI Studio、API 等产品；音色一致性、成本与语言质量仍需按实际应用测试。
+
+<!-- radar-visual:3fee68a412fd -->
+[![展示 Hume AI 文本转语音质量基准评估的图表](/images/radar/inline/3fee68a412fd.webp)](/images/radar/inline/3fee68a412fd.webp)
+
+*Google 公布的 Hume AI 评估表将总体质量、类人变化、多说话人与风格控制分开比较；各行衡量不同维度，不能只凭一项得分判断全部表现。 图片来源：[Google](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/)。点击图片查看原尺寸。*
+<!-- /radar-visual:3fee68a412fd -->
 
 ## 3. 实战代码 & 工具库
 

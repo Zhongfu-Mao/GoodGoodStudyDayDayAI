@@ -34,12 +34,24 @@ draft: false
 - 链接：https://blog.dailydoseofds.com/p/kv-cache-engineering-for-llm-serving
 - 摘要：专题系统梳理12类大模型推理KV Cache工程技术，明确区分逻辑存量、GPU驻留容量及读取带宽瓶颈。分析指出架构级改造依赖相应检查点训练，FP8量化减少字节但伴随精度误差，淘汰策略会丢弃上下文，而CPU卸载虽降低GPU显存占用却不减少总数据量且引入传输恢复延迟，建议工程落地应先定位具体约束再权衡吞吐与延迟。
 
+<!-- radar-visual:dfa0d3e4b131 -->
+[![KV Cache工程技术总览表](/images/radar/inline/dfa0d3e4b131.webp)](/images/radar/inline/dfa0d3e4b131.webp)
+
+*集中展现12类KV Cache技术，对比其缩减头数、层数、Token数、维度、位宽或重复显存的机制。 图片来源：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/kv-cache-engineering-for-llm-serving)。点击图片查看原尺寸。*
+<!-- /radar-visual:dfa0d3e4b131 -->
+
 ### Claude多智能体协作完成费马大定理Lean形式化验证
 
 - 来源：The Rundown AI
 - 日期：2026-09-07
 - 链接：https://www.anthropic.com/research/formalizing-fermats-last-theorem
 - 摘要：Anthropic公布通过Claude多智能体系统耗时11天完成费马大定理端到端Lean形式化验证，核心在于计算机对已有数学逻辑的严格校验而非提出新定理证明。系统采用Prove2Me架构，通过定理依赖有向无环图（DAG）、声明与证明分离及自然语言索引支撑协作，消耗内部研究模型约60亿输出Token，展现了形式化验证的工程突破。
+
+<!-- radar-visual:cb950efe3921 -->
+[![Prove2Me形式化费马大定理的关键里程碑有向无环图](/images/radar/inline/cb950efe3921.webp)](/images/radar/inline/cb950efe3921.webp)
+
+*基于Prove2Me方案的里程碑DAG图，以三个彩色分区展示证明费马大定理沿途的三个核心子定理。 图片来源：[The Rundown AI](https://www.anthropic.com/research/formalizing-fermats-last-theorem)。点击图片查看原尺寸。*
+<!-- /radar-visual:cb950efe3921 -->
 
 ## 2. 模型前沿 & 算法探索
 
@@ -88,6 +100,12 @@ draft: false
 - 日期：2026-09-07
 - 链接：https://lukefan.com/2026/09/07/openai-anthropic-mac-mini-ai-agent-training/
 - 摘要：行业分析文章探讨了AI企业采用Mac作为计算机使用智能体（CUA）环境的工程逻辑。作者指出桌面环境的核心在于截图、动作与反馈闭环及真实应用生态，而非用于基座大模型训练。通过对比平台一致性、账号服务、虚拟化及运维成本，文章推测Mac有望成为智能体交互标准环境，展现了特定工程取舍。
+
+<!-- radar-visual:bacf3cff0fc0 -->
+[![计算机使用智能体屏幕操作与反馈回路示意图](/images/radar/inline/bacf3cff0fc0.webp)](/images/radar/inline/bacf3cff0fc0.webp)
+
+*图中用截图、键鼠动作和评分构成电脑操作闭环，右侧画出训练节点；下方并列不同年份的基准数字，不能据此直接推算真实工作中的成功率。 图片来源：[老范讲故事](https://lukefan.com/2026/09/07/openai-anthropic-mac-mini-ai-agent-training/)。点击图片查看原尺寸。*
+<!-- /radar-visual:bacf3cff0fc0 -->
 
 ## 5. GitHub 热门 repo & 趋势追踪
 

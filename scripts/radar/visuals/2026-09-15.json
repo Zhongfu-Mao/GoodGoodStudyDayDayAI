@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-15",
+  "visuals": [
+    {
+      "id": "de7c96e32a25",
+      "sourceUrl": "https://www.latent.space/p/good-start-labs",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!Zv_Y!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F68f63ea3-21f3-461e-8037-c84040dae770_2202x1194.png",
+      "asset": "/images/radar/inline/de7c96e32a25.webp",
+      "sha256": "7afee012296e5103407eb032ceb292ccbc9a3bee05309ee85eb743484ba7fc4b",
+      "credit": "Good Start Labs",
+      "review": "accepted",
+      "zh": {
+        "heading": "Good Start Labs：将博弈游戏作为 AI 智能体的训练场",
+        "alt": "Good Start Labs于2026年9月公布的强权外交博弈模型背叛倾向排名图表。",
+        "caption": "表格按测试中的背叛比例排列模型，前五个模型均显示 0.0%；这反映特定博弈任务的观测结果，不是模型在所有场景中的可信度。"
+      },
+      "ja": {
+        "heading": "Good Start Labs：ゲーム環境を AI エージェントの訓練場にする試み",
+        "alt": "Good Start Labsによる2026年9月のゲーム「ディプロマシー」裏切り傾向ランキング図。",
+        "caption": "表は実験中の裏切り率でモデルを並べ、上位5モデルはいずれも0.0%です。特定ゲームでの観測であり、全場面における信頼性を示すものではありません。"
+      }
+    },
+    {
+      "id": "4e2736e332df",
+      "sourceUrl": "https://huggingface.co/abacusai/Smaug-Flash",
+      "originalImageUrl": "https://huggingface.co/abacusai/Smaug-Flash/resolve/main/figures/smaug_flash_vs_base_bars.png",
+      "asset": "/images/radar/inline/4e2736e332df.webp",
+      "sha256": "4b64379dd2ba4977e27a75cd0e577f88efdaed1db406805d1066db5ef60605bc",
+      "credit": "Abacus.AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "Smaug-Flash：基于 DeepSeek-V4-Flash-0731 的代码智能体微调模型",
+        "alt": "Smaug-Flash与基座模型DeepSeek-V4-Flash-0731在智能体基准上的对比柱状图。",
+        "caption": "关注柱状图对比：展示Smaug-Flash与基座模型的基准得分，部分含厂商自报数据，实际效能仍待独立验证。"
+      },
+      "ja": {
+        "heading": "Smaug-Flash：DeepSeek-V4-Flash-0731 ベースのエージェント型コーディング微調整モデル",
+        "alt": "Smaug-Flashとベースモデルのエージェントベンチマーク比較棒グラフ。",
+        "caption": "Smaug-Flashとベースモデルのベンチマーク比較棒グラフです。一部はベンダー自己報告値を含んでおり、実際の汎用性能には検証の余地が残ります。"
+      }
+    },
+    {
+      "id": "a9a9368932a8",
+      "sourceUrl": "https://every.to/working-overtime/what-playing-with-ai-taught-me-about-my-work",
+      "originalImageUrl": "https://every.to/_next/image?url=https%3A%2F%2Fd24ovhgu8s7341.cloudfront.net%2Fuploads%2Feditor%2Fpost%2F4475%2Foptimized_1f610da3-692f-4a28-b1b2-fbb9781bad04.jpg&w=1200&q=75",
+      "asset": "/images/radar/inline/a9a9368932a8.webp",
+      "sha256": "24524089ab979a308cdffb33a23c417692da3a4241eb69a7e98354bdc9d52f84",
+      "credit": "Every",
+      "review": "accepted",
+      "zh": {
+        "heading": "与 AI 的探索性交互带给我的工作反思",
+        "alt": "Every 团队工作重点摘录",
+        "caption": "原文摘出的团队工作重点包括经验积累、提高内容发布频率和探索个性化阅读；明确这些优先级，才能判断 AI 建议是否与实际工作相关。"
+      },
+      "ja": {
+        "heading": "AI との探索的な試行錯誤がもたらした仕事観の再構築",
+        "alt": "Everyチームの優先事項の抜粋",
+        "caption": "チームの優先事項として知識の蓄積、発信頻度の改善、個別化した読書体験を挙げています。優先順位を明文化することでAIの提案が実務に沿うか判断できます。"
+      }
+    }
+  ]
+}

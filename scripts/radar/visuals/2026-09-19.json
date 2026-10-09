@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-19",
+  "visuals": [
+    {
+      "id": "be027c59d882",
+      "sourceUrl": "https://wisprflow.ai/canto",
+      "originalImageUrl": "https://cdn.prod.website-files.com/682f84b3838c89f8ff7667db/6aac08ad915bfc06cc050576_audio-challenge-set-v2.png",
+      "asset": "/images/radar/inline/be027c59d882.webp",
+      "sha256": "074ddc902c9281b0e2b92b43abed4e41740964c9679eab2e8c886a452297f70b",
+      "credit": "Wispr Flow",
+      "review": "accepted",
+      "zh": {
+        "heading": "Canto 用转录级反馈强化真实环境听写，但难例仍有差距",
+        "alt": "Canto 等语音模型在三小时高难度真实音频集上的词错误率图表",
+        "caption": "图表比较三小时挑战集上的词错误率，样本含噪声、低音量和短句；Canto 总体仍落后于 Gemini 3.1 Pro。"
+      },
+      "ja": {
+        "heading": "Canto：転写全体へのフィードバックで実環境の音声入力を改善",
+        "alt": "Cantoなどの音声モデルを3時間の難条件音声で比較した単語誤り率グラフ",
+        "caption": "騒音、低音量、短い発話を含む3時間の難条件データで単語誤り率を比較する。Cantoは総合ではGemini 3.1 Proに及ばない。"
+      }
+    },
+    {
+      "id": "e09b2c5d4566",
+      "sourceUrl": "https://claude.com/blog/projects-redesigned",
+      "originalImageUrl": "https://assets.claude.com/5648108ea67905e6ce7975fd9a60ded1a45b1b9d.gif",
+      "asset": "/images/radar/inline/e09b2c5d4566.webp",
+      "sha256": "f6348bc26090f7535d5daa48110faa34f0b6713b1e3358a3402d04f82aaf3a0a",
+      "credit": "Anthropic",
+      "review": "accepted",
+      "zh": {
+        "heading": "Claude Projects 加入协调会话、并行云线程和共享记忆",
+        "alt": "一个项目跨一周展开多个工作线程，右侧显示请求线程并在下方积累记忆、决定和结果",
+        "caption": "官方演示的静态帧展示主会话、项目记忆与右侧工作线程；日期变更留在项目上下文中，具体任务可另开线程执行。"
+      },
+      "ja": {
+        "heading": "Claude Projectsがコーディネーションセッション、並行クラウドスレッド、共有メモリを導入",
+        "alt": "1週間のプロジェクトで複数スレッドを開き、記憶・判断・成果を蓄積する画面",
+        "caption": "公式デモの静止画は主会話、プロジェクト記憶、右側の作業スレッドを示します。日程変更を文脈に保持し、個別作業を別スレッドで実行する構成です。"
+      }
+    },
+    {
+      "id": "8660d21fdb2e",
+      "sourceUrl": "https://blog.google/innovation-and-ai/technology/ai/google-flow-fashion-week/",
+      "originalImageUrl": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Jane_SS_8.width-1200.format-webp.webp",
+      "asset": "/images/radar/inline/8660d21fdb2e.webp",
+      "sha256": "1229864a79cfbfddcc579b89a924603fc3b9bb8445032514c365c4e81e9e655b",
+      "credit": "Google / Jane Wade",
+      "review": "accepted",
+      "zh": {
+        "heading": "Google Flow 的定制工具进入服装搭配与秀场预演",
+        "alt": "Jane Wade 的 Styling Suite Google Flow 工具界面，用数字模特组合服装与造型元素",
+        "caption": "界面用于在数字模特上组合发型、妆容、配饰、鞋履和服装，以便裁剪制作前检查整体造型与缺失元素。"
+      },
+      "ja": {
+        "heading": "Google Flowの専用ツールを服飾スタイリングとランウェイの事前可視化に活用",
+        "alt": "Jane WadeのStyling Suite画面。デジタルモデル上で服装やスタイリング要素を組み合わせる",
+        "caption": "デジタルモデル上で髪型、メイク、装飾品、靴、服を組み合わせ、裁断や制作前に全体像と不足要素を確認するための画面。"
+      }
+    }
+  ]
+}

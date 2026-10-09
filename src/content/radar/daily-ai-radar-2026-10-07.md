@@ -47,12 +47,24 @@ representativeImageSource: https://blog.google/innovation-and-ai/technology/deve
 - 链接：https://mistral.ai/news/mistral-large-4/
 - 摘要：Mistral 推出 Large 4 公共预览，官方公布总参数1万亿、每 token 激活490亿，原生支持多模态，并在自有欧洲数据中心以3,800张 Grace Blackwell GPU 训练。当前可用的是 Mistral Studio 的预览 API，权重计划在本月底发布，不能写成已经可下载或自部署。公告强调代码、智能体和视觉任务表现，但仍处于测试与持续改进阶段；厂商基准不代替自身数据、硬件和安全边界下的评估。
 
+<!-- radar-visual:3a5dfe8924a6 -->
+[![五个模型的人工代码质量评分对比](/images/radar/inline/3a5dfe8924a6.webp)](/images/radar/inline/3a5dfe8924a6.webp)
+
+*图表展示 Mistral 委托的盲评中，专业标注者对五个模型代码质量的1至5分评分；结果仅适用于该评测设置。 图片来源：[Mistral / Surge AI](https://mistral.ai/news/mistral-large-4/)。点击图片查看原尺寸。*
+<!-- /radar-visual:3a5dfe8924a6 -->
+
 ### EmbeddingGemma 2：用一个向量空间检索文本、图像、音频与视频
 
 - 来源：Simon Willison / Google DeepMind
 - 日期：2026-10-06（官方发布）
 - 链接：https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/
 - 摘要：Google 发布740M参数的多模态嵌入模型，采用 Apache-2.0，面向本地跨模态检索与 RAG。文本模块为270M参数，可按需加入视觉与音频编码器；输出向量支持从768维截短至512、256或128维。8K上下文可容纳音频、图像或视频帧的组合，但不同模态的容量不是可同时叠加的保证。官方 Pixel 11 Pro 量化测试中的内存数字仅描述对应权重配置；压缩向量和本地运行仍需验证检索质量、端到端内存以及数据是否真正留在设备。
+
+<!-- radar-visual:56a157ea2291 -->
+[![EmbeddingGemma 2 的 Massive Text Embedding Benchmark 代码任务图表](/images/radar/inline/56a157ea2291.webp)](/images/radar/inline/56a157ea2291.webp)
+
+*横轴是模型规模，纵轴是代码嵌入任务平均分；图中把 EmbeddingGemma 2 与不同规模模型放在同一坐标中比较。官方基准不能替代本地语料的检索验证。 图片来源：[Google DeepMind](https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/)。点击图片查看原尺寸。*
+<!-- /radar-visual:56a157ea2291 -->
 
 ## 3. 实战代码 & 工具库
 
@@ -62,6 +74,12 @@ representativeImageSource: https://blog.google/innovation-and-ai/technology/deve
 - 日期：2026-10-06（实战记录）
 - 链接：https://til.simonwillison.net/datasette/datasette-parseable-opentelemetry
 - 摘要：Simon 借助 Codex 整合 Datasette 1.0a41 与 Parseable，并将有效配置整理为人工撰写的记录。关键不是直接启动 Datasette，而是通过 opentelemetry-instrument 初始化追踪，配置 OTLP JSON HTTP 导出、服务名和目标流；随后能在请求 trace 中检查下游 SQL span。示例使用 Parseable 3.2.4 与固定依赖版本，是本地可观测性实践，不是已测量的智能体质量提升。示例默认凭据和本地端口也不能直接作为生产部署配置。
+
+<!-- radar-visual:e8060fe30b95 -->
+[![可观测性界面的 trace 详情页，中央显示 span 瀑布和筛选栏](/images/radar/inline/e8060fe30b95.webp)](/images/radar/inline/e8060fe30b95.webp)
+
+*界面把一次 Datasette 请求展开为 trace 与 span 瀑布，并可继续查看下游 SQL；它证明追踪已接通，不代表系统质量已提升。 图片来源：[Simon Willison](https://til.simonwillison.net/datasette/datasette-parseable-opentelemetry)。点击图片查看原尺寸。*
+<!-- /radar-visual:e8060fe30b95 -->
 
 ### Scrimshaw Jukebox：让文本模型生成可编辑乐谱，再用浏览器合成声音
 

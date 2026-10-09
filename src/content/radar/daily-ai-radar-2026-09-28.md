@@ -30,12 +30,24 @@ representativeImageSource: https://huggingface.co/blog/Hcompany/holo4
 - 链接：https://www.langchain.com/blog/langsmith-engine-v2-redteam
 - 摘要：Engine v2 扩展主动红队测试、重复工具调用等低效行为识别，以及修复建议的预验证。预验证先复现失败，再提出修改、用原输入测试，最后把建议交给用户审查。红队与修复预验证面向现有 Deployment 用户开放 Private Beta；自托管和 BYOK 仍属后续计划。自动测试不是跳过人工批准或直接部署的理由。
 
+<!-- radar-visual:de597f765f5c -->
+[![LangSmith Engine v2 自动化测试流程](/images/radar/inline/de597f765f5c.webp)](/images/radar/inline/de597f765f5c.webp)
+
+*从左到右是问题复现、预览部署中的修复验证，再由用户接受后提交可合并的 PR。图中仍保留人工确认，自动验证通过不等于已经发布。 图片来源：[LangChain Blog](https://www.langchain.com/blog/langsmith-engine-v2-redteam)。点击图片查看原尺寸。*
+<!-- /radar-visual:de597f765f5c -->
+
 ### LangSmith Trajectories 用单一时间线阅读长任务行为
 
 - 来源：LangChain Blog
 - 日期：2026-09-24
 - 链接：https://www.langchain.com/blog/langsmith-trajectories-tracing
 - 摘要：Trajectories 把主智能体、子智能体和工具消息按首次出现顺序组织，每条消息只呈现一次，帮助审查者定位长会话中的行为偏差，再跳回完整 trace 检查执行细节。轨迹可以用于在线评估、人工标注及训练数据集。它是底层记录上的阅读视图，并不替代完整运行树；发布时的可用范围为美国区域全部套餐。
+
+<!-- radar-visual:33877b8309cb -->
+[![LangSmith Trajectories 线程视图](/images/radar/inline/33877b8309cb.webp)](/images/radar/inline/33877b8309cb.webp)
+
+*图中展示线程中的轨迹投影视图，去除嵌套运行结构，按先后顺序单次呈现消息与动作，以便审查者直接循迹阅读会话路径。 图片来源：[LangChain Blog](https://www.langchain.com/blog/langsmith-trajectories-tracing)。点击图片查看原尺寸。*
+<!-- /radar-visual:33877b8309cb -->
 
 ## 2. 模型前沿 & 算法探索
 
@@ -45,6 +57,12 @@ representativeImageSource: https://huggingface.co/blog/Hcompany/holo4
 - 日期：2026-09-28
 - 链接：https://huggingface.co/blog/Hcompany/holo4
 - 摘要：Holo4 提供27B稠密模型及35B-A3B混合专家模型，把界面操作、代码、MCP和API调用组合起来完成任务，并公开权重与基准运行轨迹。作者报告27B版本在 OSWorld 2.0 取得61.7%，同时说明比较对象的任务子集、运行框架与成本估算口径存在差异。因此，不能把图表直接当成统一测试条件下的成本优势证明；部署仍须检查权限与真实任务成功率。
+
+<!-- radar-visual:008756076471 -->
+[![OSWorld 2.0：平均部分得分与每任务成本对比](/images/radar/inline/008756076471.webp)](/images/radar/inline/008756076471.webp)
+
+*图表展示官方在OSWorld 2.0基准下的得分与成本估算，各模型在测试框架和定价口径上存在差异，成本优势仍待实际验证。 图片来源：[H Company / Hugging Face](https://huggingface.co/blog/Hcompany/holo4)。点击图片查看原尺寸。*
+<!-- /radar-visual:008756076471 -->
 
 ## 3. 实战代码 & 工具库
 

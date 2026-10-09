@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-07",
+  "visuals": [
+    {
+      "id": "3a5dfe8924a6",
+      "sourceUrl": "https://mistral.ai/news/mistral-large-4/",
+      "originalImageUrl": "https://mistral.ai/_astro/human-evaluation---surge-(human-eval-on-code)%201_20jgWu.webp?dpl=6ac6a8353c2a68969e300fd2",
+      "asset": "/images/radar/inline/3a5dfe8924a6.webp",
+      "sha256": "86cbce99ffb534a2625b8636a88ffd19b973433826ef1293a58d13174995991d",
+      "credit": "Mistral / Surge AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "Mistral Large 4：先开放 API 预览，权重仍待月底发布",
+        "alt": "五个模型的人工代码质量评分对比",
+        "caption": "图表展示 Mistral 委托的盲评中，专业标注者对五个模型代码质量的1至5分评分；结果仅适用于该评测设置。"
+      },
+      "ja": {
+        "heading": "Mistral Large 4：まず API プレビューを公開、重みは月末のリリース待ち",
+        "alt": "5モデルの人手によるコード品質評価比較",
+        "caption": "Mistralが委託した盲検評価で、専門評価者が5モデルのコード品質を1〜5点で採点した結果。結論はこの評価条件に限られる。"
+      }
+    },
+    {
+      "id": "56a157ea2291",
+      "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
+      "originalImageUrl": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Massive_Text_Embedding_Benchmark.width-1000.format-webp.webp",
+      "asset": "/images/radar/inline/56a157ea2291.webp",
+      "sha256": "7ebc7e9df9795d2d835d8d20734b7df6ad29acc9430bfcfa706bcf42cb3bb612",
+      "credit": "Google DeepMind",
+      "review": "accepted",
+      "zh": {
+        "heading": "EmbeddingGemma 2：用一个向量空间检索文本、图像、音频与视频",
+        "alt": "EmbeddingGemma 2 的 Massive Text Embedding Benchmark 代码任务图表",
+        "caption": "横轴是模型规模，纵轴是代码嵌入任务平均分；图中把 EmbeddingGemma 2 与不同规模模型放在同一坐标中比较。官方基准不能替代本地语料的检索验证。"
+      },
+      "ja": {
+        "heading": "EmbeddingGemma 2：単一のベクトル空間でテキスト、画像、音声、動画を検索",
+        "alt": "EmbeddingGemma 2のMassive Text Embedding Benchmarkコード評価図",
+        "caption": "横軸はモデル規模、縦軸はコード埋め込みタスクの平均点です。EmbeddingGemma 2を異なる規模のモデルと比較しています。公式評価は手元のデータでの検索検証を代替しません。"
+      }
+    },
+    {
+      "id": "e8060fe30b95",
+      "sourceUrl": "https://til.simonwillison.net/datasette/datasette-parseable-opentelemetry",
+      "originalImageUrl": "https://raw.githubusercontent.com/simonw/til/refs/heads/main/datasette/datasette-parsable.webp",
+      "asset": "/images/radar/inline/e8060fe30b95.webp",
+      "sha256": "0b9962a3f69761a5af75e8211fd16477eff6e5ae47763e32ae6128fea4ef0e0c",
+      "credit": "Simon Willison",
+      "review": "accepted",
+      "zh": {
+        "heading": "Datasette × Parseable：先让智能体搭建的系统留下可追查的请求链",
+        "alt": "可观测性界面的 trace 详情页，中央显示 span 瀑布和筛选栏",
+        "caption": "界面把一次 Datasette 请求展开为 trace 与 span 瀑布，并可继续查看下游 SQL；它证明追踪已接通，不代表系统质量已提升。"
+      },
+      "ja": {
+        "heading": "Datasette × Parseable：まずはエージェントが構築したシステムに追跡可能なリクエストチェーンを残す",
+        "alt": "可観測性画面のトレース詳細。中央にスパンのウォーターフォールとフィルター欄を表示",
+        "caption": "Datasetteの1リクエストをトレースとスパンの滝図で展開し、下流SQLまで確認できる。追跡の接続を示すが、品質向上そのものの証明ではない。"
+      }
+    }
+  ]
+}

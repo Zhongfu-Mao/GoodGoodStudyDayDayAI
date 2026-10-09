@@ -31,12 +31,24 @@ representativeImageSource: https://www.latent.space/p/stacklok
 - 链接：https://www.latent.space/p/stacklok
 - 摘要：Kubernetes 联合创建者 Craig McLuckie 与 Joe Beda 介绍 Stacklok 的云原生智能体路线。开源 Mecatl 将智能体循环与客户端、模型提供方、状态存储和执行环境解耦，让工具执行与会话管理分别进入可治理的基础设施；ToolHive 管理 MCP 服务，商业控制平面补上身份、策略与审计。AI Gateway 当前聚焦访问、预算、报告和提供方路由，并不根据任务自动选择模型，也尚未开源。架构分离是集中运维的条件，不等于故障恢复或安全已经获得普遍保证。
 
+<!-- radar-visual:f8de652b37f1 -->
+[![Mecatl 架构图，展示智能体循环与客户端、模型、状态存储和执行环境的分离](/images/radar/inline/f8de652b37f1.webp)](/images/radar/inline/f8de652b37f1.webp)
+
+*图中把智能体循环与客户端、模型、状态存储和执行环境拆开；这说明云端治理依赖解耦，但不自动证明可靠性或安全性。 图片来源：[Mecatl GitHub，经 Latent.Space](https://www.latent.space/p/stacklok)。点击图片查看原尺寸。*
+<!-- /radar-visual:f8de652b37f1 -->
+
 ### Every 的成本排查：先检查重复输入和缓存，再增加模型路由
 
 - 来源：Every
 - 日期：2026-10-07（原文与通讯）
 - 链接：https://every.to/context-window/building-a-more-efficient-agent
 - 摘要：Every 曾用较便宜的 Sonnet 协调并将复杂请求交给 Opus，结果质量、速度下降，重复处理还增加了成本。后续改进包括升级模型、缩短工具返回、按需加载工具说明，以及修复系统提示缓存：含 Slack 用户 ID 的记忆目录名破坏了跨用户缓存复用，改用通用目录名并保留用户间权限隔离后才恢复复用。团队报告11个常用任务的 token 成本下降超过80%；缓存修复的最佳情形测试下降74%。这些是该团队特定测试结果，不能直接当作其他工作流的预期收益。
+
+<!-- radar-visual:54a0303d14d6 -->
+[![Every Agent 成本优化改动的多张界面截图组合](/images/radar/inline/54a0303d14d6.webp)](/images/radar/inline/54a0303d14d6.webp)
+
+*截图按工具重构、模型升级、缓存修复与延迟加载逐步列出成本变化。图中是单项任务的最佳情形，不能与正文11项任务的整体结果混为一谈。 图片来源：[Every / Laura Entis](https://every.to/context-window/building-a-more-efficient-agent)。点击图片查看原尺寸。*
+<!-- /radar-visual:54a0303d14d6 -->
 
 ## 2. 模型前沿 & 算法探索
 
@@ -69,6 +81,12 @@ representativeImageSource: https://www.latent.space/p/stacklok
 - 日期：2026-10-07（工程更新）
 - 链接：https://www.langchain.com/blog/revamping-skills-in-deep-agents
 - 摘要：Deep Agents 支持通过 metadata.include_tools 将工具绑定到 skill：读取对应 SKILL.md 后才开放工具，避免先找到工具却没读操作说明。应用可显式传入 pinned_skills，在下一次模型调用前装入所需说明；也可清空 skills_metadata，让长线程重新扫描技能库。部分新模型可在对话中追加工具而保持此前缓存前缀，其他模型仍需改请求工具列表；重新扫描发现新技能也会改变系统提示并失效缓存。工具按需披露与实际授权检查不能混为一谈。
+
+<!-- radar-visual:4ad08b2a9e88 -->
+[![技能渐进披露图，从技能名与描述逐步加载说明和参考文件](/images/radar/inline/4ad08b2a9e88.webp)](/images/radar/inline/4ad08b2a9e88.webp)
+
+*图中按需扩展上下文：启动时只放技能名与描述，任务需要时再加载技能说明和参考文件，以减少无关上下文。 图片来源：[LangChain](https://www.langchain.com/blog/revamping-skills-in-deep-agents)。点击图片查看原尺寸。*
+<!-- /radar-visual:4ad08b2a9e88 -->
 
 ### Managed Deep Agents v0.9：排期、每次运行配置与 Slack 回执进入 SDK
 

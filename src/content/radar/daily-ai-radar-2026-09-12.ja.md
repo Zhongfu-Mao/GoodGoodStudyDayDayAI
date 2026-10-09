@@ -34,6 +34,12 @@ draft: false
 - リンク：https://blog.dailydoseofds.com/p/the-architecture-for-serving-100
 - 要約：この記事は、微調整モデルを個別配信する構成と、基盤モデルを共有する構成を比較する。同じ基盤モデルから作った LoRA アダプターなら、リクエストごとに対象を選びつつ重みとワーカープールを再利用できる。数が多ければ要求時に読み込めるが、初回には待ち時間が生じる。100 種類のメモリ試算は特定のモデル、アダプター、GPU を置いた例であり、実際の容量やコールドスタートは負荷と構成次第だ。
 
+<!-- radar-visual:158eb72904e1 -->
+[![実行時のLoRAアダプター解決フロー](/images/radar/inline/158eb72904e1.webp)](/images/radar/inline/158eb72904e1.webp)
+
+*要求されたアダプターが読み込み済みか確認し、未登録なら取得します。実行中のワーカーで読み込み、後続要求が再利用できる構成です。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/the-architecture-for-serving-100)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:158eb72904e1 -->
+
 ## 2. モデル最前線 & アルゴリズム探索
 
 ### GPT-Live-1 が API 提供、音声対話と深い推論を分担
@@ -75,6 +81,12 @@ draft: false
 - リンク：https://www.anthropic.com/threat-intelligence-report-september-2026
 - 要約：Anthropic の脅威インテリジェンス報告は、2025 年 12 月から 2026 年 8 月に同社が特定・阻止した事例を整理した。対象はサイバー活動、影響工作、監視、詐欺、生物学的悪用、通常兵器の開発、不正な蒸留の七分野。AI が一部の活動で実行・調整を拡張したとする一方、掲載事例は特徴的なものを選んでおり、一般的な悪用頻度を示さない。行為者の帰属や意図も、それぞれの証拠に即して判断すべきだ。
 
+<!-- radar-visual:5f6dfb86f096 -->
+[![ShinyHunters関連と疑われる集団の攻撃ライフサイクル（認証情報収集から恐喝まで）を示す図](/images/radar/inline/5f6dfb86f096.webp)](/images/radar/inline/5f6dfb86f096.webp)
+
+*図1の攻撃ライフサイクルに注目：認証情報の窃取からSaaSデータへのアクセス、情報流出を盾にした恐喝に至る一連の活動経路が示されています。 画像出典：[Anthropic](https://www.anthropic.com/threat-intelligence-report-september-2026)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:5f6dfb86f096 -->
+
 ### ElevenLabs と UMG、許諾音楽の共創プラットフォームを開発へ
 
 - 出典：ElevenLabs / The Rundown AI
@@ -113,3 +125,9 @@ draft: false
 - 日付：2026 年 9 月 10 日初公開、9 月 19 日改訂版を補録
 - リンク：https://every.to/context-window/evals-for-everyone
 - 要約：Every の記事は、繰り返し行う自分の仕事から始め、品質上の好みや過去の訂正を項目別の合否基準にし、同じ入力で出力を比較する方法を提案する。評価基準も人間の判定と照合し、食い違いを直し、別の例で再試験して特定のモデルやサンプルへの過適合を避ける。公開ベンチマークは個人の仕事の基準を網羅しない。これは 9 月 19 日改訂版に基づき、全詳細を初公開時点へ遡らせない。
+
+<!-- radar-visual:5f65ae6a5a14 -->
+[![ユーザーフィードバックから評価項目を作る](/images/radar/inline/5f65ae6a5a14.webp)](/images/radar/inline/5f65ae6a5a14.webp)
+
+*著者は実際の出力へのフィードバックを明確な確認項目に整理し、次の実行でも同じ問題を再評価できるようにしています。 画像出典：[Every](https://every.to/context-window/evals-for-everyone)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:5f65ae6a5a14 -->

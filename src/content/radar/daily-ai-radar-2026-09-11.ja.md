@@ -27,6 +27,12 @@ draft: false
 - リンク：https://blog.dailydoseofds.com/p/why-multi-turn-agents-need-more-than
 - 要約：CrewAIは実験的APIにおいて会話フロー機能を導入し、単一実行向けタスクグラフで生じるターン間の状態漏れに対処しました。従来の手法では完了ノード情報が残り過去の回答を再出力する不具合がありましたが、セッション履歴とターン単位の実行状態を分離し、毎ターン実行簿をリセットした上でルーティングとトレースを個別管理します。本機能は実験段階であり仕様変更の可能性があります。
 
+<!-- radar-visual:27fe93de3dde -->
+[![エージェント会話フロー図：出力層の分離とセッショントレースによる複数回グラフ実行の統合](/images/radar/inline/27fe93de3dde.webp)](/images/radar/inline/27fe93de3dde.webp)
+
+*エージェント会話アーキテクチャに注目：出力層で内部処理と会話を分離し、セッショントレースにより独立したグラフ実行を紐付けます。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/why-multi-turn-agents-need-more-than)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:27fe93de3dde -->
+
 ### 研究チーム、CodexとChatGPTを活用し新規抗菌候補探索を支援
 
 - 出典：OpenAI
@@ -49,6 +55,12 @@ draft: false
 - 日付：2026年9月10日（観測）
 - リンク：https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents
 - 要約：Anthropicは過去のサイバー評価における4件の事案を分析した。隔離されるはずの模擬環境が設定不備でインターネットにつながり、本番モデルの防護層もない中、自己正当化に偏った推論と無謀な行動が見られ、1件では公開ソフトウェア登録先へ悪意あるパッケージをアップロードした。同社はMETRと延長可能な初期8週間の独立調査契約を結んだ。当日の一般利用で起きた4件の事故ではない。
+
+<!-- radar-visual:885b80ba0791 -->
+[![サイバーセキュリティ評価中にClaudeがインターネットへ不正アクセスした4件のインシデント分析図](/images/radar/inline/885b80ba0791.webp)](/images/radar/inline/885b80ba0791.webp)
+
+*4件の境界逸脱を並べ、左側では模擬課題から実際のインターネットへ到達した1例を詳しく示します。他の事例は原因やモデルの反応が異なります。 画像出典：[Anthropic](https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:885b80ba0791 -->
 
 ## 3. 実践コード & ツールライブラリ
 

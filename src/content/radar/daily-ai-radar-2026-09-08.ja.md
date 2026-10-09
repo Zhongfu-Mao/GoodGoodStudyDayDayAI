@@ -32,6 +32,12 @@ draft: false
 - リンク：https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures
 - 要約：LLMアプリでは技術的障害と意味的障害の区別が必要です。HTTP成功はJSONや業務規則の正しさを保証しません。再試行は一時障害のみに限定し、上限やバックオフを設けるべきです。またツール呼出の重複を防ぐため、冪等性キーや状態追跡による復旧設計が不可欠です。
 
+<!-- radar-visual:b385fef92353 -->
+[![LLMアプリケーションの要求フローとコンポーネント構成図](/images/radar/inline/b385fef92353.webp)](/images/radar/inline/b385fef92353.webp)
+
+*左から利用者、アプリ、検索、モデル、ツールを示します。入力・権限の検証から、生成結果を受け取った後の検証まで、複数の段階に確認を置く構成です。 画像出典：[ByteByteGo](https://blog.bytebytego.com/p/how-to-deal-with-errors-and-failures)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:b385fef92353 -->
+
 ## 2. モデル最前線 & アルゴリズム探索
 
 ### AIで成体雄ショウジョウバエの脳・中枢神経系を再構築
@@ -73,12 +79,24 @@ draft: false
 - リンク：https://lukefan.com/2026/09/07/deepseek-huawei-ascend-ulaanqab-data-center/
 - 要約：老范は、報道されたDeepSeekのウランチャブ計算基盤構想を取り上げ、国産チップ、推論需要、電力・冷却条件の関係を論じています。報道・計画段階の規模は契約締結や稼働済みの証拠ではありません。設備容量だけでなく需要、稼働率、安定給電を考える論評です。
 
+<!-- radar-visual:a6fc0a085fe8 -->
+[![Atlas 950スーパーノードとクラスタの規模対比図](/images/radar/inline/a6fc0a085fe8.webp)](/images/radar/inline/a6fc0a085fe8.webp)
+
+*原文はスーパーノード、クラスタ、報道された発注規模を別欄に整理しています。ハードウェアの階層と購入量を区別する図で、数値は稼働・利用済み計算資源を意味しません。 画像出典：[老范讲故事](https://lukefan.com/2026/09/07/deepseek-huawei-ascend-ulaanqab-data-center/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:a6fc0a085fe8 -->
+
 ### ウクライナ独立報道機関へのAI導入・事業変革支援構想
 
 - 出典：OpenAI / WAN-IFRA / AIRPPU
 - 日付：2026-09-07
 - リンク：https://openai.com/index/supporting-independent-journalism-in-ukraine/
 - 要約：OpenAI、WAN-IFRA、AIRPPUが報道機関の編集業務と事業変革を支援します。講座は8月5日に開始し、9月17日開始予定のCatalystは10組織を重点支援、参加組織すべてにAPI利用枠を提供します。責任ある導入と組織能力の支援であり、収益増や記者の自動代替が実証されたわけではありません。
+
+<!-- radar-visual:1448ea5f4f7f -->
+[![ウクライナ全土の独立系報道機関の分布地図](/images/radar/inline/1448ea5f4f7f.webp)](/images/radar/inline/1448ea5f4f7f.webp)
+
+*ウクライナ各地に点在する独立系報道機関の分布を示し、AI導入・転換支援プログラムが対象とするメディアの展開範囲を表しています。 画像出典：[OpenAI / WAN-IFRA / AIRPPU](https://openai.com/index/supporting-independent-journalism-in-ukraine/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:1448ea5f4f7f -->
 
 ### 米中AI安全対話の準備をReutersが報道、ホワイトハウスは予定を否定
 

@@ -27,6 +27,12 @@ draft: false
 - リンク：https://openai.com/index/introducing-the-agents-api
 - 要約：OpenAIはAgents APIの公開ベータを発表した。開発者は一度の呼び出しでタスク、モデル、ツール、実行環境を指定し、OpenAIが管理するエージェント基盤を利用できる。環境はOpenAIのサンドボックス、自社基盤、提携先から選択でき、長期セッションのコンテキスト圧縮、必要に応じたツール定義の読み込み、プログラムによるツール呼び出し、サブエージェント連携に対応する。追加のプラットフォーム料金はないが、モデルのトークンとツールの使用料は発生する。隔離の範囲は環境設定に依存する。
 
+<!-- radar-visual:07b88a2f0d9b -->
+[![アプリがAgents APIへタスクを送り、Codex基盤とサンドボックス経由でツール結果を得る構成図。](/images/radar/inline/07b88a2f0d9b.webp)](/images/radar/inline/07b88a2f0d9b.webp)
+
+*アプリとAgents APIの連携フローを示し、管理型Codex基盤がサンドボックスへツール呼び出しを行い結果を取得する仕組みを解説しています。 画像出典：[OpenAI](https://openai.com/index/introducing-the-agents-api)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:07b88a2f0d9b -->
+
 ### Piが統一モデルAPI、エージェント実行基盤、コーディングCLIを統合
 
 - 出典：earendil-works/pi GitHub README
@@ -113,6 +119,12 @@ draft: false
 - 日付：2026-09-15
 - リンク：https://every.to/also-true-for-humans/mini-vibe-check-typesafe-s-jev-judged-everything-i-ve-written-in-0-7-seconds
 - 要約：EveryのMike TaylorはTypeSafeのJevを探索的に試用した。RLCDという手法で長文生成ではなく較正されたカテゴリ別確率を出すことを目指すが、目標はあらゆる用途で較正済みという保証ではない。筆者によると、37文書に21の問いを適用した計777回の判定は0.7秒未満だった。別の小規模な合成欠陥テストでは、意図的に入れた7件の欠陥のうち6件を見つけた。いずれも筆者自身の試行であり、一般的な速度や信頼性の保証ではない。実務では自分のデータで精度を確かめる必要がある。
+
+<!-- radar-visual:5f28c496a8f2 -->
+[![執筆チェッカーの確率マトリクス画面。行が記事、列がAI記述パターンを示し、1に近いほどAI使用の可能性を示唆。](/images/radar/inline/5f28c496a8f2.webp)](/images/radar/inline/5f28c496a8f2.webp)
+
+*各行が記事、各列が構造の対称性や書式の多用などの判定項目です。数値は分類器の判断であり、AI執筆を事実として証明するものではありません。 画像出典：[Every](https://every.to/also-true-for-humans/mini-vibe-check-typesafe-s-jev-judged-everything-i-ve-written-in-0-7-seconds)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:5f28c496a8f2 -->
 
 ### 老范、IPO・計算資源コスト・価格決定権からAI「減速」論を読む
 

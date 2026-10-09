@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-23",
+  "visuals": [
+    {
+      "id": "90c5e9185e58",
+      "sourceUrl": "https://openai.com/index/better-prompt-caching-for-gpt-6/",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/29DVnNtIz2bkMRa1wWULXs/062723af9185edeb09c27071e68b589d/image__17_.png?w=3840&q=90&fm=webp",
+      "asset": "/images/radar/inline/90c5e9185e58.webp",
+      "sha256": "77dca1623e30759b6b81a8803a2a633a2f33ca4b1e948c7ba332d47faad7a377",
+      "credit": "OpenAI",
+      "review": "accepted",
+      "zh": {
+        "heading": "OpenAI 更新 GPT-6 提示缓存：增加命中率诊断与显式缓存断点",
+        "alt": "提示缓存仪表板展示缓存命中率、随时间的缓存表现以及输入 token 构成",
+        "caption": "仪表板截图展示提示缓存命中率走势与输入 token 结构图表，用于排查请求变化导致的缓存失效并评估成本表现。"
+      },
+      "ja": {
+        "heading": "OpenAIがGPT-6のプロンプトキャッシュを更新：ヒット率診断と明示的なキャッシュ境界を追加",
+        "alt": "プロンプトキャッシュダッシュボード。キャッシュヒット率、時系列でのパフォーマンス、入力トークンの構成比を表示",
+        "caption": "プロンプトキャッシュのダッシュボード画面。ヒット率の推移やキャッシュ内外のトークン構成を可視化し、キャッシュミスの原因分析を支援します。"
+      }
+    },
+    {
+      "id": "b1258c859a14",
+      "sourceUrl": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+      "originalImageUrl": "https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F31704b297a9350f392f143ea078561f36cd14908-1920x1230.png&w=3840&q=75",
+      "asset": "/images/radar/inline/b1258c859a14.webp",
+      "sha256": "9937fedae281a212a6e710a9fa798feea07d58fb222a4d318fbb6997f2bd0864",
+      "credit": "Anthropic",
+      "review": "accepted",
+      "zh": {
+        "heading": "Anthropic 公布 AI 研发自动化与 Agent 监督指标：区分协作、主导和完全自治",
+        "alt": "图表显示 Claude 在 Anthropic 模型研发任务中主导比例达 26%，高于 2026 年 2 月的不足 1%",
+        "caption": "图表展示 Anthropic 内部任务自动化评级统计，反映 Claude 在模型研发中主导与协作任务的占比变化，口径依赖内部模型判定。"
+      },
+      "ja": {
+        "heading": "AnthropicがAI研究開発の自動化とAgent監督の指標を公開：協働、主導、完全自律を区別",
+        "alt": "Anthropic のモデル研究開発タスクにおいて、Claude が主導する割合が 2026 年 2 月の 1% 未満から 26% に達したことを示す図表",
+        "caption": "Anthropic 社内での自動化レベル評価推移を示す図表。Claude が研究開発を主導・協調する割合を示していますが、社内基準による測定値です。"
+      }
+    },
+    {
+      "id": "f84eebdab6b4",
+      "sourceUrl": "https://lukefan.com/2026/09/23/huawei-ascend-cann-cuda-open-source-ecosystem/",
+      "originalImageUrl": "https://pictures.lukefan.com/huawei-ascend-cann-cuda-open-source-ecosystem/huawei-ascend-cann-cuda-open-source-ecosystem-03.jpg",
+      "asset": "/images/radar/inline/f84eebdab6b4.webp",
+      "sha256": "c2664de3df414f6a6dac8c321890b3011a2d0f250415ad794455591b6521e605",
+      "credit": "老范讲故事",
+      "review": "accepted",
+      "zh": {
+        "heading": "老范评昇腾 CANN 开源：跨越 CUDA 生态鸿沟需要持续维护与适配",
+        "alt": "三栏纯信息图，显示三级开源接入路径：vllm-ascend 进入主仓库、Triton 分叉并提主线、PyTorch 官网下载页列出昇腾",
+        "caption": "原文用三栏归纳 vLLM、Triton 与 PyTorch 的生态接入路径，强调框架适配与持续维护；图中归纳不等于各硬件场景已获得同等支持。"
+      },
+      "ja": {
+        "heading": "老范がAscendのCANNオープン化を論評：CUDAとのエコシステムの差には継続的な保守と適合が必要",
+        "alt": "3つのオープンソース連携パスを示すインフォグラフィック：vllm 本流への統合、Triton のフォークと主線PR、PyTorch 公式サイトでの昇騰掲載",
+        "caption": "原文はvLLM、Triton、PyTorchとの接続経路を3欄に整理し、フレームワーク適応と継続的な保守を重視しています。各ハードウェア環境で同等の対応が完了したことを示す図ではありません。"
+      }
+    }
+  ]
+}

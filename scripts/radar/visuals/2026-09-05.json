@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-05",
+  "visuals": [
+    {
+      "id": "00f36e9dd217",
+      "sourceUrl": "https://ziyaerkoc.com/worldagents/",
+      "originalImageUrl": "https://ziyaerkoc.com/worldagents/figures/overview.svg",
+      "asset": "/images/radar/inline/00f36e9dd217.webp",
+      "sha256": "d76647b311d84bb00fab9f4f0d645ea61ce8934683da35c4a4c15ba3de175bde",
+      "credit": "AI Valley",
+      "review": "accepted",
+      "zh": {
+        "heading": "WorldAgents：协调多智能体与高斯泼溅的多视角3D场景生成框架",
+        "alt": "WorldAgents多视角3D场景生成流水线概览图",
+        "caption": "展示导演模型提示、生成器合成新视角、验证器双重检验并经AnySplat重建3D高斯场景的流程。"
+      },
+      "ja": {
+        "heading": "WorldAgents：マルチエージェントとガウススプラッティングを協調させる3Dシーン生成フレームワーク",
+        "alt": "WorldAgentsパイプラインの概要図",
+        "caption": "監督VLMのプロンプト、生成器の視点合成、検証器の検証を経てAnySplatへ送るパイプラインです。"
+      }
+    },
+    {
+      "id": "cc8faf28b09b",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/5-embedding-compression-techniques",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!3rqE!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F779d21d5-1e83-49cf-863f-c6957b39c53a_1200x1141.png",
+      "asset": "/images/radar/inline/cc8faf28b09b.webp",
+      "sha256": "c7f886e7d4fd4da0db57f4cf277728c8fff8ed270a1fe89fe123edc206fcff41",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "五种向量嵌入压缩技术梳理：降维、量化与检索权衡",
+        "alt": "五种向量嵌入压缩技术分类图解",
+        "caption": "梳理通过降维与削减位宽压缩向量数据的五种技术，包含PCA投影和MRL训练等不同路径。"
+      },
+      "ja": {
+        "heading": "5つの埋め込みベクトル圧縮手法：次元削減・量子化と検索のトレードオフ",
+        "alt": "5つの埋め込みベクトル圧縮技術の分類図",
+        "caption": "次元数やビット幅を削減して埋め込みを圧縮する5手法について、変更箇所の違いを整理して示します。"
+      }
+    },
+    {
+      "id": "79195f221ea6",
+      "sourceUrl": "https://www.llamaindex.ai/blog/introducing-turbo-our-fastest-extraction-tier",
+      "originalImageUrl": "https://cdn.sanity.io/images/7m9jw85w/production/f29dd6c67b08f1a5dea15cbf604f6f334e0a72d7-1086x709.png",
+      "asset": "/images/radar/inline/79195f221ea6.webp",
+      "sha256": "47188d83d4b2efc754371d1b0de59c4996a47fb0783a0232d207b3ef325f42f6",
+      "credit": "LlamaIndex",
+      "review": "accepted",
+      "zh": {
+        "heading": "LlamaIndex推出ExtractTurbo Beta：无独立解析阶段的结构化提取",
+        "alt": "文档页数与处理延迟对比",
+        "caption": "横轴是文档页数，纵轴是每份文档的中位处理秒数；随着文档变长，各方案的延迟曲线分化，图中没有直接比较提取准确率。"
+      },
+      "ja": {
+        "heading": "LlamaIndexのExtractTurbo Beta：個別パースを省いた高速構造化抽出",
+        "alt": "文書ページ数と処理遅延の比較",
+        "caption": "横軸は文書のページ数、縦軸は文書当たりの処理時間の中央値です。長い文書ほど遅延曲線が分かれますが、この図自体は抽出精度を比較していません。"
+      }
+    }
+  ]
+}

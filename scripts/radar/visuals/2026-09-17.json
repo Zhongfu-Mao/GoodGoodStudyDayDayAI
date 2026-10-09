@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-09-17",
+  "visuals": [
+    {
+      "id": "5f9cc75011fc",
+      "sourceUrl": "https://blog.bytebytego.com/p/how-llms-can-find-a-needle-in-a-haystack",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!0_KI!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1d2609b5-c9f3-4ec7-8036-25272bd49f9b_3060x1450.png",
+      "asset": "/images/radar/inline/5f9cc75011fc.webp",
+      "sha256": "66451a810c45cbb4d1603b97f3a1b65e9cfa63471428b091f2d3ab1b75c03029",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "ByteByteGo：从精确扁平检索到 IVF 与 HNSW 的 RAG 取舍",
+        "alt": "向量扁平检索示意图，说明查询需与所有符合条件的向量逐一比较",
+        "caption": "三栏分别展示全量比较的 Flat、先选分组的 IVF 与分层图搜索；减少比较次数能加速检索，但近似搜索可能漏掉候选。"
+      },
+      "ja": {
+        "heading": "ByteByteGo：正確な Flat 検索から IVF・HNSW まで、RAG 検索の設計判断",
+        "alt": "ベクトルのフラット検索図。条件に合う全ベクトルとクエリを比較する仕組みを説明",
+        "caption": "3欄は全件比較のFlat、グループを絞るIVF、階層グラフ探索を示します。比較回数を減らせる一方、近似探索では候補を見逃す可能性があります。"
+      }
+    },
+    {
+      "id": "39fb7a90f1eb",
+      "sourceUrl": "https://every.to/context-window/show-us-your-folders",
+      "originalImageUrl": "https://every.to/_next/image?url=https%3A%2F%2Fd24ovhgu8s7341.cloudfront.net%2Fuploads%2Feditor%2Fpost%2F4482%2Foptimized_c747c6e8-2d11-4e6b-8174-cc3b4b65366a.png&w=1200&q=75",
+      "asset": "/images/radar/inline/39fb7a90f1eb.webp",
+      "sha256": "e1ad366bcf850f891bbab36519922d90824ef57ffef7543f6c2534fa1d5912e7",
+      "credit": "Astra / Every Agent",
+      "review": "accepted",
+      "zh": {
+        "heading": "将上下文存储与任务调度分开的文件夹工作流",
+        "alt": "常开 Mac mini 上的文件夹工作流示意图，Erf 调度会话，Tuin 保存共享记忆",
+        "caption": "示意图把会话调度交给 Erf，把工作记忆保存在 Tuin，并运行于常开的 Mac mini；存储与调度因此保持分离。"
+      },
+      "ja": {
+        "heading": "文脈の保存とタスク配信を分けるフォルダ運用",
+        "alt": "常時稼働Mac mini上のフォルダ運用図。Erfがセッションを調整し、Tuinが記憶を保持",
+        "caption": "Erfがセッションを調整し、Tuinが作業記憶を保持し、常時稼働のMac miniで動く。保存とスケジューリングを分けた構成を示す。"
+      }
+    },
+    {
+      "id": "13076e69bafa",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/how-to-fine-tune-llms-in-2026-bf8",
+      "originalImageUrl": "https://substackcdn.com/image/fetch/$s_!p-k7!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5c507754-a0cc-42f6-a141-372387657aef_680x402.png",
+      "asset": "/images/radar/inline/13076e69bafa.webp",
+      "sha256": "20097146c43a04701d268ecbdf1643a34041a2c9d6b40eed57b7ed35af5ca45c",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "Daily Dose：用 ART 与 RULER 训练多步智能体",
+        "alt": "ART 客户端与后端架构图，客户端记录智能体轨迹，后端执行推理和GRPO训练",
+        "caption": "客户端收集智能体动作与环境奖励，把轨迹交给后端训练；新的 LoRA 检查点再载入 vLLM，形成推理、反馈和训练的循环。"
+      },
+      "ja": {
+        "heading": "Daily Dose：ART と RULER で多段エージェントを学習",
+        "alt": "ARTのクライアント・バックエンド構成図。軌跡記録と推論・GRPO訓練を分担",
+        "caption": "クライアントが行動と環境報酬を集め、軌跡をバックエンドの学習へ渡します。新しいLoRAチェックポイントをvLLMに読み込み、推論・フィードバック・学習を循環させます。"
+      }
+    }
+  ]
+}

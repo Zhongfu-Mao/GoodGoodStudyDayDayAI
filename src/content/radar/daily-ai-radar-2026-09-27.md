@@ -30,6 +30,12 @@ representativeImageSource: https://huggingface.co/blog/espnet/yodasv3
 - 链接：https://lukefan.com/2026/09/21/jev-ai-judgment-model-workflow/
 - 摘要：作者以每周评论筛选为例，讨论把长度、主题相关性、信息增量和情绪等条件拆成独立判定，再交给便宜的判定模型处理。文章强调，替换原有模型后仍应检查质量，并根据真实任务补足输入信息。可借鉴的是任务拆分与复核方法；文中的个人成本测试不构成通用节省保证，判定结果也不能替代权限控制或高风险决策。
 
+<!-- radar-visual:cd74488411cf -->
+[![Jev的正确输入流程图](/images/radar/inline/cd74488411cf.webp)](/images/radar/inline/cd74488411cf.webp)
+
+*左侧先用 Python、检索或模型抽取整理数据，再交给 Jev 做并行判断。图中的问题数和耗时属于作者特定批量测试，不是任意输入的速度承诺。 图片来源：[老范讲故事](https://lukefan.com/2026/09/21/jev-ai-judgment-model-workflow/)。点击图片查看原尺寸。*
+<!-- /radar-visual:cd74488411cf -->
+
 ### OpenAI 提出第三方安全评估的范围与独立性原则
 
 - 来源：OpenAI
@@ -52,6 +58,12 @@ representativeImageSource: https://huggingface.co/blog/espnet/yodasv3
 - 日期：2026-09-24
 - 链接：https://huggingface.co/blog/liquidai/lfm2-5-vl-dspark
 - 摘要：Liquid AI 为 LFM2.5-VL-3B 发布约2.8亿参数的草稿模型，成块提出候选 token，再由目标模型验证，以加速解码。文章给出 llama.cpp、MLX-VLM 和 SGLang 的适配实现与测试条件，同时指出视觉编码和预填充并未因此加速，所以解码速度提升不能直接等同于整体响应时间的缩短。使用时需要对应构建版本，并在目标硬件上验证收益。
+
+<!-- radar-visual:3bca61531d04 -->
+[![DSpark-Vision 架构图](/images/radar/inline/3bca61531d04.webp)](/images/radar/inline/3bca61531d04.webp)
+
+*左侧目标模型将 KV 信息注入右侧草稿模型；草稿依次经过并行块、顺序块与硬件感知的前缀调度，顶部显示候选的保留或丢弃。 图片来源：[Liquid AI / Hugging Face](https://huggingface.co/blog/liquidai/lfm2-5-vl-dspark)。点击图片查看原尺寸。*
+<!-- /radar-visual:3bca61531d04 -->
 
 ## 3. 实战代码 & 工具库
 
@@ -77,6 +89,12 @@ representativeImageSource: https://huggingface.co/blog/espnet/yodasv3
 - 日期：2026-09-23
 - 链接：https://openai.com/index/ringg
 - 摘要：Ringg 的客户案例描述了横跨语音、聊天、WhatsApp 与网页的企业智能体平台。团队把延迟、工具调用可靠性、指令遵循和运行成本共同视为选型条件，并按适用工作负载迁移模型。文中的呼叫解决率和成本变化属于企业案例自述，不能推广为其他行业或不同流程下的保证；真正落地仍依赖业务系统连接与任务边界。
+
+<!-- radar-visual:94a6613786fd -->
+[![Ringg 编排架构图，展示输入流经编排、模型路由、通话后分析与评估循环](/images/radar/inline/94a6613786fd.webp)](/images/radar/inline/94a6613786fd.webp)
+
+*编排架构图说明输入请求如何经由编排引擎分流至不同模型，并连接通话后分析及评估循环；属于案例自述方案，效果因场景而异。 图片来源：[OpenAI / Ringg](https://openai.com/index/ringg)。点击图片查看原尺寸。*
+<!-- /radar-visual:94a6613786fd -->
 
 ### Enveda 完成新融资，推动 AI 发现药物进入后续临床开发
 

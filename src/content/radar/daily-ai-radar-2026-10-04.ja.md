@@ -31,6 +31,12 @@ representativeImageSource: https://huggingface.co/blog/microsoft/thinkingbox
 - リンク：https://huggingface.co/blog/microsoft/thinkingbox
 - 要約：Microsoft の ThinkingBox は507件の状態を持つビジネス課題に対して各20回実行し、実行可能なチェックによって最終レコード、必要な変更、および余計な副作用を照合・検証し、OpenEnv を通じて公開されています。1回の成功、20回中少なくとも1回の成功、そして実測20回すべて成功したことは異なる指標であり、混同してはなりません。研究における共通セットのアブレーション実験では、失敗した試行の67.24%が正常終了し、状態を変更するツールを呼び出し、最終的なツールエラーも発生していませんでした。この割合は失敗した試行を対象としたものであり、全課題に対するものではありません。
 
+<!-- radar-visual:ed57a02773da -->
+[![ThinkingBoxの流れ。隔離MCPセッション実行後に最終状態と副作用を検査する](/images/radar/inline/ed57a02773da.webp)](/images/radar/inline/ed57a02773da.webp)
+
+*隔離されたMCPツールセッションで実行した後、実行可能な検査で最終状態と副作用を確認する。ツール呼び出し成功だけでは完了を証明できない。 画像出典：[Microsoft / Hugging Face](https://huggingface.co/blog/microsoft/thinkingbox)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:ed57a02773da -->
+
 ### Simon Willison：エージェントによるサービス呼び出しには、単なる通知ではなくハードな予算上限が必要
 
 - 出典：Simon Willison
@@ -111,9 +117,21 @@ representativeImageSource: https://huggingface.co/blog/microsoft/thinkingbox
 - リンク：https://blog.dailydoseofds.com/p/how-work-is-organized-inside-a-gpu
 - 要約：ニュースレターでは、kernel、grid、thread block、warp、SM に基づいて作業の編成を解説しています。NVIDIA CUDA の32スレッド warp を例にとると、256スレッドの block は8つの warp に分割されます。同一 warp 内の分岐ダイバージェンス（branch divergence）は、異なるパスを順次実行させる原因となります。スケジューラはある warp がメモリを待機している間に準備完了状態にある他の warp を実行することで、レイテンシを解消するのではなく隠蔽します。32スレッドはすべての GPU に共通の定数ではなく、バッチサイズを拡大するだけで効率が保証されるわけでもないため、レジスタ、共有メモリ、および常駐ワークロードを同時に考慮する必要があります。
 
+<!-- radar-visual:6d8cd7d6b129 -->
+[![並列作業が不足する場合と十分な場合のGPU・SM利用率比較](/images/radar/inline/6d8cd7d6b129.webp)](/images/radar/inline/6d8cd7d6b129.webp)
+
+*左は並列作業が少なく、SMの遊休とメモリ待ちによる停止が生じます。右は実行可能なwarpを多く用意し、高いスループットに独立した作業が必要なことを示します。 画像出典：[Daily Dose of Data Science](https://blog.dailydoseofds.com/p/how-work-is-organized-inside-a-gpu)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:6d8cd7d6b129 -->
+
 ### The Batch：オープンモデルのサイバー能力拡散に伴い、より一層求められる防御エンジニアリングの加速
 
 - 出典：The Batch / DeepLearning.AI
 - 日付：2026-10-02
 - リンク：https://www.deeplearning.ai/the-batch/issue-373
 - 要約：Andrew Ng からの手紙では、オープンモデルがもたらす攻防能力の拡散について論じられており、より優れた分離、監視、根本原因の修復によって防御を加速すべきだと主張しています。引用された Anthropic のテストでは、比較可能な token 条件下における一部の ExploitBench 課題で GLM-5.3 と Mythos の成功率は12%と14%でした。別のフルベンチマーク報告にある54.4%と78.0%は、直接同じ対照条件として混同してはなりません。長期的に防御側が優位に立つというのは著者の判断であり、攻撃ウィンドウがすでに解消されたことやシステムの安全性が証明されたことを意味するものではありません。
+
+<!-- radar-visual:9abe34f2141f -->
+[![同等トークン条件でGLM-5.3とClaude Mythos PreviewのExploitBench成功率を比較する図](/images/radar/inline/9abe34f2141f.webp)](/images/radar/inline/9abe34f2141f.webp)
+
+*同程度のトークン条件で、一部ExploitBench課題の成功率12％と14％を示す。別の全ベンチマーク結果とは直接比較できない。 画像出典：[DeepLearning.AI / Anthropic](https://www.deeplearning.ai/the-batch/issue-373)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:9abe34f2141f -->

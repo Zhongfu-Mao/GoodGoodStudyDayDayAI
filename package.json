@@ -44,7 +44,9 @@
     "radar:monthly-assets": "node scripts/radar/generate-monthly-assets.mjs",
     "radar:notebook-cleanup": "node scripts/radar/cleanup-notebooks.mjs",
     "check:radar-editorial": "node scripts/check/radar-editorial.mjs",
-    "check:radar": "npm run check:radar-newsletter && npm run check:radar-sources && npm run check:radar-schema && npm run check:radar-dedupe && npm run check:radar-media && npm run check:radar-editorial"
+    "check:radar": "npm run check:radar-newsletter && npm run check:radar-sources && npm run check:radar-schema && npm run check:radar-dedupe && npm run check:radar-media && npm run check:radar-editorial && npm run check:radar-visuals",
+    "check:radar-visuals": "node scripts/radar/inline-visuals.mjs --check",
+    "radar:inline-visuals": "node scripts/radar/inline-visuals.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.2",

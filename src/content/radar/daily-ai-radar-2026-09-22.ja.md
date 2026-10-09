@@ -57,6 +57,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-22.ja-infographic.webp
 - リンク：https://openai.com/index/expanding-openai-academy-with-new-learning-paths/
 - 要約：OpenAI Academyは、既存の「Apply AI at Work」をベースに新たな学習パスを展開し、開発者、企業管理者、教育者、ならびに大学生を対象に設定した。コースは実際のタスク操作とテスト評価を組み合わせている。公式説明によると、受講者は試験に合格すると該当コースのバッジを取得できるが、このバッジは学習証明であり、汎用的な専門的職業資格の認定ではない点に留意する必要がある。
 
+<!-- radar-visual:7705e9ae61c7 -->
+[![OpenAI Academyの学習パス概要図](/images/radar/inline/7705e9ae61c7.webp)](/images/radar/inline/7705e9ae61c7.webp)
+
+*業務応用、開発、導入リード、教育の4つの学習経路を示します。コース数は入口選びの参考で、難易度の比較ではありません。 画像出典：[OpenAI](https://openai.com/index/expanding-openai-academy-with-new-learning-paths/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:7705e9ae61c7 -->
+
 ### AutoClip 動画ハイライト編集ツール：字幕抽出ベースで複数形態の統合に対応
 
 - 出典：GitHub Trending / zhouxiaoka
@@ -79,6 +85,12 @@ coverImage: /images/radar/daily-ai-radar-2026-09-22.ja-infographic.webp
 - 日付：2026-09-22
 - リンク：https://lukefan.com/2026/09/22/guiyang-potato-bus-mobile-third-space/
 - 要約：テックブロガーの老范が貴陽のPIX Moving / RoboBus移動型バスについて論評し、その商業的ポジショニングは単なる自動運転技術の販売ではなく、プライベートな「移動するサードプレイス」に近いと指摘した。記事では同社が開発したドライブバイワイヤ（線控）シャシー、サプライチェーンによるセンサー群と、公開情報が依然として不足している自動運転アルゴリズムとを区別している。この商業的判断は筆者個人の論評に属するものであり、車両が完全に無人化されていることや、独立監査を経た収益性を備えていることを示すものではない。
+
+<!-- radar-visual:03e48a52413d -->
+[![シャシー3Dプリントと金型経済性の比較図](/images/radar/inline/03e48a52413d.webp)](/images/radar/inline/03e48a52413d.webp)
+
+*金属3Dプリントと無金型成型によるシャシーを示し、年産千台と大量生産の金型採算性を比較し、量产参照例を併記しています。 画像出典：[老范讲故事](https://lukefan.com/2026/09/22/guiyang-potato-bus-mobile-third-space/)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:03e48a52413d -->
 
 ## 5. GitHub 人気 repo & トレンド追跡
 
@@ -111,3 +123,9 @@ coverImage: /images/radar/daily-ai-radar-2026-09-22.ja-infographic.webp
 - 日付：2026-09-22
 - リンク：https://blog.bytebytego.com/p/how-to-run-a-big-model-on-cheap-hardware
 - 要約：ByteByteGoは、低スペックなハードウェア上で大規模モデルを実行する際のトレードオフを分析した。量子化は重みのメモリ使用量を圧縮し、レイヤーごとのオフロードは遅延の増大と引き換えに実行メモリを確保し、MoEは1回の推論で一部のエキスパートのみをアクティブ化して計算量を削減するものの、総重みのストレージ容量要件が自動的に消えるわけではない。記事では、ディスク容量がそのまま利用可能メモリや許容可能な応答時間を意味するわけではなく、各種技術の組み合わせであっても任意のハードウェアへの適合を保証できるわけではないと注意を促している。
+
+<!-- radar-visual:1c2071d984cc -->
+[![モデル層のメモリとVRAM間のオフロード](/images/radar/inline/1c2071d984cc.webp)](/images/radar/inline/1c2071d984cc.webp)
+
+*層単位のオフロードで重みを異なるメモリ階層間に移動し、VRAM常駐量を減らします。その分、転送と待ち時間が生じます。 画像出典：[ByteByteGo](https://blog.bytebytego.com/p/how-to-run-a-big-model-on-cheap-hardware)。画像をクリックすると原寸で表示します。*
+<!-- /radar-visual:1c2071d984cc -->
