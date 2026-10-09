@@ -225,6 +225,38 @@ async function gotoFirstRadarArticle(
 }
 
 test.describe('published site UI', () => {
+  for (const locale of ['zh', 'ja'] as const) {
+    test(`${locale} long article links wrap within phone viewport without changing URLs`, async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await gotoFirstRadarArticle(page, locale, 'daily');
+      const prose = page.locator('.theme-prose');
+      await expect(prose).toBeVisible();
+      const url = `https://example.org/${'unbroken-path-segment'.repeat(12)}?source=radar`;
+      await prose.evaluate((element, href) => {
+        const paragraph = document.createElement('p');
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = href;
+        link.dataset.longLinkFixture = 'true';
+        paragraph.append(link);
+        element.append(paragraph);
+      }, url);
+      const link = prose.locator('[data-long-link-fixture]');
+      await expect(link).toHaveAttribute('href', url);
+      await expect(link).toHaveText(url);
+      const audit = await link.evaluate((element) => ({
+        overflow: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) - innerWidth,
+        fragments: Array.from(element.getClientRects()).map((rect) => ({ left: rect.left, right: rect.right })),
+      }));
+      expect(audit.overflow).toBeLessThanOrEqual(1);
+      expect(audit.fragments.length).toBeGreaterThan(1);
+      for (const fragment of audit.fragments) {
+        expect(fragment.left).toBeGreaterThanOrEqual(-1);
+        expect(fragment.right).toBeLessThanOrEqual(391);
+      }
+    });
+  }
+
   test('home page renders core navigation, theme toggle, and Japanese switch', async ({ page }) => {
     await gotoApp(page, '/');
 

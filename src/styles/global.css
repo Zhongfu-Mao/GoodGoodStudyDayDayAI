@@ -517,6 +517,7 @@ html[data-theme='light'] .theme-prose.prose {
 
   .theme-prose.prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
     color: var(--tw-prose-links);
+    overflow-wrap: anywhere;
   }
 
   .theme-prose img {
