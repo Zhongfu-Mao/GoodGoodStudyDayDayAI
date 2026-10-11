@@ -17,7 +17,7 @@ const text = startSubPages[pageKey][locale];
 
   <div class="mt-10 grid gap-8">
     {text.sections.map((section) => {
-      const bullets: readonly string[] = (section as any).bullets ?? [];
+      const bullets: readonly string[] = 'bullets' in section ? section.bullets : [];
       return (
         <section class="theme-panel rounded-[1.5rem] p-6 md:p-7">
           <h2 class="theme-heading text-2xl font-semibold leading-snug md:text-[1.7rem]">{section.heading}</h2>
@@ -37,6 +37,17 @@ const text = startSubPages[pageKey][locale];
       );
     })}
   </div>
+
+  {'references' in text ? (
+    <section class="mt-10">
+      <h2 class="theme-heading text-xl font-semibold">{text.referencesTitle}</h2>
+      <ul class="mt-4 grid gap-2">
+        {text.references.map((reference) => (
+          <li><a class="theme-muted underline underline-offset-4" href={reference.href}>{reference.label}</a></li>
+        ))}
+      </ul>
+    </section>
+  ) : null}
 
   {text.closing ? (
     <section class="mt-10 theme-panel-strong rounded-[1.5rem] p-6 md:p-7 shadow-glow">

@@ -409,8 +409,8 @@ test.describe('published site UI', () => {
   test('start guide keeps in-page anchors and localized subpage links', async ({ page }) => {
     await gotoApp(page, '/start/');
 
-    const basicsLink = page.getByRole('link', { name: '从基础系列开始' });
-    const routeLink = page.getByRole('link', { name: '查看学习路线' });
+    const basicsLink = page.getByRole('link', { name: '先补概念' });
+    const routeLink = page.getByRole('link', { name: '选择我的路线' });
     const basicsSection = page.locator('[data-start-panel="basics"]#ai-basics-for-everyone');
     const routeSection = page.locator('[data-start-panel="route"]#first-step');
 
@@ -433,7 +433,7 @@ test.describe('published site UI', () => {
     ]);
     await expect(startSubnavItems.first()).toHaveAttribute(
       'data-tooltip',
-      '先判断当前位置，安排 30/60/90 天学习节奏',
+      '按角色选一条路线，看清 30 天后的检验标准',
     );
     await expect(page.locator('[data-start-subnav="#start-safety"]')).toHaveText('安全');
     await expect(page.locator('[data-start-subnav="#start-first-day"]')).toHaveAttribute(
@@ -443,7 +443,7 @@ test.describe('published site UI', () => {
     await expect(page.locator('[data-start-panel="route"]#start-first-day')).toBeVisible();
     await expect(page.locator('[data-start-panel="route"]#start-plan')).toBeVisible();
     await expect(basicsLink).toHaveAttribute('href', '#ai-basics-for-everyone');
-    await expect(routeLink).toHaveAttribute('href', '#first-step');
+    await expect(routeLink).toHaveAttribute('href', '#start-route');
     await expect(routeSection).toBeVisible();
     await expect(basicsSection).toBeHidden();
 
@@ -470,7 +470,7 @@ test.describe('published site UI', () => {
 
     await gotoApp(page, '/start/layers/');
     await expect(
-      page.getByRole('heading', { level: 1, name: '看懂 AI 的 6 个能力层' }),
+      page.getByRole('heading', { level: 1, name: 'AI 应用的 6 个能力层' }),
     ).toBeVisible();
 
     const languageSwitcher = page.locator('nav[aria-label="Language switcher"]');
@@ -481,12 +481,37 @@ test.describe('published site UI', () => {
 
     await gotoApp(page, '/ja/start/layers/');
     await expect(
-      page.getByRole('heading', { level: 1, name: 'AI の 6 つの能力レイヤー' }),
+      page.getByRole('heading', { level: 1, name: 'AI アプリの 6 つの能力レイヤー' }),
     ).toBeVisible();
     await expect(page.getByRole('link', { name: '← スタートガイドに戻る' })).toHaveAttribute(
       'href',
       appPath('/ja/start/'),
     );
+  });
+
+  test('start tracks and latest monthly review keep localized destinations', async ({ page }) => {
+    for (const prefix of ['', '/ja']) {
+      await gotoApp(page, `${prefix}/start/`);
+      const tracks = page.locator('[data-start-track]');
+      await expect(tracks).toHaveCount(4);
+      const destinations = await tracks.locator('a[href]').evaluateAll((links) =>
+        links.map((link) => link.getAttribute('href') ?? ''),
+      );
+      for (const destination of destinations) {
+        expect(destination).toMatch(new RegExp(`^${appPath(`${prefix}/`)}`));
+        const response = await page.request.get(destination);
+        expect(response.status(), destination).toBe(200);
+      }
+
+      await page.locator('[data-start-subnav="#start-landscape"]').click();
+      const monthly = page.locator('[data-start-latest-monthly]');
+      await expect(monthly).toBeVisible();
+      const destination = await monthly.getAttribute('href');
+      expect(destination).toContain(appPath(`${prefix}/radar/`));
+      await monthly.click();
+      await expect(page).toHaveURL((url) => url.pathname === destination);
+      await expect(page.locator('main h1')).toBeVisible();
+    }
   });
 
   test('home page gives one recommendation and compact quick links instead of duplicate use cases', async ({

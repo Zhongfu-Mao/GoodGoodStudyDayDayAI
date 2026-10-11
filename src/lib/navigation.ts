@@ -35,38 +35,54 @@ const radarSubnavLabels = {
 
 const startSubnavItems = {
   zh: [
-    { hash: '#start-route', label: '路线', tooltip: '先判断当前位置，安排 30/60/90 天学习节奏' },
-    { hash: '#first-step', label: '读站', tooltip: '从 0 到能看懂本站的最短路径' },
-    { hash: '#start-first-day', label: '30 分钟', tooltip: '今天就能跑通的最小 AI 使用闭环' },
-    { hash: '#start-plan', label: '节奏', tooltip: '按 30/60/90 天安排学习节奏' },
+    {
+      hash: '#start-route',
+      label: '路线',
+      tooltip: '按角色选一条路线，看清 30 天后的检验标准',
+    },
+    { hash: '#first-step', label: '读序', tooltip: '本站内容的推荐阅读顺序' },
+    { hash: '#start-first-day', label: '1 小时', tooltip: '从第一个小时开始，按需完成六个小实验' },
+    { hash: '#start-plan', label: '节奏', tooltip: '按目标调整的 90 天学习与实践计划' },
     { hash: '#ai-basics-for-everyone', label: '概念', tooltip: '用 12 篇短文打底高频概念' },
-    { hash: '#start-layers', label: '能力层', tooltip: '看清从日常使用到 Agent 的能力层' },
-    { hash: '#start-landscape', label: '全景', tooltip: '看 2026 年主要模型与供应商位置' },
-    { hash: '#start-safety', label: '安全', tooltip: '避开常见误区，建立安全使用边界' },
-    { hash: '#start-faq', label: 'FAQ', tooltip: '快速回答新手最容易卡住的问题' },
+    { hash: '#start-layers', label: '能力层', tooltip: 'AI 应用从模型调用到治理的 6 层' },
+    { hash: '#start-landscape', label: '选型', tooltip: '不背型号也能选对模型的方法' },
+    { hash: '#start-safety', label: '安全', tooltip: '常见误区与构建 AI 系统的安全底线' },
+    { hash: '#start-faq', label: 'FAQ', tooltip: '最常被问到的问题' },
   ],
   ja: [
-    { hash: '#start-route', label: '道筋', tooltip: '現在地を確認し、30/60/90 日の進め方を決める' },
-    { hash: '#first-step', label: '読み方', tooltip: 'このサイトを読める状態までの最短経路' },
-    { hash: '#start-first-day', label: '30 分', tooltip: '今日すぐ試せる最小の AI 利用ループ' },
-    { hash: '#start-plan', label: 'リズム', tooltip: '30/60/90 日の学習リズムを決める' },
+    {
+      hash: '#start-route',
+      label: '道筋',
+      tooltip: '役割別にルートを選び、30 日後の到達点を確認する',
+    },
+    { hash: '#first-step', label: '読む順', tooltip: 'このサイトの推奨する読む順番' },
+    {
+      hash: '#start-first-day',
+      label: '1 時間',
+      tooltip: '最初の 1 時間から、必要に応じて試す 6 つの実験',
+    },
+    {
+      hash: '#start-plan',
+      label: 'リズム',
+      tooltip: '目標に合わせて調整する 90 日の学習・実践計画',
+    },
     { hash: '#ai-basics-for-everyone', label: '概念', tooltip: '12 本の短文で頻出概念を押さえる' },
     {
       hash: '#start-layers',
       label: 'レイヤー',
-      tooltip: '日常利用から Agent までの能力層を整理する',
+      tooltip: 'モデル呼び出しからガバナンスまで、AI アプリの 6 層',
     },
     {
       hash: '#start-landscape',
-      label: '全景',
-      tooltip: '2026 年時点の主要モデルとベンダーを俯瞰する',
+      label: '選び方',
+      tooltip: '型番を覚えなくてもモデルを選べる方法',
     },
     {
       hash: '#start-safety',
       label: '安全',
-      tooltip: 'よくある誤解を避け、安全な使い方の境界を作る',
+      tooltip: 'よくある誤解と、AI システムを作るときの安全ライン',
     },
-    { hash: '#start-faq', label: 'FAQ', tooltip: '初心者がつまずきやすい疑問を先に解く' },
+    { hash: '#start-faq', label: 'FAQ', tooltip: 'よく聞かれる質問' },
   ],
 } as const;
 

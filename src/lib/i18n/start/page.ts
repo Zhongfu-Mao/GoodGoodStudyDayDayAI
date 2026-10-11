@@ -1,607 +1,661 @@
 export const startPage = {
   zh: {
-    title: 'AI 新手起步路线',
-    metaDescription: '从零开始理解 AI 的核心概念、使用方式和本站阅读路径。',
+    title: 'AI 起步路线',
+    metaDescription:
+      '按角色选择 AI 起步路线，从小实验开始，再按可调整的 30 / 60 / 90 天计划把 AI 用进工作与产品。',
     eyebrow: 'Start Here',
-    heroTitle: '刚接触 AI？这里就是你的第一站。',
+    heroTitle: '从会用 AI，到会构建 AI。',
     heroDescription:
-      '不是一门大课，而是一张地图——帮你用最短时间听懂术语、找到适合自己水平的入口，之后看雷达、课程、实践还是底层原理，你心里有数。',
-    primaryCta: '开始第一步',
-    secondaryCta: '先看 AI 雷达',
-    audienceEyebrow: 'Who is this for',
-    audienceTitle: '先找到你当下的位置',
+      '无论你是否写代码，都可以从一件真实任务开始。这里提供概念短文、按角色划分的路线和小实验，帮助你把已有工作经验用起来，再按需要补齐工程能力。',
+    primaryCta: '选择我的路线',
+    secondaryCta: '先看最新 AI 雷达',
+    audienceEyebrow: 'Pick a Track',
+    audienceTitle: '先选一条路线，走通再换',
     audienceDescription:
-      '下面三档对应最常见的三种状态——找到最贴近自己的那档，按它的入口走下去就行，其余两档可以略过。不确定就选第一档：前置知识最少，读完再回来重选也不会浪费时间。目标不是把你变成专家，而是让你在一周内能自己判断"下一篇该读什么、该跳过什么"。',
+      '四条路线对应不同目标。先选最贴近手头任务的一条，用 30 天参考目标检查进展；所需时间可按经验与任务难度调整。',
+    audienceMilestoneLabel: '30 天参考目标',
     audiences: [
       {
-        label: '完全没接触过 AI',
+        label: '把 AI 用进日常工作',
+        role: '产品 / 运营 / 职能 / 学生',
         description:
-          '听过 ChatGPT、Claude 这些名字，但还没真正用过；或者用过几次，说不清它在做什么。从 AI Basics for Everyone 开始——用日常语言把模型、Prompt、Agent、RAG 这些高频词解释清楚。读完就知道哪些任务适合交给 AI，哪些自己做更稳。',
-        ctaLabel: '从基础系列开始',
-        ctaHref: '#ai-basics-for-everyone',
+          '你不一定写代码，但每天都在写文档、整理资料、分析数据、准备汇报。先让 AI 接手这些重复的工作：给足背景再提问、上传资料让它基于资料回答、把好用的做法沉淀成 Project 或 Skill。这条路线的关键能力是把任务讲清楚，并且知道哪些结果必须自己核对。',
+        milestone:
+          '选 1–3 件低风险重复工作，沉淀成可复用模板或操作清单，比较复核后的总耗时与质量；Project 或 Skill 可按需采用。',
+        links: [
+          {
+            label: '日常工作者路线',
+            href: '/academy/learning-routes/non-engineering-route/',
+          },
+          {
+            label: '提示词到底是什么',
+            href: '/start/ai-basics-for-everyone/what-is-prompt/',
+          },
+          {
+            label: 'Claude 101',
+            href: '/academy/anthropic-academy/03-claude-product/claude-101/',
+          },
+        ],
       },
       {
-        label: '会用 ChatGPT，但想系统理解',
+        label: '用 AI 提升自己的开发效率',
+        role: '个人开发者',
         description:
-          '日常能让 AI 写邮件、改简历、解释代码，但说不出为什么有时好用有时不行；想把它带进团队或产品，却不知道从哪层切入。跳过基础概念，直接看学习路线——先选一条走通，再回来补另一条，比并行效率高得多。',
-        ctaLabel: '查看学习路线',
-        ctaHref: '#first-step',
+          '你每天写代码、查问题、读别人的代码。先把 coding agent 变成日常搭档：让它解释陌生代码库、补测试、做小重构，而你专注在拆任务和审 diff。这条路线的关键能力不是写 Prompt，而是把任务切小、给足上下文、守住审查。',
+        milestone:
+          '把一个真实 issue 交给 coding agent 完成，并能说清楚你为什么接受或拒绝它的每一处改动。',
+        links: [
+          {
+            label: 'Coding agent 工作流对比',
+            href: '/engineering/practice/agent-cli-workflow-comparison/',
+          },
+          {
+            label: 'Claude Code in Action',
+            href: '/academy/anthropic-academy/04-developer-tools/claude-code-in-action/',
+          },
+          {
+            label: 'Codex 快速上手',
+            href: '/academy/openai-academy/05-codex/quickstart/',
+          },
+        ],
       },
       {
-        label: '已经在做 AI 项目，想跟最新动态',
+        label: '把 AI 做进产品',
+        role: '应用 / 后端开发者',
         description:
-          '你关心的是"今天又出了什么、怎么影响我手上的项目"。每日 AI 雷达精选行业动态、模型更新、产品发布和值得关注的工具；图片墙适合快速浏览，文字版适合深读。Academy 和工程实践作为陌生主题的查找参考即可。',
-        ctaLabel: '进入每日雷达',
-        ctaHref: '/radar/',
+          '你要交付的是一个带 AI 能力的功能：问答、分类、抽取、生成或 Agent。它和普通功能最大的不同是输出不确定——所以要先学会可靠调用、结构化输出、检索上下文，再用评测集把“感觉不错”变成可重复的质量门槛。',
+        milestone:
+          '交付一个带结构化输出、重试降级和至少 20 条评测用例的 AI 功能，并知道它每次调用大概花多少钱。',
+        links: [
+          {
+            label: '可靠 LLM 调用的最小骨架',
+            href: '/engineering/ai-developer-core/reliable-llm-call-skeleton/',
+          },
+          {
+            label: '结构化输出与错误恢复',
+            href: '/engineering/ai-developer-core/structured-output-retry-recovery/',
+          },
+          {
+            label: 'RAG 最小系统',
+            href: '/engineering/ai-developer-core/rag-minimum-system/',
+          },
+        ],
+      },
+      {
+        label: '带团队落地 AI',
+        role: '技术负责人 / 架构师',
+        description:
+          '你要回答的不是“哪个模型最强”，而是：团队用哪些工具、哪些数据能发给模型、Agent 能动哪些系统、质量和成本怎么度量。这条路线先建立全局地图，再落到权限、可观测性和评测这些你本来就熟悉的工程治理上。',
+        milestone:
+          '为团队写出一页 AI 使用规范：工具清单、数据分级、Agent 权限边界、评测与成本的最低要求。',
+        links: [
+          {
+            label: 'AI 工程实践地图',
+            href: '/engineering/practice/ai-engineering-practice-map/',
+          },
+          {
+            label: '长任务 Agent 的边界',
+            href: '/engineering/practice/long-running-agent-boundaries/',
+          },
+          {
+            label: '工程师进阶路线',
+            href: '/academy/learning-routes/engineering-route/',
+          },
+        ],
       },
     ],
-    firstDayEyebrow: 'First 30 Minutes',
-    firstDayTitle: '今天就能跑通的最小闭环',
-    firstDayDescription:
-      'AI 学习最大的陷阱是"先把概念读完再动手"——结果第一周就读累了，工具一次没打开。下面这套流程反过来：先跑一次完整对话，看到效果再回来读概念，所有抽象的词才会落地。哪怕今天只完成前三步，也比读完十篇综述更接近真正"会用 AI"的状态。',
-    firstDaySteps: [
-      {
-        title: '准备一个能用的入口',
-        description:
-          'ChatGPT、Claude、Gemini 都可以，先挑一个你能稳定登录、付得起或免费配额够用的就行。不要纠结"哪个最好"——前三家在通用任务上的差距对新手而言可以忽略，差距更多在于"你愿不愿意每天打开它"。把它的图标放到桌面或浏览器收藏栏，让"打开它"这件事降到 1 秒以内，是后面所有习惯的前提。等你用熟一个之后，再花一个下午对比另外两个，会比每天换工具学到更多。',
-      },
-      {
-        title: '用一句话描述你的真实任务',
-        description:
-          '不要为了练习而练习——把你今天本来就要做的事直接丢进去：一封不太好开口的邮件、一段会议录音整理、一篇英文长文阅读、一段代码 Debug、一周的英语学习计划。真实任务的好处是反馈非常诚实——AI 写得好不好，你一眼就能看出来；而练习题写得再花哨，你也只能凭感觉评判，不会形成判断力。第一周尽量每天用它处理一件真实小事。',
-      },
-      {
-        title: '加上背景、约束和期望格式',
-        description:
-          '同样的问题，"帮我写封邮件"和"帮我用商务礼貌口吻给客户写一封邮件，告知原计划下周交付要延期一周，原因是 QA 发现数据准确性问题，希望对方理解但不要过度道歉，控制在 200 字以内"——后者得到的结果几乎不用修改。Prompt 工程 80% 的价值就在这一步：把脑子里默认的背景信息显式写出来。可以养成一个小习惯——按"目标 / 背景 / 约束 / 输出格式"四块来组织 Prompt。',
-      },
-      {
-        title: '不要只问一次',
-        description:
-          '新手最容易的错觉是"它第一次没给好就是它不行"。其实模型第一轮输出更像是草稿，你应该追问："这段不够准确，能基于这份资料重写吗？""口吻太正式了，能更口语一点吗？""这部分能用 bullet 列出来吗？"。AI 对话的真正价值在第二轮、第三轮才显现。把它当成可以反复打磨的合作者，而不是一次性的搜索框——这是从"会用 AI"走向"用 AI 协作"的分水岭。',
-      },
-      {
-        title: '把好用的提示词留下来',
-        description:
-          '当一个 Prompt 跑出了好结果，不要让它沉到对话历史里。复制到笔记软件、Obsidian、Notion 或专门的 Prompt 库里，标注用途、模型版本和效果。一周之后你会发现，自己已经攒下 5–10 个能直接复用的高质量模板，这是最实在的复利。更进一步可以用 ChatGPT 的 Custom Instructions、Claude 的 Projects 与 Skills、Gemini 的 Gems 让模型自动记住你的偏好和工作流，省掉每次重写 Prompt 的时间。',
-      },
-      {
-        title: '感受 AI 不止有"对话框"一层',
-        description:
-          '聊天框只是 AI 能力的最表层。下面这些是值得逐步认识的能力层：让它读你上传的 PDF、Excel、代码（File Upload）；让它通过 Skills、Custom GPT、Projects 持续记住你的角色与上下文；让它通过 MCP（Model Context Protocol）调用外部工具与数据源；让它调用浏览器、终端、IDE 完成多步任务（Agent）。今天先用聊天框，下周开始尝试上传文件，再下周看 Skills——一步步推进就不会被生态淹没。',
-      },
-    ],
-    pitfallsEyebrow: 'Common Pitfalls',
-    pitfallsTitle: '新手最容易踩的几个误会',
-    pitfallsDescription:
-      '下面这些不是小技巧，而是决定你学习速度的心智模型。很多人因为没识破其中一两个，绕了 3–6 个月的弯路——在 Prompt 模板上耗费过多精力、把模型当搜索引擎吃大亏、或者始终停在对话框那一层不知道还有 Skill、MCP、Agent。读到刺眼的那条，多半就是你还没意识到的盲点。',
-    pitfalls: [
-      {
-        title: 'AI 不是搜索引擎',
-        description:
-          '搜索引擎返回的是已经存在于互联网上的网页，你能点开看出处；AI 返回的是基于训练语料 + 当前 Prompt 重新生成的"听起来合理的文本"，没有可点击的来源。涉及具体数字、人名、引用、URL、法条、价格、时间这些可验证事实时，请把 AI 当成助理而不是权威——让它给你方向和初稿，再自己用搜索或权威资料确认。把这条习惯固化下来，可以避免 90% 的"AI 翻车"事故。',
-      },
-      {
-        title: '幻觉不是 bug，是机制',
-        description:
-          '很多人遇到模型瞎编后第一反应是"这模型不行"或"它在故意骗人"。其实生成式模型的工作机制就是补全——在缺少依据时，它会根据语料分布给出"最可能的下一段话"，并不真的"知道"自己在编。解决方案不是责怪模型，而是给它资料（RAG、文件上传、联网）、限定它在不确定时说"无法确认"、或者设计可验证的输出格式（JSON、引用原文片段）让你能复核。',
-      },
-      {
-        title: 'Prompt 不是咒语',
-        description:
-          '网上流传的"万能 Prompt 模板"大多过度神化。真正起作用的是把目标、背景、约束、输出形式四件事讲清楚——目标是让它做什么，背景是它需要知道什么前提，约束是不能做什么，输出形式是结果应该长什么样。把"作为一名 10 年经验的资深 XX"换成"我的读者是初学者，希望避开 A、B 两个常见误解"，效果会好得多。Prompt 是沟通，不是仪式。',
-      },
-      {
-        title: '换模型不一定更好',
-        description:
-          'Reddit 上每天都在吵"哪个模型最强"，对新手来说这种比较意义有限。一是模型迭代非常快，今天的结论下个月就过期；二是不同模型在不同任务上的相对强弱本就不大。先把一个模型用到熟练（包括它的 Project / Skill / Memory 等周边功能），再花一个下午对比另一个模型，得到的判断比天天换工具靠谱得多。先深，再宽。',
-      },
-      {
-        title: '一次给太多东西反而更差',
-        description:
-          '把 10 份文档、5 个目标、3 种格式要求一次性全塞进去，期待模型一次给完美答案——这是新手常见操作。结果往往是它抓不到重点、忽略关键约束、输出冗长。更好的做法是分阶段：先让它读完资料并总结要点；再就总结追问；再让它生成最终输出。这种"渐进式上下文"在长文档处理、复杂分析、代码重构等任务上的成功率会高得多。',
-      },
-      {
-        title: 'Skills / Projects / Custom GPT 不是"更高级的 Prompt"',
-        description:
-          '这是个重要却常被混淆的层次。聊天对话里的 Prompt 是一次性的；而 Anthropic 的 Skills、OpenAI 的 Custom GPT、ChatGPT 的 Projects、Custom Instructions 这些是给 AI 装上"长期人设和工具"，让它在多次会话中记得你是谁、有什么资料、该如何响应。把好用的工作流沉淀成一个 Skill 或 Project，而不是每次重写 Prompt——这是从"用户"走向"配置者"的关键跨越，也是大部分人会卡住的台阶。',
-      },
-      {
-        title: '别怕"它会不会取代我"',
-        description:
-          '这是最容易消耗能量但最不实用的焦虑。现实是：AI 取代的不是"职业"，而是"不会用 AI 的同行"。与其在抽象层焦虑，不如把今天 30 分钟用来真的让它替你做一件事——哪怕只是写一封邮件——你会立刻发现它的能力边界和你独有的价值都比想象中具体。焦虑是廉价的，使用是昂贵的；而真正能改变处境的，永远是后者。',
-      },
-      {
-        title: '不要忽视 Token 与成本意识',
-        description:
-          '对话感觉像免费聊天，但每一轮都在消耗 Token。当你开始处理长文档、多轮对话、Agent 自动调用时，Token 成本会比你预期得快得多地累积，也更容易撞上 Context Window 限制。理解 Context Window 的边界、学会让模型先总结再继续、删掉不必要的上下文——这些不只是省钱，也是让模型"看得清重点"的工程素养。建议从一开始就关注每次任务大致消耗多少 Token。',
-      },
-    ],
-    promiseTitle: '这条路线解决什么',
+    basicsHint:
+      '对 Token、上下文、RAG、Eval 这些词还不熟？先挑一篇和手头任务有关的概念短文，读完就试；其余用到再查。',
+    basicsHintCta: '先补概念',
+    promiseEyebrow: 'What Transfers',
+    promiseTitle: '你已有的经验，哪些还管用',
     promises: [
       {
-        title: '听懂术语',
-        description: '把模型、Prompt、上下文、Agent、RAG、评测这些词先变成日常语言。',
+        title: '还管用：把事做对的老方法',
+        description:
+          '拆解任务、写清需求、复核结果、留下记录——无论你写代码还是写方案，这些在用 AI 时一样是地基。对开发者来说，接口契约、超时重试、日志、最小权限也都继续有效，而且更重要。',
       },
       {
-        title: '知道怎么用',
-        description: '不追求一步到位，先学会把 AI 放进搜索、写作、整理、学习和工作流。',
+        title: '要重学：结果是概率性的',
+        description:
+          '同样的问题不保证同样的回答，看起来流畅也不代表正确。质量要靠对照样本和复核来判断；给 AI 看什么资料、看多少，本身就是需要设计的事情。',
       },
       {
-        title: '能继续读下去',
-        description: '读 AI 雷达和 Academy 时不再被术语劝退，知道哪些内容先略过也没关系。',
+        title: '要放下：追新和收藏',
+        description:
+          '追模型排行榜、收藏 Prompt 模板、等“学完再动手”。型号几个月就换一轮，能沉淀下来的是把任务讲清楚、判断结果质量、设计工作流的能力。',
       },
     ],
-    basicsTitle: '先把 12 个高频概念打底',
+    basicsTitle: '12 个高频概念，先打底',
     basicsDescription:
-      '这组 AI Basics for Everyone 是本站的新手入口层：每篇先用人话解释一个核心概念，再接到已有 Academy、工程实践或底层原理内容，帮助你从“听过这个词”走到“知道下一篇该读什么”。',
-    stepsTitle: '从 0 到能看懂本站',
+      'AI Basics for Everyone 是本站的概念层：每篇用一页讲清一个词，再指向对应的工程实践或底层原理。已经熟悉的可以直接跳过；拿不准的，读完再回到路线。',
+    stepsEyebrow: 'Reading Order',
+    stepsTitle: '开发者的推荐阅读顺序',
     steps: [
       {
-        title: '先知道 AI 能做什么',
-        description: '把 AI 当成可以读、写、整理、推理和操作工具的协作者，而不是神秘按钮。',
+        title: '概念打底',
+        description:
+          '先把上下文、评测、结构化输出这几个最影响工程设计的词弄清楚，其他概念用到再查。',
         links: [
           {
-            label: 'AI Fundamentals',
-            href: '/academy/openai-academy/01-ai-fundamentals/ai-fundamentals/',
-          },
-          { label: 'Claude 101', href: '/academy/anthropic-academy/03-claude-product/claude-101/' },
-        ],
-      },
-      {
-        title: '学会提出更好的问题',
-        description: 'Prompt 不是咒语，而是把目标、上下文、约束和输出格式讲清楚。',
-        links: [
-          {
-            label: 'Getting Started with ChatGPT',
-            href: '/academy/openai-academy/02-using-chatgpt/core-skills/getting-started/',
+            label: 'Context Engineering 是什么',
+            href: '/start/ai-basics-for-everyone/what-is-context-engineering/',
           },
           {
-            label: 'Prompting Fundamentals',
-            href: '/academy/openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/',
+            label: 'Eval 是什么',
+            href: '/start/ai-basics-for-everyone/what-is-eval/',
+          },
+          {
+            label: '结构化输出是什么',
+            href: '/start/ai-basics-for-everyone/what-is-structured-output/',
           },
         ],
       },
       {
-        title: '理解上下文和文件',
-        description: '很多 AI 能力不是模型单独完成的，而是模型、上下文、工具和资料共同组成的系统。',
+        title: '学会可靠地调用模型',
+        description:
+          '把一次模型调用当成一次不可靠的远程调用：超时、重试、降级、结构化校验，一个都不能少。',
         links: [
           {
-            label: 'Working with Files',
-            href: '/academy/openai-academy/02-using-chatgpt/tools/working-with-files/',
+            label: '可靠 LLM 调用骨架',
+            href: '/engineering/ai-developer-core/reliable-llm-call-skeleton/',
           },
-          { label: 'RAG', href: '/academy/openai-academy/07-building-with-ai/rag/' },
+          {
+            label: 'Token 与上下文窗口',
+            href: '/foundations/ai-developer-core/token-context-window/',
+          },
         ],
       },
       {
-        title: '再看 Agent 和工作流',
-        description: 'Agent 不是“机器人很聪明”，而是模型能在边界内调用工具、执行步骤、接受检查。',
+        title: '接上数据和工具',
+        description: '先判断真的需要 RAG、MCP 还是一个脚本就够——多数第一版只需要最简单的那个。',
         links: [
-          { label: 'Agents', href: '/academy/openai-academy/07-building-with-ai/agents/' },
-          { label: 'AI 雷达图片墙', href: '/radar/gallery/' },
+          {
+            label: 'RAG 最小系统',
+            href: '/engineering/ai-developer-core/rag-minimum-system/',
+          },
+          {
+            label: '什么时候需要 MCP',
+            href: '/engineering/practice/when-to-use-mcp-vs-scripts/',
+          },
+          {
+            label: 'MCP Tool 契约设计',
+            href: '/engineering/practice/mcp-tool-contract-design/',
+          },
+        ],
+      },
+      {
+        title: '再做 Agent，并给它边界',
+        description:
+          'Agent 的难点不在“让它自主”，而在日志、审批、停止条件和回放——也就是你能不能管住它。',
+        links: [
+          {
+            label: 'Agent Harness：日志、审批与回放',
+            href: '/engineering/ai-developer-core/agent-harness-logging-approval-replay/',
+          },
+          {
+            label: 'Google Advent of Agents',
+            href: '/academy/google-advent-of-agents/00-overview/google-advent-of-agents-overview/',
+          },
+        ],
+      },
+      {
+        title: '用雷达跟上变化',
+        description: '每天花 5 分钟扫一眼日报标题，每周读一次周报；只深读和你手上项目相关的条目。',
+        links: [
+          {
+            label: 'AI 雷达',
+            href: '/radar/',
+          },
+          {
+            label: '雷达图片墙',
+            href: '/radar/gallery/',
+          },
         ],
       },
     ],
-    glossaryTitle: '先记住这几个词',
+    glossaryTitle: '工程视角的术语表',
     glossary: [
-      { term: '模型', description: '负责理解和生成内容的能力核心。' },
       {
-        term: 'Prompt',
-        description: '你给 AI 的任务说明，不只是问题，也包含背景、限制和输出要求。',
+        term: '上下文（Context）',
+        description: '模型这一次调用能看到的全部信息：系统指令、对话、文件、检索结果、工具返回。',
       },
       {
-        term: '上下文',
-        description: 'AI 当前能看到的信息，包括对话、文件、工具返回结果和系统规则。',
+        term: 'Context Engineering',
+        description: '设计每一步给模型看什么、看多少、按什么顺序看的工程实践。',
       },
-      { term: 'Agent', description: '能围绕目标调用工具、分步骤执行并接受验证的 AI 工作流。' },
-      { term: 'RAG', description: '让 AI 先检索资料再回答，降低胡编和过时信息的风险。' },
-      { term: '评测', description: '把"感觉好用"变成可重复检查的质量标准。' },
-      { term: '幻觉', description: 'AI 在缺少依据时生成看起来合理但不正确的内容。' },
-      { term: 'Token', description: 'AI 处理文本的基本单位，也是计费和上下文限制的基础。' },
-      { term: 'MCP', description: '让 AI 标准化连接外部工具和数据的开放协议。' },
-      { term: 'Context Engineering', description: '设计 AI 在每一步能看到什么信息的工程实践。' },
+      {
+        term: 'Token',
+        description:
+          '模型切分和处理文本的单位；数量影响上下文占用与部分计费，延迟和总成本还取决于模型、缓存及工具调用。',
+      },
       {
         term: '结构化输出',
-        description: '让 AI 按指定格式（表格、JSON、清单）输出可直接使用的结果。',
-      },
-      {
-        term: 'Skill / Custom GPT / Project',
-        description:
-          '把角色、资料、工具调用方式打包给模型，使其在多次对话中持续具备某种能力的封装单位。',
-      },
-      {
-        term: 'Memory',
-        description:
-          'AI 在跨对话中记住关于你的事实和偏好的能力；与上下文不同，memory 跨会话持久化。',
+        description: '用 JSON Schema 等约束让模型返回可被程序校验的结果，而不是自由文本。',
       },
       {
         term: 'Tool Use / Function Calling',
-        description: '让模型在回答时主动调用计算器、搜索、API、代码执行等外部工具的能力。',
+        description: '模型在回答过程中请求调用你定义的函数或 API，由你的代码真正执行。',
       },
       {
-        term: '推理模型（Reasoning Model）',
-        description:
-          '在回答前显式进行多步思考的模型，例如 o 系列、Claude 思考模式、Gemini Deep Think。',
+        term: 'RAG',
+        description: '先检索相关资料再让模型基于资料回答，用来引入私有和最新信息。',
       },
       {
-        term: 'A2A',
-        description: 'Agent-to-Agent 协议。让多个 Agent 互相通信、分工、移交任务的开放协议。',
+        term: 'MCP',
+        description: '连接 AI 客户端与外部工具、数据的开放协议，写一次工具，多个客户端复用。',
       },
       {
-        term: '多模态（Multimodal）',
-        description: '同时处理文本、图像、音频、视频的能力，是 2026 年旗舰模型的标配。',
+        term: 'Skill',
+        description: '把指令、脚本和资源打包成可复用的工作流单元，按需加载进上下文。',
       },
       {
-        term: '微调（Fine-tuning）',
-        description: '在已有模型上用少量自有数据做二次训练，让它在特定领域更稳定。',
+        term: 'Agent',
+        description: '在目标和边界内循环“规划—调用工具—观察结果”的系统，而不是一次问答。',
       },
       {
-        term: '越狱（Jailbreak）',
-        description: '通过特定提示绕过模型安全限制的行为。一般用户不应主动尝试。',
+        term: 'Agent Harness',
+        description: '包在 Agent 外面的运行框架：日志、审批、停止条件、重放和权限控制。',
+      },
+      {
+        term: 'Eval（评测）',
+        description: '用固定样本和评分规则衡量 AI 功能的质量，是改 Prompt 或换模型前的安全网。',
+      },
+      {
+        term: '回归门禁',
+        description: '把评测集接进 CI，质量分低于阈值就阻止发布，和单元测试同一个思路。',
+      },
+      {
+        term: 'LLM-as-a-judge',
+        description: '用模型给另一个模型的输出打分；评委本身需要用人工标注样本校准。',
+      },
+      {
+        term: '幻觉',
+        description: '模型生成看似可信、但错误或缺乏依据的内容；有参考资料时也可能发生。',
+      },
+      {
+        term: 'Guardrails',
+        description: '在输入和输出两侧做的检查与拦截，例如敏感信息过滤、格式校验、越权拦截。',
       },
       {
         term: 'Prompt Injection',
         description:
-          '攻击者通过 AI 读取的网页/文件/邮件等"间接路径"注入恶意指令的安全风险，OWASP LLM Top 10 第 1 名。',
+          '不可信输入中的指令影响模型行为的攻击方式，可来自用户输入，也可藏在网页、文档或工具返回中。',
       },
       {
-        term: 'Context Window',
-        description: '模型一次能处理的上下文长度上限，决定能塞多少资料、对话能持续多长。',
+        term: 'Prompt Caching',
+        description:
+          '在满足提供方的缓存规则时复用部分计算，可减少重复上下文的费用或延迟；命中条件和写入费用需另查。',
+      },
+      {
+        term: 'Trace',
+        description:
+          '记录一次请求中每次模型调用、工具调用、输入输出和耗时的调用链，用于排错和评测。',
+      },
+      {
+        term: '推理模型',
+        description:
+          '在生成最终回答前投入额外推理计算的模型或模式。复杂任务可能受益，质量、延迟与费用仍要实测。',
+      },
+      {
+        term: 'Computer Use',
+        description: '让模型通过截图、可访问性树或浏览器自动化来操作图形界面。',
+      },
+      {
+        term: '开放权重模型',
+        description: '可下载权重自行部署的模型，适合数据驻留、私有化和微调需求。',
+      },
+      {
+        term: '微调（Fine-tuning）',
+        description: '用自有数据对模型再训练，通常在提示、检索和评测都做过之后才考虑。',
       },
     ],
     layersEyebrow: 'Capability Layers',
-    layersTitle: '看懂 AI 的几个能力层',
+    layersTitle: 'AI 应用的 6 个能力层',
     layersDescription:
-      '同样是"用 AI"，不同人用的层次差距非常大——有人停在网页对话框，有人已经在编排 Agent。下面这张分层图把"用 AI"拆成 6 个层次，每一层都建立在下一层之上。新手可以先把第一层用到很熟，再按需求向下走，不需要一次跨完。把这张图记在脑子里，你后面读 Academy、Engineering、Foundations 时就知道每篇文章在讲哪一层。',
+      '下面六个维度是本站的学习地图，不是行业标准或必须逐层搭建的架构。MCP、Skills、A2A 和 Agent 都按需采用；评测、安全、权限与成本管理则从第一次实验开始，贯穿整个系统。',
     layers: [
       {
         level: 'L1',
-        name: '对话（Chat）',
+        name: '模型调用（Model API）',
         description:
-          '在网页或 App 里和模型一问一答。今天 99% 的 AI 使用都停在这一层，对绝大多数日常任务来说也是最佳入口。能用对话框完成的事，不必上更复杂的层次。建议第一周完全停在这里，把 Prompt 写清楚的能力练熟。',
+          '调用模型服务时，要处理超时、限流、有限重试、降级与用量记录。服务是否保存会话状态、如何计费，取决于具体接口和渠道。',
       },
       {
         level: 'L2',
-        name: '文件与多模态（Files & Multimodal）',
+        name: '上下文（Prompt & Context）',
         description:
-          '上传 PDF、Excel、图片、音频，让模型读懂内容并基于它回答。2026 年的旗舰模型几乎都原生多模态，可以"看图说话"、转录会议录音、读懂手写笔记。这一步把 AI 从"问答"扩展到"处理你手头的资料"。',
+          '系统指令、示例、文件与检索结果构成模型当前可见的信息。RAG 与上下文工程帮助选择资料，但检索到资料不等于答案已经核实。',
       },
       {
         level: 'L3',
-        name: '长期人设（Skills / Projects / Custom GPT）',
+        name: '结构化输出与工具（Structured Output & Tools）',
         description:
-          '把角色、资料、规则、常用工具打包成一个可复用的"工作空间"。Anthropic 的 Skills、OpenAI 的 Custom GPT、ChatGPT 的 Projects、Gemini 的 Gems 都是这一层。沉淀好用的工作流到这里，比每次重写 Prompt 高效得多——这是从"用户"走向"配置者"的关键一步。',
+          '让模型返回可校验的数据、请求调用你的函数。从“会说话”到“会做事”的分界线，核心是契约设计：输入、输出、错误和权限。',
       },
       {
         level: 'L4',
-        name: '工具调用（Tool Use / Function Calling）',
+        name: '协议与复用（MCP / Skills / A2A）',
         description:
-          '让模型在回答时主动调用计算器、搜索、数据库、代码执行、API。这是"会说话"走向"会做事"的分界线。它依然由你发起，但模型可以在一次回答中完成"取数据 → 分析 → 出结论"的完整链条。',
+          'MCP 连接工具与数据，Skills 封装可复用指令和可选脚本，A2A 用于 Agent 间通信。按需求选择，并核对客户端能力、认证和权限；不必三者全用。',
       },
       {
         level: 'L5',
-        name: '协议与生态（MCP / A2A）',
+        name: 'Agent 循环（Agent Loop & Harness）',
         description:
-          'MCP（Model Context Protocol）是连接 AI 与外部工具/数据的开放协议，2025 年起成为事实标准，2026 年已并入 Linux Foundation 的 Agentic AI Foundation；A2A 则用于 Agent 与 Agent 之间通信。它们让你的 AI 不再被锁死在一家产品里——同一个 Skill / 工具可以在多个客户端之间复用。',
+          '模型在目标和边界内循环规划、调用工具、观察结果。Coding agent 就在这一层。真正的工程量在 harness：日志、审批、停止条件和回放。',
       },
       {
         level: 'L6',
-        name: '自主 Agent（Autonomous Agent）',
+        name: '评测与治理（Evals & Governance）',
         description:
-          '让 AI 在你设定的目标和边界内自主规划、调用工具、执行多步骤任务并接受验证。Claude Code、OpenAI Codex、Cursor、Manus、Devin 等都属于这一层。能力强但风险也最大——这一层必须配合明确的边界、可逆性设计、人类检查节点来使用。',
+          '评测集、回归门禁、trace、权限、成本预算——决定一个 AI 功能能不能上生产、出了问题能不能定位。这一层是技术负责人的主场。',
       },
     ],
-    safetyEyebrow: 'Safety & Risk',
-    safetyTitle: '使用 AI 必须知道的几条安全底线',
+    safetyEyebrow: 'Safety Baselines',
+    safetyTitle: '构建 AI 系统的六条安全底线',
     safetyDescription:
-      'AI 的真实风险不是"它会变成天网"，而是更日常、更具体的几类。下面六条是新手最容易忽视、但事故率最高的。理解它们，能让你避开 95% 的真实问题。这部分内容比"哪个模型最好"重要得多——AI 用得越深，越要把这几条挂在脑子里。',
+      '权限过大、数据外泄、错误执行和无上限循环都需要系统层面的防护。下面六条是起点，应在第一次实验时采用，并随实际风险补充测试。',
     safetyItems: [
       {
-        title: 'Prompt Injection（提示词注入）',
+        title: 'Prompt Injection：不信任模型读到的内容',
         description:
-          'OWASP 自 2024 年起把 Prompt Injection 列为 LLM 应用第一大风险，2026 年依然居首。攻击者通过你让 AI 读取的网页、PDF、邮件、文件名、图片等"间接路径"注入指令，让 AI 帮他完成原本你不允许的事。一个原则：把 AI 当作一个会读完所有内容的实习生——不要让它自动执行可造成实际后果的操作（删数据、转账、发邮件、写代码到生产），除非你看过它要做什么。',
+          '网页、文档、邮件、工单、检索结果里都可能藏着指令。原则是：模型输出不能直接驱动高权限操作；工具调用的参数要在你的代码里重新校验，而不是相信模型“理解了”。',
       },
       {
-        title: '数据泄漏与隐私',
+        title: '凭据与最小权限',
         description:
-          '你贴进对话框的内容，未必只对你可见。免费版条款多数允许用于训练，企业版 / API 渠道多数承诺不训练但要看合同。涉及客户数据、内部代码、合同、财务、医疗、个人证件时，先确认你用的是哪一档。敏感场景优先用本地模型（Llama / Qwen / GLM）或企业账户。',
+          '不要让 Agent 使用你的个人凭据。给它独立身份、短期令牌和只够完成任务的权限；工具访问集中经过网关或代理层授权和审计，和你管理服务账号的思路一样。',
       },
       {
-        title: '幻觉与错误归因',
+        title: '数据边界',
         description:
-          'AI 在不确定时会自信地编造。把它当起点不当终点；引用、数字、法条、URL 必须自己核对，别让"AI 说的"变成你对外的依据。对要署你名字、要发出去、要承担责任的内容，永远走"AI 起草 → 自己核校 → 再发出"的流程。',
+          '先给数据分级，再决定每一级能走哪个模型渠道。消费级产品、企业版、云平台托管的模型，数据条款和驻留区域都不同。别忘了 trace 和日志里同样有用户数据。',
       },
       {
-        title: '版权与合规',
+        title: '供应链：检查指令、代码与权限',
         description:
-          'AI 生成内容的版权归属在多数司法区仍不清晰；用 AI 写文章、出图、做素材时，注意训练数据风险与所在公司政策。商用场景优先选有"输出可商用 + 训练数据合规"承诺的产品（多数旗舰厂商企业版有），并保留可追溯记录。',
+          'Skill 可以只有指令，也可以附带脚本；MCP server 可在本地或远端运行。它们影响行为与数据访问的方式不同，都要核对来源、执行环境、实际权限和更新内容。',
       },
       {
-        title: '对认知能力的过度依赖',
+        title: '不可逆操作必须有人确认',
         description:
-          'AI 会让你"感觉自己更聪明"，但实际是它在替你思考。对认知性强的工作（写作、决策、判断、学习），定期不用 AI 跑一次，确认你的能力没在退化。把它当成放大器，而不是替代器——它放大你的判断力，前提是你还有判断力。',
+          '删除数据、付款、对外发送、部署生产——这类操作默认需要人工审批，并提供 dry-run 和可回放的记录。Agent 能力越强，这条越不能省。',
       },
       {
-        title: '情感投射与心理健康',
+        title: '成本与失控循环',
         description:
-          'AI 的拟人感非常强，会触发真实的情感投射。它不是朋友，也不是治疗师；遇到心理问题或重大人生决策，找真人。如果你发现自己开始优先和 AI 说话而不是身边的人，是一个需要警觉的信号。',
+          'Agent 会重试、会循环、会把长文档一遍遍塞进上下文。给每个任务设最大步数、超时和预算上限，并对异常调用量告警，就像给任何外部依赖设熔断。',
       },
     ],
-    landscapeEyebrow: 'Model Landscape · May 2026',
-    landscapeTitle: '2026 年 5 月的 AI 模型与厂商全景',
+    pitfallsEyebrow: 'Common Pitfalls',
+    pitfallsTitle: '用 AI 时最常见的八个误区',
+    pitfallsDescription:
+      '把概率性输出当成确定事实，或省略原有的审查步骤，都容易出问题。下面的例子帮助你检查自己的工作流。',
+    pitfalls: [
+      {
+        title: 'Demo 跑通，不等于能上线',
+        description:
+          'Demo 只说明少数样本可以跑通。上线前还要检查边界输入、失败降级、评测、成本和权限，所需工作量取决于场景与风险。',
+      },
+      {
+        title: '用断言思维测试 AI',
+        description:
+          '格式、字段、分类标签和确定性的工具契约适合用断言；开放式回答不宜只做字符串全等比较。语义质量结合评分规则与人工校准，并观察重复运行的波动。',
+      },
+      {
+        title: 'Prompt 写死在代码里，没有版本',
+        description:
+          'Prompt 是影响行为最大的“配置”，却经常散落在代码里随手改。把它版本化，每次修改都跑一遍评测集，和改数据库迁移一样认真。',
+      },
+      {
+        title: '把所有东西都塞进上下文',
+        description:
+          '无关或冲突的资料会干扰回答；更长输入也可能增加费用与延迟。按任务比较全文、检索和摘要方案，检查遗漏，别把“越短越好”当成另一条绝对规则。',
+      },
+      {
+        title: '让 Agent 用你的账号干活',
+        description:
+          '图省事给 Agent 配上个人 token 或管理员权限，等于把一个会被网页内容影响的程序放进了生产环境。独立身份和最小权限从第一天就做。',
+      },
+      {
+        title: '只看单价，不算任务总成本',
+        description:
+          '任务费用要汇总每次调用的输入、输出和缓存用量乘对应单价，再加工具与运行费用；重试和 Agent 循环都计入。比较完整任务的成功率、费用和人工复核时间。',
+      },
+      {
+        title: '一有新模型就换',
+        description:
+          '没有评测集时换模型，只能凭感觉判断好坏。先建 20–50 条代表性样本，再用它对比新模型——这样换模型是一次可度量的升级，而不是一次赌博。',
+      },
+      {
+        title: '把流畅当成正确',
+        description:
+          'AI 的回答读起来越流畅，越容易让人放下戒心。数字、引用、链接、人名、法规这类可以核对的事实，一律回到原始资料确认；要署你名字发出去的内容，永远走“AI 起草、自己核对、再发出”。',
+      },
+    ],
+    landscapeEyebrow: 'Choosing Models',
+    landscapeTitle: '不背型号，也能选对模型',
     landscapeDescription:
-      '模型迭代非常快——下面只反映本文写作时（2026 年 5 月）的相对位置，不是排名也不是推荐。看一遍即可，目的是让你遇到陌生模型名字时不慌。建议每隔 1–2 个月回到 AI 雷达更新一次认知，不要把这张表当真理读。整体趋势：闭源旗舰仍在前沿，开源差距收窄至月级，"多模型路由"成为构建者标配。',
-    landscapeVendors: [
+      '这里侧重可重复使用的选型步骤。模型能力、价格和渠道会变化，具体选择要回到官方文档和自己的测试；最近的生态变化可参考月报。',
+    landscapeRules: [
       {
-        name: 'OpenAI',
-        models: 'GPT-5.5 / GPT-5 系列 / o-系列推理模型',
+        title: '先分档，再选家',
+        hint: '旗舰 / 均衡 / 轻量',
         description:
-          'ChatGPT、Custom GPT、Sora 视频、Realtime API 语音。生态最完整，普通用户最熟悉，企业接入最成熟。',
+          '先根据质量、速度和预算筛选候选，用较轻量的方案建立基线；只有实测收益值得时才增加推理或采用更强模型。档位名称不是统一标准。',
       },
       {
-        name: 'Anthropic',
-        models: 'Claude Opus 4.7 / Sonnet 4.6 / Haiku 4.5',
+        title: '用你的评测集说话',
+        hint: '20–50 条真实样本',
         description:
-          'Skills、Projects、Claude Code、Computer Use。在写作、编程、长上下文与 Agent 安全上常被认为最稳。',
+          '先用 20–50 条代表性样本比较候选，把它当作起步诊断。另留未参与调优的测试集，补充失败和边界案例；小样本通过不代表已达到生产可靠性。',
       },
       {
-        name: 'Google',
-        models: 'Gemini 3.1 Pro / Gemini Flash / Gemma 4',
+        title: '算任务成本，而不是单价',
+        hint: '完整任务的费用与延迟',
         description:
-          'Gems、AI Studio、Imagen、Veo 视频、NotebookLM。多模态与科学推理强项，免费额度大方。',
+          '便宜的模型如果需要更多重试、更长提示或更多 Agent 轮数，总成本可能更高。同时看延迟：交互场景对首 token 时间很敏感。',
       },
       {
-        name: 'xAI',
-        models: 'Grok 4 系列',
-        description: '与 X 实时数据深度集成，在编程榜单上占据前列。',
-      },
-      {
-        name: '国产前沿',
-        models: 'DeepSeek V4 / GLM-5.1 / Qwen 3 / 豆包 / Kimi',
+        title: 'API 还是开放权重',
+        hint: '数据驻留 / 私有化',
         description:
-          '开源 + 低成本路线代表，部分模型已逼近或局部超越国际旗舰。中文场景与本地化合规优先选这条线。',
+          '托管 API 通常便于试验；开放权重也可能适合离线、数据驻留、定制或大规模推理。比较许可、硬件、运维、安全与实际用量，再决定部署方式。',
       },
       {
-        name: 'Meta',
-        models: 'Llama 4 系列',
-        description: '开源生态主力，本地部署、私有化、微调的首选起点。',
+        title: '企业场景看渠道',
+        hint: '云平台托管模型',
+        description:
+          '同一个模型通过官方 API、Azure、AWS、Google Cloud 等渠道提供时，数据条款、可用区域、配额和计费方式都可能不同。企业落地常常先选渠道，再选模型。',
       },
       {
-        name: 'Mistral / Cohere / 其他',
-        models: '细分场景与企业市场',
-        description: '欧洲合规、垂直行业、企业 RAG 等场景常用替代选项。',
+        title: '保留可替换性',
+        hint: '抽象调用层',
+        description:
+          '封装模型调用层，并把模型名和参数放进配置，可减少迁移成本。切换时仍需适配工具调用、Schema 支持、错误语义等差异，并重新评测。',
       },
     ],
+    landscapeLatestLabel: '最近一期月度回顾',
+    landscapeLatestCta: '读最新的雷达月报',
     landscapeNote:
-      '协调层：MCP（Model Context Protocol）和 A2A 协议已于 2025 年 12 月并入 Linux Foundation 的 Agentic AI Foundation，由 OpenAI、Anthropic、Google、Microsoft、AWS、Block 共同治理。这意味着"换厂商不锁死"逐渐成为现实——你今天学的 Skill / 工具集成，未来大概率可以跨家复用。',
+      'MCP 与 Skills 有助于复用，但不保证任意客户端即插即用。接入前核对协议版本、支持的功能、运行环境、认证与权限；模型与渠道的能力以对应官方文档为准。',
+    firstDayEyebrow: 'First Hour',
+    firstDayTitle: '用第一个小时开始六个小实验',
+    firstDayDescription:
+      '先完成前三个通用实验；开发者再按需做后三个。每项可先投入约 10 分钟，环境配置和 API 开通另计，不必一次做完。先选已获准使用的工具和公开或脱敏资料；API 实验先设用量上限。',
+    firstDaySteps: [
+      {
+        who: '所有人',
+        title: '用一件真实任务问一次，再追问两轮',
+        description:
+          '挑一件你今天本来就要做的事：一封不好开口的邮件、一份要整理的会议记录、一段要读的英文资料。按“目标 / 背景 / 约束 / 输出格式”写清楚再问，然后至少追问两轮，感受第一稿和第三稿的差距。',
+      },
+      {
+        who: '所有人',
+        title: '上传一份你熟悉的资料，逐条核对',
+        description:
+          '选一份允许上传的公开或脱敏资料，先要求 AI 给出要点及对应原文位置，再逐条核对。另问一个资料中没有答案的问题，观察它是否承认不知道。',
+      },
+      {
+        who: '所有人',
+        title: '写下自己或团队的三条红线',
+        description:
+          '哪些数据不能发给 AI？哪些事情不能交给 AI 直接完成？哪些结果必须有人确认才能发出去？先写三条就够——这是之后所有安全习惯的起点。',
+      },
+      {
+        who: '开发者',
+        title: '让 coding agent 读懂并改动你的仓库',
+        description:
+          '在熟悉的项目里，先只让它解释架构、找出某个功能的入口和测试位置；再交给它一个小任务（补测试、修 lint、改小 bug），重点审它的 diff：有没有改了不该改的地方、有没有跑测试。',
+      },
+      {
+        who: '开发者',
+        title: '用 API 拿一次结构化输出',
+        description:
+          '用支持结构化输出的 API 提取一条虚构记录，检查 Schema 和字段内容。再测试空输入、无关输入及输出截断；拒答与校验失败走明确的失败分支，不无限重试。',
+      },
+      {
+        who: '开发者',
+        title: '写 10 条评测用例，并算清成本',
+        description:
+          '先写几组“输入 + 期望行为”，逐步扩到 10 条，包含资料缺失和边界情况。改一次 Prompt 后重跑，并记录每次调用的用量、单价、工具费与延迟；这是初步诊断，不是上线证明。',
+      },
+    ],
     planEyebrow: '30 / 60 / 90 Days',
-    planTitle: '推荐的 30 / 60 / 90 天节奏',
+    planTitle: '90 天转型节奏',
     planDescription:
-      '不要定"一个月成为 AI 专家"这种 KPI——大多数人第二周就放弃了。下面四档是坚持下来的人的最大公约数，按兴趣跳跃或拉长周期都行。重要的是有节奏感，不是赶进度。',
+      '目标不是 90 天成为专家，而是 90 天内把 AI 真正用进一件具体的事，并建立之后能持续跟进的习惯。每个阶段都写了两种读者的产出：所有人都适用的，和开发者额外要做的。',
     planPhases: [
       {
         phase: 'Week 1',
-        name: '起步：建立日常习惯',
+        name: '习惯：每天用 AI 做一件真事',
         description:
-          '目标是让"先问一下 AI"变成肌肉反应。每天用 AI 处理一件真实的小事；攒 5 个好用的 Prompt 到笔记里；读完 AI Basics for Everyone 的前几篇；不需要懂 API、Agent、MCP，也不要去比较模型。这一周关键不是学到多少，而是不要中断。',
+          '所有人：每天至少把一件真实工作交给 AI，完成“第一个小时”里的前三个实验，读完概念层里不熟的几篇。开发者：再把 coding agent 用进日常开发，并认真审它的每一次改动。',
       },
       {
         phase: 'Day 30',
-        name: '上手：固化工作流',
+        name: '沉淀：第一个可复用的成果',
         description:
-          '开始用 Skills / Projects / Custom GPT 把常用工作流固化下来，不再每次重写 Prompt；上传文件让 AI 处理长文档；理解 Token 与 Context Window 的边界，知道何时该让它先总结再继续；挑选 1–2 个垂直场景（写作、整理、学习、编程之一）深用。',
+          '所有人：把最常用的 2–3 个工作流沉淀成 Project、Skill 或自定义助手，记下哪些输出必须人工核对。开发者：交付第一个内部 AI 功能，带结构化输出、重试降级、20 条以上评测用例，并算清单次成本。',
       },
       {
         phase: 'Day 60',
-        name: '扩展：理解工具与生态',
+        name: '扩展：接入资料与工具',
         description:
-          '理解 Tool Use 与 MCP 的工作方式，能说清"为什么 Agent 比单纯对话更强大"；尝试一次 Agent 类工具（Claude Code、Codex、Cursor、Manus、Devin 任选）；能根据任务判断模型选型；读懂 AI 雷达里 80% 的术语，对每周变化有自己的判断而不是跟着热搜走。',
+          '所有人：让 AI 基于团队的文档和数据工作，开始尝试能调用工具、操作浏览器的 Agent 类产品。开发者：按需接入检索和工具调用，给请求加 trace，把 Prompt 版本化、评测集接进 CI。',
       },
       {
         phase: 'Day 90',
-        name: '定向：从消费者到构建者',
+        name: '带动：从个人到团队',
         description:
-          '根据你的角色（产品、设计、开发、教育、研究、运营）选定 1–2 个深耕方向：搭一个属于自己的 Agent / 写一个 Skill / 做一次小型 RAG / 搭一个 MCP server / 完整跑一次 eval。这一步意味着你已经能给别人创造 AI 价值，而不只是消费 AI。',
+          '所有人：为团队写一页 AI 使用规范（工具、数据、必须人工确认的事项），做一次内部分享。开发者：如果要做 Agent，先设计好身份、权限、审批、停止条件和回放。到这里，你已经能带别人走这条路。',
       },
     ],
     faqEyebrow: 'FAQ',
-    faqTitle: '新手常见问题',
-    faqDescription: '这些是我们被问过最多的几个问题。读到符合你当下困惑的那一条就够，不用全读。',
+    faqTitle: '最常被问到的问题',
+    faqDescription: '读和你当下困惑相关的那几条就够。更完整的回答在 FAQ 全文里。',
     faqItems: [
       {
-        question: '我需要先学编程吗？',
+        question: '我不写代码，这条路线对我有用吗？',
         answer:
-          '不需要。前 30 天完全用对话框就能解决 80% 的需求。如果之后想搭 Agent、做自动化、连接 API，再学一点 Python 基础即可——而且 AI 自己会帮你写代码。先用起来，有需求了再补，比反过来高效得多。',
+          '有用。选“把 AI 用进日常工作”那条路线，做“第一个小时”里标着“所有人”的三个实验，再按 90 天节奏里“所有人”的部分走。能力层、选型和安全这几部分不需要写代码也能读懂，而且越早建立这些判断越好。',
       },
       {
-        question: '免费版够用吗？',
+        question: '要先学机器学习或深度学习吗？',
         answer:
-          '大多数学习场景够用。但旗舰模型（GPT-5.5 / Claude Opus 4.7 / Gemini 3.1 Pro）通常只在付费版完整开放，免费版多是更小的版本。如果你打算长期把 AI 用进工作，建议至少订阅一个月旗舰版本试试——和免费版的差距比想象中大，尤其是长上下文、推理、编程任务。',
+          '做 AI 应用不需要先学。前 90 天的重点是调用、上下文、评测和工程治理。等你需要做微调、优化推理成本或读论文时，再到“底层原理”栏目补对应的部分。',
       },
       {
-        question: '用国产模型还是国外模型？',
+        question: 'Python 还是 TypeScript？',
         answer:
-          '看场景。中文长文写作、本地化任务、合规要求 → 国产模型（DeepSeek、Qwen、GLM、豆包、Kimi）常常更顺；前沿编程、多语言、复杂多模态推理 → 国际旗舰仍然领先半步。最稳的做法是两边各开一个账号，按任务切换。',
+          '用你团队现有的技术栈。Python 在数据处理、评测和训练生态上更全；TypeScript 适合直接做进 Web 产品。主流模型 SDK 两边都有，语言不是瓶颈。',
       },
       {
-        question: '我的数据会被拿去训练吗？',
+        question: '选哪个 coding agent？',
         answer:
-          '取决于产品和版本。多数厂商在企业版 / API 渠道明确承诺不训练，消费者免费版条款各异（很多是默认可以、需要手动关闭）。涉及客户数据、内部代码、个人敏感信息时务必读隐私设置，必要时用本地模型或企业账户。',
+          '先检查工具是否满足数据、权限、环境和预算要求，再用同一组仓库任务比较完成率、改动范围、测试与总耗时。任务拆分和人工审查也影响结果，不能只看演示。',
       },
       {
-        question: '会不会越学越焦虑？',
+        question: '第一个项目做什么？',
         answer:
-          '几乎所有人都会经历。每天都有新模型、新 Agent、新论文，永远追不完。缓解的办法是缩窄关注范围——你只需要跟自己角色和当前任务相关的部分。AI 雷达每天的"无需关注"分类就是为此设计的：明确告诉你哪些可以略过。',
+          '选内部、低风险、有现成数据、结果可度量的场景：工单分类、内部文档问答、PR 或会议摘要、日志归类。避免第一个项目就直接面向客户或涉及不可逆操作。',
       },
       {
-        question: '我应该投入多少时间？',
+        question: '公司数据能发给模型吗？',
         answer:
-          '第一个月每天 30 分钟，绝大多数应该是"做真实任务"的时间，不是专门"学 AI"。养成"先问一下 AI"的反射，比读完任何教程都重要。等你已经把它用进日常，每周再花 1–2 小时读 AI 雷达和 Academy 跟进新东西即可。',
+          '取决于渠道和合同。先给数据分级，再确认每个渠道（消费级产品、企业版、云平台托管）的数据使用条款和驻留区域。不确定的数据先不发，并让法务或安全团队尽早参与。',
       },
       {
-        question: '模型这么多，到底怎么选？',
+        question: '模型更新这么快，学的东西会过时吗？',
         answer:
-          '第一个月不要选——挑一个能稳定登录的就行。第 2 个月对比 1–2 个备选，找出各自更顺手的任务类型。第 3 个月再考虑多模型路由（不同任务用不同模型）。盲目追新和频繁换工具，是新手最容易浪费时间的两个陷阱。',
+          '型号和价格会过时，工程能力不会：怎么设计上下文、怎么做评测、怎么定义工具契约、怎么管权限和成本——这些能力在每一代模型上都通用。这也是本站入门内容刻意不写具体型号的原因。',
       },
     ],
     readMoreLabel: '阅读完整指南 →',
-    nextTitle: '下一步怎么走',
-    nextDescription: '完成这条路线后，你就可以按兴趣选择更深的入口。',
+    nextTitle: '下一步去哪',
+    nextDescription: '选好路线后，按需要进入更深的栏目。',
     nextLinks: [
-      { label: '看每日变化', href: '/radar/' },
-      { label: '系统学课程', href: '/academy/' },
-      { label: '看工程实践', href: '/engineering/' },
-      { label: '补底层原理', href: '/foundations/' },
+      {
+        label: '每日 AI 雷达',
+        href: '/radar/',
+      },
+      {
+        label: '工程实践',
+        href: '/engineering/',
+      },
+      {
+        label: '官方课程导读',
+        href: '/academy/',
+      },
+      {
+        label: '底层原理',
+        href: '/foundations/',
+      },
+    ],
+    referencesTitle: '参考资料',
+    references: [
+      {
+        label: 'MCP · Architecture',
+        href: 'https://modelcontextprotocol.io/docs/learn/architecture',
+      },
+      {
+        label: 'Agent Skills · Overview',
+        href: 'https://agentskills.io/home',
+      },
     ],
   },
   ja: {
     title: 'AI スタートガイド',
-    metaDescription: 'AI の基本概念、使い方、このサイトの読み方を最初に整理するガイド。',
+    metaDescription:
+      '役割別に AI のスタートルートを選び、小さな実験から始め、調整可能な 30 / 60 / 90 日の計画で仕事やプロダクトに取り入れます。',
     eyebrow: 'Start Here',
-    heroTitle: 'AI に触れ始めたばかりなら、ここが最初の入口です。',
+    heroTitle: 'AI を使う側から、AI で作る側へ。',
     heroDescription:
-      '大きな講座ではなく、最短で用語を聞き取り、自分のレベルに合う入口を見つけるための地図です。次に Radar、講座、実践、基礎のどこへ進むべきかが見えてきます。',
-    primaryCta: '最初のステップへ',
-    secondaryCta: 'AI Radar を見る',
-    audienceEyebrow: 'Who is this for',
-    audienceTitle: 'まず今の自分の位置を見つける',
+      'コードを書く方も書かない方も、実際のタスクを 1 つ選ぶところから始められます。概念の短い解説、役割別のルート、小さな実験を通じて、これまでの経験を生かし、必要に応じてエンジニアリングの力を補いましょう。',
+    primaryCta: '自分のルートを選ぶ',
+    secondaryCta: '最新の AI Radar を見る',
+    audienceEyebrow: 'Pick a Track',
+    audienceTitle: 'まず 1 本選び、走り切ってから次へ',
     audienceDescription:
-      '下の 3 つは、よくある 3 つの状態に対応しています。今の自分にもっとも近いものを選び、その入口から進めば大丈夫です。他の 2 つは読み飛ばして構いません。迷ったら一番上から始めてください。前提知識がもっとも少なく、後で戻って選び直しても無駄になりません。目的は専門家にすることではなく、1 週間で「次に何を読むべきか／何は飛ばしてよいか」を自分で判断できるようにすることです。',
+      '4 つのルートは異なる目標に対応します。手元のタスクに近い 1 本を選び、30 日の目安で進捗を確認しましょう。期間は経験と難易度に合わせて調整できます。',
+    audienceMilestoneLabel: '30 日の目安',
     audiences: [
       {
-        label: 'AI にまったく触れたことがない',
+        label: 'AI を日々の仕事に取り入れる',
+        role: '企画 / 運用 / 職能 / 学生',
         description:
-          'ChatGPT や Claude の名前は聞いたことがあるけれど、まだ本格的に使ったことがない。あるいは数回使ったものの、何が起きているのか分からない。そんな場合は AI Basics for Everyone から始めましょう。モデル、プロンプト、エージェント、RAG などの頻出語を日常の言葉で整理します。読み終えると、AI に任せやすい仕事と自分でやる方が安定する仕事の見分けがつきます。',
-        ctaLabel: '基礎シリーズへ',
-        ctaHref: '#ai-basics-for-everyone',
-      },
-      {
-        label: 'ChatGPT は使えるが体系的に理解したい',
-        description:
-          'メール、履歴書、コード説明などには使えるけれど、なぜうまくいく時といかない時があるのか説明できない。チームやプロダクトに入れたいが、どの層から始めるべきか分からない。そんな段階なら基礎概念は軽く流し、学習ルートへ進みましょう。まず 1 本を通してから別ルートを補う方が、並行するより効率的です。',
-        ctaLabel: '学習ルートを見る',
-        ctaHref: '#first-step',
-      },
-      {
-        label: 'すでに AI を業務で使っていて最新動向を追いたい',
-        description:
-          '知りたいのは「今日何が出て、自分のプロジェクトにどう影響するか」。Daily AI Radar は業界動向、モデル更新、製品発表、注目ツールを毎日選びます。Image Wall は流し見に、テキスト版は深読みに向いています。AI Academy と実践は、知らないテーマに出会った時のリファレンスとして使えば十分です。',
-        ctaLabel: 'Daily Radar へ',
-        ctaHref: '/ja/radar/',
-      },
-    ],
-    firstDayEyebrow: 'First 30 Minutes',
-    firstDayTitle: '今日 30 分でできる最小ループ',
-    firstDayDescription:
-      'AI 学習で一番はまりやすいのは「概念を全部読んでから手を動かす」ことです。結局、最初の 1 週間で疲れてしまい、ツールを開かないまま終わりがちです。下の流れは逆です。まず 1 回まとまった対話を走らせ、結果を見てから概念に戻ります。体験が先にあると、抽象的な言葉も地面に着きます。今日 3 ステップだけでも、解説記事を 10 本読むより「AI を使える」状態に近づけます。',
-    firstDaySteps: [
-      {
-        title: 'まずは入り口を 1 つ決める',
-        description:
-          'ChatGPT、Claude、Gemini のどれでも構いません。まずは安定してログインでき、無料枠や予算に合うものを一つ選びましょう。「どれが最強か」を悩む必要はありません。初心者向けの汎用タスクなら性能差はわずかであり、それよりも「毎日開きたくなるか」の方が重要です。アイコンをデスクトップやブックマークバーに置き、1 秒でアクセスできる環境を整えることが、習慣化の第一歩になります。',
-      },
-      {
-        title: '現実のタスクを 1 つ任せてみる',
-        description:
-          '練習用の例題ではなく、今日やる予定だった本物の仕事をそのまま渡してみてください。書きにくいメール、会議メモの整理、英文読解、コードのデバッグなど、何でも構いません。現実のタスクを使う利点は、結果の良し悪しを一目で判断できることです。練習問題では判断力が育ちませんが、自分の仕事ならフィードバックは非常に正直です。最初の 1 週間は、毎日 1 つずつ小さな「本番」を任せてみましょう。',
-      },
-      {
-        title: '背景・制約・出力形式を添える',
-        description:
-          '同じ依頼でも「メールを書いて」と頼むのと、「ビジネスメールのトーンで、納期の 1 週間遅延を伝える。理由はデータ精度の問題。過剰に謝罪せず理解を求める内容で、200 字以内」と具体的に指定するのでは、結果が桁違いです。プロンプト設計の価値の 8 割は、この「具体性」にあります。「目的・背景・制約・出力形式」の 4 つを意識してプロンプトを組み立てる癖をつけましょう。',
-      },
-      {
-        title: '1 回で終わらせない',
-        description:
-          '初心者が陥りやすいのが「一発で完璧な答えが出ないから使えない」という思い込みです。AI の 1 回目はあくまで「叩き台」だと考え、追加で質問や指示を出しましょう。「この資料に基づいて修正して」「もっと口語的に」「箇条書きにして」といったやり取りの 2〜3 往復目にこそ、AI の真価が現れます。一発勝負の検索エンジンではなく、一緒に磨き上げるパートナーとして扱う——これが「使いこなす」ための境界線です。',
-      },
-      {
-        title: '良いプロンプトは必ず保存する',
-        description:
-          '良い結果を得られたプロンプトは、履歴に埋もれさせず必ず保存しましょう。Notion や Obsidian、専用のプロンプトツールに、用途や効果を添えてストックします。1 週間で 5〜10 本のマイテンプレートが溜まり、それはあなたの強力な資産になります。さらに慣れてきたら、Custom Instructions、Projects、Skills、Gems といった機能を使い、モデル側にあなたの好みやワークフローを記憶させて、入力の手間を省いていきましょう。',
-      },
-      {
-        title: 'AI は「チャット欄」だけじゃない',
-        description:
-          'チャット欄は AI の能力の入り口に過ぎません。その先にあるレイヤーを体験すると、一気に活用範囲が広がります。例えば、ファイルを読ませる（File Upload）、Skill や Project で役割を固定する、MCP で外部データと繋ぐ、そして複数の手順を自律的に進めさせる（エージェント）。まずはチャット、次にファイル活用、その次は Skills と、一段ずつ進めることで、膨大な AI 生態系にも迷わず適応していけます。',
-      },
-    ],
-    pitfallsEyebrow: 'Common Pitfalls',
-    pitfallsTitle: '初心者がはまりやすい誤解',
-    pitfallsDescription:
-      'ここにあるのは小技ではなく、学習速度を決めるメンタルモデルです。気づかないまま 3〜6 ヶ月遠回りする人は少なくありません。プロンプトテンプレに時間をかけすぎる、AI を検索エンジンのように使って痛い目を見る、チャット欄の外に Skill、MCP、エージェントがあることを知らない。読んでいて刺さる項目があれば、それが今の盲点かもしれません。',
-    pitfalls: [
-      {
-        title: 'AI は検索エンジンではない',
-        description:
-          '検索エンジンは既存の情報を探して出典を示しますが、AI は学習データに基づいて「もっともらしい回答」を生成するだけで、正確な出典が常に伴うわけではありません。数字、人名、URL、法律、日付などの事実に触れる際は、AI を「権威」ではなく「下書き係」と見なし、必ず自分で一次資料を確認してください。この「検証」の習慣を持つだけで、トラブルの 9 割は回避できます。',
-      },
-      {
-        title: 'ハルシネーションはバグではなく仕様',
-        description:
-          'モデルが嘘をつくと「騙された」と感じるかもしれませんが、AI の仕組みは基本的に「もっともらしい続きを予測すること」です。根拠が不足していても、確率的に「ありそうな文章」を生成してしまうため、AI 自身に嘘をついている自覚はありません。解決策はモデルを責めることではなく、資料を読み込ませる（RAG・ファイル送信）、確信がない時は「分からない」と言わせるなど、正しく回答できる環境を整えることです。',
-      },
-      {
-        title: 'プロンプトは呪文ではない',
-        description:
-          '「万能な呪文」のようなテンプレートは、多くの場合誇張です。本当に重要なのは、目的・背景・制約・出力形式の 4 点をクリアに伝えることです。「10 年の経験を持つ専門家として」といった抽象的な役割設定よりも、「読者は初心者なので、典型的な誤解である A と B を避けて説明して」といった具体的な背景説明の方が、出力の質を劇的に向上させます。プロンプトは儀式ではなく、対話そのものです。',
-      },
-      {
-        title: 'モデルを変えれば良くなるとは限らない',
-        description:
-          'ネット上の「最強モデル」論争を追いすぎる必要はありません。モデルの進化は非常に速く、今日の順位はすぐに変わります。また、日常的なタスクであれば、主要モデル間の性能差はそれほど大きくありません。まずは一つのツールを（Project や Skill といった周辺機能まで含めて）徹底的に使い込んでみましょう。その上で別のツールと比較した方が、道具の特性を正しく理解できるようになります。',
-      },
-      {
-        title: '一度に詰め込みすぎない',
-        description:
-          '大量の資料と要望を一度に詰め込み、一発で完璧な答えを期待するのは失敗の元です。情報が多すぎると AI は焦点を絞れず、重要な指示を無視することがあります。有効なのは、段階を踏むこと。まず資料を要約させ、その要約を元に詳細を詰め、最後にアウトプットを出させる。この「段階的なアプローチ」が、複雑な分析や長文処理の成功率を劇的に高めます。',
-      },
-      {
-        title: 'Skills / Projects / Custom GPT は「高度なプロンプト」ではない',
-        description:
-          '単なるプロンプトと、Skill や Project といった機能には明確な違いがあります。チャットでのやり取りが「使い捨て」なのに対し、これらは AI に役割や知識を固定する「環境設定」です。自分の好みや専門知識、ワークフローを AI 側に記憶させておくことで、毎回同じ説明を繰り返す手間が省けます。単に「使う人」から、自分専用の AI 環境を「作る人」へ。これが中級者への大きなステップとなります。',
-      },
-      {
-        title: '「AI に取られる」より先にやること',
-        description:
-          '「AI に職を奪われる」という不安は、実用性のないエネルギー消費です。現実は、AI が置き換えるのは仕事そのものではなく、「AI を使いこなせない隣の誰か」に過ぎません。抽象的な不安に時間を使うより、今日 30 分だけ手を動かして何か一つ仕事を任せてみてください。AI の限界と、自分にしかできない価値の両方が具体的に見えてくるはずです。',
-      },
-      {
-        title: 'トークンとコスト感覚を軽視しない',
-        description:
-          'AI とのやり取りは常に「Token（トークン）」を消費しています。長文の処理や複雑な自動実行では、この消費が急増し、一度に扱える情報量（Context Window）の限界に達しやすくなります。情報を要約して整理する、不要な文脈を削るといった工夫は、コストを抑えるだけでなく、AI が「何に集中すべきか」を明確にするためにも重要です。道具を使う際の「キャパシティ」として、Token を意識する癖をつけましょう。',
-      },
-    ],
-    promiseTitle: 'このガイドでできること',
-    promises: [
-      {
-        title: '用語がわかる',
-        description:
-          'モデル、プロンプト、コンテキスト、エージェント、RAG、Eval を日常語に置き換えます。',
-      },
-      {
-        title: '使い方が見える',
-        description: '検索・執筆・整理・学習など、日々の流れに AI を取り入れる方法がわかります。',
-      },
-      {
-        title: '読み続けられる',
-        description:
-          'AI Radar や Academy を読んだ際に、どこを深掘りし、どこを流し読みすべきか判断できるようになります。',
-      },
-    ],
-    basicsTitle: 'まず 12 の頻出概念を押さえる',
-    basicsDescription:
-      '「AI Basics for Everyone」は、本サイトの入口となる基本シリーズです。各記事でコアコンセプトをやさしく解説し、AI Academy、実践、基礎への橋渡しをします。',
-    stepsTitle: '0 からサイトを読める状態へ',
-    steps: [
-      {
-        title: 'AI に何ができるかを知る',
-        description:
-          'AI を「読み・書き・整理・推論・ツール操作」をこなす協働相手として理解します。',
+          'コードは書かなくても、毎日文書を書き、資料を整理し、データを分析し、報告を準備しているはずです。まずはこうした繰り返しの仕事を AI に任せましょう。背景を十分に伝えてから質問する、資料をアップロードしてそれに基づいて答えさせる、うまくいったやり方を Project や Skill にまとめる。このルートの鍵は、タスクを明確に伝えること、そしてどの結果を自分で確認すべきかを知ることです。',
+        milestone:
+          'リスクの低い反復作業を 1〜3 件選び、テンプレートや手順書にまとめ、確認を含む総時間と品質を比較できる。Project や Skill は必要に応じて使う。',
         links: [
           {
-            label: 'AI Fundamentals',
-            href: '/ja/academy/openai-academy/01-ai-fundamentals/ai-fundamentals/',
+            label: '日常業務向けルート',
+            href: '/ja/academy/learning-routes/non-engineering-route/',
+          },
+          {
+            label: 'プロンプトとは何か',
+            href: '/ja/start/ai-basics-for-everyone/what-is-prompt/',
           },
           {
             label: 'Claude 101',
@@ -610,336 +664,608 @@ export const startPage = {
         ],
       },
       {
-        title: 'よい依頼の出し方を学ぶ',
-        description: 'プロンプトは魔法ではなく、目的・背景・制約・出力形式を整理する作業です。',
+        label: 'AI で自分の開発を速くする',
+        role: '個人の開発者',
+        description:
+          '毎日コードを書き、調査し、他人のコードを読んでいるなら、まず coding agent を日常の相棒にしましょう。見慣れないコードベースの説明、テストの追加、小さなリファクタリングを任せ、自分はタスクの切り出しと diff のレビューに集中します。鍵になるのはプロンプトの書き方ではなく、タスクを小さく切り、十分な文脈を渡し、レビューを守ることです。',
+        milestone:
+          '実際の issue を 1 件 coding agent に任せて完了させ、各変更を採用・却下した理由を説明できる。',
         links: [
           {
-            label: 'Getting Started with ChatGPT',
-            href: '/ja/academy/openai-academy/02-using-chatgpt/core-skills/getting-started/',
+            label: 'Coding agent のワークフロー比較',
+            href: '/ja/engineering/practice/agent-cli-workflow-comparison/',
           },
           {
-            label: 'Prompting Fundamentals',
-            href: '/ja/academy/openai-academy/02-using-chatgpt/core-skills/prompting-fundamentals/',
+            label: 'Claude Code in Action',
+            href: '/ja/academy/anthropic-academy/04-developer-tools/claude-code-in-action/',
+          },
+          {
+            label: 'Codex クイックスタート',
+            href: '/ja/academy/openai-academy/05-codex/quickstart/',
           },
         ],
       },
       {
-        title: 'コンテキストとファイルを理解する',
+        label: 'AI をプロダクトに組み込む',
+        role: 'アプリ / バックエンド開発者',
         description:
-          'AI の真価はモデル単体ではなく、コンテキスト、ツール、資料の組み合わせで決まります。',
+          '届けるのは AI 機能を持つプロダクトです。Q&A、分類、抽出、生成、あるいはエージェント。通常の機能との最大の違いは出力が確定しないことです。まず信頼できる呼び出し、構造化出力、検索による文脈付与を身につけ、評価セットで「なんとなく良い」を再現可能な品質基準に変えます。',
+        milestone:
+          '構造化出力・リトライとフォールバック・20 件以上の評価ケースを備えた AI 機能を届け、1 回の呼び出しのおおよそのコストを把握している。',
         links: [
           {
-            label: 'Working with Files',
-            href: '/ja/academy/openai-academy/02-using-chatgpt/tools/working-with-files/',
+            label: '信頼できる LLM 呼び出しの最小骨格',
+            href: '/ja/engineering/ai-developer-core/reliable-llm-call-skeleton/',
           },
-          { label: 'RAG', href: '/ja/academy/openai-academy/07-building-with-ai/rag/' },
+          {
+            label: '構造化出力とエラー回復',
+            href: '/ja/engineering/ai-developer-core/structured-output-retry-recovery/',
+          },
+          {
+            label: 'RAG の最小構成',
+            href: '/ja/engineering/ai-developer-core/rag-minimum-system/',
+          },
         ],
       },
       {
-        title: 'エージェントとワークフローへ',
+        label: 'チームで AI を導入する',
+        role: 'テックリード / アーキテクト',
         description:
-          'エージェントとは、目標に向けてツールを使い、自律的に手順を進めるワークフローのことです。',
+          '答えるべき問いは「どのモデルが最強か」ではありません。チームはどのツールを使うか、どのデータをモデルに送ってよいか、エージェントはどのシステムに触れてよいか、品質とコストをどう測るか。全体像をつかんだうえで、権限・可観測性・評価という、すでに馴染みのあるエンジニアリングガバナンスに落とし込みます。',
+        milestone:
+          'チーム向けの AI 利用規程を 1 枚にまとめる。ツール一覧、データ分類、エージェントの権限境界、評価とコストの最低要件。',
         links: [
-          { label: 'Agents', href: '/ja/academy/openai-academy/07-building-with-ai/agents/' },
-          { label: 'Image Wall', href: '/ja/radar/gallery/' },
+          {
+            label: 'AI エンジニアリング実践マップ',
+            href: '/ja/engineering/practice/ai-engineering-practice-map/',
+          },
+          {
+            label: '長時間タスク型エージェントの境界',
+            href: '/ja/engineering/practice/long-running-agent-boundaries/',
+          },
+          {
+            label: 'エンジニア向けルート',
+            href: '/ja/academy/learning-routes/engineering-route/',
+          },
         ],
       },
     ],
-    glossaryTitle: '最初に覚える言葉',
-    glossary: [
-      { term: 'Model', description: '内容を理解し、生成する能力の中心。' },
+    basicsHint:
+      'Token、コンテキスト、RAG、Eval にまだ馴染みがなければ、手元のタスクに関係する解説を 1 本読み、すぐ試しましょう。残りは必要になったときに参照できます。',
+    basicsHintCta: '先に概念を押さえる',
+    promiseEyebrow: 'What Transfers',
+    promiseTitle: 'これまでの経験で、何が通用するか',
+    promises: [
       {
-        term: 'Prompt',
-        description: 'AI への依頼文。質問だけでなく、背景、制約、出力形式も含みます。',
-      },
-      {
-        term: 'Context',
+        title: '通用する：物事を正しく進める基本',
         description:
-          'AI が今「見えている」範囲の情報。会話履歴、ファイル、ツール結果、ルールなど。',
+          'タスクの分解、要件の明確化、結果の確認、記録を残すこと。コードを書く人も企画書を書く人も、AI を使うときの土台は同じです。開発者にとっては、インターフェース契約、タイムアウトとリトライ、ログ、最小権限もそのまま有効で、むしろ重要度が増します。',
       },
       {
-        term: 'Agent',
-        description: '目標に向けてツールを使い、自律的に複数ステップをこなす AI ワークフロー。',
+        title: '学び直す：結果は確率的',
+        description:
+          '同じ質問でも同じ答えが返るとは限らず、流暢に見えても正しいとは限りません。品質は照合用のサンプルと確認で判断します。AI にどの資料をどれだけ見せるかも、それ自体が設計すべきことです。',
       },
       {
-        term: 'RAG',
-        description: '先に資料を検索してから答えることで、古い情報や作り話を減らす方法。',
+        title: '手放す：新しさの追跡と収集',
+        description:
+          'モデルのランキングを追う、プロンプトテンプレートを集める、「学び終えてから手を動かす」。型番は数か月で入れ替わります。残るのは、タスクを明確に伝える力、結果の質を判断する力、ワークフローを設計する力です。',
+      },
+    ],
+    basicsTitle: '頻出 12 概念で土台を作る',
+    basicsDescription:
+      'AI Basics for Everyone はこのサイトの概念レイヤーです。1 本 1 ページで 1 つの言葉を説明し、対応する実践記事や基礎記事へつなぎます。すでに知っているものは飛ばして構いません。迷うものだけ読み、ルートに戻ってください。',
+    stepsEyebrow: 'Reading Order',
+    stepsTitle: '開発者向けの読む順番',
+    steps: [
+      {
+        title: '概念の土台',
+        description:
+          'コンテキスト、評価、構造化出力など、設計に最も影響する言葉を先に押さえ、他は必要になったときに調べます。',
+        links: [
+          {
+            label: 'Context Engineering とは',
+            href: '/ja/start/ai-basics-for-everyone/what-is-context-engineering/',
+          },
+          {
+            label: 'Eval とは',
+            href: '/ja/start/ai-basics-for-everyone/what-is-eval/',
+          },
+          {
+            label: '構造化出力とは',
+            href: '/ja/start/ai-basics-for-everyone/what-is-structured-output/',
+          },
+        ],
       },
       {
-        term: 'Eval',
-        description: '「なんとなく良い」という主観を、客観的で再現可能な品質基準に変える仕組み。',
+        title: 'モデルを信頼性高く呼び出す',
+        description:
+          '1 回のモデル呼び出しを、信頼できないリモート呼び出しとして扱います。タイムアウト、リトライ、フォールバック、構造化検証のどれも省けません。',
+        links: [
+          {
+            label: '信頼できる LLM 呼び出しの骨格',
+            href: '/ja/engineering/ai-developer-core/reliable-llm-call-skeleton/',
+          },
+          {
+            label: 'Token とコンテキストウィンドウ',
+            href: '/ja/foundations/ai-developer-core/token-context-window/',
+          },
+        ],
       },
       {
-        term: 'Hallucination',
-        description: '根拠が不足している際、AI がもっともらしい「嘘」を作り出してしまう現象。',
+        title: 'データとツールをつなぐ',
+        description:
+          'RAG が必要か、MCP が必要か、スクリプト 1 本で足りるかを先に判断します。最初の版は、たいてい一番シンプルなもので十分です。',
+        links: [
+          {
+            label: 'RAG の最小構成',
+            href: '/ja/engineering/ai-developer-core/rag-minimum-system/',
+          },
+          {
+            label: 'MCP が必要になるとき',
+            href: '/ja/engineering/practice/when-to-use-mcp-vs-scripts/',
+          },
+          {
+            label: 'MCP ツール契約の設計',
+            href: '/ja/engineering/practice/mcp-tool-contract-design/',
+          },
+        ],
+      },
+      {
+        title: 'エージェントに境界を与える',
+        description:
+          'エージェントの難しさは「自律させること」ではなく、ログ、承認、停止条件、リプレイ、つまり制御できるかどうかにあります。',
+        links: [
+          {
+            label: 'Agent Harness：ログ・承認・リプレイ',
+            href: '/ja/engineering/ai-developer-core/agent-harness-logging-approval-replay/',
+          },
+          {
+            label: 'Google Advent of Agents',
+            href: '/ja/academy/google-advent-of-agents/00-overview/google-advent-of-agents-overview/',
+          },
+        ],
+      },
+      {
+        title: 'Radar で変化を追う',
+        description:
+          '日報の見出しを毎日 5 分眺め、週報を週 1 回読みます。深く読むのは手元のプロジェクトに関係する項目だけで十分です。',
+        links: [
+          {
+            label: 'AI Radar',
+            href: '/ja/radar/',
+          },
+          {
+            label: 'Radar 画像ウォール',
+            href: '/ja/radar/gallery/',
+          },
+        ],
+      },
+    ],
+    glossaryTitle: 'エンジニア視点の用語集',
+    glossary: [
+      {
+        term: 'コンテキスト',
+        description:
+          'その 1 回の呼び出しでモデルが見る情報のすべて。システム指示、会話、ファイル、検索結果、ツールの戻り値。',
+      },
+      {
+        term: 'Context Engineering',
+        description: '各ステップでモデルに何を、どれだけ、どの順番で見せるかを設計する実践。',
       },
       {
         term: 'Token',
-        description: 'AI がテキストを処理する基本単位。課金やコンテキスト制限の基準になる。',
-      },
-      {
-        term: 'MCP',
-        description: 'AI と外部ツールを標準インターフェースでつなぐオープンプロトコル。',
-      },
-      { term: 'Context Engineering', description: 'AI が各ステップで見る情報環境を設計する実践。' },
-      {
-        term: 'Structured Output',
-        description: '表・JSON・リストなど、指定した形式で AI に出力させること。',
-      },
-      {
-        term: 'Skill / Custom GPT / Project',
         description:
-          '特定の役割や知識、ツールを AI にパッケージ化し、何度も再利用できるようにしたもの。',
+          'モデルがテキストを分割して扱う単位です。文脈の使用量や課金に関係しますが、遅延と総費用はモデル、キャッシュ、ツール呼び出しにも左右されます。',
       },
       {
-        term: 'Memory',
-        description:
-          '過去の会話から得たユーザーの好みや事実を、別の会話でも引き継いで覚えておく機能。',
+        term: '構造化出力',
+        description: 'JSON Schema などの制約で、プログラムが検証できる形の結果を返させること。',
       },
       {
         term: 'Tool Use / Function Calling',
-        description: '回答中に AI が外部ツールや API を能動的に呼び出して実行する能力。',
-      },
-      {
-        term: 'Reasoning Model（推論モデル）',
         description:
-          '回答を出力する前に、内部でステップバイステップの思考プロセスを実行するモデル。OpenAI o シリーズ、Claude の思考モード、Gemini Deep Think などを指す。',
+          'モデルが回答の途中で定義済みの関数や API の呼び出しを要求し、実行はあなたのコードが行う仕組み。',
       },
       {
-        term: 'A2A',
+        term: 'RAG',
         description:
-          'Agent-to-Agent プロトコル。複数のエージェントが互いに通信し、役割分担やタスクの受け渡しを行うためのオープンな規格。',
+          '関連資料を検索してから、その資料に基づいて回答させる方法。非公開情報や最新情報を取り込む。',
       },
       {
-        term: 'Multimodal',
-        description: 'テキストだけでなく、画像、音声、動画を組み合わせて理解・生成する能力。',
-      },
-      {
-        term: 'Fine-tuning',
-        description: '既存モデルに少量の自前データで二次学習させ、特定領域での安定性を高める手法。',
-      },
-      {
-        term: 'Jailbreak',
+        term: 'MCP',
         description:
-          '特定のプロンプトでモデルの安全制限を回避する行為。一般ユーザーは試すべきではない。',
+          'AI クライアントと外部ツール・データをつなぐオープンプロトコル。一度書いたツールを複数のクライアントで再利用できる。',
+      },
+      {
+        term: 'Skill',
+        description:
+          '指示、スクリプト、リソースを再利用可能なワークフロー単位にまとめ、必要なときにコンテキストへ読み込むもの。',
+      },
+      {
+        term: 'エージェント',
+        description:
+          '目標と境界の中で「計画 → ツール呼び出し → 結果の観察」を繰り返すシステム。一問一答ではない。',
+      },
+      {
+        term: 'Agent Harness',
+        description: 'エージェントを包む実行基盤。ログ、承認、停止条件、リプレイ、権限制御を担う。',
+      },
+      {
+        term: 'Eval（評価）',
+        description:
+          '固定サンプルと採点ルールで AI 機能の品質を測ること。プロンプト変更やモデル切り替えの安全網。',
+      },
+      {
+        term: '回帰ゲート',
+        description:
+          '評価セットを CI に組み込み、スコアが閾値を下回ったらリリースを止める仕組み。単体テストと同じ発想。',
+      },
+      {
+        term: 'LLM-as-a-judge',
+        description:
+          'モデルに別のモデルの出力を採点させる方法。採点役も人手のラベル付きサンプルで校正が必要。',
+      },
+      {
+        term: 'ハルシネーション',
+        description:
+          'もっともらしくても、誤っていたり根拠がなかったりする出力です。参考資料があっても起こり得ます。',
+      },
+      {
+        term: 'Guardrails',
+        description:
+          '入力と出力の両側で行うチェックと遮断。機密情報のフィルタ、形式検証、権限外操作のブロックなど。',
       },
       {
         term: 'Prompt Injection',
         description:
-          'AI が読み取る資料などに悪意ある命令を紛れ込ませ、AI を不正に操作する攻撃手法。',
+          '信頼できない入力中の指示でモデルの動作を変える攻撃です。ユーザー入力だけでなく、Web ページ、文書、ツールの戻り値にも潜みます。',
       },
       {
-        term: 'Context Window',
+        term: 'Prompt Caching',
         description:
-          'モデルが一度に扱えるコンテキストの上限。投入できる資料量と会話の継続可能長を決める。',
+          '提供元の条件を満たす場合に計算の一部を再利用し、繰り返す文脈の費用や遅延を減らします。ヒット条件と書き込み料金は別途確認します。',
+      },
+      {
+        term: 'Trace',
+        description:
+          '1 リクエスト内のモデル呼び出し、ツール呼び出し、入出力、所要時間を記録した呼び出しチェーン。デバッグと評価に使う。',
+      },
+      {
+        term: '推論モデル',
+        description:
+          '最終回答の前に追加の推論計算を使うモデルやモードです。複雑なタスクに役立つ場合がありますが、品質・遅延・費用は実測します。',
+      },
+      {
+        term: 'Computer Use',
+        description:
+          'スクリーンショット、アクセシビリティツリー、ブラウザ自動化を通じて、モデルに GUI を操作させること。',
+      },
+      {
+        term: 'オープンウェイトモデル',
+        description:
+          '重みをダウンロードして自前で運用できるモデル。データ所在地、プライベート運用、ファインチューニングの要件に向く。',
+      },
+      {
+        term: 'ファインチューニング',
+        description:
+          '自社データでモデルを追加学習すること。通常はプロンプト、検索、評価をやり尽くした後に検討する。',
       },
     ],
     layersEyebrow: 'Capability Layers',
-    layersTitle: 'AI の能力レイヤーを把握する',
+    layersTitle: 'AI アプリの 6 つの能力レイヤー',
     layersDescription:
-      '同じ「AI を使う」でも、人によって使っているレイヤーは大きく異なります——チャット欄に留まる人もいれば、エージェントをオーケストレーションしている人もいる。下のレイヤー図は「AI を使う」を 6 段に分解したもので、各段は下の段の上に乗っています。初心者はまず L1 を使い込み、必要に応じて下に進めば十分。一気に全段を跨ぐ必要はありません。この図を頭に入れておくと、AI Academy / 実践 / 基礎の各記事がどのレイヤーの話か一瞬で掴めます。',
+      '以下の 6 つは、このサイトの学習用の地図です。業界標準でも、順に積み上げる必須の構成でもありません。MCP、Skills、A2A、エージェントは必要な場合に採用し、評価・安全・権限・コスト管理は最初の実験から全体に適用します。',
     layers: [
       {
         level: 'L1',
-        name: 'Chat（対話）',
+        name: 'モデル呼び出し（Model API）',
         description:
-          'ウェブやアプリでモデルと一問一答する層。今日の AI 利用の 99% はここに留まり、日常タスクの大半はこれで十分です。チャットで完結することに対して、わざわざ上位レイヤーを持ち出す必要はありません。最初の 1 週間は完全にここに留まり、プロンプトを明確に書く力を鍛えましょう。',
+          'モデルサービスを呼ぶ際は、タイムアウト、レート制限、回数を限定したリトライ、フォールバック、使用量の記録が必要です。会話の状態保存や課金方法は API と利用経路によって異なります。',
       },
       {
         level: 'L2',
-        name: 'Files & Multimodal',
+        name: 'コンテキスト（Prompt & Context）',
         description:
-          'PDF や画像、音声ファイルを読み込ませ、その内容に基づいた回答を得る段階です。画像の説明や会議の文字起こし、データ分析まで、AI を「汎用的な知能」から「手元の資料を扱う実務パートナー」へと拡張します。',
+          'システム指示、例示、ファイル、検索結果がモデルに見える情報になります。RAG とコンテキスト設計で資料を選べますが、検索しただけでは回答を検証したことにはなりません。',
       },
       {
         level: 'L3',
-        name: 'Skills / Projects / Custom GPT',
+        name: '構造化出力とツール（Structured Output & Tools）',
         description:
-          '役割やルール、資料をパッケージ化し、自分専用の「ワークスペース」として固定する段階です。毎回同じプロンプトを書く手間を省き、よく使うワークフローを AI 側に定着させます。単なる「利用者」から、AI 環境を自分好みに「構築する人」への大きな転換点です。',
+          '検証可能なデータを返させ、あなたの関数の呼び出しを要求させる層。「話す」から「実行する」への境界で、核心は入力・出力・エラー・権限の契約設計です。',
       },
       {
         level: 'L4',
-        name: 'Tool Use / Function Calling',
+        name: 'プロトコルと再利用（MCP / Skills / A2A）',
         description:
-          'AI が必要に応じて、計算機や検索、外部 API などのツールを自ら呼び出す段階です。「言葉で答える」から「実務をこなす」への境界線です。一つの指示から、データの取得・分析・アウトプットまでを、AI が一連の流れとして実行できるようになります。',
+          'MCP はツールとデータ、Skills は再利用可能な指示と任意のスクリプト、A2A はエージェント間通信を扱います。必要なものを選び、クライアントの対応機能・認証・権限を確認します。すべてを使う必要はありません。',
       },
       {
         level: 'L5',
-        name: 'MCP / A2A（プロトコルとエコシステム）',
+        name: 'エージェントループ（Agent Loop & Harness）',
         description:
-          '異なる AI やツール同士を繋ぐ共通規格（プロトコル）の層です。これにより、特定の AI サービスに縛られることなく、作成したツールや Skill を様々な環境で使い回せるようになります。AI が孤立した存在から、社会的なエコシステムの一部へと組み込まれる段階です。',
+          '目標と境界の中で、計画・ツール呼び出し・観察を繰り返します。Coding agent はこの層です。本当の工数は harness、つまりログ、承認、停止条件、リプレイにあります。',
       },
       {
         level: 'L6',
-        name: 'Autonomous Agent（自律エージェント）',
+        name: '評価とガバナンス（Evals & Governance）',
         description:
-          '設定された目標に向けて、AI が自律的に計画を立て、実行と修正を繰り返す最高難度の層です。極めて強力ですが、予期せぬ挙動のリスクも伴います。明確な権限設定や、重要な局面での人間によるチェックが不可欠となる、上級者向けの活用領域です。',
+          '評価セット、回帰ゲート、trace、権限、コスト予算。AI 機能を本番に出せるか、問題が起きたときに原因を特定できるかを決めます。テックリードの主戦場です。',
       },
     ],
-    safetyEyebrow: 'Safety & Risk',
-    safetyTitle: 'AI を使うなら知っておくべき安全の最低ライン',
+    safetyEyebrow: 'Safety Baselines',
+    safetyTitle: 'AI システムを作るときの 6 つの安全ライン',
     safetyDescription:
-      'AI のリアルなリスクは「スカイネット化」ではなく、もっと日常的で具体的な数項目です。下の 6 つは初心者がもっとも見落としやすく、事故率が最も高い領域。これらを理解しておくだけで、現実の問題の 95% は避けられます。「どのモデルが最強か」より遥かに重要です——AI を深く使うほど、これらは頭に常駐させてください。',
+      '過大な権限、データ漏えい、誤った実行、無制限のループにはシステム側の対策が必要です。以下を最初の実験から取り入れ、実際のリスクに応じてテストを追加しましょう。',
     safetyItems: [
       {
-        title: 'プロンプトインジェクション',
+        title: 'Prompt Injection：モデルが読む内容を信用しない',
         description:
-          'OWASP（Web アプリケーションセキュリティの国際団体）は 2024 年以降、プロンプトインジェクション を LLM アプリ最大のリスク（LLM01）として挙げ続け、2026 年も首位のまま。攻撃者は AI が読み込む Web ページ、PDF、メール、ファイル名、画像メタデータなどの「間接経路」から悪意ある指示を紛れ込ませ、本来許可されない行動を AI に実行させます。鉄則：AI を「渡された資料をすべて信じてしまう新人」と捉え、実害を伴う操作（データ削除、送金、メール送信、本番コード書込み）は内容を確認せずに自動実行させない。',
+          'Web ページ、文書、メール、チケット、検索結果のどこにでも指示は潜み得ます。原則は、モデルの出力で権限の高い操作を直接動かさないこと。ツール呼び出しの引数は、モデルが「理解した」と信じるのではなく、あなたのコードで再検証します。',
       },
       {
-        title: 'データ漏洩とプライバシー',
+        title: '認証情報と最小権限',
         description:
-          '入力した情報は、サービス提供側で「学習」に使われる可能性があります。無料版ではデフォルトで学習対象となることが多いため、機密情報や個人情報の入力には細心の注意が必要です。ビジネスでの利用や機微なデータを扱う場合は、学習に利用されない企業プランや API、あるいはローカル環境での利用を選択しましょう。',
+          'エージェントに個人の認証情報を使わせないこと。独立した ID、短期トークン、タスクに必要なだけの権限を与え、ツールへのアクセスはゲートウェイやプロキシ層で集中的に認可・監査します。サービスアカウントの管理と同じ考え方です。',
       },
       {
-        title: 'ハルシネーションと引用の責任',
+        title: 'データの境界',
         description:
-          'AI は分からないことでも自信たっぷりに「もっともらしい嘘」をつくことがあります。AI の回答を鵜呑みにせず、事実確認は必ず自分で行うのが鉄則です。特に自分の名前で出す文書や責任を伴う内容については、「AI が下書きし、人間が責任を持って校正する」という流れを徹底してください。',
+          'まずデータを分類し、各分類がどのモデル経路を通れるかを決めます。コンシューマー向け製品、エンタープライズ版、クラウド基盤上のモデルでは、データ利用条件も保存リージョンも異なります。trace やログにもユーザーデータが含まれることを忘れずに。',
       },
       {
-        title: '著作権とコンプライアンス',
+        title: 'サプライチェーン：指示・コード・権限を確認',
         description:
-          'AI による生成物の著作権は、まだ法的な整備の途上にあります。商用目的で利用する場合は、生成物の商業利用を保証しているプランを選び、どのような指示で生成したかの記録を残すことが推奨されます。また、所属組織が定めている AI 利用ポリシーを事前に確認し、ルールを遵守することも重要です。',
+          'Skill は指示だけの場合も、スクリプトを含む場合もあります。MCP server はローカルでもリモートでも動きます。出所、実行環境、実際の権限、更新内容をそれぞれ確認します。',
       },
       {
-        title: '認知能力への過度な依存',
+        title: '不可逆な操作には人の確認を',
         description:
-          'AI に頼りすぎると、思考を外注することに慣れてしまい、自分の「考える力」が低下する恐れがあります。特に重要な判断や創造的な仕事においては、あえて AI を使わずに考えてみる時間を持ちましょう。AI はあなたの判断力を「増幅」させる道具であり、自分自身の核となる思考力があってこそ真価を発揮します。',
+          'データ削除、支払い、外部への送信、本番デプロイ。こうした操作はデフォルトで人の承認を必須とし、dry-run とリプレイ可能な記録を用意します。エージェントが強力になるほど、この線は外せません。',
       },
       {
-        title: '感情投影とメンタルヘルス',
+        title: 'コストと暴走ループ',
         description:
-          'AI の自然な対話は、時に本物の人間のような親しみを感じさせますが、AI は心を持った友人ではありません。心理的な悩みや人生の大きな決断については、AI ではなく信頼できる人間に相談すべきです。現実の人間関係よりも AI との対話に心地よさを感じ始めたら、少し立ち止まって自分を見つめ直してみましょう。',
+          'エージェントはリトライし、ループし、長い文書を何度もコンテキストに詰め込みます。タスクごとに最大ステップ数、タイムアウト、予算上限を設け、異常な呼び出し量にはアラートを。外部依存にサーキットブレーカーを置くのと同じです。',
       },
     ],
-    landscapeEyebrow: 'Model Landscape · May 2026',
-    landscapeTitle: '2026 年 5 月時点の AI モデル／ベンダー全景',
+    pitfallsEyebrow: 'Common Pitfalls',
+    pitfallsTitle: 'AI を使うときに陥りやすい 8 つの誤解',
+    pitfallsDescription:
+      '確率的な出力を確定した事実として扱ったり、従来の確認を省いたりすると問題につながります。以下の例で自分のワークフローを点検しましょう。',
+    pitfalls: [
+      {
+        title: 'デモが動いても、本番に出せるとは限らない',
+        description:
+          'デモで分かるのは、一部の例が動いたことです。本番前には境界入力、失敗時の対応、評価、費用、権限も確認します。必要な工数は用途とリスクによって異なります。',
+      },
+      {
+        title: 'アサーションの発想で AI をテストする',
+        description:
+          '形式、フィールド、分類ラベル、決定的なツール契約はアサーションで確認できます。自由回答は文字列の完全一致だけで判定せず、評価基準と人の校正を使い、反復時のばらつきも見ます。',
+      },
+      {
+        title: 'プロンプトをコードに直書きし、版管理しない',
+        description:
+          'プロンプトは振る舞いに最も影響する「設定」なのに、コードのあちこちで気軽に書き換えられがちです。バージョン管理し、変更のたびに評価セットを回す。DB マイグレーションと同じ慎重さで扱いましょう。',
+      },
+      {
+        title: '何でもコンテキストに詰め込む',
+        description:
+          '無関係・矛盾する資料は回答を妨げ、長い入力は費用や遅延を増やす場合があります。全文、検索、要約をタスクごとに比べ、情報の欠落も確認します。短ければよいとも限りません。',
+      },
+      {
+        title: 'エージェントに自分のアカウントで作業させる',
+        description:
+          '手軽さから個人トークンや管理者権限を渡すのは、Web の内容に影響され得るプログラムを本番環境に置くのと同じです。独立した ID と最小権限は初日から。',
+      },
+      {
+        title: '単価だけを見て、タスク全体のコストを計算しない',
+        description:
+          'タスク費用は、各呼び出しの入力・出力・キャッシュ使用量に各単価を掛け、ツールと実行環境の費用を加えて集計します。リトライやループも含め、成功率と人の確認時間も比較します。',
+      },
+      {
+        title: '新しいモデルが出るたびに乗り換える',
+        description:
+          '評価セットがないまま乗り換えても、良し悪しは感覚でしか判断できません。代表的なサンプルを 20〜50 件用意し、それで新モデルを比較すれば、乗り換えは賭けではなく測定可能なアップグレードになります。',
+      },
+      {
+        title: '流暢さを正しさと取り違える',
+        description:
+          'AI の回答が流暢であるほど、人は警戒を解きがちです。数字、引用、リンク、人名、法令など確認できる事実は、必ず元の資料に戻って確かめましょう。自分の名前で外に出す内容は、常に「AI が下書き、自分が確認、それから送る」の順で。',
+      },
+    ],
+    landscapeEyebrow: 'Choosing Models',
+    landscapeTitle: '型番を覚えなくても、モデルは選べる',
     landscapeDescription:
-      'AI 業界の進化は驚異的に速いため、以下のリストは執筆時点（2026年5月）での主要な顔ぶれを示す参考資料です。順位付けではなく、知らない名前が出てきた際に「ああ、あそこのモデルか」と把握するための地図として活用してください。最新動向は AI Radar で定期的に更新することをお勧めします。',
-    landscapeVendors: [
+      'ここでは繰り返し使える選定の手順を扱います。機能・料金・利用経路は変わるため、選択時は公式資料と自分のテストで確認します。最近の動向は月報で振り返れます。',
+    landscapeRules: [
       {
-        name: 'OpenAI',
-        models: 'GPT-5.5 / GPT-5 系列 / o シリーズ推論',
+        title: 'まず階層、次にベンダー',
+        hint: 'フラッグシップ / バランス / 軽量',
         description:
-          'ChatGPT、Custom GPT、Sora 動画、Realtime API 音声。エコシステムが最も完成しており、一般ユーザー認知度と企業導入実績で先行。',
+          '品質・速度・予算で候補を絞り、軽量な方法で基準を作ります。実測した効果に見合う場合に推論量やモデル能力を上げます。階層の名称は統一規格ではありません。',
       },
       {
-        name: 'Anthropic',
-        models: 'Claude Opus 4.7 / Sonnet 4.6 / Haiku 4.5',
+        title: '自分の評価セットで判断する',
+        hint: '実データ 20〜50 件',
         description:
-          'Skills、Projects、Claude Code、Computer Use。執筆・コーディング・長文コンテキスト・エージェント安全性で安定との評価。',
+          'まず代表例 20〜50 件で候補を比較し、初期の診断に使います。調整に使わないテストセットも残し、失敗例や境界例を追加します。少数の例で合格しても、本番の信頼性を保証するものではありません。',
       },
       {
-        name: 'Google',
-        models: 'Gemini 3.1 Pro / Gemini Flash / Gemma 4',
+        title: '単価ではなくタスクのコストを計算する',
+        hint: 'タスク全体の費用と遅延',
         description:
-          'Gems、AI Studio、Imagen、Veo 動画、NotebookLM。マルチモーダルと科学推論が強く、無料枠も寛大。',
+          '安いモデルでも、リトライや長いプロンプト、多くのエージェントターンが必要なら総コストは高くなり得ます。レイテンシも見ましょう。対話型の用途は最初の token までの時間に敏感です。',
       },
       {
-        name: 'xAI',
-        models: 'Grok 4 系列',
-        description: 'X のリアルタイムデータと深く統合、コーディング系ベンチマークで上位常連。',
+        title: 'API か、オープンウェイトか',
+        hint: 'データ所在地 / プライベート運用',
+        description:
+          'ホスト型 API は試作に便利です。オープンウェイトはオフライン、データの保管要件、カスタマイズ、大規模推論にも候補になります。ライセンス、ハードウェア、運用、安全、実際の使用量を比較して選びます。',
       },
       {
-        name: '中国系フラッグシップ',
-        models: 'DeepSeek V4 / GLM-5.1 / Qwen 3 / Doubao / Kimi',
+        title: 'エンタープライズでは提供経路を見る',
+        hint: 'クラウド基盤上のモデル',
         description:
-          'オープン+低コスト路線の代表。一部はすでに国際フラッグシップに肉薄／一部凌駕。中国語タスクと国内コンプライアンス用途で第一候補。',
+          '同じモデルでも、公式 API、Azure、AWS、Google Cloud など提供経路によって、データ条件、利用可能リージョン、クォータ、課金方式が異なることがあります。企業導入では、モデルより先に経路を選ぶことも多い。',
       },
       {
-        name: 'Meta',
-        models: 'Llama 4 系列',
+        title: '差し替え可能性を残す',
+        hint: '呼び出し層を抽象化',
         description:
-          'オープンソース生態系の主軸。ローカル展開、プライベート化、ファインチューニングの起点として最有力。',
-      },
-      {
-        name: 'Mistral / Cohere / その他',
-        models: '特化領域・エンタープライズ',
-        description:
-          '欧州コンプライアンス、業界特化、エンタープライズ RAG など、選択肢として有用。',
+          '呼び出し層を分離し、モデル名とパラメータを設定に出すと移行を楽にできます。ただし、ツール呼び出し、Schema 対応、エラーの意味などの差異には対応し、再評価が必要です。',
       },
     ],
+    landscapeLatestLabel: '直近の月次レビュー',
+    landscapeLatestCta: '最新の Radar 月報を読む',
     landscapeNote:
-      '補足：MCP や A2A といった接続規格は、主要各社が参加する非営利団体によって共同管理されています。これにより、特定の企業サービスに縛られる「ベンダーロックイン」が解消されつつあります。今学んでいるスキルやツール連携の手法は、将来別の AI 環境へ移ってもそのまま役立つ可能性が非常に高い、息の長い知識となるでしょう。',
+      'MCP と Skills は再利用を助けますが、任意のクライアントでそのまま動く保証はありません。対応バージョン・機能・実行環境・認証・権限を確認し、モデルと利用経路の機能は公式資料で確かめましょう。',
+    firstDayEyebrow: 'First Hour',
+    firstDayTitle: '最初の 1 時間から始める 6 つの実験',
+    firstDayDescription:
+      'まず全員向けの 3 つを行い、開発者は必要に応じて残りへ進みます。各 10 分ほどから始め、環境設定や API の準備は別に時間を取りましょう。一度に終える必要はありません。承認済みのツールと公開・匿名化資料を使い、API には先に使用量上限を設けます。',
+    firstDaySteps: [
+      {
+        who: '全員',
+        title: '実際のタスクで 1 回聞き、さらに 2 回深掘りする',
+        description:
+          '今日もともとやるべきことを 1 つ選びます。切り出しにくいメール、整理すべき議事録、読むべき英語の資料。「目的 / 背景 / 制約 / 出力形式」を明確にしてから聞き、少なくとも 2 回は追加で質問して、最初の案と 3 回目の案の差を感じてください。',
+      },
+      {
+        who: '全員',
+        title: 'よく知っている資料をアップロードし、1 項目ずつ照合する',
+        description:
+          'アップロード可能な公開・匿名化資料を選び、要点と原文の該当箇所を示させて照合します。資料に答えのない質問も加え、不明と答えるかを確認しましょう。',
+      },
+      {
+        who: '全員',
+        title: '自分やチームのレッドラインを 3 つ書く',
+        description:
+          'どのデータを AI に送ってはいけないか。どの仕事を AI に直接完結させてはいけないか。どの結果は人の確認なしに外へ出してはいけないか。まず 3 つで十分です。これが以降のすべての安全な習慣の出発点になります。',
+      },
+      {
+        who: '開発者',
+        title: 'coding agent にリポジトリを読ませ、変更させる',
+        description:
+          'よく知っているプロジェクトで、まずはアーキテクチャの説明や、ある機能の入口とテストの場所を探させるだけにします。次に小さなタスク（テスト追加、lint 修正、小さなバグ修正）を任せ、diff を重点的にレビューします。変えるべきでない箇所を変えていないか、テストを実行したか。',
+      },
+      {
+        who: '開発者',
+        title: 'API で構造化出力を 1 回受け取る',
+        description:
+          '構造化出力対応の API で架空の記録を 1 件抽出し、Schema と値を確認します。空入力、無関係な入力、出力の打ち切りも試し、拒否や検証失敗を別の分岐で扱います。無制限にリトライしません。',
+      },
+      {
+        who: '開発者',
+        title: '評価ケースを 10 件書き、コストを把握する',
+        description:
+          '「入力 + 期待する振る舞い」を数件から 10 件へ増やし、情報不足や境界例も含めます。プロンプト変更後に再実行し、使用量・単価・ツール費用・遅延を記録します。これは初期診断であり、本番品質の証明ではありません。',
+      },
+    ],
     planEyebrow: '30 / 60 / 90 Days',
-    planTitle: '推奨される 30 / 60 / 90 日のリズム',
+    planTitle: '90 日の転換リズム',
     planDescription:
-      '「1 ヶ月で AI エキスパートになる」のような KPI は立てないでください。大半の人は 2 週目で挫折します。下の 4 段階は、続けられた人たちの最大公約数です。興味に応じて飛ばしても、期間を伸ばしても構いません。重要なのはリズムであり、進度ではありません。',
+      '目標は 90 日で専門家になることではなく、90 日以内に AI を具体的な 1 つの仕事に本当に組み込み、その後も追い続けられる習慣を作ることです。各段階には、全員に共通する成果と、開発者が追加で取り組む成果の 2 種類を書いています。',
     planPhases: [
       {
         phase: 'Week 1',
-        name: '導入：日常習慣を作る',
+        name: '習慣：毎日 AI で本物の仕事を 1 つ',
         description:
-          '最初の目標は「何かが起きたら、まず AI に聞いてみる」という反射を身につけることです。毎日、小さな本物の仕事を一つだけ任せてみてください。良い回答が得られたプロンプトをストックし、基礎シリーズに目を通す。この時期に重要なのは、知識の量よりも、毎日ツールを触り続ける継続性です。',
+          '全員：毎日少なくとも 1 つの実際の仕事を AI に任せ、「最初の 1 時間」の前半 3 つの実験を終え、概念レイヤーのうち馴染みの薄い記事を読む。開発者：さらに coding agent を日々の開発に取り入れ、すべての変更をしっかりレビューする。',
       },
       {
         phase: 'Day 30',
-        name: '習得：ワークフローを固める',
+        name: '蓄積：最初の再利用可能な成果',
         description:
-          'よく使う手順を Skill や Project として固定し、入力の手間を省く「効率化」のフェーズです。長文の資料を読み込ませるなど、活用範囲を広げます。また、情報のキャパシティ（Token）を意識した指示出しを覚え、特定の得意分野（ライティングやコーディングなど）を一歩深く使いこなしてみましょう。',
+          '全員：よく使うワークフローを 2〜3 個、Project や Skill、カスタムアシスタントにまとめ、人が確認すべき出力を書き出す。開発者：最初の社内向け AI 機能を届ける。構造化出力、リトライとフォールバック、20 件以上の評価ケースを備え、1 回あたりのコストを把握する。',
       },
       {
         phase: 'Day 60',
-        name: '拡張：ツールとエコシステム',
+        name: '拡張：資料とツールをつなぐ',
         description:
-          '単なる対話を超えて、AI がツールを使って実務をこなす仕組みを理解するフェーズです。エージェント系のツールを一度体験し、その可能性と限界を肌で感じてみてください。この頃には、最新ニュースの専門用語も自然と理解できるようになり、流行に流されず自分の目的に合ったツールを選べるようになります。',
+          '全員：チームの文書やデータに基づいて AI を働かせ、ツールを呼び出したりブラウザを操作したりするエージェント型の製品を試し始める。開発者：必要に応じて検索とツール呼び出しをつなぎ、リクエストに trace を付け、プロンプトをバージョン管理し、評価セットを CI に組み込む。',
       },
       {
         phase: 'Day 90',
-        name: '転換：消費者から構築者へ',
+        name: '波及：個人からチームへ',
         description:
-          '自分の専門領域に合わせて、AI を使って新たな価値を「形にする」段階です。自分専用のエージェントを構築したり、独自の知識ベース（RAG）を作成したりと、具体的な成果物を作り上げます。ここまで来れば、単なるユーザーではなく、AI を駆使して周囲や社会に貢献できる構築者としての第一歩を踏み出しています。',
+          '全員：チーム向けの AI 利用規程を 1 枚にまとめ（ツール、データ、人の確認が必須な事項）、社内で一度共有する。開発者：エージェントを作るなら、まず ID、権限、承認、停止条件、リプレイを設計する。ここまで来れば、この道をチームの他の人と一緒に歩けます。',
       },
     ],
     faqEyebrow: 'FAQ',
-    faqTitle: 'よくある質問',
+    faqTitle: 'よく聞かれる質問',
     faqDescription:
-      '一番よく聞かれる質問をまとめました。今の自分の悩みに当たるものだけ読めば十分です。',
+      '今の疑問に関係する項目だけ読めば十分です。より詳しい回答は FAQ 全文にあります。',
     faqItems: [
       {
-        question: 'プログラミングを学ぶ必要はありますか？',
+        question: 'コードを書かなくても、このルートは役に立つ？',
         answer:
-          '全く必要ありません。最初の 1 ヶ月は、チャット欄での対話だけで十分な恩恵を受けられます。将来的に高度な自動化やシステム連携に興味が湧いた時に、少しずつ学べば大丈夫です。その学習自体も AI が強力にサポートしてくれます。まずは「使い始めること」が、学習への最短ルートです。',
+          '役に立ちます。「AI を日々の仕事に取り入れる」ルートを選び、「最初の 1 時間」のうち「全員」と書かれた 3 つの実験を行い、90 日のリズムの「全員」の部分に沿って進めてください。能力レイヤー、モデルの選び方、安全の各パートはコードを書かなくても理解でき、早めに判断軸を持つほど役立ちます。',
       },
       {
-        question: '無料版で足りますか？',
+        question: '機械学習やディープラーニングを先に学ぶべき？',
         answer:
-          '基本的な学習には無料版でも十分役立ちます。ただし、最先端のモデルや高度な機能（複雑な推論や長文処理など）は有料版に限定されていることが多いのも事実です。仕事の生産性を劇的に上げたいと考えるなら、まずは 1 ヶ月だけ最高峰のモデルを試してみてください。その性能差が、新しい活用のヒントになるはずです。',
+          'AI アプリを作るなら、先に学ぶ必要はありません。最初の 90 日の重点は、呼び出し、コンテキスト、評価、エンジニアリングガバナンスです。ファインチューニング、推論コストの最適化、論文の読解が必要になったら、「基礎」カテゴリで該当部分を補えば十分です。',
       },
       {
-        question: '中国系モデルと海外モデル、どちらを使う？',
+        question: 'Python と TypeScript、どちら？',
         answer:
-          '用途次第です。中国語の長文作成や中国国内向け業務、現地クラウドとの連携では中国系モデルが有力な一方、高度なプログラミング、複雑な多言語対応、広いエコシステム連携では海外の主要モデルが優れている場合があります。最も安定するのは両方のアカウントを持ち、タスクごとに切り替える使い方です。',
+          'チームの既存スタックを使ってください。Python はデータ処理、評価、学習のエコシステムが充実し、TypeScript は Web プロダクトへの組み込みに向きます。主要なモデル SDK は両方にあり、言語はボトルネックになりません。',
       },
       {
-        question: '入力データは学習に使われますか？',
+        question: 'どの coding agent を選ぶべき？',
         answer:
-          '製品とプランによります。多くのベンダーは企業版／API 経路で学習に使わないと明示する一方、無料版は規約がまちまち（デフォルトで使用、手動オフが多い）。顧客データ、社内コード、個人情報を扱う際は必ず設定を確認し、必要ならローカルモデルか企業アカウントを使ってください。',
+          'まずデータ、権限、環境、予算の条件を確認し、同じリポジトリのタスクで完了率、変更範囲、テスト、総所要時間を比較します。タスクの分割と人のレビューも結果に影響します。',
       },
       {
-        question: '学べば学ぶほど不安になりませんか？',
+        question: '最初のプロジェクトは何がいい？',
         answer:
-          '誰もが通る道です。情報のスピードが速すぎて、全てを追いかけるのは不可能です。大切なのは「自分に関係のある情報」だけに絞ること。当サイトの AI Radar では、「無視しても良い情報」を明確に示すことで、皆さんが本質的な学びに集中できるよう工夫しています。',
+          '社内向けで、リスクが低く、既存データがあり、結果を測定できるもの。チケット分類、社内文書 Q&A、PR や会議の要約、ログの分類など。最初から顧客向けや不可逆な操作を伴うものは避けましょう。',
       },
       {
-        question: 'どれくらいの時間をかけるべきですか？',
+        question: '社内データをモデルに送ってもいい？',
         answer:
-          '最初の 1 ヶ月は毎日 30 分程度で十分です。しかも、その時間は「AI の勉強」ではなく、「実際の仕事を AI に任せる」ことに使ってください。「まず AI に相談する」という習慣を身につけることが、どんな教科書を読むよりも強力な武器になります。日常に組み込めたら、週に 1〜2 時間最新情報をチェックすれば十分です。',
+          '経路と契約次第です。まずデータを分類し、各経路（コンシューマー製品、エンタープライズ版、クラウド基盤）のデータ利用条件と保存リージョンを確認します。不確かなデータは送らず、法務やセキュリティ部門に早めに関わってもらいましょう。',
       },
       {
-        question: 'モデルが多すぎて選べない時は？',
+        question: 'モデルの更新が速すぎて、学んだことがすぐ古くならない？',
         answer:
-          '最初の 1 ヶ月は選ばないでください——安定してログインできるものを 1 つ選ぶだけで OK。2 ヶ月目に 1〜2 候補と比較し、それぞれが得意なタスク種別を把握。3 ヶ月目にマルチモデル・ルーティング（タスクごとにモデルを変える）を検討。新製品追いと頻繁な乗り換えは、初心者が時間を浪費する 2 大トラップです。',
+          '型番と価格は古くなりますが、エンジニアリングの力は古くなりません。コンテキストの設計、評価の作り方、ツール契約の定義、権限とコストの管理は、どの世代のモデルでも通用します。このサイトの入門コンテンツが意図的に具体的な型番を書かないのも、そのためです。',
       },
     ],
     readMoreLabel: '完全ガイドを読む →',
-    nextTitle: '次に進む場所',
-    nextDescription: 'このガイドを読んだら、興味に合わせて深い入口へ進めます。',
+    nextTitle: '次はどこへ',
+    nextDescription: 'ルートを決めたら、必要に応じてより深いカテゴリへ進みましょう。',
     nextLinks: [
-      { label: 'Daily を見る', href: '/ja/radar/' },
-      { label: 'Academy へ', href: '/ja/academy/' },
-      { label: '実践へ', href: '/ja/engineering/' },
-      { label: '基礎へ', href: '/ja/foundations/' },
+      {
+        label: '毎日の AI Radar',
+        href: '/ja/radar/',
+      },
+      {
+        label: 'エンジニアリング実践',
+        href: '/ja/engineering/',
+      },
+      {
+        label: '公式講座ガイド',
+        href: '/ja/academy/',
+      },
+      {
+        label: '基礎',
+        href: '/ja/foundations/',
+      },
+    ],
+    referencesTitle: '参考資料',
+    references: [
+      {
+        label: 'MCP · Architecture',
+        href: 'https://modelcontextprotocol.io/docs/learn/architecture',
+      },
+      {
+        label: 'Agent Skills · Overview',
+        href: 'https://agentskills.io/home',
+      },
     ],
   },
 } as const;

@@ -31,6 +31,17 @@ const sortByAcademyOrder = (a: EntryListItem, b: EntryListItem) => {
 };
 
 const latestRadar = entries.find((item) => item.entry.data.category === 'radar' && item.entry.data.coverImage);
+// Link to the latest dated review without implying that it covers the current month.
+const latestMonthlyRadar = entries.find(
+  (item) => item.entry.data.category === 'radar' && item.entry.data.cadence === 'monthly',
+);
+const formatEntryDate = (date: Date) =>
+  new Intl.DateTimeFormat(locale === 'ja' ? 'ja-JP' : 'zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'Asia/Tokyo',
+  }).format(date);
 const aiBasicsEntries = entries
   .filter((item) => item.entry.data.category === 'start' && item.entry.data.academy?.series === aiBasicsSeries)
   .sort(sortByAcademyOrder);
@@ -79,22 +90,44 @@ const radarImageHeight = 1536;
     <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.audienceTitle}</h2>
     <p class="theme-muted mt-4 text-base leading-7">{text.audienceDescription}</p>
   </div>
-  <div class="mt-6 grid gap-4 md:grid-cols-3">
-    {text.audiences.map((item) => (
-      <article class="theme-panel rounded-[1.25rem] p-5 flex flex-col">
-        <h3 class="theme-heading text-lg font-semibold">{item.label}</h3>
-        <p class="theme-muted mt-3 text-sm leading-6 flex-1">{item.description}</p>
-        <a href={normalizeHref(item.ctaHref)} class="theme-chip theme-chip-link mt-4 inline-flex w-fit rounded-xl px-3 py-1 text-sm">
-          {item.ctaLabel}
-        </a>
+  <div class="mt-6 grid gap-4 md:grid-cols-2">
+    {text.audiences.map((item, index) => (
+      <article class="theme-panel start-track rounded-[1.25rem] p-5 flex flex-col" data-start-track={index + 1}>
+        <div class="flex items-center justify-between gap-3">
+          <span class="theme-chip flex h-10 w-10 items-center justify-center rounded-2xl text-sm font-semibold">
+            {(index + 1).toString().padStart(2, '0')}
+          </span>
+          <span class="theme-muted text-xs font-semibold uppercase tracking-[0.18em]">{item.role}</span>
+        </div>
+        <h3 class="theme-heading mt-4 text-xl font-semibold">{item.label}</h3>
+        <p class="theme-muted mt-3 text-sm leading-6">{item.description}</p>
+        <div class="start-milestone mt-4 rounded-[1rem] p-4 flex-1">
+          <p class="theme-kicker text-[11px] font-semibold uppercase tracking-[0.2em]">{text.audienceMilestoneLabel}</p>
+          <p class="theme-heading mt-2 text-sm leading-6">{item.milestone}</p>
+        </div>
+        <ul class="mt-4 grid gap-2">
+          {item.links.map((link) => (
+            <li>
+              <a href={normalizeHref(link.href)} class="theme-chip theme-chip-link inline-flex w-fit rounded-xl px-3 py-1 text-sm">
+                {link.label} →
+              </a>
+            </li>
+          ))}
+        </ul>
       </article>
     ))}
+  </div>
+  <div class="theme-button-soft mt-4 flex flex-col gap-3 rounded-[1.25rem] p-4 sm:flex-row sm:items-center sm:justify-between">
+    <p class="theme-muted text-sm leading-6">{text.basicsHint}</p>
+    <a href="#ai-basics-for-everyone" class="theme-chip theme-chip-link inline-flex w-fit shrink-0 rounded-xl px-3 py-1 text-sm font-semibold">
+      {text.basicsHintCta}
+    </a>
   </div>
 </section>
 
 <section class="mt-12" data-start-panel="route">
   <div class="max-w-3xl">
-    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Why Start Here</p>
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.promiseEyebrow}</p>
     <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.promiseTitle}</h2>
   </div>
   <div class="mt-6 grid gap-4 md:grid-cols-3">
@@ -184,7 +217,7 @@ const radarImageHeight = 1536;
 
 <section id="first-step" class="mt-12 scroll-mt-56" data-start-panel="route">
   <div class="max-w-3xl">
-    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">Route</p>
+    <p class="theme-kicker text-xs font-semibold uppercase tracking-[0.3em]">{text.stepsEyebrow}</p>
     <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.stepsTitle}</h2>
   </div>
   <div class="mt-6 grid gap-4">
@@ -218,8 +251,11 @@ const radarImageHeight = 1536;
   <ol class="mt-6 grid gap-4 md:grid-cols-2">
     {text.firstDaySteps.map((step, index) => (
       <li class="theme-panel rounded-[1.25rem] p-5">
-        <div class="theme-chip flex h-10 w-10 items-center justify-center rounded-2xl text-sm font-semibold">
-          {(index + 1).toString().padStart(2, '0')}
+        <div class="flex items-center justify-between gap-3">
+          <div class="theme-chip flex h-10 w-10 items-center justify-center rounded-2xl text-sm font-semibold">
+            {(index + 1).toString().padStart(2, '0')}
+          </div>
+          <span class="start-who rounded-full px-3 py-1 text-xs font-semibold" data-start-who={step.who}>{step.who}</span>
         </div>
         <h3 class="theme-heading mt-4 text-lg font-semibold">{step.title}</h3>
         <p class="theme-muted mt-3 text-sm leading-6">{step.description}</p>
@@ -291,16 +327,42 @@ const radarImageHeight = 1536;
     <h2 class="theme-heading mt-3 text-3xl font-semibold leading-tight md:text-4xl">{text.landscapeTitle}</h2>
     <p class="theme-muted mt-4 text-base leading-7">{text.landscapeDescription}</p>
   </div>
-  <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-    {text.landscapeVendors.map((vendor) => (
-      <article class="theme-panel rounded-[1.25rem] p-5">
-        <h3 class="theme-heading text-lg font-semibold">{vendor.name}</h3>
-        <p class="theme-muted mt-2 text-xs uppercase tracking-[0.18em]">{vendor.models}</p>
-        <p class="theme-muted mt-3 text-sm leading-6">{vendor.description}</p>
-      </article>
+  <ol class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {text.landscapeRules.map((rule, index) => (
+      <li class="theme-panel rounded-[1.25rem] p-5">
+        <div class="flex items-center justify-between gap-3">
+          <span class="theme-chip flex h-9 w-9 items-center justify-center rounded-xl text-xs font-semibold">
+            {(index + 1).toString().padStart(2, '0')}
+          </span>
+          <span class="theme-muted text-[11px] font-semibold uppercase tracking-[0.16em]">{rule.hint}</span>
+        </div>
+        <h3 class="theme-heading mt-4 text-lg font-semibold">{rule.title}</h3>
+        <p class="theme-muted mt-3 text-sm leading-6">{rule.description}</p>
+      </li>
     ))}
-  </div>
+  </ol>
+  {latestMonthlyRadar ? (
+    <a
+      href={articlePath('radar', latestMonthlyRadar.slug, locale)}
+      class="theme-panel-strong theme-panel-link mt-6 flex flex-col gap-3 rounded-[1.25rem] p-5 shadow-glow md:flex-row md:items-center md:justify-between"
+      data-start-latest-monthly
+    >
+      <span>
+        <span class="theme-kicker block text-xs font-semibold uppercase tracking-[0.3em]">{text.landscapeLatestLabel}</span>
+        <span class="theme-heading mt-2 block text-lg font-semibold">{latestMonthlyRadar.entry.data.title}</span>
+        <span class="theme-muted mt-1 block text-xs">{formatEntryDate(latestMonthlyRadar.entry.data.date)}</span>
+      </span>
+      <span class="theme-action-primary inline-flex w-fit shrink-0 rounded-xl px-4 py-2 text-sm font-semibold">
+        {text.landscapeLatestCta} →
+      </span>
+    </a>
+  ) : null}
   <p class="theme-muted mt-5 text-sm leading-6 max-w-3xl">{text.landscapeNote}</p>
+  <nav class="mt-4 flex flex-wrap gap-4 text-sm" aria-label={text.referencesTitle}>
+    {text.references.map((reference) => (
+      <a class="theme-muted underline underline-offset-4" href={reference.href}>{reference.label}</a>
+    ))}
+  </nav>
 </section>
 
 <section id="start-faq" class="mt-12 scroll-mt-56" data-start-panel="faq" hidden>
@@ -445,6 +507,16 @@ const radarImageHeight = 1536;
     color: #07111f;
     background: #f8fafc;
     box-shadow: 0 18px 42px rgba(15, 23, 42, 0.22);
+  }
+
+  .start-milestone {
+    border: 1px dashed color-mix(in srgb, currentColor 22%, transparent);
+    background: color-mix(in srgb, currentColor 4%, transparent);
+  }
+
+  .start-who {
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    opacity: 0.85;
   }
 
   .start-hero-action-secondary {
