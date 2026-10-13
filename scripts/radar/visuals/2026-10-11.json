@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-11",
+  "visuals": [
+    {
+      "id": "standard",
+      "sourceUrl": "https://www.latent.space/p/standard-bots",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/0db1b551-c180-466f-b9e7-687852e84d1d_2048x1035.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-11-standard.webp",
+      "sha256": "00737d188f81d4fcc8266b4e9853abbe531c352e742c6d3629ba9e7ee4b9cf03",
+      "credit": "Latent.Space / Standard Bots",
+      "review": "accepted",
+      "zh": {
+        "heading": "Standard Bots：把学习式感知与确定性运动控制分开",
+        "alt": "Standard Bots 用 ClickFind 标注零件与显示匹配的原文界面",
+        "caption": "右侧描出两个匹配物件，左侧列出位置；下方阈值控制哪些候选被识别。这是零件感知的演示，不展示整条运动控制流程，单张截图也不是通用延迟测试。"
+      },
+      "ja": {
+        "heading": "Standard Bots：学習による認識と決定的な動作制御を分ける",
+        "alt": "Standard BotsのClickFindで部品の候補と位置を示す原文の画面",
+        "caption": "右の二つの候補に輪郭が付き、左に位置が並びます。下の閾値は認識する候補を調整します。部品認識のデモで、動作制御全体や一般的な遅延測定ではありません。"
+      }
+    },
+    {
+      "id": "slack",
+      "sourceUrl": "https://www.langchain.com/blog/slack-sdk-managed-deep-agents",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6ac8339e84d69bccaa070219_slack-reactions-loop.gif",
+      "asset": "/images/radar/daily-ai-radar-2026-10-11-slack.webp",
+      "sha256": "3566a21d7458d99a9a572b2495c26320f04c4d141446b107fb72f50f5364eb15",
+      "credit": "LangChain engineering",
+      "review": "accepted",
+      "zh": {
+        "heading": "持续追踪｜Slack reactions：场景词表与置信度回退不能代替执行证据",
+        "alt": "Managed Deep Agents 对 Slack 消息作出表情反应的演示静帧",
+        "caption": "左侧消息获得对应表情，右侧线程再出现文字回应。静帧来自原文动画，用来区分收到请求的反馈与后续答复，不是任务完成或结果正确的凭证。"
+      },
+      "ja": {
+        "heading": "継続追跡｜Slack reactions：状況の語彙と確信度のフォールバックは実行証拠ではない",
+        "alt": "Managed Deep AgentsがSlackのメッセージに反応するデモの静止画",
+        "caption": "左のメッセージに絵文字、右のスレッドに文章の返答が表示されます。原文の動画からの静止画で、受領の表示と後続応答を分けて読む例です。タスク完了や正しさの証明ではありません。"
+      }
+    },
+    {
+      "id": "opentpu",
+      "sourceUrl": "https://github.com/FeSens/openTPU",
+      "originalImageUrl": "https://raw.githubusercontent.com/FeSens/openTPU/700639b410f584472fb139f2e7770c4a8790c5f9/docs/img/card-chat-smi.gif",
+      "asset": "/images/radar/daily-ai-radar-2026-10-11-opentpu.webp",
+      "sha256": "812ba14a219a6ff98444924da507a16c0b0f0e8cb78d60e0ece0f9f0b6922e4a",
+      "credit": "GitHub repo / Programmer Weekly",
+      "review": "accepted",
+      "zh": {
+        "heading": "FeSens/openTPU：把加速器 RTL、模拟器、编译器与运行观测放在一起",
+        "alt": "openTPU 原演示中模型输出与 FPGA 观测面板的静帧",
+        "caption": "左侧是模型输出，右侧监测板卡状态、DRAM与单元活动，并区分 device 与 wall 速度。原动画界面日期为9月27日，是运行观测示例，不能作为10月11日新版性能数字。"
+      },
+      "ja": {
+        "heading": "FeSens/openTPU：アクセラレータのRTL・シミュレーター・コンパイラー・観測を一体化",
+        "alt": "openTPUの元デモでモデル出力とFPGAの観測を並べる静止画",
+        "caption": "左はモデル出力、右はカード状態、DRAM、ユニット活動を示し、deviceとwallの速度を区別します。画面の日付は9月27日で、観測方法の例です。10月11日の新版の性能値としては扱えません。"
+      }
+    }
+  ]
+}
