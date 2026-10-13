@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-12",
+  "visuals": [
+    {
+      "id": "hyset",
+      "sourceUrl": "https://arxiv.org/abs/2607.25718",
+      "originalImageUrl": "https://arxiv.org/html/2607.25718v2/Figure1.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-12-hyset.webp",
+      "sha256": "62d6806edfd74825552d4b9a10b0aaabe33b0d9bb862e14b9697a97c8516181b",
+      "credit": "HYSET paper / The Batch",
+      "review": "accepted",
+      "zh": {
+        "heading": "HYSET：工具不只逐个相关，还要作为集合一起有用",
+        "alt": "HYSET论文对比逐工具检索与集合级超边检索的原始示意图",
+        "caption": "左侧展示工具库、检索器、智能体和工具执行的循环，中间列出单项评分与顺序组合的局限，右侧把整组工具视为一个超边。这里说明选择单位的变化，不是工具已获授权或实际旅行订单已完成的证明。"
+      },
+      "ja": {
+        "heading": "HYSET：ツールは個別の関連性だけでなく、集合として協調して有用である必要がある",
+        "alt": "HYSET論文で個別ツール検索と集合単位のハイパーエッジ検索を比較する原図",
+        "caption": "左はツール庫・検索器・エージェント・実行の循環、中央は個別評価や逐次組み立ての限界、右はツール集合を一つのハイパーエッジとして扱う視点です。選択の単位を説明する図で、実行の認可や旅行予約の完了証拠ではありません。"
+      }
+    },
+    {
+      "id": "ledge",
+      "sourceUrl": "https://github.com/ledgesh/ledge",
+      "originalImageUrl": "https://raw.githubusercontent.com/ledgesh/ledge/3451072bcda792006783d39e36a4ac1d2dfe6a5d/assets/readme/hero.gif",
+      "asset": "/images/radar/daily-ai-radar-2026-10-12-ledge.webp",
+      "sha256": "b448e6915dac57de7c654ec95b26ae6bd7f45da2d0885a42e0d7cd76e1cbd4d1",
+      "credit": "Ledge / GitHub repo",
+      "review": "accepted",
+      "zh": {
+        "heading": "ledgesh/ledge：让 Markdown 代码块、终端与智能体共享可运行笔记",
+        "alt": "Ledge原文动画静帧，展示笔记内的shell、Python与prompt代码块",
+        "caption": "同一篇笔记中，shell与Python块下方可见示例结果，prompt块则写着拟交给智能体的请求。静帧中的“31 Jul”是演示笔记标题，不是10月12日事故记录，也不能凭这张图证明请求已经执行。"
+      },
+      "ja": {
+        "heading": "ledgesh/ledge：Markdownコードブロック、ターミナル、エージェントで実行可能ノートを共有",
+        "alt": "Ledge原文動画の静止画でノート内のshell・Python・promptブロックを示す",
+        "caption": "同じノートでshellとPythonの下に例の出力があり、promptにはエージェントへ渡す予定の依頼が書かれています。「31 Jul」はデモのノート名で、10月12日の事故記録ではありません。この静止画だけでは依頼の実行を証明できません。"
+      }
+    },
+    {
+      "id": "reladraw",
+      "sourceUrl": "https://github.com/reladraw/reladraw",
+      "originalImageUrl": "https://raw.githubusercontent.com/reladraw/reladraw/f9ffa6d3c2caecad1ecfb876c437a07bbdae0cff/docs/gap.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-12-reladraw.webp",
+      "sha256": "d044b549f4f01a1360290b85c9a3cafad2cea49da153cad5abbdf246c24700ea",
+      "credit": "reladraw / GitHub repo",
+      "review": "accepted",
+      "zh": {
+        "heading": "reladraw：用相对位置约束，把智能体生成的关系变成可编辑图形",
+        "alt": "reladraw原文比较自动布局、相对位置声明与绝对像素摆放",
+        "caption": "左侧工具把位置交给自动布局，右侧工具要求手动摆放绝对坐标，中间reladraw直接声明相对位置。箭头表示三类方法的定位比较，不是从左到右运行的处理流水线，图形关系本身仍要人工核实。"
+      },
+      "ja": {
+        "heading": "reladraw：相対位置の制約により、エージェントが生成した関係性を編集可能な図に変換",
+        "alt": "reladraw原文で自動配置・相対位置の宣言・絶対座標配置を比較する図",
+        "caption": "左は位置を自動配置に任せ、右は絶対座標を手で指定し、中央のreladrawは相対位置を宣言します。矢印は方式の位置付けの比較で、左から右へ実行する処理手順ではありません。描かれた関係の真偽は別途確認が必要です。"
+      }
+    }
+  ]
+}
