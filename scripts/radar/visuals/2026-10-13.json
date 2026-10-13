@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-13",
+  "visuals": [
+    {
+      "id": "web-edit",
+      "sourceUrl": "https://simonwillison.net/2026/Oct/12/web-edit/",
+      "originalImageUrl": "https://static.simonwillison.net/static/2026/web-edit.webp",
+      "asset": "/images/radar/daily-ai-radar-2026-10-13-web-edit.webp",
+      "sha256": "3034412c0a3b4f83acb596ea899f2eaa36df26085287c913423b7dfa95032633",
+      "credit": "Simon Willison / web-edit",
+      "review": "accepted",
+      "zh": {
+        "heading": "web-edit 0.1a0：让人直接编辑敏感文件，不必经由模型转述",
+        "alt": "web-edit原文的文件列表与上传界面截图",
+        "caption": "文件列表、下载入口与上传区展示了人通过网页直接操作文件的方式；这张原始截图没有展示凭据内容，也不能证明其他代理已失去目录读取权限。"
+      },
+      "ja": {
+        "heading": "web-edit 0.1a0：モデルを介さず、機密ファイルを人が直接編集可能に",
+        "alt": "web-edit原文のファイル一覧とアップロード画面",
+        "caption": "一覧・ダウンロード・アップロード欄は、人がウェブ画面から直接ファイルを操作する入口を示します。認証情報自体は表示されておらず、他のエージェントからの読み取りが禁止された証拠でもありません。"
+      }
+    },
+    {
+      "id": "sando",
+      "sourceUrl": "https://arxiv.org/html/2604.07599v3",
+      "originalImageUrl": "https://arxiv.org/html/2604.07599v3/svg/SystemDiagram.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-13-sando.webp",
+      "sha256": "a9b6bbc2ea1f07c2a053b0e8baaf66c585fea4f251b3ccb54e31e2a71aaff9fb",
+      "credit": "SANDO paper, Figure 2",
+      "review": "accepted",
+      "zh": {
+        "heading": "SANDO：把障碍物可能到达的空间纳入飞行走廊，安全证明仍有前提",
+        "alt": "SANDO论文图2展示点云、地图跟踪、时间分层安全走廊与轨迹优化",
+        "caption": "左侧从点云、地图跟踪到热图，右侧依次搜索全局路径、构建时间分层走廊并优化轨迹。彩色圆圈与多面体说明障碍物未来可达范围及走廊的变化，不表示真实飞行已满足安全证明的全部假设。"
+      },
+      "ja": {
+        "heading": "SANDO：障害物が到達しうる空間を飛行コリドーに組み込む、安全性の証明には依然として前提が存在",
+        "alt": "SANDO論文の図2で点群・追跡・時空間コリドー・軌道最適化を示す",
+        "caption": "左の点群・地図と追跡・ヒートマップから、右の経路探索・時間層ごとのコリドー生成・軌道最適化へ進みます。色付きの円と多面体は障害物の到達範囲とコリドーの変化であり、実機が安全証明の全仮定を満たした証拠ではありません。"
+      }
+    },
+    {
+      "id": "parallelism",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/6-parallelism-strategies-for-llm",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/ee9c2b7b-4590-4c08-a4ba-003a1848fb18_1200x1200.jpeg",
+      "asset": "/images/radar/daily-ai-radar-2026-10-13-parallelism.webp",
+      "sha256": "9993f7801ddefa5e871ecde7b36f7d767d6ff4315c63dad058869cea6ff21cf7",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "Daily Dose：六种推理并行策略，先找瓶颈再增加通信路径",
+        "alt": "Daily Dose原图比较六类LLM推理并行策略与通信步骤",
+        "caption": "从上到下依次是模型复制、张量切分、分层流水线、上下文分片、专家路由和混合部署。箭头显示各方式的数据传递与合并位置；上下文一行是长提示预填充的示意，不能据此把所有解码 KV 缓存分片实现都理解为同一环形流程。"
+      },
+      "ja": {
+        "heading": "Daily Dose：6つの推論並列戦略、通信パスを増やす前にまずボトルネックを特定する",
+        "alt": "Daily Doseの原図で6種類のLLM推論並列化と通信手順を比較",
+        "caption": "上からモデル複製・テンソル分割・レイヤーのパイプライン・コンテキスト分割・エキスパートのルーティング・ハイブリッドです。矢印はデータの移動と結合箇所を示します。コンテキスト欄は長い入力のプリフィルの模式図で、全てのデコードKV分割が同じリング処理という意味ではありません。"
+      }
+    }
+  ]
+}
