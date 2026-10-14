@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-14",
+  "visuals": [
+    {
+      "id": "source-control",
+      "sourceUrl": "https://www.anthropic.com/engineering/redesigning-source-control",
+      "originalImageUrl": "https://www-cdn.anthropic.com/images/4zrzovbb/website/71c83868210b4b571abb068ea4cd76de749566b1-3840x2995.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-14-source-control.webp",
+      "sha256": "47a61fd33973099ecf6e50952518e8c41ed70156aa49c18a2ac106ad076989cc",
+      "credit": "Anthropic / Scion",
+      "review": "accepted",
+      "zh": {
+        "heading": "Anthropic：Scion把代理规模的源码控制拆成元数据与文件内容",
+        "alt": "Scion原图展示changeset元数据、父关系和内容寻址文件",
+        "caption": "左侧changeset保存作者、父提交及文件变化，箭头把文件哈希连接到右侧Cloud Storage对象；虚线区是可推导的树与路径映射，不必全部存入changeset。这张结构图解释存储分工，不是性能测试图。"
+      },
+      "ja": {
+        "heading": "Anthropic：Scionでエージェント規模のソース管理を分離",
+        "alt": "Scion原図のchangeset・親関係・内容アドレス型ファイル",
+        "caption": "左のchangesetは作者・親・ファイル変更を保持し、ハッシュが右のCloud Storageオブジェクトへつながります。破線は導出可能な木・パス情報で、全てをchangesetへ保存する必要はありません。保存役割の図で速度測定ではありません。"
+      }
+    },
+    {
+      "id": "lfm",
+      "sourceUrl": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
+      "originalImageUrl": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B/resolve/main/figures/LFM2.5-24B-A2B-edge-inference.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-14-lfm.webp",
+      "sha256": "a3ac3ab5db4026b0757c65c0feb341aa15ac5432f8af6820c4c080f284d34639",
+      "credit": "Liquid AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "LFM2.5-24B-A2B：24B总参数、2B激活与131K上下文",
+        "alt": "Liquid AI原图比较三种端侧硬件的预填充、解码和内存",
+        "caption": "每组分别展示预填充、解码与内存，紫色为LFM2.5-24B-A2B。M5 Max的184 tok/s是解码速度，不是预填充；内存条更短才表示占用较低。各组硬件不同，这是厂商测试，不能跨组直接推断任意设备性能。"
+      },
+      "ja": {
+        "heading": "LFM2.5-24B-A2B：総24B・活性化2B・131K文脈",
+        "alt": "Liquid AI原図の3機種でのプリフィル・デコード・メモリ比較",
+        "caption": "各組はプリフィル・デコード・メモリを示し、紫がLFM2.5-24B-A2Bです。M5 Maxの184 tok/sはデコードで、プリフィルではありません。メモリは短い棒ほど少なく、機種が異なる各組を任意端末への性能保証にできません。"
+      }
+    },
+    {
+      "id": "positions",
+      "sourceUrl": "https://blog.bytebytego.com/p/how-the-math-used-in-19th-century",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/30684304-c503-4ee7-ba11-01a819a6faf5_3844x1460.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-14-positions.webp",
+      "sha256": "f27e13bda1a5149c8c4f4296bdf405d55e0c212dc95db34b3a6b65a8a0aafe5e",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "ByteByteGo：傅里叶频率如何进入位置编码与RoPE",
+        "alt": "ByteByteGo以多频率曲线分解说明傅里叶思想",
+        "caption": "从左到右，原始曲线被分成不同频率分量，再相加重构。它提供理解多频率位置表示的数学直觉，图中的热分布不是语言模型实验，也没有直接绘出RoPE的query/key旋转。"
+      },
+      "ja": {
+        "heading": "ByteByteGo：フーリエ周波数から位置表現とRoPEへ",
+        "alt": "ByteByteGoの複数周波数による曲線分解図",
+        "caption": "左から元の曲線を異なる周波数成分へ分解し、足し合わせて再構成します。多周波の位置表現を理解する数学的導入で、熱分布は言語モデル実験ではなく、RoPEのquery/key回転を直接示す図でもありません。"
+      }
+    }
+  ]
+}

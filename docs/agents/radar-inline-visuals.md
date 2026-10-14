@@ -22,6 +22,8 @@
 
 每期采用 `scripts/radar/visuals/YYYY-MM-DD.json` 清单（version 1），列出每张图的 `id`、`sourceUrl`、`originalImageUrl`、`asset`、`sha256`、`credit`、`review`，以及 `zh` / `ja` 的精确 `heading`、`alt`、`caption`。`review: accepted` 只能在事实与实际图像检查通过后写入，模型建议或下载成功不能直接升级为验收通过。内部抓取日志、拒绝原因和生成草稿存入忽略的 `tmp/` / `.cache/`。
 
+公开清单随本期日报提交，用于让干净检出的 CI 复核图片校验和、双语图注、出处和插入位置；它不参与页面渲染，展示所需的链接与图注已写入 Markdown。仅含公开字段的本期清单已纳入根目录 AGENTS.md §1 的雷达发布授权，不再逐期询问；含私密信息的材料不得以此名义提交。发布仍需完成全部验收与检查，不修改或绕过现有 CI。
+
 ```sh
 node scripts/radar/inline-visuals.mjs --date YYYY-MM-DD
 node scripts/radar/inline-visuals.mjs --date YYYY-MM-DD --apply

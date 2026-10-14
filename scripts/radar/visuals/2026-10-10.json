@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-10",
+  "visuals": [
+    {
+      "id": "ai2",
+      "sourceUrl": "https://huggingface.co/blog/allenai/impactful-scheduling",
+      "originalImageUrl": "https://www.datocms-assets.com/64837/1791481494-impactful-scheduling-for-gpu-clusters-google-docs-image-1.png?fit=max&h=810&w=1550",
+      "asset": "/images/radar/daily-ai-radar-2026-10-10-ai2.webp",
+      "sha256": "dc4f1edc38cf58090bb80909c850172822f1ea63bdead74f7c67a5a22ec6c674",
+      "credit": "HF project-team / Ai2",
+      "review": "accepted",
+      "zh": {
+        "heading": "Ai2：用 GPU 时间预算替代不断膨胀的任务优先级",
+        "alt": "Ai2 GPU 时间预算的分层份额示意图",
+        "caption": "从内圈的项目群到外圈的子项目，份额按层级相乘：A群占70%，A1占该群50%，因此占全集群35%。这是预算分配示例，不是集群性能结果。"
+      },
+      "ja": {
+        "heading": "Ai2：膨張するジョブ優先度をGPU時間予算に置き換える",
+        "alt": "Ai2のGPU時間予算を階層的に配分する例",
+        "caption": "内側のプログラムから外側のプロジェクトへ、比率を掛け合わせます。Aが70%、A1がその50%なので全体の35%です。予算配分の例であり、性能測定の結果ではありません。"
+      }
+    },
+    {
+      "id": "dashboard",
+      "sourceUrl": "https://claude.com/resources/articles/dashboards-and-motion",
+      "originalImageUrl": "https://assets.claude.com/7688d4d3b888c17cf4b3553f537f291882a92656.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-10-dashboard.webp",
+      "sha256": "cfee58b627d65e993800d26aa8a799c15b21da79250f44a54789d2b62353947c",
+      "credit": "Anthropic",
+      "review": "accepted",
+      "zh": {
+        "heading": "Claude Dashboards 与 Motion：查询可查、动画代码可改，分享仍受权限约束",
+        "alt": "Claude 将共享单车数据问题转为可交互仪表板的官方演示",
+        "caption": "左侧提出空车桩问题，右侧把全年骑行数据拆成指标、按日趋势与按小时分布，帮助追问具体时段。这是官方演示数据，不是读者所在企业的实际运营结果。"
+      },
+      "ja": {
+        "heading": "Claude DashboardsとMotion：クエリと動画コードを確認できても、共有は権限に従う",
+        "alt": "シェアサイクルの質問を対話型ダッシュボードに変えるClaudeの公式デモ",
+        "caption": "左側の空きドックに関する質問を、右側で指標・日別推移・時間帯別分布に分けて示しています。特定の時間帯を調べる入口になる公式デモであり、読者の企業の実績ではありません。"
+      }
+    },
+    {
+      "id": "lingbot",
+      "sourceUrl": "https://github.com/Robbyant/lingbot-map",
+      "originalImageUrl": "https://github.com/Robbyant/lingbot-map/raw/main/assets/teaser.webp",
+      "asset": "/images/radar/daily-ai-radar-2026-10-10-lingbot.webp",
+      "sha256": "eb7177116266ae183886a9bc823ccd284157af87de8844b2e1d3576aeeb714c8",
+      "credit": "Robbyant / LingBot-Map",
+      "review": "accepted",
+      "zh": {
+        "heading": "Robbyant/lingbot-map：用几何上下文与关键帧缓存处理长序列三维重建",
+        "alt": "LingBot-Map 的室内多房间与户外长序列三维重建演示",
+        "caption": "上半部是贯穿多个房间的三维重建，下半部是户外路线；彩色线条帮助对照轨迹与重建空间。这是项目展示的样例，不是对任意视频都能稳定重建的保证。"
+      },
+      "ja": {
+        "heading": "Robbyant/lingbot-map：幾何文脈とキーフレームキャッシュで長い系列を3D再構成",
+        "alt": "LingBot-Mapによる複数の室内と屋外の長い系列の3D再構成デモ",
+        "caption": "上は複数の部屋にまたがる再構成、下は屋外の経路です。色付きの線で軌跡と再構成空間を見比べられます。プロジェクトの作例であり、任意の動画で安定して再構成できる保証ではありません。"
+      }
+    }
+  ]
+}
