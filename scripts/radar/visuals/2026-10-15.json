@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-15",
+  "visuals": [
+    {
+      "id": "distill",
+      "sourceUrl": "https://www.anthropic.com/research/distillation-defenses",
+      "originalImageUrl": "https://www-cdn.anthropic.com/images/4zrzovbb/website/ff06a1bf78f76dcfef1bf8d8c67a488e965999b4-1920x1162.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-15-distill.webp",
+      "sha256": "9e7c424d3725339b45ebb15de51d2f80325f461f5d28cd3a2ce48aa25b3f2432",
+      "credit": "Anthropic",
+      "review": "accepted",
+      "zh": {
+        "heading": "Anthropic：分层限制未经授权的推理蒸馏",
+        "alt": "Anthropic以对数坐标展示防护前后被提取的推理token",
+        "caption": "阴影区是防护全面开启后，虚线为前后日均值；纵轴按最安静的可测日归一化且采用对数刻度，三角标记代表少到无法测量的日期。它说明厂商平台内的观察变化，不等于零泄漏或所有攻击均被阻断。"
+      },
+      "ja": {
+        "heading": "Anthropic：不正な推論蒸留を多層で制限",
+        "alt": "Anthropicの対数軸による防御前後の推論トークン抽出量",
+        "caption": "陰影は防御の全面稼働後、破線は前後の日平均です。縦軸は最少の測定可能日を基準にした対数目盛で、三角は少なすぎて測れない日を表します。自社基盤内の変化で、漏えいゼロや全攻撃遮断の証明ではありません。"
+      }
+    },
+    {
+      "id": "hiro",
+      "sourceUrl": "https://huggingface.co/blog/allenai/hiro-acev2",
+      "originalImageUrl": "https://www.datocms-assets.com/64837/1791928757-hiro-acev2-blog-draft-google-docs-image-3.png?fit=max&h=810&w=1550",
+      "asset": "/images/radar/daily-ai-radar-2026-10-15-hiro.webp",
+      "sha256": "2ae76a9acc0da35251104ef5e280c1c08ab061a41a09222e12016570b2ec0006",
+      "credit": "Ai2 / Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "HiRO-ACEv2：100公里气候模拟降尺度至3公里",
+        "alt": "ACE的100公里风速模拟与HiRO-ACEv2的3公里细节视图",
+        "caption": "主图以粗网格显示10米风速，右侧3公里视图展开同一区域的细节；颜色仍应按图例理解。这里展示模拟数据的降尺度，不是卫星实拍，也不能仅凭更细腻的纹理判断真实预报更准。"
+      },
+      "ja": {
+        "heading": "HiRO-ACEv2：100kmの気候模擬を3kmへ詳細化",
+        "alt": "ACEの100km風速模擬とHiRO-ACEv2の3km詳細表示",
+        "caption": "主図は粗格子の10m風速、右の3km表示は同じ領域の詳細で、色は凡例に従います。模擬データのダウンスケールを示すもので衛星写真ではなく、細かな模様だけで実予報の正確さは判断できません。"
+      }
+    },
+    {
+      "id": "memory",
+      "sourceUrl": "https://www.langchain.com/blog/context-engineering-deep-agents-remember",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6ac7d1ec1e9634285e74f7ec_context-management-light-1.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-15-memory.webp",
+      "sha256": "1f8e7e6c0db0d730c4feb776afb177522b13960192ecc1730afc08b8a2070cda",
+      "credit": "LangChain",
+      "review": "accepted",
+      "zh": {
+        "heading": "Deep Agents：文件卸载与历史摘要分别控制上下文",
+        "alt": "上下文曲线展示局部卸载和85%阈值摘要的不同作用",
+        "caption": "黑点后的下降是大工具结果卸载，蓝点达到85%阈值后大幅下降是历史摘要；两者分别处理尖峰和累积增长。图是机制示意，不是任意模型的固定50K窗口或本工作流的实测节省。"
+      },
+      "ja": {
+        "heading": "Deep Agents：ファイル退避と履歴要約で文脈を管理",
+        "alt": "文脈曲線で局所退避と85%要約の異なる働きを示す",
+        "caption": "黒点後の低下は大きなツール結果の退避、85%の青点後の急落は履歴要約で、局所的な山と累積増加を分けて扱います。仕組みの模式図で、全モデルの窓が50Kであることや本業務の節約実測を示しません。"
+      }
+    }
+  ]
+}
