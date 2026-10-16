@@ -1,15 +1,17 @@
-import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { pathToFileURL } from 'node:url';
-import { parseFrontmatter, stripFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
+import { parseFrontmatter, stripFrontmatter } from '../lib/frontmatter.mjs';
 import { formatImageCompressionResult, optimizeWebpImage } from '../lib/image-compression.mjs';
-import { assetUrlMatchesPublicAsset, publishRadarAsset } from '../lib/radar-assets.mjs';
+import { assetUrlMatchesPublicAsset } from '../lib/radar-assets.mjs';
+import { newCandidateDirectory, prepareCandidate } from '../lib/radar-review.mjs';
 import {
   buildInfographicBrief,
   createVisualCopyTemplate,
   renderInfographicPrompt,
   validateVisualCopy,
+  migrateVisualCopy,
 } from '../lib/radar-infographic-brief.mjs';
 import {
   addSourceFile,
@@ -42,6 +44,7 @@ function parseArgs(argv) {
     outputFormat: 'webp',
     allMissing: false,
     overwrite: false,
+    migrateVisualCopy: false,
   };
 
   const withValue = new Set([
@@ -86,6 +89,11 @@ function parseArgs(argv) {
 
     if (arg === '--brief-only') {
       options.briefOnly = true;
+      continue;
+    }
+
+    if (arg === '--migrate-visual-copy') {
+      options.migrateVisualCopy = true;
       continue;
     }
 
@@ -230,6 +238,7 @@ async function generateWithNotebooklm(meta, promptPath, targetFile, imagePath, o
       '--json',
     ]);
     completed = true;
+    return { notebookId, sourceId: source.id, artifactId: artifact.id };
   } finally {
     if (!completed && !options.keepNotebook) {
       console.warn(`Keeping failed infographic notebook for traceability: ${notebookId}`);
@@ -296,7 +305,6 @@ async function processFile(targetFile, options) {
       }
     }
   }
-  const imagePath = path.join(imageDir, `${slug}-infographic.${imageExtension}`);
   const publicImageUrl = `/images/radar/${slug}-infographic.${imageExtension}`;
 
   if (
@@ -312,7 +320,7 @@ async function processFile(targetFile, options) {
   const brief = buildInfographicBrief(meta, body);
   const briefDir = path.join(WORKSPACE_ROOT, '.cache/radar-infographic', slug);
   await mkdir(briefDir, { recursive: true });
-  await writeFile(path.join(briefDir, 'brief.json'), `${JSON.stringify(brief, null, 2)}\n`);
+  const briefFile = path.join(briefDir, 'brief.json');
   const promptPath = path.join(briefDir, 'notebooklm-prompt.txt');
   const copyPath = options.visualCopy
     ? path.resolve(options.visualCopy)
@@ -323,6 +331,7 @@ async function processFile(targetFile, options) {
   } catch (error) {
     if (error.code !== 'ENOENT' || options.visualCopy) throw error;
     const templatePath = path.join(briefDir, 'visual-copy.template.json');
+    await writeFile(briefFile, `${JSON.stringify(brief, null, 2)}\n`);
     await writeFile(templatePath, `${JSON.stringify(createVisualCopyTemplate(brief), null, 2)}\n`);
     // Do not leave legacy prompts looking current when the new copy plan is absent.
     await rm(promptPath, { force: true });
@@ -332,7 +341,19 @@ async function processFile(targetFile, options) {
     console.log(message);
     return { status: 'needs_visual_copy', targetFile, briefDir, templatePath };
   }
+  if (options.migrateVisualCopy) {
+    if (!options.briefOnly)
+      throw new Error(
+        '--migrate-visual-copy requires --brief-only; no generation during migration.',
+      );
+    const previousBrief = JSON.parse(await readFile(briefFile, 'utf8'));
+    const migrated = migrateVisualCopy(brief, visualCopy, previousBrief);
+    await copyFile(copyPath, `${copyPath}.legacy-v1.bak`);
+    await writeFile(copyPath, `${JSON.stringify(migrated, null, 2)}\n`);
+    visualCopy = migrated;
+  }
   validateVisualCopy(brief, visualCopy);
+  await writeFile(briefFile, `${JSON.stringify(brief, null, 2)}\n`);
   await writeFile(promptPath, inferInfographicPrompt(brief, visualCopy));
   await writeFile(
     path.join(briefDir, 'imagegen-prompt.txt'),
@@ -346,46 +367,46 @@ async function processFile(targetFile, options) {
     return { status: 'brief', targetFile, briefDir };
   }
 
+  const directory = await newCandidateDirectory(slug, 'infographic');
+  let rawPath = path.join(directory, 'raw.download');
+  const imagePath = path.join(directory, `asset.${imageExtension}`);
+  let provenance;
   if (options.backend === 'openai') {
-    await mkdir(imageDir, { recursive: true });
-    await generateWithOpenAI(brief, visualCopy, targetFile, imagePath, options);
+    await generateWithOpenAI(brief, visualCopy, targetFile, rawPath, options);
+    provenance = { model: options.model };
   } else if (options.backend === 'notebooklm') {
-    await mkdir(imageDir, { recursive: true });
-    await generateWithNotebooklm(meta, promptPath, targetFile, imagePath, options);
+    provenance = await generateWithNotebooklm(meta, promptPath, targetFile, rawPath, options);
   } else {
     throw new Error(`Unsupported backend: ${options.backend}`);
   }
 
+  const { default: sharp } = await import('sharp');
+  const { format } = await sharp(rawPath).metadata();
+  const retainedRaw = path.join(directory, `raw.${format === 'jpeg' ? 'jpg' : format}`);
+  await rename(rawPath, retainedRaw);
+  rawPath = retainedRaw;
+  await copyFile(rawPath, imagePath);
   if (imageExtension === 'webp') {
     const compressionResult = await optimizeWebpImage(imagePath);
     console.log(`Optimized infographic image: ${formatImageCompressionResult(compressionResult)}`);
   }
 
-  if (options.previewDir) {
-    console.log(`Preview only: ${imagePath} (content and published assets unchanged)`);
-    return { status: 'preview', targetFile, imagePath, briefDir };
-  }
-
-  const publishedImageUrl = await publishRadarAsset({
-    localPath: imagePath,
-    publicUrl: publicImageUrl,
-    label: 'radar infographic',
+  const packet = await prepareCandidate({
+    directory,
+    reportFile: targetFile,
+    brief,
+    rawPath,
+    assetPath: imagePath,
+    kind: 'infographic',
+    backend: options.backend,
+    provenance,
   });
-
-  if (meta.coverImage !== publishedImageUrl) {
-    const latestRaw = await readFile(targetFile, 'utf8');
-    const updated = updateFrontmatterValue(latestRaw, 'coverImage', publishedImageUrl, {
-      anchor: 'lang',
-      position: 'after',
-    });
-    await writeFile(targetFile, updated, 'utf8');
-    console.log(`Updated frontmatter coverImage -> ${publishedImageUrl}`);
-  } else {
-    console.log(`coverImage already set to ${publishedImageUrl}`);
+  if (options.previewDir) {
+    await mkdir(imageDir, { recursive: true });
+    await copyFile(imagePath, path.join(imageDir, `${slug}-infographic.${imageExtension}`));
   }
-
-  console.log(`Done. Infographic ready at ${publishedImageUrl}`);
-  return { status: 'generated', targetFile, publicImageUrl: publishedImageUrl };
+  console.log(JSON.stringify({ status: 'needs_review', ...packet, publicAssetsUnchanged: true }));
+  return { status: 'needs_review', targetFile, imagePath, briefDir, ...packet };
 }
 
 export async function main(argv = process.argv.slice(2)) {

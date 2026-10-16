@@ -39,7 +39,10 @@ function itemFacts(content) {
 }
 
 export function buildInfographicBrief(meta, body) {
-  const normalized = normalizeNewlines(body);
+  const normalized = normalizeNewlines(body)
+    .replace(/<!-- radar-visual:[\s\S]*?<!-- \/radar-visual:[^>]*-->/g, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
   const cadence = meta.cadence ?? 'daily';
   const sections = blocksAt(normalized, 2)
     .map((block) => ({
@@ -78,9 +81,11 @@ export function buildInfographicBrief(meta, body) {
 
   const date = meta.raw?.match(/^date:\s*["']?([^\n"']+)/m)?.[1]?.trim();
   return {
-    version: 1,
+    version: 2,
     sourceSha256: createHash('sha256')
-      .update(`${meta.raw ?? meta.title}\n${normalized}`)
+      .update(
+        JSON.stringify({ title: meta.title, date, language: meta.lang, cadence, body: normalized }),
+      )
       .digest('hex'),
     title: meta.title,
     date: date ?? meta.title,
@@ -94,7 +99,7 @@ export function buildInfographicBrief(meta, body) {
 /** @param {ReturnType<typeof buildInfographicBrief>} brief */
 export function createVisualCopyTemplate(brief) {
   return {
-    version: 1,
+    version: 2,
     sourceSha256: brief.sourceSha256,
     language: brief.language,
     sections: brief.sections.map((section) => ({
@@ -111,7 +116,11 @@ export function createVisualCopyTemplate(brief) {
 }
 
 export function validateVisualCopy(brief, copy) {
-  if (copy?.version !== 1) throw new Error('A version 1 visual-copy plan is required.');
+  if (copy?.version !== 2) {
+    throw new Error(
+      'A version 2 visual-copy plan is required; use --brief-only --migrate-visual-copy with the original cached brief.',
+    );
+  }
   if (copy.sourceSha256 !== brief.sourceSha256 || copy.language !== brief.language) {
     throw new Error('Visual copy is stale or belongs to a different source/language.');
   }
@@ -159,6 +168,22 @@ export function validateVisualCopy(brief, copy) {
     }
   }
   return copy;
+}
+
+// Explicit offline migration only: a matching old hash AND unchanged full facts are required.
+export function migrateVisualCopy(brief, copy, previousBrief) {
+  const facts = (b) => JSON.stringify([b.title, b.date, b.language, b.cadence, b.sections]);
+  if (
+    copy?.version !== 1 ||
+    !previousBrief ||
+    copy.sourceSha256 !== previousBrief.sourceSha256 ||
+    facts(previousBrief) !== facts(brief)
+  ) {
+    throw new Error(
+      'Cannot migrate visual copy without its matching original brief and unchanged facts.',
+    );
+  }
+  return validateVisualCopy(brief, { ...copy, version: 2, sourceSha256: brief.sourceSha256 });
 }
 
 /**

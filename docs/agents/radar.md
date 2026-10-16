@@ -205,6 +205,8 @@ The Rundown AI 站点级规则：
 
 ### 3.8 资源生成
 
+- **候选与验收入口**：日报 `radar:infographic`／`radar:audio` 默认只生成私有候选并输出 `candidateFile`／`reviewFile`，不直接覆盖公开资产或正文引用。按 [候选资产与分层验收](radar-asset-review.md) 完成原件／哈希／分区检查、覆盖→文字→关键事实审查，以及音频分级与缓存；`radar:review check` 通过后用 `radar:review promote` 提升。不要把生成退出0当作可发布，也不要期待生成脚本立即回填 coverImage/audioUrl。已验收的其他语言／资产不重做。
+
 - **日报正文配图**：按 [条目配图与讲解流程](radar-inline-visuals.md) 选图、写中日图注和验收。每期通常在不同栏目穿插 3–5 张有解释价值的条目配图；顶部信息图与开头代表图不计入。每张图都要有来源和读图讲解，不能只完成封面就视作图文编排完成。已验收清单通过 `npm run check:radar-visuals` 检查，历史回补范围以用户当前指令为准。
 - **日报代表图**：冻结 Markdown 后、生成 NotebookLM 信息图前，只有在 frontmatter 显式写入 `representativeImageSource` 时才跑 `npm run radar:images` 补入外链代表图；禁止脚本从普通正文链接里猜测“第一张可用图”。`representativeImageSource` 必须来自本期明确主线或审计记录里的 lead item。若无明确 lead item，宁可不插入外链代表图。NotebookLM 信息图继续写入 `coverImage` 作为顶部封面。
 - **日报**：中日双语的信息图与音频分支独立生成。

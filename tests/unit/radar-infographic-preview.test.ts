@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
+import sharp from 'sharp';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { parseFrontmatter } from '../../scripts/lib/frontmatter.mjs';
 import {
@@ -35,6 +36,7 @@ let directory: string;
 let sourceFile: string;
 let cache: string;
 let raw: string;
+let imageBytes: Buffer;
 
 beforeEach(async () => {
   vi.clearAllMocks();
@@ -44,12 +46,15 @@ beforeEach(async () => {
   cache = path.resolve('.cache/radar-infographic', slug);
   raw = readFileSync('src/content/radar/daily-ai-radar-2026-10-15.md', 'utf8');
   await writeFile(sourceFile, raw);
+  imageBytes = await sharp({ create: { width: 300, height: 200, channels: 3, background: '#fff' } })
+    .png()
+    .toBuffer();
   mocks.createNotebook.mockResolvedValue('preview-notebook');
   mocks.addSourceFile.mockResolvedValue({ id: 'preview-source' });
   mocks.generationArtifact.mockReturnValue({ id: 'preview-artifact' });
   mocks.waitForArtifact.mockResolvedValue({ id: 'preview-artifact' });
   mocks.runNotebooklm.mockImplementation(async (args: string[]) => {
-    if (args[0] === 'download') await writeFile(args.at(-2) as string, 'preview image bytes');
+    if (args[0] === 'download') await writeFile(args.at(-2) as string, imageBytes);
     return { stdout: '{"task_id":"preview-artifact"}' };
   });
 });
@@ -57,6 +62,13 @@ beforeEach(async () => {
 afterEach(async () => {
   await rm(directory, { recursive: true, force: true });
   await rm(cache, { recursive: true, force: true });
+  const root = path.resolve('.cache/radar-review/candidates');
+  const names = await readdir(root).catch(() => []);
+  for (const name of names.filter((n) =>
+    n.startsWith(path.basename(directory) + '-infographic-'),
+  )) {
+    await rm(path.join(root, name), { recursive: true, force: true });
+  }
 });
 
 async function copyFile() {
@@ -108,8 +120,16 @@ describe('infographic isolated preview', () => {
     expect(generation[generation.indexOf('--orientation') + 1]).toBe('landscape');
     const download = mocks.runNotebooklm.mock.calls.find(([args]) => args[0] === 'download')?.[0];
     const output = download.at(-2);
-    expect(path.dirname(output)).toBe(directory);
-    expect(await readFile(output, 'utf8')).toBe('preview image bytes');
+    expect(path.dirname(output)).toContain('.cache/radar-review/candidates/');
+    const candidate = JSON.parse(
+      await readFile(path.join(path.dirname(output), 'candidate.json'), 'utf8'),
+    );
+    expect(candidate.files.raw.path).toBe('raw.png');
+    expect(await readFile(path.join(path.dirname(output), candidate.files.raw.path))).toEqual(
+      imageBytes,
+    );
+    expect(candidate.provenance.artifactId).toBe('preview-artifact');
+    expect(candidate.files.raw.sha256).toBe(candidate.files.asset.sha256);
     const prompt = await readFile(path.join(cache, 'notebooklm-prompt.txt'), 'utf8');
     expect(prompt).toContain('<FACTS_JSON>');
     expect(prompt).toContain('<DISPLAY_COPY>');
@@ -128,19 +148,38 @@ describe('infographic isolated preview', () => {
     expect(await readFile(sourceFile, 'utf8')).toBe(raw);
   });
 
-  it('retains the normal publication path when preview mode is not requested', async () => {
+  it('keeps normal generation private until an exact candidate is reviewed and promoted', async () => {
     const copy = await copyFile();
     const slug = path.basename(sourceFile, '.md');
     const publicUrl = `/images/radar/${slug}-infographic.webp`;
-    // Exercise publication routing without creating any real public test image.
-    mocks.runNotebooklm.mockResolvedValue({ stdout: '{"task_id":"preview-artifact"}' });
     mocks.publishRadarAsset.mockResolvedValue(publicUrl);
     await main(['--file', sourceFile, '--visual-copy', copy, '--overwrite']);
-    expect(mocks.publishRadarAsset).toHaveBeenCalledWith({
-      localPath: path.resolve(`public/images/radar/${slug}-infographic.webp`),
-      publicUrl,
-      label: 'radar infographic',
-    });
-    expect(parseFrontmatter(await readFile(sourceFile, 'utf8')).coverImage).toBe(publicUrl);
+    expect(mocks.publishRadarAsset).not.toHaveBeenCalled();
+    expect(await readFile(sourceFile, 'utf8')).toBe(raw);
+  });
+
+  it('migrates v1 only offline and preserves old cache when explicit migration is not requested', async () => {
+    const copy = await copyFile();
+    const b = buildInfographicBrief(parseFrontmatter(raw), parseFrontmatter(raw).body);
+    const old = { ...JSON.parse(await readFile(copy, 'utf8')), version: 1, sourceSha256: 'legacy' };
+    await writeFile(copy, JSON.stringify(old));
+    await main(['--file', sourceFile, '--brief-only']); // initialize cache/template without the external copy
+    const briefFile = path.join(cache, 'brief.json');
+    await writeFile(briefFile, JSON.stringify({ ...b, version: 1, sourceSha256: 'legacy' }));
+    await expect(
+      main(['--file', sourceFile, '--visual-copy', copy, '--brief-only']),
+    ).rejects.toThrow('Failed to generate');
+    expect(JSON.parse(await readFile(briefFile, 'utf8')).sourceSha256).toBe('legacy');
+    await main([
+      '--file',
+      sourceFile,
+      '--visual-copy',
+      copy,
+      '--brief-only',
+      '--migrate-visual-copy',
+    ]);
+    expect(JSON.parse(await readFile(copy, 'utf8')).version).toBe(2);
+    expect(await readFile(copy + '.legacy-v1.bak', 'utf8')).toBe(JSON.stringify(old));
+    expect(mocks.createNotebook).not.toHaveBeenCalled();
   });
 });

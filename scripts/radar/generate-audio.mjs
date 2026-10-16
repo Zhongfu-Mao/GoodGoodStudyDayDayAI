@@ -1,11 +1,15 @@
-import { copyFile, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { copyFile, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import { pathToFileURL } from 'node:url';
-import { getAudioFileMetadata } from '../lib/audio-metadata.mjs';
-import { parseFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
-import { publishRadarAsset } from '../lib/radar-assets.mjs';
+import { parseFrontmatter } from '../lib/frontmatter.mjs';
+import {
+  newCandidateDirectory,
+  prepareCandidate,
+  inspectAudio,
+  audioCache,
+} from '../lib/radar-review.mjs';
 import { buildInfographicBrief } from '../lib/radar-infographic-brief.mjs';
 import { compressSpeechMp3 } from '../lib/audio-compression.mjs';
 import {
@@ -20,7 +24,6 @@ import {
 
 const WORKSPACE_ROOT = process.cwd();
 const RADAR_DIR = path.join(WORKSPACE_ROOT, 'src/content/radar');
-const AUDIO_DIR = path.join(WORKSPACE_ROOT, 'public/audio/radar');
 
 function parseArgs(argv) {
   const options = {
@@ -132,14 +135,14 @@ export async function main(argv = process.argv.slice(2)) {
   const raw = await readFile(targetFile, 'utf8');
   const meta = parseFrontmatter(raw);
   const slug = path.basename(targetFile, '.md');
-  const audioPath = path.join(AUDIO_DIR, `${slug}.mp3`);
-  const publicAudioUrl = `/audio/radar/${slug}.mp3`;
   const notebookTitle = `${meta.title} · Audio`;
   const briefMemoPath = path.join(os.tmpdir(), `${slug}.brief.txt`);
   // Validate all sections and facts before creating any remote notebook.
   const briefMemo = options.sourceMode === 'brief' ? buildBriefMemo(meta.body, meta) : null;
 
-  await mkdir(AUDIO_DIR, { recursive: true });
+  const brief = buildInfographicBrief(meta, meta.body);
+  const directory = await newCandidateDirectory(slug, 'audio');
+  const audioPath = path.join(directory, 'asset.mp3');
 
   console.log(`Creating notebook for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
   const notebookId = await createNotebook(notebookTitle);
@@ -180,12 +183,7 @@ export async function main(argv = process.argv.slice(2)) {
     });
     console.log(`Audio artifact ${artifact.id} ready.`);
 
-    const rawAudioPath = path.join(
-      WORKSPACE_ROOT,
-      'tmp/radar-audio-raw',
-      `${slug}-${artifact.id}.m4a`,
-    );
-    await mkdir(path.dirname(rawAudioPath), { recursive: true });
+    const rawAudioPath = path.join(directory, 'raw.m4a');
 
     console.log(`Downloading audio to ${path.relative(WORKSPACE_ROOT, audioPath)}...`);
     await runNotebooklm([
@@ -199,53 +197,25 @@ export async function main(argv = process.argv.slice(2)) {
       rawAudioPath,
       '--json',
     ]);
-    const originalAudio = await getAudioFileMetadata(rawAudioPath);
     await copyFile(rawAudioPath, audioPath);
     console.log('Compressing audio to MP3 mono 64k...');
     await compressSpeechMp3(audioPath);
-    const audio = await getAudioFileMetadata(audioPath);
-    if (
-      !originalAudio.duration ||
-      !audio.duration ||
-      Math.abs(originalAudio.duration - audio.duration) > 1
-    ) {
-      throw new Error(
-        `Audio duration changed during conversion; raw file retained at ${rawAudioPath}`,
-      );
-    }
-    const publishedAudioUrl = await publishRadarAsset({
-      localPath: audioPath,
-      publicUrl: publicAudioUrl,
-      label: 'daily audio',
+    const technical = await inspectAudio(rawAudioPath, audioPath);
+    const packet = await prepareCandidate({
+      directory,
+      reportFile: targetFile,
+      brief,
+      rawPath: rawAudioPath,
+      assetPath: audioPath,
+      kind: 'audio',
+      backend: 'notebooklm',
+      provenance: { notebookId, sourceId: source.id, artifactId: artifact.id },
+      technical,
     });
-
-    const latestRaw = await readFile(targetFile, 'utf8');
-    let updated = latestRaw;
-
-    if (meta.audioUrl !== publishedAudioUrl) {
-      updated = updateFrontmatterValue(updated, 'audioUrl', publishedAudioUrl);
-    }
-
-    if (audio.duration) {
-      updated = updateFrontmatterValue(updated, 'audioDuration', audio.duration, {
-        anchor: 'audioUrl',
-        position: 'after',
-      });
-    }
-
-    updated = updateFrontmatterValue(updated, 'audioSize', audio.size, {
-      anchor: 'audioDuration',
-      position: 'after',
-    });
-
-    if (updated !== latestRaw) {
-      await writeFile(targetFile, updated, 'utf8');
-      console.log(`Updated frontmatter audio metadata for ${publishedAudioUrl}`);
-    } else {
-      console.log(`audio metadata already set for ${publishedAudioUrl}`);
-    }
-
-    console.log(`Done. Audio ready at ${publishedAudioUrl}`);
+    const cache = await audioCache(packet.candidateFile);
+    console.log(
+      JSON.stringify({ status: 'needs_review', ...packet, cache, publicAssetsUnchanged: true }),
+    );
     completed = true;
   } finally {
     if (options.sourceMode === 'brief') {

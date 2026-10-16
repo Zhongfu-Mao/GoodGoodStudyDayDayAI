@@ -1,5 +1,7 @@
 # 雷达信息图输入与验收
 
+生成后的版本、原图／压缩图留存、原尺寸分区、逐条覆盖／文字／事实检查及发布提升，统一按 [候选资产与分层验收](radar-asset-review.md)。输入检查不代表位图合格；默认生成仅产出私有候选，验收通过后才提升到公开路径。画面文案当前为 v2 内容指纹，旧 v1 仅能在原缓存与全部事实匹配时显式离线迁移，不触发资产重生。
+
 ## 当前观察方案（2026-10-15 起）
 
 接下来几期先固定 **NotebookLM `bento-grid` + `standard` + `landscape`，无导语、无一句话总结、无副标题**。日报／周报使用三列两行、六个柔和彩色分区，逐条指定机制插图和短文案；月报保留自身栏目数量。完整事实依据仍全部保留。暂不继续导语实验或仅为审美比较追加重生；实际事实、可读性和漏项问题仍按原验收门槛处理。
@@ -26,7 +28,7 @@ node scripts/radar/generate-infographic.mjs --file src/content/radar/daily-ai-ra
 node scripts/radar/generate-infographic.mjs --file REPORT.md --visual-copy COPY.json --preview-dir tmp/infographic-trial/output
 ```
 
-预览绕过已有封面的跳过逻辑，图片仅保存到指定目录，不发布资产、不更新 frontmatter；输出目录不得放在 `public/` 或 `src/` 中。预览仍消耗 NotebookLM 生成额度，不是离线检查。
+预览绕过已有封面的跳过逻辑，候选原件与验收包保存在私有缓存，压缩预览副本保存到指定目录，不发布资产、不更新 frontmatter；输出目录不得放在 `public/` 或 `src/` 中。预览仍消耗 NotebookLM 生成额度，不是离线检查。
 
 内置 imagegen 直接读取对应提示词，不需要 OpenAI API key。`--backend openai` 是独立的 API 入口，需要 API key；它也使用同一事实清单，不再经过会丢条目的二次 LLM 提炼。原 `--brief-model` / `--brief-mode` 已移除，使用时会明确报错。
 
