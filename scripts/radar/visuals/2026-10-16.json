@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-16",
+  "visuals": [
+    {
+      "id": "harness",
+      "sourceUrl": "https://martinfowler.com/articles/are-harnesses-worth-the-cost.html",
+      "originalImageUrl": "https://martinfowler.com/articles/are-harnesses-worth-the-cost/experiment-setup.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-16-harness.webp",
+      "sha256": "54f8641e8b352c861bbc4040894a815f68f0119733b4564cffe4c0ae069ab778",
+      "credit": "MartinFowler.com",
+      "review": "accepted",
+      "zh": {
+        "heading": "Harness成本实验：同一反馈，对大小模型效果不同",
+        "alt": "有无内层行为harness的两个编码环境共同接受外层验收",
+        "caption": "两条路径共享需求说明，只有左侧获得开发阶段的技能、契约、模拟依赖和反馈；下方独立的178项验收测试对两组一视同仁。开发中反馈与最终评估是不同环节，图并不表明加入harness一定省钱。"
+      },
+      "ja": {
+        "heading": "Harnessの費用実験：同じ帰還でもモデルによって効果は異なる",
+        "alt": "内側の行動harnessの有無を同じ外側評価器で検証する実験",
+        "caption": "両経路は同じ要件を使い、左だけが開発中のスキル・契約・依存先モック・フィードバックを得ます。下の独立した178検査は両群共通で、開発支援と最終評価を分離しています。harnessが必ず費用を減らす図ではありません。"
+      }
+    },
+    {
+      "id": "pbc",
+      "sourceUrl": "https://www.microsoft.com/en-us/research/story/new-ai-framework-bridges-a-critical-gap-in-mid-range-weather-forecasts/",
+      "originalImageUrl": "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/10/PBC-Rainfall-scaled.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-16-pbc.webp",
+      "sha256": "36c4b9ca22d5f028ed99ae96a220fbaab055aa1e1eeb1323f4d4e3ff912f0a8b",
+      "credit": "Microsoft Research / Kenya Meteorological Service Authority",
+      "review": "accepted",
+      "zh": {
+        "heading": "PBC：对两至六周天气预报做概率偏差校正",
+        "alt": "肯尼亚未来两周降雨落入五个气候分位区间的概率图",
+        "caption": "每行是一周、每列是从最干到最湿的一个五分位区间；颜色表示落入该区间的概率，不是降雨量。右侧偏湿区间的较深色代表相对历史基准更偏湿的风险信号，不能读成某地一定下雨或具体暴雨日期。"
+      },
+      "ja": {
+        "heading": "PBC：2〜6週間先の天気を確率的に偏差補正",
+        "alt": "ケニアの対象2週間の降水が五つの気候分位に入る確率",
+        "caption": "各行は1週間、各列は乾燥側から湿潤側までの五分位です。色は降水量ではなく区間に入る確率で、右側の濃色は歴史基準より湿潤側に偏るリスクを示します。必ず降ることや豪雨の正確な日を示すものではありません。"
+      }
+    },
+    {
+      "id": "eval",
+      "sourceUrl": "https://www.langchain.com/blog/common-questions-about-agent-evals",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6ac981161c8c62fb29de8f15_offline-vs-online-eval-light-v2.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-16-eval.webp",
+      "sha256": "f0008394d8e625f958a35059e8c1b815766958059f42d94b50a79a672da1bc13",
+      "credit": "LangChain",
+      "review": "accepted",
+      "zh": {
+        "heading": "LangChain：从轨迹出发，把离线回归与线上评估连起来",
+        "alt": "离线固定答案与线上无参考答案的代理评估示意",
+        "caption": "左侧在固定航班数据上把输出与参考答案比较，右侧没有预先答案，转而检查日期与预算是否符合请求；新失误再回流为测试样本。航班和价格是原文教学示例，不是当前可预订报价，也不表示单一裁判即可证明系统可靠。"
+      },
+      "ja": {
+        "heading": "LangChain：トレースからオフライン回帰と本番評価をつなぐ",
+        "alt": "固定の参照答があるオフライン評価と本番オンライン評価の比較",
+        "caption": "左は固定の便データで参照答と比較し、右は参照答なしで依頼の日付・予算との整合性を見ます。新しい失敗をデータセットへ戻す循環です。便と価格は教材の例で現在の予約見積りではなく、一つの裁判で信頼性を証明するものでもありません。"
+      }
+    }
+  ]
+}
