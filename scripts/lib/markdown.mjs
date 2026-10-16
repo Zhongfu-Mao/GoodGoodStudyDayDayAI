@@ -22,7 +22,10 @@ export function stripMarkdown(value) {
 export function extractSectionBlock(markdown, headings) {
   for (const heading of headings) {
     const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const pattern = new RegExp(`^##\\s+${escapedHeading}\\s*\\n([\\s\\S]*?)(?=^##\\s+|\\Z)`, 'm');
+    const pattern = new RegExp(
+      `^##\\s+${escapedHeading}\\s*\\n([\\s\\S]*?)(?=^##\\s+|(?![\\s\\S]))`,
+      'm',
+    );
     const match = markdown.match(pattern)?.[1]?.trim();
 
     if (match) {

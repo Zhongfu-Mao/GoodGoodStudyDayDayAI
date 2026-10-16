@@ -1,11 +1,16 @@
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { pathToFileURL } from 'node:url';
 import { parseFrontmatter, stripFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
 import { formatImageCompressionResult, optimizeWebpImage } from '../lib/image-compression.mjs';
 import { assetUrlMatchesPublicAsset, publishRadarAsset } from '../lib/radar-assets.mjs';
-import { buildInfographicBrief, renderInfographicPrompt } from '../lib/radar-infographic-brief.mjs';
+import {
+  buildInfographicBrief,
+  createVisualCopyTemplate,
+  renderInfographicPrompt,
+  validateVisualCopy,
+} from '../lib/radar-infographic-brief.mjs';
 import {
   addSourceFile,
   createNotebook,
@@ -25,11 +30,13 @@ function parseArgs(argv) {
     file: null,
     orientation: 'landscape',
     detail: 'standard',
-    style: 'editorial',
+    style: 'bento-grid',
     keepNotebook: true,
     backend: 'notebooklm',
     model: 'gpt-image-2',
     briefOnly: false,
+    visualCopy: null,
+    previewDir: null,
     size: '1536x1024',
     quality: 'medium',
     outputFormat: 'webp',
@@ -44,6 +51,8 @@ function parseArgs(argv) {
     '--style',
     '--backend',
     '--model',
+    '--visual-copy',
+    '--preview-dir',
 
     '--size',
     '--quality',
@@ -57,6 +66,8 @@ function parseArgs(argv) {
     '--style': 'style',
     '--backend': 'backend',
     '--model': 'model',
+    '--visual-copy': 'visualCopy',
+    '--preview-dir': 'previewDir',
 
     '--size': 'size',
     '--quality': 'quality',
@@ -128,14 +139,14 @@ function resolveOpenAIBaseUrl() {
   return process.env.OPENAI_BASE_URL?.replace(/\/$/, '') ?? 'https://api.openai.com';
 }
 
-async function generateWithOpenAI(brief, targetFile, imagePath, options) {
+async function generateWithOpenAI(brief, visualCopy, targetFile, imagePath, options) {
   const apiKey = process.env.OPENAI_API_KEY;
 
   if (!apiKey) {
     throw new Error('OPENAI_API_KEY is required for the OpenAI infographic backend.');
   }
 
-  const prompt = renderInfographicPrompt(brief, { backend: 'imagegen' });
+  const prompt = renderInfographicPrompt(brief, { backend: 'imagegen', visualCopy });
   const baseUrl = resolveOpenAIBaseUrl();
 
   const payload = {
@@ -166,8 +177,8 @@ async function generateWithOpenAI(brief, targetFile, imagePath, options) {
 
 export { buildInfographicBrief } from '../lib/radar-infographic-brief.mjs';
 
-export function inferInfographicPrompt(brief) {
-  return renderInfographicPrompt(brief);
+export function inferInfographicPrompt(brief, visualCopy) {
+  return renderInfographicPrompt(brief, { visualCopy });
 }
 
 async function generateWithNotebooklm(meta, promptPath, targetFile, imagePath, options) {
@@ -257,7 +268,7 @@ async function listTargetFiles(options) {
     const source = await readFile(fullPath, 'utf8');
     const meta = parseFrontmatter(source);
 
-    if (!options.overwrite && meta.coverImage) {
+    if (!options.overwrite && !options.previewDir && meta.coverImage) {
       continue;
     }
 
@@ -273,11 +284,24 @@ async function processFile(targetFile, options) {
   const body = stripFrontmatter(raw);
   const slug = slugFromPath(targetFile);
   const imageExtension = options.outputFormat === 'jpeg' ? 'jpg' : options.outputFormat;
-  const imagePath = path.join(IMAGE_DIR, `${slug}-infographic.${imageExtension}`);
+  const imageDir = options.previewDir ? path.resolve(options.previewDir) : IMAGE_DIR;
+  if (options.previewDir) {
+    for (const protectedDir of ['public', 'src']) {
+      const relative = path.relative(path.join(WORKSPACE_ROOT, protectedDir), imageDir);
+      if (
+        !relative ||
+        (!relative.startsWith(`..${path.sep}`) && relative !== '..' && !path.isAbsolute(relative))
+      ) {
+        throw new Error('--preview-dir must be outside public/ and src/.');
+      }
+    }
+  }
+  const imagePath = path.join(imageDir, `${slug}-infographic.${imageExtension}`);
   const publicImageUrl = `/images/radar/${slug}-infographic.${imageExtension}`;
 
   if (
     !options.briefOnly &&
+    !options.previewDir &&
     !options.overwrite &&
     assetUrlMatchesPublicAsset(meta.coverImage, publicImageUrl)
   ) {
@@ -290,10 +314,29 @@ async function processFile(targetFile, options) {
   await mkdir(briefDir, { recursive: true });
   await writeFile(path.join(briefDir, 'brief.json'), `${JSON.stringify(brief, null, 2)}\n`);
   const promptPath = path.join(briefDir, 'notebooklm-prompt.txt');
-  await writeFile(promptPath, inferInfographicPrompt(brief));
+  const copyPath = options.visualCopy
+    ? path.resolve(options.visualCopy)
+    : path.join(briefDir, 'visual-copy.json');
+  let visualCopy;
+  try {
+    visualCopy = JSON.parse(await readFile(copyPath, 'utf8'));
+  } catch (error) {
+    if (error.code !== 'ENOENT' || options.visualCopy) throw error;
+    const templatePath = path.join(briefDir, 'visual-copy.template.json');
+    await writeFile(templatePath, `${JSON.stringify(createVisualCopyTemplate(brief), null, 2)}\n`);
+    // Do not leave legacy prompts looking current when the new copy plan is absent.
+    await rm(promptPath, { force: true });
+    await rm(path.join(briefDir, 'imagegen-prompt.txt'), { force: true });
+    const message = `Fill the short label/text for every item in ${templatePath}; save as ${copyPath} or pass --visual-copy FILE. Facts remain in brief.json.`;
+    if (!options.briefOnly) throw new Error(message);
+    console.log(message);
+    return { status: 'needs_visual_copy', targetFile, briefDir, templatePath };
+  }
+  validateVisualCopy(brief, visualCopy);
+  await writeFile(promptPath, inferInfographicPrompt(brief, visualCopy));
   await writeFile(
     path.join(briefDir, 'imagegen-prompt.txt'),
-    renderInfographicPrompt(brief, { backend: 'imagegen' }),
+    renderInfographicPrompt(brief, { backend: 'imagegen', visualCopy }),
   );
 
   if (options.briefOnly) {
@@ -304,8 +347,10 @@ async function processFile(targetFile, options) {
   }
 
   if (options.backend === 'openai') {
-    await generateWithOpenAI(brief, targetFile, imagePath, options);
+    await mkdir(imageDir, { recursive: true });
+    await generateWithOpenAI(brief, visualCopy, targetFile, imagePath, options);
   } else if (options.backend === 'notebooklm') {
+    await mkdir(imageDir, { recursive: true });
     await generateWithNotebooklm(meta, promptPath, targetFile, imagePath, options);
   } else {
     throw new Error(`Unsupported backend: ${options.backend}`);
@@ -314,6 +359,11 @@ async function processFile(targetFile, options) {
   if (imageExtension === 'webp') {
     const compressionResult = await optimizeWebpImage(imagePath);
     console.log(`Optimized infographic image: ${formatImageCompressionResult(compressionResult)}`);
+  }
+
+  if (options.previewDir) {
+    console.log(`Preview only: ${imagePath} (content and published assets unchanged)`);
+    return { status: 'preview', targetFile, imagePath, briefDir };
   }
 
   const publishedImageUrl = await publishRadarAsset({
@@ -338,10 +388,8 @@ async function processFile(targetFile, options) {
   return { status: 'generated', targetFile, publicImageUrl: publishedImageUrl };
 }
 
-async function main() {
-  const options = parseArgs(process.argv.slice(2));
-
-  await mkdir(IMAGE_DIR, { recursive: true });
+export async function main(argv = process.argv.slice(2)) {
+  const options = parseArgs(argv);
 
   const targets = await listTargetFiles(options);
 
