@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-18",
+  "visuals": [
+    {
+      "id": "minecraft",
+      "originalImageUrl": "https://pbs.twimg.com/media/HUvTSq3WcAAF1Xo?format=jpg&name=medium",
+      "credit": "Google DeepMind / Maxence Faldor",
+      "zh": {
+        "alt": "四个Gemini代理的分工与Minecraft实验里程碑时间线",
+        "caption": "左侧列出四个代理各自承担的探索和建造工作，右侧阶梯线按时间连接收集资源、进入下界、寻找要塞到击败末影龙的里程碑；底部红色刻线是重生记录。它展示一次长程协作实验的过程，不代表视觉GUI操作，也不能据此推断通用成功率。",
+        "heading": "DeepMind四个Gemini 4 Argon代理沙箱协作击败末影龙"
+      },
+      "ja": {
+        "alt": "4体のGeminiの役割とMinecraft実験の到達時点",
+        "caption": "左は4体の担当、右の階段線は資源収集からネザー・要塞を経て討伐に至る時点、下の赤い刻みはリスポーン記録です。長時間協働の一例を示すもので、視覚GUI操作の実験や汎用成功率を示す図ではありません。",
+        "heading": "DeepMind、4体のGemini 4 Argonがサンドボックス内で協調しエンダードラゴン討伐と報告"
+      },
+      "sourceUrl": "https://x.com/GoogleDeepMind/status/2111127991401247033",
+      "asset": "/images/radar/daily-ai-radar-2026-10-18-minecraft.webp",
+      "sha256": "1997f4a3468a518a36d42641a5a8e4d7884dbc79f6a158630e4ad2789792d007",
+      "review": "accepted"
+    },
+    {
+      "id": "bolt",
+      "originalImageUrl": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF/resolve/main/accuracy.png",
+      "credit": "NVIDIA / Hugging Face",
+      "zh": {
+        "alt": "Nemotron Bolt与指定开放模型的逐项基准得分对比",
+        "caption": "绿色柱是Bolt，其他颜色是图例指定的不同模型及精度。逐组读同一评测项，不能把所有柱都当同一种准确率；例如知识答对与非幻觉指标是不同量。结果为开发者模型卡汇报，不能推出所有任务领先，也不证明完整推理仅需24GB。",
+        "heading": "NVIDIA发布Nemotron 3.5 Bolt端侧混合架构低比特模型"
+      },
+      "ja": {
+        "alt": "Nemotron Boltと指定オープンモデルの項目別評価",
+        "caption": "緑がBolt、他色は凡例の別モデル・精度です。同じ評価項目内で比較し、全ての棒を同一の正解率と解釈しないでください。知識正解と非ハルシネーションは別指標です。開発元の報告であり、全タスク優位や総メモリ24GBを示しません。",
+        "heading": "NVIDIA、Nemotron 3.5 BoltのGGUF低ビット版を公開"
+      },
+      "sourceUrl": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+      "asset": "/images/radar/daily-ai-radar-2026-10-18-bolt.webp",
+      "sha256": "756cd7dd3ebe51000ef8ecd2f7f2b82874c9aeed5b5997ad31dd002c1c7467bf",
+      "review": "accepted"
+    },
+    {
+      "id": "chunking",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/88462ca4-b0a1-4441-9537-59dae9d5ef65_2484x3002.png",
+      "credit": "ByteByteGo",
+      "zh": {
+        "alt": "RAG八种分块策略的切分位置、处理顺序与适用文档",
+        "caption": "先看左列的切分依据，再看中列处理顺序：Late Chunking先保留整文嵌入上下文再分块池化，Hierarchical则保留多层父子关系，两者不是同一种算法。右列是选型提示而非效果保证，需用自己的文档与检索任务验证。",
+        "heading": "ByteByteGo梳理RAG系统8种常见分块策略与技术权衡"
+      },
+      "ja": {
+        "alt": "RAGの8分割方式における境界・処理順序・文書適性",
+        "caption": "左の分割基準と中央の処理順を対照してください。Late Chunkingは全文脈で埋め込んでから分割・プーリングし、階層型は親子関係を残す別手法です。右の用途例は性能保証ではなく、自分の文書と検索課題で検証が必要です。",
+        "heading": "ByteByteGo、RAGにおける8つのチャンキング手法と選定指針を整理"
+      },
+      "sourceUrl": "https://blog.bytebytego.com/p/ep229-8-chunking-strategies-for-rag",
+      "asset": "/images/radar/daily-ai-radar-2026-10-18-chunking.webp",
+      "sha256": "d7bfef2979fbb3000189f76ca75305de2b276f3bb3b36e290677cdba9cfa1185",
+      "review": "accepted"
+    }
+  ]
+}
