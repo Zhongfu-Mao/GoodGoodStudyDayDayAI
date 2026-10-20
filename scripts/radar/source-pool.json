@@ -445,7 +445,7 @@
     "note": "Public Markdown must not contain collection logs, failure logs, source-count summaries, Gmail internals, Chrome/HTTP notes, or dedupe process notes."
   },
   "dailyV2Gate": {
-    "targetEntries": "8-12 (editorial target, no hard minimum)",
+    "targetEntries": "8-15, usually around 12 (editorial target, no hard minimum or maximum; inspect sufficient breadth before stopping)",
     "minimumEntries": 0,
     "minimumSourceFamilies": 5,
     "minimumCoreEntries": 0,
