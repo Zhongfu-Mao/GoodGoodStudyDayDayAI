@@ -9,6 +9,9 @@ plainSummary: "低资源语言的代码评测进步，生产迁移仍要检验�
 tags: []
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-20-infographic.webp
+audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-20.mp3
+audioDuration: 1041
+audioSize: 8331160
 draft: true
 ---
 

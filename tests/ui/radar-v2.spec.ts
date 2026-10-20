@@ -51,13 +51,33 @@ test.describe('radar V2 local draft preview', () => {
         'Original audio download/semantic acceptance pending; no substitute media',
       );
       await gotoApp(page, `${lang === 'ja' ? '/ja' : ''}/radar/daily-ai-radar-2026-10-20/`);
-      const audio = page.locator('[data-audio-briefing] audio');
-      await expect(audio).toHaveCount(1);
-      const url = await audio.locator('source').getAttribute('src');
+      const briefing = page.locator('[data-audio-briefing]');
+      await expect(briefing).toHaveCount(1);
+      const url = await briefing.getAttribute('data-audio-src');
       expect(url).toContain(appPath('/__radar-preview/audio/'));
       const response = await request.get(url!, { headers: { Range: 'bytes=0-1023' } });
       expect(response.ok()).toBe(true);
       expect(response.headers()['content-type']).toContain('audio/mpeg');
+      await briefing.locator('[data-audio-play-trigger]').click();
+      const player = page.locator('[data-global-audio-player]');
+      const audio = player.locator('[data-global-audio]');
+      await expect(player).toBeVisible();
+      await expect(audio).toHaveJSProperty('src', new URL(url!, page.url()).href);
+      await expect
+        .poll(() => audio.evaluate((el) => (el as HTMLAudioElement).currentTime))
+        .toBeGreaterThan(0);
+      const expectedDuration = Number(parseRadarV2(source).meta.audioDuration);
+      expect(
+        await audio.evaluate(
+          (el, duration) => Math.abs((el as HTMLAudioElement).duration - duration),
+          expectedDuration,
+        ),
+      ).toBeLessThan(1);
+      expect(await audio.evaluate((el) => (el as HTMLAudioElement).error)).toBeNull();
+      await player.locator('[data-audio-toggle]').click();
+      await expect.poll(() => audio.evaluate((el) => (el as HTMLAudioElement).paused)).toBe(true);
+      await player.locator('[data-audio-close]').click();
+      await expect(player).toBeHidden();
     });
   }
 });
