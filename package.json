@@ -47,7 +47,9 @@
     "check:radar-editorial": "node scripts/check/radar-editorial.mjs",
     "check:radar": "npm run check:radar-newsletter && npm run check:radar-sources && npm run check:radar-schema && npm run check:radar-dedupe && npm run check:radar-media && npm run check:radar-editorial && npm run check:radar-visuals",
     "check:radar-visuals": "node scripts/radar/inline-visuals.mjs --check",
-    "radar:inline-visuals": "node scripts/radar/inline-visuals.mjs"
+    "radar:inline-visuals": "node scripts/radar/inline-visuals.mjs",
+    "radar:collect": "node scripts/radar/collect-sources.mjs",
+    "radar:preview": "RADAR_PREVIEW_DRAFTS=1 GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI npm run build && RADAR_PREVIEW_DRAFTS=1 GITHUB_REPOSITORY=Zhongfu-Mao/GoodGoodStudyDayDayAI npm run preview:test"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.2",

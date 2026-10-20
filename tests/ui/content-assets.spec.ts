@@ -48,6 +48,13 @@ test.describe('content and asset QA', () => {
         if (!value || isExternalUrl(value) || !value.startsWith('/')) {
           continue;
         }
+        // Explicit local-only sample audio is not a public asset. Publication
+        // media validation rejects this URL if the report ever loses draft:true.
+        if (
+          entry.frontmatter.draft === true &&
+          /^\/__radar-preview\/audio\/daily-ai-radar-\d{4}-\d{2}-\d{2}(?:\.ja)?\.mp3$/.test(value)
+        )
+          continue;
 
         const assetPath = resolvePublicAsset(value);
         if (!fileExistsWithContent(assetPath)) {
@@ -163,8 +170,7 @@ test.describe('content and asset QA', () => {
       {
         collection: 'academy',
         baseSlug: 'anthropic-academy/04-developer-tools/claude-code-in-action',
-        imagePrefix:
-          '/images/academy/anthropic-academy/04-developer-tools/claude-code-in-action/',
+        imagePrefix: '/images/academy/anthropic-academy/04-developer-tools/claude-code-in-action/',
         minBodyImages: 3,
       },
       {

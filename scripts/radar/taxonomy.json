@@ -19,5 +19,34 @@
       "5. GitHub 人気 repo & トレンド追跡",
       "📬 Newsletter 精選"
     ]
+  },
+  "dailyV2": {
+    "from": "2026-10-20",
+    "format": 2,
+    "topics": {
+      "capabilities": {
+        "zh": "能力与证据",
+        "ja": "能力とエビデンス"
+      },
+      "building": {
+        "zh": "构建与运行",
+        "ja": "構築と運用"
+      },
+      "adoption": {
+        "zh": "产品与真实采用",
+        "ja": "プロダクトと実際の導入"
+      },
+      "governance": {
+        "zh": "产业与治理",
+        "ja": "産業とガバナンス"
+      }
+    },
+    "optionalTopics": true,
+    "highlights": 3,
+    "targetEntries": [8, 12],
+    "deepReading": {
+      "zh": "延伸阅读",
+      "ja": "深掘り"
+    }
   }
 }

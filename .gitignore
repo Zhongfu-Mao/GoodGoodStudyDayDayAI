@@ -3,6 +3,7 @@
 dist/
 .output/
 .cache/
+/generated_images/
 .tmp/
 tmp/
 temp/

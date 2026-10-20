@@ -7,6 +7,7 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
 import { resolveAppBasePath } from './lib/base-path.mjs';
+import { previewMediaPath } from './lib/radar-local-preview.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
@@ -52,6 +53,10 @@ server.listen(port, host, () => {
 async function resolveFilePath(rawPathname) {
   const strippedPathname = stripBasePath(rawPathname);
   const decodedPathname = decodeURIComponent(strippedPathname);
+  const sample = previewMediaPath(decodedPathname, {
+    enabled: process.env.RADAR_PREVIEW_DRAFTS === '1' && !process.env.CI,
+  });
+  if (sample) return existingFile(sample);
   const relativePath = decodedPathname.replace(/^\/+/, '');
   const candidate = path.resolve(distDir, relativePath);
 

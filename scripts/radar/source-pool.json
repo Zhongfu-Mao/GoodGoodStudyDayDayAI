@@ -24,131 +24,292 @@
       "name": "The Rundown AI",
       "aliases": ["The Rundown", "therundown"],
       "access": {
-        "primary": { "kind": "chrome", "url": "https://www.therundown.ai/" },
+        "primary": {
+          "kind": "chrome",
+          "url": "https://www.therundown.ai/"
+        },
         "fallbacks": [
-          { "kind": "homepage", "url": "https://www.therundown.ai/" },
-          { "kind": "gmail", "query": "from:(news@daily.therundown.ai) newer_than:7d" }
+          {
+            "kind": "homepage",
+            "url": "https://www.therundown.ai/"
+          },
+          {
+            "kind": "gmail",
+            "query": "from:(news@daily.therundown.ai) newer_than:7d"
+          }
         ],
         "notes": "HTTP/RSS is only a probe. Chrome homepage plus article pages are the required route."
       },
       "role": "Product, industry and mainstream AI signal discovery.",
-      "strategy": "Daily required source. Read latest homepage/articles in Chrome, then follow official/project links when they carry the canonical facts."
+      "strategy": "Daily required source. Read latest homepage/articles in Chrome, then follow official/project links when they carry the canonical facts.",
+      "channel": "newsletter"
     },
     {
       "name": "Latent.Space / AINews",
       "aliases": ["Latent Space", "Latent.Space", "AINews"],
       "access": {
-        "primary": { "kind": "rss", "url": "https://www.latent.space/feed" },
-        "fallbacks": [{ "kind": "homepage", "url": "https://www.latent.space/" }]
+        "primary": {
+          "kind": "rss",
+          "url": "https://www.latent.space/feed"
+        },
+        "fallbacks": [
+          {
+            "kind": "homepage",
+            "url": "https://www.latent.space/"
+          }
+        ],
+        "additionalFeeds": [
+          {
+            "kind": "podcast-rss",
+            "url": "https://api.substack.com/feed/podcast/1084089.rss",
+            "dedupeWith": "Latent.Space / AINews",
+            "strategy": "Merge article/audio/transcript versions by canonical episode page. Listen/read verified transcript, not titles or sponsors, before selection."
+          }
+        ]
       },
       "role": "AI engineering, agents, infra, startup and community signal.",
-      "strategy": "Daily required source. Use AINews and interviews for discovery; follow canonical links when needed."
+      "strategy": "Daily required source. Use AINews and interviews for discovery; follow canonical links when needed.",
+      "channel": "newsletter"
     },
     {
       "name": "Daily Dose of Data Science",
       "aliases": ["Daily Dose"],
       "access": {
-        "primary": { "kind": "rss", "url": "https://blog.dailydoseofds.com/feed" },
+        "primary": {
+          "kind": "rss",
+          "url": "https://blog.dailydoseofds.com/feed"
+        },
         "fallbacks": [
-          { "kind": "homepage", "url": "https://blog.dailydoseofds.com/" },
-          { "kind": "gmail", "query": "from:(avi@dailydoseofds.com) newer_than:7d" }
+          {
+            "kind": "homepage",
+            "url": "https://blog.dailydoseofds.com/"
+          },
+          {
+            "kind": "gmail",
+            "query": "from:(avi@dailydoseofds.com) newer_than:7d"
+          }
         ]
       },
       "role": "Data science, ML engineering, agent practice and applied learning.",
-      "strategy": "Daily required source. Gmail-confirmed items can enter Newsletter; public posts can enter regular sections."
+      "strategy": "Daily required source. Gmail-confirmed items can enter Newsletter; public posts can enter regular sections.",
+      "channel": "newsletter"
     },
     {
       "name": "Every",
       "aliases": ["Every Newsletter", "every.to"],
       "access": {
-        "primary": { "kind": "homepage", "url": "https://every.to/" },
-        "fallbacks": [{ "kind": "gmail", "query": "from:(hello@every.to) newer_than:7d" }]
+        "primary": {
+          "kind": "homepage",
+          "url": "https://every.to/"
+        },
+        "fallbacks": [
+          {
+            "kind": "gmail",
+            "query": "from:(hello@every.to) newer_than:7d"
+          }
+        ]
       },
       "role": "AI product, organization, workflow and long-form industry analysis.",
-      "strategy": "Daily required source. Prefer public article links; use Gmail only to confirm newsletter originals."
+      "strategy": "Daily required source. Prefer public article links; use Gmail only to confirm newsletter originals.",
+      "channel": "newsletter"
     },
     {
       "name": "ByteByteGo",
       "aliases": ["ByteByteGo"],
       "access": {
-        "primary": { "kind": "rss", "url": "https://blog.bytebytego.com/feed" },
+        "primary": {
+          "kind": "rss",
+          "url": "https://blog.bytebytego.com/feed"
+        },
         "fallbacks": [
-          { "kind": "homepage", "url": "https://blog.bytebytego.com/" },
-          { "kind": "gmail", "query": "from:(bytebytego@substack.com) newer_than:7d" }
+          {
+            "kind": "homepage",
+            "url": "https://blog.bytebytego.com/"
+          },
+          {
+            "kind": "gmail",
+            "query": "from:(bytebytego@substack.com) newer_than:7d"
+          }
         ]
       },
       "role": "Engineering architecture, system design, AI infra and production lessons.",
-      "strategy": "Daily required source. Select AI infra, RAG, agent, platform engineering and observability items."
+      "strategy": "Daily required source. Select AI infra, RAG, agent, platform engineering and observability items.",
+      "channel": "newsletter"
     },
     {
       "name": "老范讲故事",
       "aliases": ["老范", "lukefan"],
       "access": {
-        "primary": { "kind": "rss", "url": "https://lukefan.com/feed" },
-        "fallbacks": [{ "kind": "homepage", "url": "https://lukefan.com/" }]
+        "primary": {
+          "kind": "rss",
+          "url": "https://lukefan.com/feed"
+        },
+        "fallbacks": [
+          {
+            "kind": "homepage",
+            "url": "https://lukefan.com/"
+          }
+        ]
       },
       "role": "Important Chinese industry, business, capital and local context source.",
-      "strategy": "Daily required source, but not a privileged/highest-weight source. Include only high-signal AI, robotics, platform, capital or policy-relevant items."
+      "strategy": "Daily required source, but not a privileged/highest-weight source. Include only high-signal AI, robotics, platform, capital or policy-relevant items.",
+      "channel": "blog"
     },
     {
       "name": "The Batch / DeepLearning.AI",
       "aliases": ["The Batch", "DeepLearning.AI", "DeepLearning AI"],
       "access": {
-        "primary": { "kind": "homepage", "url": "https://www.deeplearning.ai/the-batch/" },
-        "fallbacks": [{ "kind": "gmail", "query": "{from:thebatch@deeplearning.ai from:hello@deeplearning.ai} newer_than:7d" }]
+        "primary": {
+          "kind": "homepage",
+          "url": "https://www.deeplearning.ai/the-batch/"
+        },
+        "fallbacks": [
+          {
+            "kind": "gmail",
+            "query": "{from:thebatch@deeplearning.ai from:hello@deeplearning.ai} newer_than:7d"
+          }
+        ]
       },
       "role": "Research, industry, course and Andrew Ng ecosystem signal.",
-      "strategy": "Daily required source. If RSS is unstable, use the public page or Gmail original."
+      "strategy": "Daily required source. If RSS is unstable, use the public page or Gmail original.",
+      "channel": "newsletter"
     },
     {
       "name": "Ahead of AI",
       "aliases": ["Ahead of AI", "Sebastian Raschka"],
       "access": {
-        "primary": { "kind": "rss", "url": "https://magazine.sebastianraschka.com/feed" },
-        "fallbacks": [{ "kind": "homepage", "url": "https://magazine.sebastianraschka.com/" }]
+        "primary": {
+          "kind": "rss",
+          "url": "https://magazine.sebastianraschka.com/feed"
+        },
+        "fallbacks": [
+          {
+            "kind": "homepage",
+            "url": "https://magazine.sebastianraschka.com/"
+          }
+        ]
       },
       "role": "Model architecture, papers and lower-level technical explanation.",
-      "strategy": "Daily required source; if there is no new post, record the check in the audit log."
+      "strategy": "Daily required source; if there is no new post, record the check in the audit log.",
+      "channel": "newsletter"
     },
     {
       "name": "AI Valley",
       "aliases": ["AI Valley", "The AI Valley"],
       "access": {
-        "primary": { "kind": "homepage", "url": "https://www.theaivalley.com/" },
-        "fallbacks": [{ "kind": "gmail", "query": "from:(aivalley@mail.beehiiv.com) newer_than:7d" }]
+        "primary": {
+          "kind": "homepage",
+          "url": "https://www.theaivalley.com/"
+        },
+        "fallbacks": [
+          {
+            "kind": "gmail",
+            "query": "from:(aivalley@mail.beehiiv.com) newer_than:7d"
+          }
+        ]
       },
       "role": "Newsletter discovery and product/industry roundup.",
-      "strategy": "Use Gmail or public page confirmation. Include only reader-facing entries, never source-count summaries."
+      "strategy": "Use Gmail or public page confirmation. Include only reader-facing entries, never source-count summaries.",
+      "channel": "newsletter"
     },
     {
       "name": "Programmer Weekly",
       "aliases": ["Programmer Weekly"],
       "access": {
-        "primary": { "kind": "homepage", "url": "https://programmerweekly.com/" },
-        "fallbacks": [{ "kind": "gmail", "query": "from:(rahul@programmerweekly.com) newer_than:7d" }]
+        "primary": {
+          "kind": "homepage",
+          "url": "https://programmerweekly.com/"
+        },
+        "fallbacks": [
+          {
+            "kind": "gmail",
+            "query": "from:(rahul@programmerweekly.com) newer_than:7d"
+          }
+        ]
       },
       "role": "Developer tooling and engineering newsletter discovery.",
-      "strategy": "Use only when AI/agent/data tooling signal is concrete."
+      "strategy": "Use only when AI/agent/data tooling signal is concrete.",
+      "channel": "newsletter"
     }
   ],
   "supplementalDiscoverySources": [
     {
       "name": "Hugging Face project-team releases",
       "aliases": ["HF project-team"],
-      "access": { "primary": { "kind": "homepage", "url": "https://huggingface.co/blog" } },
-      "strategy": "User-approved pilot from 2026-09-28. Select identifiable original project-team model, dataset or evaluation releases with linked artifacts and original publication dates. Do not ingest the community trending feed wholesale or treat SEO summaries as primary evidence. Does not replace active-core quota."
+      "access": {
+        "primary": {
+          "kind": "homepage",
+          "url": "https://huggingface.co/blog"
+        }
+      },
+      "strategy": "User-approved pilot from 2026-09-28. Select identifiable original project-team model, dataset or evaluation releases with linked artifacts and original publication dates. Do not ingest the community trending feed wholesale or treat SEO summaries as primary evidence. Does not replace active-core quota.",
+      "channel": "blog"
     },
     {
       "name": "Simon Willison",
       "aliases": ["simonwillison.net"],
-      "access": { "primary": { "kind": "homepage", "url": "https://simonwillison.net/" } },
-      "strategy": "User-approved pilot from 2026-09-28. Prefer original AI experiments, code, transcripts and annotated technical talks with limitations. Quoted third-party claims require their original source. Does not replace active-core quota."
+      "access": {
+        "primary": {
+          "kind": "rss",
+          "url": "https://simonwillison.net/atom/everything/"
+        },
+        "fallbacks": [
+          {
+            "kind": "homepage",
+            "url": "https://simonwillison.net/"
+          }
+        ]
+      },
+      "strategy": "User-approved pilot from 2026-09-28. Prefer original AI experiments, code, transcripts and annotated technical talks with limitations. Quoted third-party claims require their original source. Does not replace active-core quota.",
+      "channel": "blog"
     },
     {
       "name": "LangChain engineering",
       "aliases": ["LangChain Blog", "LangGraph", "LangSmith"],
-      "access": { "primary": { "kind": "homepage", "url": "https://www.langchain.com/blog" } },
-      "strategy": "User-approved pilot from 2026-09-28. Prefer engineering, evaluations, observability and deployment posts with concrete methods, docs or code. Exclude sales-only posts and repetitive launch roundups. Does not replace active-core quota."
+      "access": {
+        "primary": {
+          "kind": "homepage",
+          "url": "https://www.langchain.com/blog"
+        }
+      },
+      "strategy": "User-approved pilot from 2026-09-28. Prefer engineering, evaluations, observability and deployment posts with concrete methods, docs or code. Exclude sales-only posts and repetitive launch roundups. Does not replace active-core quota.",
+      "channel": "blog"
+    },
+    {
+      "name": "Hamel Husain",
+      "aliases": ["hamel.dev"],
+      "access": {
+        "primary": {
+          "kind": "rss",
+          "url": "https://hamel.dev/index.xml"
+        },
+        "fallbacks": [
+          {
+            "kind": "homepage",
+            "url": "https://hamel.dev/"
+          }
+        ]
+      },
+      "strategy": "Original evaluation, error-analysis and AI engineering methods. Preserve experiment scope and original dates; no forced daily entry.",
+      "channel": "blog"
+    },
+    {
+      "name": "The Pragmatic Engineer podcast",
+      "aliases": ["Pragmatic Engineer"],
+      "access": {
+        "primary": {
+          "kind": "podcast-rss",
+          "url": "https://api.substack.com/feed/podcast/458709.rss"
+        },
+        "fallbacks": [
+          {
+            "kind": "homepage",
+            "url": "https://newsletter.pragmaticengineer.com/s/podcast"
+          }
+        ]
+      },
+      "strategy": "AI-relevant engineering interviews only. Verify actual episode, original date and transcript/audio evidence. Merge episode, article and transcript; sponsor copy is not evidence.",
+      "channel": "podcast"
     }
   ],
   "officialConfirmationSources": [
@@ -156,31 +317,59 @@
       "name": "OpenAI",
       "aliases": ["OpenAI"],
       "access": {
-        "primary": { "kind": "rss", "url": "https://openai.com/news/rss.xml" },
-        "fallbacks": [{ "kind": "homepage", "url": "https://openai.com/news/" }]
+        "primary": {
+          "kind": "rss",
+          "url": "https://openai.com/news/rss.xml"
+        },
+        "fallbacks": [
+          {
+            "kind": "homepage",
+            "url": "https://openai.com/news/"
+          }
+        ]
       },
-      "strategy": "May be checked proactively for major model, Codex, safety and platform updates; also used to confirm core-source discoveries."
+      "strategy": "May be checked proactively for major model, Codex, safety and platform updates; also used to confirm core-source discoveries.",
+      "channel": "official"
     },
     {
       "name": "Anthropic",
       "aliases": ["Anthropic", "Claude"],
       "access": {
-        "primary": { "kind": "homepage", "url": "https://www.anthropic.com/news" },
-        "fallbacks": [{ "kind": "homepage", "url": "https://docs.anthropic.com/" }]
+        "primary": {
+          "kind": "homepage",
+          "url": "https://www.anthropic.com/news"
+        },
+        "fallbacks": [
+          {
+            "kind": "homepage",
+            "url": "https://docs.anthropic.com/"
+          }
+        ]
       },
-      "strategy": "May be checked proactively for Claude, Claude Code, model, safety and platform updates; also used to confirm core-source discoveries."
+      "strategy": "May be checked proactively for Claude, Claude Code, model, safety and platform updates; also used to confirm core-source discoveries.",
+      "channel": "official"
     },
     {
       "name": "Google / Gemini / DeepMind",
       "aliases": ["Google", "Gemini", "DeepMind"],
       "access": {
-        "primary": { "kind": "rss", "url": "https://blog.google/technology/ai/rss/" },
+        "primary": {
+          "kind": "rss",
+          "url": "https://blog.google/technology/ai/rss/"
+        },
         "fallbacks": [
-          { "kind": "homepage", "url": "https://deepmind.google/discover/blog/" },
-          { "kind": "homepage", "url": "https://ai.google.dev/" }
+          {
+            "kind": "homepage",
+            "url": "https://deepmind.google/discover/blog/"
+          },
+          {
+            "kind": "homepage",
+            "url": "https://ai.google.dev/"
+          }
         ]
       },
-      "strategy": "May be checked proactively for Gemini, DeepMind, AI Studio and Google AI platform updates; also used to confirm core-source discoveries."
+      "strategy": "May be checked proactively for Gemini, DeepMind, AI Studio and Google AI platform updates; also used to confirm core-source discoveries.",
+      "channel": "official"
     }
   ],
   "trendSources": [
@@ -188,14 +377,24 @@
       "name": "GitHub Trending",
       "aliases": ["GitHub Trending", "GitHub repo"],
       "access": {
-        "primary": { "kind": "homepage", "url": "https://github.com/trending?since=daily" },
+        "primary": {
+          "kind": "homepage",
+          "url": "https://github.com/trending?since=daily"
+        },
         "fallbacks": [
-          { "kind": "homepage", "url": "https://github.com/trending/python?since=daily" },
-          { "kind": "homepage", "url": "https://github.com/trending/typescript?since=daily" }
+          {
+            "kind": "homepage",
+            "url": "https://github.com/trending/python?since=daily"
+          },
+          {
+            "kind": "homepage",
+            "url": "https://github.com/trending/typescript?since=daily"
+          }
         ]
       },
       "role": "Fifth quadrant source for high-velocity AI/agent/data-science repositories.",
-      "strategy": "Track daily but include only repos with concrete AI/agent/data relevance, credible maintainers, clear docs/demo, and non-trivial velocity. Do not classify GitHub Blog or GitHub Changelog as this trend source unless the item is specifically a repository surfaced from Trending."
+      "strategy": "Track daily but include only repos with concrete AI/agent/data relevance, credible maintainers, clear docs/demo, and non-trivial velocity. Do not classify GitHub Blog or GitHub Changelog as this trend source unless the item is specifically a repository surfaced from Trending.",
+      "channel": "github"
     }
   ],
   "canonicalConfirmationSources": [
@@ -203,7 +402,10 @@
       "name": "Hugging Face",
       "aliases": ["Hugging Face"],
       "access": {
-        "primary": { "kind": "homepage", "url": "https://huggingface.co/blog" }
+        "primary": {
+          "kind": "homepage",
+          "url": "https://huggingface.co/blog"
+        }
       },
       "strategy": "General Hub content remains canonical confirmation only. The user-approved supplementalDiscoverySources pilot permits bounded discovery of identifiable project-team original releases, not unrestricted community feed ingestion."
     },
@@ -211,7 +413,10 @@
       "name": "arXiv / Paper / Project",
       "aliases": ["arXiv", "paper", "论文", "project", "项目"],
       "access": {
-        "primary": { "kind": "linked-canonical", "url": "from-core-or-trend-source" }
+        "primary": {
+          "kind": "linked-canonical",
+          "url": "from-core-or-trend-source"
+        }
       },
       "strategy": "Not an active daily source. Use only as the canonical target after discovery elsewhere."
     }
@@ -238,5 +443,37 @@
     "allowReaderFacingSourceOverview": false,
     "forbidBackstageCollectionLog": true,
     "note": "Public Markdown must not contain collection logs, failure logs, source-count summaries, Gmail internals, Chrome/HTTP notes, or dedupe process notes."
+  },
+  "dailyV2Gate": {
+    "targetEntries": "8-12 (editorial target, no hard minimum)",
+    "minimumEntries": 0,
+    "minimumSourceFamilies": 5,
+    "minimumCoreEntries": 0,
+    "minimumActiveCoreEntries": 0,
+    "minimumNewsletterEntries": 0,
+    "maxSingleFamilyShare": 0.35,
+    "maxOfficialTriadShare": 0.35,
+    "maxTrendShare": 0.35,
+    "coverage": "All active core and configured supplemental feeds must be inspected and recorded privately; acceptance is independent of source-entry quotas. Low-volume days keep original evidence and record scarcity rather than add filler."
+  },
+  "lowFrequencySources": [
+    {
+      "name": "Chip Huyen",
+      "aliases": ["huyenchip.com"],
+      "access": {
+        "primary": {
+          "kind": "homepage",
+          "url": "https://huyenchip.com/blog/"
+        }
+      },
+      "cadence": "weekly",
+      "strategy": "Low-frequency original AI systems deep reading; no accepted feed claimed. Preserve original date. Do not count rediscovery as new release.",
+      "channel": "blog"
+    }
+  ],
+  "discoveryPolicy": {
+    "x": "Individual original posts are evidence-backed leads only; no stable monitoring claimed. Do not bypass access limits.",
+    "storyIdentity": "Canonical original/episode page is shared across blog, Newsletter, podcast and transcript; keep all discovery channels on one story.",
+    "feedAcceptance": "Require valid RSS/Atom, nonempty dated public entries; podcast requires audio enclosure. HTTP 200 or homepage is insufficient."
   }
 }

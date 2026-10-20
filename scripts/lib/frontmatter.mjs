@@ -43,6 +43,7 @@ export function parseFrontmatter(source, { requireTitle = true } = {}) {
     title,
     lang: readScalar(frontmatter, 'lang') ?? 'zh',
     cadence: readScalar(frontmatter, 'cadence'),
+    radarFormat: Number(readScalar(frontmatter, 'radarFormat') ?? 1),
     audioUrl: readScalar(frontmatter, 'audioUrl'),
     deckUrl: readScalar(frontmatter, 'deckUrl'),
     coverImage: readScalar(frontmatter, 'coverImage'),

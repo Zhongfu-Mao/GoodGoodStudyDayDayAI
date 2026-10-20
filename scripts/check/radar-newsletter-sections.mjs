@@ -2,6 +2,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { isDailyRadarFileInRange, parseDateRangeArgs } from './radar-date-range.mjs';
+import { isRadarV2 } from '../lib/radar-format.mjs';
 
 const root = process.cwd();
 const radarDir = path.join(root, 'src/content/radar');
@@ -31,7 +32,9 @@ function extractNewsletterSection(body) {
   const start = match.index;
   const rest = body.slice(start + match[0].length);
   const nextHeading = headingPattern.exec(rest);
-  return nextHeading ? body.slice(start, start + match[0].length + nextHeading.index) : body.slice(start);
+  return nextHeading
+    ? body.slice(start, start + match[0].length + nextHeading.index)
+    : body.slice(start);
 }
 
 function normalize(value) {
@@ -108,6 +111,7 @@ async function main() {
   for (const file of files) {
     const fullPath = path.join(radarDir, file);
     const body = await readFile(fullPath, 'utf8');
+    if (isRadarV2(body)) continue; // V2 validates channel metadata, never a channel quota.
     const section = extractNewsletterSection(body);
     if (!section) continue;
     checkSection(file, section, failures);

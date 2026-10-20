@@ -122,7 +122,14 @@ async function buildEntriesForLocale(locale: Locale) {
   );
   return entries
     .flat()
-    .filter((item) => item.locale === locale && !item.entry.data.draft)
+    .filter(
+      (item) =>
+        item.locale === locale &&
+        (!item.entry.data.draft ||
+          (item.collection === 'radar' &&
+            process.env.RADAR_PREVIEW_DRAFTS === '1' &&
+            !process.env.CI)),
+    )
     .sort((a, b) => b.entry.data.date.getTime() - a.entry.data.date.getTime());
 }
 

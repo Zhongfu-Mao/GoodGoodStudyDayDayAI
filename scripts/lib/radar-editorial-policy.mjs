@@ -1,4 +1,5 @@
 import { readRadarDocument } from './radar-media-policy.mjs';
+import { isRadarV2 } from './radar-format.mjs';
 
 // Match editorial leakage precisely; technical discussions of dedupe/curl remain valid.
 const privatePatterns = [
@@ -17,7 +18,7 @@ const privatePatterns = [
 
 export function inspectRadarEditorial(file, source, policy, taxonomy) {
   const { meta, body } = readRadarDocument(source);
-  if (meta.draft === true) return [];
+  if (meta.draft === true && !isRadarV2(source)) return [];
   const date = file.match(/radar-(\d{4}-\d{2}-\d{2})/)?.[1];
   if (!date || date < policy.enforceFrom) return [];
   const findings = [];
@@ -26,7 +27,7 @@ export function inspectRadarEditorial(file, source, policy, taxonomy) {
     if (pattern.test(source))
       findings.push({ rule, message: 'public text contains private/editorial material' });
   }
-  if (file.includes('/daily-ai-radar-')) {
+  if (file.includes('/daily-ai-radar-') && !isRadarV2(source)) {
     const headings = taxonomy.daily[file.endsWith('.ja.md') ? 'ja' : 'zh'];
     const text = body.replace(/```[^\n]*\n[\s\S]*?```/g, '');
     const sections = [...text.matchAll(/^##\s+(.+)$/gm)];

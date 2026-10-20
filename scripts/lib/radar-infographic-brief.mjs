@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { normalizeNewlines, stripMarkdown } from './markdown.mjs';
+import { parseRadarV2, inspectRadarV2, EVIDENCE, CHANNELS } from './radar-format.mjs';
 
 const SECTION_TYPES = [
   ['engineering', /AI\s*Engineering|AIエンジニアリング|架构|アーキテクチャ|Architecture/i],
@@ -44,6 +45,50 @@ export function buildInfographicBrief(meta, body) {
     .replace(/\n{3,}/g, '\n\n')
     .trim();
   const cadence = meta.cadence ?? 'daily';
+  if (cadence === 'daily' && meta.radarFormat === 2) {
+    const source = `---\n${meta.raw}\n---\n${normalized}`;
+    const failures = inspectRadarV2(source);
+    if (failures.length) throw new Error(`Invalid V2 brief: ${failures.join('; ')}`);
+    const doc = parseRadarV2(source);
+    const sections = doc.blocks.slice(1).map((block) => ({
+      key: doc.items.find((item) => item.section === block.title)?.deepRead
+        ? 'reading'
+        : doc.items.find((item) => item.section === block.title)?.topic,
+      title: block.title,
+      items: doc.items
+        .filter((item) => item.section === block.title)
+        .map((item) => ({
+          id: item.id,
+          title: item.title,
+          facts: item.facts,
+          context: `${item.published} · ${EVIDENCE[item.evidence][doc.lang === 'ja' ? 1 : 0]} · ${item.channels.map((c) => CHANNELS[c][doc.lang === 'ja' ? 1 : 0]).join(' / ')}`,
+        })),
+    }));
+    return {
+      version: 2,
+      radarFormat: 2,
+      sourceSha256: createHash('sha256')
+        .update(
+          JSON.stringify({
+            title: meta.title,
+            date: String(doc.meta.date),
+            language: meta.lang,
+            cadence,
+            body: normalized,
+          }),
+        )
+        .digest('hex'),
+      title: meta.title,
+      date: String(doc.meta.date).slice(0, 10),
+      language: meta.lang,
+      cadence,
+      highlights: [...doc.highlights.matchAll(/^- \[([^\n]+)\]\(#radar-[a-z0-9-]+\)/gm)].map(
+        (m) => m[1],
+      ),
+      sections,
+      itemCount: doc.items.length,
+    };
+  }
   const sections = blocksAt(normalized, 2)
     .map((block) => ({
       ...block,
@@ -220,9 +265,16 @@ function renderInfographicDesign(brief, visualCopy) {
     japanese
       ? '画面制作仕様（配置と作図の指示・画像には転記しない）'
       : '画面制作规格（图形排版说明，不是上图文字）',
+    ...(brief.radarFormat === 2
+      ? [
+          japanese
+            ? `新版：固定グリッドを使わず、${count}テーマを上から下へ順序通りの横長ブロックにする。各テーマ内だけ左から右へ項目を配置。欄名を変えず、他欄へ移さない。項目番号・指定短文以外の図内文字、ロゴ、日付、暦、数値を追加しない。ある項目の制約や仕組みを別の項目へ移さない。古い事例の日付を図中で作らない。`
+            : `新版：不使用固定网格，${count}个主题从上到下按原顺序作横向区块，区块内各条从左到右排列。不得改栏目名或跨栏移动条目。除编号、指定短名称与说明外，图中不再加文字、Logo、日期、日历或数字。不得把一个条目的限制或机制移给其他条目，不得自行绘制旧案例日期。`,
+        ]
+      : []),
     japanese
-      ? `横長16:9。${grid}。左から右、上から下へ元の順に配置。各欄の項目数は${brief.sections.map((section) => section.items.length).join('/')}。Newsletterも全項目を独立して配置する。`
-      : `横向16:9。固定${grid}。从左到右、从上到下按原顺序排列，各栏条目数为${brief.sections.map((section) => section.items.length).join('/')}。Newsletter内每条独立成格。`,
+      ? `横長16:9。${brief.radarFormat === 2 ? '上記の可変テーマ配置を使用' : grid}。元の順に配置。各欄の項目数は${brief.sections.map((section) => section.items.length).join('/')}。${brief.radarFormat === 2 ? 'テーマ数は可変。経路別の追加欄を作らない。' : 'Newsletterも全項目を独立して配置する。'}`
+      : `横向16:9。${brief.radarFormat === 2 ? '采用上面的可变主题布局' : grid}。按原顺序排列，各栏条目数为${brief.sections.map((section) => section.items.length).join('/')}。${brief.radarFormat === 2 ? '主题数量可变，不新增渠道分区，不补空白主题。' : 'Newsletter内每条独立成格。'}`,
     japanese
       ? '暖かい米色の紙、柔らかな橙・青緑・水色・珊瑚色・薄紫・薄黄の欄見出し帯。統一した二次元のインク線と淡い水彩。文字は大きく明瞭な活字体、余白を十分にとる。'
       : '暖米色纸张背景；栏目标题色带依次为柔橙、青绿、淡蓝、珊瑚红、淡紫、淡黄。统一二维手绘墨线和淡水彩，中文使用大而清楚的印刷体，留白充足。',
@@ -247,7 +299,7 @@ export function renderInfographicPrompt(brief, { backend = 'notebooklm', visualC
   const instructions = japanese
     ? [
         '公開記事用の横長 editorial infographic を作成してください。入力は二層です。「完全な事実資料」は照合専用で、画像に転記しない。「画面掲載文案」だけを表示テキストとして使ってください。',
-        `タイトルと日付を正確に表示。${brief.sections.length} セクションと ${brief.itemCount} 項目を元の順序・分類のまま全て掲載し、勝手に統合・省略・移動しない。Newsletter も具体的な記事と事実を掲載。`,
+        `タイトルと日付を正確に表示。${brief.sections.length} セクションと ${brief.itemCount} 項目を元の順序・分類のまま全て掲載し、勝手に統合・省略・移動しない。${brief.radarFormat === 2 ? '情報経路は分類ではない。公式発表・実測・独立再現・見解の区別と初出日を守る。' : 'Newsletter も具体的な記事と事実を掲載。'}`,
         '各項目は仕組みの小図、指定された短い名前と説明で表現する。短文を大きく読みやすく配置し、説明は二行以内を目安とする。事実資料から追加の数字・長い見出し・注釈を拾わない。文案にない数字は省き、採用した数字と必要な限定条件はセットで維持する。',
         '予測を実績に、提案を導入済みに、特定ベンチマークを一般的保証に変えない。元のリストにない事実・ロゴ・帰属を追加しない。因果関係を捏造しない。矢印は明示された手順や関係だけに使う。',
         '温かい紙色、手描きのインク線、控えめな水彩。各項目の小図と大きな文字を優先し、長い導入文や中央の巨大な装飾は省く。欄の数と項目配分を維持し、隣の項目の数値や図を混ぜない。文案を書き換えて短くせず、余白と配置で収める。',
@@ -255,7 +307,7 @@ export function renderInfographicPrompt(brief, { backend = 'notebooklm', visualC
       ]
     : [
         '生成用于公开文章的横向 editorial infographic。输入分两层：“完整事实依据”仅供核对，不印到图上；“画面文案”是唯一允许上图的文字。',
-        `准确显示标题与日期；按原顺序、原分类完整呈现 ${brief.sections.length} 个栏目、${brief.itemCount} 个条目，不自行合并、遗漏或移动。Newsletter 必须呈现具体文章与事实。`,
+        `准确显示标题与日期；按原顺序、原分类完整呈现 ${brief.sections.length} 个栏目、${brief.itemCount} 个条目，不自行合并、遗漏或移动。${brief.radarFormat === 2 ? '渠道不是分类；保留官方宣称、实测、独立复现和观点的区别，不把旧原文改成今日新事件。' : 'Newsletter 必须呈现具体文章与事实。'}`,
         '每条用机制小图、指定的短名称与说明呈现。文字要大且清晰，说明以两行以内为排版目标。不从事实依据另取数字、长标题或注释上图；省略画面文案未选用的数字，选用的数字及其必要限定条件一起保留。',
         '不得把预测改为已发生、建议改为已部署、特定基准改为普遍保证；不得新增清单以外的事实、Logo 或机构归属。不得编造因果关系；箭头只表示正文明确的流程或关系。',
         '暖纸色、手绘墨线、克制水彩，优先每条机制小图与大字，省去长导语和巨大中心装饰。保持栏目数及各栏条目分配，不串用相邻条目的数字或插图。不改写指定文案，通过留白与布局容纳内容。',

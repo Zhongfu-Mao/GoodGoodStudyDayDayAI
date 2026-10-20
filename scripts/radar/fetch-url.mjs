@@ -20,7 +20,7 @@
 import { setTimeout as delay } from 'node:timers/promises';
 import { Readability } from '@mozilla/readability';
 import { JSDOM } from 'jsdom';
-import { XMLParser } from 'fast-xml-parser';
+import { parseRadarFeed } from '../lib/radar-feeds.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
@@ -142,51 +142,7 @@ function looksLikeRSS(contentType, body) {
   return head.includes('<rss') || head.includes('<feed') || head.includes('<?xml');
 }
 
-function parseRSS(body) {
-  const parser = new XMLParser({
-    ignoreAttributes: false,
-    attributeNamePrefix: '@_',
-    trimValues: true,
-  });
-  const doc = parser.parse(body);
-  const items = [];
-  const channelItems = doc?.rss?.channel?.item;
-  const atomEntries = doc?.feed?.entry;
-  const list = Array.isArray(channelItems)
-    ? channelItems
-    : channelItems
-      ? [channelItems]
-      : Array.isArray(atomEntries)
-        ? atomEntries
-        : atomEntries
-          ? [atomEntries]
-          : [];
-  for (const it of list) {
-    const link =
-      typeof it.link === 'string'
-        ? it.link
-        : Array.isArray(it.link)
-          ? it.link.find((l) => l?.['@_rel'] !== 'self')?.['@_href'] ||
-            it.link[0]?.['@_href'] ||
-            it.link[0]
-          : it.link?.['@_href'] || it.link;
-    items.push({
-      title: typeof it.title === 'string' ? it.title : it.title?.['#text'] || '',
-      link: link || '',
-      published: it.pubDate || it.published || it.updated || '',
-      summary:
-        (typeof it.description === 'string' ? it.description : '') ||
-        (typeof it.summary === 'string' ? it.summary : it.summary?.['#text']) ||
-        '',
-      author:
-        (typeof it.author === 'string' ? it.author : it.author?.name) || it['dc:creator'] || '',
-    });
-  }
-  return {
-    feedTitle: doc?.rss?.channel?.title || doc?.feed?.title?.['#text'] || doc?.feed?.title || '',
-    items,
-  };
-}
+const parseRSS = parseRadarFeed;
 
 function extractReadable(body, finalUrl) {
   const dom = new JSDOM(body, { url: finalUrl });

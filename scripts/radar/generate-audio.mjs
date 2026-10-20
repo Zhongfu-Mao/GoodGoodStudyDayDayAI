@@ -85,10 +85,14 @@ export function buildBriefMemo(body, meta) {
   return [
     meta.lang === 'ja' ? `タイトル：${meta.title}` : `标题：${meta.title}`,
     meta.lang === 'ja' ? '言語：日本語' : '语言：中文',
+    ...(brief.highlights?.length ? [brief.highlights.join('\n')] : []),
     ...brief.sections.map((section) =>
       [
         `## ${section.title}`,
-        ...section.items.map((item) => `### ${item.title}\n\n${item.facts}`),
+        ...section.items.map(
+          (item) =>
+            `### ${item.title}\n\n${item.context ? item.context + '\n\n' : ''}${item.facts}`,
+        ),
       ].join('\n\n'),
     ),
     meta.lang === 'ja'

@@ -5,6 +5,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { isDailyRadarFileInRange, parseDateRangeArgs } from './radar-date-range.mjs';
+import { isRadarV2 } from '../lib/radar-format.mjs';
 
 if (isCliEntry()) {
   await main();
@@ -130,16 +131,21 @@ function normalizeLabel(label) {
 }
 
 function checkFile(file, body, groups, sourcePool, fileFailures) {
-  const gate = sourcePool.publicationGate ?? {};
+  const gate = isRadarV2(body)
+    ? { ...sourcePool.publicationGate, ...sourcePool.dailyV2Gate }
+    : (sourcePool.publicationGate ?? {});
   const exception = findHistoricalException(sourcePool, file);
   const minimumEntries = gate.minimumEntries ?? 0;
-  const minimumSourceFamilies = gate.minimumSourceFamilies ?? 0;
+  const minimumSourceFamilies = isRadarV2(body)
+    ? Math.min(gate.minimumSourceFamilies ?? 0, groups.length)
+    : (gate.minimumSourceFamilies ?? 0);
   const minimumCoreEntries = gate.minimumCoreEntries ?? 0;
   const minimumActiveCoreEntries = gate.minimumActiveCoreEntries ?? 0;
   const minimumNewsletterEntries = gate.minimumNewsletterEntries ?? 0;
-  const maxSingleFamilyShare = gate.maxSingleFamilyShare ?? 1;
-  const maxOfficialTriadShare = gate.maxOfficialTriadShare ?? 1;
-  const maxTrendShare = gate.maxTrendShare ?? 1;
+  const smallIssueFloor = isRadarV2(body) ? 1 / Math.max(1, groups.length) : 0;
+  const maxSingleFamilyShare = Math.max(gate.maxSingleFamilyShare ?? 1, smallIssueFloor);
+  const maxOfficialTriadShare = Math.max(gate.maxOfficialTriadShare ?? 1, smallIssueFloor);
+  const maxTrendShare = Math.max(gate.maxTrendShare ?? 1, smallIssueFloor);
   const excludedPatterns = (sourcePool.excludedActiveSources ?? []).map((source) => ({
     name: source.name,
     pattern: new RegExp(escapeRegExp(source.name), 'i'),
