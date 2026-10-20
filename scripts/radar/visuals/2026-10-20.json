@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-20",
+  "visuals": [
+    {
+      "id": "starskirmish",
+      "originalImageUrl": "https://d24ovhgu8s7341.cloudfront.net/uploads/editor/post/4524/optimized_39a677e3-237d-4798-8b4e-f20cccf0440c.png",
+      "credit": "Good Start Labs / Every",
+      "zh": {
+        "alt": "StarSkirmish实验中两种模型通过难度层级、代码回滚与Pluto失败的时间线",
+        "caption": "横轴是10月2–4日实验内的时间，阶梯代表通过难度层级，并非模型日常任务成功率。红色标注记录复制代码后被回滚；右侧红格代表对Pluto的失败，说明“爬过现有层级”与“攻克更强对手”是两回事。",
+        "heading": "StarCraft长任务实验：胜率之外还要看代理如何取得结果"
+      },
+      "ja": {
+        "alt": "StarSkirmish実験の難易度突破、コード巻き戻し、Plutoへの敗北の時間軸",
+        "caption": "横軸は10月2〜4日の実験内時間、階段は難易度層の突破であり、日常業務の成功率ではありません。赤い注記はコピー後の巻き戻し、右の赤いマスはPlutoへの敗北を示し、既存の段階突破と次の強敵の攻略を分けています。",
+        "heading": "StarCraft長時間実験：勝敗だけでなく結果の得方を追う"
+      },
+      "sourceUrl": "https://every.to/playtesting/we-caught-an-ai-cheating-by-watching-it-play-starcraft",
+      "asset": "/images/radar/daily-ai-radar-2026-10-20-starskirmish.webp",
+      "sha256": "27a68077543e081fd501110edafc3db1bd845937b765f6a52165fbc926a1fb82",
+      "review": "accepted"
+    },
+    {
+      "id": "numan",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6aceb54662350e80f4eccc69_numan-diagram.png",
+      "credit": "Numan / LangChain",
+      "zh": {
+        "alt": "Numan同一代理图接受真实会话和模拟会话评测的架构",
+        "caption": "先看图例：实线是目前运行的链路，虚线代表原型或方向。真实会话和模拟会话流向同一个Nu图，再进入LangSmith；右侧是由相关专家制定的评测标准。不能把虚线模拟层与线上自动评估当成已全面运行的安全保证。",
+        "heading": "Numan的AI教练案例：先明确评测标准，再决定自动化边界"
+      },
+      "ja": {
+        "alt": "Numanで実会話と模擬会話が同じエージェントグラフを評価する構造",
+        "caption": "凡例では実線が稼働中、破線が試作または方向です。実会話と模擬会話は同じNuのグラフを通りLangSmithへ進み、右には専門家が関与する評価基準があります。破線の模擬層やオンライン評価を、稼働済みの安全保証と読まないでください。",
+        "heading": "NumanのAIコーチ事例：評価基準を先に定め、自動化の境界を決める"
+      },
+      "sourceUrl": "https://www.langchain.com/blog/how-numan-built-an-eval-first-ai-health-coach-with-langgraph-and-langsmith",
+      "asset": "/images/radar/daily-ai-radar-2026-10-20-numan.webp",
+      "sha256": "f12e83262dc487a4d0e1b33b77426e3edb7371b77fc83ff0a59e579b6eee2325",
+      "review": "accepted"
+    },
+    {
+      "id": "genie",
+      "originalImageUrl": "https://cn-geo1.uber.com/image-proc/resize/udam/format=auto/quality=0/width=2160/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC91ZGFtLWFzc2V0cy80OGNhYTc5NC00ZmY1LTViOTAtODk0ZC1lZDk4YzQ3OGFkNjEucG5n",
+      "credit": "Uber Engineering",
+      "zh": {
+        "alt": "Uber Genie将资料索引、知识服务与聊天反馈串联的历史架构图",
+        "caption": "从左侧资料ETL和存储读到中间向量库与LLM，再看右侧聊天问答及反馈回流。它展示2024年案例的系统分工，不是今天新增部署；反馈回路可以帮助改进，但图中的箭头不证明答案已被独立核实或保证无幻觉。",
+        "heading": "重读Uber Genie：RAG答案、知识质量和人工接管是三条链路"
+      },
+      "ja": {
+        "alt": "Uber Genieの資料索引、知識サービス、チャットのフィードバックを結ぶ過去の構成図",
+        "caption": "左の資料ETLと保存から中央のベクトルDB・LLMへ、右のチャット応答とフィードバックへ読みます。2024年事例の役割分担であり、本日の新規導入ではありません。フィードバックの矢印は、回答の独立検証や無幻覚を保証しません。",
+        "heading": "Uber Genie再読：RAGの回答、文書品質、人への引き継ぎを分ける"
+      },
+      "sourceUrl": "https://www.uber.com/us/en/blog/genie-ubers-gen-ai-on-call-copilot/",
+      "asset": "/images/radar/daily-ai-radar-2026-10-20-genie.webp",
+      "sha256": "290ca3a8c30cfe0338fcbc4c9dfad93fa341a407a4c2ffc61f25ae03b2387309",
+      "review": "accepted"
+    }
+  ]
+}
