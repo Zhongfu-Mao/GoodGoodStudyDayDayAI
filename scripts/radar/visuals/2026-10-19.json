@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-19",
+  "visuals": [
+    {
+      "id": "fde",
+      "originalImageUrl": "https://arxiv.org/html/2610.22350v1/fig1.png",
+      "credit": "FDE-Gym论文作者",
+      "zh": {
+        "alt": "FDE-Gym从真实行业项目到模拟交付任务的构建流程",
+        "caption": "从上方真实行业项目，沿箭头读到模拟环境、专家构造的变体、评分锚点复核与最终基准。它解释任务如何构建，不是95个真实客户项目的直接部署成绩；图中评分锚点也不同于摘要中“已解决任务”的判定线。",
+        "heading": "FDE-Gym发布：模拟客户环境下的端到端交付评估基准"
+      },
+      "ja": {
+        "alt": "実際の業務事例からFDE-Gymの模擬納品課題を構築する流れ",
+        "caption": "上の実業務事例から、模擬環境、専門家による変種、採点アンカーの点検、最終評価へ矢印を追います。実顧客95件への直接導入実績ではありません。図の採点アンカーと本文の「解決済み」判定基準も別です。",
+        "heading": "FDE-Gym公開：模擬顧客環境におけるエンドツーエンド業務デリバリー評価基准"
+      },
+      "sourceUrl": "https://arxiv.org/abs/2610.22350",
+      "asset": "/images/radar/daily-ai-radar-2026-10-19-fde.webp",
+      "sha256": "27491060bbd3342be9a5ecdfcfa52c800f2d7d5f5ac3380ca659a40d0108764a",
+      "review": "accepted"
+    },
+    {
+      "id": "layout",
+      "originalImageUrl": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/knight.png",
+      "credit": "Hugging Face / Diffusers / Black Forest Labs",
+      "zh": {
+        "alt": "FLUX.3通过来源框和目标框把针织骑士向左上方移动的示例",
+        "caption": "红色from框标出原位置，to框标出目标位置，骑士被移到左上方，龙与毛线背景仍保留。图示的是区域约束编辑的单个示例，不是位置误差或所有对象均能准确移动的量化评测。",
+        "heading": "FLUX.3 Image Klein：统一文本生成、多图参考与归一化边界框编辑"
+      },
+      "ja": {
+        "alt": "FLUX.3でニットの騎士を移動元領域から左上の目標領域へ移す例",
+        "caption": "赤いfromが元位置、toが目標領域で、騎士は左上へ移され、竜と毛糸の背景は維持されています。領域指定編集の一例であり、位置誤差の測定や全対象での精度保証ではありません。",
+        "heading": "FLUX.3 Image Klein登場：正規化バウンディングボックスによる画像生成と編集の統合"
+      },
+      "sourceUrl": "https://huggingface.co/blog/flux-3",
+      "asset": "/images/radar/daily-ai-radar-2026-10-19-layout.webp",
+      "sha256": "8192e4242db872914f0b55797a5e49bd0862c5968c04750cdafe7edcef4bd9d2",
+      "review": "accepted"
+    },
+    {
+      "id": "failure",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/71fdfae2-f56b-4ff8-a7a9-dc661cbc6e6d_2650x3068.png",
+      "credit": "ByteByteGo",
+      "zh": {
+        "alt": "故障预防、Cell隔离、复制、退避重试、背压及RTO/RPO的对照图",
+        "caption": "从左上“减少发生”与“减轻后果”的区别读起，再看Cell隔离如何限制受影响用户、重试如何设置退避和上限。右下把可容忍的数据丢失RPO与服务恢复时间RTO放在不同区段；示例流量和等待秒数不是可直接套用的生产配置。",
+        "heading": "ByteByteGo：把故障预防、影响隔离与恢复目标分开设计"
+      },
+      "ja": {
+        "alt": "予防・Cell隔離・複製・再試行・背圧・RTO/RPOを対照する障害設計図",
+        "caption": "左上の発生防止と影響軽減を区別し、Cell分割による影響局所化、再試行の待機と上限を見ます。右下のRPOは許容データ損失、RTOは復旧時間です。図中の流量や待ち秒数は例であり、そのまま本番設定に適用する値ではありません。",
+        "heading": "ByteByteGo：障害予防・影響隔離・復旧目標を分けて設計"
+      },
+      "sourceUrl": "https://blog.bytebytego.com/p/how-to-design-for-failures",
+      "asset": "/images/radar/daily-ai-radar-2026-10-19-failure.webp",
+      "sha256": "d973ec9a5a0ded1afbb4a7ee645969be0d485f459dadfffc290e42bad250355f",
+      "review": "accepted"
+    }
+  ]
+}
