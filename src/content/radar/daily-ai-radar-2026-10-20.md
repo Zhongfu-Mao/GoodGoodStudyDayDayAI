@@ -9,10 +9,10 @@ plainSummary: "低资源语言的代码评测进步，生产迁移仍要检验�
 tags: []
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-20-infographic.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-20.mp3
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-20.mp3
 audioDuration: 1041
 audioSize: 8331160
-draft: true
+draft: false
 ---
 
 截至10月20日13:20（日本时间）确认的公开材料中，整理12条内容：9条近期信号、1项当前开源项目观察和2篇深读。近期原文回看约72小时；项目观察与旧文保留原始日期或明确标注未确认，区分发布方宣称、作者实测与观点。

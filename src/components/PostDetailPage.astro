@@ -451,6 +451,12 @@ const showTimeline = !academyMeta;
           </div>
         </div>
 
+        {entry.data.audioNotice ? (
+          <p class="theme-text mt-4 rounded-xl border border-amber-500/40 p-3 text-sm leading-6" data-audio-notice>
+            {entry.data.audioNotice}
+          </p>
+        ) : null}
+
         <noscript>
           <audio controls preload="none" class="mt-4 w-full">
             <source src={audioSrc} />

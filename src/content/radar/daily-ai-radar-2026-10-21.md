@@ -6,7 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-21-infographic.webp
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-21.mp3
+audioDuration: 745
+audioSize: 5958824
+audioNotice: "本期音频尚未完成完整语义复核，个别表述可能与来源有出入；事实与限定条件请以有来源的正文为准。"
+draft: false
 tags: []
 plainSummary: "评估模型先调阈值，概率分数仍要校准与验证。 跨进程恢复与副作用幂等必须分别设计。 共享智能体把多人上下文和权限变成运行时问题。"
 ---

@@ -6,7 +6,10 @@ cadence: daily
 radarFormat: 2
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-10-21.ja-infographic.webp
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-21.ja.mp3
+audioDuration: 1200
+audioSize: 9599039
+draft: false
 tags: []
 plainSummary: "評価モデルは閾値を調整し、確率も用途別に検証する。 プロセスを越えた再開と副作用の冪等性を分けて設計する。 共有エージェントでは複数人の文脈と権限を実行時に扱う。"
 ---

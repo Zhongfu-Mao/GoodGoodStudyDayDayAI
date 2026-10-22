@@ -9,7 +9,11 @@ plainSummary: "低資源言語のコード評価は改善したが、本番移�
 tags: []
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-10-20.ja-infographic.webp
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-20.ja.mp3
+audioDuration: 1378
+audioSize: 11021354
+audioNotice: "音声は内容全体の意味の確認を完了していません。一部の表現が出典と異なる可能性があるため、事実や条件は出典付きの本文をご確認ください。"
+draft: false
 ---
 
 10月20日13:20（日本時間）までに確認した公開資料から12件を整理した。最近の動き9件、現在の公開プロジェクト観察1件、深掘り2本を含む。最近の原文は約72時間を振り返り、観察や過去記事は初出日または未確認を明記する。発表・実測・見解を区別する。

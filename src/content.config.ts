@@ -34,6 +34,7 @@ const forbiddenRadarFields = {
   audioDuration: z.never().optional(),
   audioExplicit: z.never().optional(),
   audioSize: z.never().optional(),
+  audioNotice: z.never().optional(),
   deckUrl: z.never().optional(),
   includeInRadarArchive: z.never().optional(),
 } as const;
@@ -51,6 +52,7 @@ export const radarSchema = baseBlogSchema.extend({
   audioDuration: z.number().int().positive().optional(),
   audioExplicit: z.boolean().default(false),
   audioSize: z.number().int().positive().optional(),
+  audioNotice: z.string().min(1).optional(),
   deckUrl: z.string().optional(),
   includeInRadarArchive: z.boolean().default(true),
   ...forbiddenCourseFields,

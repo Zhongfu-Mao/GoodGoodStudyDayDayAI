@@ -6,7 +6,10 @@ cadence: daily
 radarFormat: 2
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-22-infographic.webp
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-22.mp3
+audioDuration: 1589
+audioSize: 12710536
+draft: false
 tags: []
 plainSummary: "开源推理内核与完整在线服务之间仍有系统工程。 领域词表可以改变成本，但收益要绑定负载。 监督型界面也有额外成本和代码权限边界。"
 ---

@@ -6,7 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-10-22.ja-infographic.webp
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-22.ja.mp3
+audioDuration: 1213
+audioSize: 9707291
+audioNotice: "音声は内容全体の意味の確認を完了していません。一部の表現が出典と異なる可能性があるため、事実や条件は出典付きの本文をご確認ください。"
+draft: false
 tags: []
 plainSummary: "推論コアの公開から完全なオンラインサービスまでには別の構築が必要。 領域語彙はコストを変えるが、効果は負荷条件に依存する。 監督用のインターフェースにも追加費用とコード権限の境界がある。"
 ---

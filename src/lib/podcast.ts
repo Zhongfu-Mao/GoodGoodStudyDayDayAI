@@ -75,13 +75,19 @@ export async function buildPodcastFeed({
         entry.data.audioSize ?? (await getLocalPublicAssetSize(entry.data.audioUrl));
       const duration = entry.data.audioDuration;
       const articleUrl = new URL(articlePath(entry.data.category, slug, locale), site).toString();
+      const summary = [
+        entry.data.plainSummary ?? entry.data.description ?? entry.data.title,
+        entry.data.audioNotice,
+      ]
+        .filter(Boolean)
+        .join('\n\n');
       const episodeSummary = buildEpisodeSummary({
-        summary: entry.data.plainSummary ?? entry.data.description ?? entry.data.title,
+        summary,
         articleUrl,
         locale,
       });
       const episodeDescription = buildEpisodeDescription({
-        summary: entry.data.plainSummary ?? entry.data.description ?? entry.data.title,
+        summary,
         articleUrl,
         locale,
       });
