@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-21",
+  "visuals": [
+    {
+      "id": "fairstress",
+      "sourceUrl": "https://huggingface.co/blog/allenai/fairstress",
+      "originalImageUrl": "https://www.datocms-assets.com/64837/1791813453-fairstress-blog-draft-google-docs-image-3.png?fit=max&h=810&w=1550",
+      "asset": "/images/radar/daily-ai-radar-2026-10-21-fairstress.webp",
+      "sha256": "b72919f6683e491c3258a395e0517d89ed88b5fa11fb672b6e6c0be593b73d7d",
+      "credit": "Ai2 / FairStress",
+      "review": "accepted",
+      "zh": {
+        "heading": "FairStress揭示LLM决策公平性中的隐藏不对称",
+        "alt": "FairStress比较15个模型在不同身份表达和压力条件下的平均差距",
+        "caption": "横轴从匿名变为显式身份；粉线是压力下放弃较优候选人的差距，比只看无压力选择的深绿线更大。纵轴用百分点，零线对应作者的对称公平定义，不代表所有公平标准。"
+      },
+      "ja": {
+        "heading": "FairStressが示すLLM意思決定の隠れた非対称性",
+        "alt": "FairStressが15モデルの属性表現と圧力条件別の平均格差を比較",
+        "caption": "横軸は匿名から明示的属性へ変わる。圧力下でより適格な候補を撤回する桃色の線は、圧力なしの選択を示す濃緑の線より格差が大きい。縦軸はポイントで、ゼロ線は著者の対称的公平の定義に対応し、すべての公平観を表すわけではない。"
+      }
+    },
+    {
+      "id": "altk-cost",
+      "sourceUrl": "https://huggingface.co/blog/ibm-research/altk-evolve-bc",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/MsqhICXsHtpJozVFZYEm7.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-21-altk-cost.webp",
+      "sha256": "367be88878f5869b43f8e01bf14bc42a6fa282200a4977002cb10ea942ed1f15",
+      "credit": "IBM Research / ALTK-Evolve",
+      "review": "accepted",
+      "zh": {
+        "heading": "ALTK-Evolve用轨迹准则改善τ²-bench智能体",
+        "alt": "ALTK-Evolve按零售和航空比较不同准则配置的每次对话成本",
+        "caption": "左右面板分别是零售与航空，灰柱为不附加准则的基线；蓝柱的Lossless表示保留全部学习准则，成本随更长输入上升。这里是GPT-4.1、完整base split和四次试验的作者配置，不是生产成本保证，也不是压缩算法的“无损”。"
+      },
+      "ja": {
+        "heading": "ALTK-Evolve、軌跡から学ぶ指針でτ²-benchエージェントを改善",
+        "alt": "ALTK-Evolveの小売・航空別、指針構成ごとの会話単価",
+        "caption": "左が小売、右が航空で、灰色は指針なしの基準。青いLosslessは学習した全指針を残す構成を指し、長い入力で費用が増える。GPT-4.1、完全なbase split、4試行という著者の設定で、本番費用の保証や圧縮方式の「可逆性」を意味しない。"
+      }
+    },
+    {
+      "id": "every-slots",
+      "sourceUrl": "https://every.to/source-code/why-we-replaced-personal-agents-with-one-for-the-whole-company",
+      "originalImageUrl": "https://d24ovhgu8s7341.cloudfront.net/uploads/editor/post/4525/optimized_21cdd28b-88f2-4eaa-8707-aab88c182733.jpg",
+      "asset": "/images/radar/daily-ai-radar-2026-10-21-every-slots.webp",
+      "sha256": "46d4000c6009365965e8a6a7e9208db34654b8c7ed0250929c33eb1782f7d953",
+      "credit": "Every / connection-slot design",
+      "review": "accepted",
+      "zh": {
+        "heading": "持续追踪｜Every将个人智能体改造成全公司共享智能体",
+        "alt": "Every连接槽示意图把排期任务、稳定槽位和可更换登录分开",
+        "caption": "排期任务指向稳定连接槽，替换登录只有匹配同一工作区和访问规则时才能接入；右侧错误工作区被拒绝。图是原文简化的连接槽设计，登录可更换不等于权限可任意继承。"
+      },
+      "ja": {
+        "heading": "継続追跡｜Every、個人エージェントを全社共有型へ再構築",
+        "alt": "Everyの接続スロット図は定期タスク、安定スロット、交換可能なログインを分離",
+        "caption": "定期タスクは安定した接続スロットを参照し、同じワークスペースとアクセス条件に合うログインだけが交換接続できる。右側の別ワークスペースは拒否される。原文の簡略図であり、ログイン交換は権限の無条件な継承を意味しない。"
+      }
+    }
+  ]
+}

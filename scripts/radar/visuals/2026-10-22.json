@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-22",
+  "visuals": [
+    {
+      "id": "granite-speech",
+      "sourceUrl": "https://huggingface.co/blog/ibm-granite/granite-speech-5",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/653fb52cbfd890805461d691/87yRtLq4X2CwMZrDhv0L_.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-22-granite-speech.webp",
+      "sha256": "9ff8f61b3aad0c9225b4696c92d33863a46f017564ec8e6b4916fa34afb7b683",
+      "credit": "IBM Granite / Open ASR Leaderboard",
+      "review": "accepted",
+      "zh": {
+        "heading": "IBM更新Granite Speech三款语音模型",
+        "alt": "Granite Speech 5.0 2B与开放权重模型的公开英语短音频WER比较",
+        "caption": "蓝柱是Granite 2B，数值5.06表示这组公开英语短音频的词错误率，越低越好；横轴带断点，柱长不能按零起点直接比较。图表不覆盖全部语言、长录音或生产环境。"
+      },
+      "ja": {
+        "heading": "IBM、Granite Speechの3モデルを更新",
+        "alt": "Granite Speech 5.0 2Bと公開ウェイトモデルの英語短尺WER比較",
+        "caption": "青がGranite 2Bで、5.06はこの公開英語短尺セットの単語誤り率を表し、低いほどよい。横軸には切断があり、棒の長さをゼロ起点として比較できない。全言語、長時間録音、本番環境の評価ではない。"
+      }
+    },
+    {
+      "id": "vocabx",
+      "sourceUrl": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/TYOhAFobnI4ss3UnNqMHc.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-22-vocabx.webp",
+      "sha256": "ba59d6d1947a2e25e5028c49c378ae427dfe6f31e361a910d54028b71acffa36",
+      "credit": "Dharma AI / VocabX",
+      "review": "accepted",
+      "zh": {
+        "heading": "VocabX在特定作文评分负载中降低推理成本",
+        "alt": "同一句英文在基础分词器中为14个Token，在VocabX示例中为4个",
+        "caption": "上行把同一句英文切成较多片段，下行将常见短语合并成更少的Token，用来解释词表专门化。右上77%来自正文指定的葡语作文评分负载，不是这句英文或所有任务的通用收益。"
+      },
+      "ja": {
+        "heading": "VocabX、特定の作文採点ワークロードで推論コストを削減",
+        "alt": "同じ英文を既存トークナイザーは14、VocabXの例は4トークンに分割",
+        "caption": "上段は同じ英文を細かく分け、下段は頻出句をまとめて語彙特化の仕組みを示す。右上の77%は本文にあるポルトガル語作文採点の指定負荷での値であり、この英文や全タスクに共通する効果ではない。"
+      }
+    },
+    {
+      "id": "tenex",
+      "sourceUrl": "https://www.latent.space/p/tenex",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/576c0ba6-53e3-458f-bd88-6d524832b2ff_819x526.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-22-tenex.webp",
+      "sha256": "0ac67de102af62f4ca8984ac0e49cef1ad338e17da7f1e23c37283890e7a2ece",
+      "credit": "Tenex / Latent.Space",
+      "review": "accepted",
+      "zh": {
+        "heading": "Tenex把计划、决策与验收证据纳入共享工程记录",
+        "alt": "Tenex MetaHarness把当前事实、未来意图和历史证据汇入项目记录",
+        "caption": "中央项目记录分成当前事实、未来意图、历史与证据，右侧Linear、GitHub和客户更新是它的投影；上层再读取记录形成跨项目视图。图表达团队的工作组织方法，不能据此认定所有连接与状态已经自动可靠运行。"
+      },
+      "ja": {
+        "heading": "Tenex、計画・意思決定・受入根拠を共有の開発記録へ",
+        "alt": "Tenex MetaHarnessが現状、将来意図、履歴と根拠をプロジェクト記録へ集約",
+        "caption": "中央の記録は現状、将来意図、履歴と根拠に分かれ、右のLinear、GitHub、顧客更新はその投影となる。上層は記録を読んで横断的な表示を作る。チームの運用構造を示す図で、全接続や状態が自動で常に正しく動く証明ではない。"
+      }
+    }
+  ]
+}
