@@ -5,6 +5,7 @@ category: radar
 cadence: daily
 radarFormat: 2
 lang: ja
+coverImage: /images/radar/daily-ai-radar-2026-10-22.ja-infographic.webp
 draft: true
 tags: []
 plainSummary: "推論コアの公開から完全なオンラインサービスまでには別の構築が必要。 領域語彙はコストを変えるが、効果は負荷条件に依存する。 監督用のインターフェースにも追加費用とコード権限の境界がある。"

@@ -5,6 +5,7 @@ category: radar
 cadence: daily
 radarFormat: 2
 lang: zh
+coverImage: /images/radar/daily-ai-radar-2026-10-21-infographic.webp
 draft: true
 tags: []
 plainSummary: "评估模型先调阈值，概率分数仍要校准与验证。 跨进程恢复与副作用幂等必须分别设计。 共享智能体把多人上下文和权限变成运行时问题。"

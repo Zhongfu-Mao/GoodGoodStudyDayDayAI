@@ -27,6 +27,43 @@ function reply(payload: unknown) {
   });
 }
 
+function fail(message: string) {
+  spawn.mockImplementationOnce(() => {
+    const child = Object.assign(new EventEmitter(), {
+      stdout: new EventEmitter(),
+      stderr: new EventEmitter(),
+    });
+    queueMicrotask(() => {
+      child.stderr.emit('data', message);
+      child.emit('close', 1);
+    });
+    return child;
+  });
+}
+
+it('recovers a lost CSRF wait once without generating or selecting another artifact', async () => {
+  fail('Token refresh failed: Failed to extract CSRF token (SNlM0e).');
+  reply({ status: 'completed' });
+  await expect(waitForArtifact('notebook', { id: 'csrf-task' })).resolves.toEqual({
+    id: 'csrf-task',
+  });
+  expect(spawn).toHaveBeenCalledTimes(2);
+  for (const [, args] of spawn.mock.calls) {
+    expect(args.slice(0, 5)).toEqual(['artifact', 'wait', '--notebook', 'notebook', 'csrf-task']);
+  }
+});
+
+it('stops after repeated CSRF failure and preserves the exact task for recovery', async () => {
+  fail('Failed to extract CSRF token (SNlM0e).');
+  fail('Failed to extract CSRF token (SNlM0e).');
+  await expect(waitForArtifact('notebook', { id: 'csrf-still-failed' })).rejects.toThrow('CSRF');
+  expect(spawn).toHaveBeenCalledTimes(2);
+  const key = createHash('sha256').update('notebook:csrf-still-failed').digest('hex');
+  const state = JSON.parse(await readFile(`tmp/radar-artifact-jobs/${key}.json`, 'utf8'));
+  expect(state).toMatchObject({ artifactId: 'csrf-still-failed', phase: 'wait_interrupted' });
+  expect(state.nextAction).toContain('do_not_regenerate');
+});
+
 it('waits on the source returned by add without selecting from a list', async () => {
   reply({ source: { id: 'returned-source' } });
   reply({ status: 'ready' });

@@ -164,6 +164,7 @@ export async function waitForArtifact(notebookId, artifact, { timeout = 900 } = 
   console.log(JSON.stringify({ notebookId, artifactId: artifact.id, statePath }));
 
   const deadline = Date.now() + timeout * 1000;
+  let csrfWaitRetries = 0;
 
   while (true) {
     const remainingSeconds = Math.max(1, Math.ceil((deadline - Date.now()) / 1000));
@@ -181,6 +182,18 @@ export async function waitForArtifact(notebookId, artifact, { timeout = 900 } = 
       ]);
       break;
     } catch (error) {
+      // A long-lived CLI wait can lose its CSRF token while generation continues.
+      // Restart only the read-only wait once, using the same recorded artifact.
+      if (
+        csrfWaitRetries === 0 &&
+        /Failed to extract CSRF token \(SNlM0e\)/.test(error?.message ?? '') &&
+        Date.now() < deadline
+      ) {
+        csrfWaitRetries++;
+        await saveState('retrying_exact_wait', error.message);
+        console.warn(`Restarting interrupted CSRF wait for artifact ${artifact.id} once.`);
+        continue;
+      }
       if (!isTransientArtifactDisappearance(error) || Date.now() >= deadline) {
         await saveState('wait_interrupted', error?.message ?? String(error));
         throw error;
