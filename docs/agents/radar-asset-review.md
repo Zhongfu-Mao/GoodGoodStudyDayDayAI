@@ -34,6 +34,8 @@ npm run radar:review -- check --candidate CANDIDATE/candidate.json
 
 ## 3. 音频：只升级实质疑点
 
+音频内容标准 v2（2026-10-22 用户明确批准）：完整性必检，只拦会改变意思的实质问题。主审按风险做最小必要检查，不要求每期全文 ASR、逐字比对或无差别原音听辨；缓存没有转写也不等于必须新跑转写。优先核对对应来源与疑点前后文，注意主持人是否已澄清、是否只是条件性例子或风险比喻。发布权限、外发许可和生成重试权限不因本标准改变。
+
 保留双主持人/default 和原始音频。候选自动检查完整解码、结尾解码、原件与转码时长差≤1秒及单声道44100Hz MP3；同字节的解码结果可缓存，但每次仍检查当前原件的时长差。
 
 `review.json` 的 `semantic` 是主审按比例做的内容审查，须写实际依据，不冒称人工听辨。`issues` 分类如下：
@@ -42,12 +44,14 @@ npm run radar:review -- check --candidate CANDIDATE/candidate.json
 - `rhetorical_exaggeration`：非实质误导的比喻、措辞过满不重生。
 - `factual_error`：疑似实质错误先保留待复核。确认为 `confirmed_error` 需要 `proposition`、`timeRange: [开始秒,结束秒]`、`sourceEvidence`，以及 `basis: native_audio_model` 或 `human_listening`；`asr_only` 不构成确认。模型复核不等于人工听辨或绝对证明。确认后拒绝该候选，但仍须遵守已有重试授权。
 - 已澄清或用户接受的事实问题，用 `resolution: resolved`／`user_accepted` 并填写 `resolutionEvidence`，不悄悄抹去问题。
+- 复审原疑点后，若来源与前后文表明其不改变实际含义，可保留原问题记录，设 `resolution: not_material`，写清具体上下文和非实质理由。此决定不声称听过原音，也不等于用户接受了一个已证实错误。未能排除关键数值、主体归属、机制或否定反转的疑点仍准确待核；不能因“未证实错误”就一律放行，也不能把转写疑点一律叫作音频事实错误。
 
-先查看音频缓存；已有可用转写时不再跑全文 ASR：
+审查写入 `audioRulesVersion: 2`；只更新语义验收缓存版本，原件、技术检查缓存和已有转写继续复用。旧语义结论须按新尺度重新审视已有文件，不触发重生。先查看音频缓存；已有可用转写时不再跑全文 ASR：
 
 ```sh
 npm run radar:review -- audio-cache --candidate CANDIDATE/candidate.json --engine 'ASR模型/版本/语言/配置'
-# 只有 needsTranscription:true 才用现有转写工具；然后导入非空纯文本。
+# transcriptAvailable 只说明缓存情况，不是转写任务或发布门槛。
+# 仅当本次最小必要检查确需转写且缓存不可用时，才用现有工具并导入非空文本。
 npm run radar:review -- audio-cache --candidate CANDIDATE/candidate.json --engine 'ASR模型/版本/语言/配置' --transcript TRANSCRIPT.txt
 # 主审已经通过的语义审查可缓存，复用时还需相同正文与规则版本。
 npm run radar:review -- audio-cache --candidate CANDIDATE/candidate.json --save-review

@@ -19,6 +19,7 @@ import {
   promoteCandidate,
   audioCache,
   inspectAudio,
+  AUDIO_REVIEW_RULES_VERSION,
 } from '../../scripts/lib/radar-review.mjs';
 
 let root: string, file: string, raw: string;
@@ -226,6 +227,78 @@ describe('immutable image candidates and layered attestations', () => {
 });
 
 describe('proportionate audio review and content-addressed reuse', () => {
+  it('allows targeted source/context review without requiring a transcript, while retaining integrity gates', async () => {
+    const p = await packet('audio'),
+      r = accept(p);
+    r.semantic = {
+      status: 'pass',
+      evidence: 'Targeted source/context check; no original listening claimed',
+    };
+    expect(
+      (await audioCache(p.candidateFile, { root })).transcriptAvailable,
+    ).toBe(false);
+    expect(evaluateReview(p.candidate, r).status).toBe('accepted');
+    for (const field of ['fullDecode', 'tailDecode']) {
+      const technical = { ...p.candidate.technical, [field]: 'failed' };
+      expect(evaluateReview({ ...p.candidate, technical }, r).status).toBe(
+        'needs_review',
+      );
+    }
+    expect(
+      evaluateReview(
+        {
+          ...p.candidate,
+          technical: { ...p.candidate.technical, durationDelta: 2 },
+        },
+        r,
+      ).status,
+    ).toBe('needs_review');
+  });
+  it('records a nonmaterial reassessment with context rather than requiring native listening for every prior suspicion', async () => {
+    const p = await packet('audio'),
+      r = accept(p);
+    r.issues = [
+      {
+        classification: 'factual_error',
+        basis: 'asr_only',
+        resolution: 'not_material',
+        proposition: 'Earlier suspected Pass4 definition',
+      },
+    ];
+    expect(evaluateReview(p.candidate, r).status).toBe('needs_review');
+    r.issues[0].resolutionEvidence =
+      'Prior sentence correctly defines four successful attempts; later multi-step example is explanatory, not a replacement definition';
+    expect(evaluateReview(p.candidate, r).status).toBe('accepted');
+    r.issues[0].resolution = 'unconfirmed';
+    expect(evaluateReview(p.candidate, r)).toMatchObject({
+      status: 'needs_review',
+      regenerationAuthorized: false,
+    });
+  });
+  it('invalidates old semantic verdicts without losing reusable transcripts or regenerating bytes', async () => {
+    const p = await packet('audio'),
+      r = accept(p);
+    const transcript = path.join(root, 'existing-transcript.txt');
+    await writeFile(transcript, 'Existing cached words');
+    await audioCache(p.candidateFile, {
+      root,
+      transcriptFile: transcript,
+      engine: 'fixture',
+    });
+    const old = { ...r, audioRulesVersion: AUDIO_REVIEW_RULES_VERSION - 1 };
+    expect(evaluateReview(p.candidate, old).status).toBe('needs_review');
+    const base = path.dirname(
+      (await audioCache(p.candidateFile, { root })).transcriptPath!,
+    );
+    await writeFile(
+      path.join(base, `${p.candidate.sourceSha256}-review-v1.json`),
+      JSON.stringify(old),
+    );
+    const cached = await audioCache(p.candidateFile, { root });
+    expect(cached.transcriptAvailable).toBe(true);
+    expect(cached.review).toBeNull();
+    expect(await readFile(p.assetPath, 'utf8')).toBe('audio-bytes');
+  });
   it('keeps ASR uncertainty and exaggeration nonblocking, but does not certify material errors from ASR alone', async () => {
     const p = await packet('audio'),
       r = accept(p);
@@ -264,7 +337,7 @@ describe('proportionate audio review and content-addressed reuse', () => {
       different = await packet('audio', 'different-bytes');
     const transcript = path.join(root, 'asr.txt');
     await writeFile(transcript, 'Nonempty transcript');
-    expect((await audioCache(p.candidateFile, { root })).needsTranscription).toBe(true);
+    expect((await audioCache(p.candidateFile, { root })).transcriptAvailable).toBe(false);
     await writeFile(p.reviewFile, JSON.stringify(accept(p)));
     await audioCache(p.candidateFile, {
       root,
@@ -273,19 +346,19 @@ describe('proportionate audio review and content-addressed reuse', () => {
       review: true,
     });
     const cached = await audioCache(q.candidateFile, { root, engine: 'test-asr-v1/default' });
-    expect(cached.needsTranscription).toBe(false);
+    expect(cached.transcriptAvailable).toBe(true);
     expect(cached.review.candidateId).toBe(q.candidate.id);
     expect(
-      (await audioCache(q.candidateFile, { root, engine: 'test-asr-v2' })).needsTranscription,
-    ).toBe(true);
-    expect((await audioCache(different.candidateFile, { root })).needsTranscription).toBe(true);
+      (await audioCache(q.candidateFile, { root, engine: 'test-asr-v2' })).transcriptAvailable,
+    ).toBe(false);
+    expect((await audioCache(different.candidateFile, { root })).transcriptAvailable).toBe(false);
     // A new content fingerprint must not reuse an old semantic verdict.
     const originalRaw = raw;
     raw += '\nNew editorial caveat.';
     await writeFile(file, raw);
     const changed = await packet('audio');
     const freshContext = await audioCache(changed.candidateFile, { root });
-    expect(freshContext.needsTranscription).toBe(false);
+    expect(freshContext.transcriptAvailable).toBe(true);
     expect(freshContext.review).toBeNull();
     raw = originalRaw;
     await writeFile(file, raw);

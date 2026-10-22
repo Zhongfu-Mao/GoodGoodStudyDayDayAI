@@ -10,6 +10,8 @@ import { publishRadarAsset } from './radar-assets.mjs';
 
 const run = promisify(execFile);
 const REVIEW_VERSION = 1;
+// Audio policy versions do not invalidate raw files, transcripts or image reviews.
+export const AUDIO_REVIEW_RULES_VERSION = 2;
 export const REVIEW_ROOT = path.resolve('.cache/radar-review');
 const json = async (file) => JSON.parse(await readFile(file, 'utf8'));
 const save = (file, value) => writeFile(file, `${JSON.stringify(value, null, 2)}\n`);
@@ -111,7 +113,11 @@ export async function prepareCandidate({
           legibility: { status: 'pending', evidence: '' },
           facts: { status: 'pending', evidence: '' },
         }
-      : { semantic: { status: 'pending', evidence: '' }, issues: [] }),
+      : {
+          audioRulesVersion: AUDIO_REVIEW_RULES_VERSION,
+          semantic: { status: 'pending', evidence: '' },
+          issues: [],
+        }),
   };
   await save(path.join(directory, 'candidate.json'), candidate);
   await save(path.join(directory, 'review.json'), review);
@@ -214,6 +220,8 @@ export function evaluateReview(candidate, review) {
     gate(review.legibility, 'Legibility');
     gate(review.facts, 'Critical facts/conditions/diagram direction');
   } else {
+    if (review.audioRulesVersion !== AUDIO_REVIEW_RULES_VERSION)
+      pending.push('Reassess existing audio under current editorial rules; do not regenerate');
     if (
       candidate.technical?.fullDecode !== 'passed' ||
       candidate.technical?.tailDecode !== 'passed' ||
@@ -233,9 +241,9 @@ export function evaluateReview(candidate, review) {
       )
         throw new Error('Unknown audio issue classification');
       if (issue.classification !== 'factual_error') continue;
-      if (['resolved', 'user_accepted'].includes(issue.resolution)) {
+      if (['resolved', 'user_accepted', 'not_material'].includes(issue.resolution)) {
         if (!issue.resolutionEvidence?.trim())
-          pending.push('Record evidence/user decision for resolved factual issue');
+          pending.push('Record source/context evidence or user decision for nonblocking factual issue');
         continue;
       }
       const [start, end] = issue.timeRange ?? [];
@@ -369,7 +377,7 @@ export async function audioCache(
       text,
     });
   }
-  const reviewPath = path.join(base, `${c.sourceSha256}-review-v${REVIEW_VERSION}.json`);
+  const reviewPath = path.join(base, `${c.sourceSha256}-review-v${AUDIO_REVIEW_RULES_VERSION}.json`);
   if (review) {
     const r = await json(path.join(directory, 'review.json'));
     if (evaluateReview(c, r).status !== 'accepted')
@@ -401,7 +409,8 @@ export async function audioCache(
   return {
     transcriptPath: transcript ? transcriptPath : null,
     review: cachedReview,
-    needsTranscription: !transcript,
+    // Cache absence does not prescribe ASR or block proportionate review.
+    transcriptAvailable: Boolean(transcript),
   };
 }
 
