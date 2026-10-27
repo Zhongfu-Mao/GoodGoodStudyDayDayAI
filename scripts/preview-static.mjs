@@ -7,7 +7,7 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
 import { resolveAppBasePath } from './lib/base-path.mjs';
-import { previewMediaPath } from './lib/radar-local-preview.mjs';
+import { previewMediaPath, previewByteRange } from './lib/radar-local-preview.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
@@ -28,10 +28,18 @@ const server = createServer(async (req, res) => {
     }
 
     const fileStat = await stat(filePath);
-    res.writeHead(200, {
-      'Content-Length': fileStat.size,
+    const range = previewByteRange(req.headers.range, fileStat.size);
+    if (range?.unsatisfiable) {
+      res.writeHead(416, { 'Content-Range': `bytes */${fileStat.size}`, 'Content-Length': 0 });
+      res.end();
+      return;
+    }
+    res.writeHead(range ? 206 : 200, {
+      'Content-Length': range ? range.end - range.start + 1 : fileStat.size,
       'Content-Type': contentType(filePath),
       'Cache-Control': 'no-cache',
+      'Accept-Ranges': 'bytes',
+      ...(range ? { 'Content-Range': `bytes ${range.start}-${range.end}/${fileStat.size}` } : {}),
     });
 
     if (req.method === 'HEAD') {
@@ -39,7 +47,7 @@ const server = createServer(async (req, res) => {
       return;
     }
 
-    createReadStream(filePath).pipe(res);
+    createReadStream(filePath, range ? { start: range.start, end: range.end } : undefined).pipe(res);
   } catch (error) {
     res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
     res.end(error instanceof Error ? error.message : String(error));
