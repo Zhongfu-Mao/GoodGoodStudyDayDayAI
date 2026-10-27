@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-23",
+  "visuals": [
+    {
+      "id": "thinkingbox-training",
+      "sourceUrl": "https://huggingface.co/blog/microsoft/thinkingbox-training",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/KVaFjYjblWd15tC3M6S_0.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-23-thinkingbox-training.webp",
+      "sha256": "f4cb1addd63d84dd996e365a405440a4dd8727855f98a14d108dafc07bdf51ed",
+      "credit": "Microsoft / Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "ThinkingBox把数据库终态检查变成训练奖励",
+        "alt": "ThinkingBox由任务筛选、数据库检查、训练回路到独立评估的流程",
+        "caption": "左侧筛选可训练任务，中央由数据库终态检查产生奖励并驱动新尝试，右侧另用ThinkingBox-Bench评估。训练任务与评测任务分开，图中的上升柱只是结果示意，不是额外公布的数值。"
+      },
+      "ja": {
+        "heading": "ThinkingBox、データベースの最終状態検査を学習報酬へ",
+        "alt": "ThinkingBoxのタスク選択、DB検査、学習ループ、独立評価",
+        "caption": "左で学習用タスクを選び、中央ではDB最終状態の検査を報酬として次の試行へ返し、右でThinkingBox-Benchを使って評価する。訓練と評価のタスクは別で、上向きの棒は模式表現で追加の数値ではない。"
+      }
+    },
+    {
+      "id": "granite-forecast-ensemble",
+      "sourceUrl": "https://huggingface.co/blog/ibm-research/granite-timeseries-ensemble-r1",
+      "originalImageUrl": "https://huggingface.co/buckets/rry003/blogcomponents/resolve/ensemble_overview.svg?download=true",
+      "asset": "/images/radar/daily-ai-radar-2026-10-23-granite-forecast-ensemble.webp",
+      "sha256": "1007cdd8aa43317a69e18503917ddf0b9057f8e864c6068492d4aa29253136b7",
+      "credit": "IBM Research / Granite",
+      "review": "accepted",
+      "zh": {
+        "heading": "Granite用互补时间序列模型组合概率预测",
+        "alt": "四种Granite模型经统一分位数接口形成集成分布",
+        "caption": "左侧四种模型先输出到统一分位数接口，再选上方的均匀概率合并或下方IQR加权，形成一份预测分布。两条分支是可比较的组合方式，不是必须依次执行的两个训练阶段。"
+      },
+      "ja": {
+        "heading": "Granite、相補的な時系列モデルで確率予測を組み合わせる",
+        "alt": "Graniteの四モデルを共通分位点インターフェースで集約",
+        "caption": "左の四モデルを共通分位点インターフェースにつなぎ、上の均等確率混合または下のIQR重み付けで予測分布を作る。二つの枝は比較できる集約方式で、順番に実行する二段階の学習ではない。"
+      }
+    },
+    {
+      "id": "jev-rag-review",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/build-a-jev-powered-agentic-rag",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/9bd61eb1-d12a-4309-b787-f2be9166accb_2699x1255.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-23-jev-rag-review.webp",
+      "sha256": "1410bca8203bc4db8759a038fcbb9514c696f9d55da67428ac10c2987559fe75",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "决策模型驱动RAG示例把证据不足转成可执行的人工复核",
+        "alt": "客服聊天、InsForge后台与嵌入及决策模型之间的分工",
+        "caption": "右侧模型服务负责嵌入检索和可回答性判断，中间InsForge组织认证、存储及流程；答案回到客户，需升级的问题流向客服面板。图解释教程架构，连通的箭头不代表生产可靠性已经被证明。"
+      },
+      "ja": {
+        "heading": "決定モデルを使うRAG例、証拠不足を人による確認につなぐ",
+        "alt": "顧客チャット、InsForge、埋め込み・決定モデルの役割分担",
+        "caption": "右のモデルサービスが検索と回答可能性を判定し、中央のInsForgeが認証、保存、処理を組み立てる。回答は顧客へ、引継ぎは担当者画面へ進む。教材の構成図であり、矢印の接続は本番の信頼性の実証ではない。"
+      }
+    }
+  ]
+}
