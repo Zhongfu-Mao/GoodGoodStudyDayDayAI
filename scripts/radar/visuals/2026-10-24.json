@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-24",
+  "visuals": [
+    {
+      "id": "kimi-api-pro",
+      "sourceUrl": "https://simonwillison.net/2026/Oct/23/kimi-k31-pro/",
+      "originalImageUrl": "https://static.simonwillison.net/static/2026-10-23/image-2.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-24-kimi-api-pro.webp",
+      "sha256": "0d69c447cf07f0a287fb7aae18e8be9dcf01d878683f6327e37dd185ed529142",
+      "credit": "Simon Willison / Kimi test output",
+      "review": "accepted",
+      "zh": {
+        "heading": "Kimi K3.1 Pro上线API，完整权重仍是后续承诺",
+        "alt": "作者用Kimi K3.1 Pro最大推理档生成的骑自行车鹈鹕SVG样本",
+        "caption": "这是作者同一绘图提示词下展示的max档SVG输出，可观察轮子、车架与鸟的空间关系。它是一个具体生成样本，不是开放权重已发布的证据，也不是通用编程能力的完整测试。"
+      },
+      "ja": {
+        "heading": "Kimi K3.1 ProがAPIに登場、完全な重み公開は今後の予定",
+        "alt": "著者がKimi K3.1 Proのmax設定で生成した自転車に乗るペリカンのSVG",
+        "caption": "同じ描画プロンプトをmax設定で試した出力で、車輪、フレーム、鳥の位置関係を見られる。一つの生成例であり、重み公開済みの証拠でも、一般的なプログラミング能力の総合試験でもない。"
+      }
+    },
+    {
+      "id": "litpivot-literature",
+      "sourceUrl": "https://huggingface.co/blog/allenai/litpivot",
+      "originalImageUrl": "https://www.datocms-assets.com/64837/1792764615-image2.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-24-litpivot-literature.webp",
+      "sha256": "4f1ed6f23b2570ce5ffe5a73343c32909a27ddab5aff160637ac8898d5f24f23",
+      "credit": "Ai2 / University of Pennsylvania",
+      "review": "accepted",
+      "zh": {
+        "heading": "LitPivot用文献摘录支撑研究想法的转向",
+        "alt": "LitPivot从选取提案片段、选择论文到检查修改的循环",
+        "caption": "先选提案中的具体贡献，右侧建议由论文摘录支撑，研究者再接受、编辑或拒绝；下方文献随新想法更新。最后决定权仍在人，不应把一条建议当成已经验证的新发现。"
+      },
+      "ja": {
+        "heading": "LitPivot、文献の引用箇所で研究案の方向転換を支える",
+        "alt": "LitPivotで提案の一部を選び、論文と修正を確認する循環",
+        "caption": "研究案の貢献部分を選び、文献の抜粋に支えられた修正を採用・編集・拒否する。下の文献は変更した案に合わせて更新される。判断主体は研究者で、提案自体が検証済みの発見ではない。"
+      }
+    },
+    {
+      "id": "kv-quantization",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/6-kv-cache-quantization-approaches",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/d02a8663-1b2a-454a-887d-a920b90564f0_2752x1536.jpeg",
+      "asset": "/images/radar/daily-ai-radar-2026-10-24-kv-quantization.webp",
+      "sha256": "1c6fd225190a98056158d730dd076fab71df0194250fdd88c740adc15f8dc538",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "KV缓存量化与权重量化解决不同的显存问题",
+        "alt": "权重量化与KV缓存量化为两个独立操作",
+        "caption": "上半部说明缩小权重不会自动改变KV缓存；下半部把16位KV改成8位并保留缩放信息。实际显存还包括这些元数据和缓冲区，因此不能直接把原始字节减半当作总显存减半。"
+      },
+      "ja": {
+        "heading": "KVキャッシュ量子化と重み量子化は別のメモリー問題を扱う",
+        "alt": "重み量子化とKVキャッシュ量子化は独立した処理",
+        "caption": "上段は重みを小さくしてもKVキャッシュは自動で変わらないこと、下段は16ビットKVを8ビットへ変えてスケール情報を残すことを示す。実使用量には付加情報とバッファーも含むため、生データの半減は総メモリーの半減とは異なる。"
+      }
+    }
+  ]
+}

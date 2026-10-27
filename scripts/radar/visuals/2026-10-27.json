@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-27",
+  "visuals": [
+    {
+      "id": "temperature-zero",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/why-temperature-0-isnt-deterministic",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/77d6778a-d405-4864-b1af-305fb20e8201_2752x1536.jpeg",
+      "asset": "/images/radar/daily-ai-radar-2026-10-27-temperature-zero.webp",
+      "sha256": "e281de5f3f6ff0556474bfc0ea52c05a0bcc25a0c885f021140593a09bf9bb1c",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "为什么大模型推理中Temperature 0并非完全确定性",
+        "alt": "FP16中改变加法次序导致不同舍入结果的示意",
+        "caption": "上行把0.4逐次加到1024，每步舍入；下行先合并小数再加，示例得到不同结果。它解释有限精度下加法不满足结合律，不表示所有输入或硬件都会出现同样的数值差。"
+      },
+      "ja": {
+        "heading": "LLM推論においてTemperature 0が決定論的でない理由",
+        "alt": "FP16で加算順序を変えると丸め結果が変わる模式図",
+        "caption": "上段は1024へ0.4ずつ加えて毎回丸め、下段は小数を先に足してから加えるため、この例では結果が変わる。有限精度の加算が結合法則を満たさない説明で、全入力・全機器で同じ差が出るという意味ではない。"
+      }
+    },
+    {
+      "id": "salesforce-harness",
+      "sourceUrl": "https://blog.bytebytego.com/p/a-deep-dive-into-salesforces-agent",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/e0954679-f972-4a3b-8cc3-debeb9af20f2_3584x2912.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-27-salesforce-harness.webp",
+      "sha256": "4af51ae5b34bd4a09ad4ef595d8d85a239b652f745bbf2ba511a34c0f60f0e1a",
+      "credit": "ByteByteGo / Salesforce engineering",
+      "review": "accepted",
+      "zh": {
+        "heading": "深入剖析Salesforce智能体技术架构：从单提示词到确定性代码协同",
+        "alt": "Salesforce智能体技术栈按数据、业务动作、执行及交互分层",
+        "caption": "从下到上是统一数据、业务动作、智能体执行与用户交互入口；规则执行和身份权限属于执行层，不能只靠聊天提示词约束。图表达团队公布的组织结构，不是对所有连接已经稳定运行的独立认证。"
+      },
+      "ja": {
+        "heading": "Salesforceのエージェント技術スタック詳解：単一プロンプトから決定論的コード協調へ",
+        "alt": "Salesforceのデータ、業務処理、実行、利用画面の層",
+        "caption": "下からデータ、業務の動作、エージェント実行、利用者の入口を示す。規則とID権限は実行層にあり、会話の指示だけで置き換えない。チームが説明した構成で、すべての接続の安定稼働を独立認証した図ではない。"
+      }
+    },
+    {
+      "id": "anthropic-compute-economics",
+      "sourceUrl": "https://every.to/napkin-math/is-anthropic-worth-2-trillion",
+      "originalImageUrl": "https://d24ovhgu8s7341.cloudfront.net/uploads/editor/post/4532/optimized_c6ef959e-653c-45d3-bb93-ede778f14d3c.jpg",
+      "asset": "/images/radar/daily-ai-radar-2026-10-27-anthropic-compute-economics.webp",
+      "sha256": "3215950dea9c8a7f416ee86ea84e72c37d74115c3b906a15fcd706448e050b24",
+      "credit": "The Leverage / Every",
+      "review": "accepted",
+      "zh": {
+        "heading": "Evan Armstrong分析Anthropic S-1招股书：2万亿美元估值传闻下的商业实质与算力风险",
+        "alt": "作者汇总的对Anthropic贡献年收入至少十万美元的企业客户数量",
+        "caption": "柱高是过去十二个月对Anthropic贡献至少10万美元收入的企业客户数，不是这些客户自身的营业收入。原文依据招股材料给出近似值，最后一柱截至2026年9月而非全年，不能按等间隔柱宽直接外推增长或估值。"
+      },
+      "ja": {
+        "heading": "Evan ArmstrongがAnthropicのS-1申請書を分析：2兆ドル評価報道の裏にある事業構造と計算資源リスク",
+        "alt": "Anthropicへの年間支出が10万ドル以上の企業顧客数を著者が整理した図",
+        "caption": "棒は直近12カ月にAnthropicへ少なくとも10万ドルの収入をもたらした企業の数で、顧客企業自身の売上高ではない。申請資料を基にした著者の概数で、最後は2026年9月時点。等間隔の棒幅をそのまま成長や評価額の予測へ使えない。"
+      }
+    }
+  ]
+}
