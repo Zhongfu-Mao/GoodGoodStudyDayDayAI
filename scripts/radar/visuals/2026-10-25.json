@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "date": "2026-10-25",
+  "visuals": [
+    {
+      "id": "reasoning-course",
+      "sourceUrl": "https://magazine.sebastianraschka.com/p/building-reasoning-models",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/67d8d671-53cc-4111-a3df-80ed733af3b5_1868x622.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-25-reasoning-course.webp",
+      "sha256": "7d3a655158c38315a9f3830411ee8019fba3a0d4f9e2aaf6b5d44628920d0a4f",
+      "credit": "Sebastian Raschka / Ahead of AI",
+      "review": "accepted",
+      "zh": {
+        "heading": "Raschka开放从预训练模型开始的推理模型课程",
+        "alt": "推理模型课程的已有模型、评估、推理和训练模块",
+        "caption": "从已预训练的模型出发，依次讨论评估、推理技术和强化学习或蒸馏。图中四个模块是内容结构，不代表只发布四节课，也不表示课程重新完成了模型预训练。"
+      },
+      "ja": {
+        "heading": "Raschka、事前学習済みモデルから始める推論モデル講義を公開",
+        "alt": "推論モデル講義の既存モデル、評価、推論、訓練の構成",
+        "caption": "事前学習済みモデルから評価、推論技術、強化学習や蒸留へ進む。四つの枠は内容構成で、講義が四本だけという意味でも、事前学習全体をやり直す意味でもない。"
+      }
+    },
+    {
+      "id": "rag-agentic-loop",
+      "sourceUrl": "https://blog.bytebytego.com/p/ep230-rag-vs-agentic-rag",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/406f8bb0-c31d-4fdf-a4b4-ec8242af7c33_2484x3002.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-25-rag-agentic-loop.webp",
+      "sha256": "35b2468735e15854f04507fa205fd8f32c26e8f4afd1bec49c3ada4308235a8f",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "RAG与Agentic RAG的差异在检索控制环",
+        "alt": "固定RAG流程与带工具选择和证据评估循环的Agentic RAG",
+        "caption": "左侧按既定检索后回答，右侧在证据不够时改写查询或换来源再检索。图里的最多五次是这个示意流程的停止设计，并非所有Agentic RAG的统一标准；增加循环也不自动保证答案更准。"
+      },
+      "ja": {
+        "heading": "RAGとAgentic RAGの違いを検索の制御ループで捉える",
+        "alt": "固定RAGと、ツール選択・証拠評価を繰り返すAgentic RAG",
+        "caption": "左は既定の検索から回答へ進み、右は証拠不足時に質問や情報源を変えて再検索する。図の最大5回はこの例の停止設計で、全Agentic RAGに共通の規格ではない。反復を増やしても正しさが自動保証されるわけではない。"
+      }
+    },
+    {
+      "id": "cuda-graph-replay",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/how-cuda-graph-replay-cuts-inference",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/aa308cac-5802-4134-93c3-89f331e4953c_1300x1152.gif",
+      "asset": "/images/radar/daily-ai-radar-2026-10-25-cuda-graph-replay.webp",
+      "sha256": "ada5024cc6a3243291e65e2346ebefde2de227d71e22a4cebb504228c66befd9",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "CUDA Graph重放减少启动开销，不是重用旧答案",
+        "alt": "CUDA Graph的预热、捕获、重放和GPU执行时间线",
+        "caption": "从左到右先准备形状和缓冲区，再捕获内核启动序列，最后用一次CPU图启动提交重复计算。右侧减少的是启动间隙，新输入仍要重新计算；收益依赖稳定形状、地址和重复执行路径。"
+      },
+      "ja": {
+        "heading": "CUDA Graphの再生、古い答えではなく起動手順を再利用",
+        "alt": "CUDA Graphの準備、記録、再生とGPU実行の流れ",
+        "caption": "左から形状とバッファーを準備し、カーネルの起動順を記録し、一度のCPUグラフ起動で計算を再実行する。右で減るのは起動の隙間で、新入力の演算は必要だ。効果は形状、アドレス、実行経路の安定性に依存する。"
+      }
+    }
+  ]
+}
