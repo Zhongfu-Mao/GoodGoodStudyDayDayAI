@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "date": "2026-10-26",
+  "exception": "本期为两条短内容，以一张原创示意图解释中段裁切机制，另一条由正文阐述。",
+  "visuals": [
+    {
+      "id": "seam-cutter-tool",
+      "sourceUrl": "https://simonwillison.net/2026/Oct/25/seam-cutter/",
+      "originalImageUrl": null,
+      "asset": "/images/radar/daily-ai-radar-2026-10-26-seam-cutter-tool.webp",
+      "sha256": "cbb8efb576f9c1af3e803d29a161cc1f7edd1937acd6ebe0e595d73d030da85b",
+      "credit": "AI Radar illustration / Simon Willison",
+      "review": "accepted",
+      "kind": "original-explanation",
+      "zh": {
+        "heading": "Seam Cutter为长截图提供中间裁切的小工具",
+        "alt": "长图去除中间一段后拼接上下两侧的机制示意",
+        "caption": "左为完整长图，中间移除灰色段并滑动两侧，右为保留上下内容的较短图。此为机制示意，不是工具真实界面；裁切后的图不再是完整原始记录。"
+      },
+      "ja": {
+        "heading": "Seam Cutter、長いスクリーンショットの途中を切り取る小道具",
+        "alt": "長い画像の途中を除き上下をつなぐ仕組みの模式図",
+        "caption": "左の長い画像から中央の灰色部分を除き、上下を動かして右の短い画像にする。仕組みの説明で実際の画面ではない。切り取った後の画像は完全な原記録ではない。"
+      }
+    }
+  ]
+}
