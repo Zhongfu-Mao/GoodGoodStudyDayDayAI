@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { mkdir, rename } from 'node:fs/promises';
 import { createR2Client, getPublicUrl, isR2Configured, missingR2Env, uploadToR2 } from './r2.mjs';
+import { assertRadarPublicationAllowed, isRadarMediaKey } from './radar-publication.mjs';
 
 let sharedR2Client;
 
@@ -42,7 +43,9 @@ export function assetUrlMatchesPublicAsset(assetUrl, publicUrl) {
 
 export async function publishRadarAsset({ localPath, publicUrl, label = 'asset' }) {
   // New images travel with Pages; dated image archival is a separate verified cutover.
+  // Local image promotion is not publication: the pre-push hold check covers the commit.
   if (publicUrl.startsWith('/images/')) return publicUrl;
+  if (isRadarMediaKey(publicUrl)) await assertRadarPublicationAllowed();
   if (!isR2Configured()) {
     const missing = missingR2Env();
     console.log(`R2 not configured; keeping local ${label} URL (${missing.join(', ')} missing).`);

@@ -7,11 +7,13 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   case "$local_sha" in
     0000000000000000000000000000000000000000) continue ;;
   esac
+  node scripts/radar/check-publication-hold.mjs --ref "$local_sha" --base "$remote_sha" --remote "${1:-origin}"
   node scripts/check/radar-media.mjs --ref "$local_sha"
   checked=1
 done
 # Also allow explicitly running the hook from a terminal without Git's stdin.
 if [ "$checked" -eq 0 ]; then
+  node scripts/radar/check-publication-hold.mjs --ref HEAD --remote "${1:-origin}"
   node scripts/check/radar-media.mjs --ref HEAD
 fi
 npm run check

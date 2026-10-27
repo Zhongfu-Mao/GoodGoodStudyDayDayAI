@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "hold": {
+    "active": true,
+    "scope": "radar_content_and_public_media",
+    "reason": "10/21返修样本须先供用户审阅，目前不公开替换或发布后续期次。",
+    "releaseRequires": "用户审阅10/21返修样本后明确授权下一步发布。"
+  },
+  "production": {
+    "paused": true,
+    "scope": "2026-10-21 返修样本已交审；22日以后不制作",
+    "reason": "等待用户审阅10/21样本后决定是否逐日继续；不自动恢复旧的常设发布许可。"
+  }
+}

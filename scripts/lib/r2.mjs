@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { createReadStream, readFileSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import path from 'node:path';
+import { assertRadarPublicationAllowed, isRadarMediaKey } from './radar-publication.mjs';
 
 const REQUIRED_R2_STORAGE_ENV = [
   'R2_ACCOUNT_ID',
@@ -204,6 +205,7 @@ export async function uploadToR2(
   if (!localPath || !key) {
     throw new Error('uploadToR2 requires localPath and key.');
   }
+  if (isRadarMediaKey(key)) await assertRadarPublicationAllowed();
 
   // Validate the public target before writing, except for explicitly private staging.
   if (includePublicUrl) assertSafeR2PublicBase();

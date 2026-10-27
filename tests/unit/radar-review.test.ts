@@ -3,6 +3,8 @@ import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+// These tests cover candidate/review mechanics; real publication boundaries have separate tests.
+vi.mock('../../scripts/lib/radar-publication.mjs', () => ({ assertRadarPublicationAllowed: vi.fn() }));
 import { parseFrontmatter, updateFrontmatterValue } from '../../scripts/lib/frontmatter.mjs';
 import {
   buildInfographicBrief,

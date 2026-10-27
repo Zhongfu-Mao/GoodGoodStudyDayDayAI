@@ -4,6 +4,11 @@ import { execFileSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+// Storage integrity tests use a permitted publication fixture; the real hold is tested separately.
+vi.mock('../../scripts/lib/radar-publication.mjs', () => ({
+  assertRadarPublicationAllowed: vi.fn(),
+  isRadarMediaKey: (key: string) => /^(?:images|audio|decks)\/radar\//.test(key.replace(/^\/+/, '')),
+}));
 import { isMigrationAsset, listMigrationAssets } from '../../scripts/lib/r2-migration.mjs';
 import { hashR2File, matchesR2Object, uploadToR2 } from '../../scripts/lib/r2.mjs';
 
