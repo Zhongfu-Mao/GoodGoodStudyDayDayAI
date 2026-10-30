@@ -2,6 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 import { resolveAppBasePath } from '../../scripts/lib/base-path.mjs';
+import { previewMediaPath } from '../../scripts/lib/radar-local-preview.mjs';
 
 export const repoRoot = process.cwd();
 export const contentRoot = path.join(repoRoot, 'src', 'content');
@@ -154,7 +155,13 @@ export function resolvePublicAsset(value: string) {
 
 export function resolveDistAsset(value: string) {
   const localPath = stripAppBasePath(stripUrlDecorations(value)).replace(/^\/+/, '');
-  return path.join(distRoot, decodeURIComponent(localPath));
+  const decodedPath = decodeURIComponent(localPath);
+  // Match the existing preview server's explicit, local-only audio route.
+  return (
+    previewMediaPath(`/${decodedPath}`, {
+      enabled: process.env.RADAR_PREVIEW_DRAFTS === '1' && !process.env.CI,
+    }) ?? path.join(distRoot, decodedPath)
+  );
 }
 
 export function fileExistsWithContent(filePath: string) {
