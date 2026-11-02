@@ -1,4 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import os from 'node:os';
+import path from 'node:path';
 import {
   insertVisuals,
   reportEntries,
@@ -23,6 +27,72 @@ const manifest = {
 };
 
 describe('reviewed inline radar visuals', () => {
+  const externalManifest = () => ({
+    ...structuredClone(manifest),
+    visuals: manifest.visuals.map(({ sha256, ...visual }, index) => ({
+      ...visual,
+      originalImageUrl: `https://example.com/figure(${index}).png`,
+      asset: `https://example.com/figure(${index}).png`,
+    })),
+  });
+  it('embeds reviewed HTTPS originals without requiring local files or checksums', () => {
+    const external = externalManifest();
+    expect(validateVisualManifest(external)).toEqual([]);
+    for (const locale of ['zh', 'ja']) {
+      const output = insertVisuals(source, external, locale);
+      expect(output).toContain('](<https://example.com/figure(0).png>)');
+      expect(insertVisuals(output, external, locale)).toBe(output);
+    }
+  });
+  it.each([
+    'http://example.com/image.png', '//example.com/image.png',
+    'javascript:alert(1)', 'data:image/png;base64,abc',
+    'https://user:password@example.com/image.png', 'https://',
+    'https://example.com/image.png\nextra', 'https://example.com/<image>.png',
+  ])('rejects unsafe external image references: %s', (url) => {
+    const external = externalManifest();
+    external.visuals[0].asset = url;
+    external.visuals[0].originalImageUrl = url;
+    expect(validateVisualManifest(external)).toContain(
+      'one: invalid local image path or public HTTPS image URL',
+    );
+  });
+  it('keeps local checksum protection and binds external images to reviewed URLs', () => {
+    const external = externalManifest();
+    external.visuals[0].asset = 'https://example.com/different.png';
+    expect(validateVisualManifest(external)).toContain(
+      'one: external asset must match the reviewed original image URL',
+    );
+    const staleHash = structuredClone(manifest);
+    staleHash.visuals[0].asset = staleHash.visuals[0].originalImageUrl;
+    expect(validateVisualManifest(staleHash)).toContain(
+      'one: external asset must not carry a local file checksum',
+    );
+    const missingHash = structuredClone(manifest);
+    missingHash.visuals[0].sha256 = '';
+    expect(validateVisualManifest(missingHash)).toContain('one: asset checksum required');
+  });
+  it('checks external-image manifests offline without looking for files in public', () => {
+    const root = mkdtempSync(path.join(os.tmpdir(), 'radar-external-visuals-'));
+    try {
+      mkdirSync(path.join(root, 'scripts/radar/visuals'), { recursive: true });
+      mkdirSync(path.join(root, 'src/content/radar'), { recursive: true });
+      const external = externalManifest();
+      writeFileSync(path.join(root, 'scripts/radar/visuals/2026-10-09.json'), JSON.stringify(external));
+      for (const locale of ['zh', 'ja']) {
+        writeFileSync(path.join(root, 'src/content/radar',
+          `daily-ai-radar-2026-10-09${locale === 'ja' ? '.ja' : ''}.md`),
+        insertVisuals(source, external, locale));
+      }
+      const result = spawnSync(process.execPath, [
+        path.resolve('scripts/radar/inline-visuals.mjs'), '--check', '--date', '2026-10-09',
+      ], { cwd: root, encoding: 'utf8' });
+      expect(result.stderr).toBe('');
+      expect(result.status).toBe(0);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
   it('places images in the matching entry, before the next section, and is idempotent', () => {
     const output = insertVisuals(source, manifest, 'zh');
     expect(output.indexOf('radar-visual:two')).toBeLessThan(output.indexOf('## Research'));

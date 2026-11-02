@@ -7,6 +7,7 @@ import {
   visualFingerprint,
   visualBlock,
   reportEntries,
+  isRemoteVisualAsset,
 } from '../lib/radar-inline-visuals.mjs';
 
 const args = process.argv.slice(2);
@@ -40,6 +41,9 @@ for (const name of names) {
     failures.push(`${name}: manifest date does not match its filename`);
   failures.push(...validateVisualManifest(manifest).map((error) => `${name}: ${error}`));
   for (const visual of manifest.visuals ?? []) {
+    // Remote originals are checked in the browser before publication. Static CI
+    // validates their manifest/placement without downloading mutable third-party bytes.
+    if (isRemoteVisualAsset(visual.asset)) continue;
     const file = path.join('public', visual.asset ?? 'invalid');
     if (!fs.existsSync(file)) failures.push(`${name}: missing ${file}`);
     else if (visualFingerprint(fs.readFileSync(file)) !== visual.sha256)

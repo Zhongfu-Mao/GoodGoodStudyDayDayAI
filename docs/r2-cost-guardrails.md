@@ -44,7 +44,7 @@ R2_ENABLED=1
 ALLOW_R2_DEV_PUBLIC_BASE=1
 ```
 
-New images stay local. The publishing helper uploads audio/PDF with checksum verification and preserves conflicting remote objects; verified originals go to ignored `.cache/r2-published/` so heavy media does not return to Pages. Keep credentials and `.env` out of Git. A machine without R2 credentials keeps local output and must stage/cut over before publishing heavy media.
+New generated images (including radar infographics) stay local. From 2026-11-03, original inline images in daily radar reports default to public HTTPS source URLs; no local copy or R2 upload is required. Local inline exceptions and existing images retain the delivery policy above. The publishing helper uploads audio/PDF with checksum verification and preserves conflicting remote objects; verified originals go to ignored `.cache/r2-published/` so heavy media does not return to Pages. Keep credentials and `.env` out of Git. A machine without R2 credentials keeps local output and must stage/cut over before publishing heavy media.
 
 `npm run check:r2-public-base` checks the opt-in configuration. `npm run audit:r2-public-urls` intentionally reports/fails on the temporary `r2.dev` references; do not silence this reminder by weakening the audit.
 

@@ -12,6 +12,7 @@ describe('GitHub Pages markdown base path plugins', () => {
         { type: 'link', url: '/radar/' },
         { type: 'image', url: '/GoodGoodStudyDayDayAI/images/card.png' },
         { type: 'link', url: 'https://example.com/external' },
+        { type: 'image', url: 'https://example.com/figure(1).png?width=1200' },
       ],
     };
 
@@ -21,6 +22,7 @@ describe('GitHub Pages markdown base path plugins', () => {
       '/GoodGoodStudyDayDayAI/radar/',
       '/GoodGoodStudyDayDayAI/images/card.png',
       'https://example.com/external',
+      'https://example.com/figure(1).png?width=1200',
     ]);
   });
 
@@ -36,6 +38,10 @@ describe('GitHub Pages markdown base path plugins', () => {
               type: 'element',
               properties: { href: '/GoodGoodStudyDayDayAI/start/' },
             },
+            {
+              type: 'element',
+              properties: { src: 'https://example.com/figure.png', href: 'https://example.com/figure.png' },
+            },
           ],
         },
       ],
@@ -48,5 +54,8 @@ describe('GitHub Pages markdown base path plugins', () => {
       src: '/GoodGoodStudyDayDayAI/images/hero.png',
     });
     expect(tree.children[0].children[0].properties.href).toBe('/GoodGoodStudyDayDayAI/start/');
+    expect(tree.children[0].children[1].properties).toEqual({
+      src: 'https://example.com/figure.png', href: 'https://example.com/figure.png',
+    });
   });
 });

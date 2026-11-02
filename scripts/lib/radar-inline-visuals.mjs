@@ -29,6 +29,17 @@ function safeText(text) {
   return typeof text === 'string' && text.trim().length > 0 && !/[\r\n<>]/.test(text);
 }
 
+export function isRemoteVisualAsset(value) {
+  if (typeof value !== 'string' || !value.startsWith('https://') || /[\s<>"\\]/.test(value))
+    return false;
+  try {
+    const url = new URL(value);
+    return Boolean(url.hostname) && !url.username && !url.password;
+  } catch {
+    return false;
+  }
+}
+
 export function validateVisualManifest(manifest) {
   const errors = [];
   if (manifest.version !== 1 || !/^\d{4}-\d{2}-\d{2}$/.test(manifest.date ?? ''))
@@ -52,12 +63,22 @@ export function validateVisualManifest(manifest) {
       visual.kind !== 'original-explanation'
     )
       errors.push(`${id}: original image URL required`);
+    const remote = isRemoteVisualAsset(visual.asset);
     if (
-      !/^\/images\/radar\/[a-zA-Z0-9/_.-]+\.(webp|png|jpe?g)$/.test(visual.asset ?? '') ||
-      visual.asset?.includes('..')
-    )
-      errors.push(`${id}: invalid local image path`);
-    if (!/^[a-f0-9]{64}$/.test(visual.sha256 ?? '')) errors.push(`${id}: asset checksum required`);
+      !remote &&
+      (!/^\/images\/radar\/[a-zA-Z0-9/_.-]+\.(webp|png|jpe?g)$/.test(visual.asset ?? '') ||
+        visual.asset?.includes('..'))
+    ) {
+      errors.push(`${id}: invalid local image path or public HTTPS image URL`);
+    }
+    if (remote) {
+      if (visual.asset !== visual.originalImageUrl)
+        errors.push(`${id}: external asset must match the reviewed original image URL`);
+      if (visual.sha256 !== undefined)
+        errors.push(`${id}: external asset must not carry a local file checksum`);
+    } else if (!/^[a-f0-9]{64}$/.test(visual.sha256 ?? '')) {
+      errors.push(`${id}: asset checksum required`);
+    }
     if (!safeText(visual.credit)) errors.push(`${id}: credit required`);
     for (const locale of ['zh', 'ja']) {
       const entry = visual[locale];
@@ -74,7 +95,8 @@ export function visualBlock(visual, locale) {
   const attribution = locale === 'ja' ? '画像出典' : '图片来源';
   const expand =
     locale === 'ja' ? '画像をクリックすると原寸で表示します。' : '点击图片查看原尺寸。';
-  return `<!-- radar-visual:${visual.id} -->\n[![${cleanAlt}](${visual.asset})](${visual.asset})\n\n*${caption} ${attribution}：[${visual.credit}](${visual.sourceUrl})。${expand}*\n<!-- /radar-visual:${visual.id} -->`;
+  const asset = isRemoteVisualAsset(visual.asset) ? `<${visual.asset}>` : visual.asset;
+  return `<!-- radar-visual:${visual.id} -->\n[![${cleanAlt}](${asset})](${asset})\n\n*${caption} ${attribution}：[${visual.credit}](${visual.sourceUrl})。${expand}*\n<!-- /radar-visual:${visual.id} -->`;
 }
 
 export function insertVisuals(source, manifest, locale) {
