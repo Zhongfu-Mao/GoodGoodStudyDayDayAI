@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 // These tests cover candidate/review mechanics; real publication boundaries have separate tests.
 vi.mock('../../scripts/lib/radar-publication.mjs', () => ({ assertRadarPublicationAllowed: vi.fn() }));
 import { parseFrontmatter, updateFrontmatterValue } from '../../scripts/lib/frontmatter.mjs';
+import { assertRadarPublicationAllowed } from '../../scripts/lib/radar-publication.mjs';
 import {
   buildInfographicBrief,
   createVisualCopyTemplate,
@@ -27,6 +28,7 @@ import {
 let root: string, file: string, raw: string;
 let generatedPublic: string[];
 beforeEach(async () => {
+  vi.mocked(assertRadarPublicationAllowed).mockReset();
   root = await mkdtemp(path.join(os.tmpdir(), 'radar-review-'));
   file = path.join(root, path.basename(root) + '.md');
   raw = await readFile('src/content/radar/daily-ai-radar-2026-10-16.md', 'utf8');
@@ -229,6 +231,17 @@ describe('immutable image candidates and layered attestations', () => {
 });
 
 describe('proportionate audio review and content-addressed reuse', () => {
+  it('checks the audio publication hold before creating or overwriting a public copy', async () => {
+    const p = await packet('audio');
+    await writeFile(p.reviewFile, JSON.stringify(accept(p)));
+    const destination = path.resolve(`public/audio/radar/${path.basename(file, '.md')}.mp3`);
+    const publisher = vi.fn();
+    vi.mocked(assertRadarPublicationAllowed).mockRejectedValueOnce(new Error('Radar publication is on hold'));
+    await expect(promoteCandidate(p.candidateFile, { publisher, replace: true })).rejects.toThrow('on hold');
+    await expect(readFile(destination)).rejects.toMatchObject({ code: 'ENOENT' });
+    expect(publisher).not.toHaveBeenCalled();
+    expect(await readFile(file, 'utf8')).toBe(raw);
+  });
   it('allows targeted source/context review without requiring a transcript, while retaining integrity gates', async () => {
     const p = await packet('audio'),
       r = accept(p);

@@ -1,5 +1,4 @@
-import { copyFile, readFile, readdir, rm, writeFile } from 'node:fs/promises';
-import os from 'node:os';
+import { copyFile, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { pathToFileURL } from 'node:url';
@@ -9,14 +8,16 @@ import {
   prepareCandidate,
   inspectAudio,
   audioCache,
+  loadCandidate,
+  recoverCandidate,
 } from '../lib/radar-review.mjs';
 import { buildInfographicBrief } from '../lib/radar-infographic-brief.mjs';
+import { openGenerationJob, generationInputKey } from '../lib/radar-generation-job.mjs';
 import { compressSpeechMp3 } from '../lib/audio-compression.mjs';
 import {
   addSourceFile,
   createNotebook,
   languageArg,
-  maybeDeleteNotebook,
   runNotebooklm,
   waitForArtifact,
   generationArtifact,
@@ -32,11 +33,18 @@ function parseArgs(argv) {
     format: 'deep-dive',
     length: 'default',
     keepNotebook: true,
-    sourceMode: 'brief',
+    sourceMode: 'markdown',
   };
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
+    if (arg === '--job-file') {
+      const file = argv[++index];
+      if (!file || file.startsWith('--'))
+        throw new Error('--job-file requires a private JSON path');
+      options.jobFile = file;
+      continue;
+    }
 
     if (arg === '--file') {
       options.file = argv[index + 1] ?? null;
@@ -127,10 +135,10 @@ async function resolveTargetFile(explicitFile, requestedLang) {
 
 function inferAudioPrompt(title, lang) {
   if (lang === 'ja') {
-    return `${title} をもとに、日本語で 2 人のホストが対話する 8〜12 分程度の音声解説を作ってください。冒頭 30 秒で今日の結論を示し、その後は最重要の主線、3〜4 個のシグナル、それらが実務に与える意味を順に深掘りしてください。ホスト A は全体像を整理し、ホスト B は「なぜ重要か」「どこに注意すべきか」を問い返す役にしてください。見出しを読み上げるだけの構成、根拠のない予測、同じ内容の反復は避けてください。固有名詞・日付・数値は出典内容に忠実に扱い、不確かな点は断定しないでください。`;
+    return `${title} の十分な本文を根拠に、日本語の二人の対話で具体的な仕組み、比較条件、事例と実務的な意味を説明してください。長さと話題数は資料に合わせ、固定時間を埋めないでください。同じ論点は一度だけ扱い、資料にない逸話、数値、動機や因果説明を加えないでください。固有名詞・日付・数値は忠実に扱い、実験条件、予測と実績、過去の事例を区別してください。末尾で自然に締め、見出しの羅列や相づちで引き延ばさないでください。`;
   }
 
-  return `请基于《${title}》生成一段 8 到 12 分钟左右的中文双主持人音频解读。开头 30 秒先给出今天的核心结论，然后围绕最重要的主线、3 到 4 个关键信号、以及它们对从业者的实务含义展开。主持人 A 负责搭建全局脉络，主持人 B 负责追问“为什么重要”“风险和不确定性在哪里”。不要逐条念稿，不要把 Markdown 标题当成播报提纲，不要做没有来源支撑的预测，也不要重复空转。固有名词、日期、数字必须忠于来源；不确定的地方要用谨慎语气。`;
+  return `请以《${title}》充分的正文为依据，用中文双主持人对谈讲清具体机制、比较条件、案例与实务意义。长度与话题数服从实际素材，不填固定分钟数。每一论点只讲一次，不新增来源未说明的故事、数值、动机或因果解释。专名、日期和数字忠于材料，分清实验条件、预测与实绩、旧案例与当日新消息。内容讲完自然收束，不以重复标题、附和或泛泛提醒拖长节目。`;
 }
 
 export async function main(argv = process.argv.slice(2)) {
@@ -140,97 +148,143 @@ export async function main(argv = process.argv.slice(2)) {
   const meta = parseFrontmatter(raw);
   const slug = path.basename(targetFile, '.md');
   const notebookTitle = `${meta.title} · Audio`;
-  const briefMemoPath = path.join(os.tmpdir(), `${slug}.brief.txt`);
   // Validate all sections and facts before creating any remote notebook.
   const briefMemo = options.sourceMode === 'brief' ? buildBriefMemo(meta.body, meta) : null;
 
   const brief = buildInfographicBrief(meta, meta.body);
-  const directory = await newCandidateDirectory(slug, 'audio');
+  const job = await openGenerationJob(
+    options.jobFile ?? `.cache/radar-generation/${slug}-audio.json`,
+    generationInputKey([
+      brief.sourceSha256,
+      options.sourceMode,
+      options.format,
+      options.length,
+      inferAudioPrompt(meta.title, meta.lang),
+    ]),
+    {
+      run: runNotebooklm,
+      inputSnapshot: { source: briefMemo ?? raw, prompt: inferAudioPrompt(meta.title, meta.lang) },
+    },
+  );
+  const existingCandidate = await job.completed('candidate');
+  if (existingCandidate) {
+    await loadCandidate(existingCandidate.candidateFile, targetFile);
+    console.log(
+      JSON.stringify({
+        status: 'needs_review',
+        ...existingCandidate,
+        reused: true,
+        publicAssetsUnchanged: true,
+      }),
+    );
+    return existingCandidate;
+  }
+  const directory = await job.once('directory', () => newCandidateDirectory(slug, 'audio'));
   const audioPath = path.join(directory, 'asset.mp3');
 
   console.log(`Creating notebook for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
-  const notebookId = await createNotebook(notebookTitle);
+  const notebookId = await job.once('notebook', () => createNotebook(notebookTitle));
   let completed = false;
 
   try {
-    const sourcePath = options.sourceMode === 'brief' ? briefMemoPath : targetFile;
-
-    if (options.sourceMode === 'brief') {
-      await writeFile(briefMemoPath, briefMemo, 'utf8');
-      console.log(`Adding brief memo source to notebook ${notebookId}...`);
-    } else {
-      console.log(`Adding markdown source to notebook ${notebookId}...`);
-    }
-
-    const source = await addSourceFile(notebookId, sourcePath);
-
-    console.log(`Generating audio (${options.format}, ${options.length})...`);
-    const generation = await runNotebooklm([
-      'generate',
-      'audio',
+    console.log(`Using frozen ${options.sourceMode} source for notebook ${notebookId}...`);
+    const source = await job.once('source:report', async () => {
+      const snapshot = path.join(
+        directory,
+        options.sourceMode === 'brief' ? 'source-brief.txt' : 'source.md',
+      );
+      await writeFile(snapshot, briefMemo ?? raw);
+      return addSourceFile(notebookId, snapshot, { waitForReady: false });
+    });
+    await runNotebooklm([
+      'source',
+      'wait',
       '--notebook',
       notebookId,
-      '--source',
       source.id,
-      '--format',
-      options.format,
-      '--length',
-      options.length,
-      '--language',
-      languageArg(meta.lang),
-      inferAudioPrompt(meta.title, meta.lang),
+      '--timeout',
+      '300',
       '--json',
     ]);
 
-    const artifact = await waitForArtifact(notebookId, generationArtifact(generation.stdout), {
+    console.log(`Generating audio (${options.format}, ${options.length})...`);
+    const submitted = await job.once('generate:audio', async () =>
+      generationArtifact(
+        (
+          await runNotebooklm([
+            'generate',
+            'audio',
+            '--notebook',
+            notebookId,
+            '--source',
+            source.id,
+            '--format',
+            options.format,
+            '--length',
+            options.length,
+            '--language',
+            languageArg(meta.lang),
+            inferAudioPrompt(meta.title, meta.lang),
+            '--json',
+          ])
+        ).stdout,
+      ),
+    );
+
+    const artifact = await waitForArtifact(notebookId, submitted, {
       timeout: 1800,
     });
     console.log(`Audio artifact ${artifact.id} ready.`);
 
     const rawAudioPath = path.join(directory, 'raw.m4a');
 
-    console.log(`Downloading audio to ${path.relative(WORKSPACE_ROOT, audioPath)}...`);
-    await runNotebooklm([
-      'download',
-      'audio',
-      '--artifact',
-      artifact.id,
-      '--notebook',
-      notebookId,
-      '--force',
-      rawAudioPath,
-      '--json',
-    ]);
-    await copyFile(rawAudioPath, audioPath);
-    console.log('Compressing audio to MP3 mono 64k...');
-    await compressSpeechMp3(audioPath);
-    const technical = await inspectAudio(rawAudioPath, audioPath);
-    const packet = await prepareCandidate({
-      directory,
-      reportFile: targetFile,
-      brief,
-      rawPath: rawAudioPath,
-      assetPath: audioPath,
-      kind: 'audio',
-      backend: 'notebooklm',
-      provenance: { notebookId, sourceId: source.id, artifactId: artifact.id },
-      technical,
+    const packet = await job.once('candidate', async () => {
+      const recovered = await recoverCandidate(directory, targetFile);
+      if (recovered) return recovered;
+      console.log(`Downloading audio to ${path.relative(WORKSPACE_ROOT, audioPath)}...`);
+      await runNotebooklm([
+        'download',
+        'audio',
+        '--artifact',
+        artifact.id,
+        '--notebook',
+        notebookId,
+        '--force',
+        rawAudioPath,
+        '--json',
+      ]);
+      await copyFile(rawAudioPath, audioPath);
+      console.log('Compressing audio to MP3 mono 64k...');
+      await compressSpeechMp3(audioPath);
+      const technical = await inspectAudio(rawAudioPath, audioPath);
+      return prepareCandidate({
+        directory,
+        reportFile: targetFile,
+        brief,
+        rawPath: rawAudioPath,
+        assetPath: audioPath,
+        kind: 'audio',
+        backend: 'notebooklm',
+        provenance: { notebookId, sourceId: source.id, artifactId: artifact.id },
+        technical,
+      });
     });
+    await loadCandidate(packet.candidateFile, targetFile);
     const cache = await audioCache(packet.candidateFile);
     console.log(
       JSON.stringify({ status: 'needs_review', ...packet, cache, publicAssetsUnchanged: true }),
     );
     completed = true;
   } finally {
-    if (options.sourceMode === 'brief') {
-      await rm(briefMemoPath, { force: true });
-    }
-
     if (!completed && !options.keepNotebook) {
       console.warn(`Keeping failed audio notebook for traceability: ${notebookId}`);
     }
 
-    await maybeDeleteNotebook(notebookId, options.keepNotebook || !completed);
+    // A resumable job must retain its exact notebook until explicit cleanup.
+    if (!options.keepNotebook)
+      console.log(
+        `Notebook ${notebookId} retained for exact-ID recovery; use explicit cleanup after delivery.`,
+      );
   }
 }
 

@@ -1,5 +1,7 @@
 # 雷达信息图输入与验收
 
+雷达信息图只采用用户认可的 NotebookLM 直出或内置 imagegen。不得以 SVG、程序绘图或长图替代；NotebookLM主要文字乱码、错字和关键数字问题沿原视觉方向用imagegen修正。旧API入口的存在不等于内置imagegen的调用授权，本次不扩后端、凭据或付费范围。
+
 **日报 v2（2026-10-20 起）**：按 [v2 契约](radar-v2.md) 的实际主题和深读条目生成，主题数量与条数可变，不固定六格、不增加渠道横条。共享 brief、日期/证据限定、逐条覆盖及像素验收继续适用。本文下述六栏观察方案和象限/Newsletter 专用要求仅用于旧日报及未迁移周报，不约束 v2。
 
 生成后的版本、原图／压缩图留存、原尺寸分区、逐条覆盖／文字／事实检查及发布提升，统一按 [候选资产与分层验收](radar-asset-review.md)。输入检查不代表位图合格；默认生成仅产出私有候选，验收通过后才提升到公开路径。画面文案当前为 v2 内容指纹，旧 v1 仅能在原缓存与全部事实匹配时显式离线迁移，不触发资产重生。
@@ -161,7 +163,11 @@ answer all items:
 - Are core numbers and names not obviously hallucinated?
 - Are text errors tolerable enough that the core meaning remains clear?
 
-If any answer is no, reject the candidate and regenerate.
+Record each problem and distinguish a material factual/readability/coverage error
+from a minor wording or style issue. A rejected or pending candidate does not
+authorize regeneration. Rework only material problems within the user's existing
+retry authorization; preserve the original and reuse accepted content. Do not
+regenerate for small imperfections or to compare familiar styles.
 
 ### Automatic Rejection Examples
 

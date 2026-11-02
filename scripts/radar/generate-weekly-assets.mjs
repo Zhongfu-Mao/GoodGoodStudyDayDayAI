@@ -1,7 +1,10 @@
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import { getAudioFileMetadata } from '../lib/audio-metadata.mjs';
+import { pathToFileURL } from 'node:url';
+import { inspectAudio, newCandidateDirectory, fileSha256 } from '../lib/radar-review.mjs';
+import { assertRadarPublicationAllowed } from '../lib/radar-publication.mjs';
+import { openGenerationJob, generationInputKey } from '../lib/radar-generation-job.mjs';
 import { compressSpeechMp3 } from '../lib/audio-compression.mjs';
 import { parseFrontmatter, updateFrontmatterValue } from '../lib/frontmatter.mjs';
 import { publishRadarAsset } from '../lib/radar-assets.mjs';
@@ -9,7 +12,6 @@ import {
   addSourceFile,
   createNotebook,
   languageArg,
-  maybeDeleteNotebook,
   runNotebooklm,
   waitForArtifact,
   generationArtifact,
@@ -25,11 +27,23 @@ function parseArgs(argv) {
     file: null,
     lang: null,
     keepNotebook: true,
+    publish: true,
     includeWeeklyBrief: true,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
+    if (arg === '--no-publish') {
+      options.publish = false;
+      continue;
+    }
+    if (arg === '--job-file') {
+      const file = argv[++index];
+      if (!file || file.startsWith('--'))
+        throw new Error('--job-file requires a private JSON path');
+      options.jobFile = file;
+      continue;
+    }
 
     if (arg === '--file') {
       options.file = argv[index + 1] ?? null;
@@ -138,8 +152,8 @@ function inferWeeklyDeckPrompt(title, lang) {
   return `请基于《${title}》生成一份适合周报回顾的 slide deck。控制在 7 到 10 页：第一页给出本周结论，接着讲 3 到 4 条主线、信号之间的关系、对从业者的启发，最后总结下周值得继续跟踪的点。每页使用短标题、少量正文、结构图或要点列表；不要堆长段文字，也不要做没有来源支撑的断言。`;
 }
 
-async function main() {
-  const options = parseArgs(process.argv.slice(2));
+export async function main(argv = process.argv.slice(2)) {
+  const options = parseArgs(argv);
   const targetFile = await resolveTargetFile(options.file, options.lang);
   const raw = await readFile(targetFile, 'utf8');
   const meta = parseFrontmatter(raw);
@@ -156,89 +170,207 @@ async function main() {
     throw new Error('No daily radar files found in the weekly date range.');
   }
 
-  await mkdir(AUDIO_DIR, { recursive: true });
-  await mkdir(DECK_DIR, { recursive: true });
+  // This command publishes as well as generates. Do not consume generation
+  // quota while publication is explicitly held.
+  if (options.publish) await assertRadarPublicationAllowed();
+  const sourceSnapshots = await Promise.all(dailyFiles.map((file) => readFile(file, 'utf8')));
+  const inputs = sourceSnapshots.map((snapshot, index) => {
+    const source = parseFrontmatter(snapshot);
+    return [path.basename(dailyFiles[index]), source.title, source.date, source.lang, source.body];
+  });
+  const job = await openGenerationJob(
+    options.jobFile ?? `.cache/radar-generation/${slug}-weekly.json`,
+    generationInputKey([
+      meta.title,
+      meta.date,
+      meta.lang,
+      meta.body,
+      inputs,
+      options.includeWeeklyBrief,
+      inferWeeklyAudioPrompt(meta.title, meta.lang),
+      inferWeeklyDeckPrompt(meta.title, meta.lang),
+    ]),
+    {
+      run: runNotebooklm,
+      inputSnapshot: {
+        sources: sourceSnapshots,
+        brief: raw,
+        audioPrompt: inferWeeklyAudioPrompt(meta.title, meta.lang),
+        deckPrompt: inferWeeklyDeckPrompt(meta.title, meta.lang),
+      },
+    },
+  );
+  const directory = await job.once('directory', () => newCandidateDirectory(slug, 'audio'));
+  const rawAudioPath = path.join(directory, 'raw.m4a');
+  const encodedAudioPath = path.join(directory, 'asset.mp3');
+  const privateDeckPath = path.join(directory, 'deck.pdf');
 
   console.log(`Creating notebook for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
-  const notebookId = await createNotebook(notebookTitle);
+  const notebookId = await job.once('notebook', () => createNotebook(notebookTitle));
   let completed = false;
 
   try {
-    for (const dailyFile of dailyFiles) {
+    for (const [sourceIndex, dailyFile] of dailyFiles.entries()) {
       console.log(`Adding daily source ${path.basename(dailyFile)}...`);
-      await addSourceFile(notebookId, dailyFile);
+      const source = await job.once(`source:${path.basename(dailyFile)}`, async () => {
+        const snapshot = path.join(directory, `source-${sourceIndex}.md`);
+        await writeFile(snapshot, sourceSnapshots[sourceIndex]);
+        return addSourceFile(notebookId, snapshot, { waitForReady: false });
+      });
+      await runNotebooklm([
+        'source',
+        'wait',
+        '--notebook',
+        notebookId,
+        source.id,
+        '--timeout',
+        '300',
+        '--json',
+      ]);
     }
 
     if (options.includeWeeklyBrief) {
       console.log(`Adding weekly brief ${path.basename(targetFile)}...`);
-      await addSourceFile(notebookId, targetFile);
+      const source = await job.once('source:brief', async () => {
+        const snapshot = path.join(directory, 'brief.md');
+        await writeFile(snapshot, raw);
+        return addSourceFile(notebookId, snapshot, { waitForReady: false });
+      });
+      await runNotebooklm([
+        'source',
+        'wait',
+        '--notebook',
+        notebookId,
+        source.id,
+        '--timeout',
+        '300',
+        '--json',
+      ]);
     }
 
     console.log('Generating weekly audio...');
-    const generation = await runNotebooklm([
-      'generate',
-      'audio',
-      '--notebook',
-      notebookId,
-      '--format',
-      'deep-dive',
-      '--length',
-      'long',
-      '--language',
-      languageArg(meta.lang),
-      inferWeeklyAudioPrompt(meta.title, meta.lang),
-      '--json',
-    ]);
-
-    const artifact = await waitForArtifact(notebookId, generationArtifact(generation.stdout));
-    await runNotebooklm([
-      'download',
-      'audio',
-      '--artifact',
-      artifact.id,
-      '--notebook',
-      notebookId,
-      '--force',
-      audioPath,
-      '--json',
-    ]);
-
-    console.log('Generating weekly slide deck...');
-    const deckGeneration = await runNotebooklm([
-      'generate',
-      'slide-deck',
-      '--notebook',
-      notebookId,
-      '--format',
-      'presenter',
-      '--length',
-      'default',
-      '--language',
-      languageArg(meta.lang),
-      inferWeeklyDeckPrompt(meta.title, meta.lang),
-      '--json',
-    ]);
-
-    const deckArtifact = await waitForArtifact(
-      notebookId,
-      generationArtifact(deckGeneration.stdout),
+    const submittedAudio = await job.once('generate:audio', async () =>
+      generationArtifact(
+        (
+          await runNotebooklm([
+            'generate',
+            'audio',
+            '--notebook',
+            notebookId,
+            '--format',
+            'deep-dive',
+            '--length',
+            'long',
+            '--language',
+            languageArg(meta.lang),
+            inferWeeklyAudioPrompt(meta.title, meta.lang),
+            '--json',
+          ])
+        ).stdout,
+      ),
     );
-    await runNotebooklm([
-      'download',
-      'slide-deck',
-      '--artifact',
-      deckArtifact.id,
-      '--notebook',
-      notebookId,
-      '--format',
-      'pdf',
-      '--force',
-      deckPath,
-      '--json',
-    ]);
 
-    await compressSpeechMp3(audioPath);
-    const audio = await getAudioFileMetadata(audioPath);
+    const artifact = await waitForArtifact(notebookId, submittedAudio);
+    console.log('Generating weekly slide deck...');
+    const submittedDeck = await job.once('generate:deck', async () =>
+      generationArtifact(
+        (
+          await runNotebooklm([
+            'generate',
+            'slide-deck',
+            '--notebook',
+            notebookId,
+            '--format',
+            'presenter',
+            '--length',
+            'default',
+            '--language',
+            languageArg(meta.lang),
+            inferWeeklyDeckPrompt(meta.title, meta.lang),
+            '--json',
+          ])
+        ).stdout,
+      ),
+    );
+
+    const deckArtifact = await waitForArtifact(notebookId, submittedDeck);
+    const prepared = await job.once('assets', async () => {
+      await runNotebooklm([
+        'download',
+        'audio',
+        '--artifact',
+        artifact.id,
+        '--notebook',
+        notebookId,
+        '--force',
+        rawAudioPath,
+        '--json',
+      ]);
+      await runNotebooklm([
+        'download',
+        'slide-deck',
+        '--artifact',
+        deckArtifact.id,
+        '--notebook',
+        notebookId,
+        '--format',
+        'pdf',
+        '--force',
+        privateDeckPath,
+        '--json',
+      ]);
+
+      await copyFile(rawAudioPath, encodedAudioPath);
+      await compressSpeechMp3(encodedAudioPath);
+      const audio = await inspectAudio(rawAudioPath, encodedAudioPath);
+      return {
+        audio,
+        rawSha256: await fileSha256(rawAudioPath),
+        assetSha256: await fileSha256(encodedAudioPath),
+        deckSha256: await fileSha256(privateDeckPath),
+      };
+    });
+    if (
+      (await fileSha256(rawAudioPath)) !== prepared.rawSha256 ||
+      (await fileSha256(encodedAudioPath)) !== prepared.assetSha256 ||
+      (await fileSha256(privateDeckPath)) !== prepared.deckSha256
+    )
+      throw new Error(
+        'Prepared period asset changed; preserve originals and review, do not regenerate',
+      );
+    const audio = prepared.audio;
+    if (
+      (await readFile(targetFile, 'utf8')) !== raw ||
+      (await Promise.all(dailyFiles.map((file) => readFile(file, 'utf8')))).some(
+        (text, index) => text !== sourceSnapshots[index],
+      )
+    )
+      throw new Error(
+        'Report or evidence changed during generation; private assets retained, nothing published',
+      );
+    if (!options.publish) {
+      console.log(
+        JSON.stringify({
+          status: 'needs_review',
+          audioPath: encodedAudioPath,
+          rawAudioPath,
+          deckPath: privateDeckPath,
+          technical: audio,
+          notebookId,
+          audioArtifactId: artifact.id,
+          deckArtifactId: deckArtifact.id,
+          uploaded: false,
+          reportUnchanged: true,
+        }),
+      );
+      completed = true;
+      return;
+    }
+    await assertRadarPublicationAllowed();
+    await mkdir(AUDIO_DIR, { recursive: true });
+    await mkdir(DECK_DIR, { recursive: true });
+    await copyFile(encodedAudioPath, audioPath);
+    await copyFile(privateDeckPath, deckPath);
     const publishedAudioUrl = await publishRadarAsset({
       localPath: audioPath,
       publicUrl: publicAudioUrl,
@@ -272,22 +404,31 @@ async function main() {
     }
 
     if (updated !== raw) {
+      if ((await readFile(targetFile, 'utf8')) !== raw)
+        throw new Error('Report changed during upload; not overwritten');
       await writeFile(targetFile, updated, 'utf8');
       console.log(`Updated weekly frontmatter with audioUrl and deckUrl.`);
     }
 
-    console.log(`Done. Weekly assets ready: ${publishedAudioUrl} and ${publishedDeckUrl}`);
+    console.log(
+      `Generated weekly assets; storage: ${publishedAudioUrl.startsWith('https://') && publishedDeckUrl.startsWith('https://') ? 'remote uploaded/reused' : 'local only, upload pending'}; audio technical checks passed. Editorial/audio/deck acceptance is still separate: ${publishedAudioUrl} and ${publishedDeckUrl}. Original retained at ${rawAudioPath}`,
+    );
     completed = true;
   } finally {
     if (!completed && !options.keepNotebook) {
       console.warn(`Keeping failed weekly assets notebook for traceability: ${notebookId}`);
     }
 
-    await maybeDeleteNotebook(notebookId, options.keepNotebook || !completed);
+    if (!options.keepNotebook)
+      console.log(
+        `Notebook ${notebookId} retained for exact-ID recovery; use explicit cleanup after delivery.`,
+      );
   }
 }
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
+}

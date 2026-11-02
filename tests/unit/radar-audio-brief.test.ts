@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { parseFrontmatter } from '../../scripts/lib/frontmatter.mjs';
 import { extractSectionBlock } from '../../scripts/lib/markdown.mjs';
 
@@ -17,7 +17,10 @@ const notebook = vi.hoisted(() => ({
 }));
 vi.mock('../../scripts/lib/notebooklm.mjs', () => notebook);
 
-import { buildBriefMemo, main } from '../../scripts/radar/generate-audio.mjs';
+import { buildBriefMemo, main as audioMain } from '../../scripts/radar/generate-audio.mjs';
+let jobDirectory: string;
+const main = (args: string[]) => audioMain([...args, '--job-file', path.join(jobDirectory, 'job.json')]);
+afterEach(async () => { await rm(jobDirectory, { recursive: true, force: true }); });
 
 function report(language: string) {
   const file = `src/content/radar/daily-ai-radar-2026-10-15${language === 'ja' ? '.ja' : ''}.md`;
@@ -25,14 +28,32 @@ function report(language: string) {
   return { file, raw, meta: parseFrontmatter(raw) };
 }
 
-beforeEach(() => {
+beforeEach(async () => {
+  jobDirectory = await mkdtemp(path.join(os.tmpdir(), 'radar-audio-job-test-'));
   vi.clearAllMocks();
   notebook.createNotebook.mockResolvedValue('test-notebook');
   notebook.addSourceFile.mockResolvedValue({ id: 'exact-fact-source' });
-  notebook.runNotebooklm.mockRejectedValue(new Error('stop before remote generation'));
+  notebook.runNotebooklm.mockImplementation(async (args: string[]) => {
+    if (args[0] === 'source') return { stdout: '{"status":"ready"}' };
+    throw new Error('stop before remote generation');
+  });
 });
 
 describe('daily audio complete fact brief', () => {
+  it('resumes a known server artifact after a wait failure without another create, source or generate', async () => {
+    const { file } = report('zh');
+    notebook.generationArtifact.mockReturnValue({ id: 'original-artifact' });
+    notebook.waitForArtifact.mockRejectedValue(new Error('wait interrupted'));
+    notebook.runNotebooklm.mockResolvedValue({ stdout: '{"task_id":"original-artifact"}' });
+    await expect(main(['--file', file])).rejects.toThrow('wait interrupted');
+    await expect(main(['--file', file])).rejects.toThrow('wait interrupted');
+    expect(notebook.createNotebook).toHaveBeenCalledTimes(1);
+    expect(notebook.addSourceFile).toHaveBeenCalledTimes(1);
+    expect(notebook.runNotebooklm.mock.calls.filter(([args]) => args[0] === 'generate')).toHaveLength(1);
+    for (const [notebookId, artifact] of notebook.waitForArtifact.mock.calls) {
+      expect(notebookId).toBe('test-notebook'); expect(artifact.id).toBe('original-artifact');
+    }
+  });
   it.each(['zh', 'ja'])('keeps every item and full summary in source order (%s)', (language) => {
     const { meta } = report(language);
     const memo = buildBriefMemo(meta.body, meta);
@@ -65,17 +86,17 @@ describe('daily audio complete fact brief', () => {
   });
 
   it.each(['zh', 'ja'])(
-    'uploads the complete brief by default and selects its exact source (%s)',
+    'uploads complete Markdown by default and selects its exact source (%s)',
     async (language) => {
-      const { file, meta } = report(language);
+      const { file, raw } = report(language);
       let uploaded = '';
       notebook.addSourceFile.mockImplementationOnce(async (_id: string, sourcePath: string) => {
         uploaded = await readFile(sourcePath, 'utf8');
         return { id: 'exact-fact-source' };
       });
       await expect(main(['--file', file])).rejects.toThrow('stop before remote generation');
-      expect(uploaded).toBe(buildBriefMemo(meta.body, meta));
-      const args = notebook.runNotebooklm.mock.calls[0][0];
+      expect(uploaded).toBe(raw);
+      const args = notebook.runNotebooklm.mock.calls.find(([args]) => args[0] === 'generate')![0];
       expect(args.slice(0, 8)).toEqual([
         'generate',
         'audio',
@@ -90,12 +111,29 @@ describe('daily audio complete fact brief', () => {
     },
   );
 
+  it.each(['zh', 'ja'])('retains an explicit complete-brief source (%s)', async (language) => {
+    const { file, meta } = report(language);
+    let uploaded = '';
+    notebook.addSourceFile.mockImplementationOnce(async (_id: string, sourcePath: string) => {
+      uploaded = await readFile(sourcePath, 'utf8');
+      return { id: 'explicit-brief-source' };
+    });
+    await expect(main(['--file', file, '--source-mode', 'brief'])).rejects.toThrow(
+      'stop before remote generation',
+    );
+    expect(uploaded).toBe(buildBriefMemo(meta.body, meta));
+    const args = notebook.runNotebooklm.mock.calls.find(([args]) => args[0] === 'generate')![0];
+    expect(args[args.indexOf('--source') + 1]).toBe('explicit-brief-source');
+  });
+
   it('retains explicit markdown input for callers that request it', async () => {
     const { file } = report('zh');
     await expect(main(['--file', file, '--source-mode', 'markdown'])).rejects.toThrow(
       'stop before remote generation',
     );
-    expect(notebook.addSourceFile).toHaveBeenCalledWith('test-notebook', path.resolve(file));
+    const uploadedPath = notebook.addSourceFile.mock.calls[0][1];
+    expect(uploadedPath).toContain('.cache/radar-review/candidates/');
+    expect(await readFile(uploadedPath, 'utf8')).toBe(report('zh').raw);
   });
 
   it('rejects a missing required section', () => {

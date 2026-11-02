@@ -7,6 +7,7 @@ import { promisify } from 'node:util';
 import { parseFrontmatter, updateFrontmatterValue } from './frontmatter.mjs';
 import { buildInfographicBrief } from './radar-infographic-brief.mjs';
 import { publishRadarAsset } from './radar-assets.mjs';
+import { assertRadarPublicationAllowed } from './radar-publication.mjs';
 
 const run = promisify(execFile);
 const REVIEW_VERSION = 1;
@@ -94,16 +95,28 @@ export async function prepareCandidate({
     sections: brief.sections.map((s) => s.key),
     items,
   };
-  const review = {
+  const review = pendingCandidateReview(candidate);
+  await save(path.join(directory, 'candidate.json'), candidate);
+  await save(path.join(directory, 'review.json'), review);
+  await save(path.join(directory, 'expected.json'), { items, sections: candidate.sections });
+  if (kind === 'infographic') await makeCrops(directory, assetPath, candidate.sections.length);
+  return {
+    candidateFile: path.join(directory, 'candidate.json'),
+    reviewFile: path.join(directory, 'review.json'),
+  };
+}
+
+function pendingCandidateReview(candidate) {
+  return {
     version: REVIEW_VERSION,
-    candidateId: id,
-    assetSha256: files.asset.sha256,
-    sourceSha256: brief.sourceSha256,
-    language: brief.language,
+    candidateId: candidate.id,
+    assetSha256: candidate.files.asset.sha256,
+    sourceSha256: candidate.sourceSha256,
+    language: candidate.language,
     reviewer: '',
-    ...(kind === 'infographic'
+    ...(candidate.kind === 'infographic'
       ? {
-          coverage: items.map((i) => ({
+          coverage: candidate.items.map((i) => ({
             id: i.id,
             section: i.section,
             status: 'pending',
@@ -118,14 +131,6 @@ export async function prepareCandidate({
           semantic: { status: 'pending', evidence: '' },
           issues: [],
         }),
-  };
-  await save(path.join(directory, 'candidate.json'), candidate);
-  await save(path.join(directory, 'review.json'), review);
-  await save(path.join(directory, 'expected.json'), { items, sections: candidate.sections });
-  if (kind === 'infographic') await makeCrops(directory, assetPath, candidate.sections.length);
-  return {
-    candidateFile: path.join(directory, 'candidate.json'),
-    reviewFile: path.join(directory, 'review.json'),
   };
 }
 
@@ -184,6 +189,59 @@ export async function loadCandidate(candidateFile, reportFile) {
     throw new Error('Candidate belongs to a different report/language/content');
   }
   return { candidate, directory, target, raw, meta };
+}
+
+// A candidate may have been written before the job receipt was saved. Never
+// redownload over its bytes or reset its review while recovering local work.
+export async function recoverCandidate(directory, reportFile) {
+  const candidateFile = path.join(directory, 'candidate.json');
+  const reviewFile = path.join(directory, 'review.json');
+  try {
+    await readFile(candidateFile);
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    try {
+      await readFile(reviewFile);
+    } catch (reviewError) {
+      if (reviewError.code === 'ENOENT') return null;
+      throw reviewError;
+    }
+    throw new Error('Partial candidate has an existing review; preserve it, do not overwrite');
+  }
+  const { candidate } = await loadCandidate(candidateFile, reportFile);
+  const ensureJson = async (file, value) => {
+    try {
+      return await json(file);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+      await writeFile(file, JSON.stringify(value, null, 2) + '\n', { flag: 'wx' });
+      return value;
+    }
+  };
+  // Complete only missing local packet files. Never reset an existing review,
+  // invent acceptance, or replace original/encoded bytes during recovery.
+  await ensureJson(reviewFile, pendingCandidateReview(candidate));
+  const expected = await ensureJson(path.join(directory, 'expected.json'), {
+    items: candidate.items, sections: candidate.sections,
+  });
+  if (JSON.stringify(expected) !== JSON.stringify({ items: candidate.items, sections: candidate.sections }))
+    throw new Error('Existing candidate expectations differ; preserve the packet');
+  if (candidate.kind === 'infographic') {
+    try {
+      const regions = await json(path.join(directory, 'regions.json'));
+      if (!Array.isArray(regions.crops) || regions.crops.length !== candidate.sections.length)
+        throw new Error('Invalid existing candidate regions; preserve the packet');
+      for (const crop of regions.crops) {
+        if (typeof crop !== 'string' || path.basename(crop) !== crop)
+          throw new Error('Invalid candidate crop path');
+        await readFile(path.join(directory, crop));
+      }
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+      await makeCrops(directory, path.join(directory, candidate.files.asset.path), candidate.sections.length);
+    }
+  }
+  return { candidateFile, reviewFile };
 }
 
 export function evaluateReview(candidate, review) {
@@ -317,6 +375,7 @@ export async function promoteCandidate(
   }
   if (!replace && (meta[field] || existing))
     throw new Error('Existing media preserved; explicit --replace required');
+  if (c.kind === 'audio') await assertRadarPublicationAllowed();
   await mkdir(path.dirname(destination), { recursive: true });
   // Do not promote or upload a mutable candidate or a changed report after the review.
   await loadCandidate(candidateFile, target);

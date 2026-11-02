@@ -95,7 +95,7 @@ export async function createNotebook(title) {
   return notebookId;
 }
 
-export async function addSourceFile(notebookId, sourcePath, { waitTimeout = 300 } = {}) {
+export async function addSourceFile(notebookId, sourcePath, { waitTimeout = 300, waitForReady = true } = {}) {
   const { stdout } = await runNotebooklm([
     'source',
     'add',
@@ -112,18 +112,22 @@ export async function addSourceFile(notebookId, sourcePath, { waitTimeout = 300 
     throw new Error(`Failed to determine source ID for ${sourcePath}`);
   }
 
+  if (waitForReady) await waitForSource(notebookId, source.id, waitTimeout);
+  return source;
+}
+
+export async function waitForSource(notebookId, sourceId, waitTimeout = 300) {
   await runNotebooklm([
     'source',
     'wait',
     '--notebook',
     notebookId,
-    source.id,
+    sourceId,
     '--timeout',
     String(waitTimeout),
     '--json',
   ]);
 
-  return source;
 }
 
 export function generationArtifact(stdout) {

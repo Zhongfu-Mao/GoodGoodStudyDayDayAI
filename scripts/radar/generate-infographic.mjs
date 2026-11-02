@@ -5,7 +5,8 @@ import { pathToFileURL } from 'node:url';
 import { parseFrontmatter, stripFrontmatter } from '../lib/frontmatter.mjs';
 import { formatImageCompressionResult, optimizeWebpImage } from '../lib/image-compression.mjs';
 import { assetUrlMatchesPublicAsset } from '../lib/radar-assets.mjs';
-import { newCandidateDirectory, prepareCandidate } from '../lib/radar-review.mjs';
+import { newCandidateDirectory, prepareCandidate, loadCandidate, recoverCandidate } from '../lib/radar-review.mjs';
+import { openGenerationJob, generationInputKey } from '../lib/radar-generation-job.mjs';
 import {
   buildInfographicBrief,
   createVisualCopyTemplate,
@@ -17,7 +18,6 @@ import {
   addSourceFile,
   createNotebook,
   languageArg,
-  maybeDeleteNotebook,
   runNotebooklm,
   waitForArtifact,
   generationArtifact,
@@ -49,6 +49,7 @@ function parseArgs(argv) {
 
   const withValue = new Set([
     '--file',
+    '--job-file',
     '--orientation',
     '--detail',
     '--style',
@@ -64,6 +65,7 @@ function parseArgs(argv) {
 
   const keyMap = {
     '--file': 'file',
+    '--job-file': 'jobFile',
     '--orientation': 'orientation',
     '--detail': 'detail',
     '--style': 'style',
@@ -79,6 +81,13 @@ function parseArgs(argv) {
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
+    if (arg === '--job-file') {
+      const file = argv[++index];
+      if (!file || file.startsWith('--'))
+        throw new Error('--job-file requires a private JSON path');
+      options.jobFile = file;
+      continue;
+    }
 
     if (withValue.has(arg)) {
       const key = keyMap[arg];
@@ -189,54 +198,64 @@ export function inferInfographicPrompt(brief, visualCopy) {
   return renderInfographicPrompt(brief, { visualCopy });
 }
 
-async function generateWithNotebooklm(meta, promptPath, targetFile, imagePath, options) {
+async function generateWithNotebooklm(meta, prompt, raw, targetFile, directory, options, job) {
   const notebookTitle = `${meta.title} · Infographic`;
 
   console.log(`Creating notebook for ${path.relative(WORKSPACE_ROOT, targetFile)}...`);
-  const notebookId = await createNotebook(notebookTitle);
+  const notebookId = await job.once('notebook', () => createNotebook(notebookTitle));
   let completed = false;
 
   try {
     console.log(`Adding markdown source to notebook ${notebookId}...`);
-    const source = await addSourceFile(notebookId, targetFile);
-
-    console.log(`Generating infographic (${options.style}, ${options.orientation})...`);
-    const generation = await runNotebooklm([
-      'generate',
-      'infographic',
+    const source = await job.once('source:report', async () => {
+      const snapshot = path.join(directory, 'source.md');
+      await writeFile(snapshot, raw);
+      return addSourceFile(notebookId, snapshot, { waitForReady: false });
+    });
+    await runNotebooklm([
+      'source',
+      'wait',
       '--notebook',
       notebookId,
-      '--orientation',
-      options.orientation,
-      '--detail',
-      options.detail,
-      '--style',
-      options.style,
-      '--language',
-      languageArg(meta.lang),
-      '--source',
       source.id,
-      '--prompt-file',
-      promptPath,
+      '--timeout',
+      '300',
       '--json',
     ]);
 
-    const artifact = await waitForArtifact(notebookId, generationArtifact(generation.stdout), {
+    console.log(`Generating infographic (${options.style}, ${options.orientation})...`);
+    const submitted = await job.once('generate:infographic', async () => {
+      const promptPath = path.join(directory, 'generation-prompt.txt');
+      await writeFile(promptPath, prompt);
+      return generationArtifact(
+        (
+          await runNotebooklm([
+            'generate',
+            'infographic',
+            '--notebook',
+            notebookId,
+            '--orientation',
+            options.orientation,
+            '--detail',
+            options.detail,
+            '--style',
+            options.style,
+            '--language',
+            languageArg(meta.lang),
+            '--source',
+            source.id,
+            '--prompt-file',
+            promptPath,
+            '--json',
+          ])
+        ).stdout,
+      );
+    });
+
+    const artifact = await waitForArtifact(notebookId, submitted, {
       timeout: 600,
     });
 
-    console.log(`Downloading infographic to ${path.relative(WORKSPACE_ROOT, imagePath)}...`);
-    await runNotebooklm([
-      'download',
-      'infographic',
-      '--artifact',
-      artifact.id,
-      '--notebook',
-      notebookId,
-      '--force',
-      imagePath,
-      '--json',
-    ]);
     completed = true;
     return { notebookId, sourceId: source.id, artifactId: artifact.id };
   } finally {
@@ -244,7 +263,10 @@ async function generateWithNotebooklm(meta, promptPath, targetFile, imagePath, o
       console.warn(`Keeping failed infographic notebook for traceability: ${notebookId}`);
     }
 
-    await maybeDeleteNotebook(notebookId, options.keepNotebook || !completed);
+    if (!options.keepNotebook)
+      console.log(
+        `Notebook ${notebookId} retained for exact-ID recovery; use explicit cleanup after delivery.`,
+      );
   }
 }
 
@@ -367,40 +389,112 @@ async function processFile(targetFile, options) {
     return { status: 'brief', targetFile, briefDir };
   }
 
-  const directory = await newCandidateDirectory(slug, 'infographic');
+  const job =
+    options.backend === 'notebooklm'
+      ? await openGenerationJob(
+          options.jobFile ?? `.cache/radar-generation/${slug}-infographic.json`,
+          generationInputKey([
+            brief.sourceSha256,
+            visualCopy,
+            options.style,
+            options.detail,
+            options.orientation,
+            inferInfographicPrompt(brief, visualCopy),
+          ]),
+          {
+            run: runNotebooklm,
+            inputSnapshot: {
+              source: raw,
+              prompt: inferInfographicPrompt(brief, visualCopy),
+              visualCopy,
+            },
+          },
+        )
+      : null;
+  const existingCandidate = await job?.completed('candidate');
+  if (existingCandidate) {
+    const loaded = await loadCandidate(existingCandidate.candidateFile, targetFile);
+    if (options.previewDir) {
+      await mkdir(imageDir, { recursive: true });
+      await copyFile(
+        path.join(loaded.directory, loaded.candidate.files.asset.path),
+        path.join(imageDir, `${slug}-infographic.${imageExtension}`),
+      );
+    }
+    console.log(
+      JSON.stringify({
+        status: 'needs_review',
+        ...existingCandidate,
+        reused: true,
+        publicAssetsUnchanged: true,
+      }),
+    );
+    return existingCandidate;
+  }
+  const directory = job
+    ? await job.once('directory', () => newCandidateDirectory(slug, 'infographic'))
+    : await newCandidateDirectory(slug, 'infographic');
   let rawPath = path.join(directory, 'raw.download');
   const imagePath = path.join(directory, `asset.${imageExtension}`);
   let provenance;
   if (options.backend === 'openai') {
-    await generateWithOpenAI(brief, visualCopy, targetFile, rawPath, options);
     provenance = { model: options.model };
   } else if (options.backend === 'notebooklm') {
-    provenance = await generateWithNotebooklm(meta, promptPath, targetFile, rawPath, options);
+    provenance = await generateWithNotebooklm(
+      meta,
+      inferInfographicPrompt(brief, visualCopy),
+      raw,
+      targetFile,
+      directory,
+      options,
+      job,
+    );
   } else {
     throw new Error(`Unsupported backend: ${options.backend}`);
   }
 
-  const { default: sharp } = await import('sharp');
-  const { format } = await sharp(rawPath).metadata();
-  const retainedRaw = path.join(directory, `raw.${format === 'jpeg' ? 'jpg' : format}`);
-  await rename(rawPath, retainedRaw);
-  rawPath = retainedRaw;
-  await copyFile(rawPath, imagePath);
-  if (imageExtension === 'webp') {
-    const compressionResult = await optimizeWebpImage(imagePath);
-    console.log(`Optimized infographic image: ${formatImageCompressionResult(compressionResult)}`);
-  }
+  const prepare = async () => {
+    const recovered = await recoverCandidate(directory, targetFile);
+    if (recovered) return recovered;
+    if (options.backend === 'notebooklm') {
+      await runNotebooklm([
+        'download',
+        'infographic',
+        '--artifact',
+        provenance.artifactId,
+        '--notebook',
+        provenance.notebookId,
+        '--force',
+        rawPath,
+        '--json',
+      ]);
+    } else await generateWithOpenAI(brief, visualCopy, targetFile, rawPath, options);
+    const { default: sharp } = await import('sharp');
+    const { format } = await sharp(rawPath).metadata();
+    const retainedRaw = path.join(directory, `raw.${format === 'jpeg' ? 'jpg' : format}`);
+    await rename(rawPath, retainedRaw);
+    rawPath = retainedRaw;
+    await copyFile(rawPath, imagePath);
+    if (imageExtension === 'webp') {
+      const compressionResult = await optimizeWebpImage(imagePath);
+      console.log(
+        `Optimized infographic image: ${formatImageCompressionResult(compressionResult)}`,
+      );
+    }
 
-  const packet = await prepareCandidate({
-    directory,
-    reportFile: targetFile,
-    brief,
-    rawPath,
-    assetPath: imagePath,
-    kind: 'infographic',
-    backend: options.backend,
-    provenance,
-  });
+    return prepareCandidate({
+      directory,
+      reportFile: targetFile,
+      brief,
+      rawPath,
+      assetPath: imagePath,
+      kind: 'infographic',
+      backend: options.backend,
+      provenance,
+    });
+  };
+  const packet = job ? await job.once('candidate', prepare) : await prepare();
+  await loadCandidate(packet.candidateFile, targetFile);
   if (options.previewDir) {
     await mkdir(imageDir, { recursive: true });
     await copyFile(imagePath, path.join(imageDir, `${slug}-infographic.${imageExtension}`));

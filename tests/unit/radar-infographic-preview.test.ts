@@ -60,6 +60,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
+  await rm(path.resolve('.cache/radar-generation', `${path.basename(directory)}-infographic.json`), { force: true });
   await rm(directory, { recursive: true, force: true });
   await rm(cache, { recursive: true, force: true });
   const root = path.resolve('.cache/radar-review/candidates');
@@ -86,6 +87,20 @@ async function copyFile() {
 }
 
 describe('infographic isolated preview', () => {
+  it('reuses an existing exact candidate without overwriting its original bytes or review', async () => {
+    const copy = await copyFile();
+    await main(['--file', sourceFile, '--visual-copy', copy, '--preview-dir', directory]);
+    const jobPath = path.resolve('.cache/radar-generation', `${path.basename(directory)}-infographic.json`);
+    const job = JSON.parse(await readFile(jobPath, 'utf8'));
+    const candidate = job.steps.candidate.result;
+    const review = await readFile(candidate.reviewFile, 'utf8');
+    await writeFile(candidate.reviewFile, review + '\n');
+    await main(['--file', sourceFile, '--visual-copy', copy, '--preview-dir', directory]);
+    expect(await readFile(candidate.reviewFile, 'utf8')).toBe(review + '\n');
+    expect(mocks.createNotebook).toHaveBeenCalledTimes(1);
+    expect(mocks.runNotebooklm.mock.calls.filter(([args]) => args[0] === 'generate')).toHaveLength(1);
+    expect(mocks.runNotebooklm.mock.calls.filter(([args]) => args[0] === 'download')).toHaveLength(1);
+  });
   it('writes an editorial template without remote calls when brief-only has no copy plan', async () => {
     await main(['--file', sourceFile, '--brief-only']);
     const template = JSON.parse(
@@ -111,7 +126,9 @@ describe('infographic isolated preview', () => {
     await main(['--file', sourceFile, '--visual-copy', copy, '--preview-dir', directory]);
     expect(await readFile(sourceFile, 'utf8')).toBe(raw);
     expect(mocks.publishRadarAsset).not.toHaveBeenCalled();
-    expect(mocks.addSourceFile).toHaveBeenCalledWith('preview-notebook', sourceFile);
+    const sourceSnapshot = mocks.addSourceFile.mock.calls[0][1];
+    expect(sourceSnapshot).toContain('.cache/radar-review/candidates/');
+    expect(await readFile(sourceSnapshot, 'utf8')).toBe(raw);
     const generation = mocks.runNotebooklm.mock.calls.find(([args]) => args[0] === 'generate')?.[0];
     expect(generation).toContain('preview-source');
     expect(generation).toContain('--prompt-file');

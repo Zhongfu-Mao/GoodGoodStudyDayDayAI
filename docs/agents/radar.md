@@ -2,7 +2,7 @@
 
 执行前读取 [本次雷达状态](../../scripts/radar/publication-policy.json)，确认 `production`（制作暂停）与 `hold`（发布暂停）；这两项用户方向只维护在该文件，进度和检查点留在忽略的 `tmp/`，不散写到长期手册或依赖临时线程 owner 文件。
 
-**2026-10-20 起日报采用 [v2 编辑契约](radar-v2.md)**：三条关键变化、可缺省四主题、8–15 条且通常约 12 条的编辑尺度、可选深读；渠道与证据性质独立标识。数量无硬下限或上限，也不以精简为目标。下文固定六栏、Newsletter 成稿下限和十二条硬下限仅用于旧版日报历史兼容；通用证据、日期、覆盖、去重和资产验收仍有效。周/月报不变。
+**2026-10-20 起日报采用 [v2 编辑契约](radar-v2.md)**：按实际数量列本期重点、可缺省四主题、8–15 条且通常约 12 条的编辑尺度、可选深读；渠道与证据性质独立标识。数量无硬下限或上限，也不以精简为目标。下文固定六栏、Newsletter 成稿下限和十二条硬下限仅用于旧版日报历史兼容；通用证据、日期、覆盖、去重和资产验收仍有效。周/月报不变。
 
 雷达任务的权威操作细节；通用约束与 Git 权限见 [根目录 AGENTS.md](../../AGENTS.md)。本文件保留原 §3.1–3.11 章节编号。`daily-ai-radar-plus` 自动化和 skill 只引用此入口；来源配置、运行记录、图片验收分别按阶段读取。
 
@@ -35,6 +35,7 @@
 | --- | --- | --- |
 | 主审 | Astra | 证据选择、范围、审计编排、最终验收和发布 |
 | 默认 worker | Gemini Flash；明确片段提取/翻译用 `gemini-3.8-flash-low`，有边界的综合用 medium | 已有证据的批量任务 |
+| 复杂 worker | Gemini 4 Argon；显式 `gemini-4-argon-high`（按任务也可明确 medium） | 复杂公开资料综合与推理，先核账号可用性；不静默降档 |
 | 失败回退 worker | `gpt-5.6-sol`，`medium` | 仅接手默认 worker 不可用或未通过验收的任务包 |
 | 禁用 | Spark | 不参与本工作流 |
 
@@ -54,6 +55,10 @@
 - 构建/测试/生成入口为 `node scripts/radar/run-step.mjs -- COMMAND ARGS...`；必须有正文输出的委派加 `--require-output`。
 - imagegen 只用专用图片展示函数，文字输出限文件路径和必要元数据。
 - 正文和资产预览保留 draft；实际发布仍按根目录权限和 §3.9 检查执行。
+
+NotebookLM 入口按目标保留私有回执 `.cache/radar-generation/<slug>-<kind>.json`，记录实际输入快照及已返回的 notebook/source/artifact ID。再次执行相同目标复用原 ID 和完整候选，不重新提交或覆盖审阅。输入改变时停止，先检查旧任务，再用明确的新 `--job-file 私有路径.json` 表示另一次已获授权的尝试；该参数本身不提供生成或外发授权。Notebook/source/generate 的未知响应只读回查并停止，不按 latest 猜原件。本地 directory/candidate/assets 失败在同一 job、原输入和已知 ID 下重试，不另建 Notebook；下载、压缩和完整性检查失败不等于远端生成未知。已有候选及审阅记录保留，完整性失败仍停止，不自动重生或放行。操作中断遗留的 `.submitting` 不能盲删；先核回执和准确服务端目标。旧的无回执任务不自动猜配，仍按原ID查询/下载，不把重跑生成命令当续跑。
+
+周/月入口默认仍包含上传，hold 时提前停止以免消耗额度；已授权的私有制作使用 `--no-publish`，原音、转码和Deck只留私有目录，不回填正文或写public。保留原音并运行现有完整性检查，生成/上传与编辑验收分别报告。
 
 ### 制作和发布的边界
 
@@ -165,7 +170,7 @@ The Rundown AI 站点级规则：
 
 ### 3.5 内容密度与 Newsletter
 
-- 日报总条数目标、最低条数、来源族/active-core/Newsletter 下限和占比上限以 `source-pool.json` 的 `publicationGate` 为准。Newsletter 编辑目标仍为 **2–4 条**（前提是有足够高信号邮件）；不为满足数字而降低证据质量。
+- 日报总条数目标、最低条数、来源族/active-core/Newsletter 下限和占比阈值以 `source-pool.json` 的 `publicationGate` 为准。单家及官方三家合计 35% 是非阻断编辑提醒，输出实际条数、分母与比例，检查重要候选遗漏及厂商效果是否被当成独立证据；不靠补条稀释、不新增逐期审批。趋势来源占比仍为硬限制，其他检查不变。Newsletter 编辑目标仍为 **2–4 条**（前提是有足够高信号邮件）；不为满足数字而降低证据质量。
 - 日报使用 `taxonomy.json` 的 `daily.zh` / `daily.ja` 栏目名与顺序，不得按当天候选动态改名；中日栏目顺序必须一致。
 - 第五象限不是普通 GitHub 摘要，只收与 AI / agent / data science 相关、具备真实 docs / demo / release 证据、且有明显 star velocity 或主流源提及的 repo / project。
 - 第五象限默认、通常上限与主线上限以 `scripts/radar/editorial-policy.json` 为准；只有当天 GitHub 本身是主线时才可扩到主线上限，且必须在 audit 记录理由。GitHub 候选若更像实战资源、教程、抓取框架、RAG 工程范例，应放入 `实战代码 & 工具库`，不要为了填第五象限而挤压模型、工具、行业栏目。
@@ -271,7 +276,7 @@ RSS 与 Podcast XML 是构建产物，**不要** 直接手改或提交 `dist/*.x
 
 NotebookLM 有 notebook 数量上限。日 / 周 / 月每次都会新建中日两个 notebook，**不清理必爆**。
 清理时机为 **对应 cadence 发布（commit + push）成功之后**，发布失败时不删。
-资产脚本可在成功路径使用 `--no-keep-notebook` 防止自动化临时本淹没 NotebookLM 工作区；但失败 / 卡住 / artifact 未返回时必须保留 notebook 供追溯，不能因为传了 `--no-keep-notebook` 就在失败路径删除。
+可续跑的资产入口兼容接受 `--no-keep-notebook`，但不再把“生成成功”当成可删除恢复目标的时机，会明确提示保留。Notebook在交付/发布完成后按下方既有窗口清理；失败、卡住、结果未知时保留。清理前检查准确ID，不为清理另建任务或改变排期。
 
 | 触发 | 清理对象 | 名称匹配 |
 | --- | --- | --- |
