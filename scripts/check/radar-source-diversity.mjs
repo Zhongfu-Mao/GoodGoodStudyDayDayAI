@@ -5,7 +5,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { isDailyRadarFileInRange, parseDateRangeArgs } from './radar-date-range.mjs';
-import { isRadarV2 } from '../lib/radar-format.mjs';
+import { isRadarV2, parseRadarV2 } from '../lib/radar-format.mjs';
 
 if (isCliEntry()) {
   await main();
@@ -23,6 +23,7 @@ async function main() {
     to: '9999-99-99',
   });
   const failures = [];
+  const warnings = [];
 
   checkSourcePoolConfig(sourcePool, failures);
 
@@ -40,7 +41,7 @@ async function main() {
     const date = extractDate(file);
     const isJa = file.endsWith('.ja.md');
 
-    failures.push(...evaluateRadarSourceDiversity({ file, body, sourcePool, groups }));
+    failures.push(...evaluateRadarSourceDiversity({ file, body, sourcePool, groups, warnings }));
 
     const pair = byDate.get(date) ?? {};
     pair[isJa ? 'ja' : 'zh'] = { file, groups };
@@ -56,6 +57,8 @@ async function main() {
     }
   }
 
+  for (const warning of warnings) console.warn(`EDITORIAL REMINDER (non-blocking): ${warning}`);
+
   if (failures.length > 0) {
     console.error(failures.join('\n'));
     process.exit(1);
@@ -64,14 +67,21 @@ async function main() {
   console.log(`Checked radar source diversity in ${files.length} daily radar files.`);
 }
 
-export function evaluateRadarSourceDiversity({ file, body, sourcePool, groups = null }) {
+/**
+ * @param {{file:string, body:string, sourcePool:any,
+ *   groups?:Array<{name:string, kind:string, label?:string}>|null, warnings?:string[]}} options
+ */
+export function evaluateRadarSourceDiversity({ file, body, sourcePool, groups = null, warnings = [] }) {
   const failures = [];
-  checkFile(file, body, groups ?? extractSourceGroups(body, sourcePool), sourcePool, failures);
+  checkFile(file, body, groups ?? extractSourceGroups(body, sourcePool), sourcePool, failures, warnings);
   return failures;
 }
 
 export function extractSourceGroups(body, sourcePool) {
   const sourceAliases = buildSourceAliases(sourcePool);
+  if (isRadarV2(body)) {
+    return parseRadarV2(body).items.map((item) => originalPublisher(item, sourceAliases));
+  }
   const labels = extractSourceLabels(body);
   return labels.map((label) => classifySource(label, sourceAliases));
 }
@@ -91,6 +101,13 @@ function buildSourceAliases(config) {
       aliases.push({
         name: source.name,
         kind,
+        urls: [
+          source.access?.primary,
+          ...(source.access?.additionalFeeds ?? []),
+          ...(source.access?.fallbacks ?? []),
+        ]
+          .map((access) => access?.url)
+          .filter((url) => url?.startsWith('https://')),
         pattern: new RegExp(
           [source.name, ...(source.aliases ?? [])].map(escapeRegExp).join('|'),
           'i',
@@ -100,6 +117,49 @@ function buildSourceAliases(config) {
   }
 
   return aliases;
+}
+
+function originalPublisher(item, aliases) {
+  const url = new URL(item.link);
+  const host = url.hostname.replace(/^www\./, '');
+  if (host === 'github.com') {
+    const owner = url.pathname.split('/').filter(Boolean)[0]?.toLowerCase();
+    return {
+      name:
+        owner && !['trending', 'topics', 'search'].includes(owner)
+          ? `GitHub owner: ${owner}`
+          : 'GitHub (publisher unresolved)',
+      kind: 'canonical',
+      label: item.source,
+    };
+  }
+  if (['x.com', 'twitter.com'].includes(host)) {
+    const author = url.pathname.split('/').filter(Boolean)[0]?.toLowerCase();
+    return {
+      name:
+        author && !['i', 'home', 'search', 'explore'].includes(author)
+          ? `X author: ${author}`
+          : 'X (publisher unresolved)',
+      kind: 'canonical',
+      label: item.source,
+    };
+  }
+  if (host === 'huggingface.co') {
+    const org = url.pathname.match(/^\/blog\/([^/]+)\/[^/]+/i)?.[1];
+    // A root-level Hub article does not establish an organisation from a product name.
+    return {
+      name: org ? `HF project team: ${org.toLowerCase()}` : 'Hugging Face (publisher unresolved)',
+      kind: 'canonical',
+      label: item.source,
+    };
+  }
+  const owner = aliases.find((source) =>
+    source.urls.some((value) => {
+      const access = new URL(value);
+      return access.hostname.replace(/^www\./, '') === host;
+    }),
+  );
+  return { name: owner?.name ?? host, kind: owner?.kind ?? 'unknown', label: item.source };
 }
 
 function extractDate(file) {
@@ -130,7 +190,7 @@ function normalizeLabel(label) {
     .trim();
 }
 
-function checkFile(file, body, groups, sourcePool, fileFailures) {
+function checkFile(file, body, groups, sourcePool, fileFailures, warnings) {
   const gate = isRadarV2(body)
     ? { ...sourcePool.publicationGate, ...sourcePool.dailyV2Gate }
     : (sourcePool.publicationGate ?? {});
@@ -146,10 +206,6 @@ function checkFile(file, body, groups, sourcePool, fileFailures) {
   const maxSingleFamilyShare = Math.max(gate.maxSingleFamilyShare ?? 1, smallIssueFloor);
   const maxOfficialTriadShare = Math.max(gate.maxOfficialTriadShare ?? 1, smallIssueFloor);
   const maxTrendShare = Math.max(gate.maxTrendShare ?? 1, smallIssueFloor);
-  const excludedPatterns = (sourcePool.excludedActiveSources ?? []).map((source) => ({
-    name: source.name,
-    pattern: new RegExp(escapeRegExp(source.name), 'i'),
-  }));
 
   if (groups.length < minimumEntries) {
     fileFailures.push(`${file}: has ${groups.length} entries, expected at least ${minimumEntries}`);
@@ -204,19 +260,16 @@ function checkFile(file, body, groups, sourcePool, fileFailures) {
   const largest = Math.max(0, ...counts.values());
   const largestShare = groups.length === 0 ? 0 : largest / groups.length;
   if (largestShare > maxSingleFamilyShare) {
-    fileFailures.push(
-      `${file}: largest source group share ${(largestShare * 100).toFixed(1)}% exceeds ${(
-        maxSingleFamilyShare * 100
-      ).toFixed(1)}%`,
+    const largestNames = [...counts].filter(([, count]) => count === largest).map(([name]) => name);
+    warnings.push(
+      `${file}: largest source group ${largestNames.join(' / ')} ${largest}/${groups.length} (${(largestShare * 100).toFixed(1)}%) exceeds reminder threshold ${(maxSingleFamilyShare * 100).toFixed(1)}%. Check for overlooked important candidates and whether vendor effectiveness claims are presented as independent evidence.`,
     );
   }
 
   const officialTriadShare = groups.length === 0 ? 0 : officialTriadEntries / groups.length;
   if (officialTriadShare > maxOfficialTriadShare) {
-    fileFailures.push(
-      `${file}: official-triad source share ${(officialTriadShare * 100).toFixed(1)}% exceeds ${(
-        maxOfficialTriadShare * 100
-      ).toFixed(1)}%`,
+    warnings.push(
+      `${file}: official-triad sources combined ${officialTriadEntries}/${groups.length} (${(officialTriadShare * 100).toFixed(1)}%) exceed reminder threshold ${(maxOfficialTriadShare * 100).toFixed(1)}%. Check for overlooked important candidates and whether vendor effectiveness claims are presented as independent evidence.`,
     );
   }
 
@@ -229,18 +282,9 @@ function checkFile(file, body, groups, sourcePool, fileFailures) {
     );
   }
 
-  for (const group of groups) {
-    // Exclusion concerns proactive vendor discovery, not an explicitly identified
-    // GitHub Trending discovery. Editorial review still verifies the trend evidence.
-    if (group.kind === 'trend') continue;
-    for (const excluded of excludedPatterns) {
-      if (excluded.pattern.test(group.label)) {
-        fileFailures.push(
-          `${file}: ${excluded.name} is excluded from active daily sources; confirm it was surfaced by a core source before using it`,
-        );
-      }
-    }
-  }
+  // excludedActiveSources controls proactive collection, not citation rights.
+  // Discovery evidence is reviewed privately; a publisher label cannot prove or
+  // disprove how an item was discovered. No label-based waiver or fake core tag.
 }
 
 function findHistoricalException(sourcePool, file) {

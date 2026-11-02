@@ -37,10 +37,43 @@ describe('daily V2 content contract', () => {
     expect(
       evaluateRadarSourceDiversity({
         file: 'daily-ai-radar-2026-10-20.md',
-        body: report(),
+        body: report().replace(/example\.com\/episode-(\d)/g, (_, id) => `publisher-${id}.example.org/episode-${id}`),
         sourcePool: pool,
       }),
     ).toEqual([]);
+  });
+  it.each(['zh', 'ja'] as const)('allows one or two real highlights without padding (%s)', (lang) => {
+    for (const count of [1, 2]) {
+      const source = report(lang)
+        .replace('三条关键变化', '本期重点')
+        .replace(/^- \[Change (\d)\].*\n/gm, (line, number) => Number(number) > count ? '' : line);
+      expect(inspectRadarV2(source)).toEqual([]);
+      const meta = parseFrontmatter(source);
+      const brief = buildInfographicBrief(meta, meta.body);
+      expect(brief.highlights).toHaveLength(count);
+      expect(brief.itemCount).toBe(3);
+    }
+  });
+  it('keeps the old heading compatible but rejects empty or repeated highlight targets', () => {
+    expect(inspectRadarV2(report())).toEqual([]);
+    expect(inspectRadarV2(report().replace(/^- \[Change.*\n/gm, ''))).toContain(
+      'at least one linked highlight required',
+    );
+    expect(inspectRadarV2(report().replace('#radar-story-2', '#radar-story-1'))).toContain(
+      'combine highlights that point to the same story',
+    );
+  });
+  it.each([
+    ['作者说明', '著者の説明'],
+    ['项目说明', 'プロジェクト説明'],
+  ])('keeps first-party labels in the existing claim class (%s)', (zhLabel, jaLabel) => {
+    const zh = report().replace('作者实测', zhLabel);
+    const ja = report('ja').replace('著者の実測', jaLabel);
+    expect(Object.keys(EVIDENCE)).toHaveLength(5);
+    expect(inspectRadarV2(zh)).toEqual([]);
+    expect(inspectRadarV2(ja)).toEqual([]);
+    expect(compareRadarV2(zh, ja)).toBe(true);
+    expect(compareRadarV2(zh, report('ja'))).toBe(false);
   });
   it('keeps one topic and channels/evidence identical across languages, including deep reading', () => {
     expect(inspectRadarV2(report('ja', true))).toEqual([]);

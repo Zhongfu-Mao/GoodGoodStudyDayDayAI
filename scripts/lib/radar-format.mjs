@@ -1,5 +1,6 @@
 import { readRadarDocument } from './radar-media-policy.mjs';
 import taxonomy from '../radar/taxonomy.json' with { type: 'json' };
+import { normalizeRadarUrl } from './radar-url.mjs';
 
 export const V2_FROM = '2026-10-20';
 export const TOPICS = taxonomy.dailyV2.topics;
@@ -13,7 +14,7 @@ export const CHANNELS = {
   x: ['X', 'X'],
 };
 export const EVIDENCE = {
-  official_claim: ['官方宣称', '公式発表'],
+  official_claim: ['官方宣称', '公式発表', '作者说明', '著者の説明', '项目说明', 'プロジェクト説明'],
   author_test: ['作者实测', '著者の実測'],
   independent: ['独立复现', '独立再現'],
   opinion: ['观点推演', '見解・推論'],
@@ -88,7 +89,7 @@ export function parseRadarV2(source) {
       });
     }
   }
-  const highlights = blocks.find((b) => ['三条关键变化', '今日の重要な変化'].includes(b.title));
+  const highlights = blocks.find((b) => ['本期重点', '三条关键变化', '今日の重要な変化'].includes(b.title));
   return { meta, lang, blocks, items, highlights: highlights?.content ?? '' };
 }
 
@@ -99,11 +100,12 @@ export function inspectRadarV2(source) {
     ...Object.values(TOPICS).map((v) => v[doc.lang]),
     doc.lang === 'ja' ? '深掘り' : '延伸阅读',
   ];
-  const highlightTitle = doc.lang === 'ja' ? '今日の重要な変化' : '三条关键变化';
-  if (doc.blocks[0]?.title !== highlightTitle) failures.push('begin with the three key changes');
+  const highlightTitles = doc.lang === 'ja' ? ['今日の重要な変化'] : ['本期重点', '三条关键变化'];
+  if (!highlightTitles.includes(doc.blocks[0]?.title)) failures.push('begin with edition highlights');
   const leads = [...doc.highlights.matchAll(/^- \[([^\n]+)\]\(#radar-([a-z0-9-]+)\)\s*$/gm)];
-  if (leads.length !== 3 || (doc.items.length >= 3 && new Set(leads.map((m) => m[2])).size !== 3))
-    failures.push('three linked key changes required (distinct stories when available)');
+  if (!leads.length) failures.push('at least one linked highlight required');
+  if (new Set(leads.map((m) => m[2])).size !== leads.length)
+    failures.push('combine highlights that point to the same story');
   for (const block of doc.blocks.slice(1)) {
     if (!allowed.includes(block.title)) failures.push(`unknown topic/section: ${block.title}`);
     if (!/^### /m.test(block.content)) failures.push(`omit empty topic: ${block.title}`);
@@ -142,9 +144,7 @@ export function inspectRadarV2(source) {
         url.hostname === 'mail.google.com'
       )
         throw new Error();
-      url.search = '';
-      url.hash = '';
-      const normalized = url.href.replace(/\/$/, '');
+      const normalized = normalizeRadarUrl(item.link);
       if (links.has(normalized)) failures.push(`same event/link appears twice: ${item.title}`);
       links.add(normalized);
     } catch {

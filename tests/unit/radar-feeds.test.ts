@@ -4,11 +4,57 @@ import {
   validateRadarFeed,
   mergeDiscoveryCandidates,
   discoveryTargets,
+  radarDailyWindow,
+  resolveDiscoveryWindow,
+  selectFeedCandidates,
 } from '../../scripts/lib/radar-feeds.mjs';
+import { normalizeRadarUrl } from '../../scripts/lib/radar-url.mjs';
 import { readFileSync } from 'node:fs';
 import { previewMediaPath } from '../../scripts/lib/radar-local-preview.mjs';
 
 describe('source feeds and cross-format story identity', () => {
+  it('fixes the historical JST window and preserves it on resume', () => {
+    const window = radarDailyWindow('2026-10-21');
+    expect(window).toEqual({ start: '2026-10-20T03:00:00.000Z', end: '2026-10-21T03:00:00.000Z' });
+    expect(resolveDiscoveryWindow('2026-10-21', { previous: { window } })).toEqual(window);
+    expect(resolveDiscoveryWindow('2026-10-21', { previous: { cutoff: '2026-10-21T02:00:00Z' } }).end).toBe('2026-10-21T02:00:00.000Z');
+    expect(resolveDiscoveryWindow('2026-10-21', { previous: { window: { start: '2026-10-20T12:00:00+09:00', end: '2026-10-21T12:00:00+09:00' } } })).toEqual(window);
+    expect(() => resolveDiscoveryWindow('2026-10-21', { previous: { cutoff: '2026-10-28T03:00:00Z' } })).toThrow('outside this edition');
+    expect(() => resolveDiscoveryWindow('2026-10-21', { previous: { window }, cutoff: '2026-10-21T02:00:00Z' })).toThrow('differs');
+    expect(() => resolveDiscoveryWindow('2026-10-21', { cutoff: '2026-10-28T03:00:00Z' })).toThrow('noon-JST');
+    expect(() => radarDailyWindow('2026-02-30')).toThrow('calendar');
+    expect(() => resolveDiscoveryWindow('2026-10-21', { cutoff: '2026-10-21T03:00:00' })).toThrow('timezone');
+  });
+  it('filters every podcast candidate and keeps both sides of the window for review', () => {
+    const item = { title: 'Episode', link: 'https://example.com/episode', published: '2026-10-20T05:00:00Z',
+      enclosure: { type: 'audio/mpeg', url: 'https://example.com/audio.mp3' } };
+    const result = { ok: true, mode: 'rss', feed: { items: [item,
+      { ...item, title: 'Text only', link: 'https://example.com/text', enclosure: undefined },
+      { ...item, title: 'Future', published: '2026-10-21T04:00:00Z' },
+      { ...item, title: 'Previous boundary', published: '2026-10-20T03:00:00Z' },
+      { ...item, title: 'Cutoff boundary', published: '2026-10-21T03:00:00Z' },
+      { ...item, title: 'Date only', published: '2026-10-20' },
+    ] } };
+    expect(validateRadarFeed(result, { podcast: true }).validEntries).toBe(5);
+    const selected = selectFeedCandidates(result, { source: 'Show', kind: 'podcast-rss' }, radarDailyWindow('2026-10-21'));
+    expect(selected.stories.map(s => s.title)).toEqual(['Episode', 'Cutoff boundary']);
+    expect(selected.rejectedEntries[0].reason).toContain('audio enclosure');
+    expect(selected.futureCandidates).toHaveLength(1);
+    expect(selected.olderCandidates).toHaveLength(1);
+    expect(selected.dateUncertainCandidates[0].title).toBe('Date only');
+  });
+  it('preserves content query parameters while removing only known tracking parameters', () => {
+    const papers = ['a', 'b'].map(id => ({ link: `https://openreview.net/forum?id=${id}`, channels: ['paper'] }));
+    expect(mergeDiscoveryCandidates(papers)).toHaveLength(2);
+    expect(normalizeRadarUrl('https://www.example.com/p?id=a&utm_source=x#intro')).toBe('https://example.com/p?id=a');
+    expect(() => normalizeRadarUrl('https://example.com/a https://example.com/b')).toThrow('one URL');
+  });
+  it('does not proactively collect excluded vendors, but keeps approved project-team feeds', () => {
+    const access = { primary: { kind: 'rss', url: 'https://example.com/feed' } };
+    const targets = discoveryTargets({ activeCoreSources: [{ name: 'Microsoft', access }],
+      supplementalDiscoverySources: [{ name: 'HF project-team releases', access }], excludedActiveSources: [{ name: 'Microsoft' }] });
+    expect(targets.map(t => t.source)).toEqual(['HF project-team releases']);
+  });
   it('serves local sample audio only when explicitly enabled, without arbitrary cache access', () => {
     const url = '/__radar-preview/audio/daily-ai-radar-2026-10-20.ja.mp3';
     expect(previewMediaPath(url)).toBeNull();

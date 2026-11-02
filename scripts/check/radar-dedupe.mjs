@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { normalizeRadarUrl } from '../lib/radar-url.mjs';
 
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -105,11 +106,7 @@ function extractLinks(body) {
 }
 
 function normalizeUrl(value) {
-  const url = new URL(value);
-  url.hash = '';
-  url.search = '';
-  url.hostname = url.hostname.replace(/^www\./, '');
-  return url.toString().replace(/\/$/, '');
+  return normalizeRadarUrl(value);
 }
 
 function parseDate(date) {

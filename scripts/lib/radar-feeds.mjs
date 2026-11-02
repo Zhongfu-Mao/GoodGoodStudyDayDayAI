@@ -1,4 +1,119 @@
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
+import { normalizeRadarUrl } from './radar-url.mjs';
+
+export function radarDailyWindow(date) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('Invalid radar date');
+  // Noon Asia/Tokyo is 03:00 UTC, with no daylight-saving changes.
+  const end = new Date(`${date}T03:00:00Z`);
+  if (!Number.isFinite(end.getTime()) || end.toISOString().slice(0, 10) !== date)
+    throw new Error('Invalid radar calendar date');
+  return { start: new Date(end.getTime() - 86_400_000).toISOString(), end: end.toISOString() };
+}
+
+export function resolveDiscoveryWindow(date, { start, cutoff, previous } = {}) {
+  const policy = radarDailyWindow(date);
+  if (previous?.date && previous.date !== date) throw new Error('Saved discovery edition differs');
+  // Legacy partial-day work must not silently expand to noon on resume.
+  const saved =
+    previous?.window ?? (previous?.cutoff ? { start: policy.start, end: previous.cutoff } : null);
+  const normalizedSaved = saved
+    ? { start: new Date(saved.start).toISOString(), end: new Date(saved.end).toISOString() }
+    : null;
+  if (
+    normalizedSaved &&
+    (normalizedSaved.start < policy.start ||
+      normalizedSaved.end > policy.end ||
+      normalizedSaved.start >= normalizedSaved.end)
+  )
+    throw new Error(
+      'Saved discovery cutoff is outside this edition; preserve it for review before a separate corrected run',
+    );
+  const window = {
+    start: start ?? saved?.start ?? policy.start,
+    end: cutoff ?? saved?.end ?? policy.end,
+  };
+  for (const time of [window.start, window.end]) {
+    if (!/(?:Z|[+-]\d{2}:\d{2})$/.test(time) || !Number.isFinite(Date.parse(time)))
+      throw new Error('Discovery window requires timestamps with timezone');
+  }
+  window.start = new Date(window.start).toISOString();
+  window.end = new Date(window.end).toISOString();
+  if (window.start < policy.start || window.end > policy.end || window.start >= window.end)
+    throw new Error('Discovery window must stay within the edition noon-JST window');
+  if (
+    normalizedSaved &&
+    (window.start !== normalizedSaved.start || window.end !== normalizedSaved.end)
+  )
+    throw new Error(
+      'Saved discovery window differs; preserve the old index instead of changing it on resume',
+    );
+  return window;
+}
+
+export function selectFeedCandidates(result, target, window) {
+  const stories = [],
+    futureCandidates = [],
+    olderCandidates = [],
+    rejectedEntries = [],
+    dateUncertainCandidates = [];
+  for (const item of result.feed.items) {
+    const reason = validateRadarFeedItem(item, { podcast: target.kind === 'podcast-rss' });
+    if (reason) {
+      rejectedEntries.push({ title: item.title, link: item.link, reason });
+      continue;
+    }
+    const story = {
+      title: item.title,
+      link: item.link,
+      published: item.published,
+      source: target.source,
+      channels: [target.kind === 'podcast-rss' ? 'podcast' : target.channel],
+    };
+    if (!/\d{1,2}:\d{2}.*(?:Z|GMT|UTC|[+-]\d{2}:?\d{2})$/i.test(item.published)) {
+      dateUncertainCandidates.push({
+        ...story,
+        reason:
+          'Publication clock/timezone not established; review the original, do not assume midnight',
+      });
+      continue;
+    }
+    const time = Date.parse(item.published);
+    if (time > Date.parse(window.end)) {
+      futureCandidates.push(story);
+      continue;
+    }
+    // Adjacent editions share a cutoff but not an article: (start, end].
+    if (time <= Date.parse(window.start)) {
+      olderCandidates.push(story);
+      continue;
+    }
+    stories.push(story);
+    for (const transcript of item.transcripts ?? []) {
+      try {
+        normalizeRadarUrl(transcript.url);
+      } catch {
+        continue;
+      }
+      stories.push({ ...story, link: transcript.url, canonicalUrl: item.link, form: 'transcript' });
+    }
+  }
+  return { stories, futureCandidates, olderCandidates, rejectedEntries, dateUncertainCandidates };
+}
+
+export function validateRadarFeedItem(item, { podcast = false } = {}) {
+  try {
+    normalizeRadarUrl(item.link);
+    if (!item.title?.trim() || !Number.isFinite(Date.parse(item.published)))
+      return 'Missing title or publication date';
+    if (podcast) {
+      if (!/^audio\//.test(item.enclosure?.type ?? '')) return 'Missing audio enclosure';
+      normalizeRadarUrl(item.enclosure.url);
+    }
+    return null;
+  } catch {
+    return 'Invalid public item or enclosure URL';
+  }
+}
 
 export function parseRadarFeed(body) {
   const valid = XMLValidator.validate(body);
@@ -55,25 +170,7 @@ export function parseRadarFeed(body) {
 export function validateRadarFeed(result, { podcast = false } = {}) {
   if (!result?.ok || result.mode !== 'rss' || !result.feed?.items?.length)
     throw new Error('No valid nonempty parsed feed');
-  const valid = result.feed.items.filter((item) => {
-    try {
-      const url = new URL(item.link);
-      if (
-        !item.title?.trim() ||
-        url.protocol !== 'https:' ||
-        Number.isNaN(Date.parse(item.published))
-      )
-        return false;
-      if (podcast)
-        return (
-          /^audio\//.test(item.enclosure?.type ?? '') &&
-          new URL(item.enclosure.url).protocol === 'https:'
-        );
-      return true;
-    } catch {
-      return false;
-    }
-  });
+  const valid = result.feed.items.filter((item) => !validateRadarFeedItem(item, { podcast }));
   if (!valid.length)
     throw new Error('Feed has no dated public entries with required episode evidence');
   return {
@@ -87,11 +184,7 @@ export function validateRadarFeed(result, { podcast = false } = {}) {
 export function storyIdentity(item) {
   // A transcript at another URL must explicitly identify the canonical episode;
   // do not infer identity from a common model name or a fuzzy similar title.
-  const url = new URL(item.canonicalUrl ?? item.link);
-  url.search = '';
-  url.hash = '';
-  url.hostname = url.hostname.replace(/^www\./, '');
-  return url.href.replace(/\/$/, '');
+  return normalizeRadarUrl(item.canonicalUrl ?? item.link);
 }
 
 export function mergeDiscoveryCandidates(items) {
@@ -131,15 +224,22 @@ export function discoveryTargets(pool, { includeLowFrequency = false } = {}) {
     ...(includeLowFrequency ? ['lowFrequencySources'] : []),
   ];
   return roles.flatMap((role) =>
-    (pool[role] ?? []).flatMap((source) =>
-      [source.access.primary, ...(source.access.additionalFeeds ?? [])]
-        .filter((access) => access.kind !== 'chrome')
-        .map((access) => ({
-          source: source.name,
-          role,
-          channel: source.channel ?? 'blog',
-          ...access,
-        })),
-    ),
+    (pool[role] ?? [])
+      .filter(
+        (source) =>
+          !(pool.excludedActiveSources ?? []).some(
+            (excluded) => source.name.toLowerCase() === excluded.name.toLowerCase(),
+          ),
+      )
+      .flatMap((source) =>
+        [source.access.primary, ...(source.access.additionalFeeds ?? [])]
+          .filter((access) => access.kind !== 'chrome')
+          .map((access) => ({
+            source: source.name,
+            role,
+            channel: source.channel ?? 'blog',
+            ...access,
+          })),
+      ),
   );
 }

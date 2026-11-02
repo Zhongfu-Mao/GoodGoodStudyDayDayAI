@@ -5,6 +5,8 @@ import {
   discoveryTargets,
   validateRadarFeed,
   mergeDiscoveryCandidates,
+  resolveDiscoveryWindow,
+  selectFeedCandidates,
 } from '../lib/radar-feeds.mjs';
 
 const args = process.argv.slice(2);
@@ -12,6 +14,19 @@ const date = args[args.indexOf('--date') + 1];
 if (!args.includes('--date') || !/^\d{4}-\d{2}-\d{2}$/.test(date))
   throw new Error('--date YYYY-MM-DD required');
 const pool = JSON.parse(await readFile('scripts/radar/source-pool.json', 'utf8'));
+const output = `tmp/radar-${date}/discovery-index.json`;
+let previous, previousRaw;
+try {
+  previousRaw = await readFile(output, 'utf8');
+  previous = JSON.parse(previousRaw);
+} catch (error) {
+  if (error.code !== 'ENOENT') throw error;
+}
+const window = resolveDiscoveryWindow(date, {
+  start: args.includes('--start') ? args[args.indexOf('--start') + 1] : undefined,
+  cutoff: args.includes('--cutoff') ? args[args.indexOf('--cutoff') + 1] : undefined,
+  previous,
+});
 const cacheDir = `tmp/radar-fetch/${date}`;
 await mkdir(cacheDir, { recursive: true });
 const cached = new Map();
@@ -27,12 +42,9 @@ for (const name of (await readdir(cacheDir)).sort()) {
 const execute = promisify(execFile);
 const results = [];
 const candidates = [],
-  futureCandidates = [];
-const cutoffArg = args.includes('--cutoff')
-  ? args[args.indexOf('--cutoff') + 1]
-  : new Date().toISOString();
-const cutoff = Date.parse(cutoffArg);
-if (!Number.isFinite(cutoff)) throw new Error('--cutoff must be an ISO timestamp with timezone');
+  futureCandidates = [],
+  olderCandidates = [],
+  dateUncertainCandidates = [];
 const targets = discoveryTargets(pool, {
   includeLowFrequency: args.includes('--include-low-frequency'),
 });
@@ -55,32 +67,13 @@ for (const target of targets) {
     const validation = ['rss', 'podcast-rss'].includes(target.kind)
       ? validateRadarFeed(result, { podcast: target.kind === 'podcast-rss' })
       : null;
-    if (validation)
-      for (const item of result.feed.items.slice(0, 30)) {
-        if (!item.link?.startsWith('https:') || !Number.isFinite(Date.parse(item.published)))
-          continue;
-        const story = {
-          title: item.title,
-          link: item.link,
-          published: item.published,
-          source: target.source,
-          channels: [target.kind === 'podcast-rss' ? 'podcast' : target.channel],
-        };
-        if (Date.parse(item.published) > cutoff) {
-          futureCandidates.push(story);
-          continue;
-        }
-        candidates.push(story);
-        for (const transcript of item.transcripts ?? []) {
-          if (transcript.url?.startsWith('https:'))
-            candidates.push({
-              ...story,
-              link: transcript.url,
-              canonicalUrl: item.link,
-              form: 'transcript',
-            });
-        }
-      }
+    const selected = validation ? selectFeedCandidates(result, target, window) : null;
+    if (selected) {
+      candidates.push(...selected.stories);
+      futureCandidates.push(...selected.futureCandidates);
+      olderCandidates.push(...selected.olderCandidates);
+      dateUncertainCandidates.push(...selected.dateUncertainCandidates);
+    }
     results.push({
       source: target.source,
       role: target.role,
@@ -89,6 +82,7 @@ for (const target of targets) {
       cacheFile: result.cacheFile,
       status: validation ? 'feed_verified' : 'needs_article_review',
       validation,
+      rejectedEntries: selected?.rejectedEntries ?? [],
     });
   } catch (error) {
     results.push({
@@ -102,12 +96,32 @@ for (const target of targets) {
 // Browser and mail evidence are deliberately not fabricated by an HTTP collector.
 for (const source of pool.activeCoreSources.filter((s) => s.access.primary.kind === 'chrome'))
   results.push({ source: source.name, status: 'browser_required', url: source.access.primary.url });
-const output = `tmp/radar-${date}/discovery-index.json`;
 await mkdir(`tmp/radar-${date}`, { recursive: true });
+if (previousRaw && !previous.window) {
+  // Preserve the historical, potentially drifting index when adopting the fixed window.
+  await writeFile(`${output}.before-fixed-window.json`, previousRaw, { flag: 'wx' }).catch(
+    (error) => {
+      if (error.code !== 'EEXIST') throw error;
+    },
+  );
+}
 const stories = mergeDiscoveryCandidates(candidates);
 await writeFile(
   output,
-  JSON.stringify({ date, cutoff: cutoffArg, results, stories, futureCandidates }, null, 2) + '\n',
+  JSON.stringify(
+    {
+      date,
+      window,
+      cutoff: window.end,
+      results,
+      stories,
+      futureCandidates,
+      olderCandidates,
+      dateUncertainCandidates,
+    },
+    null,
+    2,
+  ) + '\n',
 );
 console.log(
   JSON.stringify({

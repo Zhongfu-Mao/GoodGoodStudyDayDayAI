@@ -3,6 +3,11 @@ import { describe, expect, it } from 'vitest';
 import { findDuplicateLinkFailures } from '../../scripts/check/radar-dedupe.mjs';
 
 describe('radar dedupe gate', () => {
+  it('keeps distinct query-identified papers while detecting tracking-only duplicates', () => {
+    const check = (links: string[]) => findDuplicateLinkFailures(new Map([['2026-10-21', { file: 'daily-ai-radar-2026-10-21.md', links }]]), { from: '2026-10-21', to: '2026-10-21' });
+    expect(check(['https://openreview.net/forum?id=a', 'https://openreview.net/forum?id=b'])).toEqual([]);
+    expect(check(['https://openreview.net/forum?id=a', 'https://openreview.net/forum?utm_source=mail&id=a'])).toHaveLength(1);
+  });
   it('flags duplicate public links inside one daily radar file', () => {
     const failures = findDuplicateLinkFailures(
       new Map([
