@@ -23,7 +23,7 @@ test.describe('radar V2 local draft preview', () => {
       for (const item of doc.items)
         await expect(article.locator(`#radar-${item.id}`)).toHaveCount(1);
       const links = article.locator('a[href^="#radar-"]');
-      await expect(links).toHaveCount(3);
+      await expect(links).toHaveCount([...doc.highlights.matchAll(/\(#radar-/g)].length);
       await links.first().scrollIntoViewIfNeeded();
       await page.screenshot({ path: testInfo.outputPath(`radar-v2-${lang}-viewport.png`) });
       await links.first().click();
@@ -41,16 +41,43 @@ test.describe('radar V2 local draft preview', () => {
       ).toBe(true);
       await page.screenshot({ path: testInfo.outputPath(`radar-v2-${lang}.png`), fullPage: true });
     });
+    test(`${lang} shows a short edition without padding highlights`, async ({ page }) => {
+      const slug = 'daily-ai-radar-2026-10-26';
+      const doc = parseRadarV2(fs.readFileSync(
+        `src/content/radar/${slug}${lang === 'ja' ? '.ja' : ''}.md`, 'utf8',
+      ));
+      await gotoApp(page, `${lang === 'ja' ? '/ja' : ''}/radar/${slug}/`);
+      const article = page.locator('.theme-prose');
+      await expect(article.locator('h2').first()).toHaveText(
+        lang === 'ja' ? '今日の重要な変化' : '本期重点',
+      );
+      const targets = [...doc.highlights.matchAll(/\(#(radar-[a-z0-9-]+)\)/g)].map(m => m[1]);
+      const links = article.locator('a[href^="#radar-"]');
+      await expect(links).toHaveCount(targets.length);
+      for (const target of targets) await expect(article.locator(`#${target}`)).toHaveCount(1);
+      await expect(article).toContainText(lang === 'ja' ? '著者の説明' : '作者说明');
+      await links.first().click();
+      expect(new URL(page.url()).hash).toBe(`#${targets[0]}`);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+    });
     test(`${lang} local audio uses the same base path`, async ({ page, request }) => {
-      const source = fs.readFileSync(
-        `src/content/radar/daily-ai-radar-2026-10-20${lang === 'ja' ? '.ja' : ''}.md`,
-        'utf8',
-      );
+      const suffix = lang === 'ja' ? '.ja.md' : '.md';
+      const sample = fs.readdirSync('src/content/radar').sort().find((file) => {
+        if (!/^daily-ai-radar-\d{4}-\d{2}-\d{2}(?:\.ja)?\.md$/.test(file)) return false;
+        if (file.endsWith('.ja.md') !== (lang === 'ja')) return false;
+        const source = fs.readFileSync(`src/content/radar/${file}`, 'utf8');
+        const meta = parseRadarV2(source).meta;
+        return meta.radarFormat === 2 && meta.draft === true &&
+          meta.audioUrl === `/__radar-preview/audio/${file.replace(/\.md$/, '.mp3')}` &&
+          fs.existsSync(`tmp/radar-v2/preview-media/audio/${file.replace(/\.md$/, '.mp3')}`);
+      });
       test.skip(
-        !/^audioUrl:/m.test(source),
-        'Original audio download/semantic acceptance pending; no substitute media',
+        !sample,
+        'No local draft audio sample is available; published remote audio is tested separately',
       );
-      await gotoApp(page, `${lang === 'ja' ? '/ja' : ''}/radar/daily-ai-radar-2026-10-20/`);
+      const source = fs.readFileSync(`src/content/radar/${sample!}`, 'utf8');
+      const slug = sample!.slice(0, -suffix.length);
+      await gotoApp(page, `${lang === 'ja' ? '/ja' : ''}/radar/${slug}/`);
       const briefing = page.locator('[data-audio-briefing]');
       await expect(briefing).toHaveCount(1);
       const url = await briefing.getAttribute('data-audio-src');

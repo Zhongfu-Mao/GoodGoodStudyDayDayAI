@@ -2,6 +2,14 @@ import { describe, expect, it } from 'vitest';
 import { estimateReadingMinutes, getPlainSummary, getPostCardTitleMeta } from '../../src/lib/entryMeta';
 
 describe('entry metadata helpers', () => {
+  it('uses a short edition highlight section before body or illustration text', () => {
+    const summary = getPlainSummary({
+      id: 'radar/example',
+      data: { title: 'Example', category: 'radar', radarFormat: 2, date: new Date('2026-10-26'), tags: [], lang: 'zh' },
+      body: 'Intro that should not become the card summary.\n\n## 本期重点\n\n- [裁掉中段会改变截图的连续性。](#radar-cut)\n- [延伸：权限仍需单独执行。](#radar-permission)\n\n## 构建与运行\n\nBody text and figure captions.',
+    } as any, 'zh');
+    expect(summary).toBe('裁掉中段会改变截图的连续性。 延伸：权限仍需单独执行。');
+  });
   it('preserves underscores in generated summaries', () => {
     const summary = getPlainSummary(
       {

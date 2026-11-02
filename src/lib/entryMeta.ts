@@ -119,7 +119,7 @@ export function getPlainSummary(entry: BlogEntry, locale: Locale) {
 
   // V2 editor leads describe the edition; inline figure captions do not.
   if ('radarFormat' in entry.data && entry.data.radarFormat === 2) {
-    const leadSection = entry.body.match(/^## (?:三条关键变化|今日の重要な変化)\s*\n([\s\S]*?)(?=^## |$(?![\s\S]))/m)?.[1];
+    const leadSection = entry.body.match(/^## (?:本期重点|三条关键变化|今日の重要な変化)\s*\n([\s\S]*?)(?=^## |$(?![\s\S]))/m)?.[1];
     const leads = [...(leadSection ?? '').matchAll(/^- \[([^\n]+)\]\(#radar-[a-z0-9-]+\)/gm)].map(m => m[1]);
     if (leads.length) return trimSummary(leads.join(' '), locale);
   }
