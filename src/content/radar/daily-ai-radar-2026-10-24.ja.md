@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-10-24.ja-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-24.ja.mp3
-audioDuration: 1479
-audioSize: 11835539
-audioNotice: 試聴候補。内容の確認は未完了です。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-24.ja-abd945cb62a748ecb7f01dfacbbef86ce453d688e7ebbed18074cc57b20ad5e0.mp3
+audioDuration: 1339
+audioSize: 10714363
+audioNotice: AI生成の音声です。内容へのフィードバックをお寄せください。
+draft: false
 tags: []
 plainSummary: "新モデルの提供、正しそうな証明も条件を確かめたい。KVキャッシュ、世界規模のストレージ、訓練環境の隔離、文献による研究の方向転換から、効率と検証・修正の余地を両立する方法を見る。"
 ---

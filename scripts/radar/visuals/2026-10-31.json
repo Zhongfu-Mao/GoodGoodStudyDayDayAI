@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-10-31",
+  "visuals": [
+    {
+      "id": "nesformer",
+      "sourceUrl": "https://simonwillison.net/2026/Oct/30/nesformer/",
+      "originalImageUrl": "https://github.com/dbreunig/nesformer/raw/main/examples/full_game.gif",
+      "asset": "https://github.com/dbreunig/nesformer/raw/main/examples/full_game.gif",
+      "credit": "Drew Breunig／Full Game（Doug Fraker）",
+      "review": "accepted",
+      "zh": {
+        "heading": "NESformer：把6502电路编译进模型，不是训练出了游戏能力",
+        "alt": "NESformer运行Full Game的项目演示动图",
+        "caption": "这是项目提供的Full Game测试游戏演示。画面仍由宿主PPU渲染，权重承担CPU状态转移；动图本身不能证明实时运行，也不表示整台NES硬件都被放进模型。"
+      },
+      "ja": {
+        "heading": "NESformer：6502回路をモデルへコンパイル、学習でゲーム能力を得たわけではない",
+        "alt": "NESformerによるFull Gameのプロジェクト公式GIFデモ",
+        "caption": "プロジェクトが公開したFull GameのデモGIF。描画はホスト側のPPUが担い、重みはCPU状態を進める。この動画だけでリアルタイム動作やNES全体のモデル内実装は証明できない。"
+      }
+    },
+    {
+      "id": "rag-tree",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/rag-vs-vectorless-rag-clearly-explained",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/e1d96027-735d-413d-87cc-e7ab7ad71d88_2752x1536.jpeg",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/e1d96027-735d-413d-87cc-e7ab7ad71d88_2752x1536.jpeg",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "Vectorless RAG：用目录树导航长文档，代价是更多模型调用",
+        "alt": "把年报布局解析为含标题页码和摘要的目录树",
+        "caption": "从左侧年报沿箭头读到章节、子章节和附录G；右侧节点保存标题、页码范围与摘要。图展示可供模型导航的结构化索引，不是检索准确率、费用或延迟的测试结果。"
+      },
+      "ja": {
+        "heading": "Vectorless RAG：目次で長文書をたどる代わりに、モデル呼び出しが増える",
+        "alt": "年次報告書の見出し、ページ範囲、要約を目次ツリーに整理する図",
+        "caption": "左の年次報告書から節、下位節、付録Gへ矢印をたどる。右のノードには見出し、ページ範囲、要約が入る。モデルが文書内を探す索引の図であり、正答率・費用・遅延の測定結果ではない。"
+      }
+    },
+    {
+      "id": "monsterhouse",
+      "sourceUrl": "https://huggingface.co/blog/nvidia/nemotron-halloween",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/iVLQ71tHCdvLRIuaJ6oLk.png",
+      "asset": "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/iVLQ71tHCdvLRIuaJ6oLk.png",
+      "credit": "NVIDIA／Rick Grandy、Maryam Motamedi",
+      "review": "accepted",
+      "zh": {
+        "heading": "MonsterHouse：单台工作站、两张GPU的本地语音角色原型",
+        "alt": "MonsterHouse的新对话与预备台词、实时合成与音频缓存的分支",
+        "caption": "主路径在相遇控制器处分成新生成对话与预写台词，再在音频查找处分成实时合成与已有录音。底部区分驱动嘴部的干净语音和观众听到的音效；左侧视觉计数与衣装描述独立于语音路径。"
+      },
+      "ja": {
+        "heading": "MonsterHouse：1台のワークステーションと2基のGPUで動く音声キャラクター試作",
+        "alt": "MonsterHouseの新規対話、用意した台詞、音声合成と録音キャッシュの分岐",
+        "caption": "遭遇コントローラーで新規対話と用意した台詞に分かれ、音声検索では合成と録音キャッシュを使い分ける。下部では口を動かす加工前音声と観客向けの効果音を分離。左の人数追跡と衣装説明は音声経路とは別系統だ。"
+      }
+    }
+  ]
+}

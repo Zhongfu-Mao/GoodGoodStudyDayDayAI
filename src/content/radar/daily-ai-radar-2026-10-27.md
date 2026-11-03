@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-27-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-27.mp3
-audioDuration: 708
-audioSize: 5666879
-audioNotice: 待核试听候选，内容验收尚未完成。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-27-d4c16310f4a9da83cf2145724ed04536ed0b4da84c1c972d6e7547f6eea9b034.mp3
+audioDuration: 987
+audioSize: 7894602
+audioNotice: 音频由AI生成，欢迎反馈内容问题。
+draft: false
 tags: []
 plainSummary: "模型复现、企业权限、真实界面与研究证据，需要不同的检查方法。科学主张公开后仍需检验，使用数据和商业数字也必须看清分母。"
 ---

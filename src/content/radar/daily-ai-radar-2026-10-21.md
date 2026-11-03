@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-21-infographic-imagegen-20261028.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-21.mp3
-audioDuration: 1182
-audioSize: 9460340
-audioNotice: 本地剪辑试听版，原件保留；已做解码和转写辅助检查，未作原音听辨。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-21-c7d82d6a625507de25e73f2a32308cd97e9cbe482ce559e4305340d91d0e7609.mp3
+audioDuration: 999
+audioSize: 7991150
+audioNotice: 音频由AI生成，欢迎反馈内容问题。
+draft: false
 tags: []
 description: "从评估、任务续跑和共享智能体，到硬件与经营案例：理解系统怎样可靠地完成工作，以及成果在什么条件下成立。"
 plainSummary: "阈值、重复成功率与业务目标分别检验不同错误。恢复执行要保留证据与幂等键；共享智能体还需要稳定连接和服务端权限。硬件与经营成果须拆开实际测量和未来估算。"

@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-23-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-23.mp3
-audioDuration: 1449
-audioSize: 11593122
-audioNotice: 待核试听候选，内容验收尚未完成。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-23-ce32ff61c27bb4338f20d7fce9bc37c6ce9817e1e8a9deb43d47273451c48440.mp3
+audioDuration: 975
+audioSize: 7797635
+audioNotice: 音频由AI生成，欢迎反馈内容问题。
+draft: false
 tags: []
 plainSummary: "终态奖励让智能体更稳定，但也可能缩窄覆盖；概率预测要同时检查误差与区间校准。从 RAG 转人工、弹性算力到企业交付，关键在于把判断接到可验证的状态与实际工作。"
 ---

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-10-29",
+  "visuals": [
+    {
+      "id": "carbon-secbench",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+      "originalImageUrl": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_4_carbon_secbench-pro.width-1200.format-webp.webp",
+      "asset": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_4_carbon_secbench-pro.width-1200.format-webp.webp",
+      "credit": "Google／Google DeepMind",
+      "review": "accepted",
+      "zh": {
+        "heading": "谷歌发布Gemini 4 Carbon前沿模型并采取受控交付",
+        "alt": "Google公布的SEC-bench Pro漏洞发现Pass@1百分比分组柱状图",
+        "caption": "图中纵轴是SEC-bench Pro的Pass@1，Carbon为88.2%；这是Google公布的未启用护栏条件下的特定评测，不是生产环境成功率保证。访问按部分网络防御者与可信伙伴分阶段推进，不表示所有开发者和用户现已可用。"
+      },
+      "ja": {
+        "heading": "GoogleがGemini 4 Carbonを発表、限定的展開を実施",
+        "alt": "Google掲載のSEC-bench Pro脆弱性検出Pass@1を比較した棒グラフ",
+        "caption": "縦軸はSEC-bench ProのPass@1で、Carbonは88.2％を示す。Googleが公表したガードレールなしの特定評価であり、本番での成功保証ではなく、利用も一部の防御担当者と信頼された相手へ段階的に進めるため全ユーザーへの提供済みとは限らない。"
+      }
+    },
+    {
+      "id": "openwiki-evidence",
+      "sourceUrl": "https://www.langchain.com/blog/building-agent-memory-openwiki-graphs",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6ae0e1c8ea9b434fb2072ec8_Evidence%20graph%20structure.png",
+      "asset": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6ae0e1c8ea9b434fb2072ec8_Evidence%20graph%20structure.png",
+      "credit": "LangChain",
+      "review": "accepted",
+      "zh": {
+        "heading": "LangChain发布OpenWiki与证据图谱记忆评测",
+        "alt": "OpenWiki页面经claim与cites关联具体段落并保留版本替代和跨文档引用的证据图",
+        "caption": "顺着Wiki页、claim和cites向下找到具体段落，再看2024版本以supersedes替代2018版本，以及refers_to连接其他文档。图中是合成保险文档研究里的证据导航示例，不是企业知识已全部验证的证明。"
+      },
+      "ja": {
+        "heading": "LangChainがOpenWikiと証拠グラフによる記憶検証を公表",
+        "alt": "OpenWikiページとclaimを段落へ結び版の置換や文書間参照を示す証拠グラフ",
+        "caption": "Wikiページからclaimとcitesをたどって具体的な段落へ進み、2024年版が2018年版を置き換えるsupersedesと、別文書へのrefers_toを分けて読む。合成保険文書の研究で示した証拠探索の例であり、企業の全知識を検証済みとする図ではない。"
+      }
+    },
+    {
+      "id": "uber-gateway-plane",
+      "sourceUrl": "https://blog.bytebytego.com/p/how-uber-built-a-gateway-for-ai-agents",
+      "originalImageUrl": "https://cn-geo1.uber.com/image-proc/resize/udam/format=auto/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC91ZGFtLWFzc2V0cy80MmRmYmNjMy02MmY4LTQ0YzAtOGMxZi1jYWFlZGNmYTg2N2MucG5n",
+      "asset": "https://cn-geo1.uber.com/image-proc/resize/udam/format=auto/srcb64=aHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC91ZGFtLWFzc2V0cy80MmRmYmNjMy02MmY4LTQ0YzAtOGMxZi1jYWFlZGNmYTg2N2MucG5n",
+      "credit": "Uber Engineering（ByteByteGo所引原文）",
+      "review": "accepted",
+      "zh": {
+        "heading": "架构分析：Uber构建智能体工具访问网关与鉴权隔离",
+        "alt": "Uber MCP网关从调用者经入口中间件工具运行时和协议转换到下游服务的六层数据面架构",
+        "caption": "从左上调用者沿入口下行，经过限流、响应脱敏与授权中间件，再到右侧的工具解析、校验、执行和Thrift、HTTP、gRPC或MCP转换。该官方原图展示运行数据面，工具注册及属主审批还属于另一个控制面，不能把调用箭头当成权限已自动放行。 原图见[Uber Engineering](https://www.uber.com/in/en/blog/designing-mcp-gateway/)。"
+      },
+      "ja": {
+        "heading": "設計分析：UberによるAIエージェント向けMCP網羅基盤",
+        "alt": "呼出元から入口と中間層を経てツール実行とプロトコル変換で下流サービスへつなぐUber MCPの六層構成",
+        "caption": "左上の呼出元から入口へ下り、流量制御・応答の機微情報除去・認可を経て、右のツール解決・検証・実行とThrift、HTTP、gRPC、MCPの変換へ進む。公式のデータプレーン図であり、登録と所有者承認は別の制御プレーンに属するため、矢印だけで権限が自動承認されるわけではない。 原図は[Uber Engineering](https://www.uber.com/in/en/blog/designing-mcp-gateway/)。"
+      }
+    }
+  ]
+}

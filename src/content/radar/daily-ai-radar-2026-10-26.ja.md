@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-10-26.ja-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-26.ja.mp3
-audioDuration: 1381
-audioSize: 11045178
-audioNotice: "出典・文脈と書き起こしによる内容確認済み。原音の聴取確認は未実施です。"
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-26.ja-e43a9751fdf0d420046a7a7b9619535650c5bbd91e7a6f20d0798e01d3046cd0.mp3
+audioDuration: 1323
+audioSize: 10585005
+audioNotice: AI生成の音声です。内容へのフィードバックをお寄せください。
+draft: false
 tags: []
 plainSummary: "Terraは視覚・PC操作の標準単価を引き下げる。Kimi公開後の議論では順位・タスク費用・利用枠を分ける。Seam Cutterの画像編集とSAPの深掘りも、理解と実際の作用の境界を問う。"
 ---

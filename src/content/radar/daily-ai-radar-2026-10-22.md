@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-22-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-22.mp3
-audioDuration: 1375
-audioSize: 11000874
-audioNotice: 待核试听候选：转写发现无来源因果和分工解释疑点，尚未原音听辨，不属于已验收音频。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-22-93074537246f62c60f965292919d663ce0ffc4d6ad6034432f9f59e157c0f2c7.mp3
+audioDuration: 809
+audioSize: 6469152
+audioNotice: 音频由AI生成，欢迎反馈内容问题。
+draft: false
 tags: []
 plainSummary: "词表与缓存节省的是不同阶段的计算；共享记忆和监督插件也会带来成本与权限边界。分布式科研能拓宽解释与文献覆盖，下一步仍是验证具体机制。"
 ---

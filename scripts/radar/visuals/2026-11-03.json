@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-11-03",
+  "visuals": [
+    {
+      "id": "nemotron-moe",
+      "sourceUrl": "https://blog.bytebytego.com/p/how-nvidias-new-nemotron-model-works",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/b6e0c15e-4f36-4c20-9f68-3531856785e8_3882x2280.png",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/b6e0c15e-4f36-4c20-9f68-3531856785e8_3882x2280.png",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "Nemotron机制讲解：有界状态、稀疏激活与权重内存是三件事",
+        "alt": "MoE示意图：token通过router选择少数专家",
+        "caption": "图中Router用“6选2”说明稀疏路由，箭头区分被选与未选路径；这是教学示意，不是Nemotron实际专家数量配置。未选路径仍存在，因此激活参数少不等于整套权重只需相同大小的内存。"
+      },
+      "ja": {
+        "heading": "Nemotronの仕組み：有界状態、疎な活性化、重みのメモリは別の話",
+        "alt": "MoEの模式図：routerがtokenごとに少数の専門家を選ぶ",
+        "caption": "図のRouterは「6から2を選ぶ」という例で、選択・非選択の経路を描く。Nemotronの実際の専門家数ではない。使わない経路もモデル内に存在するため、活性パラメータが少ないことと重み全体のメモリ削減は同じではない。"
+      }
+    },
+    {
+      "id": "optimizer-path",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/12-optimizers-for-training-neural",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/c4815a9f-5317-4047-b3dd-0f5a1b9c0c70_2752x1536.jpeg",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/c4815a9f-5317-4047-b3dd-0f5a1b9c0c70_2752x1536.jpeg",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "12种优化器教程：比较梯度历史、状态内存与总训练时间",
+        "alt": "SGD在狭长谷底来回折返的优化轨迹示意",
+        "caption": "左侧SGD沿谷底呈锯齿形更新；右侧借往返分量抵消来解释动量思路。曲线是帮助理解更新方向的概念图，不是同条件收敛速度实验，也没有包含优化器状态的显存开销。"
+      },
+      "ja": {
+        "heading": "12種の最適化手法：勾配履歴、状態メモリ、総学習時間を比べる",
+        "alt": "細長い谷底で往復するSGDの更新経路の模式図",
+        "caption": "左のSGDは谷底に沿ってジグザグに進み、右は往復成分の相殺でモメンタムの考え方を説明する。更新方向の概念図であり、同条件の収束速度実験でも、状態メモリの費用を示す図でもない。"
+      }
+    },
+    {
+      "id": "pando-branches",
+      "sourceUrl": "https://openai.com/index/scaling-git-at-openai/",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/5wDkqDPp9fjzOjtAQRDRzw/117b2f107fd11818f7e9154c958b0878/representing-branches-in-pando-diagram-desktop-light.svg?w=3840&q=90",
+      "asset": "https://images.ctfassets.net/kftzwdyauwt9/5wDkqDPp9fjzOjtAQRDRzw/117b2f107fd11818f7e9154c958b0878/representing-branches-in-pando-diagram-desktop-light.svg?w=3840&q=90",
+      "credit": "OpenAI",
+      "review": "accepted",
+      "zh": {
+        "heading": "Pando：把Git引用与对象存储拆开，改善大量Agent并发读写",
+        "alt": "Pando中trunk与topic分支共享提交并复用对象包的结构图",
+        "caption": "左右分别是TRUNK与TOPIC，节点A到F表示提交，TOPIC另有G；方框展示对象分组，分支可以共享已有历史。它说明对象与分支引用怎样组织，不表示跨ref读取具有统一时点的一致性，也不是加速倍数的测量图。"
+      },
+      "ja": {
+        "heading": "Pando：Gitの参照とオブジェクト保存を分け、多数Agentの同時利用へ対応",
+        "alt": "Pandoのtrunkとtopicで共有コミットとオブジェクト群を再利用する構造図",
+        "caption": "左右はTRUNKとTOPICで、A～Fがコミット、TOPIC側にはGもある。枠はオブジェクトのまとまりを示し、既存履歴を共有する構造を説明する。複数refの同時点整合性を保証する図や、加速倍率の測定結果ではない。"
+      }
+    }
+  ]
+}

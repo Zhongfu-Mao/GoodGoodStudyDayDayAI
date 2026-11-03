@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "date": "2026-11-02",
+  "exception": "Two source-backed explanatory figures accompany this short edition; no decorative illustrations.",
+  "visuals": [
+    {
+      "id": "t3code-ui",
+      "sourceUrl": "https://github.com/pingdotgg/t3code",
+      "originalImageUrl": "https://t3.codes/_astro/app-desktop.BHuzLVLF.webp",
+      "credit": "T3 Code",
+      "zh": {
+        "heading": "T3 Code观察：统一操作既有编码Agent，不替换其模型或订阅",
+        "alt": "T3 Code官网展示的多Agent会话与工作分支界面",
+        "caption": "左侧是项目和会话，中间展示任务与多个Agent的进度，右侧是工作分支、变更与子任务。它说明统一操作面的组织方式；这是官网演示界面，不是本次运行的实测，也不能证明各执行器具有相同权限或隔离。"
+      },
+      "ja": {
+        "heading": "T3 Codeの観察：既存のコーディングAgentを束ねる操作面",
+        "alt": "T3 Code公式サイトの複数Agentセッションと作業ブランチ画面",
+        "caption": "左はプロジェクトとセッション、中央は依頼と複数Agentの進捗、右は作業ブランチ・変更・子タスクを示す。操作面の整理方法を説明する公式デモ画面であり、今回の実測や実行器間の同一権限・隔離の証明ではない。"
+      },
+      "asset": "https://t3.codes/_astro/app-desktop.BHuzLVLF.webp",
+      "review": "accepted"
+    },
+    {
+      "id": "effort-behavior",
+      "sourceUrl": "https://arxiv.org/abs/2610.34491",
+      "originalImageUrl": "https://arxiv.org/html/2610.34491v1/behavior_overview.png",
+      "credit": "Kaiser Sun、Yongchan Kwon、Zain Hasan、Shang Zhu、Kaitlyn Zhou、Federico Bianchi",
+      "zh": {
+        "heading": "推理effort不宜固定拉满：平均准确率之外，还要看逐题回退与完整成本",
+        "alt": "论文图4比较不同模型低与高effort下的行为占比变化热图",
+        "caption": "横轴是评估、推理、规划等行为，颜色表示从最低到最高已标注推理档位的占比变化，单位为百分点；两面板分别是修正版SWE-Bench Pro与Terminal-Bench。橙色增多并不等于任务更正确，图中的匕首标记只是未校正90%区间不跨零；它不是42倍成本图。"
+      },
+      "ja": {
+        "heading": "推論effortは常に最大がよいとは限らない：問題別の後退と実行全体の費用を見る",
+        "alt": "低・高effort間のモデル別行動比率変化を比較する論文図4",
+        "caption": "横軸は評価・推論・計画などの行動で、色は最低から最高の注釈済み推論設定への比率変化（百分率ポイント）を示す。左右は修正版SWE-Bench ProとTerminal-Bench。橙色の増加は正解向上を意味せず、短剣印は未補正90%区間がゼロをまたがない印であり、42倍の費用グラフではない。"
+      },
+      "asset": "https://arxiv.org/html/2610.34491v1/behavior_overview.png",
+      "review": "accepted"
+    }
+  ]
+}

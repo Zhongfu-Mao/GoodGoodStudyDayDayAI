@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-11-01",
+  "visuals": [
+    {
+      "id": "harness",
+      "sourceUrl": "https://github.com/HarnessRouter/harnessrouter",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/4f9824fb-de34-48f8-a4cf-ef730e63fcb3_2752x1536.jpeg",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/4f9824fb-de34-48f8-a4cf-ef730e63fcb3_2752x1536.jpeg",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "HarnessRouter观察：让不同Agent运行框架接入同一个后端",
+        "alt": "一个API经HarnessRouter连接不同原生Agent循环的机制图",
+        "caption": "左侧用任务和harness_id调用统一接口，中部归集会话、进度、文件与失败处理，右侧仍是各自的原生Agent循环；底部虚线把进度、文件和最终输出送回后端。这是接口分工示意，不是每会话独立容器或费用节省的证明。原图见[Daily Dose文章](https://blog.dailydoseofds.com/p/why-other-requests-change-your-llms)。"
+      },
+      "ja": {
+        "heading": "HarnessRouterの観察：異なるAgent実行フレームワークを同一バックエンドに接続",
+        "alt": "単一APIからHarnessRouterを経て異なるネイティブAgentループへ接続する図",
+        "caption": "左のタスクとharness_idで統一APIを呼び、中段がセッション・進捗・ファイル・失敗処理を集約する。右側は各固有のAgentループのままで、下の点線が進捗・ファイル・最終出力を返す。APIの役割分担を示す図で、セッション別コンテナやコスト削減の証明ではない。原図は[Daily Dose記事](https://blog.dailydoseofds.com/p/why-other-requests-change-your-llms)を参照。"
+      }
+    },
+    {
+      "id": "gpu",
+      "sourceUrl": "https://blog.bytebytego.com/p/ep231-ai-terms-you-need-to-know",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/4fc04cb9-3044-4a4e-bf60-569749e0ac42_3151x4096.jpeg",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/4fc04cb9-3044-4a4e-bf60-569749e0ac42_3151x4096.jpeg",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "ByteByteGo的GPU入门图：把并行计算与数据等待分开理解",
+        "alt": "GPU的多个SM与片上L2缓存、内存控制器和显存层级图",
+        "caption": "从上往下读：每个SM内有调度器、寄存器、计算与Load/Store单元及L1／共享内存，再通过片上网络连接L2与显存。图中重复方块是架构示意，不对应所有GPU的真实数量；底部的高带宽与相对较高延迟可以同时存在。"
+      },
+      "ja": {
+        "heading": "ByteByteGoのGPU入門図：並列計算とデータ待機を切り離して理解する",
+        "alt": "複数SMからチップ上L2キャッシュ、メモリコントローラ、VRAMへ続くGPU階層図",
+        "caption": "上から各SMのスケジューラ、レジスタ、演算・Load/Store、L1／共有メモリを読み、チップ内ネットワークからL2とVRAMへたどる。繰り返す箱は構造の模式表現で、すべてのGPUの実数ではない。下部の高帯域幅と相対的に高いアクセス遅延は両立する。"
+      }
+    },
+    {
+      "id": "decisionrag",
+      "sourceUrl": "https://arxiv.org/abs/2610.35868",
+      "originalImageUrl": "https://arxiv.org/html/2610.35868v1/main_method3.png",
+      "asset": "https://arxiv.org/html/2610.35868v1/main_method3.png",
+      "credit": "Chao Wan、Paul Jünger、Bodong Liu、Navaneetha Krishnan、Kilian Q. Weinberger",
+      "review": "accepted",
+      "zh": {
+        "heading": "DecisionRAG：用非生成式决策导航文档树，但剪掉的分支不会自动回来",
+        "alt": "DecisionRAG对照BM25和向量检索，逐层筛选文档与段落的原论文图",
+        "caption": "右侧先筛文档，再评段落，最后可选重排；灰色Gladiator文档被剪掉后，其段落不再评分。左侧BM25分数、词频与向量点只是解释机制的示意，不是这张图给出的评测成绩；层级导航也不表示离线建树不用嵌入。"
+      },
+      "ja": {
+        "heading": "DecisionRAG：非生成型の意思決定で文書ツリーを探索するが、枝刈りされたブランチは自動復帰しない",
+        "alt": "BM25・密検索と、文書・段落を段階選別するDecisionRAGを比較した論文図",
+        "caption": "右側は文書選別、段落評価、任意の再順位付けの順に進む。灰色のGladiator文書を落とすと、その段落は評価されない。左側のBM25スコア・頻度・ベクトル点は仕組みの説明用で、評価成績ではない。階層探索でもオフライン構築に埋め込みを使う場合がある。"
+      }
+    }
+  ]
+}

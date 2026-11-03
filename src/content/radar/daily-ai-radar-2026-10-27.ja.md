@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-10-27.ja-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-27.ja.mp3
-audioDuration: 1207
-audioSize: 9657135
-audioNotice: "出典・文脈と書き起こしによる内容確認済み。原音の聴取確認は未実施です。"
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-27.ja-759b95b52dac128c713d544990f77959d2e1e2eec20851e727896585b22f8161.mp3
+audioDuration: 1095
+audioSize: 8756851
+audioNotice: AI生成の音声です。内容へのフィードバックをお寄せください。
+draft: false
 tags: []
 plainSummary: "モデルの再現性、企業Agentの権限、実際のUIテスト、科学・利用データの検証を別々に見る。"
 ---

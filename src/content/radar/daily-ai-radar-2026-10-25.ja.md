@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-10-25.ja-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-25.ja.mp3
-audioDuration: 1272
-audioSize: 10177286
-audioNotice: 試聴候補。内容の確認は未完了です。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-25.ja-a976007ffb8b41044699b229e5199808cdd5a9df83e8e1de0aa1d627d832cd49.mp3
+audioDuration: 1425
+audioSize: 11401279
+audioNotice: AI生成の音声です。内容へのフィードバックをお寄せください。
+draft: false
 tags: []
 plainSummary: "評価から強化学習・蒸留へ、推論講座は実装で学ぶ道筋を示す。CUDA Graph、RAGの制御ループ、会社向けHarnessは、計算効率・証拠・権限を別々に扱う。"
 ---

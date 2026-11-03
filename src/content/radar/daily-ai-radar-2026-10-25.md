@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-25-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-25.mp3
-audioDuration: 570
-audioSize: 4563676
-audioNotice: "已据来源、上下文与转写核对内容；尚未作原音听辨。"
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-25-e80c4032a02b16a53cdc43caf669f4939580ba093a194ea441759a5074824230.mp3
+audioDuration: 953
+audioSize: 7622719
+audioNotice: 音频由AI生成，欢迎反馈内容问题。
+draft: false
 tags: []
 plainSummary: "从评估到强化学习与蒸馏，推理课程提供可运行的学习路线。CUDA Graph、RAG 控制环与公司级 Harness 则分别处理计算效率、证据和权限。"
 ---

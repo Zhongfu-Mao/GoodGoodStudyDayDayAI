@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-26-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-26.mp3
-audioDuration: 617
-audioSize: 4934406
-audioNotice: 待核试听候选，内容验收尚未完成。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-26-5b9c944b6b55e8c6a42f81a369803217aaeb6c0d871bbe831e4b7a32c20bd7b9.mp3
+audioDuration: 921
+audioSize: 7369018
+audioNotice: 音频由AI生成，欢迎反馈内容问题。
+draft: false
 tags: []
 plainSummary: "Terra 将视觉与电脑任务放到较低标准单价；Kimi 发布后争议提醒把跑分、任务成本和额度分开比较。Seam Cutter 改变截图的连续性，SAP 延伸讨论理解与行动权限。"
 ---

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-10-28",
+  "visuals": [
+    {
+      "id": "novelty-prompts",
+      "sourceUrl": "https://huggingface.co/blog/allenai/novelty-bench",
+      "originalImageUrl": "https://www.datocms-assets.com/64837/1793023853-novelty-bench-prompt-wording-chart.png",
+      "asset": "https://www.datocms-assets.com/64837/1793023853-novelty-bench-prompt-wording-chart.png",
+      "credit": "Ai2／Novelty Judge Bench 作者",
+      "review": "accepted",
+      "zh": {
+        "heading": "新颖性评判也要做评测：换几句话，结论可能翻转",
+        "alt": "同一154对人类与生成研究想法在两种提问下被选中的比例对照",
+        "caption": "左右两列比较同一154对想法在不同提问下，模型选中评审认可的人类想法的比例；GPT-5.4这一行由93.5%降至40.9%。生成想法使用弱标签，不能把图中比例理解为每对新颖性真值已逐项验证。"
+      },
+      "ja": {
+        "heading": "新規性の判定器も評価が必要：数語の変更で判断が逆転",
+        "alt": "同じ154組の人間案と生成案を異なる質問で比較した選択率の棒グラフ",
+        "caption": "左右の列は同じ154組で、査読者が評価した人間案を選ぶ割合を質問別に比べる。GPT-5.4の93.5％から40.9％への変化を読み取り、生成案側は弱いラベルであり全組の新規性を個別検証した正解ではない点も区別したい。"
+      }
+    },
+    {
+      "id": "ocr-tags",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/which-ocr-solution-works-best-for",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/2663f599-da1e-4eed-9d0c-d6d936c7c290_2000x1305.png",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/2663f599-da1e-4eed-9d0c-d6d936c7c290_2000x1305.png",
+      "credit": "Daily Dose of Data Science／OmniParse Bench",
+      "review": "accepted",
+      "zh": {
+        "heading": "OCR选型看文档切片：总体领先不等于表格最好",
+        "alt": "OmniParse Bench按文字表格布局三类测试计算总分并用标签筛选切片的关系图",
+        "caption": "从上往下看，总分平均文字、表格和布局三类测试的成绩；底部标签只选择测试子集，不给总分重新加权。按表格、数学或语言筛选后可以追查对应失败，图中展示评分机制，不是模型排名。"
+      },
+      "ja": {
+        "heading": "OCRは文書の種類別に選ぶ：総合首位が表でも首位とは限らない",
+        "alt": "文字・表・配置の三系統から総合点を作りタグで対象テストを絞るOmniParse Benchの図",
+        "caption": "上から総合点、文字・表・配置の三系統、個々の合否テストへと読む。下のタグは対象テストを絞るだけで総合点の重みを変えず、表・数式・言語別の失敗を追う仕組みを示しており、モデル順位の図ではない。"
+      }
+    },
+    {
+      "id": "design-agent-architecture",
+      "sourceUrl": "https://www.langchain.com/blog/design-agent",
+      "originalImageUrl": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6adeca22341f4bfc5ece74a9_6adec96dc8907845405f2caf_design-agent-architecture-v2-t.png",
+      "asset": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6adeca22341f4bfc5ece74a9_6adec96dc8907845405f2caf_design-agent-architecture-v2-t.png",
+      "credit": "LangChain",
+      "review": "accepted",
+      "zh": {
+        "heading": "LangChain设计代理：把审美标准、工作环境与协作反馈接起来",
+        "alt": "Content Studio通过Slack线程连接主代理技能记忆与每线程沙箱及异步子代理的架构",
+        "caption": "顺着左侧Slack线程进入主代理，再看技能与记忆、每线程沙箱及并行子代理如何共同产出并回到同一线程。右上“自有代码减少约80%”是LangChain对自身实现的说明，不是产能或设计质量的独立测量。"
+      },
+      "ja": {
+        "heading": "LangChainのデザインエージェント：基準・作業環境・共同レビューを接続",
+        "alt": "Slackスレッドと主エージェントを技能・記憶・スレッド別サンドボックス・非同期子代理へつなぐ構成",
+        "caption": "左のSlackスレッドから主エージェントへ入り、技能・記憶、スレッド別サンドボックスと並列の子代理を経て同じスレッドへ成果を返す流れを読む。右上の「自社コード約80％減」はLangChain自身の実装説明で、生産性やデザイン品質を独立測定した値ではない。"
+      }
+    }
+  ]
+}

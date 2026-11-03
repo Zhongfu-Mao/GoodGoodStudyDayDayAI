@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: zh
 coverImage: /images/radar/daily-ai-radar-2026-10-24-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-24.mp3
-audioDuration: 1312
-audioSize: 10498696
-audioNotice: 待核试听候选，内容验收尚未完成。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-24-ba9b6953fc2209adf42bcafe1bb1e771381ff1dd721e5265b3b13b792912a059.mp3
+audioDuration: 1266
+audioSize: 10130683
+audioNotice: 音频由AI生成，欢迎反馈内容问题。
+draft: false
 tags: []
 plainSummary: "新模型可用、证明看似成立，都要继续追问条件。今天从 KV 缓存、全球存储、训练隔离到文献驱动的研究转向，看看系统怎样保存效率，也保存检验与修改的余地。"
 ---

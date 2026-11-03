@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "date": "2026-10-30",
+  "visuals": [
+    {
+      "id": "decoy",
+      "sourceUrl": "https://latent.space/p/elorian/",
+      "originalImageUrl": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/604f2ace-8b41-4834-af03-75ee649ab47f/image.png",
+      "asset": "/images/radar/daily-ai-radar-2026-10-30-decoy.webp",
+      "credit": "DecoyCount 作者／Latent.Space",
+      "review": "accepted",
+      "zh": {
+        "heading": "DecoyCount 跟进：看见目标，不等于按正确的规则计数",
+        "alt": "DecoyCount七类视觉计数诱饵与实际例子",
+        "caption": "从包装上的数字、镜像到计数单位，逐格比较真实目标与容易被选中的错误数量。这张图说明错误机制与数据集组成，不展示或证明Glimpse的模型排名。"
+      },
+      "ja": {
+        "heading": "DecoyCount続報：対象が見えても、正しい規則で数えるとは限らない",
+        "alt": "DecoyCountの7種類の視覚的な計数デコイと具体例",
+        "caption": "包装の数字、鏡像、数える単位について、実際の対象と選びやすい誤答を各パネルで比較する。誤りの仕組みとデータセット構成を示す図であり、Glimpseの順位を証明するものではない。"
+      },
+      "sha256": "c0a5c1d7f2ff0a99daefafa53b71ba875269e07b32b3ca6a88aea6175f83c2f0"
+    },
+    {
+      "id": "granite",
+      "sourceUrl": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/662836b742709fe826510597/F5YZJX3QZ8HbecaJnHe4Q.png",
+      "asset": "https://cdn-uploads.huggingface.co/production/uploads/662836b742709fe826510597/F5YZJX3QZ8HbecaJnHe4Q.png",
+      "credit": "IBM Granite",
+      "review": "accepted",
+      "zh": {
+        "heading": "Granite Switch 4.1.1：只更新专业适配器，不重训整个基座",
+        "alt": "Granite以灰色基座与绿色顶层示意模块替换",
+        "caption": "把灰色基座与绿色顶层、右侧独立组件分开看：原图用抽象积木表达模型部件可组合与更换。它不是精确架构图，也不能说明语音识别或决策测评的成绩。"
+      },
+      "ja": {
+        "heading": "Granite Switch 4.1.1：基盤全体ではなく専門アダプターを更新",
+        "alt": "灰色の基盤と緑色の上層で部品交換を表すGraniteの概念図",
+        "caption": "灰色の基盤、緑色の上層、右側の独立した部品を分けて読む。部品の組合せ・交換を抽象的に表す図で、正確な構造や音声認識・意思決定の評価結果は示していない。"
+      }
+    },
+    {
+      "id": "prefix",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/prefix-aware-llm-routing-clearly",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/27d0d71a-d9cc-464d-b8e7-1ac13353c264_2752x1536.jpeg",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/27d0d71a-d9cc-464d-b8e7-1ac13353c264_2752x1536.jpeg",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "前缀感知路由：让请求找到已经持有 KV 缓存的副本",
+        "alt": "轮询把下一轮对话发送到没有共享前缀缓存的GPU",
+        "caption": "顺着箭头看：GPU 1已经保留蓝色共享前缀，轮询却把请求送给GPU 3，迫使它重新计算。图中展示的是不感知缓存的失败模式，不是完整的前缀感知路由实现。"
+      },
+      "ja": {
+        "heading": "プレフィックスを考慮したルーティングで、KVキャッシュのあるレプリカへ",
+        "alt": "共有プレフィックスを持たないGPUへ次の会話を送るラウンドロビン",
+        "caption": "矢印を追うと、GPU 1に青い共有プレフィックスがあるのに、要求はGPU 3へ送られて再計算になる。これはキャッシュを考慮しない場合の失敗例で、精密ルーティングの実装全体ではない。"
+      }
+    }
+  ]
+}

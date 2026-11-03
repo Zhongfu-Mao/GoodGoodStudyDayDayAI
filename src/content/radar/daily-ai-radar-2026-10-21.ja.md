@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-10-21.ja-infographic-imagegen-20261028.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-21.ja.mp3
-audioDuration: 1122
-audioSize: 8974880
-audioNotice: 原音を保存したローカル編集試聴版。デコード・文字起こし補助確認済み。実際の聴取確認は未実施。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-21.ja-93c1ac55c12d366ee69a31acf2f97a1b161829c9c84811746afeadca9ece62ce.mp3
+audioDuration: 1310
+audioSize: 10484068
+audioNotice: AI生成の音声です。内容へのフィードバックをお寄せください。
+draft: false
 tags: []
 description: "評価、タスクの再開、共有エージェントからハードウェアと経営事例まで、仕事を確実に終える仕組みと成果の成立条件を読む。"
 plainSummary: "判定閾値、繰り返し実行の成功率、業務目標は、それぞれ異なる失敗を検証する。実行再開には証拠と冪等キーの保持が必要で、共有エージェントには安定した接続とサーバー側の権限管理も要る。ハードウェアと経営の成果では、実測と将来の見積もりを分けて読む。"

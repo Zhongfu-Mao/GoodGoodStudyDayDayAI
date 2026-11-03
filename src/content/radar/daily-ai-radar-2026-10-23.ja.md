@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-10-23.ja-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-23.ja.mp3
-audioDuration: 1310
-audioSize: 10479679
-audioNotice: 試聴候補。内容の確認は未完了です。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-23.ja-9cd0196c1e05dbb314e0988f9a5e6ae2b6076ebf8d8567b0edb1bd798d4a4bac.mp3
+audioDuration: 943
+audioSize: 7541844
+audioNotice: AI生成の音声です。内容へのフィードバックをお寄せください。
+draft: false
 tags: []
 plainSummary: "最終状態を報酬にすると成功が安定する一方、解ける範囲は狭まることもある。確率予測には誤差と区間の校正が必要だ。RAGの人への引き継ぎ、弾力的な計算資源、企業導入も、判断を検証可能な状態と実務につなぐことが重要になる。"
 ---

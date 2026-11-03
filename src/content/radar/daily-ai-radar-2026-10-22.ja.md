@@ -6,11 +6,11 @@ cadence: daily
 radarFormat: 2
 lang: ja
 coverImage: /images/radar/daily-ai-radar-2026-10-22.ja-infographic-imagegen-20261030.webp
-audioUrl: /__radar-preview/audio/daily-ai-radar-2026-10-22.ja.mp3
-audioDuration: 1339
-audioSize: 10710811
-audioNotice: 要確認の試聴候補。文字起こしに数値・ホスト処理解釈の疑問点があり、原音は未聴取。内容の検収は未完了。
-draft: true
+audioUrl: https://pub-6a0341e7aa914973bd3bf62652a20025.r2.dev/audio/radar/daily-ai-radar-2026-10-22.ja-d35a1faba4d3f471b6a4f3beff2e46ceb9a9e5795c3720d26a51272d8e7a12e4.mp3
+audioDuration: 1563
+audioSize: 12503229
+audioNotice: AI生成の音声です。内容へのフィードバックをお寄せください。
+draft: false
 tags: []
 plainSummary: "語彙の特化とキャッシュは異なる段階の計算を減らす。共有メモリーや監督プラグインにもコストと権限の境界がある。分散型の科学研究は文献と解釈の範囲を広げるが、具体的な仕組みの検証は次の課題だ。"
 ---
