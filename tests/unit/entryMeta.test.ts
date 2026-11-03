@@ -2,6 +2,18 @@ import { describe, expect, it } from 'vitest';
 import { estimateReadingMinutes, getPlainSummary, getPostCardTitleMeta } from '../../src/lib/entryMeta';
 
 describe('entry metadata helpers', () => {
+  it('keeps an explicit edition summary ahead of descriptions and generated leads', () => {
+    const summary = getPlainSummary({
+      id: 'radar/example',
+      data: {
+        title: 'Example', category: 'radar', radarFormat: 2, tags: [], lang: 'zh',
+        plainSummary: '整期摘要同时涵盖能力、费用与权限边界。',
+        description: 'A shorter listing description.',
+      },
+      body: '## 本期重点\n\n- [只覆盖首个故事的重点。](#radar-first)\n\n## 构建与运行\n\n正文。',
+    } as any, 'zh');
+    expect(summary).toBe('整期摘要同时涵盖能力、费用与权限边界。');
+  });
   it('uses a short edition highlight section before body or illustration text', () => {
     const summary = getPlainSummary({
       id: 'radar/example',
