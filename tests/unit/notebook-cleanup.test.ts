@@ -9,6 +9,18 @@ const notebook = (id: string, title: string) => ({ id, title });
 const ids = (candidates: Array<{ id?: string }>) => candidates.map((candidate) => candidate.id);
 
 describe('NotebookLM radar cleanup helpers', () => {
+  it('includes only verified daily repair/style title forms in an explicit daily reset', () => {
+    const candidates = selectCleanupCandidates([
+      notebook('daily', 'AI 雷达日报：2026-10-30 · Audio'),
+      notebook('repair', 'AI Radar 2026-10-21 · Private repair v3'),
+      notebook('style', 'AI雷达2026-10-15 · 三风格对照试验'),
+      notebook('weekly', 'AI 雷达周报：2026-10-05 至 2026-10-11 · Weekly Assets'),
+      notebook('monthly', 'AI 雷达月报：2026 年 9 月 · Monthly Assets'),
+      notebook('unrelated', 'AI Radar research notes'),
+      notebook('wrong-suffix', 'AI Radar 2026-10-21 · Personal notes'),
+    ], getCleanupWindow({cadence: 'daily-reset'}));
+    expect(ids(candidates)).toEqual(['daily', 'repair', 'style']);
+  });
   it('matches daily radar notebooks from Chinese and Japanese generated titles', () => {
     expect(parseRadarNotebookTitle('AI 雷达日报：2026-05-10 · Audio')).toMatchObject({
       cadence: 'daily',

@@ -79,6 +79,7 @@ function parseArgs(argv) {
       options.sourceMode = argv[index + 1] ?? options.sourceMode;
       index += 1;
     }
+    if (arg === '--submit-only') options.submitOnly = true;
   }
 
   return options;
@@ -230,6 +231,13 @@ export async function main(argv = process.argv.slice(2)) {
         ).stdout,
       ),
     );
+
+    if (options.submitOnly) {
+      completed = true;
+      const receipt = { status: 'submitted', notebookId, sourceId: source.id, artifactId: submitted.id, jobFile: job.file };
+      console.log(JSON.stringify(receipt));
+      return receipt;
+    }
 
     const artifact = await waitForArtifact(notebookId, submitted, {
       timeout: 1800,

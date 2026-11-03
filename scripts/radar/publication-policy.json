@@ -1,14 +1,39 @@
 {
   "version": 1,
   "hold": {
-    "active": true,
+    "active": false,
     "scope": "radar_content_and_public_media",
-    "reason": "10/21返修样本须先供用户审阅，目前不公开替换或发布后续期次。",
-    "releaseRequires": "用户审阅10/21返修样本后明确授权下一步发布。"
+    "reason": "2026-11-04用户明确要求补齐11/3并提交发布，已授权本批10/21—11/3内容及资产上线。",
+    "releaseRequires": "已满足：用户明确授权提交发布并直接在网站查看。",
+    "releasedAt": "2026-11-04"
   },
   "production": {
     "paused": false,
     "scope": "恢复原日报在原定时刻正常制作；手动先完成2026-10-21至27，再补28、29；不提前制作30日。",
     "reason": "2026-10-30 08:54 JST用户明确要求推进21–29并使30日原任务准点正常工作。仅解除生产暂停，保留公开发布hold，不改自动化排期。"
+  },
+  "dailyAssetBackfill": {
+    "authorizationDate": "2026-11-03",
+    "prerequisite": "全部待修复日报的中日正文完成实质修复、最终审稿并冻结后，才创建补资产目标；检查退出码不等于内容完成。",
+    "requestFile": "tmp/radar-asset-backfill-20261103/request.json",
+    "sequence": [
+      "内容全部修复完成后创建目标",
+      "核对并删除 NotebookLM 中全部本项目日报相关笔记本",
+      "仅以对应语言的日报 Markdown 重新生成音频",
+      "该批全部信息图使用内置 imagegen"
+    ],
+    "audioReview": "仅做基本可用性和完整性检查，用户自行试听；不追加细粒度语义核查。",
+    "publicationAuthorized": false
+  },
+  "dailyRunOverrides": {
+    "2026-11-03": {
+      "schedule": "保留原定触发时刻，不提前制作，不受历史回补等待条件阻塞。",
+      "infographicSequence": [
+        "notebooklm",
+        "imagegen"
+      ],
+      "audioSource": "对应语言冻结后的完整 Markdown",
+      "audioReview": "基本可用性和完整性检查后交用户试听"
+    }
   }
 }

@@ -22,6 +22,9 @@ function lastDayOfMonth(year, monthIndex) {
 }
 
 export function parseRadarNotebookTitle(title) {
+  // Historical daily-only repair/style notebooks, verified against local receipts.
+  const legacyDaily = /^(?:AI Radar (\d{4}-\d{2}-\d{2}) · Private repair v\d+|AI雷达(\d{4}-\d{2}-\d{2}) · 三风格对照试验)$/.exec(title);
+  if (legacyDaily) return { cadence: 'daily', date: legacyDaily[1] ?? legacyDaily[2] };
   const prefixDaily = /^ai-radar-daily-(\d{4}-\d{2}-\d{2})-(?:zh|ja)\b/.exec(title);
   if (prefixDaily) {
     return { cadence: 'daily', date: prefixDaily[1] };
@@ -58,9 +61,10 @@ export function parseRadarNotebookTitle(title) {
 }
 
 /**
- * @param {{ cadence: 'weekly' | 'monthly', triggerDate?: string | null, weekStart?: string | null, month?: string | null }} options
+ * @param {{ cadence: 'weekly' | 'monthly' | 'daily-reset', triggerDate?: string | null, weekStart?: string | null, month?: string | null }} options
  */
 export function getCleanupWindow({ cadence, triggerDate = null, weekStart = null, month = null }) {
+  if (cadence === 'daily-reset') return { cadence, start: '0000-01-01', end: '9999-12-31' };
   if (cadence === 'weekly') {
     const start = weekStart ?? getPreviousIsoWeekStart(triggerDate ?? formatDate(new Date()));
     return { cadence, start, end: formatDate(addDays(start, 6)) };
@@ -101,7 +105,7 @@ export function getPreviousMonth(triggerDate) {
 
 /**
  * @param {Array<{ id?: string, title?: string, name?: string }>} notebooks
- * @param {{ cadence: 'weekly' | 'monthly', start: string, end: string }} window
+ * @param {{ cadence: 'weekly' | 'monthly' | 'daily-reset', start: string, end: string }} window
  */
 export function selectCleanupCandidates(notebooks, window) {
   return notebooks.filter((notebook) => {
@@ -110,7 +114,7 @@ export function selectCleanupCandidates(notebooks, window) {
       return false;
     }
 
-    if (window.cadence === 'weekly') {
+    if (window.cadence === 'weekly' || window.cadence === 'daily-reset') {
       return (
         parsed.cadence === 'daily' && parsed.date >= window.start && parsed.date <= window.end
       );
