@@ -9,8 +9,8 @@
   },
   "production": {
     "paused": false,
-    "scope": "恢复原日报在原定时刻正常制作；手动先完成2026-10-21至27，再补28、29；不提前制作30日。",
-    "reason": "2026-10-30 08:54 JST用户明确要求推进21–29并使30日原任务准点正常工作。仅解除生产暂停，保留公开发布hold，不改自动化排期。"
+    "scope": "原日报按原定排期正常制作；2026-10-21至11-03回补已完成并获授权发布。",
+    "reason": "2026-11-04用户要求补齐11/3后提交发布，并直接在网站查看；制作排期不变。"
   },
   "dailyAssetBackfill": {
     "authorizationDate": "2026-11-03",
@@ -23,7 +23,13 @@
       "该批全部信息图使用内置 imagegen"
     ],
     "audioReview": "仅做基本可用性和完整性检查，用户自行试听；不追加细粒度语义核查。",
-    "publicationAuthorized": false
+    "publicationAuthorized": true,
+    "publicationAuthorizationDate": "2026-11-04",
+    "publicationScope": {
+      "from": "2026-10-21",
+      "to": "2026-11-03"
+    },
+    "audioPublicationBasis": "技术完整性及准确来源校验通过后，按用户授权公开供网站试听；语义仍待用户反馈，不冒称通过。"
   },
   "dailyRunOverrides": {
     "2026-11-03": {
