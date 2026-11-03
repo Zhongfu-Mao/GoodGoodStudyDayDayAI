@@ -1,4 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import { execFileSync } from 'node:child_process';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import {
   getCleanupWindow,
   parseRadarNotebookTitle,
@@ -9,6 +13,22 @@ const notebook = (id: string, title: string) => ({ id, title });
 const ids = (candidates: Array<{ id?: string }>) => candidates.map((candidate) => candidate.id);
 
 describe('NotebookLM radar cleanup helpers', () => {
+  it('does not contact NotebookLM or replace evidence when a daily reset was already verified', () => {
+    const root = mkdtempSync(path.join(os.tmpdir(), 'radar-reset-'));
+    try {
+      mkdirSync(path.join(root, 'scripts/radar'), { recursive: true });
+      mkdirSync(path.join(root, 'tmp/notebook-cleanup'), { recursive: true });
+      writeFileSync(path.join(root, 'scripts/radar/publication-policy.json'), JSON.stringify({ dailyAssetBackfill: { requestFile: 'tmp/request.json' } }));
+      writeFileSync(path.join(root, 'tmp/request.json'), JSON.stringify({ goalCreated: true, notebookCleanup: { status: 'verified', verification: 'tmp/notebook-cleanup/verification.json' } }));
+      const evidence = path.join(root, 'tmp/notebook-cleanup/candidates.json');
+      writeFileSync(evidence, 'original deleted notebook inventory');
+      const result = execFileSync(process.execPath, [path.resolve('scripts/radar/cleanup-notebooks.mjs'), '--cadence', 'daily-reset', '--backfill-request', 'tmp/request.json', '--execute'], { cwd: root, encoding: 'utf8' });
+      expect(JSON.parse(result).status).toBe('already_verified');
+      expect(readFileSync(evidence, 'utf8')).toBe('original deleted notebook inventory');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
   it('includes only verified daily repair/style title forms in an explicit daily reset', () => {
     const candidates = selectCleanupCandidates([
       notebook('daily', 'AI 雷达日报：2026-10-30 · Audio'),

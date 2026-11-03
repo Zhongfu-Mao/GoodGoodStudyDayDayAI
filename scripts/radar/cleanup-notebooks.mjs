@@ -103,6 +103,10 @@ async function main() {
     const policy = JSON.parse(await readFile('scripts/radar/publication-policy.json', 'utf8'));
     if (policy.dailyAssetBackfill?.requestFile !== options.backfillRequest || !backfill.goalCreated)
       throw new Error('Daily reset is outside the authorized backfill request/goal.');
+    if (backfill.notebookCleanup?.status === 'verified') {
+      console.log(JSON.stringify({ status: 'already_verified', verification: backfill.notebookCleanup.verification }));
+      return;
+    }
     const completion = JSON.parse(await readFile(backfill.contentScope.completionEvidence, 'utf8'));
     if (completion.status !== 'all_content_repaired_reviewed_and_frozen' || completion.remainingContentBlockers.length)
       throw new Error('Finish and freeze all content before deleting daily notebooks.');
