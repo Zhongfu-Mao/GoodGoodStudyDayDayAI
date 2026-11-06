@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-11-04",
+  "visuals": [
+    {
+      "id": "statebench-frontier",
+      "sourceUrl": "https://huggingface.co/blog/allenai/statebench",
+      "originalImageUrl": "https://www.datocms-assets.com/64837/1792006435-statebench-draft-blog-google-docs-image-3.png",
+      "asset": "https://www.datocms-assets.com/64837/1792006435-statebench-draft-blog-google-docs-image-3.png",
+      "credit": "Ai2 / StateBench",
+      "review": "accepted",
+      "zh": {
+        "heading": "StateBench：长上下文检索正确，不等于能追踪状态变化",
+        "alt": "四类状态追踪任务中，前沿模型准确率随输入长度变化的曲线",
+        "caption": "横轴是输入token长度，四列从不变赋值到通用有限状态逐渐变难；同一行内比较可看到，简单检索稳定并不保证长依赖更新也稳定。曲线属于StateBench的合成任务和受测设置，不是所有长文应用的性能排名。"
+      },
+      "ja": {
+        "heading": "StateBench：長文を検索できても、状態変化を追えるとは限らない",
+        "alt": "四種の状態追跡における最先端モデルの正答率と入力長の関係",
+        "caption": "横軸は入力token長で、四列は不変の代入から一般有限状態へと難しくなる。同じ行で比べると、単純な検索が安定しても依存更新の追跡は崩れ得ると分かる。StateBenchの合成課題と評価条件での結果で、長文アプリ全体の順位ではない。"
+      }
+    },
+    {
+      "id": "palette-pipeline",
+      "sourceUrl": "https://huggingface.co/blog/ibm-research/palette-deck-building",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/PZoiyAFg_nrWRryQhjGN_.png",
+      "asset": "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/PZoiyAFg_nrWRryQhjGN_.png",
+      "credit": "IBM Research / Palette",
+      "review": "accepted",
+      "zh": {
+        "heading": "Palette：先固定幻灯片简报，再并行写代码并检查修复",
+        "alt": "计划经过设计者生成JSON简报，再逐页并行编码并由Harness检查修复",
+        "caption": "先看中间的Brief：每页内容和版式先固定，编码者才可以逐页并行。右侧规则修复、渲染几何检查与问题页修复是另一层；“仅保留有改善的修复”依赖检查器能测到的范围，不等于自动证明全部事实正确。"
+      },
+      "ja": {
+        "heading": "Palette：スライド仕様を先に固定し、並列でコード化して修復する",
+        "alt": "計画をJSON仕様にし、スライドごとに並列でコード化してHarnessが検査・修復する流れ",
+        "caption": "中央のBriefで内容と配置を先に決めてから、一枚ずつ並列でコードを書く。右の規則修正、描画後の幾何検査、問題ページの修復は別の層である。「改善した修復だけ残す」は検査器の測定範囲内の話で、事実全体の自動証明ではない。"
+      }
+    },
+    {
+      "id": "framework-harness-comparison",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/agent-framework-vs-agent-harness",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/0e36d4fa-98f8-40dc-a6d0-f2925369482c_900x900.png",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/0e36d4fa-98f8-40dc-a6d0-f2925369482c_900x900.png",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "Framework与Harness：可恢复的工作状态不能只放进对话摘要",
+        "alt": "左侧由组件搭建流程，右侧围绕模型配置工具、上下文、记忆和子Agent",
+        "caption": "左侧强调自行组装状态与分支，右侧强调已有运行循环的配置。它是职责分层的示意，不是“框架只能固定流程、Harness才允许开放任务”的二分法；框架也可承载Agent循环，权限和完成标准仍需应用负责。"
+      },
+      "ja": {
+        "heading": "FrameworkとHarness：再開できる作業状態は会話要約だけに置かない",
+        "alt": "左は部品から組むフロー、右はモデルの周囲にツール・文脈・記憶・子Agentを配置する模式図",
+        "caption": "左は状態と分岐を自分で組み、右は既存の実行ループを設定する違いを示す。役割の模式図であり、「フレームワークは固定フローだけ、Harnessだけが自由な課題を扱える」という二分法ではない。フレームワークにもAgentループを含められ、権限と完了基準はアプリ側が担う。"
+      }
+    }
+  ]
+}
