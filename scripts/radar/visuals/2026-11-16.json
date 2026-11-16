@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-11-16",
+  "visuals": [
+    {
+      "id": "lattice-phase-arcs",
+      "sourceUrl": "https://openai.com/index/step-toward-defining-the-standard-model/",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/4G0ZXdAgtYGRHIUayuw7AH/1ef11f2013114c08e706289c24b9897d/step-toward-defining-the-standard-model-diagram.png",
+      "asset": "https://images.ctfassets.net/kftzwdyauwt9/4G0ZXdAgtYGRHIUayuw7AH/1ef11f2013114c08e706289c24b9897d/step-toward-defining-the-standard-model-diagram.png",
+      "credit": "Nathaniel Craig／GPT‑6 Astra",
+      "review": "accepted",
+      "zh": {
+        "heading": "标准模型的格点构造：逐级细化，找出相位修正",
+        "alt": "逐级细化的格点上，橙弧表示相位变化，蓝绿色箭头表示反向修正",
+        "caption": "橙弧示意场绕一圈后积累的相位；相邻格点的比较用于找出原格点的修正量，蓝绿色箭头把相位补回去。这是机制示意，不是数值模拟结果。"
+      },
+      "ja": {
+        "heading": "標準模型の格子構成：格子を細かくして位相補正を求める",
+        "alt": "細分化した格子上で位相のずれを橙の弧、補正を青緑の矢印で表した図",
+        "caption": "場が元に戻る一周で生じる位相のずれを橙の弧で示す。隣り合う格子を比較して元の格子の補正量を求め、青緑の矢印でそのずれを打ち消す。数値計算の結果ではない。"
+      }
+    },
+    {
+      "id": "rope-shared-shift",
+      "sourceUrl": "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/88495cb6-f380-43db-aeab-0f50afbd41b0_2610x888.png",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/88495cb6-f380-43db-aeab-0f50afbd41b0_2610x888.png",
+      "credit": "Sebastian Raschka",
+      "review": "accepted",
+      "zh": {
+        "heading": "位置编码：RoPE 如何让点积感知相对位置",
+        "alt": "RoPE 对比位置 2 和 5 与同移后的 5 和 8",
+        "caption": "左右两组位置都相差 3；固定查询和键的特征后，整体旋转不会改变两向量的相对夹角。"
+      },
+      "ja": {
+        "heading": "位置エンコーディング：RoPEが内積に相対位置を反映する仕組み",
+        "alt": "RoPEで位置2と5を、同じだけずらした位置5と8と比較",
+        "caption": "左右とも位置差は3。クエリとキーの特徴を固定すると、同じだけ回した二本のベクトルの相対角は変わらない。"
+      }
+    },
+    {
+      "id": "maplibre-shapes-points",
+      "sourceUrl": "https://simonwillison.net/2026/Nov/15/datasette-maplibre/",
+      "originalImageUrl": "https://static.simonwillison.net/static/cors-allow/2026/datasette-maplibre.webp",
+      "asset": "https://static.simonwillison.net/static/cors-allow/2026/datasette-maplibre.webp",
+      "credit": "Simon Willison",
+      "review": "accepted",
+      "zh": {
+        "heading": "datasette-maplibre：先显示静态形状，再按需加载地图预览",
+        "alt": "Datasette 地图同时显示地区轮廓、聚合点和所选记录的详情",
+        "caption": "彩色轮廓和点群叠在同一张地图上，点击点可查看记录详情。截图展示视图组成，不单独证明按需加载的性能收益。"
+      },
+      "ja": {
+        "heading": "datasette-maplibre：静的な形状を先に見せ、地図は表示時に読み込む",
+        "alt": "Datasetteの地図に地域の輪郭、集約した点、選択したレコードの詳細が表示されている",
+        "caption": "色分けされた輪郭と点が同じ地図に重なり、点を選ぶとレコードの詳細が出る。この画面は表示の例であり、遅延読み込みによる性能改善を測ったものではない。"
+      }
+    }
+  ]
+}
