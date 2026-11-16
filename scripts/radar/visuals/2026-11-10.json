@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-11-10",
+  "visuals": [
+    {
+      "id": "nvidia-persona-pipeline",
+      "sourceUrl": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/604ad59e2fad27aca4515dab/P649AGmEfc-8C0I5qjqv_.png",
+      "asset": "https://cdn-uploads.huggingface.co/production/uploads/604ad59e2fad27aca4515dab/P649AGmEfc-8C0I5qjqv_.png",
+      "credit": "NVIDIA / Elith",
+      "review": "accepted",
+      "zh": {
+        "heading": "日本金融合成人物：100万记录与900万人物描述不是同一计数",
+        "alt": "从统计属性经两阶段语言模型生成多类日语人物描述的流程图",
+        "caption": "沿图中PGM与OCEAN输入看，LLM A先补充经济背景、金钱态度等语境，LLM B再汇合属性生成金融等多类人物描述。它表示合成数据的组织方式，不能证明生成分布与真实客户行为完全一致。"
+      },
+      "ja": {
+        "heading": "日本の金融分野向け合成人物：100万レコードと900万の記述を分ける",
+        "alt": "統計属性を二段階の言語モデルへ渡し複数種の日本語人物記述を作る図",
+        "caption": "PGMとOCEANの入力から、LLM Aが経済背景や金銭への態度などを加え、LLM Bが属性を合わせて複数の人物記述を作る。合成の構造を示す図で、実顧客の行動との完全な一致を証明しない。"
+      }
+    },
+    {
+      "id": "linkedin-review-orchestrator",
+      "sourceUrl": "https://blog.bytebytego.com/p/how-linkedin-uses-ai-to-review-40000",
+      "originalImageUrl": "https://media.licdn.com/dms/image/v2/D4D08AQGU3AoXdva2iA/croft-frontend-shrinkToFit767/B4DZ_3xjilJoAI-/0/1786568391069?e=2147483647&v=beta&t=7WKGQV7cphsL7DJPMunoKCqvmMbHu7qLIhOjkjVqkRI",
+      "asset": "https://media.licdn.com/dms/image/v2/D4D08AQGU3AoXdva2iA/croft-frontend-shrinkToFit767/B4DZ_3xjilJoAI-/0/1786568391069?e=2147483647&v=beta&t=7WKGQV7cphsL7DJPMunoKCqvmMbHu7qLIhOjkjVqkRI",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "LinkedIn代码审阅：把采纳率、PR数量与缺陷正确性分开",
+        "alt": "PR事件进入编排层，提取差异与上下文后并行审阅、去重核验并发布评论的流程",
+        "caption": "从上至下是PR事件、编排、差异与代码库上下文，再分成两种模型与Harness以及规则子任务，最终汇合为去重与交叉核验后的审阅。并行分支不是多数投票即可保证正确；图对应8月13日工程原文。"
+      },
+      "ja": {
+        "heading": "LinkedInのコードレビュー：採用率、PR数、欠陥の正しさを分ける",
+        "alt": "PRイベントから差分と文脈を取得し並列レビュー・重複除去・相互検証を経て投稿する流れ",
+        "caption": "上からPRイベント、編成、差分とコードベースの文脈へ進み、二つのモデルとHarness、およびルールの分岐を経て重複除去・相互検証へ戻る。並列実行を多数決による正しさの保証とは読めない。図の原文は8月13日公開。"
+      }
+    },
+    {
+      "id": "beep-locator-feedback",
+      "sourceUrl": "https://simonwillison.net/2026/Nov/9/mysterious-beeps/",
+      "originalImageUrl": "https://static.simonwillison.net/static/2026/beep-locator-ui.webp",
+      "asset": "https://static.simonwillison.net/static/2026/beep-locator-ui.webp",
+      "credit": "Simon Willison",
+      "review": "accepted",
+      "zh": {
+        "heading": "Beep Locator：给编码Agent接上可检查的环境反馈",
+        "alt": "作者Beep Locator界面：五个监听设备、定位地图、响度与声音日志",
+        "caption": "地图中的设备点、声源标记与误差圈可同下方各设备响度和声音日志交叉检查；日志还显示不符合物理条件的到达时间警告。约40厘米是作者这次摆位与确认后的报告，不是通用精度保证。"
+      },
+      "ja": {
+        "heading": "Beep Locator：コードAgentへ確認可能な環境のフィードバックを渡す",
+        "alt": "著者のBeep Locator画面：五つの端末、位置地図、音量、録音ログ",
+        "caption": "地図の端末位置・音源マーク・誤差範囲を、下の端末別音量と録音ログで確認できる。ログには到達時刻が物理的に成立しない警告もある。約40cmは今回の配置と確認における著者の報告で、一般的な精度保証ではない。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-11-15",
+  "visuals": [
+    {
+      "id": "datasette-lm-studio",
+      "sourceUrl": "https://simonwillison.net/2026/Nov/14/datasette-llm/",
+      "asset": "https://static.simonwillison.net/static/2026/lmstudio-datasette-agent.webp",
+      "originalImageUrl": "https://static.simonwillison.net/static/2026/lmstudio-datasette-agent.webp",
+      "credit": "Simon Willison",
+      "review": "accepted",
+      "zh": {
+        "heading": "Datasette：用兼容端点把本地模型接入数据代理",
+        "alt": "Datasette Agent 界面显示 lmstudio-qwen、用户查询及 SQL 工具",
+        "caption": "顶部标出所选模型，下方显示用户请求和 SQL 工具的运行过程。截图说明本地模型能接入此演示，不是查询正确率测试。"
+      },
+      "ja": {
+        "heading": "Datasette：互換エンドポイントでデータエージェントにローカルモデルを接続",
+        "alt": "lmstudio-qwen、質問、SQLツールが表示されたDatasette Agent",
+        "caption": "上部に選択中のモデル名があり、下に質問とSQLツールの実行過程が見える。この接続例を示す画面で、回答精度の試験ではない。"
+      }
+    },
+    {
+      "id": "datasette-vega-browser",
+      "sourceUrl": "https://simonwillison.net/2026/Nov/14/datasette-vega/",
+      "asset": "https://static.simonwillison.net/static/2026/datasette-vega.webp",
+      "originalImageUrl": "https://static.simonwillison.net/static/2026/datasette-vega.webp",
+      "credit": "Simon Willison",
+      "review": "accepted",
+      "zh": {
+        "heading": "datasette-vega：在浏览器里给表格和查询结果画图",
+        "alt": "Datasette Lite 中选择字段生成柱状图的界面",
+        "caption": "图中在界面选择柱状图、航空公司列和一项死亡人数列。它演示如何映射字段，不应用来给航空公司作安全排名。"
+      },
+      "ja": {
+        "heading": "datasette-vega：表やクエリ結果をブラウザー内でグラフにする",
+        "alt": "Datasette Liteで列を選択し、棒グラフを描く画面",
+        "caption": "グラフの種類と、航空会社名・死亡者数に関する列を選ぶ例。列を軸に割り当てる操作の実演で、航空会社の安全性ランキングではない。"
+      }
+    },
+    {
+      "id": "agent-control-loops",
+      "sourceUrl": "https://blog.bytebytego.com/p/ep233-kubernetes-explained-for-busy",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/5233378c-3c59-40b1-9de2-6515b9d3e928_2484x3002.png",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/5233378c-3c59-40b1-9de2-6515b9d3e928_2484x3002.png",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "ByteByteGo：需要并行或独立复核时，再拆成多个 Agent",
+        "alt": "上方是单 Agent 的循环，下方是协调者分配多个角色的结构",
+        "caption": "上半图由同一个 Agent 往返调用工具；下半图把研究、写作等工作分给不同角色，再由协调者衔接。结构图不比较实际费用或准确率。"
+      },
+      "ja": {
+        "heading": "ByteByteGo：並列処理や独立確認が必要なら複数エージェントに分ける",
+        "alt": "上は単一エージェントのループ、下は調整役と複数の担当",
+        "caption": "上は同じエージェントがツール呼び出しを繰り返す構成。下は調査や執筆を別々の担当に分ける構成。実際の費用や精度を比較する図ではない。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-11-11",
+  "visuals": [
+    {
+      "id": "naive-flash-response-time",
+      "sourceUrl": "https://latent.space/p/naiveai/",
+      "originalImageUrl": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/551a71b8-fce5-4259-b40e-fb938cdfc13e/image.png?t=1793716278",
+      "asset": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/551a71b8-fce5-4259-b40e-fb938cdfc13e/image.png?t=1793716278",
+      "credit": "Gabriele Beltramo / Latent.Space",
+      "review": "accepted",
+      "zh": {
+        "heading": "Naive-N0.5-Flash：解码很快，难题未必更早完成",
+        "alt": "三个题集对比响应时间、生成 token 数和有效 token 每秒",
+        "caption": "横读最下面的 HLE-Diamond：Naive 思考档的生成量和有效速率都高，但平均响应时间并不最短。每个题集每种设置 10 道题；图注把右列定义为平均生成量除以平均客户端耗时，不是正文另报的吞吐统计，也不是厂商的一秒峰值。"
+      },
+      "ja": {
+        "heading": "Naive-N0.5-Flash：デコードが速くても、難問が先に終わるとは限らない",
+        "alt": "3つの問題集で応答時間、生成トークン数、実効トークン毎秒を比較",
+        "caption": "最下段のHLE-Diamondでは、思考ありのNaiveは生成量も実効速度も大きいが、平均応答時間は最短ではない。問題集・設定ごとに10問。右列は図の注記どおり平均生成量をクライアント側の平均応答時間で割った値で、本文の別集計のスループットや開発元の1秒ピークとは異なる。"
+      }
+    },
+    {
+      "id": "copilot-runtime-architecture",
+      "sourceUrl": "https://blog.bytebytego.com/p/how-github-used-ai-to-port-copilot",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/2e64b9e1-d8ca-427a-b096-38cffbb4851e_4024x1604.png",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/2e64b9e1-d8ca-427a-b096-38cffbb4851e_4024x1604.png",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "Copilot 运行时迁往 Rust，靠的是可逐步替换的边界",
+        "alt": "Copilot 旧 SDK 通过独立 CLI 进程，Rust 运行时可进程内或进程外部署",
+        "caption": "左侧旧架构的 SDK 经标准输入输出跨到另一个 CLI 进程；右侧上支可经 FFI 在宿主内调用 Rust，下支仍保留独立进程。重写不是禁止进程外调用，而是让宿主不再只有一种路径。"
+      },
+      "ja": {
+        "heading": "CopilotランタイムのRust移行を支えた、段階的に置換できる境界",
+        "alt": "旧Copilot SDKは別のCLIプロセスを経由し、Rust版はプロセス内外の両方に対応",
+        "caption": "左の旧SDKは標準入出力で別のCLIプロセスにつなぐ。右上はFFIでホスト内のRustを呼び、右下は別プロセスを使う。書き直しで外部プロセスを禁止したのではなく、ホストに選択肢を増やした。"
+      }
+    },
+    {
+      "id": "decision-model-state-and-options",
+      "sourceUrl": "https://huggingface.co/blog/decision",
+      "originalImageUrl": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/decision/decision-models.png",
+      "asset": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/decision/decision-models.png",
+      "credit": "Hugging Face",
+      "review": "accepted",
+      "zh": {
+        "heading": "决策模型：直接给候选项评分，不先生成一段 JSON",
+        "alt": "工单文本与候选部门进入决策模型，输出各部门概率",
+        "caption": "左边把工单、问题和预设部门一同输入，右边给每个部门一个分数。图中的百分比是说明接口的示例，不是生产准确率或已校准概率。"
+      },
+      "ja": {
+        "heading": "意思決定モデル：JSONを生成せず、候補に直接スコアを付ける",
+        "alt": "問い合わせ本文と候補部署を入力し、各部署の確率を返す意思決定モデル",
+        "caption": "左から問い合わせ、質問、所定の部署候補を入力し、右で各部署のスコアを受け取る。図の割合はインターフェースの例で、本番精度や校正済み確率ではない。"
+      }
+    }
+  ]
+}

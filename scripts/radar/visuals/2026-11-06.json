@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "date": "2026-11-06",
+  "visuals": [
+    {
+      "id": "cosmos-bimanual-input-pose",
+      "sourceUrl": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation",
+      "originalImageUrl": "https://research.nvidia.com/labs/cosmos-lab/cosmos-simulation/assets/bimanual/robot-yam_000-seed2025-motion.png?v=bulk-replay1-assets-20261023",
+      "asset": "https://research.nvidia.com/labs/cosmos-lab/cosmos-simulation/assets/bimanual/robot-yam_000-seed2025-motion.png?v=bulk-replay1-assets-20261023",
+      "credit": "NVIDIA Cosmos Lab",
+      "review": "accepted",
+      "zh": {"heading":"Cosmos 3：动作驱动的生成观察，不等于物理模拟已经可靠","alt":"Sim-Bimanual演示的三维双臂初始姿态输入示意","caption":"网格中不同颜色的手臂标出项目演示提供给Sim-Bimanual的初始动作姿态。它是预测下一观察的输入示意，不是生成的摄像头画面，也不能用来证明接触或运动的物理准确性。"},
+      "ja": {"heading":"Cosmos 3：動作に応じた観測生成は、物理シミュレーションの保証ではない","alt":"Sim-Bimanualのデモで使う両腕の初期姿勢の3D入力図","caption":"格子上の色分けした腕は、プロジェクトのデモがSim-Bimanualに渡す初期姿勢を示す。次の観測を予測するための入力図であり、生成カメラ映像でも、接触や運動の物理的な正しさの証明でもない。"}
+    },
+    {
+      "id":"fourbot-handoff-note",
+      "sourceUrl":"https://blog.dailydoseofds.com/p/finding-every-vulnerability-made",
+      "originalImageUrl":"https://substack-post-media.s3.amazonaws.com/public/images/73c9f9e8-86b6-47fb-bc7e-e561abc740af_2752x1536.jpeg",
+      "asset":"https://substack-post-media.s3.amazonaws.com/public/images/73c9f9e8-86b6-47fb-bc7e-e561abc740af_2752x1536.jpeg",
+      "credit":"Daily Dose of Data Science",
+      "review":"accepted",
+      "zh":{"heading":"四Bot交接：共享文件需要单一状态写入者，也需要安全核查","alt":"Bay写交接文件，Piper检查，Fin按接口契约继续开发","caption":"左侧Bay写入文件路径、接口契约、决策和未完事项，Piper检查后，右侧Fin据此接手。虚线框表示同一台共享云电脑；交接靠可核对的契约，而不是一句“已经完成”。"},
+      "ja":{"heading":"4つのBotの引継ぎ：共有ファイルにも更新責任と安全確認が必要","alt":"Bayが引継ぎを記録し、Piperが確認し、Finが契約に沿って作業する図","caption":"左のBayがパス、インターフェース契約、判断、未完了作業を記録し、Piperが確認して右のFinが引き継ぐ。点線の枠は同じクラウドPCを表す。引継ぎに必要なのは「完了」の一言ではなく、確認できる契約である。"}
+    },
+    {
+      "id":"la-trobe-fletch-training",
+      "sourceUrl":"https://openai.com/index/australian-universities-ai-native-graduates",
+      "originalImageUrl":"https://images.ctfassets.net/kftzwdyauwt9/1wQOKpRJ8dYh1iesZPsiVf/5604d52d462c88c16584fa172698dc52/la-trobe-fletch-teacher-training.png?w=3840&q=90&fm=webp",
+      "asset":"https://images.ctfassets.net/kftzwdyauwt9/1wQOKpRJ8dYh1iesZPsiVf/5604d52d462c88c16584fa172698dc52/la-trobe-fletch-teacher-training.png?w=3840&q=90&fm=webp",
+      "credit":"OpenAI / La Trobe University",
+      "review":"accepted",
+      "zh":{"heading":"澳大利亚大学：扩大访问，也明确何时必须自己作答","alt":"拉筹伯大学Therese Keane教授与教师训练使用的社交机器人Fletch","caption":"右侧Fletch用于模拟与家长沟通，帮助未来教师在正式场景前练习反馈。这是合作方展示的教学实例，不是机器人独立评定教师能力，也不是学习成效的对照数据。"},
+      "ja":{"heading":"オーストラリアの大学：利用を広げつつ、自力で答える場面を定める","alt":"ラ・トローブ大学のTherese Keane教授と教員養成に使うソーシャルロボットFletch","caption":"右のFletchは保護者とのやり取りを模擬し、教員志望者が実際の場面に入る前にフィードバックを練習するためのものだ。提携先が示した授業例であり、ロボットが教員の力量を判定する仕組みでも、学習効果の対照データでもない。"}
+    }
+  ]
+}

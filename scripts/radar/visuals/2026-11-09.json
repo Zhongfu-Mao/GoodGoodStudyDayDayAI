@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "date": "2026-11-09",
+  "exception": "三项技术与工作方法条目，仅以一张原创解释图展示同一解析规则下的四条实现路径；访谈与团队看板不以无关照片凑图。",
+  "visuals": [
+    {
+      "id": "sqlite-parser-paths",
+      "kind": "original-explanation",
+      "sourceUrl": "https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/",
+      "asset": "/images/radar/2026-11-09-sqlite-parser-paths.webp",
+      "sha256": "5b1b2d002e7c9e0c0a4cb26e980262124d7cba0e6510a342a301f98648726a11",
+      "credit": "GoodGoodStudyDayDayAI（基于Simon Willison公开实验 / 公開実験に基づく）",
+      "review": "accepted",
+      "zh": {
+        "heading": "SQLite解析实验：四种具体实现，不是C与Rust的通用排名",
+        "alt": "原创解释图：相同解析规则分别交给四种实现，再经test.py和fuzz.py检查",
+        "caption": "原创解释示意：顶部两例先确定parse_number的约定，四个目录代表可替换的实现，底部表示测试与模糊对照。百分号只被移除，12.5%仍是12.5；图中没有性能排名，也不是独立复现实验。"
+      },
+      "ja": {
+        "heading": "SQLiteの解析実験：四つの実装の比較で、C対Rustの一般順位ではない",
+        "alt": "同じ解析規則を四つの実装に渡し、test.pyとfuzz.pyで確認する独自の説明図",
+        "caption": "独自の説明図。上の二例がparse_numberの規則を定め、四つのディレクトリーは交換可能な実装、下部はテストとファズ比較を示す。百分率記号は除くだけで12.5%は12.5のまま。性能順位や独立再現の結果を示す図ではない。"
+      }
+    }
+  ]
+}

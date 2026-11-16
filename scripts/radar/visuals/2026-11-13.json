@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-11-13",
+  "visuals": [
+    {
+      "id": "granite-benchmark",
+      "sourceUrl": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite",
+      "asset": "https://cdn-uploads.huggingface.co/production/uploads/6484ca4d5ff9a3d2ee52a83b/VMIEO4qYlmxLhK0DmMO6C.png",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/6484ca4d5ff9a3d2ee52a83b/VMIEO4qYlmxLhK0DmMO6C.png",
+      "credit": "IBM Granite",
+      "review": "accepted",
+      "zh": {
+        "heading": "Granite LLMON：把指令和数据分块，不把标签当权限",
+        "alt": "同规格的 Granite Instruct 与 LLMON 预览模型在七类任务上的比较表",
+        "caption": "先在同一模型规格内横向比较：例如 8B 的安全类得分上升，数学类得分下降。最后一行是七类分数的平均值，不是所有指标都改善。"
+      },
+      "ja": {
+        "heading": "Granite LLMON：指示とデータの分離は権限管理の代わりにならない",
+        "alt": "同じ規模のGranite InstructとLLMONプレビューを七つの分野で比べた表",
+        "caption": "同じモデル規模の列を横に比較する。たとえば8Bでは安全性の得点が上がり、数学は下がっている。最下段は七分野の平均で、全指標が改善したわけではない。"
+      }
+    },
+    {
+      "id": "omnigraph-merge-refused",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/how-top-ai-teams-scale-to-1000-agents",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/96ca1296-3220-4ef1-b3e2-50626e052d17_3200x938.png",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/96ca1296-3220-4ef1-b3e2-50626e052d17_3200x938.png",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "Omnigraph：分支保留各自修改，合并时拦下旧记录覆盖",
+        "alt": "Omnigraph 演示：负责人字段已在分支里改动，但合并同一服务记录时冲突",
+        "caption": "上半部分只显示负责人字段的差异；下半部分却因同一条服务记录发生分歧而拒绝合并，显示未写入并提示刷新。"
+      },
+      "ja": {
+        "heading": "Omnigraph：変更はブランチに分け、古いレコードによる上書きを防ぐ",
+        "alt": "Omnigraphの実演画面。ブランチで担当者を変更したが、同じサービスのレコードが競合した",
+        "caption": "上段の差分は担当者の変更だけだが、下段では同じサービスのレコードが分岐したためマージを拒否している。書き込みは行われず、更新を促している。"
+      }
+    },
+    {
+      "id": "amplitude-card-proposal",
+      "sourceUrl": "https://openai.com/business/customer-stories/amplitude",
+      "asset": "https://images.ctfassets.net/kftzwdyauwt9/3LjZcXouhYtaCOBh1oGfTt/9dc30c9597dbff3dd6174b34b4c907c6/amplitude-wave-personalized-suggestions.png",
+      "originalImageUrl": "https://images.ctfassets.net/kftzwdyauwt9/3LjZcXouhYtaCOBh1oGfTt/9dc30c9597dbff3dd6174b34b4c907c6/amplitude-wave-personalized-suggestions.png",
+      "credit": "OpenAI／Amplitude",
+      "review": "accepted",
+      "zh": {
+        "heading": "Amplitude Wave：从会话回放找问题，再用 A/B 测试检验",
+        "alt": "Amplitude 首页的通用建议与基于近期活动的建议方案对照",
+        "caption": "上半部的卡片不依赖用户近期操作；下半部的方案把每张卡与相关图表或仪表板连起来。这是界面改动示例，不是实验结果图。"
+      },
+      "ja": {
+        "heading": "Amplitude Wave：セッションの再生から課題を見つけ、A/Bテストで検証",
+        "alt": "Amplitudeホーム画面の汎用提案と、最近の利用状況に合わせた提案の比較",
+        "caption": "上段のカードは最近の操作に依存しない。下段の提案では各カードが対応するグラフやダッシュボードに結び付く。画面変更の例で、実験結果のグラフではない。"
+      }
+    }
+  ]
+}

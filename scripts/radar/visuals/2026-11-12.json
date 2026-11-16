@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "date": "2026-11-12",
+  "exception": "仅选两张能直接解释评分和对照机制的原图；其余候选为宣传封面、无足够解释力或不宜转引的现场照片。",
+  "visuals": [
+    {
+      "id": "decision-api-architecture",
+      "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "asset": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/decisions-architecture_f0NFXU9.width-1200.format-webp.webp",
+      "originalImageUrl": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/decisions-architecture_f0NFXU9.width-1200.format-webp.webp",
+      "credit": "Google",
+      "review": "accepted",
+      "zh": {
+        "heading": "Gemini Decisions API：共享多模态输入，分别给预设选项评分",
+        "alt": "多模态材料和三类问题进入 Gemini Decision 1，返回各自的评分",
+        "caption": "从左到右读：共享输入和三类问题一起送入模型，右侧分开返回是非概率、选项和等级评分。图中的置信度只是演示结果。"
+      },
+      "ja": {
+        "heading": "Gemini Decisions API：マルチモーダル入力を共有し、選択肢を個別に採点",
+        "alt": "マルチモーダル資料と3種類の質問をGemini Decision 1に渡し、個別に採点",
+        "caption": "左の共有入力と3種類の質問をモデルに渡すと、右に真偽の確率、選択肢、段階評価が別々に返る。図の確信度はデモ結果だ。"
+      }
+    },
+    {
+      "id": "harness-arena-shared-inputs",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/find-production-agent-failures-before",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/de6d1873-7e1e-463b-871b-682ac6cf069e_2752x1536.jpeg",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/de6d1873-7e1e-463b-871b-682ac6cf069e_2752x1536.jpeg",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {
+        "heading": "Harness Arena：保持任务不变，再比较运行组合",
+        "alt": "共享输入分发到多个运行框架与模型组合，分别记录成本、时间和合否",
+        "caption": "左侧把任务材料固定，右侧比较每种组合的输出。图中模型与运行框架同时变化，因此适合比较组合，不能单独归因给框架。"
+      },
+      "ja": {
+        "heading": "Harness Arena：タスクをそろえて実行構成を比べる",
+        "alt": "共通入力を複数の実行基盤とモデルに配り、費用、時間、合否を記録",
+        "caption": "左でタスク資料をそろえ、右で構成ごとの結果を比べる。図ではモデルと実行基盤の両方が変わるため、構成全体の比較であって実行基盤だけの効果は示さない。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "date": "2026-11-05",
+  "visuals": [
+    {
+      "id": "dharma-receipt-fields",
+      "sourceUrl": "https://huggingface.co/blog/Dharma-AI/dharma-field-extractor",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/m3CfHgYlaDZ9srzt2X99_.png",
+      "asset": "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/m3CfHgYlaDZ9srzt2X99_.png",
+      "credit": "Dharma-AI",
+      "review": "accepted",
+      "zh": {"heading": "Dharma Field Extractor：从文档图像直接抽取指定JSON字段", "alt": "左侧SROIE收据与右侧抽出的JSON字段对照", "caption": "从左侧收据看向右侧JSON：电话号码、单号、日期及税前税后合计分别成为键值，空白销售员与参考号则输出null。这是一份示例的字段对应，不代表所有票据、语言或版式都达到同样效果。"},
+      "ja": {"heading": "Dharma Field Extractor：文書画像から指定したJSONフィールドへ", "alt": "左のSROIE領収書と右の抽出済みJSONフィールドの比較", "caption": "左の領収書から右のJSONへ、電話番号・伝票番号・日付・税抜きと税込みの合計がキーと値に対応する。空欄の担当者と参照番号はnullになる。一件の出力例であり、すべての帳票・言語・レイアウトで同じ品質を保証するものではない。"}
+    },
+    {
+      "id": "scion-control-object-planes",
+      "sourceUrl": "https://blog.bytebytego.com/p/how-anthropic-redesigned-source-control",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/fbf6a96d-e5e3-4877-a6ea-e125f1204b3d_4024x1790.png",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/fbf6a96d-e5e3-4877-a6ea-e125f1204b3d_4024x1790.png",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {"heading": "Scion架构解读：把仓库操作移到服务端，减少Agent重复搬运", "alt": "Scion控制面直达服务端，对象面经过节点及区域缓存再访问存储", "caption": "黑色箭头把分支、历史和提交操作送到scion-server；棕色箭头搬运树与文件内容，缓存未命中才逐级回源。右侧Spanner保存元数据，Cloud Storage保存文件内容，说明控制操作与大对象分发为何需要不同路径。"},
+      "ja": {"heading": "Scionの解説：リポジトリ操作をサーバーへ移し、Agentの反復転送を減らす", "alt": "Scionの制御面はサーバーへ直結し、オブジェクト面はノードと地域キャッシュを経由する", "caption": "黒い矢印はブランチ・履歴・コミットをscion-serverへ送り、茶色い矢印はツリーとファイル内容を運ぶ。キャッシュミス時だけ上流へ進み、右側ではSpannerがメタデータ、Cloud Storageがファイル内容を保存する。制御操作と大きなオブジェクトの配信を分ける理由が見える。"}
+    },
+    {
+      "id": "phonon-first-audio-latency",
+      "sourceUrl": "https://huggingface.co/blog/phonon-tts",
+      "originalImageUrl": "https://huggingface.co/datasets/olesiagradium/video/resolve/main/phonon-ttfa-chart.png",
+      "asset": "https://huggingface.co/datasets/olesiagradium/video/resolve/main/phonon-ttfa-chart.png",
+      "credit": "Gradium / Hugging Face Open TTS Leaderboard",
+      "review": "accepted",
+      "zh": {"heading": "Phonon实现解读：端侧单流与GPU批量合成是两条部署路线", "alt": "作者引用的CPU流式评测中，十种实现的首段音频延迟第95百分位比较", "caption": "纵轴是首段音频延迟的第95百分位，越低越好；两根绿色柱是Phonon英语版本，其他柱还区分了具体推理实现。这张CPU流式评测图衡量开始发声的等待，不是整段吞吐、音质或所有手机上的保证。"},
+      "ja": {"heading": "Phononの実装解説：端末内の単一ストリームとGPUバッチ生成を分ける", "alt": "著者が引用するCPUストリーミング評価での初回音声遅延95パーセンタイルの比較", "caption": "縦軸は初回音声遅延の95パーセンタイルで、低いほど短い。緑の二本はPhonon英語版で、他の棒も推論実装ごとに区別される。CPUストリーミング評価で発声開始までの待ち時間を比較する図であり、全体のスループット・音質・すべてのスマートフォンでの保証ではない。"}
+    }
+  ]
+}

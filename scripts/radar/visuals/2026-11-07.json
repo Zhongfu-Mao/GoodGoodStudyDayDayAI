@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "date": "2026-11-07",
+  "visuals": [
+    {
+      "id": "toyblocks-planning-evaluation",
+      "sourceUrl": "https://huggingface.co/blog/allenai/toyblocks",
+      "originalImageUrl": "https://www.datocms-assets.com/64837/1793917318-toyblocks-framework-current.png",
+      "asset": "https://www.datocms-assets.com/64837/1793917318-toyblocks-framework-current.png",
+      "credit": "Ai2",
+      "review": "accepted",
+      "zh": {"heading":"ToyBlocks：把机器人泛化失败拆到规划与执行","alt":"ToyBlocks 中场景与任务接入技能生成、规划执行、训练和评估的流程图","caption":"看中间的 Planning 和 Plan execution：前者组合技能，后者执行计划并记录数据与标签。下方另列 Training 和 Evaluation，说明生成演示与评估模型是不同环节。"},
+      "ja": {"heading":"ToyBlocks：ロボットの汎化失敗を計画と実行に分けて調べる","alt":"ToyBlocksのシーンとタスクを技能生成、計画実行、学習、評価につなぐ図","caption":"中央の Planning は技能を組み合わせ、Plan execution は計画を実行してデータとラベルを記録する。下段の Training と Evaluation に注目すると、実演データを作る工程とモデルを評価する工程の違いが分かる。"}
+    },
+    {
+      "id": "moe-expert-dispatch",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/7-moe-routing-strategies-in-production",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/0fd54815-f5f7-4a71-9a99-83f0b58ff6f7_2752x1536.jpeg",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/0fd54815-f5f7-4a71-9a99-83f0b58ff6f7_2752x1536.jpeg",
+      "credit": "Daily Dose of Data Science",
+      "review": "accepted",
+      "zh": {"heading":"MoE 路由：固定每个 token 的专家数，不等于固定每个专家的负载","alt":"MoE 从路由到 token 分发和专家批次计算的流程，标出通信与小批次开销","caption":"沿箭头看：选择专家后还要搬运 token，并由各专家处理自己的批次。分发的通信和小批次计算都可能成为瓶颈；图是诊断示意，并未比较七种方案的实测延迟。"},
+      "ja": {"heading":"MoE ルーティング：トークン当たりの専門家数を固定しても負荷は均等にならない","alt":"MoEの経路選択、トークン分配、専門家バッチ計算と、通信・小バッチの負荷を示す図","caption":"矢印を追うと、専門家の選択後にトークンを転送し、各専門家がそれぞれのバッチを処理する。通信と小さなバッチでの計算のどちらもボトルネックになり得る。七つの設計の実測遅延を比較した図ではない。"}
+    },
+    {
+      "id": "metr-aeci-trend",
+      "sourceUrl": "https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/",
+      "originalImageUrl": "https://metr.org/assets/images/ai-rd-acceleration-assessment/aeci-main.png",
+      "asset": "https://metr.org/assets/images/ai-rd-acceleration-assessment/aeci-main.png",
+      "credit": "METR",
+      "review": "accepted",
+      "zh": {"heading":"METR：能力指标的增长斜率为此前的 1.9 倍，不是研发提速的因果估计","alt":"METR 的 AECI 能力指标趋势图，显示模型估计点、误差范围与趋势线","caption":"纵轴是 AECI，点是模型的估计位置。1.9 倍比较的是前后趋势线的斜率，不是任一模型的分数倍数，也不能从图上读出 AI 的因果贡献。"},
+      "ja": {"heading":"METR：能力指標の傾きは従来の 1.9 倍、研究開発加速の因果推定ではない","alt":"モデルごとの推定点と誤差範囲、傾向線を示すMETRのAECIグラフ","caption":"縦軸は AECI、点はモデルごとの推定位置。1.9 倍は前後の傾向線の傾きの比で、個別モデルのスコアの倍率でも、AI の因果的な寄与でもない。"}
+    }
+  ]
+}

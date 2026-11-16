@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "date": "2026-11-08",
+  "exception": "本期两项工程条目，仅保留直接解释权限与执行路径的一张原图，不以无关图片增加数量。",
+  "visuals": [
+    {
+      "id": "agent-permission-execution-loop",
+      "sourceUrl": "https://blog.bytebytego.com/p/ep232-6-frequently-used-orchestration",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/e22c1706-e217-45fb-9156-72ce11785cc1_1270x1536.jpeg",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/e22c1706-e217-45fb-9156-72ce11785cc1_1270x1536.jpeg",
+      "credit": "ByteByteGo",
+      "review": "accepted",
+      "zh": {
+        "heading": "Agent编排：把控制流、权限与执行结果分开检查",
+        "alt": "Claude Code请求示意图，显示权限检查、工具执行、结果回传与状态保存",
+        "caption": "从右侧Permissions沿箭头看，动作获准后才交给Tools与Execution，结果再回到Agent Loop，下方另有状态保存。图中的测试通过是示例输出，不能证明任意一次工具调用或整项任务都正确。"
+      },
+      "ja": {
+        "heading": "Agentのオーケストレーション：制御、権限、実行結果を分けて確認する",
+        "alt": "権限確認、ツール実行、結果返却、状態保存を示すClaude Codeのリクエスト模式図",
+        "caption": "右のPermissionsから矢印をたどると、許可後にToolsとExecutionへ進み、結果がAgent Loopへ戻る。下部には状態保存もある。テスト成功という表示は出力例であり、どの呼び出しやタスク全体も正しいと証明するものではない。"
+      }
+    }
+  ]
+}

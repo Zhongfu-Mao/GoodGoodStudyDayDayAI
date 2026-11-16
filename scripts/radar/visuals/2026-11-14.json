@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "date": "2026-11-14",
+  "visuals": [
+    {
+      "id": "xybench-format-comparison",
+      "sourceUrl": "https://huggingface.co/blog/allenai/xybench",
+      "asset": "https://www.datocms-assets.com/64837/1794336134-xybench-picking-vs-writing.png",
+      "originalImageUrl": "https://www.datocms-assets.com/64837/1794336134-xybench-picking-vs-writing.png",
+      "credit": "Ai2／XYBench",
+      "review": "accepted",
+      "zh": {
+        "heading": "XYBench：能选出好答案，不等于会主动写出它",
+        "alt": "XYBench 对比在两道候选答案中选择与从头自由作答的结果",
+        "caption": "图只比较 Stack Overflow 子集。左侧是从两个答案中选目标导向的一项；右侧是自由回答时主动聚焦实际目标，两边不是同一答题条件。"
+      },
+      "ja": {
+        "heading": "XYBench：よい回答を選べても、自力で書けるとは限らない",
+        "alt": "XYBenchで二択と自由回答を比較した棒グラフ",
+        "caption": "対象はStack Overflowの部分集合。左は二つから目的に沿った回答を選ぶ課題で、右は自由回答で実際の目的を中心に置く課題。出題条件が異なる。"
+      }
+    },
+    {
+      "id": "simready-asset-scene-boundary",
+      "sourceUrl": "https://huggingface.co/blog/nvidia/simready-assets-robot-pick-and-place",
+      "asset": "https://cdn-uploads.huggingface.co/production/uploads/6abfe9e7d7cf09a9b38ef308/J7YL_C3mUh7MWUNJ_pVtN.png",
+      "originalImageUrl": "https://cdn-uploads.huggingface.co/production/uploads/6abfe9e7d7cf09a9b38ef308/J7YL_C3mUh7MWUNJ_pVtN.png",
+      "credit": "NVIDIA",
+      "review": "accepted",
+      "zh": {
+        "heading": "SimReady：资产验证通过，不等于抓放任务已经通过",
+        "alt": "左侧列出 SimReady 包带来的模型与物理设置，右侧列出任务场景要补的工作",
+        "caption": "左栏是该例里现成的机械臂、夹爪、饮料罐及其物理配置；右栏是场景还需加入的工作台、放置和控制。资产验证不替代整项任务测试。"
+      },
+      "ja": {
+        "heading": "SimReady：アセット検証と把持・配置タスクの成否は別",
+        "alt": "SimReadyのアセットに含まれる物理設定とシーン側で追加する要素の比較",
+        "caption": "左はこの例のアーム、グリッパー、缶と物理設定。右は作業台、配置、制御など、シーン側で加えるもの。アセット検証とタスク全体の試験は別だ。"
+      }
+    },
+    {
+      "id": "datasette-faceted-map",
+      "sourceUrl": "https://simonwillison.net/2026/Nov/13/datasette-cluster-map",
+      "asset": "https://static.simonwillison.net/static/2026/power-plants-pge.webp",
+      "originalImageUrl": "https://static.simonwillison.net/static/2026/power-plants-pge.webp",
+      "credit": "Simon Willison",
+      "review": "accepted",
+      "zh": {
+        "heading": "Datasette 地图插件：在瓦片请求上单独处理来源标头",
+        "alt": "Datasette 上方显示国家、业主和燃料筛选，下方在地图上聚合电站点位",
+        "caption": "上方的分面用于筛选数据，地图上的数字圆点表示聚合后的站点数。这张图展示的是页面效果，不直接显示瓦片请求标头。"
+      },
+      "ja": {
+        "heading": "Datasetteの地図プラグイン：地図タイルの参照元ヘッダーを個別設定",
+        "alt": "国、所有者、燃料を絞り込み、地図に発電所をまとめて表示するDatasette",
+        "caption": "上の絞り込み項目でデータを選び、地図の数字付きの丸が地点のまとまりを示す。表示例であり、タイル要求のヘッダー自体は写っていない。"
+      }
+    }
+  ]
+}
