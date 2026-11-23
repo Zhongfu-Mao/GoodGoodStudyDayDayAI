@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "date": "2026-11-23",
+  "exception": "两张原图分别解释RAG职责分层与实际界面结果；写作流程和治理评论不以装饰插画冒充实测证据。",
+  "visuals": [
+    {
+      "id": "rag-build-operate-risk",
+      "sourceUrl": "https://blog.dailydoseofds.com/p/moving-from-rag-apps-to-rag-systems-465",
+      "originalImageUrl": "https://substack-post-media.s3.amazonaws.com/public/images/db726b6d-5b6b-4c93-85af-39a20ecddaeb_5504x2558.jpeg",
+      "asset": "https://substack-post-media.s3.amazonaws.com/public/images/db726b6d-5b6b-4c93-85af-39a20ecddaeb_5504x2558.jpeg",
+      "credit": "Daily Dose of Data Science / Avi Chawla",
+      "review": "accepted",
+      "zh": {
+        "heading": "RAG 课程更新：分别治理检索输入与答案输出",
+        "alt": "RAG 从检索生成，到评估迁移回滚，再到验证校准和弃答的三步职责图",
+        "caption": "从左向右看，构建检索与生成只是起点；中间的运维层负责评估、迁移和回滚，右侧才是用验证、校准与弃答控制回答风险。箭头表示职责衔接，不表示前一层自动保证后一层正确，也不是性能测试结果。"
+      },
+      "ja": {
+        "heading": "RAGコースの更新：検索への入力と回答の出力を別々に管理",
+        "alt": "検索と生成、評価・移行・ロールバック、検証・校正・棄権というRAGの責任を示す三段階の図",
+        "caption": "左から、検索と生成の構築は出発点にすぎず、中央の運用層が評価・移行・ロールバックを担い、右側で検証・校正・棄権により回答リスクを制御します。矢印は責任のつながりであり、前段が後段の正しさを自動保証することや性能測定結果を示していません。"
+      }
+    },
+    {
+      "id": "select-styled-after",
+      "sourceUrl": "https://simonwillison.net/2026/Nov/22/select-styling/",
+      "originalImageUrl": "https://static.simonwillison.net/static/2026/select-styled-firefox-safari-chrome.webp",
+      "asset": "https://static.simonwillison.net/static/2026/select-styled-firefox-safari-chrome.webp",
+      "credit": "Simon Willison",
+      "review": "accepted",
+      "zh": {
+        "heading": "Select Styling Specimens：让 AI 生成可比较的界面样本",
+        "alt": "指定 CSS 后三个浏览器的选择框均呈圆角浅灰边框和向下箭头",
+        "caption": "再看改造后：统一指定外观和 SVG 箭头后，所示三个浏览器的选择框更为接近。这个前后对照只验证截图中的视觉关系，不能替代键盘、移动端及无障碍测试。"
+      },
+      "ja": {
+        "heading": "Select Styling Specimens：AIで比較できるUI見本を作る",
+        "alt": "CSS指定後の三つのブラウザで角丸の薄灰色の枠と下向き矢印が共通する",
+        "caption": "変更後は、外観とSVGの矢印を明示して、表示された三つのブラウザの見た目を近づけています。この比較が示すのは画像上の関係であり、キーボード・モバイル・アクセシビリティの検証を代替しません。"
+      }
+    }
+  ]
+}
